@@ -15,3 +15,4 @@ tsconfig.tsbuildinfo
 out/
 .vercel/
 screenshot-*.png
+issue1-*.png

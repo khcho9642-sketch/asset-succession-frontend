@@ -1,19 +1,66 @@
-import { MockNotice } from "@/components/MockNotice";
+import { CalendarDays, CheckCircle2 } from "lucide-react";
+import { PublicLightNav } from "@/components/PublicLightNav";
 
 export default function ConsultationPage() {
   return (
-    <main className="page-shell">
-      <MockNotice />
-      <section className="panel wide">
-        <p className="eyebrow">상담 신청</p>
-        <h1>지금 단계에서는 실제 개인정보를 받지 않는 신청 화면 목업입니다.</h1>
-        <div className="form-grid">
-          <label>호칭<input defaultValue="예: 신청자 A" aria-label="호칭" /></label>
-          <label>관심 시나리오<select defaultValue="partial"><option value="partial">일부 증여</option><option>부담부증여</option><option>상속 비교</option></select></label>
-          <label>연락 방식<select defaultValue="later"><option value="later">추후 입력</option><option>전화 상담</option><option>이메일 상담</option></select></label>
-          <label>메모<textarea defaultValue="실제 연락처나 주소를 입력하지 않는 mock 영역입니다." aria-label="메모" /></label>
-        </div>
-        <button className="button primary" type="button">mock 상담 요청 저장</button>
+    <main className="min-h-screen bg-[var(--background)]">
+      <PublicLightNav />
+      <section className="mx-auto grid max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
+        <aside className="border border-[var(--border)] bg-[var(--navy-950)] p-8 text-white">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">Consultation</p>
+          <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-[-0.055em] md:text-5xl">
+            사전진단 결과를 바탕으로 정밀 상담을 신청합니다.
+          </h1>
+          <p className="mt-5 text-base leading-8 text-white/66">
+            진단 ID와 입력 요약이 연결된 상태처럼 구성된 화면입니다. 실제 운영 전에는 개인정보 동의와 보관 정책을 별도 적용합니다.
+          </p>
+          <div className="mt-8 border border-white/10 p-5">
+            <p className="text-xs uppercase tracking-[0.18em] text-white/45">Pre-check ID</p>
+            <p className="mt-3 text-2xl font-semibold tracking-[-0.04em]">AS360-DEMO-2409</p>
+          </div>
+        </aside>
+
+        <section className="border border-[var(--border)] bg-white p-6 md:p-10">
+          <div className="grid gap-6 md:grid-cols-2">
+            <label className="grid gap-2">
+              <span className="text-sm font-semibold">이름</span>
+              <input className="border border-[var(--border)] px-4 py-3 outline-none focus:border-[var(--gold)]" placeholder="예: 홍길동" />
+            </label>
+            <label className="grid gap-2">
+              <span className="text-sm font-semibold">전화번호</span>
+              <input className="border border-[var(--border)] px-4 py-3 outline-none focus:border-[var(--gold)]" placeholder="연락 가능한 번호" />
+            </label>
+            <label className="grid gap-2">
+              <span className="text-sm font-semibold">이메일 선택</span>
+              <input className="border border-[var(--border)] px-4 py-3 outline-none focus:border-[var(--gold)]" placeholder="선택 입력" />
+            </label>
+            <label className="grid gap-2">
+              <span className="text-sm font-semibold">연락 가능시간</span>
+              <select className="border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--gold)]" defaultValue="weekday">
+                <option value="weekday">평일 오전</option>
+                <option>평일 오후</option>
+                <option>저녁 시간</option>
+              </select>
+            </label>
+            <label className="grid gap-2 md:col-span-2">
+              <span className="text-sm font-semibold">상담 희망내용</span>
+              <textarea className="min-h-36 border border-[var(--border)] px-4 py-3 outline-none focus:border-[var(--gold)]" placeholder="예: 부모님 부동산 일부 증여와 상속세 납부재원 준비를 함께 보고 싶습니다." />
+            </label>
+          </div>
+          <label className="mt-7 flex items-start gap-3 border border-[var(--border)] bg-[var(--ivory)] p-4">
+            <input type="checkbox" className="mt-1" />
+            <span className="text-sm leading-6 text-[var(--muted)]">개인정보 수집·이용에 동의합니다. 상담 일정 안내와 사전진단 결과 확인 목적으로만 사용됩니다.</span>
+          </label>
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+            <p className="inline-flex items-center gap-2 text-xs text-[var(--muted)]">
+              <CheckCircle2 className="h-4 w-4 text-[var(--success)]" /> 입력한 내용을 다시 작성할 필요가 없습니다.
+            </p>
+            <button type="button" className="inline-flex items-center gap-3 bg-[var(--navy-950)] px-6 py-4 text-sm font-semibold text-white">
+              <CalendarDays className="h-4 w-4" /> 상담 신청하기
+            </button>
+          </div>
+          <p className="mt-6 text-xs text-[var(--muted)]">Prototype notice: 합성 화면이며 실제 저장·전송은 구현되어 있지 않습니다.</p>
+        </section>
       </section>
     </main>
   );
