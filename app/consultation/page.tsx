@@ -12,7 +12,7 @@ export default function ConsultationPage() {
             사전진단 결과를 바탕으로 정밀 상담을 신청합니다.
           </h1>
           <p className="mt-5 text-base leading-8 text-white/66">
-            진단 ID와 입력 요약이 연결된 상태처럼 구성된 화면입니다. 실제 운영 전에는 개인정보 동의와 보관 정책을 별도 적용합니다.
+            가족이 입력한 사전진단 요약을 기준으로 쟁점을 먼저 확인하고, 필요한 자료와 상담 방향을 빠르게 정리합니다.
           </p>
           <div className="mt-8 border border-white/10 p-5">
             <p className="text-xs uppercase tracking-[0.18em] text-white/45">Pre-check ID</p>
@@ -23,8 +23,8 @@ export default function ConsultationPage() {
         <section className="border border-[var(--border)] bg-white p-6 md:p-10">
           <div className="grid gap-6 md:grid-cols-2">
             <label className="grid gap-2">
-              <span className="text-sm font-semibold">이름</span>
-              <input className="border border-[var(--border)] px-4 py-3 outline-none focus:border-[var(--gold)]" placeholder="예: 홍길동" />
+              <span className="text-sm font-semibold">상담 대표자</span>
+              <input className="border border-[var(--border)] px-4 py-3 outline-none focus:border-[var(--gold)]" placeholder="예: 가족 대표" />
             </label>
             <label className="grid gap-2">
               <span className="text-sm font-semibold">전화번호</span>
@@ -59,7 +59,7 @@ export default function ConsultationPage() {
               <CalendarDays className="h-4 w-4" /> 상담 신청하기
             </button>
           </div>
-          <p className="mt-6 text-xs text-[var(--muted)]">Prototype notice: 합성 화면이며 실제 저장·전송은 구현되어 있지 않습니다.</p>
+          <p className="mt-6 text-xs text-[var(--muted)]">합성 데이터 기반 화면입니다. 실제 저장·전송 기능은 연결되어 있지 않습니다.</p>
         </section>
       </section>
     </main>

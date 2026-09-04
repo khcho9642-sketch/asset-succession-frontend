@@ -77,21 +77,29 @@ export default function ExpertWorkspacePage() {
                 <h2 className="text-lg font-semibold">쟁점 요약</h2>
               </div>
               <ul className="mt-5 grid gap-3 text-sm leading-6 text-[var(--muted)]">
-                <li>Blocked: 채무승계 증빙 전 부담부증여 계산 제한</li>
-                <li>Warning: 가족법인 지분평가 기준 확인 필요</li>
-                <li>Empty: 보험 계약 상세가 아직 입력되지 않음</li>
+                <li>전문가 검토 필수 · 채무승계 증빙 전 부담부증여 계산 제한</li>
+                <li>추가 확인 필요 · 가족법인 지분평가 기준 확인 필요</li>
+                <li>미입력 항목 · 보험 계약 상세가 아직 입력되지 않음</li>
               </ul>
             </article>
             <article className="border border-[var(--border)] bg-white p-6">
               <div className="flex items-center gap-3">
                 <FilePenLine className="h-5 w-5 text-[var(--gold)]" />
-                <h2 className="text-lg font-semibold">Drawer preview</h2>
+                <h2 className="text-lg font-semibold">우측 편집 패널</h2>
               </div>
               <p className="mt-4 text-sm leading-7 text-[var(--muted)]">
                 이벤트 수정은 별도 페이지 이동이 아니라 우측 sheet에서 열리는 방식으로 표현합니다.
               </p>
             </article>
           </aside>
+        </section>
+
+        <section id="sources" className="mt-6 border border-[var(--border)] bg-white p-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">Rules & sources</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em]">규칙·출처 placeholder</h2>
+          <p className="mt-4 text-sm leading-7 text-[var(--muted)]">
+            세법 원문, 예규, 심판례 연결 상태를 보여주는 전문가 전용 영역입니다. 현재 PR에서는 실제 MCP나 세법 엔진을 연결하지 않고 합성 상태만 표시합니다.
+          </p>
         </section>
       </main>
     </ExpertShell>

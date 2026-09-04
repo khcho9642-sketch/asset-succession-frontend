@@ -49,7 +49,7 @@ export default function ExpertOverviewPage() {
               {strategyBranches.slice(1, 5).map((strategy) => (
                 <div key={strategy.name} className="flex items-center justify-between border border-[var(--border)] px-4 py-3">
                   <span className="text-sm font-semibold">{strategy.name}</span>
-                  <span className="text-xs text-[var(--muted)]">{strategy.status}</span>
+                  <span className="text-xs text-[var(--muted)]">{strategy.calculation_status}</span>
                 </div>
               ))}
             </div>
@@ -68,6 +68,21 @@ export default function ExpertOverviewPage() {
                 </div>
               ))}
             </div>
+          </article>
+        </section>
+
+        <section id="family-assets" className="mt-6 grid gap-6 lg:grid-cols-3">
+          <article className="border border-[var(--border)] bg-white p-6">
+            <h2 className="text-xl font-semibold">가족·자산</h2>
+            <p className="mt-4 text-sm leading-7 text-[var(--muted)]">부모 2명, 자녀 2명, 배우자 포함 구조를 기준으로 한 합성 프로젝트입니다.</p>
+          </article>
+          <article className="border border-[var(--border)] bg-white p-6">
+            <h2 className="text-xl font-semibold">주요 자산</h2>
+            <p className="mt-4 text-sm leading-7 text-[var(--muted)]">부동산 42억, 금융자산 8억, 보험 납부재원 후보 5억을 비교합니다.</p>
+          </article>
+          <article className="border border-[var(--border)] bg-white p-6">
+            <h2 className="text-xl font-semibold">Placeholder</h2>
+            <p className="mt-4 text-sm leading-7 text-[var(--muted)]">전용 가족·자산 편집 화면은 후속 단계에서 분리하고, 현재는 개요 섹션으로 연결합니다.</p>
           </article>
         </section>
 

@@ -1,0 +1,68 @@
+{
+  "product_name": "자산승계 360",
+  "data_policy": {
+    "uses_mock_data_only": true,
+    "contains_real_customer_data": false,
+    "connects_backend": false,
+    "connects_tax_engine": false,
+    "connects_mcp": false,
+    "connects_ai_api": false
+  },
+  "strategy_contract": {
+    "strategy_count": 7,
+    "strategies": [
+      "현 상태 유지 후 상속",
+      "일부·단계적 증여",
+      "매각 후 현금 증여",
+      "부담부증여 검토",
+      "가족법인 활용",
+      "보험 납부재원",
+      "혼합 전략"
+    ],
+    "fields": [
+      "current_tax_and_cost",
+      "future_tax_and_cost",
+      "total_burden",
+      "immediate_cash_required",
+      "parent_remaining_assets",
+      "child_transferred_assets",
+      "liquidity_gap",
+      "control_level",
+      "complexity",
+      "calculation_status",
+      "key_review_items"
+    ],
+    "allowed_statuses": [
+      "계산 완료",
+      "예상 범위",
+      "추가정보 필요",
+      "전문가 검토 필수",
+      "현재 조건에서는 계산 제한"
+    ]
+  },
+  "wizard_contract": {
+    "step_count": 5,
+    "steps": [
+      "가족",
+      "자산",
+      "채무·과거 증여",
+      "승계 목표",
+      "결과 준비"
+    ],
+    "requires_state_persistence": true,
+    "requires_previous_next_navigation": true,
+    "result_navigation_only_on_final_step": true
+  },
+  "navigation_contract": {
+    "public_nav_exposes_expert_routes": false,
+    "expert_menu_items": [
+      "프로젝트 개요",
+      "가족·자산",
+      "시나리오",
+      "검토·쟁점",
+      "보고서",
+      "규칙·출처"
+    ],
+    "mobile_expert_drawer_required": true
+  }
+}

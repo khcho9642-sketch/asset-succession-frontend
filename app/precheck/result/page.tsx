@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Download, LockKeyhole } from "lucide-react";
 import { PublicLightNav } from "@/components/PublicLightNav";
 import { StrategyComparison } from "@/components/StrategyComparison";
-import { stateExamples, strategyBranches } from "@/lib/mockData";
+import { strategyBranches } from "@/lib/mockData";
 
 export default function ResultPage() {
   return (
@@ -22,7 +22,7 @@ export default function ResultPage() {
           <div className="grid gap-4 sm:grid-cols-2">
             <article className="border border-[var(--border)] bg-white p-6">
               <p className="text-sm text-[var(--muted)]">비교 전략</p>
-              <strong className="mt-4 block text-5xl tracking-[-0.06em] text-[var(--navy-950)]">6개</strong>
+              <strong className="mt-4 block text-5xl tracking-[-0.06em] text-[var(--navy-950)]">7개</strong>
             </article>
             <article className="border border-[var(--border)] bg-white p-6">
               <p className="text-sm text-[var(--muted)]">주요 검토사항</p>
@@ -38,18 +38,10 @@ export default function ResultPage() {
         <section className="mt-12 grid gap-5 lg:grid-cols-3">
           {strategyBranches.slice(0, 3).map((strategy) => (
             <article key={strategy.name} className="border border-[var(--border)] bg-white p-6">
-              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--gold)]">{strategy.status}</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--gold)]">{strategy.calculation_status}</span>
               <h2 className="mt-5 text-2xl font-semibold tracking-[-0.04em]">{strategy.name}</h2>
               <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{strategy.description}</p>
-            </article>
-          ))}
-        </section>
-
-        <section className="mt-12 grid gap-3 md:grid-cols-4">
-          {stateExamples.map((state) => (
-            <article key={state.label} className="border border-[var(--border)] bg-white p-5">
-              <p className="text-sm font-semibold text-[var(--navy-950)]">{state.label}</p>
-              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{state.body}</p>
+              <p className="mt-4 border-l-2 border-[var(--gold)] pl-3 text-sm leading-6 text-[var(--muted)]">{strategy.status_detail}</p>
             </article>
           ))}
         </section>
@@ -57,7 +49,7 @@ export default function ResultPage() {
         <div className="mt-12 flex flex-wrap items-center gap-4 border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
           <LockKeyhole className="h-5 w-5 text-[var(--gold)]" />
           <p className="flex-1 text-sm leading-6 text-white/70">본 결과는 입력 정보 기준 사전 추정이며 확정 세액이 아닙니다.</p>
-          <Link href="/precheck/result" className="inline-flex items-center gap-2 bg-white px-5 py-3 text-sm font-semibold text-[var(--navy-950)]">
+          <Link href="/report-preview" className="inline-flex items-center gap-2 bg-white px-5 py-3 text-sm font-semibold text-[var(--navy-950)]">
             <Download className="h-4 w-4" /> 무료 보고서 다운로드
           </Link>
           <Link href="/consultation" className="inline-flex items-center gap-2 border border-white/20 px-5 py-3 text-sm font-semibold text-white">

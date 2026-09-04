@@ -7,9 +7,9 @@ const outputDir = process.env.UI_AUDIT_DIR ?? "artifacts/ui-audit";
 
 const routes = [
   { name: "landing", path: "/", area: "public" },
-  { name: "precheck", path: "/precheck", area: "public" },
+  { name: "wizard-step1", path: "/precheck", area: "public" },
+  { name: "wizard-step3", path: "/precheck?step=3", area: "public" },
   { name: "result", path: "/precheck/result", area: "public" },
-  { name: "consultation", path: "/consultation", area: "public" },
   { name: "expert-overview", path: "/expert/overview", area: "expert" },
   { name: "expert-workspace", path: "/expert/workspace", area: "expert" }
 ];
