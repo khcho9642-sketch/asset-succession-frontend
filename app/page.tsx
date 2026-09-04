@@ -9,9 +9,14 @@ export default function LandingPage() {
       <section className="hero">
         <div>
           <p className="eyebrow">상속·증여·양도 통합 비교</p>
-          <h1>가족 자산승계 방향을 먼저 비교하고, 전문가는 근거를 검토합니다.</h1>
+          <h1 className="hero-title">
+            <span>가족 자산승계 방향을</span>
+            <span>먼저 비교하고,</span>
+            <span>전문가는 근거를 검토합니다.</span>
+          </h1>
           <p className="lead">
-            공개 화면에서는 개인정보 없이 사전 시나리오를 비교하고, 전문가 화면에서는 상담 전 검토 흐름을 정리합니다.
+            <span>공개 화면은 개인정보 없이 비교하고,</span>
+            <span>전문가 화면은 상담 전 검토 흐름을 정리합니다.</span>
           </p>
           <div className="actions">
             <Link className="button primary" href="/precheck">무가입 사전계산 시작</Link>
