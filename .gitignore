@@ -1,0 +1,13 @@
+.next/
+node_modules/
+.vercel/
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite
+*.sqlite3
+data/
+backups/
+reports/
+tsconfig.tsbuildinfo
