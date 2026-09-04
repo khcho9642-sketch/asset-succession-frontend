@@ -11,3 +11,6 @@ data/
 backups/
 reports/
 tsconfig.tsbuildinfo
+
+out/
+.vercel/
