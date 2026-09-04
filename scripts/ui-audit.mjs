@@ -135,6 +135,28 @@ try {
         if (previousControlCount === 0) {
           fail(route.path, viewport.name, "No previous-step control was found; the page does not expose reversible wizard navigation.");
         }
+
+        await page.getByRole("button", { name: "다음" }).click();
+        if (!await page.getByText("현재 단계의 선택지를 하나 골라야 다음 단계로 이동할 수 있습니다.").isVisible()) {
+          fail(route.path, viewport.name, "Required-choice validation message did not appear before moving to the next wizard step.");
+        }
+
+        await page.getByRole("button", { name: "부모 2명 + 자녀" }).click();
+        await page.getByRole("textbox").fill("2명");
+        await page.getByRole("button", { name: "다음" }).click();
+        if (!await page.getByText("승계 대상 자산의 큰 구성을 선택해 주세요.").isVisible()) {
+          fail(route.path, viewport.name, "Wizard did not advance from Step 1 to Step 2 after a valid choice.");
+        }
+
+        await page.getByRole("button", { name: "이전" }).click();
+        if (!await page.getByText("승계 의사결정에 참여할 가족 구성을 알려주세요.").isVisible()) {
+          fail(route.path, viewport.name, "Wizard previous button did not return to Step 1.");
+        }
+
+        await page.getByRole("button", { name: "다음" }).click();
+        if (!await page.getByText("승계 대상 자산의 큰 구성을 선택해 주세요.").isVisible()) {
+          fail(route.path, viewport.name, "Wizard did not preserve Step 1 state after using previous/next navigation.");
+        }
       }
 
       if (route.path === "/precheck/result") {
@@ -151,6 +173,11 @@ try {
           const current = normalizePath(route.path);
           if (!href || href === "#" || target === current) {
             fail(route.path, viewport.name, `Report CTA points to an invalid or self-referencing target: ${href ?? "missing href"}`);
+          } else {
+            const reportResponse = await page.goto(new URL(href, baseURL).toString(), { waitUntil: "networkidle", timeout: 30_000 });
+            if (!reportResponse || !reportResponse.ok()) {
+              fail(route.path, viewport.name, `Report CTA target did not load successfully: ${href}`);
+            }
           }
         }
 
@@ -160,9 +187,18 @@ try {
       }
 
       if (route.area === "expert" && viewport.name === "mobile") {
-        const mobileMenuCount = await page.getByRole("button", { name: /메뉴|탐색|내비게이션|navigation/i }).count();
+        const mobileMenu = page.getByRole("button", { name: /메뉴|탐색|내비게이션|navigation/i }).first();
+        const mobileMenuCount = await mobileMenu.count();
         if (mobileMenuCount === 0) {
           fail(route.path, viewport.name, "Expert mobile navigation button/drawer trigger is missing.");
+        } else {
+          await mobileMenu.click();
+          const drawerText = await page.locator("[role='dialog']").innerText().catch(() => "");
+          const requiredExpertNav = ["프로젝트 개요", "가족·자산", "시나리오", "검토·쟁점", "보고서", "규칙·출처"];
+          const missingDrawerNav = requiredExpertNav.filter((label) => !drawerText.includes(label));
+          if (missingDrawerNav.length > 0) {
+            fail(route.path, viewport.name, `Expert mobile drawer is missing: ${missingDrawerNav.join(", ")}`);
+          }
         }
       }
 

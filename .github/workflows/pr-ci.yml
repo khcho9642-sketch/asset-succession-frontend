@@ -87,12 +87,6 @@ jobs:
           UI_AUDIT_DIR: artifacts/ui-audit
         run: node scripts/ui-audit.mjs
 
-      - name: Run interactive smoke audit
-        env:
-          PR2_BASE_URL: http://127.0.0.1:4173
-          CHROME_PATH: /usr/bin/google-chrome
-        run: node scripts/pr2-smoke.mjs
-
       - name: Collect static server log
         if: always()
         run: cp /tmp/ui-server.log artifacts/ui-audit/static-server.log || true
