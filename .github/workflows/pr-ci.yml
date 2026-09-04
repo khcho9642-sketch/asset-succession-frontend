@@ -70,7 +70,7 @@ jobs:
       - name: Start static preview server
         run: |
           mkdir -p artifacts/ui-audit
-          python3 -m http.server 4173 --directory out > /tmp/ui-server.log 2>&1 &
+          npx serve@14.2.6 out -l 4173 > /tmp/ui-server.log 2>&1 &
           echo $! > /tmp/ui-server.pid
           for attempt in {1..30}; do
             if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
