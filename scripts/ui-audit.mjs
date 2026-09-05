@@ -200,6 +200,7 @@ try {
           if (missingDrawerNav.length > 0) {
             fail(route.path, viewport.name, `Expert mobile drawer is missing: ${missingDrawerNav.join(", ")}`);
           }
+          await page.getByRole("button", { name: "전문가 메뉴 닫기" }).click();
         }
       }
 
@@ -216,6 +217,35 @@ try {
         const scenarioHeading = await page.getByText("가족법인 활용 시나리오").count();
         if (!selectedTab.includes("가족법인 활용") || scenarioHeading === 0) {
           fail(route.path, viewport.name, `Selected scenario tab and body heading do not match: ${selectedTab || "no selected tab"}`);
+        }
+
+        await page.getByRole("button", { name: "부담부증여 검토" }).click();
+        const burdenedGiftSelected = await page.locator("[aria-selected='true']").innerText().catch(() => "");
+        const burdenedGiftHeading = await page.getByText("부담부증여 검토 시나리오").count();
+        if (!burdenedGiftSelected.includes("부담부증여 검토") || burdenedGiftHeading === 0) {
+          fail(route.path, viewport.name, "Scenario tab click did not update the active tab and body heading for burdened gift.");
+        }
+
+        await page.getByRole("button", { name: "가족법인 활용" }).click();
+        const familyCorpSelected = await page.locator("[aria-selected='true']").innerText().catch(() => "");
+        const familyCorpHeading = await page.getByText("가족법인 활용 시나리오").count();
+        if (!familyCorpSelected.includes("가족법인 활용") || familyCorpHeading === 0) {
+          fail(route.path, viewport.name, "Scenario tab click did not restore the family corporation active tab and body heading.");
+        }
+
+        await page.getByRole("button", { name: "이벤트 수정" }).click();
+        const editorDialog = page.getByRole("dialog", { name: "이벤트 편집" });
+        if (!await editorDialog.isVisible()) {
+          fail(route.path, viewport.name, "Event edit button did not open the event editor dialog.");
+        } else {
+          const editorText = await editorDialog.innerText();
+          if (!editorText.includes("가족법인 활용") || !editorText.includes("검토 메모")) {
+            fail(route.path, viewport.name, "Event editor dialog does not show the selected scenario and editable review memo.");
+          }
+          await page.getByRole("button", { name: "이벤트 편집 닫기" }).click();
+          if (await editorDialog.isVisible().catch(() => false)) {
+            fail(route.path, viewport.name, "Event editor dialog did not close from the close button.");
+          }
         }
       }
 

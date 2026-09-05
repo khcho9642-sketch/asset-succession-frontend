@@ -46,7 +46,7 @@ export function ExpertShell({ children }: Readonly<{ children: React.ReactNode }
 
       {open ? (
         <div className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-modal="true" aria-label="전문가 메뉴">
-          <button type="button" aria-label="전문가 메뉴 닫기" className="absolute inset-0 bg-black/45" onClick={() => setOpen(false)} />
+          <button type="button" aria-label="전문가 메뉴 배경 닫기" className="absolute inset-0 bg-black/45" onClick={() => setOpen(false)} />
           <aside className="relative h-full w-[min(22rem,86vw)] bg-[var(--navy-950)] px-6 py-7 text-white">
             <div className="flex items-center justify-between">
               <div>
