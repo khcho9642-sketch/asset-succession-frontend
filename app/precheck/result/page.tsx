@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Download, LockKeyhole } from "lucide-react";
+import { AssessmentMetrics } from "@/components/AssessmentMetrics";
+import { AssessmentSummary } from "@/components/AssessmentSummary";
 import { PublicLightNav } from "@/components/PublicLightNav";
 import { StrategyComparison } from "@/components/StrategyComparison";
 import { strategyBranches } from "@/lib/mockData";
@@ -13,27 +15,14 @@ export default function ResultPage() {
           <div>
             <p className="text-sm font-semibold tracking-[0.08em] text-[var(--gold)]">사전진단 결과</p>
             <h1 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.055em] text-[var(--navy-950)] md:text-6xl">
-              입력 정보 기준 사전 추정 결과입니다.
+              입력 요약과 전략별 검토 후보입니다.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-              확정 세액이 아니라 가족 회의와 전문가 상담을 위한 비교표입니다. 입력한 내용을 다시 작성하지 않고 상담으로 이어갈 수 있습니다.
+              확정 세액이 아니라 가족 회의와 전문가 상담을 위한 비교표입니다. 입력 자산 합계는 사전진단에서 가져오고, 전략별 세액·부족액은 계산엔진 연결 전까지 숫자로 산정하지 않습니다.
             </p>
           </div>
           <div className="grid gap-4">
-            <div className="grid gap-4 sm:grid-cols-3">
-              <article className="border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
-                <p className="text-sm text-white/60">총 부담</p>
-                <strong className="mt-4 block text-4xl tracking-[-0.06em]">5.6~12억</strong>
-              </article>
-              <article className="border border-[var(--border)] bg-white p-6">
-                <p className="text-sm text-[var(--muted)]">즉시 필요현금</p>
-                <strong className="mt-4 block text-4xl tracking-[-0.06em] text-[var(--navy-950)]">2.4~3.5억</strong>
-              </article>
-              <article className="border border-[var(--border)] bg-white p-6">
-                <p className="text-sm text-[var(--muted)]">납부재원 부족액</p>
-                <strong className="mt-4 block text-4xl tracking-[-0.06em] text-[var(--navy-950)]">최대 7억</strong>
-              </article>
-            </div>
+            <AssessmentMetrics />
             <div className="grid gap-4 sm:grid-cols-2">
               <article className="border border-[var(--border)] bg-white p-5">
                 <p className="text-sm text-[var(--muted)]">비교 전략</p>
@@ -47,6 +36,10 @@ export default function ResultPage() {
           </div>
         </div>
 
+        <div className="mt-8">
+          <AssessmentSummary />
+        </div>
+
         <section className="mt-12 grid gap-4 lg:grid-cols-3">
           <article className="border border-[var(--border)] bg-white p-6">
             <p className="text-sm font-semibold text-[var(--gold)]">먼저 볼 기준</p>
@@ -54,7 +47,7 @@ export default function ResultPage() {
             <p className="mt-3 text-sm leading-7 text-[var(--muted)]">세금 총액보다 실제 현금으로 준비해야 할 부족분을 먼저 확인합니다.</p>
           </article>
           <article className="border border-[var(--border)] bg-white p-6">
-            <p className="text-sm font-semibold text-[var(--gold)]">정밀 검토 후보</p>
+            <p className="text-sm font-semibold text-[var(--gold)]">일반 검토 예시</p>
             <h2 className="mt-4 text-2xl font-semibold tracking-[-0.04em]">부담부증여·가족법인</h2>
             <p className="mt-3 text-sm leading-7 text-[var(--muted)]">채무승계 증빙과 지분평가 기준이 확인되어야 비교가 의미 있습니다.</p>
           </article>
@@ -82,7 +75,7 @@ export default function ResultPage() {
 
         <div className="mt-12 flex flex-wrap items-center gap-4 border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
           <LockKeyhole className="h-5 w-5 text-[var(--gold)]" />
-          <p className="flex-1 text-sm leading-6 text-white/70">본 결과는 입력 정보 기준 사전 추정이며 확정 세액이 아닙니다.</p>
+          <p className="flex-1 text-sm leading-6 text-white/70">본 결과는 입력 스냅샷을 바탕으로 상담 쟁점을 정리한 화면이며 확정 세액이 아닙니다.</p>
           <Link href="/report-preview" className="inline-flex items-center gap-2 bg-white px-5 py-3 text-sm font-semibold text-[var(--navy-950)]">
             <Download className="h-4 w-4" /> 무료 보고서 다운로드
           </Link>

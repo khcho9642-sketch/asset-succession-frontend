@@ -37,6 +37,33 @@ function normalizePath(value) {
   }
 }
 
+async function completeWizard(page) {
+  await page.goto(`${baseURL}/precheck`, { waitUntil: "networkidle", timeout: 30_000 });
+  await page.getByRole("radio", { name: "부모 2명 기준" }).click();
+  await page.getByLabel("배우자 유무", { exact: true }).selectOption("있음");
+  await page.getByLabel("성년 자녀 수", { exact: true }).selectOption("2명");
+  await page.getByLabel("미성년 자녀 수", { exact: true }).selectOption("0명");
+  await page.getByRole("button", { name: "다음" }).click();
+
+  await page.getByRole("checkbox", { name: "부동산" }).click();
+  await page.getByRole("checkbox", { name: "금융자산" }).click();
+  await page.getByLabel("부동산 금액(억원)").fill("42");
+  await page.getByLabel("금융자산 금액(억원)").fill("8");
+  await page.getByRole("button", { name: "다음" }).click();
+
+  await page.getByRole("checkbox", { name: "담보대출 있음" }).click();
+  await page.getByLabel("담보대출 있음 금액(억원)").fill("2");
+  await page.getByRole("checkbox", { name: "최근 10년 증여 있음" }).click();
+  await page.getByRole("button", { name: "다음" }).click();
+
+  await page.getByRole("radio", { name: "상속세 납부재원 준비" }).click();
+  await page.getByRole("button", { name: "다음" }).click();
+
+  await page.getByRole("radio", { name: "세금·비용" }).click();
+  await page.getByRole("button", { name: "결과 보기" }).click();
+  await page.waitForURL("**/precheck/result**", { timeout: 10_000 });
+}
+
 await mkdir(outputDir, { recursive: true });
 
 const browser = await chromium.launch({ headless: true });
@@ -48,6 +75,21 @@ try {
       deviceScaleFactor: 1
     });
 
+    const emptyConsultationPage = await context.newPage();
+    await emptyConsultationPage.goto(`${baseURL}/consultation`, { waitUntil: "networkidle", timeout: 30_000 });
+    const emptyConsultationText = await emptyConsultationPage.locator("body").innerText();
+    if (!emptyConsultationText.includes("상담 신청 전 사전진단이 필요합니다.") || emptyConsultationText.includes("입력한 내용을 다시 작성할 필요가 없습니다.")) {
+      fail("/consultation", viewport.name, "Consultation without stored assessment does not clearly lock the form and remove the handoff-copy.");
+    }
+    if (await emptyConsultationPage.getByRole("button", { name: "상담 신청하기" }).count() > 0) {
+      fail("/consultation", viewport.name, "Consultation without stored assessment still exposes the submit button.");
+    }
+    await emptyConsultationPage.screenshot({
+      path: path.join(outputDir, `${viewport.name}-consultation-empty-locked.png`),
+      fullPage: true
+    });
+    await emptyConsultationPage.close();
+
     for (const route of routes) {
       const page = await context.newPage();
       const url = `${baseURL}${route.path}`;
@@ -57,6 +99,20 @@ try {
         fail(route.path, viewport.name, `Route did not return a successful response: ${response?.status() ?? "no response"}`);
         await page.close();
         continue;
+      }
+
+      if (route.name === "wizard-step3") {
+        if (!await page.getByText("승계 의사결정에 참여할 가족 구성을 알려주세요.").isVisible()) {
+          fail(route.path, viewport.name, "Query parameter step bypass should not open Step 3 directly.");
+        }
+        await page.getByRole("radio", { name: "부모 2명 기준" }).click();
+        await page.getByLabel("배우자 유무", { exact: true }).selectOption("있음");
+        await page.getByLabel("성년 자녀 수", { exact: true }).selectOption("2명");
+        await page.getByLabel("미성년 자녀 수", { exact: true }).selectOption("0명");
+        await page.getByRole("button", { name: "다음" }).click();
+        await page.getByRole("checkbox", { name: "부동산" }).click();
+        await page.getByLabel("부동산 금액(억원)").fill("42");
+        await page.getByRole("button", { name: "다음" }).click();
       }
 
       await page.screenshot({
@@ -120,7 +176,8 @@ try {
 
       if (route.path === "/precheck") {
         const requiredSteps = ["가족", "자산", "채무·과거 증여", "승계 목표", "결과 준비"];
-        const missingSteps = requiredSteps.filter((step) => !bodyText.includes(step));
+        const expectedStepLabels = viewport.name === "mobile" ? ["가족"] : requiredSteps;
+        const missingSteps = expectedStepLabels.filter((step) => !bodyText.includes(step));
         if (missingSteps.length > 0) {
           fail(route.path, viewport.name, `Wizard is missing step labels: ${missingSteps.join(", ")}`);
         }
@@ -137,18 +194,28 @@ try {
           fail(route.path, viewport.name, "No previous-step control was found; the page does not expose reversible wizard navigation.");
         }
 
+        if (viewport.name === "mobile") {
+          const firstQuestionBox = await page.getByText("승계 의사결정에 참여할 가족 구성을 알려주세요.").boundingBox();
+          const firstChoiceBox = await page.getByRole("radio", { name: "부모 2명 기준" }).boundingBox();
+          if (!firstQuestionBox || firstQuestionBox.y > viewport.height * 0.56 || !firstChoiceBox || firstChoiceBox.y > viewport.height * 0.72) {
+            fail(route.path, viewport.name, "Mobile first viewport does not surface the first precheck question and primary choice quickly enough.");
+          }
+        }
+
         const futureStepButton = page.getByRole("button", { name: "결과 준비" });
-        if (!await futureStepButton.isDisabled()) {
+        if (await futureStepButton.count() > 0 && !await futureStepButton.isDisabled()) {
           fail(route.path, viewport.name, "Wizard allows direct jumping to Step 5 before prior required steps are complete.");
         }
 
         await page.getByRole("button", { name: "다음" }).click();
-        if (!await page.getByText(/현재 단계의 선택지를 골라야/).isVisible()) {
+        if (!await page.getByText(/현재 단계의 필수 항목을 입력해야/).isVisible()) {
           fail(route.path, viewport.name, "Required-choice validation message did not appear before moving to the next wizard step.");
         }
 
-        await page.getByRole("radio", { name: "부모 2명 + 자녀" }).click();
-        await page.getByRole("textbox").fill("2명");
+        await page.getByRole("radio", { name: "부모 2명 기준" }).click();
+        await page.getByLabel("배우자 유무", { exact: true }).selectOption("있음");
+        await page.getByLabel("성년 자녀 수", { exact: true }).selectOption("2명");
+        await page.getByLabel("미성년 자녀 수", { exact: true }).selectOption("0명");
         await page.getByRole("button", { name: "다음" }).click();
         if (!await page.getByText("승계 대상 자산의 큰 구성을 선택해 주세요.").isVisible()) {
           fail(route.path, viewport.name, "Wizard did not advance from Step 1 to Step 2 after a valid choice.");
@@ -164,7 +231,31 @@ try {
           fail(route.path, viewport.name, "Wizard did not preserve Step 1 state after using previous/next navigation.");
         }
 
-        await page.getByRole("radio", { name: "부동산" }).click();
+        await page.getByRole("checkbox", { name: "부동산" }).click();
+        await page.getByRole("checkbox", { name: "금융자산" }).click();
+        await page.getByLabel("부동산 금액(억원)").fill("-5");
+        await page.getByLabel("금융자산 금액(억원)").fill("8");
+        await page.getByRole("button", { name: "다음" }).click();
+        if (!await page.getByText(/현재 단계의 필수 항목.*금액은 0보다 큰 숫자/).isVisible()) {
+          fail(route.path, viewport.name, "Negative asset amount was not blocked before moving to Step 3.");
+        }
+        await page.getByLabel("부동산 금액(억원)").fill("0");
+        await page.getByRole("button", { name: "다음" }).click();
+        if (!await page.getByText(/현재 단계의 필수 항목.*금액은 0보다 큰 숫자/).isVisible()) {
+          fail(route.path, viewport.name, "Zero asset amount was not blocked before moving to Step 3.");
+        }
+        await page.getByLabel("부동산 금액(억원)").evaluate((input) => {
+          const element = input;
+          const valueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value")?.set;
+          valueSetter?.call(element, "5000만원");
+          element.dispatchEvent(new Event("input", { bubbles: true }));
+        });
+        await page.getByRole("button", { name: "다음" }).click();
+        if (!await page.getByText(/현재 단계의 필수 항목.*금액은 0보다 큰 숫자/).isVisible()) {
+          fail(route.path, viewport.name, "Non-standard unit asset amount was not blocked before moving to Step 3.");
+        }
+        await page.getByLabel("부동산 금액(억원)").fill("42");
+        await page.getByLabel("금융자산 금액(억원)").fill("8");
         await page.getByRole("button", { name: "다음" }).click();
         if (!await page.getByText("채무나 과거 증여처럼 결과에 영향을 주는 항목이 있나요?").isVisible()) {
           fail(route.path, viewport.name, "Wizard did not advance to Step 3.");
@@ -193,11 +284,32 @@ try {
           fail(route.path, viewport.name, "Step 3 '잘 모르겠음' is not mutually exclusive with '해당 없음'.");
         }
 
+        await page.getByRole("checkbox", { name: "담보대출 있음" }).click();
+        await page.getByRole("checkbox", { name: "최근 10년 증여 있음" }).click();
+        await page.getByRole("button", { name: "다음" }).click();
+        if (!await page.getByText(/현재 단계의 필수 항목.*금액은 0보다 큰 숫자/).isVisible()) {
+          fail(route.path, viewport.name, "Debt choice without a debt amount was not blocked before moving to Step 4.");
+        }
+        const debtWithoutAmountText = await page.locator("body").innerText();
+        if (debtWithoutAmountText.includes("채무·보증금\n8억") || debtWithoutAmountText.includes("입력 순자산\n42억")) {
+          fail(route.path, viewport.name, "Debt choice without amount generated an arbitrary debt or net-asset number.");
+        }
+        await page.getByLabel("담보대출 있음 금액(억원)").fill("2");
+
         await page.getByRole("button", { name: "다음" }).click();
         await page.getByRole("radio", { name: "상속세 납부재원 준비" }).click();
         await page.getByRole("button", { name: "다음" }).click();
+        const step5Text = await page.locator("body").innerText();
+        const missingStep5Summary = ["배우자 유무: 있음", "성년 자녀 수: 2명", "미성년 자녀 수: 0명", "부동산: 42억", "금융자산: 8억", "담보대출 있음: 2억"].filter((text) => !step5Text.includes(text));
+        if (missingStep5Summary.length > 0) {
+          fail(route.path, viewport.name, `Step 5 review summary is missing detailed answer values: ${missingStep5Summary.join(", ")}`);
+        }
+        await page.screenshot({
+          path: path.join(outputDir, `${viewport.name}-wizard-step5-review.png`),
+          fullPage: true
+        });
         await page.getByRole("button", { name: "결과 보기" }).click();
-        if (!await page.getByText(/현재 단계의 선택지를 골라야/).isVisible()) {
+        if (!await page.getByText(/현재 단계의 필수 항목을 입력해야/).isVisible()) {
           fail(route.path, viewport.name, "Step 5 result navigation is not blocked when the review perspective is unselected.");
         }
         if (normalizePath(page.url()) === "/precheck/result") {
@@ -209,6 +321,72 @@ try {
         await page.waitForURL("**/precheck/result", { timeout: 10_000 }).catch(() => undefined);
         if (normalizePath(page.url()) !== "/precheck/result") {
           fail(route.path, viewport.name, "Step 5 did not route to results after selecting a review perspective.");
+        }
+
+        const resultText = await page.locator("body").innerText();
+        const assessmentMatch = resultText.match(/AS360-\d{8}-[A-Z0-9]+/);
+        if (!assessmentMatch || !resultText.includes("부동산: 42억") || !resultText.includes("금융자산: 8억")) {
+          fail(route.path, viewport.name, "Assessment snapshot was not handed off to the result page.");
+        } else {
+          const forbiddenResultNumbers = ["총자산 55억", "순자산 47억", "가용 현금\n5억", "부모 잔여재산\n55억", "9.5~12억", "6.3~8.6억"];
+          const leakedResultNumbers = forbiddenResultNumbers.filter((text) => resultText.includes(text));
+          if (!resultText.includes("50억") || leakedResultNumbers.length > 0) {
+            fail(route.path, viewport.name, `Result page still mixes assessment inputs with fixed sample numbers: ${leakedResultNumbers.join(", ") || "missing 50억"}.`);
+          }
+          await page.screenshot({
+            path: path.join(outputDir, `${viewport.name}-result-with-assessment.png`),
+            fullPage: true
+          });
+
+          await page.goto(`${baseURL}/precheck/result?assessment_id=AS360-19990101-STALE`, { waitUntil: "networkidle", timeout: 30_000 });
+          const mismatchText = await page.locator("body").innerText();
+          if (!mismatchText.includes("사전진단 ID 불일치")) {
+            fail(route.path, viewport.name, "Result page does not reject mismatched assessment_id query parameters.");
+          }
+          await page.screenshot({
+            path: path.join(outputDir, `${viewport.name}-result-assessment-mismatch.png`),
+            fullPage: true
+          });
+
+          await page.goto(`${baseURL}/report-preview?assessment_id=${encodeURIComponent(assessmentMatch[0])}`, { waitUntil: "networkidle", timeout: 30_000 });
+          const reportHandoffText = await page.locator("body").innerText();
+          const forbiddenReportNumbers = ["55억", "9.5~12억", "6.3~8.6억", "채무·보증금\n8억", "입력 순자산\n42억"];
+          const leakedReportNumbers = forbiddenReportNumbers.filter((text) => reportHandoffText.includes(text));
+          if (!reportHandoffText.includes(assessmentMatch[0]) || !reportHandoffText.includes("우선 관점: 세금·비용") || !reportHandoffText.includes("입력 총자산") || !reportHandoffText.includes("50억") || leakedReportNumbers.length > 0) {
+            fail(route.path, viewport.name, "Assessment snapshot was not handed off to report preview.");
+          }
+          await page.screenshot({
+            path: path.join(outputDir, `${viewport.name}-report-with-assessment.png`),
+            fullPage: true
+          });
+
+          await page.goto(`${baseURL}/consultation`, { waitUntil: "networkidle", timeout: 30_000 });
+          const consultationHandoffText = await page.locator("body").innerText();
+          if (!consultationHandoffText.includes(assessmentMatch[0])) {
+            fail(route.path, viewport.name, "Assessment snapshot was not handed off to consultation.");
+          }
+          await page.screenshot({
+            path: path.join(outputDir, `${viewport.name}-consultation-with-assessment.png`),
+            fullPage: true
+          });
+
+          await page.getByRole("button", { name: "상담 신청하기" }).click();
+          if (!await page.getByRole("alert").getByText("상담 대표자를 입력해 주세요.").isVisible()) {
+            fail(route.path, viewport.name, "Consultation required-field validation did not run.");
+          }
+          await page.getByLabel("상담 대표자").fill("가족 대표");
+          await page.getByLabel("전화번호").fill("010-0000-0000");
+          await page.getByLabel("상담 희망내용").fill("상속세 납부재원과 일부 증여를 함께 보고 싶습니다.");
+          await page.getByLabel(/개인정보 수집·이용/).check();
+          await page.getByRole("button", { name: "상담 신청하기" }).click();
+          const successText = await page.locator("body").innerText();
+          if (!successText.includes("상담 신청이 접수되었습니다.") || !successText.includes("RCV-") || !successText.includes(assessmentMatch[0])) {
+            fail(route.path, viewport.name, "Consultation local success state did not preserve receipt and assessment IDs.");
+          }
+          await page.screenshot({
+            path: path.join(outputDir, `${viewport.name}-consultation-success.png`),
+            fullPage: true
+          });
         }
       }
 
@@ -236,6 +414,10 @@ try {
 
         if (!bodyText.includes("부담부증여")) {
           fail(route.path, viewport.name, "The result page does not show or explicitly separate the burdened-gift review strategy.");
+        }
+
+        if (!bodyText.includes("사전진단 입력값 없음") || !bodyText.includes("사전진단 시작하기")) {
+          fail(route.path, viewport.name, "Result page without stored assessment does not show the required empty state CTA.");
         }
 
         const priorityMetrics = ["총 부담", "즉시 필요현금", "납부재원 부족액"];
@@ -335,7 +517,7 @@ try {
       }
 
       if (route.path === "/report-preview") {
-        const requiredReportSections = ["가족·자산 요약", "선택한 승계 목표", "7개 전략 비교", "납부재원 부족 분석", "가족법인 검토 가능성", "보험 검토 가능성", "주요 위험신호", "추가 필요정보", "이 결과로 조경호 회계사에게 상담하기"];
+        const requiredReportSections = ["가족·자산 요약", "선택한 승계 목표", "7개 전략 검토틀", "납부재원 검토 방식", "가족법인 검토 가능성", "보험 검토 가능성", "일반 위험신호 예시", "추가 필요정보", "이 결과로 조경호 회계사에게 상담하기"];
         const missingReportSections = requiredReportSections.filter((label) => !bodyText.includes(label));
         if (missingReportSections.length > 0) {
           fail(route.path, viewport.name, `Report preview is missing section(s): ${missingReportSections.join(", ")}`);

@@ -3,15 +3,13 @@
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check, ChevronRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { ASSESSMENT_STORAGE_KEY, createAssessmentId, formatAnswer, normalizeEokAmount, parseEokAmount } from "@/lib/assessment";
 import { simulationDisclaimer, wizardSteps } from "@/lib/mockData";
 
-type WizardAnswers = Record<string, { choices: string[]; detail: string }>;
+type WizardAnswers = Record<string, { choices: string[]; detail: string; facts?: Record<string, string>; assetAmounts?: Record<string, string>; debtAmounts?: Record<string, string> }>;
 
 function getInitialStep() {
-  if (typeof window === "undefined") return 0;
-  const requestedStep = Number(new URLSearchParams(window.location.search).get("step"));
-  if (!Number.isInteger(requestedStep)) return 0;
-  return Math.max(0, Math.min(requestedStep - 1, wizardSteps.length - 1));
+  return 0;
 }
 
 export function PrecheckWizard() {
@@ -23,13 +21,14 @@ export function PrecheckWizard() {
   const currentAnswer = answers[step.key] ?? { choices: [], detail: "" };
   const progress = ((activeStep + 1) / wizardSteps.length) * 100;
   const isMultiSelectStep = step.key === "debt";
+  const isAssetStep = step.key === "assets";
+  const isDebtStep = step.key === "debt";
 
   const summary = useMemo(
     () =>
       wizardSteps.map((item) => ({
         label: item.label,
-        choice: answers[item.key]?.choices.join(", ") || "미선택",
-        detail: answers[item.key]?.detail || ""
+        value: formatAnswer(answers[item.key])
       })),
     [answers]
   );
@@ -40,7 +39,19 @@ export function PrecheckWizard() {
 
   function isStepComplete(index: number) {
     const item = wizardSteps[index];
-    return (answers[item.key]?.choices.length ?? 0) > 0;
+    const answer = answers[item.key];
+    if (!answer || answer.choices.length === 0) return false;
+    if (item.key === "family") {
+      return Boolean(answer.facts?.["배우자 유무"] && answer.facts?.["성년 자녀 수"] && answer.facts?.["미성년 자녀 수"]);
+    }
+    if (item.key === "assets") {
+      return answer.choices.every((choice) => parseEokAmount(answer.assetAmounts?.[choice]) !== null);
+    }
+    if (item.key === "debt") {
+      const debtChoices = answer.choices.filter((choice) => choice === "담보대출 있음" || choice === "임대보증금 있음");
+      return debtChoices.every((choice) => parseEokAmount(answer.debtAmounts?.[choice]) !== null);
+    }
+    return true;
   }
 
   function isStepUnlocked(index: number) {
@@ -59,10 +70,10 @@ export function PrecheckWizard() {
 
   function updateChoice(choice: string) {
     setShowError(false);
-    if (isMultiSelectStep) {
+    if (isMultiSelectStep || isAssetStep) {
       setAnswers((prev) => {
         const existing = prev[step.key] ?? { choices: [], detail: "" };
-        const exclusive = choice === "해당 없음" || choice === "잘 모르겠음";
+        const exclusive = isMultiSelectStep && (choice === "해당 없음" || choice === "잘 모르겠음");
         const nextChoices = exclusive
           ? existing.choices.includes(choice) ? [] : [choice]
           : existing.choices.includes(choice)
@@ -71,7 +82,16 @@ export function PrecheckWizard() {
 
         return {
           ...prev,
-          [step.key]: { ...existing, choices: nextChoices }
+          [step.key]: {
+            ...existing,
+            choices: nextChoices,
+            assetAmounts: Object.fromEntries(
+              Object.entries(existing.assetAmounts ?? {}).filter(([key]) => nextChoices.includes(key))
+            ),
+            debtAmounts: Object.fromEntries(
+              Object.entries(existing.debtAmounts ?? {}).filter(([key]) => nextChoices.includes(key))
+            )
+          }
         };
       });
       return;
@@ -84,14 +104,59 @@ export function PrecheckWizard() {
   }
 
   function updateDetail(detail: string) {
-    setAnswers((prev) => ({
+    setAnswers((prev) => {
+      const existing = prev[step.key] ?? { choices: [], detail: "" };
+      return ({
       ...prev,
-      [step.key]: { ...currentAnswer, detail }
-    }));
+      [step.key]: { ...existing, detail }
+      });
+    });
+  }
+
+  function updateFact(label: string, value: string) {
+    setShowError(false);
+    setAnswers((prev) => {
+      const existing = prev[step.key] ?? { choices: [], detail: "" };
+      return ({
+      ...prev,
+      [step.key]: {
+        ...existing,
+        facts: { ...(existing.facts ?? {}), [label]: value }
+      }
+      });
+    });
+  }
+
+  function updateAssetAmount(asset: string, value: string) {
+    setShowError(false);
+    setAnswers((prev) => {
+      const existing = prev[step.key] ?? { choices: [], detail: "" };
+      return ({
+      ...prev,
+      [step.key]: {
+        ...existing,
+        assetAmounts: { ...(existing.assetAmounts ?? {}), [asset]: value }
+      }
+      });
+    });
+  }
+
+  function updateDebtAmount(debt: string, value: string) {
+    setShowError(false);
+    setAnswers((prev) => {
+      const existing = prev[step.key] ?? { choices: [], detail: "" };
+      return ({
+      ...prev,
+      [step.key]: {
+        ...existing,
+        debtAmounts: { ...(existing.debtAmounts ?? {}), [debt]: value }
+      }
+      });
+    });
   }
 
   function goNext() {
-    if (currentAnswer.choices.length === 0) {
+    if (!isStepComplete(activeStep)) {
       setShowError(true);
       return;
     }
@@ -100,17 +165,36 @@ export function PrecheckWizard() {
   }
 
   function showResult() {
-    if (currentAnswer.choices.length === 0) {
+    if (!isStepComplete(activeStep)) {
       setShowError(true);
       return;
     }
+    const snapshot = {
+      assessment_id: createAssessmentId(),
+      created_at: new Date().toISOString(),
+      review_focus: currentAnswer.choices,
+      answers: Object.fromEntries(
+        wizardSteps.map((item) => [
+          item.key,
+          {
+            label: item.label,
+            choices: answers[item.key]?.choices ?? [],
+            detail: answers[item.key]?.detail ?? "",
+            facts: answers[item.key]?.facts,
+            assetAmounts: answers[item.key]?.assetAmounts,
+            debtAmounts: answers[item.key]?.debtAmounts
+          }
+        ])
+      )
+    };
+    window.sessionStorage.setItem(ASSESSMENT_STORAGE_KEY, JSON.stringify(snapshot));
     setShowError(false);
-    router.push("/precheck/result");
+    router.push(`/precheck/result?assessment_id=${encodeURIComponent(snapshot.assessment_id)}`);
   }
 
   return (
-    <section className="mx-auto grid max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[0.78fr_1.22fr] lg:px-8 lg:py-18">
-      <aside className="border border-[var(--border)] bg-white p-6">
+    <section className="mx-auto grid max-w-7xl gap-10 px-4 py-5 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8 lg:py-18">
+      <aside className="hidden border border-[var(--border)] bg-white p-6 lg:block">
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">무료 사전진단</p>
         <h1 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.05em] text-[var(--navy-950)]">
           신고서가 아니라 상담을 시작하는 질문입니다.
@@ -144,12 +228,19 @@ export function PrecheckWizard() {
         </div>
       </aside>
 
-      <section className="border border-[var(--border)] bg-white p-6 md:p-10">
+      <section className="border border-[var(--border)] bg-white p-5 md:p-10">
+        <div className="mb-5 border border-[var(--border)] bg-[var(--ivory)] p-4 lg:hidden">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-sm font-semibold text-[var(--gold)]">{activeStep + 1}/5 {step.label}</p>
+            <p className="text-xs text-[var(--muted)]">무료 사전진단</p>
+          </div>
+          <p className="mt-2 text-xs leading-5 text-[var(--muted)]">주소·실명 없이 큰 금액과 가족 구성만 선택합니다.</p>
+        </div>
         <div className="h-1 bg-[var(--border)]">
           <div className="h-1 bg-[var(--gold)] transition-all" style={{ width: `${progress}%` }} />
         </div>
-        <p className="mt-10 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">{step.eyebrow}</p>
-        <h2 className="mt-4 max-w-2xl text-4xl font-semibold leading-tight tracking-[-0.05em] text-[var(--navy-950)]">
+        <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold)] lg:mt-10">{step.eyebrow}</p>
+        <h2 className="mt-3 max-w-2xl text-3xl font-semibold leading-tight tracking-[-0.05em] text-[var(--navy-950)] md:text-4xl">
           {step.title}
         </h2>
         <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--muted)]">{step.helper}</p>
@@ -157,14 +248,14 @@ export function PrecheckWizard() {
         <div className="mt-8 grid gap-6">
           <fieldset>
             <legend className="text-sm font-semibold text-[var(--text)]">{step.primaryQuestion}</legend>
-            <div className="mt-3 grid gap-3 sm:grid-cols-2" role={isMultiSelectStep ? "group" : "radiogroup"} aria-label={step.primaryQuestion}>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2" role={isMultiSelectStep || isAssetStep ? "group" : "radiogroup"} aria-label={step.primaryQuestion}>
               {step.choices.map((choice) => {
                 const selected = currentAnswer.choices.includes(choice);
                 return (
                 <button
                   key={choice}
                   type="button"
-                  role={isMultiSelectStep ? "checkbox" : "radio"}
+                  role={isMultiSelectStep || isAssetStep ? "checkbox" : "radio"}
                   aria-checked={selected}
                   aria-pressed={selected}
                   onClick={() => updateChoice(choice)}
@@ -175,7 +266,7 @@ export function PrecheckWizard() {
                   }`}
                 >
                   <span className="flex items-center gap-3">
-                    {isMultiSelectStep ? (
+                    {isMultiSelectStep || isAssetStep ? (
                       <span className={`flex h-5 w-5 items-center justify-center border ${selected ? "border-[var(--gold)] bg-[var(--gold)] text-white" : "border-[var(--border)] bg-white"}`}>
                         {selected ? <Check className="h-3 w-3" /> : null}
                       </span>
@@ -188,6 +279,89 @@ export function PrecheckWizard() {
               })}
             </div>
           </fieldset>
+
+          {step.key === "family" ? (
+            <div className="grid gap-4 md:grid-cols-3">
+              {[
+                ["배우자 유무", ["있음", "없음"]],
+                ["성년 자녀 수", ["0명", "1명", "2명", "3명 이상"]],
+                ["미성년 자녀 수", ["0명", "1명", "2명 이상"]]
+              ].map(([label, options]) => (
+                <label key={label as string} className="grid gap-2">
+                  <span className="text-sm font-semibold text-[var(--text)]">{label as string}</span>
+                  <select
+                    aria-label={label as string}
+                    className="border border-[var(--border)] bg-white px-4 py-3 text-sm outline-none focus:border-[var(--gold)]"
+                    value={currentAnswer.facts?.[label as string] ?? ""}
+                    onChange={(event) => updateFact(label as string, event.target.value)}
+                  >
+                    <option value="">선택</option>
+                    {(options as string[]).map((option) => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                </label>
+              ))}
+            </div>
+          ) : null}
+
+          {isAssetStep && currentAnswer.choices.length > 0 ? (
+            <div className="grid gap-3">
+              <p className="text-sm font-semibold text-[var(--text)]">선택 자산별 대략 금액</p>
+              <div className="grid gap-3 md:grid-cols-2">
+                {currentAnswer.choices.map((asset) => (
+                  <label key={asset} className="grid gap-2">
+                    <span className="text-sm text-[var(--muted)]">{asset} 금액</span>
+                    <span className="flex border border-[var(--border)] bg-[var(--ivory)] focus-within:border-[var(--gold)]">
+                      <input
+                        type="number"
+                        inputMode="decimal"
+                        min="0"
+                        step="0.1"
+                        aria-label={`${asset} 금액(억원)`}
+                        className="w-full bg-transparent px-5 py-4 text-base outline-none"
+                        value={currentAnswer.assetAmounts?.[asset] ?? ""}
+                        onChange={(event) => updateAssetAmount(asset, event.target.value)}
+                        onBlur={(event) => updateAssetAmount(asset, normalizeEokAmount(event.target.value))}
+                        placeholder="예: 42"
+                      />
+                      <span className="flex items-center px-4 text-sm font-semibold text-[var(--muted)]">억원</span>
+                    </span>
+                  </label>
+                ))}
+              </div>
+              <p className="text-xs leading-5 text-[var(--muted)]">금액은 0보다 큰 숫자만 입력합니다. 예: 42, 8, 1.5</p>
+            </div>
+          ) : null}
+
+          {isDebtStep && currentAnswer.choices.some((choice) => choice === "담보대출 있음" || choice === "임대보증금 있음") ? (
+            <div className="grid gap-3">
+              <p className="text-sm font-semibold text-[var(--text)]">선택 채무별 대략 금액</p>
+              <div className="grid gap-3 md:grid-cols-2">
+                {currentAnswer.choices.filter((choice) => choice === "담보대출 있음" || choice === "임대보증금 있음").map((debt) => (
+                  <label key={debt} className="grid gap-2">
+                    <span className="text-sm text-[var(--muted)]">{debt} 금액</span>
+                    <span className="flex border border-[var(--border)] bg-[var(--ivory)] focus-within:border-[var(--gold)]">
+                      <input
+                        type="number"
+                        inputMode="decimal"
+                        min="0"
+                        step="0.1"
+                        aria-label={`${debt} 금액(억원)`}
+                        className="w-full bg-transparent px-5 py-4 text-base outline-none"
+                        value={currentAnswer.debtAmounts?.[debt] ?? ""}
+                        onChange={(event) => updateDebtAmount(debt, event.target.value)}
+                        onBlur={(event) => updateDebtAmount(debt, normalizeEokAmount(event.target.value))}
+                        placeholder="예: 3"
+                      />
+                      <span className="flex items-center px-4 text-sm font-semibold text-[var(--muted)]">억원</span>
+                    </span>
+                  </label>
+                ))}
+              </div>
+              <p className="text-xs leading-5 text-[var(--muted)]">채무 금액을 모르면 ‘잘 모르겠음’을 선택하거나 확인 후 입력합니다. 체크만으로 금액을 추정하지 않습니다.</p>
+            </div>
+          ) : null}
 
           {step.secondaryQuestion ? (
             <label className="grid gap-2">
@@ -208,10 +382,7 @@ export function PrecheckWizard() {
                 {summary.map((item) => (
                   <div key={item.label} className="grid gap-1 border-b border-[var(--border)] pb-3 sm:grid-cols-[8rem_1fr]">
                     <dt className="text-[var(--muted)]">{item.label}</dt>
-                    <dd className="font-semibold text-[var(--text)]">
-                      {item.choice}
-                      {item.detail ? <span className="ml-2 font-normal text-[var(--muted)]">· {item.detail}</span> : null}
-                    </dd>
+                    <dd className="font-semibold leading-6 text-[var(--text)]">{item.value}</dd>
                   </div>
                 ))}
               </dl>
@@ -220,7 +391,7 @@ export function PrecheckWizard() {
 
           {showError ? (
             <p className="border-l-2 border-[var(--warning)] bg-[#fff8ee] p-4 text-sm text-[var(--warning)]">
-              현재 단계의 선택지를 골라야 다음 단계 또는 결과로 이동할 수 있습니다.
+              현재 단계의 필수 항목을 입력해야 다음 단계 또는 결과로 이동할 수 있습니다. 금액은 0보다 큰 숫자(억원)만 입력해 주세요.
             </p>
           ) : null}
         </div>

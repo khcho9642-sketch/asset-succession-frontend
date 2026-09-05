@@ -78,7 +78,7 @@ export default function ExpertOverviewPage() {
           </article>
           <article className="border border-[var(--border)] bg-white p-6">
             <h2 className="text-xl font-semibold">주요 자산</h2>
-            <p className="mt-4 text-sm leading-7 text-[var(--muted)]">부동산 42억, 금융자산 8억, 보험 납부재원 후보 5억을 비교합니다.</p>
+            <p className="mt-4 text-sm leading-7 text-[var(--muted)]">자산 유형별 입력 금액과 보험 납부재원 후보는 정밀 계산 단계에서 별도로 확인합니다.</p>
           </article>
           <article className="border border-[var(--border)] bg-white p-6">
             <h2 className="text-xl font-semibold">가족별 검토 메모</h2>
@@ -98,7 +98,7 @@ export default function ExpertOverviewPage() {
           <article className="border border-[var(--border)] bg-white p-6">
             <ShieldCheck className="h-5 w-5 text-[var(--success)]" />
             <h2 className="mt-5 text-xl font-semibold">보험 납부재원 분석</h2>
-            <p className="mt-5 text-sm leading-7 text-[var(--muted)]">상속세 납부재원 부족액 7억 중 2억 수준을 보험 구조로 보완 가능하다는 가정입니다.</p>
+            <p className="mt-5 text-sm leading-7 text-[var(--muted)]">보험 구조는 계약자·피보험자·수익자와 보험료 재원을 확인한 뒤 납부재원 후보로 검토합니다.</p>
           </article>
           <article className="border border-[var(--border)] bg-white p-6">
             <h2 className="text-xl font-semibold">최근 활동</h2>

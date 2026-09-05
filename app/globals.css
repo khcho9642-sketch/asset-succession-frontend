@@ -102,7 +102,7 @@ textarea {
 @media print {
   @page {
     size: A4;
-    margin: 14mm;
+    margin: 10mm;
   }
 
   html,
@@ -115,12 +115,22 @@ textarea {
   }
 
   .report-section {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  .report-section article,
+  .report-section li {
     break-inside: avoid;
     page-break-inside: avoid;
   }
 
+  .empty-assessment-card {
+    display: none !important;
+  }
+
   .print-comparison-table {
-    font-size: 8.5px;
+    font-size: 10px;
     letter-spacing: -0.02em;
   }
 
