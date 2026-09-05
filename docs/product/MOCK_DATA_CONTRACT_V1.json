@@ -30,7 +30,9 @@
       "control_level",
       "complexity",
       "calculation_status",
-      "key_review_items"
+      "key_review_items",
+      "timeline_events",
+      "family_transfer_results"
     ],
     "allowed_statuses": [
       "계산 완료",
@@ -51,7 +53,19 @@
     ],
     "requires_state_persistence": true,
     "requires_previous_next_navigation": true,
-    "result_navigation_only_on_final_step": true
+    "result_navigation_only_on_final_step": true,
+    "blocks_future_step_jump_until_prior_required_steps_complete": true,
+    "validates_review_choice_before_result_navigation": true,
+    "step_3_debt_and_past_gift_multi_select": true,
+    "step_3_exclusive_choices": [
+      "해당 없음",
+      "잘 모르겠음"
+    ]
+  },
+  "report_contract": {
+    "a4_pdf_requires_all_strategy_metrics": true,
+    "print_specific_full_comparison_table": true,
+    "verified_with_playwright_page_pdf": true
   },
   "navigation_contract": {
     "public_nav_exposes_expert_routes": false,

@@ -118,4 +118,21 @@ textarea {
     break-inside: avoid;
     page-break-inside: avoid;
   }
+
+  .print-comparison-table {
+    font-size: 8.5px;
+    letter-spacing: -0.02em;
+  }
+
+  .print-comparison-table th,
+  .print-comparison-table td {
+    border: 1px solid #d8dde2;
+    padding: 5px;
+    vertical-align: top;
+  }
+
+  .print-comparison-table th {
+    background: #f7f5f0;
+    font-weight: 700;
+  }
 }

@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check, ChevronRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { simulationDisclaimer, wizardSteps } from "@/lib/mockData";
 
-type WizardAnswers = Record<string, { choice: string; detail: string }>;
+type WizardAnswers = Record<string, { choices: string[]; detail: string }>;
 
 function getInitialStep() {
   if (typeof window === "undefined") return 0;
@@ -15,18 +15,20 @@ function getInitialStep() {
 }
 
 export function PrecheckWizard() {
+  const router = useRouter();
   const [activeStep, setActiveStep] = useState(0);
   const [answers, setAnswers] = useState<WizardAnswers>({});
   const [showError, setShowError] = useState(false);
   const step = wizardSteps[activeStep];
-  const currentAnswer = answers[step.key] ?? { choice: "", detail: "" };
+  const currentAnswer = answers[step.key] ?? { choices: [], detail: "" };
   const progress = ((activeStep + 1) / wizardSteps.length) * 100;
+  const isMultiSelectStep = step.key === "debt";
 
   const summary = useMemo(
     () =>
       wizardSteps.map((item) => ({
         label: item.label,
-        choice: answers[item.key]?.choice || "미선택",
+        choice: answers[item.key]?.choices.join(", ") || "미선택",
         detail: answers[item.key]?.detail || ""
       })),
     [answers]
@@ -36,11 +38,48 @@ export function PrecheckWizard() {
     setActiveStep(getInitialStep());
   }, []);
 
+  function isStepComplete(index: number) {
+    const item = wizardSteps[index];
+    return (answers[item.key]?.choices.length ?? 0) > 0;
+  }
+
+  function isStepUnlocked(index: number) {
+    if (index <= activeStep) return true;
+    return wizardSteps.slice(0, index).every((_, priorIndex) => isStepComplete(priorIndex));
+  }
+
+  function moveToStep(index: number) {
+    if (!isStepUnlocked(index)) {
+      setShowError(true);
+      return;
+    }
+    setShowError(false);
+    setActiveStep(index);
+  }
+
   function updateChoice(choice: string) {
     setShowError(false);
+    if (isMultiSelectStep) {
+      setAnswers((prev) => {
+        const existing = prev[step.key] ?? { choices: [], detail: "" };
+        const exclusive = choice === "해당 없음" || choice === "잘 모르겠음";
+        const nextChoices = exclusive
+          ? existing.choices.includes(choice) ? [] : [choice]
+          : existing.choices.includes(choice)
+            ? existing.choices.filter((item) => item !== choice)
+            : [...existing.choices.filter((item) => item !== "해당 없음" && item !== "잘 모르겠음"), choice];
+
+        return {
+          ...prev,
+          [step.key]: { ...existing, choices: nextChoices }
+        };
+      });
+      return;
+    }
+
     setAnswers((prev) => ({
       ...prev,
-      [step.key]: { ...currentAnswer, choice }
+      [step.key]: { ...currentAnswer, choices: [choice] }
     }));
   }
 
@@ -52,12 +91,21 @@ export function PrecheckWizard() {
   }
 
   function goNext() {
-    if (!currentAnswer.choice) {
+    if (currentAnswer.choices.length === 0) {
       setShowError(true);
       return;
     }
     setShowError(false);
     setActiveStep((value) => Math.min(value + 1, wizardSteps.length - 1));
+  }
+
+  function showResult() {
+    if (currentAnswer.choices.length === 0) {
+      setShowError(true);
+      return;
+    }
+    setShowError(false);
+    router.push("/precheck/result");
   }
 
   return (
@@ -75,18 +123,20 @@ export function PrecheckWizard() {
             <button
               key={item.key}
               type="button"
-              onClick={() => setActiveStep(index)}
+              onClick={() => moveToStep(index)}
+              disabled={!isStepUnlocked(index)}
               className={`flex items-center gap-3 border px-4 py-3 text-left transition ${
                 index <= activeStep ? "border-[var(--gold)] bg-[var(--ivory)]" : "border-[var(--border)]"
               }`}
               aria-current={index === activeStep ? "step" : undefined}
+              aria-disabled={!isStepUnlocked(index)}
             >
               <span
                 className={`flex h-7 w-7 items-center justify-center text-xs font-semibold ${
-                  answers[item.key]?.choice ? "bg-[var(--success)] text-white" : "bg-white text-[var(--navy-950)]"
+                  answers[item.key]?.choices.length ? "bg-[var(--success)] text-white" : "bg-white text-[var(--navy-950)]"
                 }`}
               >
-                {answers[item.key]?.choice ? <Check className="h-4 w-4" /> : index + 1}
+                {answers[item.key]?.choices.length ? <Check className="h-4 w-4" /> : index + 1}
               </span>
               <span className="text-sm font-semibold">{item.label}</span>
             </button>
@@ -107,22 +157,35 @@ export function PrecheckWizard() {
         <div className="mt-8 grid gap-6">
           <fieldset>
             <legend className="text-sm font-semibold text-[var(--text)]">{step.primaryQuestion}</legend>
-            <div className="mt-3 grid gap-3 sm:grid-cols-2">
-              {step.choices.map((choice) => (
+            <div className="mt-3 grid gap-3 sm:grid-cols-2" role={isMultiSelectStep ? "group" : "radiogroup"} aria-label={step.primaryQuestion}>
+              {step.choices.map((choice) => {
+                const selected = currentAnswer.choices.includes(choice);
+                return (
                 <button
                   key={choice}
                   type="button"
+                  role={isMultiSelectStep ? "checkbox" : "radio"}
+                  aria-checked={selected}
+                  aria-pressed={selected}
                   onClick={() => updateChoice(choice)}
                   className={`flex items-center justify-between border px-5 py-4 text-left text-sm font-semibold transition ${
-                    currentAnswer.choice === choice
+                    selected
                       ? "border-[var(--gold)] bg-[var(--ivory)] text-[var(--navy-950)]"
                       : "border-[var(--border)] hover:border-[var(--gold)]"
                   }`}
                 >
-                  {choice}
+                  <span className="flex items-center gap-3">
+                    {isMultiSelectStep ? (
+                      <span className={`flex h-5 w-5 items-center justify-center border ${selected ? "border-[var(--gold)] bg-[var(--gold)] text-white" : "border-[var(--border)] bg-white"}`}>
+                        {selected ? <Check className="h-3 w-3" /> : null}
+                      </span>
+                    ) : null}
+                    {choice}
+                  </span>
                   <ChevronRight className="h-4 w-4 text-[var(--gold)]" />
                 </button>
-              ))}
+                );
+              })}
             </div>
           </fieldset>
 
@@ -157,7 +220,7 @@ export function PrecheckWizard() {
 
           {showError ? (
             <p className="border-l-2 border-[var(--warning)] bg-[#fff8ee] p-4 text-sm text-[var(--warning)]">
-              현재 단계의 선택지를 하나 골라야 다음 단계로 이동할 수 있습니다.
+              현재 단계의 선택지를 골라야 다음 단계 또는 결과로 이동할 수 있습니다.
             </p>
           ) : null}
         </div>
@@ -172,9 +235,9 @@ export function PrecheckWizard() {
             <ArrowLeft className="h-4 w-4" /> 이전
           </button>
           {activeStep === wizardSteps.length - 1 ? (
-            <Link href="/precheck/result" className="inline-flex items-center gap-3 bg-[var(--navy-950)] px-6 py-4 text-sm font-semibold text-white">
+            <button type="button" onClick={showResult} className="inline-flex items-center gap-3 bg-[var(--navy-950)] px-6 py-4 text-sm font-semibold text-white">
               결과 보기 <ArrowRight className="h-4 w-4" />
-            </Link>
+            </button>
           ) : (
             <button type="button" onClick={goNext} className="inline-flex items-center gap-3 bg-[var(--navy-950)] px-6 py-4 text-sm font-semibold text-white">
               다음 <ArrowRight className="h-4 w-4" />

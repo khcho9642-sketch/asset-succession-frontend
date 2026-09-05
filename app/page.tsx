@@ -12,7 +12,9 @@ export default function LandingPage() {
           <div>
             <p className="text-sm font-semibold tracking-[0.08em] text-[var(--gold)]">자산승계 사전진단</p>
             <h1 className="mt-7 max-w-4xl text-[2.55rem] font-semibold leading-[1.04] tracking-[-0.065em] sm:text-[3.15rem] md:text-[5rem]">
-              우리 가족의 자산, 어떤 방식으로 남기는 것이 좋을까요?
+              <span className="block">우리 가족의 자산,</span>
+              <span className="block">어떤 방식으로</span>
+              <span className="block">남기는 것이 좋을까요?</span>
             </h1>
             <p className="mt-7 max-w-[calc(100vw-3rem)] text-lg leading-8 text-white/72 md:max-w-2xl md:text-xl">
               <span className="block">상속·증여·매각·가족법인·보험 활용까지</span>

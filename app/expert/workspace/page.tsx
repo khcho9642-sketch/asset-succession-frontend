@@ -3,69 +3,44 @@
 import { CircleAlert, FilePenLine, GitBranch, PanelRightOpen, X } from "lucide-react";
 import { useState } from "react";
 import { ExpertShell } from "@/components/ExpertShell";
-import { strategyBranches, timelineEvents } from "@/lib/mockData";
+import { strategyBranches } from "@/lib/mockData";
 
-const ownershipPresets = [
-  ["부모", "100%"],
-  ["자녀", "0%"],
-  ["공동", "0%"]
-];
+type SavedEdit = { event: string; memo: string };
 
-const scenarioPresets = [
-  {
-    summary: "상속 시점 집중",
-    owners: [["부모", "100%"], ["배우자", "공제 검토"], ["자녀", "상속 시점"]],
-    cashflow: "부족 7억",
-    issue: ["배우자공제 확인", "사전증여 가산 검토", "납부재원 보강 필요"]
-  },
-  {
-    summary: "10년 합산 관리",
-    owners: [["부모", "76%"], ["자녀 1", "12%"], ["자녀 2", "12%"]],
-    cashflow: "부족 3억",
-    issue: ["평가시점 확정", "취득세 영향", "과거 증여 내역 확인"]
-  },
-  {
-    summary: "유동성 우선",
-    owners: [["부모", "현금 중심"], ["자녀", "현금 이전"], ["예비재원", "확보"]],
-    cashflow: "부족 낮음",
-    issue: ["취득가액 확인", "장기보유 요건", "매각비용 반영"]
-  },
-  {
-    summary: "채무승계 확인",
-    owners: [["부모", "자산·채무"], ["자녀", "인수 후보"], ["채권자", "승인 필요"]],
-    cashflow: "추가정보 필요",
-    issue: ["채무승계 증빙", "담보 여부", "양도세 연결"]
-  },
-  {
-    summary: "통제권과 이전 시점 분리",
-    owners: [["부모", "60%"], ["가족법인", "20%"], ["자녀", "20%"]],
-    cashflow: "부족 4억",
-    issue: ["지분평가 기준", "정관·지분 설계", "운영비 가정"]
-  },
-  {
-    summary: "납부재원 보강",
-    owners: [["부모", "55억"], ["보험", "재원 후보"], ["자녀", "수익자 검토"]],
-    cashflow: "부족 2억",
-    issue: ["계약자 확인", "수익자 구조", "보험료 재원"]
-  },
-  {
-    summary: "복합 설계",
-    owners: [["부모", "균형"], ["자녀", "분산 이전"], ["보험·법인", "조합"]],
-    cashflow: "추가 산정",
-    issue: ["실행 순서", "현금흐름", "특수관계 검토"]
-  }
-];
+function getDefaultEvent(strategyIndex: number) {
+  return strategyBranches[strategyIndex].timeline_events[0] ?? "정밀검토 단계에서 구성";
+}
 
 export default function ExpertWorkspacePage() {
   const [activeStrategyIndex, setActiveStrategyIndex] = useState(4);
   const [editorOpen, setEditorOpen] = useState(false);
+  const [draftEvent, setDraftEvent] = useState(getDefaultEvent(4));
+  const [draftMemo, setDraftMemo] = useState(`${strategyBranches[4].key_review_items.join(", ")} 확인 후 보고서에 반영`);
+  const [savedEdits, setSavedEdits] = useState<Record<number, SavedEdit>>({});
+  const [savedStrategyIndex, setSavedStrategyIndex] = useState<number | null>(null);
   const activeStrategy = strategyBranches[activeStrategyIndex];
-  const activePreset = scenarioPresets[activeStrategyIndex] ?? {
-    summary: activeStrategy.description,
-    owners: ownershipPresets,
-    cashflow: activeStrategy.liquidity_gap,
-    issue: activeStrategy.key_review_items
-  };
+  const activeEvents = activeStrategy.timeline_events;
+  const savedEdit = savedEdits[activeStrategyIndex];
+
+  function selectStrategy(index: number) {
+    setActiveStrategyIndex(index);
+    setEditorOpen(false);
+  }
+
+  function openEditor() {
+    const existing = savedEdits[activeStrategyIndex];
+    setDraftEvent(existing?.event ?? getDefaultEvent(activeStrategyIndex));
+    setDraftMemo(existing?.memo ?? `${activeStrategy.key_review_items.join(", ")} 확인 후 보고서에 반영`);
+    setEditorOpen(true);
+  }
+
+  function saveEditor() {
+    setSavedEdits((previous) => ({
+      ...previous,
+      [activeStrategyIndex]: { event: draftEvent, memo: draftMemo }
+    }));
+    setSavedStrategyIndex(activeStrategyIndex);
+  }
 
   return (
     <ExpertShell>
@@ -76,7 +51,7 @@ export default function ExpertWorkspacePage() {
               key={strategy.name}
               type="button"
               aria-selected={index === activeStrategyIndex}
-              onClick={() => setActiveStrategyIndex(index)}
+              onClick={() => selectStrategy(index)}
               className={`shrink-0 border px-4 py-3 text-sm font-semibold ${index === activeStrategyIndex ? "border-[var(--gold)] bg-white text-[var(--navy-950)]" : "border-[var(--border)] text-[var(--muted)]"}`}
             >
               {strategy.name}
@@ -90,17 +65,31 @@ export default function ExpertWorkspacePage() {
               <GitBranch className="h-5 w-5 text-[var(--gold)]" />
               <h1 className="text-xl font-semibold">이벤트 타임라인</h1>
             </div>
-            <ol className="mt-6 grid gap-4">
-              {timelineEvents.map((event, index) => (
-                <li key={event} className="flex gap-4">
-                  <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center border border-[var(--gold)] text-xs font-semibold text-[var(--gold)]">{index + 1}</span>
-                  <div>
-                    <p className="text-sm font-semibold">{event}</p>
-                    <p className="mt-1 text-xs leading-5 text-[var(--muted)]">{activeStrategy.name} 영향 반영</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+            {activeEvents.length > 0 ? (
+              <ol className="mt-6 grid gap-4">
+                {activeEvents.map((event, index) => (
+                  <li key={event} className="flex gap-4">
+                    <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center border border-[var(--gold)] text-xs font-semibold text-[var(--gold)]">{index + 1}</span>
+                    <div>
+                      <p className="text-sm font-semibold">{event}</p>
+                      <p className="mt-1 text-xs leading-5 text-[var(--muted)]">{activeStrategy.name} 영향 반영</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <div className="mt-6 border border-dashed border-[var(--border)] bg-[var(--ivory)] p-5">
+                <p className="text-sm font-semibold text-[var(--navy-950)]">이 전략의 상세 이벤트는 정밀검토 단계에서 구성합니다.</p>
+                <p className="mt-2 text-xs leading-5 text-[var(--muted)]">채무승계 증빙과 담보 승인 여부가 확인되기 전까지 가족법인 이벤트를 재사용하지 않습니다.</p>
+              </div>
+            )}
+            {savedEdit ? (
+              <div className="mt-5 border-l-2 border-[var(--gold)] bg-[var(--ivory)] p-4">
+                <p className="text-xs font-semibold text-[var(--gold)]">최근 편집 · 화면에만 임시 반영됨</p>
+                <p className="mt-2 text-sm font-semibold">{savedEdit.event}</p>
+                <p className="mt-1 text-xs leading-5 text-[var(--muted)]">{savedEdit.memo}</p>
+              </div>
+            ) : null}
           </aside>
 
           <section className="border border-[var(--border)] bg-white p-6">
@@ -108,28 +97,28 @@ export default function ExpertWorkspacePage() {
               <div>
                 <p className="text-sm font-semibold tracking-[0.08em] text-[var(--gold)]">{activeStrategy.name} 시나리오</p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-[var(--navy-950)]">자산·소유구조 변화</h2>
-                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{activePreset.summary}</p>
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{activeStrategy.description}</p>
               </div>
-              <button type="button" onClick={() => setEditorOpen(true)} className="inline-flex border border-[var(--border)] px-4 py-3 text-sm font-semibold">
+              <button type="button" onClick={openEditor} className="inline-flex border border-[var(--border)] px-4 py-3 text-sm font-semibold">
                 <PanelRightOpen className="mr-2 h-4 w-4" /> 이벤트 수정
               </button>
             </div>
             <div className="mt-8 grid gap-5 md:grid-cols-3">
-              {activePreset.owners.map(([owner, value]) => (
-                <article key={owner} className="border border-[var(--border)] bg-[var(--ivory)] p-5">
-                  <p className="text-sm font-semibold">{owner}</p>
-                  <strong className="mt-5 block text-4xl tracking-[-0.06em]">{value}</strong>
-                  <p className="mt-3 text-sm leading-6 text-[var(--muted)]">시나리오 후 지분 구조 예시</p>
+              {activeStrategy.family_transfer_results.map((result) => (
+                <article key={result.person} className="border border-[var(--border)] bg-[var(--ivory)] p-5">
+                  <p className="text-sm font-semibold">{result.person}</p>
+                  <strong className="mt-5 block text-4xl tracking-[-0.06em]">{result.value}</strong>
+                  <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{result.note}</p>
                 </article>
               ))}
             </div>
             <div className="mt-8 border border-[var(--border)] p-5">
               <p className="text-sm font-semibold">하단 가족별 이전 결과</p>
               <div className="mt-4 grid gap-3 md:grid-cols-3">
-                {["배우자", "자녀 1", "자녀 2"].map((person, index) => (
-                  <div key={person} className="flex items-center justify-between border-b border-[var(--border)] py-3">
-                    <span className="text-sm text-[var(--muted)]">{person}</span>
-                    <strong>{index === 0 ? "18억" : "14.5억"}</strong>
+                {activeStrategy.family_transfer_results.map((result) => (
+                  <div key={result.person} className="flex items-center justify-between gap-3 border-b border-[var(--border)] py-3">
+                    <span className="text-sm text-[var(--muted)]">{result.person}</span>
+                    <strong className="text-right">{result.value}</strong>
                   </div>
                 ))}
               </div>
@@ -139,7 +128,7 @@ export default function ExpertWorkspacePage() {
           <aside id="issues" className="grid gap-5">
             <article className="border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
               <p className="text-sm text-white/55">세금·현금흐름 요약</p>
-              <strong className="mt-4 block text-4xl tracking-[-0.06em]">{activePreset.cashflow}</strong>
+              <strong className="mt-4 block text-4xl tracking-[-0.06em]">{activeStrategy.liquidity_gap}</strong>
               <p className="mt-3 text-sm leading-6 text-white/65">{activeStrategy.status_detail}</p>
             </article>
             <article className="border border-[var(--border)] bg-white p-6">
@@ -148,7 +137,7 @@ export default function ExpertWorkspacePage() {
                 <h2 className="text-lg font-semibold">쟁점 요약</h2>
               </div>
               <ul className="mt-5 grid gap-3 text-sm leading-6 text-[var(--muted)]">
-                {activePreset.issue.map((issue) => (
+                {activeStrategy.key_review_items.map((issue) => (
                   <li key={issue}>{activeStrategy.calculation_status} · {issue}</li>
                 ))}
               </ul>
@@ -156,12 +145,13 @@ export default function ExpertWorkspacePage() {
             <article className="border border-[var(--border)] bg-white p-6">
               <div className="flex items-center gap-3">
                 <FilePenLine className="h-5 w-5 text-[var(--gold)]" />
-                <h2 className="text-lg font-semibold">이벤트 편집</h2>
+                <h2 className="text-lg font-semibold">{savedEdit ? "최근 편집 이벤트" : "다음 검토 작업"}</h2>
               </div>
               <p className="mt-4 text-sm leading-7 text-[var(--muted)]">
-                선택한 시나리오의 이벤트, 금액 가정, 검토 메모를 편집해 비교표에 반영합니다.
+                {savedEdit ? `${savedEdit.event} · ${savedEdit.memo}` : "선택한 시나리오의 이벤트, 금액 가정, 검토 메모를 편집해 비교표에 반영합니다."}
               </p>
-              <button type="button" onClick={() => setEditorOpen(true)} className="mt-5 inline-flex border border-[var(--border)] px-4 py-3 text-sm font-semibold">
+              {savedEdit ? <p className="mt-3 text-xs font-semibold text-[var(--gold)]">화면에만 임시 반영됨</p> : null}
+              <button type="button" onClick={openEditor} className="mt-5 inline-flex border border-[var(--border)] px-4 py-3 text-sm font-semibold">
                 편집 열기
               </button>
             </article>
@@ -209,20 +199,23 @@ export default function ExpertWorkspacePage() {
               </label>
               <label className="grid gap-2">
                 <span className="text-sm font-semibold">핵심 이벤트</span>
-                <select className="border border-[var(--border)] bg-white px-4 py-3 text-sm" defaultValue={timelineEvents[0]}>
-                  {timelineEvents.map((event) => (
+                <select className="border border-[var(--border)] bg-white px-4 py-3 text-sm" value={draftEvent} onChange={(event) => setDraftEvent(event.target.value)}>
+                  {(activeEvents.length > 0 ? activeEvents : ["정밀검토 단계에서 구성"]).map((event) => (
                     <option key={event}>{event}</option>
                   ))}
                 </select>
               </label>
               <label className="grid gap-2">
                 <span className="text-sm font-semibold">검토 메모</span>
-                <textarea className="min-h-32 border border-[var(--border)] px-4 py-3 text-sm" defaultValue={`${activeStrategy.key_review_items.join(", ")} 확인 후 보고서에 반영`} />
+                <textarea className="min-h-32 border border-[var(--border)] px-4 py-3 text-sm" value={draftMemo} onChange={(event) => setDraftMemo(event.target.value)} />
               </label>
+              {savedStrategyIndex === activeStrategyIndex ? (
+                <p className="border-l-2 border-[var(--gold)] bg-[var(--ivory)] p-4 text-sm font-semibold text-[var(--navy-950)]">화면에만 임시 반영됨</p>
+              ) : null}
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <button type="button" className="bg-[var(--navy-950)] px-5 py-3 text-sm font-semibold text-white">합성 변경사항 저장</button>
+              <button type="button" onClick={saveEditor} className="bg-[var(--navy-950)] px-5 py-3 text-sm font-semibold text-white">합성 변경사항 저장</button>
               <button type="button" onClick={() => setEditorOpen(false)} className="border border-[var(--border)] px-5 py-3 text-sm font-semibold">닫기</button>
             </div>
           </aside>

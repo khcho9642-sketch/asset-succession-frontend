@@ -212,7 +212,7 @@ async function main() {
       const tick = () => new Promise((resolve) => setTimeout(resolve, 400));
       byText("button", "다음").click();
       await tick();
-      const validationShown = document.body.innerText.includes("선택지를 하나 골라야");
+      const validationShown = document.body.innerText.includes("선택지를 골라야");
       const afterValidationText = document.body.innerText.slice(0, 700);
       const exactNextButtonCount = [...document.querySelectorAll("button")].filter((el) => el.textContent.trim() === "다음").length;
       byText("button", "부모 2명 + 자녀").click();

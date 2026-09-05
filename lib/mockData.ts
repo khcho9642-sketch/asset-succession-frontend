@@ -35,6 +35,8 @@ export type Strategy = {
   calculation_status: StrategyStatus;
   key_review_items: string[];
   status_detail: string;
+  timeline_events: string[];
+  family_transfer_results: Array<{ person: string; value: string; note: string }>;
   icon: LucideIcon;
 };
 
@@ -68,6 +70,12 @@ export const strategyBranches: Strategy[] = [
     calculation_status: "전문가 검토 필수",
     key_review_items: ["상속공제", "배우자공제", "납부재원"],
     status_detail: "배우자공제와 사전증여 가산 여부 확인 전에는 확정 계산하지 않습니다.",
+    timeline_events: ["2026 현재 구조 유지", "2032 납부재원 사전 점검", "2042 잔여재산 상속"],
+    family_transfer_results: [
+      { person: "배우자", value: "공제 검토", note: "상속 시점 배우자공제 확인" },
+      { person: "자녀 1", value: "상속 시점", note: "사전 이전 없음" },
+      { person: "자녀 2", value: "상속 시점", note: "사전 이전 없음" }
+    ],
     icon: Home
   },
   {
@@ -85,6 +93,12 @@ export const strategyBranches: Strategy[] = [
     calculation_status: "예상 범위",
     key_review_items: ["10년 합산", "평가액", "취득세"],
     status_detail: "평가액과 과거 증여 내역이 확인되면 비교 후보로 볼 수 있습니다.",
+    timeline_events: ["2026 증여 대상 선별", "2027 1차 일부 증여", "2031 추가 증여 여부 재검토", "2042 잔여재산 상속"],
+    family_transfer_results: [
+      { person: "부모", value: "42억", note: "생활재원과 통제권 일부 유지" },
+      { person: "자녀 1", value: "6.5억", note: "단계적 이전 예시" },
+      { person: "자녀 2", value: "6.5억", note: "단계적 이전 예시" }
+    ],
     icon: Layers3
   },
   {
@@ -102,6 +116,12 @@ export const strategyBranches: Strategy[] = [
     calculation_status: "추가정보 필요",
     key_review_items: ["양도세", "장기보유", "매각비용"],
     status_detail: "취득가액과 보유기간이 입력되어야 양도세 범위를 좁힐 수 있습니다.",
+    timeline_events: ["2026 매각 가능 자산 분류", "2027 양도세 범위 산정", "2028 현금 증여 실행 여부 결정"],
+    family_transfer_results: [
+      { person: "부모", value: "현금 중심", note: "매각 후 유동성 확보" },
+      { person: "자녀 1", value: "현금 이전", note: "증여 한도와 세율 확인" },
+      { person: "자녀 2", value: "현금 이전", note: "증여 한도와 세율 확인" }
+    ],
     icon: Banknote
   },
   {
@@ -119,6 +139,12 @@ export const strategyBranches: Strategy[] = [
     calculation_status: "현재 조건에서는 계산 제한",
     key_review_items: ["채무승계 증빙", "담보 여부", "양도세 연결"],
     status_detail: "채무승계 증빙이 없으면 부담부증여 계산을 제한합니다.",
+    timeline_events: [],
+    family_transfer_results: [
+      { person: "부모", value: "자산·채무", note: "채무 인수 가능성 확인 전" },
+      { person: "자녀", value: "인수 후보", note: "금융기관 승인과 담보 확인 필요" },
+      { person: "채권자", value: "승인 필요", note: "증빙 없으면 계산 제한" }
+    ],
     icon: Landmark
   },
   {
@@ -136,6 +162,12 @@ export const strategyBranches: Strategy[] = [
     calculation_status: "전문가 검토 필수",
     key_review_items: ["법인세", "지분평가", "사후관리"],
     status_detail: "지분평가와 운영비가 미확정이면 전문가 검토가 필수입니다.",
+    timeline_events: ["2026 가족법인 설립", "2027 현금 출자 및 부동산 취득", "2030 법인지분 20% 증여", "2042 잔여지분 상속"],
+    family_transfer_results: [
+      { person: "부모", value: "60%", note: "의사결정권 유지" },
+      { person: "가족법인", value: "20%", note: "자산 보유 구조 전환" },
+      { person: "자녀", value: "20%", note: "지분 이전 예시" }
+    ],
     icon: Factory
   },
   {
@@ -153,6 +185,12 @@ export const strategyBranches: Strategy[] = [
     calculation_status: "추가정보 필요",
     key_review_items: ["계약자", "수익자", "보험료 재원"],
     status_detail: "계약자·피보험자·수익자 정보가 입력되어야 분석 가능합니다.",
+    timeline_events: ["2026 보험계약 구조 확인", "2027 보험료 재원 점검", "2035 상속세 납부재원 보강"],
+    family_transfer_results: [
+      { person: "부모", value: "55억", note: "자산 보유 유지" },
+      { person: "보험", value: "재원 후보", note: "계약자·수익자 확인 필요" },
+      { person: "자녀", value: "수익자 검토", note: "세무상 귀속 확인" }
+    ],
     icon: Umbrella
   },
   {
@@ -170,6 +208,12 @@ export const strategyBranches: Strategy[] = [
     calculation_status: "예상 범위",
     key_review_items: ["순서 설계", "현금흐름", "특수관계"],
     status_detail: "증여·보험·법인 활용을 조합해 납부재원 부족을 줄이는 후보입니다.",
+    timeline_events: ["2026 우선순위 확정", "2027 일부 증여와 보험 구조 설계", "2030 법인 또는 매각 조합 검토", "2042 잔여재산 정리"],
+    family_transfer_results: [
+      { person: "부모", value: "균형", note: "통제권과 유동성 동시 관리" },
+      { person: "자녀", value: "분산 이전", note: "증여·상속 시점 분리" },
+      { person: "보험·법인", value: "조합", note: "부족액 보완 후보" }
+    ],
     icon: ShieldCheck
   }
 ];
@@ -211,7 +255,7 @@ export const wizardSteps: WizardStep[] = [
     title: "채무나 과거 증여처럼 결과에 영향을 주는 항목이 있나요?",
     helper: "부담부증여와 10년 합산 검토가 필요한지 판단하는 단계입니다.",
     primaryQuestion: "해당되는 항목을 선택해 주세요.",
-    choices: ["담보대출 있음", "임대보증금 있음", "최근 10년 증여 있음", "잘 모르겠음"],
+    choices: ["담보대출 있음", "임대보증금 있음", "최근 10년 증여 있음", "해당 없음", "잘 모르겠음"],
     secondaryQuestion: "가장 확인이 필요한 항목은 무엇인가요?",
     secondaryPlaceholder: "예: 임대보증금 승계 가능성"
   },

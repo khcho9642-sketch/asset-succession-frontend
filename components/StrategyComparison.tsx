@@ -29,7 +29,7 @@ function StatusBadge({ status }: Readonly<{ status: string }>) {
 export function StrategyComparison() {
   return (
     <>
-      <div className="hidden overflow-hidden border border-[var(--border)] bg-white lg:block">
+      <div className="hidden overflow-hidden border border-[var(--border)] bg-white lg:block print:hidden">
         <table className="w-full border-collapse text-left">
           <thead className="bg-[var(--ivory)] text-xs uppercase tracking-[0.12em] text-[var(--muted)]">
             <tr>
@@ -69,7 +69,7 @@ export function StrategyComparison() {
         </table>
       </div>
 
-      <div className="grid gap-4 lg:hidden">
+      <div className="grid gap-4 lg:hidden print:hidden">
         {strategyBranches.map((strategy) => {
           const Icon = strategy.icon;
           return (
@@ -109,6 +109,43 @@ export function StrategyComparison() {
             </article>
           );
         })}
+      </div>
+
+      <div className="hidden print:block">
+        <table className="print-comparison-table w-full border-collapse text-left">
+          <thead>
+            <tr>
+              <th>전략</th>
+              <th>현재 세금·비용</th>
+              <th>미래 세금·비용</th>
+              <th>총 부담</th>
+              <th>즉시 필요현금</th>
+              <th>부모 잔여재산</th>
+              <th>자녀 이전재산</th>
+              <th>납부재원 부족액</th>
+              <th>통제권</th>
+              <th>복잡도</th>
+              <th>상태</th>
+            </tr>
+          </thead>
+          <tbody>
+            {strategyBranches.map((strategy) => (
+              <tr key={strategy.name}>
+                <td>{strategy.name}</td>
+                <td>{strategy.current_tax_and_cost}</td>
+                <td>{strategy.future_tax_and_cost}</td>
+                <td>{strategy.total_burden}</td>
+                <td>{strategy.immediate_cash_required}</td>
+                <td>{strategy.parent_remaining_assets}</td>
+                <td>{strategy.child_transferred_assets}</td>
+                <td>{strategy.liquidity_gap}</td>
+                <td>{strategy.control_level}</td>
+                <td>{strategy.complexity}</td>
+                <td>{strategy.calculation_status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );

@@ -19,15 +19,31 @@ export default function ResultPage() {
               확정 세액이 아니라 가족 회의와 전문가 상담을 위한 비교표입니다. 입력한 내용을 다시 작성하지 않고 상담으로 이어갈 수 있습니다.
             </p>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <article className="border border-[var(--border)] bg-white p-6">
-              <p className="text-sm text-[var(--muted)]">비교 전략</p>
-              <strong className="mt-4 block text-5xl tracking-[-0.06em] text-[var(--navy-950)]">7개</strong>
-            </article>
-            <article className="border border-[var(--border)] bg-white p-6">
-              <p className="text-sm text-[var(--muted)]">주요 검토사항</p>
-              <strong className="mt-4 block text-5xl tracking-[-0.06em] text-[var(--navy-950)]">11건</strong>
-            </article>
+          <div className="grid gap-4">
+            <div className="grid gap-4 sm:grid-cols-3">
+              <article className="border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
+                <p className="text-sm text-white/60">총 부담</p>
+                <strong className="mt-4 block text-4xl tracking-[-0.06em]">5.6~12억</strong>
+              </article>
+              <article className="border border-[var(--border)] bg-white p-6">
+                <p className="text-sm text-[var(--muted)]">즉시 필요현금</p>
+                <strong className="mt-4 block text-4xl tracking-[-0.06em] text-[var(--navy-950)]">2.4~3.5억</strong>
+              </article>
+              <article className="border border-[var(--border)] bg-white p-6">
+                <p className="text-sm text-[var(--muted)]">납부재원 부족액</p>
+                <strong className="mt-4 block text-4xl tracking-[-0.06em] text-[var(--navy-950)]">최대 7억</strong>
+              </article>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <article className="border border-[var(--border)] bg-white p-5">
+                <p className="text-sm text-[var(--muted)]">비교 전략</p>
+                <strong className="mt-3 block text-3xl tracking-[-0.06em] text-[var(--navy-950)]">7개</strong>
+              </article>
+              <article className="border border-[var(--border)] bg-white p-5">
+                <p className="text-sm text-[var(--muted)]">주요 검토사항</p>
+                <strong className="mt-3 block text-3xl tracking-[-0.06em] text-[var(--navy-950)]">11건</strong>
+              </article>
+            </div>
           </div>
         </div>
 

@@ -137,12 +137,17 @@ try {
           fail(route.path, viewport.name, "No previous-step control was found; the page does not expose reversible wizard navigation.");
         }
 
+        const futureStepButton = page.getByRole("button", { name: "결과 준비" });
+        if (!await futureStepButton.isDisabled()) {
+          fail(route.path, viewport.name, "Wizard allows direct jumping to Step 5 before prior required steps are complete.");
+        }
+
         await page.getByRole("button", { name: "다음" }).click();
-        if (!await page.getByText("현재 단계의 선택지를 하나 골라야 다음 단계로 이동할 수 있습니다.").isVisible()) {
+        if (!await page.getByText(/현재 단계의 선택지를 골라야/).isVisible()) {
           fail(route.path, viewport.name, "Required-choice validation message did not appear before moving to the next wizard step.");
         }
 
-        await page.getByRole("button", { name: "부모 2명 + 자녀" }).click();
+        await page.getByRole("radio", { name: "부모 2명 + 자녀" }).click();
         await page.getByRole("textbox").fill("2명");
         await page.getByRole("button", { name: "다음" }).click();
         if (!await page.getByText("승계 대상 자산의 큰 구성을 선택해 주세요.").isVisible()) {
@@ -157,6 +162,53 @@ try {
         await page.getByRole("button", { name: "다음" }).click();
         if (!await page.getByText("승계 대상 자산의 큰 구성을 선택해 주세요.").isVisible()) {
           fail(route.path, viewport.name, "Wizard did not preserve Step 1 state after using previous/next navigation.");
+        }
+
+        await page.getByRole("radio", { name: "부동산" }).click();
+        await page.getByRole("button", { name: "다음" }).click();
+        if (!await page.getByText("채무나 과거 증여처럼 결과에 영향을 주는 항목이 있나요?").isVisible()) {
+          fail(route.path, viewport.name, "Wizard did not advance to Step 3.");
+        }
+
+        await page.getByRole("checkbox", { name: "담보대출 있음" }).click();
+        await page.getByRole("checkbox", { name: "최근 10년 증여 있음" }).click();
+        const mortgageChecked = await page.getByRole("checkbox", { name: "담보대출 있음" }).getAttribute("aria-checked");
+        const giftChecked = await page.getByRole("checkbox", { name: "최근 10년 증여 있음" }).getAttribute("aria-checked");
+        if (mortgageChecked !== "true" || giftChecked !== "true") {
+          fail(route.path, viewport.name, "Debt/past-gift Step 3 does not support accessible multi-select.");
+        }
+
+        await page.getByRole("checkbox", { name: "해당 없음" }).click();
+        const noneChecked = await page.getByRole("checkbox", { name: "해당 없음" }).getAttribute("aria-checked");
+        const mortgageAfterNone = await page.getByRole("checkbox", { name: "담보대출 있음" }).getAttribute("aria-checked");
+        const giftAfterNone = await page.getByRole("checkbox", { name: "최근 10년 증여 있음" }).getAttribute("aria-checked");
+        if (noneChecked !== "true" || mortgageAfterNone === "true" || giftAfterNone === "true") {
+          fail(route.path, viewport.name, "Step 3 '해당 없음' is not mutually exclusive with other debt/past-gift choices.");
+        }
+
+        await page.getByRole("checkbox", { name: "잘 모르겠음" }).click();
+        const unsureChecked = await page.getByRole("checkbox", { name: "잘 모르겠음" }).getAttribute("aria-checked");
+        const noneAfterUnsure = await page.getByRole("checkbox", { name: "해당 없음" }).getAttribute("aria-checked");
+        if (unsureChecked !== "true" || noneAfterUnsure === "true") {
+          fail(route.path, viewport.name, "Step 3 '잘 모르겠음' is not mutually exclusive with '해당 없음'.");
+        }
+
+        await page.getByRole("button", { name: "다음" }).click();
+        await page.getByRole("radio", { name: "상속세 납부재원 준비" }).click();
+        await page.getByRole("button", { name: "다음" }).click();
+        await page.getByRole("button", { name: "결과 보기" }).click();
+        if (!await page.getByText(/현재 단계의 선택지를 골라야/).isVisible()) {
+          fail(route.path, viewport.name, "Step 5 result navigation is not blocked when the review perspective is unselected.");
+        }
+        if (normalizePath(page.url()) === "/precheck/result") {
+          fail(route.path, viewport.name, "Step 5 unvalidated result button routed to the result page.");
+        }
+
+        await page.getByRole("radio", { name: "세금·비용" }).click();
+        await page.getByRole("button", { name: "결과 보기" }).click();
+        await page.waitForURL("**/precheck/result", { timeout: 10_000 }).catch(() => undefined);
+        if (normalizePath(page.url()) !== "/precheck/result") {
+          fail(route.path, viewport.name, "Step 5 did not route to results after selecting a review perspective.");
         }
       }
 
@@ -184,6 +236,13 @@ try {
 
         if (!bodyText.includes("부담부증여")) {
           fail(route.path, viewport.name, "The result page does not show or explicitly separate the burdened-gift review strategy.");
+        }
+
+        const priorityMetrics = ["총 부담", "즉시 필요현금", "납부재원 부족액"];
+        const firstCountIndex = bodyText.indexOf("비교 전략");
+        const missingPriorityMetrics = priorityMetrics.filter((metric) => bodyText.indexOf(metric) < 0 || (firstCountIndex >= 0 && bodyText.indexOf(metric) > firstCountIndex));
+        if (missingPriorityMetrics.length > 0) {
+          fail(route.path, viewport.name, `Result page does not prioritize decision metrics above counts: ${missingPriorityMetrics.join(", ")}`);
         }
       }
 
@@ -225,6 +284,12 @@ try {
         if (!burdenedGiftSelected.includes("부담부증여 검토") || burdenedGiftHeading === 0) {
           fail(route.path, viewport.name, "Scenario tab click did not update the active tab and body heading for burdened gift.");
         }
+        if (await page.getByText("가족법인 설립").count() > 0) {
+          fail(route.path, viewport.name, "Burdened-gift strategy is still reusing family corporation timeline events.");
+        }
+        if (await page.getByText("이 전략의 상세 이벤트는 정밀검토 단계에서 구성합니다.").count() === 0) {
+          fail(route.path, viewport.name, "Burdened-gift strategy does not show the required detailed-event empty state.");
+        }
 
         await page.getByRole("button", { name: "가족법인 활용" }).click();
         const familyCorpSelected = await page.locator("[aria-selected='true']").innerText().catch(() => "");
@@ -242,10 +307,22 @@ try {
           if (!editorText.includes("가족법인 활용") || !editorText.includes("검토 메모")) {
             fail(route.path, viewport.name, "Event editor dialog does not show the selected scenario and editable review memo.");
           }
+          const savedMemo = `자동검증 저장 메모 ${viewport.name}`;
+          await editorDialog.getByLabel("검토 메모").fill(savedMemo);
+          await editorDialog.getByRole("button", { name: "합성 변경사항 저장" }).click();
+          if (!await page.getByText("화면에만 임시 반영됨").first().isVisible()) {
+            fail(route.path, viewport.name, "Event editor save did not show the temporary-on-screen confirmation.");
+          }
           await page.getByRole("button", { name: "이벤트 편집 닫기" }).click();
           if (await editorDialog.isVisible().catch(() => false)) {
             fail(route.path, viewport.name, "Event editor dialog did not close from the close button.");
           }
+          await page.getByRole("button", { name: "이벤트 수정" }).click();
+          const persistedMemo = await page.getByLabel("검토 메모").inputValue();
+          if (persistedMemo !== savedMemo) {
+            fail(route.path, viewport.name, "Event editor did not preserve the saved memo while the page remained open.");
+          }
+          await page.getByRole("button", { name: "이벤트 편집 닫기" }).click();
         }
       }
 
@@ -273,6 +350,11 @@ try {
           const printText = await page.locator("body").innerText();
           if (printText.includes("서비스 소개") || printText.includes("결과 비교로 돌아가기") || printText.includes("PDF 저장")) {
             fail(route.path, viewport.name, "Print preview still exposes navigation or browser-instruction controls.");
+          }
+          const requiredPrintFields = ["현 상태 유지 후 상속", "부담부증여 검토", "혼합 전략", "현재 세금·비용", "미래 세금·비용", "총 부담", "즉시 필요현금", "부모 잔여재산", "자녀 이전재산", "납부재원 부족액", "통제권", "복잡도", "상태"];
+          const missingPrintFields = requiredPrintFields.filter((label) => !printText.includes(label));
+          if (missingPrintFields.length > 0) {
+            fail(route.path, viewport.name, `Print preview is missing full comparison metric(s): ${missingPrintFields.join(", ")}`);
           }
           await page.emulateMedia({ media: "screen" });
         }
