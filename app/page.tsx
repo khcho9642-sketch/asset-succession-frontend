@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, FileText, ShieldCheck } from "lucide-react";
 import { PublicNav } from "@/components/PublicNav";
-import { flowSteps, publicValuePoints, strategyBranches, prototypeDisclaimer } from "@/lib/mockData";
+import { flowSteps, publicValuePoints, strategyBranches, simulationDisclaimer } from "@/lib/mockData";
 
 export default function LandingPage() {
   return (
@@ -10,13 +10,16 @@ export default function LandingPage() {
         <PublicNav />
         <div className="mx-auto grid min-h-[92vh] max-w-7xl items-center gap-14 px-6 pb-20 pt-32 lg:grid-cols-[1.04fr_0.96fr] lg:px-8">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--gold)]">Private family office pre-check</p>
+            <p className="text-sm font-semibold tracking-[0.08em] text-[var(--gold)]">자산승계 사전진단</p>
             <h1 className="mt-7 max-w-4xl text-[2.55rem] font-semibold leading-[1.04] tracking-[-0.065em] sm:text-[3.15rem] md:text-[5rem]">
               우리 가족의 자산, 어떤 방식으로 남기는 것이 좋을까요?
             </h1>
             <p className="mt-7 max-w-[calc(100vw-3rem)] text-lg leading-8 text-white/72 md:max-w-2xl md:text-xl">
               <span className="block">상속·증여·매각·가족법인·보험 활용까지</span>
               <span className="block">가능한 자산승계 시나리오를 한 번에 비교합니다.</span>
+            </p>
+            <p className="mt-4 max-w-2xl border-l border-[var(--gold)]/60 pl-4 text-sm leading-7 text-white/70">
+              세액 확정 화면이 아니라, 가족 회의 전에 “어떤 선택지를 더 깊게 검토할지” 정리하는 비교 기준입니다.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link href="/precheck" className="inline-flex items-center gap-3 bg-white px-5 py-4 text-sm font-semibold text-[var(--navy-950)] transition hover:bg-[var(--ivory)] sm:px-6">
@@ -39,7 +42,7 @@ export default function LandingPage() {
           <div className="relative hidden md:block">
             <div className="border border-white/12 bg-white/[0.04] p-5 backdrop-blur">
               <div className="border border-white/10 bg-[var(--navy-950)]/70 p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--gold)]">Strategy map</p>
+                <p className="text-xs font-semibold tracking-[0.08em] text-[var(--gold)]">7가지 승계지도</p>
                 <div className="mt-6 grid gap-3">
                   {strategyBranches.map((strategy, index) => {
                     const Icon = strategy.icon;
@@ -50,7 +53,7 @@ export default function LandingPage() {
                         </span>
                         <div className="min-w-0 flex-1">
                           <p className="text-sm font-semibold">{strategy.name}</p>
-                          <p className="mt-1 text-xs text-white/52">{strategy.description}</p>
+                          <p className="mt-1 text-xs text-white/68">{strategy.description}</p>
                         </div>
                         <span className="text-xs text-white/38">0{index + 1}</span>
                       </div>
@@ -102,7 +105,7 @@ export default function LandingPage() {
               </Link>
             </article>
           </div>
-          <p className="mt-8 text-xs text-[var(--muted)]">{prototypeDisclaimer}</p>
+          <p className="mt-8 text-xs text-[var(--muted)]">{simulationDisclaimer}</p>
         </div>
       </section>
     </main>

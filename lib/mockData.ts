@@ -280,4 +280,4 @@ export const expertNav = [
   { href: "/expert/workspace#sources", label: "규칙·출처", icon: HeartHandshake, enabled: true }
 ];
 
-export const prototypeDisclaimer = "합성 데이터 기반 화면입니다. 실제 세액 산정 전 전문가 검토가 필요합니다.";
+export const simulationDisclaimer = "합성 데이터 기반 화면입니다. 실제 세액 산정 전 전문가 검토가 필요합니다.";

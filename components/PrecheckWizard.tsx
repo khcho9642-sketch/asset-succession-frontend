@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, ChevronRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { prototypeDisclaimer, wizardSteps } from "@/lib/mockData";
+import { simulationDisclaimer, wizardSteps } from "@/lib/mockData";
 
 type WizardAnswers = Record<string, { choice: string; detail: string }>;
 
@@ -181,7 +181,7 @@ export function PrecheckWizard() {
             </button>
           )}
         </div>
-        <p className="mt-6 text-xs text-[var(--muted)]">{prototypeDisclaimer}</p>
+        <p className="mt-6 text-xs text-[var(--muted)]">{simulationDisclaimer}</p>
       </section>
     </section>
   );

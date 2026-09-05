@@ -11,7 +11,7 @@ export default function ResultPage() {
       <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">Pre-check report</p>
+            <p className="text-sm font-semibold tracking-[0.08em] text-[var(--gold)]">사전진단 결과</p>
             <h1 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.055em] text-[var(--navy-950)] md:text-6xl">
               입력 정보 기준 사전 추정 결과입니다.
             </h1>
@@ -31,7 +31,25 @@ export default function ResultPage() {
           </div>
         </div>
 
-        <div className="mt-12">
+        <section className="mt-12 grid gap-4 lg:grid-cols-3">
+          <article className="border border-[var(--border)] bg-white p-6">
+            <p className="text-sm font-semibold text-[var(--gold)]">먼저 볼 기준</p>
+            <h2 className="mt-4 text-2xl font-semibold tracking-[-0.04em]">납부재원 부족액</h2>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">세금 총액보다 실제 현금으로 준비해야 할 부족분을 먼저 확인합니다.</p>
+          </article>
+          <article className="border border-[var(--border)] bg-white p-6">
+            <p className="text-sm font-semibold text-[var(--gold)]">정밀 검토 후보</p>
+            <h2 className="mt-4 text-2xl font-semibold tracking-[-0.04em]">부담부증여·가족법인</h2>
+            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">채무승계 증빙과 지분평가 기준이 확인되어야 비교가 의미 있습니다.</p>
+          </article>
+          <article className="border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
+            <p className="text-sm font-semibold text-[var(--gold)]">다음 행동</p>
+            <h2 className="mt-4 text-2xl font-semibold tracking-[-0.04em]">가족 회의용 공유</h2>
+            <p className="mt-3 text-sm leading-7 text-white/68">개인정보 없이 같은 가정과 비교표만 보고, 상담 전 질문을 정리합니다.</p>
+          </article>
+        </section>
+
+        <div className="mt-8">
           <StrategyComparison />
         </div>
 

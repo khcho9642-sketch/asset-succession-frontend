@@ -81,8 +81,8 @@ export default function ExpertOverviewPage() {
             <p className="mt-4 text-sm leading-7 text-[var(--muted)]">부동산 42억, 금융자산 8억, 보험 납부재원 후보 5억을 비교합니다.</p>
           </article>
           <article className="border border-[var(--border)] bg-white p-6">
-            <h2 className="text-xl font-semibold">Placeholder</h2>
-            <p className="mt-4 text-sm leading-7 text-[var(--muted)]">전용 가족·자산 편집 화면은 후속 단계에서 분리하고, 현재는 개요 섹션으로 연결합니다.</p>
+            <h2 className="text-xl font-semibold">가족별 검토 메모</h2>
+            <p className="mt-4 text-sm leading-7 text-[var(--muted)]">가족별 지분, 과거 증여, 자산별 평가 메모를 한 곳에서 이어서 확인합니다.</p>
           </article>
         </section>
 

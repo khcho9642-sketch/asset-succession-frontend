@@ -15,7 +15,7 @@ export default function ConsultationPage() {
             가족이 입력한 사전진단 요약을 기준으로 쟁점을 먼저 확인하고, 필요한 자료와 상담 방향을 빠르게 정리합니다.
           </p>
           <div className="mt-8 border border-white/10 p-5">
-            <p className="text-xs uppercase tracking-[0.18em] text-white/45">Pre-check ID</p>
+            <p className="text-xs tracking-[0.08em] text-white/45">사전진단 ID</p>
             <p className="mt-3 text-2xl font-semibold tracking-[-0.04em]">AS360-DEMO-2409</p>
           </div>
         </aside>

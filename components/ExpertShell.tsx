@@ -37,7 +37,7 @@ export function ExpertShell({ children }: Readonly<{ children: React.ReactNode }
         </Link>
         <p className="mt-2 text-sm text-white/55">전문가 콘솔</p>
         <div className="mt-8 border-y border-white/10 py-5">
-          <p className="text-xs uppercase tracking-[0.18em] text-[var(--gold)]">Current project</p>
+          <p className="text-xs tracking-[0.08em] text-[var(--gold)]">현재 프로젝트</p>
           <p className="mt-3 font-semibold">{projectSnapshot.title}</p>
           <p className="mt-1 text-sm text-white/58">{projectSnapshot.stage}</p>
         </div>
@@ -58,7 +58,7 @@ export function ExpertShell({ children }: Readonly<{ children: React.ReactNode }
               </button>
             </div>
             <div className="mt-8 border-y border-white/10 py-5">
-              <p className="text-xs uppercase tracking-[0.18em] text-[var(--gold)]">Current project</p>
+              <p className="text-xs tracking-[0.08em] text-[var(--gold)]">현재 프로젝트</p>
               <p className="mt-3 font-semibold">{projectSnapshot.title}</p>
               <p className="mt-1 text-sm text-white/58">{projectSnapshot.stage}</p>
             </div>
@@ -81,7 +81,7 @@ export function ExpertShell({ children }: Readonly<{ children: React.ReactNode }
                 <Menu className="h-5 w-5" />
               </button>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">Professional workspace</p>
+                <p className="text-xs font-semibold tracking-[0.08em] text-[var(--gold)]">전문가 작업공간</p>
                 <p className="mt-1 text-sm text-[var(--muted)]">{projectSnapshot.title} · {projectSnapshot.stage}</p>
               </div>
             </div>
