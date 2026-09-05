@@ -3,12 +3,14 @@ import { ExpertShell } from "@/components/ExpertShell";
 import { strategyBranches, timelineEvents } from "@/lib/mockData";
 
 export default function ExpertWorkspacePage() {
+  const activeStrategyIndex = 4;
+
   return (
     <ExpertShell>
       <main className="px-6 py-8 lg:px-10">
         <div className="flex gap-2 overflow-x-auto border-b border-[var(--border)] pb-3 no-scrollbar">
           {strategyBranches.map((strategy, index) => (
-            <button key={strategy.name} type="button" className={`shrink-0 border px-4 py-3 text-sm font-semibold ${index === 3 ? "border-[var(--gold)] bg-white text-[var(--navy-950)]" : "border-[var(--border)] text-[var(--muted)]"}`}>
+            <button key={strategy.name} type="button" aria-selected={index === activeStrategyIndex} className={`shrink-0 border px-4 py-3 text-sm font-semibold ${index === activeStrategyIndex ? "border-[var(--gold)] bg-white text-[var(--navy-950)]" : "border-[var(--border)] text-[var(--muted)]"}`}>
               {strategy.name}
             </button>
           ))}
@@ -97,9 +99,19 @@ export default function ExpertWorkspacePage() {
         <section id="sources" className="mt-6 border border-[var(--border)] bg-white p-6">
           <p className="text-sm font-semibold tracking-[0.08em] text-[var(--gold)]">규칙·출처</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em]">공식 근거 검토 현황</h2>
-          <p className="mt-4 text-sm leading-7 text-[var(--muted)]">
-            세법 원문, 예규, 심판례 연결 상태를 보여주는 전문가 전용 영역입니다. 이 화면은 합성 상태만 표시하며 실제 세법 조회나 계산 엔진에는 연결되어 있지 않습니다.
-          </p>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            {[
+              ["연결 규칙", "18개", "상속·증여·양도·취득 관련 검토 규칙"],
+              ["공식 출처", "24건", "법령·예규·심판례 후보"],
+              ["검토 대기", "6건", "전문가 확인 후 보고서 반영"]
+            ].map(([label, value, body]) => (
+              <article key={label} className="border border-[var(--border)] bg-[var(--ivory)] p-5">
+                <p className="text-sm text-[var(--muted)]">{label}</p>
+                <strong className="mt-3 block text-3xl tracking-[-0.05em] text-[var(--navy-950)]">{value}</strong>
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{body}</p>
+              </article>
+            ))}
+          </div>
         </section>
       </main>
     </ExpertShell>

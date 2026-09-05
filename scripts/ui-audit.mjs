@@ -11,7 +11,8 @@ const routes = [
   { name: "wizard-step3", path: "/precheck?step=3", area: "public" },
   { name: "result", path: "/precheck/result", area: "public" },
   { name: "expert-overview", path: "/expert/overview", area: "expert" },
-  { name: "expert-workspace", path: "/expert/workspace", area: "expert" }
+  { name: "expert-workspace", path: "/expert/workspace", area: "expert" },
+  { name: "report-preview", path: "/report-preview", area: "public" }
 ];
 
 const viewports = [
@@ -207,6 +208,43 @@ try {
         const missingExpertNav = requiredExpertNav.filter((label) => !bodyText.includes(label));
         if (missingExpertNav.length > 0) {
           fail(route.path, viewport.name, `Expert navigation is missing: ${missingExpertNav.join(", ")}`);
+        }
+      }
+
+      if (route.path === "/expert/workspace") {
+        const selectedTab = await page.locator("[aria-selected='true']").innerText().catch(() => "");
+        const scenarioHeading = await page.getByText("가족법인 활용 시나리오").count();
+        if (!selectedTab.includes("가족법인 활용") || scenarioHeading === 0) {
+          fail(route.path, viewport.name, `Selected scenario tab and body heading do not match: ${selectedTab || "no selected tab"}`);
+        }
+      }
+
+      if (route.path === "/precheck/result" && viewport.name === "mobile") {
+        const detailsCount = await page.locator("details").count();
+        const closedDetailsCount = await page.locator("details:not([open])").count();
+        if (detailsCount < 7 || closedDetailsCount < 7) {
+          fail(route.path, viewport.name, "Mobile result cards should collapse detailed metrics by default.");
+        }
+      }
+
+      if (route.path === "/report-preview") {
+        const requiredReportSections = ["가족·자산 요약", "선택한 승계 목표", "7개 전략 비교", "납부재원 부족 분석", "가족법인 검토 가능성", "보험 검토 가능성", "주요 위험신호", "추가 필요정보", "이 결과로 조경호 회계사에게 상담하기"];
+        const missingReportSections = requiredReportSections.filter((label) => !bodyText.includes(label));
+        if (missingReportSections.length > 0) {
+          fail(route.path, viewport.name, `Report preview is missing section(s): ${missingReportSections.join(", ")}`);
+        }
+
+        if (viewport.name === "desktop") {
+          await page.emulateMedia({ media: "print" });
+          await page.screenshot({
+            path: path.join(outputDir, "desktop-report-preview-print.png"),
+            fullPage: true
+          });
+          const printText = await page.locator("body").innerText();
+          if (printText.includes("서비스 소개") || printText.includes("결과 비교로 돌아가기") || printText.includes("PDF 저장")) {
+            fail(route.path, viewport.name, "Print preview still exposes navigation or browser-instruction controls.");
+          }
+          await page.emulateMedia({ media: "screen" });
         }
       }
 

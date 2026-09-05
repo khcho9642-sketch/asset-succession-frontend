@@ -54,7 +54,8 @@ main {
 
 h1,
 h2 {
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: keep-all;
 }
 
 a {
@@ -95,5 +96,26 @@ textarea {
   h1 {
     max-width: calc(100vw - 3rem);
     word-break: keep-all;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  html,
+  body {
+    background: #ffffff;
+  }
+
+  .report-sheet {
+    padding: 0 !important;
+  }
+
+  .report-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 }

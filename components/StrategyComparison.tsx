@@ -1,4 +1,5 @@
 import { strategyBranches } from "@/lib/mockData";
+import type { Strategy } from "@/lib/mockData";
 
 const fields = [
   ["현재 세금·비용", "current_tax_and_cost"],
@@ -11,6 +12,15 @@ const fields = [
   ["자산 통제권", "control_level"],
   ["실행 복잡도", "complexity"]
 ] as const;
+
+type MetricKey = Extract<keyof Strategy, typeof fields[number][1]>;
+
+const mobileDetailFields = fields.filter(([, key]) => !["total_burden", "immediate_cash_required", "liquidity_gap"].includes(key));
+const mobileSummaryFields: ReadonlyArray<readonly [string, MetricKey]> = [
+  ["총 부담", "total_burden"],
+  ["즉시 필요현금", "immediate_cash_required"],
+  ["납부재원 부족액", "liquidity_gap"]
+];
 
 function StatusBadge({ status }: Readonly<{ status: string }>) {
   return <span className="inline-flex border border-[var(--border)] bg-[var(--ivory)] px-3 py-1 text-xs font-semibold text-[var(--navy-900)]">{status}</span>;
@@ -26,11 +36,11 @@ export function StrategyComparison() {
               <th className="px-4 py-4">전략</th>
               <th className="px-4 py-4">현재 세금·비용</th>
               <th className="px-4 py-4">미래 세금·비용</th>
-              <th className="px-4 py-4">총 부담</th>
-              <th className="px-4 py-4">즉시 현금</th>
+              <th className="bg-white px-4 py-4 text-[var(--navy-950)]">총 부담</th>
+              <th className="bg-white px-4 py-4 text-[var(--navy-950)]">즉시 현금</th>
               <th className="px-4 py-4">부모 잔여</th>
               <th className="px-4 py-4">자녀 이전</th>
-              <th className="px-4 py-4">부족액</th>
+              <th className="bg-white px-4 py-4 text-[var(--navy-950)]">부족액</th>
               <th className="px-4 py-4">통제권</th>
               <th className="px-4 py-4">복잡도</th>
               <th className="px-4 py-4">상태</th>
@@ -45,11 +55,11 @@ export function StrategyComparison() {
                 </td>
                 <td className="px-4 py-5 text-sm">{strategy.current_tax_and_cost}</td>
                 <td className="px-4 py-5 text-sm">{strategy.future_tax_and_cost}</td>
-                <td className="px-4 py-5 text-sm font-semibold">{strategy.total_burden}</td>
-                <td className="px-4 py-5 text-sm">{strategy.immediate_cash_required}</td>
+                <td className="bg-[var(--ivory)]/45 px-4 py-5 text-base font-bold text-[var(--navy-950)]">{strategy.total_burden}</td>
+                <td className="bg-[var(--ivory)]/45 px-4 py-5 text-base font-bold text-[var(--navy-950)]">{strategy.immediate_cash_required}</td>
                 <td className="px-4 py-5 text-sm">{strategy.parent_remaining_assets}</td>
                 <td className="px-4 py-5 text-sm">{strategy.child_transferred_assets}</td>
-                <td className="px-4 py-5 text-sm">{strategy.liquidity_gap}</td>
+                <td className="bg-[var(--ivory)]/45 px-4 py-5 text-base font-bold text-[var(--navy-950)]">{strategy.liquidity_gap}</td>
                 <td className="px-4 py-5 text-sm">{strategy.control_level}</td>
                 <td className="px-4 py-5 text-sm">{strategy.complexity}</td>
                 <td className="px-4 py-5"><StatusBadge status={strategy.calculation_status} /></td>
@@ -75,16 +85,27 @@ export function StrategyComparison() {
               </div>
               <div className="mt-5">
                 <StatusBadge status={strategy.calculation_status} />
-                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{strategy.status_detail}</p>
               </div>
               <dl className="mt-5 grid gap-3">
-                {fields.map(([label, key]) => (
+                {mobileSummaryFields.map(([label, key]) => (
                   <div key={key} className="grid grid-cols-[7.5rem_1fr] gap-3 border-t border-[var(--border)] pt-3 text-sm">
                     <dt className="text-[var(--muted)]">{label}</dt>
                     <dd className="font-semibold text-[var(--text)]">{strategy[key]}</dd>
                   </div>
                 ))}
               </dl>
+              <p className="mt-4 border-l-2 border-[var(--gold)] pl-3 text-sm leading-6 text-[var(--muted)]">{strategy.key_review_items[0]} · {strategy.status_detail}</p>
+              <details className="mt-5 border-t border-[var(--border)] pt-4">
+                <summary className="cursor-pointer text-sm font-semibold text-[var(--navy-900)]">상세 지표 펼치기</summary>
+                <dl className="mt-4 grid gap-3">
+                  {mobileDetailFields.map(([label, key]) => (
+                    <div key={key} className="grid grid-cols-[7.5rem_1fr] gap-3 border-t border-[var(--border)] pt-3 text-sm">
+                      <dt className="text-[var(--muted)]">{label}</dt>
+                      <dd className="font-semibold text-[var(--text)]">{strategy[key]}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </details>
             </article>
           );
         })}

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-05T00:31:45.795Z",
+  "generatedAt": "2026-09-05T00:59:21.447Z",
   "baseURL": "http://127.0.0.1:4173",
   "failures": [],
   "observations": [
@@ -46,6 +46,13 @@
       "viewportWidth": 1440
     },
     {
+      "route": "/report-preview",
+      "viewport": "desktop",
+      "screenshot": "desktop-report-preview.png",
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
       "route": "/",
       "viewport": "mobile",
       "screenshot": "mobile-landing.png",
@@ -84,6 +91,13 @@
       "route": "/expert/workspace",
       "viewport": "mobile",
       "screenshot": "mobile-expert-workspace.png",
+      "documentWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "route": "/report-preview",
+      "viewport": "mobile",
+      "screenshot": "mobile-report-preview.png",
       "documentWidth": 390,
       "viewportWidth": 390
     }
