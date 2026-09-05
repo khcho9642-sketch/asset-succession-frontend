@@ -8,6 +8,7 @@ on:
     branches:
       - codex/issue-1-premium-redesign
       - codex/issue-3-post-merge-hardening
+      - codex/issue-7-phase-2b-engine-foundation
 
 permissions:
   contents: read
@@ -39,6 +40,9 @@ jobs:
 
       - name: Type check
         run: npm run typecheck
+
+      - name: Phase 2B unit tests
+        run: npm run test:phase2b
 
       - name: Production build
         run: npm run build
