@@ -41,6 +41,7 @@ export type ClientFacts = {
   goals: Goal[];
   constraints: Constraint[];
   time_horizon: "now" | "within_3_years" | "within_10_years" | "succession_event" | "unknown";
+  confirmed_tax_bases?: ConfirmedTaxBase[];
   unknown_items: string[];
   source_trace: SourceTrace[];
 };
@@ -119,6 +120,17 @@ export type CalculationContext = {
   assumptions: string[];
   included_taxes: TaxKind[];
   excluded_taxes: TaxKind[];
+};
+
+export type ConfirmedTaxBase = {
+  scenario_id: "baseline" | string;
+  tax_kind: Extract<TaxKind, "inheritance_tax" | "gift_tax">;
+  taxable_value_eok: number;
+  basis_id: string;
+  source: ValueSource;
+  confirmation_status: "confirmed";
+  law_references: string[];
+  note: string;
 };
 
 export type TaxKind =
@@ -214,7 +226,7 @@ export type Recommendation = {
 
 export type ReportV2Contract = {
   issue: "#5";
-  pages_supported: Array<1 | 4 | 5 | 6>;
+  pages_supported: Array<1 | 2 | 3 | 4 | 5 | 6 | 7>;
   may_display_customer_numbers: string[];
   blocked_until_engine: string[];
   baseline_required_for: string[];

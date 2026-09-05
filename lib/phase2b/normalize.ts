@@ -3,6 +3,12 @@ import { parseEokAmount } from "@/lib/assessment";
 import type { Asset, ClientFacts, Debt, Goal, PlanningTrack } from "./types";
 
 const trackByChoice: Record<string, PlanningTrack[]> = {
+  "상속": ["inheritance"],
+  "증여": ["gift"],
+  "가업·회사 승계": ["business_succession"],
+  "양도": ["capital_gains"],
+  "여러 방법 비교": ["inheritance", "gift", "business_succession", "capital_gains"],
+  "아직 잘 모르겠어요": ["inheritance", "gift"],
   "상속을 준비하고 있어요": ["inheritance"],
   "생전 증여를 고민하고 있어요": ["gift"],
   "가업·회사 승계를 준비하고 있어요": ["business_succession"],
@@ -22,6 +28,7 @@ const goalByChoice: Record<string, Goal> = {
 };
 
 export function normalizeAssessmentSnapshot(snapshot: AssessmentSnapshot): ClientFacts {
+  const purposeAnswer = snapshot.answers.purpose;
   const family = snapshot.answers.family;
   const assetsAnswer = snapshot.answers.assets;
   const debtAnswer = snapshot.answers.debt;
@@ -29,8 +36,9 @@ export function normalizeAssessmentSnapshot(snapshot: AssessmentSnapshot): Clien
   const reviewAnswer = snapshot.answers.review;
 
   const planning_tracks = uniqueTracks([
+    ...(purposeAnswer?.choices.flatMap((choice) => trackByChoice[choice] ?? []) ?? []),
     ...snapshot.review_focus.flatMap((choice) => trackByChoice[choice] ?? []),
-    ...goalAnswer?.choices.flatMap((choice) => trackByChoice[choice] ?? []) ?? []
+    ...(goalAnswer?.choices.flatMap((choice) => trackByChoice[choice] ?? []) ?? [])
   ]);
 
   const assets: Asset[] = (assetsAnswer?.choices ?? [])

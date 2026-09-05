@@ -58,6 +58,28 @@ export const phase2bFixtures: Record<string, ClientFacts> = {
     goals: ["transfer_early", "compare_options"],
     constraints: ["secured_debt_needs_review", "valuation_needed"],
     time_horizon: "within_3_years",
+    confirmed_tax_bases: [
+      {
+        scenario_id: "baseline",
+        tax_kind: "gift_tax",
+        taxable_value_eok: 3,
+        basis_id: "FIXTURE-B-GIFT::confirmed-tax-base-demo",
+        source: "fixture",
+        confirmation_status: "confirmed",
+        law_references: ["상속세 및 증여세법 제26조", "상속세 및 증여세법 제56조"],
+        note: "DEMO 전용: 사용자가 별도 확인한 증여세 과세표준 3억원 기준"
+      },
+      {
+        scenario_id: "gift-stepwise-transfer",
+        tax_kind: "gift_tax",
+        taxable_value_eok: 1.5,
+        basis_id: "FIXTURE-B-GIFT::confirmed-tax-base-demo",
+        source: "fixture",
+        confirmation_status: "confirmed",
+        law_references: ["상속세 및 증여세법 제26조", "상속세 및 증여세법 제56조"],
+        note: "DEMO 전용: 일부·단계적 증여안의 확인 과세표준 1.5억원 기준"
+      }
+    ],
     unknown_items: ["증여 대상 지분율", "채무승계 가능 여부"],
     source_trace: [{ source: "fixture", confirmation_status: "confirmed" }]
   },

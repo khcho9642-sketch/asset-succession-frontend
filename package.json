@@ -7,7 +7,8 @@
     "lint": "eslint app components lib --ext .ts,.tsx",
     "build": "next build",
     "typecheck": "tsc --noEmit",
-    "test:phase2b": "node scripts/run-phase2b-unit-tests.mjs"
+    "test:phase2b": "node scripts/run-phase2b-unit-tests.mjs",
+    "test:smoke": "node scripts/pr2-smoke.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.41.0",

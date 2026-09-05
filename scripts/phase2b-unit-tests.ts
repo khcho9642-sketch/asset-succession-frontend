@@ -5,8 +5,11 @@ import {
   compareCalculatedResults,
   moneyResult
 } from "../lib/phase2b/calculation";
+import { parseConversationalInput } from "../lib/phase2b/conversation";
 import { buildScenarioPlan } from "../lib/phase2b/engine";
 import { phase2bFixtures } from "../lib/phase2b/fixtures";
+import { parseKoreanMoneyToEok } from "../lib/phase2b/money";
+import { calculateProgressiveTaxEok } from "../lib/phase2b/tax";
 import type { CalculationResult, ClientFacts, PlanningTrack } from "../lib/phase2b/types";
 
 describe("Phase 2B scenario engine", () => {
@@ -90,6 +93,41 @@ describe("Phase 2B scenario engine", () => {
     assert.equal(plan.baseline.calculation_result.liquidity_gap.value_eok, null);
     assert.ok(plan.scenarios.every((scenario) => scenario.calculation_result.total_burden.value_eok === null));
   });
+
+  it("parses explicit Korean money units without treating plain numbers as confirmed money", () => {
+    assert.deepEqual(pickMoney(parseKoreanMoneyToEok("5000만원")), { status: "parsed", value_eok: 0.5 });
+    assert.deepEqual(pickMoney(parseKoreanMoneyToEok("1억 5천만원")), { status: "parsed", value_eok: 1.5 });
+    assert.deepEqual(pickMoney(parseKoreanMoneyToEok("0.5억")), { status: "parsed", value_eok: 0.5 });
+    assert.equal(parseKoreanMoneyToEok("42").status, "needs_confirmation");
+    assert.equal(parseKoreanMoneyToEok("-5억").status, "invalid");
+    assert.equal(parseKoreanMoneyToEok("abc").status, "invalid");
+  });
+
+  it("calculates only the supported inheritance/gift progressive tax schedule", () => {
+    assert.equal(calculateProgressiveTaxEok(1), 0.1);
+    assert.equal(calculateProgressiveTaxEok(3), 0.5);
+    assert.equal(calculateProgressiveTaxEok(7), 1.5);
+    assert.equal(calculateProgressiveTaxEok(20), 6.4);
+    assert.equal(calculateProgressiveTaxEok(40), 15.4);
+  });
+
+  it("connects a confirmed gift-tax-base fixture to baseline/scenario comparison", () => {
+    const plan = buildScenarioPlan(phase2bFixtures.caseBGift);
+    const stepwise = plan.scenarios.find((scenario) => scenario.scenario_id === "gift-stepwise-transfer");
+    assert.equal(plan.baseline.calculation_result.total_tax.value_eok, 0.5);
+    assert.equal(stepwise?.calculation_result.total_tax.value_eok, 0.2);
+    assert.equal(stepwise?.comparison.expected_tax_savings.value_eok, 0.3);
+    assert.equal(stepwise?.comparison.comparison_status, "calculable");
+  });
+
+  it("extracts conversational candidates but requires explicit confirmation outside the parser", () => {
+    const parsed = parseConversationalInput("상속 준비, 배우자 있음, 자녀 2명, 부동산 42억, 금융자산 8억");
+    assert.equal(parsed.status, "candidate");
+    assert.ok(parsed.facts.some((fact) => fact.label === "준비 목적" && fact.value === "상속"));
+    assert.ok(parsed.facts.some((fact) => fact.label === "배우자 유무" && fact.value === "있음"));
+    assert.ok(parsed.facts.some((fact) => fact.value === "부동산 42억"));
+    assert.ok(parsed.facts.every((fact) => fact.confidence));
+  });
 });
 
 function serializePriorities(plan: ReturnType<typeof buildScenarioPlan>) {
@@ -120,4 +158,8 @@ function calculatedResult(basis: string, totalTax: number, totalBurden: number):
 
 function clone<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
+}
+
+function pickMoney(value: ReturnType<typeof parseKoreanMoneyToEok>) {
+  return { status: value.status, value_eok: value.value_eok };
 }

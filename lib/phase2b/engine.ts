@@ -1,4 +1,5 @@
-import { buildBaselineRequiredComparison, buildUncalculatedResult, formatEok, moneyResult } from "./calculation";
+import { buildBaselineRequiredComparison, buildUncalculatedResult, compareCalculatedResults, formatEok, moneyResult } from "./calculation";
+import { calculateInheritanceOrGiftTax } from "./tax";
 import type {
   Baseline,
   CalculationContext,
@@ -42,12 +43,16 @@ export function buildScenarioPlan(facts: ClientFacts, context: CalculationContex
 
 export function buildDefaultCalculationContext(): CalculationContext {
   return {
-    valuation_date: "2026-09-05",
+    valuation_date: "2026-09-06",
     assumed_transfer_date: "미정",
-    law_version: "계산엔진 미연결",
-    assumptions: ["미래가치 가정이 없으면 현재가액 기준으로만 표시합니다.", "실제 세액·절세액·부족액은 계산엔진 결과 없이는 산정하지 않습니다."],
-    included_taxes: [],
-    excluded_taxes: ["inheritance_tax", "gift_tax", "capital_gains_tax", "acquisition_related_tax", "other_tax"]
+    law_version: "상속세 및 증여세법 제26조·제56조 세율표 확인 기준(2026-09-06)",
+    assumptions: [
+      "미래가치 가정이 없으면 현재가액 기준으로만 표시합니다.",
+      "상속세·증여세는 사용자가 확인한 과세표준이 있는 경우에만 제26조 세율표를 적용합니다.",
+      "과세표준 산정, 공제, 가산, 신고세액공제, 지방세·취득세·양도세는 별도 정밀 계산 전까지 산정하지 않습니다."
+    ],
+    included_taxes: ["inheritance_tax", "gift_tax"],
+    excluded_taxes: ["capital_gains_tax", "acquisition_related_tax", "other_tax"]
   };
 }
 
@@ -63,7 +68,7 @@ function buildBaseline(facts: ClientFacts, context: CalculationContext): Baselin
         ? "현재 보유 구조를 유지한 뒤 동일 자산가액과 기준일로 양도·증여 대안을 비교하기 위한 기준안입니다."
         : "현재 구조를 유지하고 별도 생전 이전 없이 가정된 승계시점에 상속이 발생하는 경우입니다.",
     context,
-    calculation_result: buildCalculationShell(facts, ["기준안 세액은 세법 계산엔진 연결 후 산정합니다.", "기준안 없이는 절세액을 표시하지 않습니다."])
+    calculation_result: buildCalculationShell(facts, context, "baseline", ["기준안 세액은 확인된 과세표준이 있을 때만 산정합니다.", "기준안 없이는 절세액을 표시하지 않습니다."])
   };
 }
 
@@ -265,6 +270,11 @@ function buildScenario(definition: ScenarioDefinition, facts: ClientFacts, basel
   const evaluated = definition.evaluate(facts);
   const priority = evaluated.priority ?? definition.basePriority;
   const calculationStatus = evaluated.calculation_status ?? "needs_engine";
+  const calculationResult = buildCalculationShell(facts, baseline.context, definition.scenario_id, [`${definition.name}은 확인된 과세표준이 있을 때만 숫자를 산정합니다.`]);
+  const comparison = baseline.calculation_result.status === "calculable" && calculationResult.status === "calculable"
+    ? compareCalculatedResults(baseline.baseline_id, baseline.calculation_result, calculationResult)
+    : buildBaselineRequiredComparison(baseline.baseline_id, "기준안과 시나리오 모두 계산엔진 결과가 있어야 예상 절세액·순효과를 산정합니다.");
+
   return {
     scenario_id: definition.scenario_id,
     track: definition.track,
@@ -275,10 +285,10 @@ function buildScenario(definition: ScenarioDefinition, facts: ClientFacts, basel
     priority,
     rationale: evaluated.rationale,
     required_information: Array.from(new Set([...(evaluated.required_information ?? definition.requiredInfo)])),
-    calculation_status: calculationStatus,
+    calculation_status: calculationResult.status === "calculable" ? "calculable" : calculationStatus,
     timeline: definition.timeline,
-    calculation_result: buildCalculationShell(facts, [`${definition.name}은 실제 세법 계산엔진 연결 후 숫자를 산정합니다.`]),
-    comparison: buildBaselineRequiredComparison(baseline.baseline_id, "기준안과 시나리오 모두 계산엔진 결과가 있어야 예상 절세액·순효과를 산정합니다.")
+    calculation_result: calculationResult,
+    comparison
   };
 }
 
@@ -297,18 +307,38 @@ function deriveConstraints(facts: ClientFacts): Constraint[] {
   return Array.from(new Set(constraints));
 }
 
-function buildCalculationShell(facts: ClientFacts, reasons: string[]) {
+function buildCalculationShell(facts: ClientFacts, context: CalculationContext, scenarioId: string, reasons: string[]) {
   const result = buildUncalculatedResult(reasons);
   const assetValues = facts.assets.map((asset) => asset.current_value_eok);
   const currentAssetValue = assetValues.length > 0 && assetValues.every((value) => value !== null)
     ? assetValues.reduce((sum, value) => sum + (value ?? 0), 0)
     : null;
+  const basis = comparisonBasis(facts);
 
   result.asset_value = currentAssetValue === null
-    ? moneyResult(null, "needs_info", "현재 입력 자산가액 확인 필요", comparisonBasis(facts))
-    : moneyResult(currentAssetValue, "calculable", `${formatEok(currentAssetValue)} 현재가액 기준`, comparisonBasis(facts));
+    ? moneyResult(null, "needs_info", "현재 입력 자산가액 확인 필요", basis)
+    : moneyResult(currentAssetValue, "calculable", `${formatEok(currentAssetValue)} 현재가액 기준`, basis);
 
-  return result;
+  const confirmedTaxBase = facts.confirmed_tax_bases?.find((item) => item.scenario_id === scenarioId);
+  if (!confirmedTaxBase) return result;
+
+  const calculated = calculateInheritanceOrGiftTax({
+    tax_kind: confirmedTaxBase.tax_kind,
+    taxable_value_eok: confirmedTaxBase.taxable_value_eok,
+    basis_id: confirmedTaxBase.basis_id,
+    context
+  });
+  calculated.asset_value = result.asset_value.basis
+    ? { ...result.asset_value, basis: confirmedTaxBase.basis_id }
+    : result.asset_value;
+
+  const financialAssets = facts.assets.filter((asset) => asset.type === "financial").reduce((sum, asset) => sum + (asset.current_value_eok ?? 0), 0);
+  if (financialAssets > 0 && calculated.total_tax.value_eok !== null) {
+    const gap = Math.max(calculated.total_tax.value_eok - financialAssets, 0);
+    calculated.liquidity_gap = moneyResult(gap, "calculable", gap === 0 ? "입력 금융자산 범위 내" : `${formatEok(gap)} 추가 재원 필요`, confirmedTaxBase.basis_id);
+  }
+
+  return calculated;
 }
 
 function comparisonBasis(facts: ClientFacts) {
@@ -349,9 +379,9 @@ function priorityScore(priority: Scenario["priority"]) {
 function buildReportV2Contract(): ReportV2Contract {
   return {
     issue: "#5",
-    pages_supported: [1, 4, 5, 6],
-    may_display_customer_numbers: ["현재 입력 자산가액", "직접 입력한 채무", "확인된 금융자산"],
-    blocked_until_engine: ["기준안 예상세액", "시나리오 예상세액", "예상 절세액", "절세율", "예상 순효과", "납부재원 부족액"],
+    pages_supported: [1, 2, 3, 4, 5, 6, 7],
+    may_display_customer_numbers: ["현재 입력 자산가액", "직접 입력한 채무", "확인된 금융자산", "확인된 과세표준 기반 상속세·증여세 산출세액"],
+    blocked_until_engine: ["과세표준 미확인 세액", "시나리오 예상세액", "예상 절세액", "절세율", "예상 순효과", "취득세·양도세", "공제·가산 반영 세액"],
     baseline_required_for: ["예상 절세액", "절세율", "예상 순효과", "전체 시나리오 비교"]
   };
 }

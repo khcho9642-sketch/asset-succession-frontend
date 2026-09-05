@@ -32,7 +32,7 @@ export function AssessmentMetrics({ mode = "result" }: Readonly<{ mode?: "result
   const { metrics } = loadResult;
   const cards = mode === "result"
     ? [
-        ["전략별 총 부담", metrics.totalBurden, "세액 계산엔진 연결 전 합성 비교값"],
+        ["전략별 총 부담", metrics.totalBurden, "확인 과세표준 없이는 미산정"],
         ["즉시 필요현금", metrics.immediateCash, "입력한 금융자산을 상담 재원 후보로 표시"],
         ["납부재원 부족액", metrics.fundingGap, "취득가·채무·공제 확인 후 산정"]
       ]

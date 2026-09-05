@@ -41,7 +41,7 @@ export type Strategy = {
 };
 
 export type WizardStep = {
-  key: "family" | "assets" | "debt" | "goal" | "review";
+  key: "purpose" | "family" | "assets" | "debt" | "goal" | "review";
   label: string;
   eyebrow: string;
   title: string;
@@ -227,9 +227,20 @@ export const flowSteps = [
 
 export const wizardSteps: WizardStep[] = [
   {
+    key: "purpose",
+    label: "준비 목적",
+    eyebrow: "Step 1",
+    title: "어떤 준비를 고민하고 계신가요?",
+    helper: "상속·증여·가업승계·양도 중 어디서 시작할지 몰라도 괜찮습니다. 가장 가까운 상황을 먼저 고르면 됩니다.",
+    primaryQuestion: "지금 가장 가까운 고민을 선택해 주세요.",
+    choices: ["상속", "증여", "가업·회사 승계", "양도", "여러 방법 비교", "아직 잘 모르겠어요"],
+    secondaryQuestion: "직접 말로 적어도 됩니다.",
+    secondaryPlaceholder: "예: 부모님 상속세와 생전 증여를 같이 비교하고 싶어요."
+  },
+  {
     key: "family",
     label: "가족",
-    eyebrow: "Step 1",
+    eyebrow: "Step 2",
     title: "승계 의사결정에 참여할 가족 구성을 알려주세요.",
     helper: "정확한 실명 대신 관계, 배우자 유무, 자녀 수만으로 사전진단을 시작할 수 있습니다.",
     primaryQuestion: "상담 기준이 되는 가족 구조는 무엇인가요?",
@@ -240,7 +251,7 @@ export const wizardSteps: WizardStep[] = [
   {
     key: "assets",
     label: "자산",
-    eyebrow: "Step 2",
+    eyebrow: "Step 3",
     title: "승계 대상 자산의 큰 구성을 선택해 주세요.",
     helper: "상세주소·계좌번호 없이 자산 유형별 대략 금액만 입력합니다.",
     primaryQuestion: "보유한 자산 유형을 모두 선택해 주세요.",
@@ -251,7 +262,7 @@ export const wizardSteps: WizardStep[] = [
   {
     key: "debt",
     label: "채무·과거 증여",
-    eyebrow: "Step 3",
+    eyebrow: "Step 4",
     title: "채무나 과거 증여처럼 결과에 영향을 주는 항목이 있나요?",
     helper: "부담부증여와 10년 합산 검토가 필요한지 판단하는 단계입니다.",
     primaryQuestion: "해당되는 항목을 선택해 주세요.",
@@ -262,7 +273,7 @@ export const wizardSteps: WizardStep[] = [
   {
     key: "goal",
     label: "승계 목표",
-    eyebrow: "Step 4",
+    eyebrow: "Step 5",
     title: "가족이 가장 중요하게 보는 목표는 무엇인가요?",
     helper: "절세만이 아니라 통제권, 유동성, 가족 간 형평을 함께 비교합니다.",
     primaryQuestion: "우선순위에 가까운 목표를 선택해 주세요.",
@@ -273,7 +284,7 @@ export const wizardSteps: WizardStep[] = [
   {
     key: "review",
     label: "결과 준비",
-    eyebrow: "Step 5",
+    eyebrow: "Step 6",
     title: "입력값을 확인하면 사전진단 결과를 볼 수 있습니다.",
     helper: "아래 요약은 브라우저 안에서만 표시되는 합성 예시이며 실제 저장은 하지 않습니다.",
     primaryQuestion: "결과에서 우선 비교할 관점을 선택해 주세요.",

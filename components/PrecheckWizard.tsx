@@ -5,8 +5,11 @@ import { ArrowLeft, ArrowRight, Check, ChevronRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { ASSESSMENT_STORAGE_KEY, createAssessmentId, formatAnswer, normalizeEokAmount, parseEokAmount } from "@/lib/assessment";
 import { simulationDisclaimer, wizardSteps } from "@/lib/mockData";
+import { parseConversationalInput } from "@/lib/phase2b/conversation";
+import type { ConversationCandidateFact, ConversationParseResult } from "@/lib/phase2b/conversation";
 
 type WizardAnswers = Record<string, { choices: string[]; detail: string; facts?: Record<string, string>; assetAmounts?: Record<string, string>; debtAmounts?: Record<string, string> }>;
+type ConversationMessage = { role: "user" | "assistant"; text: string; created_at: string };
 
 function getInitialStep() {
   return 0;
@@ -17,6 +20,10 @@ export function PrecheckWizard() {
   const [activeStep, setActiveStep] = useState(0);
   const [answers, setAnswers] = useState<WizardAnswers>({});
   const [showError, setShowError] = useState(false);
+  const [directInput, setDirectInput] = useState("");
+  const [candidate, setCandidate] = useState<ConversationParseResult | null>(null);
+  const [confirmedFacts, setConfirmedFacts] = useState<ConversationCandidateFact[]>([]);
+  const [conversationMessages, setConversationMessages] = useState<ConversationMessage[]>([]);
   const step = wizardSteps[activeStep];
   const currentAnswer = answers[step.key] ?? { choices: [], detail: "" };
   const progress = ((activeStep + 1) / wizardSteps.length) * 100;
@@ -155,6 +162,33 @@ export function PrecheckWizard() {
     });
   }
 
+  function understandDirectInput() {
+    const parsed = parseConversationalInput(directInput);
+    setCandidate(parsed);
+    setConversationMessages((previous) => [
+      ...previous,
+      { role: "user", text: directInput.trim() || "(빈 입력)", created_at: new Date().toISOString() },
+      { role: "assistant", text: parsed.assistantText, created_at: new Date().toISOString() }
+    ]);
+  }
+
+  function confirmCandidate() {
+    if (!candidate || candidate.status !== "candidate") return;
+    setAnswers((previous) => applyCandidateFacts(previous, candidate.facts));
+    setConfirmedFacts((previous) => dedupeConfirmedFacts([...previous, ...candidate.facts]));
+    setCandidate(null);
+    setDirectInput("");
+    setShowError(false);
+  }
+
+  function dismissCandidate(message: string) {
+    setConversationMessages((previous) => [
+      ...previous,
+      { role: "assistant", text: message, created_at: new Date().toISOString() }
+    ]);
+    setCandidate(null);
+  }
+
   function goNext() {
     if (!isStepComplete(activeStep)) {
       setShowError(true);
@@ -173,6 +207,11 @@ export function PrecheckWizard() {
       assessment_id: createAssessmentId(),
       created_at: new Date().toISOString(),
       review_focus: currentAnswer.choices,
+      conversation: {
+        messages: conversationMessages,
+        confirmed_facts: confirmedFacts,
+        raw_inputs: conversationMessages.filter((message) => message.role === "user").map((message) => message.text)
+      },
       answers: Object.fromEntries(
         wizardSteps.map((item) => [
           item.key,
@@ -231,7 +270,7 @@ export function PrecheckWizard() {
       <section className="border border-[var(--border)] bg-white p-5 md:p-10">
         <div className="mb-5 border border-[var(--border)] bg-[var(--ivory)] p-4 lg:hidden">
           <div className="flex items-center justify-between gap-3">
-            <p className="text-sm font-semibold text-[var(--gold)]">{activeStep + 1}/5 {step.label}</p>
+            <p className="text-sm font-semibold text-[var(--gold)]">{activeStep + 1}/{wizardSteps.length} {step.label}</p>
             <p className="text-xs text-[var(--muted)]">무료 사전진단</p>
           </div>
           <p className="mt-2 text-xs leading-5 text-[var(--muted)]">주소·실명 없이 큰 금액과 가족 구성만 선택합니다.</p>
@@ -279,6 +318,59 @@ export function PrecheckWizard() {
               })}
             </div>
           </fieldset>
+
+          <section className="border border-[var(--border)] bg-[var(--ivory)] p-4" aria-label="직접 입력으로 답하기">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p className="text-sm font-semibold text-[var(--navy-950)]">직접 입력</p>
+                <p className="mt-1 text-xs leading-5 text-[var(--muted)]">버튼을 눌러도 되고, 말하듯 적은 뒤 후보 사실을 확인해도 됩니다.</p>
+              </div>
+              {confirmedFacts.length > 0 ? (
+                <span className="border border-[var(--border)] bg-white px-3 py-2 text-xs font-semibold text-[var(--success)]">
+                  확정된 사실 {confirmedFacts.length}개
+                </span>
+              ) : null}
+            </div>
+            <label className="mt-4 grid gap-2">
+              <span className="text-xs font-semibold text-[var(--muted)]">예: 상속 준비, 배우자 있음, 자녀 2명, 부동산 42억, 금융자산 8억</span>
+              <textarea
+                aria-label="직접 입력"
+                className="min-h-20 border border-[var(--border)] bg-white px-4 py-3 text-base outline-none focus:border-[var(--gold)]"
+                value={directInput}
+                onChange={(event) => setDirectInput(event.target.value)}
+                placeholder="세법 용어 몰라도 됩니다. 지금 아는 만큼만 적어주세요."
+              />
+            </label>
+            <div className="mt-3 flex flex-wrap items-center gap-3">
+              <button type="button" onClick={understandDirectInput} className="inline-flex min-h-12 items-center gap-2 bg-[var(--navy-950)] px-5 py-3 text-sm font-semibold text-white">
+                직접 입력 이해하기
+              </button>
+              <p className="text-xs leading-5 text-[var(--muted)]">후보는 확정 전까지 계산에 쓰지 않습니다.</p>
+            </div>
+            {candidate ? (
+              <div className="mt-4 border border-[var(--border)] bg-white p-4" role="status" aria-live="polite">
+                <p className="text-sm font-semibold text-[var(--navy-950)]">{candidate.status === "candidate" ? "제가 이렇게 이해했습니다." : "도움말"}</p>
+                <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{candidate.assistantText}</p>
+                {candidate.facts.length > 0 ? (
+                  <ul className="mt-3 grid gap-2 text-sm">
+                    {candidate.facts.map((fact) => (
+                      <li key={`${fact.id}-${fact.value}`} className="flex items-center justify-between gap-3 border border-[var(--border)] bg-[var(--ivory)] px-3 py-2">
+                        <span className="font-semibold text-[var(--text)]">{fact.label}</span>
+                        <span className="text-right text-[var(--navy-950)]">{fact.value}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+                {candidate.status === "candidate" ? (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <button type="button" onClick={confirmCandidate} className="inline-flex min-h-11 bg-[var(--success)] px-4 py-2 text-sm font-semibold text-white">맞아요</button>
+                    <button type="button" onClick={() => dismissCandidate("좋아요. 문장을 고쳐서 다시 입력하면 다시 후보를 뽑겠습니다.")} className="inline-flex min-h-11 border border-[var(--border)] px-4 py-2 text-sm font-semibold">수정할게요</button>
+                    <button type="button" onClick={() => dismissCandidate("확정하지 않고 넘어가도 됩니다. 모르는 항목은 추가정보 필요로 남겨둘게요.")} className="inline-flex min-h-11 border border-[var(--border)] px-4 py-2 text-sm font-semibold">잘 모르겠어요</button>
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
+          </section>
 
           {step.key === "family" ? (
             <div className="grid gap-4 md:grid-cols-3">
@@ -363,7 +455,7 @@ export function PrecheckWizard() {
             </div>
           ) : null}
 
-          {step.secondaryQuestion ? (
+          {step.secondaryQuestion && step.key !== "purpose" ? (
             <label className="grid gap-2">
               <span className="text-sm font-semibold text-[var(--text)]">{step.secondaryQuestion}</span>
               <input
@@ -419,4 +511,50 @@ export function PrecheckWizard() {
       </section>
     </section>
   );
+}
+
+function applyCandidateFacts(previous: WizardAnswers, facts: ConversationCandidateFact[]) {
+  let next = { ...previous };
+  for (const fact of facts) {
+    const target = fact.target;
+    const existing = next[target.answerKey] ?? { choices: [], detail: "" };
+    if (target.kind === "choice") {
+      const shouldBeExclusive = target.answerKey === "purpose" || target.answerKey === "family" || target.answerKey === "goal" || target.answerKey === "review" || target.choice === "해당 없음" || target.choice === "잘 모르겠음";
+      const choices = shouldBeExclusive
+        ? [target.choice]
+        : Array.from(new Set([...existing.choices.filter((choice) => choice !== "해당 없음" && choice !== "잘 모르겠음"), target.choice]));
+      next = {
+        ...next,
+        [target.answerKey]: {
+          ...existing,
+          choices,
+          assetAmounts: target.answerKey === "assets" && "amount" in target && target.amount
+            ? { ...(existing.assetAmounts ?? {}), [target.choice]: target.amount }
+            : existing.assetAmounts,
+          debtAmounts: target.answerKey === "debt" && "amount" in target && target.amount
+            ? { ...(existing.debtAmounts ?? {}), [target.choice]: target.amount }
+            : existing.debtAmounts
+        }
+      };
+    } else if (target.kind === "fact") {
+      next = {
+        ...next,
+        [target.answerKey]: {
+          ...existing,
+          facts: { ...(existing.facts ?? {}), [target.label]: target.value }
+        }
+      };
+    }
+  }
+  return next;
+}
+
+function dedupeConfirmedFacts(facts: ConversationCandidateFact[]) {
+  const seen = new Set<string>();
+  return facts.filter((fact) => {
+    const key = `${fact.label}:${fact.value}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }

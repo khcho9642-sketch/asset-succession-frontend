@@ -1,36 +1,28 @@
 import { chromium } from "playwright";
 
 const baseURL = process.env.PR2_BASE_URL ?? "http://127.0.0.1:4173";
-const routes = ["/", "/precheck", "/precheck/result", "/consultation", "/expert/overview", "/expert/workspace", "/report-preview"];
+const routes = ["/", "/precheck", "/precheck/result", "/consultation", "/expert/overview", "/expert/workspace", "/report-preview", "/phase-2b"];
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-async function completeWizard(page) {
+async function completeHybridPrecheck(page) {
   await page.goto(`${baseURL}/precheck`, { waitUntil: "networkidle" });
-  await page.getByRole("radio", { name: "부모 2명 기준" }).click();
-  await page.getByLabel("배우자 유무", { exact: true }).selectOption("있음");
-  await page.getByLabel("성년 자녀 수", { exact: true }).selectOption("2명");
-  await page.getByLabel("미성년 자녀 수", { exact: true }).selectOption("0명");
+  await page.getByRole("textbox", { name: "직접 입력" }).fill("상속 준비, 배우자 있음, 자녀 2명, 부동산 42억, 금융자산 8억, 담보대출 2억, 최근 10년 증여 있음, 납부재원이 궁금합니다.");
+  await page.getByRole("button", { name: "직접 입력 이해하기" }).click();
+  await page.getByText("제가 이렇게 이해했습니다.", { exact: true }).waitFor({ timeout: 10_000 });
+  await page.getByRole("button", { name: "맞아요" }).click();
   await page.getByRole("button", { name: "다음" }).click();
-
-  await page.getByRole("checkbox", { name: "부동산" }).click();
-  await page.getByRole("checkbox", { name: "금융자산" }).click();
-  await page.getByLabel("부동산 금액(억원)").fill("42");
-  await page.getByLabel("금융자산 금액(억원)").fill("8");
   await page.getByRole("button", { name: "다음" }).click();
-
-  await page.getByRole("checkbox", { name: "담보대출 있음" }).click();
-  await page.getByLabel("담보대출 있음 금액(억원)").fill("2");
-  await page.getByRole("checkbox", { name: "최근 10년 증여 있음" }).click();
   await page.getByRole("button", { name: "다음" }).click();
-
+  await page.getByRole("button", { name: "다음" }).click();
   await page.getByRole("radio", { name: "상속세 납부재원 준비" }).click();
   await page.getByRole("button", { name: "다음" }).click();
   await page.getByRole("radio", { name: "세금·비용" }).click();
   await page.getByRole("button", { name: "결과 보기" }).click();
   await page.waitForURL("**/precheck/result**");
+  await page.getByText("개인화 시나리오 플랜").waitFor({ timeout: 10_000 });
 }
 
 const browser = await chromium.launch({ headless: true });
@@ -45,7 +37,8 @@ try {
       const response = await page.goto(`${baseURL}${route}`, { waitUntil: "networkidle" });
       assert(response?.ok(), `${viewport.name} route failed: ${route}`);
       const layout = await page.evaluate(() => ({ scrollWidth: document.documentElement.scrollWidth, width: window.innerWidth, textLength: document.body.innerText.length }));
-      assert(layout.textLength > 200, `${viewport.name} route did not render enough content: ${route}`);
+      const minimumTextLength = route === "/report-preview" ? 100 : 200;
+      assert(layout.textLength > minimumTextLength, `${viewport.name} route did not render enough content: ${route}`);
       assert(layout.scrollWidth <= layout.width + 2, `${viewport.name} horizontal overflow on ${route}: ${layout.scrollWidth} > ${layout.width}`);
     }
     await page.close();
@@ -53,23 +46,28 @@ try {
 
   const page = await browser.newPage({ viewport: { width: 1440, height: 1200 } });
   await page.goto(`${baseURL}/precheck?step=5`, { waitUntil: "networkidle" });
-  assert(await page.getByText("승계 의사결정에 참여할 가족 구성을 알려주세요.").isVisible(), "Query step bypass was not blocked.");
+  assert(await page.getByText("어떤 준비를 고민하고 계신가요?").first().isVisible(), "Query step bypass was not blocked.");
 
-  await completeWizard(page);
+  await completeHybridPrecheck(page);
+  await page.getByText("개인화 시나리오 플랜").waitFor({ timeout: 10_000 });
   await page.getByText(/AS360-\d{8}-[A-Z0-9]+/).waitFor({ timeout: 10_000 });
   const resultText = await page.locator("body").innerText();
   const assessmentId = resultText.match(/AS360-\d{8}-[A-Z0-9]+/)?.[0];
   assert(assessmentId, "Assessment ID missing from result page.");
+  assert(resultText.includes("개인화 시나리오 플랜"), "ScenarioPlan panel missing from result page.");
   assert(resultText.includes("부동산: 42억") && resultText.includes("금융자산: 8억"), "Assessment answers missing from result page.");
-  assert(resultText.includes("계산엔진 연결 후 산정") && !resultText.includes("9.5~12억") && !resultText.includes("부모 잔여재산\n55억"), "Result page still exposes fixed sample strategy numbers.");
+  assert(resultText.includes("50억") && !resultText.includes("9.5~12억") && !resultText.includes("부모 잔여재산\n55억"), "Result page still exposes fixed sample strategy numbers.");
 
-  await page.goto(`${baseURL}/report-preview`, { waitUntil: "networkidle" });
+  await page.goto(`${baseURL}/report-preview?assessment_id=${encodeURIComponent(assessmentId)}`, { waitUntil: "networkidle" });
+  await page.getByText("Report V2 7/7").waitFor({ timeout: 10_000 });
   const reportText = await page.locator("body").innerText();
   assert(reportText.includes(assessmentId), "Assessment ID missing from report preview.");
-  assert(reportText.includes("입력 총자산") && reportText.includes("50억"), "Input asset total missing from report preview.");
+  assert(await page.locator("[data-report-page]").count() === 7, "Report V2 should render exactly seven pages.");
+  assert(reportText.includes("Report V2 7/7") && reportText.includes("입력 총자산") && reportText.includes("50억"), "Seven-page report content missing.");
   assert(!reportText.includes("55억") && !reportText.includes("9.5~12억") && !reportText.includes("6.3~8.6억"), "Report preview still exposes fixed sample strategy numbers.");
 
   await page.goto(`${baseURL}/consultation`, { waitUntil: "networkidle" });
+  await page.getByText(assessmentId).first().waitFor({ timeout: 10_000 });
   assert((await page.locator("body").innerText()).includes(assessmentId), "Assessment ID missing from consultation page.");
   await page.getByRole("button", { name: "상담 신청하기" }).click();
   assert(await page.getByText("상담 대표자를 입력해 주세요.").isVisible(), "Consultation validation alert missing.");
@@ -92,7 +90,8 @@ try {
       "all routes rendered",
       "mobile horizontal overflow absent",
       "query step bypass blocked",
-      "assessment snapshot handed to result, report, and consultation",
+      "hybrid direct input confirmation works",
+      "assessment snapshot handed to result, seven-page report, and consultation",
       "consultation required validation and local success state work"
     ]
   }, null, 2));

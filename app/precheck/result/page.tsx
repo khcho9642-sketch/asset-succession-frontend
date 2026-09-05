@@ -3,6 +3,7 @@ import { ArrowRight, Download, LockKeyhole } from "lucide-react";
 import { AssessmentMetrics } from "@/components/AssessmentMetrics";
 import { AssessmentSummary } from "@/components/AssessmentSummary";
 import { PublicLightNav } from "@/components/PublicLightNav";
+import { ScenarioPlanPanel } from "@/components/ScenarioPlanPanel";
 import { StrategyComparison } from "@/components/StrategyComparison";
 import { strategyBranches } from "@/lib/mockData";
 
@@ -38,6 +39,10 @@ export default function ResultPage() {
 
         <div className="mt-8">
           <AssessmentSummary />
+        </div>
+
+        <div className="mt-8">
+          <ScenarioPlanPanel />
         </div>
 
         <section className="mt-12 grid gap-4 lg:grid-cols-3">

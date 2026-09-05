@@ -93,6 +93,11 @@ jobs:
           UI_AUDIT_DIR: artifacts/ui-audit
         run: node scripts/ui-audit.mjs
 
+      - name: Run end-to-end smoke audit
+        env:
+          PR2_BASE_URL: http://127.0.0.1:4173
+        run: npm run test:smoke
+
       - name: Run real A4 PDF audit
         env:
           BASE_URL: http://127.0.0.1:4173

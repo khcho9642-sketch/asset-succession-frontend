@@ -16,6 +16,11 @@ export type AssessmentSnapshot = {
   created_at: string;
   review_focus: string[];
   answers: Record<string, AssessmentAnswer>;
+  conversation?: {
+    messages: Array<{ role: "user" | "assistant"; text: string; created_at: string }>;
+    confirmed_facts: Array<{ id: string; label: string; value: string; raw_text: string; confidence: string }>;
+    raw_inputs: string[];
+  };
 };
 
 export type AssessmentLoadResult =

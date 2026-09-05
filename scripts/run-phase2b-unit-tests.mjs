@@ -8,6 +8,9 @@ const outDir = path.join(root, ".tmp", "phase2b-unit-tests");
 const files = [
   "lib/phase2b/types.ts",
   "lib/phase2b/calculation.ts",
+  "lib/phase2b/money.ts",
+  "lib/phase2b/tax.ts",
+  "lib/phase2b/conversation.ts",
   "lib/phase2b/fixtures.ts",
   "lib/phase2b/engine.ts",
   "scripts/phase2b-unit-tests.ts"
