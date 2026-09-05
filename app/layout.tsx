@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
-import { Nav } from "@/components/Nav";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Asset Succession Prototype",
-  description: "상속·증여·양도 자산승계 UI 프로토타입"
+  title: "자산승계 360",
+  description: "상속·증여·매각·가족법인·보험 활용까지 비교하는 자산승계 사전진단 화면"
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ko">
       <body>
-        <Nav />
         {children}
       </body>
     </html>
