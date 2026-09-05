@@ -1,5 +1,5 @@
-import type { AssessmentSnapshot } from "@/lib/assessment";
-import { parseEokAmount } from "@/lib/assessment";
+import type { AssessmentSnapshot } from "../assessment";
+import { eokAmountToWon, parseEokAmount, parseNonnegativeEokAmount } from "../assessment";
 import type { Asset, ClientFacts, Debt, Goal, PlanningTrack } from "./types";
 
 const trackByChoice: Record<string, PlanningTrack[]> = {
@@ -42,8 +42,8 @@ export function normalizeAssessmentSnapshot(snapshot: AssessmentSnapshot): Clien
   ]);
 
   const assets: Asset[] = (assetsAnswer?.choices ?? [])
-    .filter((choice) => choice !== "해당 없음")
-    .map((choice, index) => mapAsset(choice, assetsAnswer?.assetAmounts?.[choice], index));
+    .filter((choice) => choice !== "해당 없음" && choice !== "잘 모르겠음")
+    .map((choice, index) => mapAsset(choice, assetsAnswer, index));
 
   const debts: Debt[] = (debtAnswer?.choices ?? [])
     .filter((choice) => choice === "담보대출 있음" || choice === "임대보증금 있음")
@@ -51,15 +51,26 @@ export function normalizeAssessmentSnapshot(snapshot: AssessmentSnapshot): Clien
       debt_id: `assessment-debt-${index + 1}`,
       type: choice === "담보대출 있음" ? "secured_loan" : "lease_deposit",
       amount_eok: parseEokAmount(debtAnswer?.debtAmounts?.[choice]),
+      amount_won: amountWonFromAnswer(debtAnswer?.debtAmounts?.[choice], debtAnswer?.debtAmountWons?.[choice]),
       confirmation_status: parseEokAmount(debtAnswer?.debtAmounts?.[choice]) === null ? "amount_missing" : "confirmed"
     }));
 
+  const totalChildren = parseChildCount(family?.facts?.["자녀 수"]);
+  const adultChildren = parseChildCount(family?.facts?.["성년 자녀 수"]);
+  const minorChildren = parseChildCount(family?.facts?.["미성년 자녀 수"]);
+  const childrenAgeKnown = adultChildren !== null || minorChildren !== null;
+  const ownerNeedsConfirmation = assetsAnswer?.facts?.["소유자 관계"] || assets.some((asset) => asset.owner === "unknown");
+  const confirmed_tax_bases = buildConfirmedTaxBases(snapshot);
   const unknown_items = [
+    family?.choices.length || family?.facts?.["가족 기준"] ? "" : "피상속인·부모 수 기준",
     family?.facts?.["배우자 유무"] ? "" : "배우자 유무",
-    family?.facts?.["성년 자녀 수"] ? "" : "성년 자녀 수",
-    assets.some((asset) => asset.current_value_eok === null) ? "자산별 금액" : "",
+    totalChildren !== null && !childrenAgeKnown ? "성년/미성년 자녀 구분" : "",
+    totalChildren === null && adultChildren === null && minorChildren === null ? "자녀 수" : "",
+    ownerNeedsConfirmation ? "작성자와 실제 재산 소유자·지분" : "",
+    assets.some((asset) => asset.current_value_eok === null) ? "자산별 확정 금액" : "",
     debts.some((debt) => debt.amount_eok === null) ? "채무 금액" : "",
     debtAnswer?.choices.includes("최근 10년 증여 있음") ? "최근 10년 증여 금액과 일자" : "",
+    confirmed_tax_bases.length === 0 ? "외부 확인 과세표준" : "",
     reviewAnswer?.choices.length ? "" : "결과 비교 관점"
   ].filter(Boolean);
 
@@ -75,8 +86,10 @@ export function normalizeAssessmentSnapshot(snapshot: AssessmentSnapshot): Clien
             ? "multiple_heirs"
             : "unknown",
       spouse: family?.facts?.["배우자 유무"] === "있음" ? "yes" : family?.facts?.["배우자 유무"] === "없음" ? "no" : "unknown",
-      adult_children: parseChildCount(family?.facts?.["성년 자녀 수"]),
-      minor_children: parseChildCount(family?.facts?.["미성년 자녀 수"])
+      total_children: totalChildren ?? sumKnownChildren(adultChildren, minorChildren),
+      children_age_status: childrenAgeKnown ? "known" : "unknown",
+      adult_children: adultChildren,
+      minor_children: minorChildren
     },
     assets,
     debts,
@@ -106,18 +119,27 @@ export function normalizeAssessmentSnapshot(snapshot: AssessmentSnapshot): Clien
     ]),
     constraints: [],
     time_horizon: "unknown",
+    confirmed_tax_bases,
     unknown_items,
     source_trace: [{ source: "button", confirmation_status: "confirmed" }]
   };
 }
 
-function mapAsset(choice: string, rawAmount: string | undefined, index: number): Asset {
+function mapAsset(choice: string, assetsAnswer: AssessmentSnapshot["answers"][string] | undefined, index: number): Asset {
   const type = choice === "부동산" ? "real_estate" : choice === "금융자산" ? "financial" : choice === "법인지분" ? "business_interest" : choice === "보험" ? "insurance" : "other";
+  const rawAmount = assetsAnswer?.assetAmounts?.[choice];
+  const currentValueEok = parseEokAmount(rawAmount);
+  const storedWon = assetsAnswer?.assetAmountWons?.[choice];
+  const range = assetsAnswer?.assetAmountRanges?.[choice];
   return {
     asset_id: `assessment-asset-${index + 1}`,
     type,
-    owner: "parent",
-    current_value_eok: parseEokAmount(rawAmount),
+    owner: "unknown",
+    owner_note: assetsAnswer?.facts?.["소유자 관계"] ?? "작성자와 실제 소유자·지분 확인 전까지 특정 가족 소유로 확정하지 않습니다.",
+    current_value_eok: currentValueEok,
+    current_value_won: amountWonFromAnswer(rawAmount, storedWon),
+    current_value_status: range ? "range" : currentValueEok === null ? "unknown" : "confirmed",
+    current_value_range_won: range ? { min: range.min_won, max: range.max_won } : null,
     location_level: type === "real_estate" ? "city_district" : "none",
     disposable: type === "financial" ? "yes" : "unknown",
     succession_preference: "compare"
@@ -128,6 +150,53 @@ function parseChildCount(value?: string) {
   if (!value) return null;
   const match = value.match(/\d+/);
   return match ? Number(match[0]) : null;
+}
+
+function sumKnownChildren(adultChildren: number | null, minorChildren: number | null) {
+  if (adultChildren === null && minorChildren === null) return null;
+  return (adultChildren ?? 0) + (minorChildren ?? 0);
+}
+
+function amountWonFromAnswer(rawAmount?: string, storedWon?: number) {
+  if (storedWon !== undefined && Number.isInteger(storedWon) && storedWon >= 0) return storedWon;
+  const eok = parseEokAmount(rawAmount);
+  return eok === null ? null : eokAmountToWon(eok);
+}
+
+function buildConfirmedTaxBases(snapshot: AssessmentSnapshot) {
+  const reviewAnswer = snapshot.answers.review;
+  const taxBaseAmounts = reviewAnswer?.taxBaseAmounts ?? {};
+  const taxBaseAmountWons = reviewAnswer?.taxBaseAmountWons ?? {};
+  const taxBaseTaxKind = reviewAnswer?.taxBaseTaxKind ?? {};
+  const entries = Object.entries(taxBaseAmounts)
+    .filter(([scenarioId]) => scenarioId !== "__default")
+    .map(([scenarioId, amount]) => {
+      const taxableEok = parseNonnegativeEokAmount(amount);
+      if (taxableEok === null) return null;
+      const taxableWon = taxBaseAmountWons[scenarioId] ?? eokAmountToWon(taxableEok);
+      const taxKind = taxBaseTaxKind[scenarioId] ?? inferTaxKind(snapshot);
+      return {
+        scenario_id: scenarioId,
+        tax_kind: taxKind,
+        taxable_value_eok: taxableEok,
+        taxable_value_won: taxableWon,
+        basis_id: `${snapshot.assessment_id}::confirmed-tax-base::${taxKind}::2026-09-06`,
+        source: "confirmed_extraction" as const,
+        confirmation_status: "confirmed" as const,
+        law_references: ["상속세 및 증여세법 제26조", "상속세 및 증여세법 제56조"],
+        note: "사용자가 외부에서 확인했다고 입력한 과세표준입니다. 일반 자산가액을 과세표준으로 간주하지 않습니다."
+      };
+    })
+    .filter((entry): entry is NonNullable<typeof entry> => entry !== null);
+  return entries;
+}
+
+function inferTaxKind(snapshot: AssessmentSnapshot) {
+  const choices = [
+    ...(snapshot.answers.purpose?.choices ?? []),
+    ...(snapshot.answers.goal?.choices ?? [])
+  ].join(" ");
+  return /증여|미리|이전/.test(choices) ? "gift_tax" as const : "inheritance_tax" as const;
 }
 
 function uniqueTracks(values: PlanningTrack[]) {

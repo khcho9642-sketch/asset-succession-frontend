@@ -1,10 +1,11 @@
 import { buildUncalculatedResult, moneyResult } from "./calculation";
 import type { CalculationContext, CalculationResult, TaxKind } from "./types";
-import { formatEokLabel } from "./money";
+import { EOK_WON, formatEokLabel, wonToEok } from "./money";
 
 export type SupportedTaxInput = {
   tax_kind: Extract<TaxKind, "inheritance_tax" | "gift_tax">;
   taxable_value_eok: number;
+  taxable_value_won?: number;
   basis_id: string;
   context: CalculationContext;
 };
@@ -27,7 +28,9 @@ export function calculateInheritanceOrGiftTax(input: SupportedTaxInput): Calcula
     "확인된 과세표준에 상속세 및 증여세법 제26조 세율표만 적용했습니다.",
     "과세표준 산정, 공제, 가산, 신고세액공제, 지방세·취득세·양도세는 포함하지 않았습니다."
   ]);
-  const calculatedTax = calculateProgressiveTaxEok(input.taxable_value_eok);
+  const taxableValueWon = input.taxable_value_won ?? Math.round(input.taxable_value_eok * EOK_WON);
+  const calculatedTaxWon = calculateProgressiveTaxWon(taxableValueWon);
+  const calculatedTax = wonToEok(calculatedTaxWon);
   const label = `${formatEokLabel(calculatedTax)} 산출세액`;
   const taxResult = moneyResult(calculatedTax, "calculable", label, input.basis_id);
 
@@ -55,17 +58,25 @@ export function calculateInheritanceOrGiftTax(input: SupportedTaxInput): Calcula
 }
 
 export function calculateProgressiveTaxEok(taxableBaseEok: number) {
-  if (!Number.isFinite(taxableBaseEok) || taxableBaseEok <= 0) {
-    throw new Error("taxableBaseEok must be a positive number.");
+  if (!Number.isFinite(taxableBaseEok) || taxableBaseEok < 0) {
+    throw new Error("taxableBaseEok must be a non-negative number.");
   }
-
-  if (taxableBaseEok <= 1) return roundTax(taxableBaseEok * 0.1);
-  if (taxableBaseEok <= 5) return roundTax(0.1 + (taxableBaseEok - 1) * 0.2);
-  if (taxableBaseEok <= 10) return roundTax(0.9 + (taxableBaseEok - 5) * 0.3);
-  if (taxableBaseEok <= 30) return roundTax(2.4 + (taxableBaseEok - 10) * 0.4);
-  return roundTax(10.4 + (taxableBaseEok - 30) * 0.5);
+  return wonToEok(calculateProgressiveTaxWon(Math.round(taxableBaseEok * EOK_WON)));
 }
 
-function roundTax(value: number) {
-  return Math.round(value * 10_000) / 10_000;
+export function calculateProgressiveTaxWon(taxableBaseWon: number) {
+  if (!Number.isInteger(taxableBaseWon) || taxableBaseWon < 0) {
+    throw new Error("taxableBaseWon must be a non-negative integer.");
+  }
+  if (taxableBaseWon === 0) return 0;
+
+  const brackets = [
+    { threshold: 100_000_000, rate: 0.1, deduction: 0 },
+    { threshold: 500_000_000, rate: 0.2, deduction: 10_000_000 },
+    { threshold: 1_000_000_000, rate: 0.3, deduction: 60_000_000 },
+    { threshold: 3_000_000_000, rate: 0.4, deduction: 160_000_000 },
+    { threshold: Number.POSITIVE_INFINITY, rate: 0.5, deduction: 460_000_000 }
+  ];
+  const bracket = brackets.find((item) => taxableBaseWon <= item.threshold) ?? brackets.at(-1)!;
+  return Math.max(0, Math.round(taxableBaseWon * bracket.rate - bracket.deduction));
 }

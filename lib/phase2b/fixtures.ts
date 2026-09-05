@@ -4,7 +4,7 @@ export const phase2bFixtures: Record<string, ClientFacts> = {
   caseAInheritance: {
     client_facts_id: "FIXTURE-A-INHERITANCE",
     planning_tracks: ["inheritance"],
-    family: { basis: "two_parents", spouse: "yes", adult_children: 2, minor_children: 0 },
+    family: { basis: "two_parents", spouse: "yes", total_children: 2, children_age_status: "known", adult_children: 2, minor_children: 0 },
     assets: [
       {
         asset_id: "asset-a-real-estate",
@@ -38,7 +38,7 @@ export const phase2bFixtures: Record<string, ClientFacts> = {
   caseBGift: {
     client_facts_id: "FIXTURE-B-GIFT",
     planning_tracks: ["gift"],
-    family: { basis: "one_parent", spouse: "unknown", adult_children: 2, minor_children: 0 },
+    family: { basis: "one_parent", spouse: "unknown", total_children: 2, children_age_status: "known", adult_children: 2, minor_children: 0 },
     assets: [
       {
         asset_id: "asset-b-real-estate",
@@ -63,6 +63,7 @@ export const phase2bFixtures: Record<string, ClientFacts> = {
         scenario_id: "baseline",
         tax_kind: "gift_tax",
         taxable_value_eok: 3,
+        taxable_value_won: 300_000_000,
         basis_id: "FIXTURE-B-GIFT::confirmed-tax-base-demo",
         source: "fixture",
         confirmation_status: "confirmed",
@@ -73,6 +74,7 @@ export const phase2bFixtures: Record<string, ClientFacts> = {
         scenario_id: "gift-stepwise-transfer",
         tax_kind: "gift_tax",
         taxable_value_eok: 1.5,
+        taxable_value_won: 150_000_000,
         basis_id: "FIXTURE-B-GIFT::confirmed-tax-base-demo",
         source: "fixture",
         confirmation_status: "confirmed",
@@ -86,7 +88,7 @@ export const phase2bFixtures: Record<string, ClientFacts> = {
   caseCBusinessSuccession: {
     client_facts_id: "FIXTURE-C-BUSINESS",
     planning_tracks: ["business_succession"],
-    family: { basis: "two_parents", spouse: "yes", adult_children: 1, minor_children: 0 },
+    family: { basis: "two_parents", spouse: "yes", total_children: 1, children_age_status: "known", adult_children: 1, minor_children: 0 },
     assets: [
       {
         asset_id: "asset-c-shares",
@@ -122,7 +124,7 @@ export const phase2bFixtures: Record<string, ClientFacts> = {
   caseDCapitalGains: {
     client_facts_id: "FIXTURE-D-CAPITAL-GAINS",
     planning_tracks: ["capital_gains", "gift"],
-    family: { basis: "one_parent", spouse: "no", adult_children: 1, minor_children: 0 },
+    family: { basis: "one_parent", spouse: "no", total_children: 1, children_age_status: "known", adult_children: 1, minor_children: 0 },
     assets: [
       {
         asset_id: "asset-d-real-estate",

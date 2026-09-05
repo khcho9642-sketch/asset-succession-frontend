@@ -7,7 +7,7 @@ import { PrintButton } from "@/components/PrintButton";
 import { buildAssessmentMetrics, formatAnswer, readAssessmentFromSession } from "@/lib/assessment";
 import type { AssessmentLoadResult, AssessmentMetrics as Metrics, AssessmentSnapshot } from "@/lib/assessment";
 import { buildScenarioPlan, normalizeAssessmentSnapshot, SUPPORTED_TAX_LAW_REFERENCES } from "@/lib/phase2b";
-import type { Scenario, ScenarioPlan } from "@/lib/phase2b";
+import type { MoneyResult, Scenario, ScenarioPlan } from "@/lib/phase2b";
 
 const trackLabels = {
   inheritance: "상속",
@@ -79,13 +79,14 @@ export function ReportV2Preview() {
     .map((recommendation) => plan.scenarios.find((scenario) => scenario.scenario_id === recommendation.scenario_id))
     .filter((scenario): scenario is Scenario => Boolean(scenario))
     .slice(0, 3);
+  const primaryAlternative = priorityScenarios.find((scenario) => scenario.calculation_result.status === "calculable") ?? priorityScenarios[0];
 
   return (
     <article className="report-book mt-8">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4 print:hidden">
         <div>
           <p className="text-sm font-semibold text-[var(--gold)]">무료 보고서 미리보기</p>
-          <h1 className="mt-2 text-3xl font-semibold tracking-[-0.05em] text-[var(--navy-950)]">A4 7장 가족회의용 보고서</h1>
+          <h1 className="mt-2 text-3xl font-semibold tracking-[-0.05em] text-[var(--navy-950)]">우리 가족 자산승계 사전진단 보고서</h1>
         </div>
         <PrintButton />
       </div>
@@ -93,19 +94,27 @@ export function ReportV2Preview() {
       <ReportPage pageNumber={1} title="핵심 요약" eyebrow="Report V2 1/7">
         <Header snapshot={snapshot} plan={plan} />
         <div className="mt-7 grid gap-4 md:grid-cols-3">
-          <MetricCard label="입력 총자산" value={metrics.totalAssets} helper="직접 입력한 자산 금액 합계" highlight />
-          <MetricCard label="즉시 필요현금" value={metrics.immediateCash} helper="금융자산은 납부재원 후보로만 표시" />
-          <MetricCard label="납부재원 부족액" value={metrics.fundingGap} helper="공제·세액 확인 후 산정" />
+          <MetricCard label="확인된 현재 자산가액" value={metrics.totalAssets} helper="직접 확정한 자산 금액 합계" highlight />
+          <MetricCard label="기준안 산출세액" value={moneyDisplay(plan.baseline.calculation_result.total_tax)} helper="확인 과세표준 기반 세율표 계산" />
+          <MetricCard label="납부재원 부족액" value={moneyDisplay(plan.baseline.calculation_result.liquidity_gap)} helper="필요현금과 금융자산 비교" />
+        </div>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <MetricCard label="조건부 미래가액" value="가정 미입력" helper="물가·평가상승률 입력 전에는 현재가액과 분리" />
+          <MetricCard label="우선 대안 산출세액" value={primaryAlternative ? moneyDisplay(primaryAlternative.calculation_result.total_tax) : "대안 없음"} helper={primaryAlternative?.name ?? "분기 결과 없음"} />
+          <MetricCard label="절세액·비용효과" value={primaryAlternative ? moneyDisplay(primaryAlternative.comparison.expected_tax_savings) : "비교 불가"} helper="동일 과세표준 기준일 때만 산정" />
         </div>
         <section className="mt-7 grid gap-4 md:grid-cols-[0.95fr_1.05fr]">
-          <Card title="현재 판단">
-            <p>{metrics.confidenceNote}</p>
-            <p className="mt-3">이번 보고서는 개인정보 없이 가족회의에서 볼 수 있는 시나리오 기준서입니다.</p>
+          <Card title="핵심 발견">
+            <ul className="grid gap-2">
+              <li>확인된 자산가액과 과세표준은 서로 다른 입력으로 관리됩니다.</li>
+              <li>{metrics.confidenceNote}</li>
+              <li>작성자와 실제 소유자·지분이 확인되기 전에는 가족별 이전금액을 만들지 않습니다.</li>
+            </ul>
           </Card>
-          <Card title="우선 검토 후보">
+          <Card title="우선 검토 방향">
             <ol className="grid gap-2">
               {priorityScenarios.map((scenario, index) => (
-                <li key={scenario.scenario_id}>{index + 1}. {scenario.name} · {statusLabels[scenario.calculation_result.status]}</li>
+                <li key={scenario.scenario_id}>{index + 1}. {scenario.name} · {statusLabels[scenario.calculation_result.status]} · {scenario.eligibility.status}</li>
               ))}
             </ol>
           </Card>
@@ -117,27 +126,66 @@ export function ReportV2Preview() {
         <section className="mt-7 grid gap-5 md:grid-cols-2">
           <TableCard title="자산 입력">
             {facts.assets.map((asset) => (
-              <Row key={asset.asset_id} label={assetLabels[asset.type]} value={asset.current_value_eok === null ? "금액 확인 필요" : `${asset.current_value_eok}억`} />
+              <Row key={asset.asset_id} label={assetLabels[asset.type]} value={`${asset.current_value_eok === null ? "금액 확인 필요" : `${asset.current_value_eok}억`} · 소유자: ${asset.owner === "unknown" ? "확인 필요" : asset.owner}`} />
             ))}
+            {facts.assets.length === 0 ? <Row label="자산" value="선택 자산 없음 또는 미상" /> : null}
           </TableCard>
+          <TableCard title="작성자와 소유자 구분">
+            <Row label="작성자" value="사전진단 입력자 — 실명 저장 안 함" />
+            <Row label="실제 소유자" value={facts.assets.some((asset) => asset.owner === "unknown") ? "자산별 등기·계좌·지분 확인 필요" : "입력 기준 확인"} />
+            <Row label="지분" value="공동소유 여부 확인 전까지 가족 이전금액 산정 제외" />
+          </TableCard>
+        </section>
+        <section className="mt-7 grid gap-5 md:grid-cols-2">
           <TableCard title="채무·과거 증여">
             {facts.debts.length === 0 ? <Row label="채무" value="직접 입력 없음" /> : facts.debts.map((debt) => <Row key={debt.debt_id} label={debtLabels[debt.type]} value={debt.amount_eok === null ? "금액 확인 필요" : `${debt.amount_eok}억`} />)}
             {facts.past_gifts.length > 0 ? <Row label="최근 10년 증여" value="금액·일자 확인 필요" /> : <Row label="최근 10년 증여" value="직접 입력 없음" />}
+          </TableCard>
+          <TableCard title="가족 정보 상태">
+            <Row label="배우자" value={facts.family.spouse === "yes" ? "있음" : facts.family.spouse === "no" ? "없음" : "미상"} />
+            <Row label="총 자녀 수" value={facts.family.total_children === null ? "미상" : `${facts.family.total_children}명`} />
+            <Row label="성년 여부" value={facts.family.children_age_status === "known" ? "일부 확인" : "미상 — 별도 확인 필요"} />
           </TableCard>
         </section>
       </ReportPage>
 
       <ReportPage pageNumber={3} title="확정 사실과 계산상태" eyebrow="Report V2 3/7">
-        <section className="grid gap-5 md:grid-cols-2">
-          <Card title="확정 입력 원천">
-            <p>버튼 선택과 사용자가 확인한 직접입력 후보만 스냅샷에 반영됩니다.</p>
-            <p className="mt-3">자유문장 후보는 ‘맞아요’ 확인 전까지 계산에 쓰지 않습니다.</p>
-          </Card>
-          <Card title="지원 계산 범위">
-            <p>확인 과세표준이 있는 상속세·증여세 산출세액만 제26조 세율표로 계산합니다.</p>
-            <p className="mt-3">과세표준 미확인 세액, 공제, 가산, 양도세, 취득세는 정밀 계산 전까지 숫자로 표시하지 않습니다.</p>
-          </Card>
-        </section>
+        <table className="report-table w-full border-collapse text-left">
+          <thead>
+            <tr>
+              <th>사실</th>
+              <th>의미</th>
+              <th>필요자료</th>
+              <th>계산 포함</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>자산가액</td>
+              <td>검토 규모와 재원 후보 파악</td>
+              <td>평가액 근거, 지분율</td>
+              <td>합계만 포함</td>
+            </tr>
+            <tr>
+              <td>과세표준</td>
+              <td>산출세액 계산 가능 여부 결정</td>
+              <td>외부 확인 과세표준</td>
+              <td>{facts.confirmed_tax_bases?.length ? "세율표 계산 포함" : "미포함"}</td>
+            </tr>
+            <tr>
+              <td>채무·보증금</td>
+              <td>부담부증여·순자산 검토</td>
+              <td>금융기관·임대차 증빙</td>
+              <td>직접 금액만 포함</td>
+            </tr>
+            <tr>
+              <td>가족관계</td>
+              <td>공제·의사결정자 구분</td>
+              <td>배우자·자녀 성년 여부</td>
+              <td>공제 계산 제외</td>
+            </tr>
+          </tbody>
+        </table>
         <section className="mt-7 border border-[var(--border)] p-5">
           <h3 className="text-lg font-semibold tracking-[-0.04em]">공식 근거</h3>
           <ul className="mt-4 grid gap-3 text-sm leading-6 text-[var(--muted)]">
@@ -147,9 +195,10 @@ export function ReportV2Preview() {
               </li>
             ))}
           </ul>
+          <p className="mt-4 text-sm leading-6 text-[var(--muted)]">기준일: {plan.context.valuation_date} · 법령/규칙 버전: {plan.context.law_version}</p>
         </section>
         <TableCard title="추가 확인 필요정보" className="mt-7">
-          {plan.unknown_items.slice(0, 8).map((item) => <Row key={item} label="확인 필요" value={item} />)}
+          {plan.unknown_items.slice(0, 10).map((item) => <Row key={item} label="확인 필요" value={item} />)}
         </TableCard>
       </ReportPage>
 
@@ -163,7 +212,12 @@ export function ReportV2Preview() {
               </div>
               <h3 className="mt-2 text-xl font-semibold tracking-[-0.04em]">{scenario.name}</h3>
               <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{scenario.rationale.join(" ")}</p>
-              <p className="mt-3 text-sm font-semibold">필요정보: {scenario.required_information.slice(0, 3).join(" · ")}</p>
+              <dl className="mt-4 grid gap-2 text-sm">
+                <Row label="당사자" value={scenario.track === "business_succession" ? "주주·후계자·회사" : "부모·배우자·자녀"} />
+                <Row label="대상자산" value={facts.assets.map((asset) => assetLabels[asset.type]).join(" · ") || "확인 필요"} />
+                <Row label="재원" value={moneyDisplay(scenario.calculation_result.liquidity_gap)} />
+                <Row label="선행확인" value={scenario.required_information.slice(0, 3).join(" · ")} />
+              </dl>
             </article>
           ))}
         </div>
@@ -185,8 +239,8 @@ export function ReportV2Preview() {
             <tr>
               <td>{plan.baseline.name}</td>
               <td>{trackLabels[plan.baseline.track]}</td>
-              <td>{plan.baseline.calculation_result.total_tax.label}</td>
-              <td>{plan.baseline.calculation_result.total_burden.label}</td>
+              <td>{moneyDisplay(plan.baseline.calculation_result.total_tax)}</td>
+              <td>{moneyDisplay(plan.baseline.calculation_result.total_burden)}</td>
               <td>기준안</td>
               <td>{statusLabels[plan.baseline.calculation_result.status]}</td>
             </tr>
@@ -194,16 +248,16 @@ export function ReportV2Preview() {
               <tr key={scenario.scenario_id}>
                 <td>{scenario.name}</td>
                 <td>{trackLabels[scenario.track]}</td>
-                <td>{scenario.calculation_result.total_tax.label}</td>
-                <td>{scenario.calculation_result.total_burden.label}</td>
-                <td>{scenario.comparison.expected_net_effect.label}</td>
+                <td>{moneyDisplay(scenario.calculation_result.total_tax)}</td>
+                <td>{moneyDisplay(scenario.calculation_result.total_burden)}</td>
+                <td>{moneyDisplay(scenario.comparison.expected_net_effect)}</td>
                 <td>{statusLabels[scenario.comparison.comparison_status]}</td>
               </tr>
             ))}
           </tbody>
         </table>
         <p className="mt-5 border-l-2 border-[var(--gold)] bg-[var(--ivory)] p-4 text-sm leading-6 text-[var(--muted)]">
-          기준안과 대안의 과세표준·평가기준이 일치하지 않으면 절세액을 만들지 않습니다. 숫자가 없는 칸은 누락이 아니라 의도적인 계산 차단입니다.
+          기준안과 대안의 평가기준일, 입력 스냅샷, 법령/규칙 버전, 비교기간, 포함 세목, 가족 사실이 구조적으로 일치하지 않으면 절세액을 만들지 않습니다.
         </p>
       </ReportPage>
 
@@ -217,6 +271,9 @@ export function ReportV2Preview() {
                   <li key={event}>{index + 1}. {event}</li>
                 ))}
               </ol>
+              <p className="mt-3 border-l-2 border-[var(--gold)] pl-3 text-sm leading-6 text-[var(--muted)]">
+                생활자금·재원·계약 당사자는 선행 확인 후 실행 여부를 정합니다. 미상 정보가 남으면 실행 단계로 넘기지 않습니다.
+              </p>
             </article>
           ))}
         </div>
@@ -241,6 +298,10 @@ export function ReportV2Preview() {
             </ol>
           </Card>
         </section>
+        <TableCard title="미상정보와 재검토 시점" className="mt-7">
+          {plan.unknown_items.slice(0, 6).map((item) => <Row key={item} label="미상" value={`${item} · 상담 전 확인`} />)}
+          <Row label="재검토" value="자산평가액·가족관계·과세표준이 바뀌면 웹과 PDF를 같은 스냅샷으로 다시 생성" />
+        </TableCard>
         <section className="mt-7 border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
           <h3 className="text-2xl font-semibold tracking-[-0.04em]">다음 단계</h3>
           <p className="mt-3 text-sm leading-7 text-white/68">
@@ -257,7 +318,7 @@ function Header({ snapshot, plan }: Readonly<{ snapshot: AssessmentSnapshot; pla
   return (
     <section className="border border-[var(--border)] bg-[var(--ivory)] p-5">
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--gold)]">Asset Succession 360</p>
-      <h2 className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-[var(--navy-950)]">무료 자산승계 사전진단 보고서</h2>
+      <h2 className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-[var(--navy-950)]">우리 가족 자산승계 사전진단 보고서</h2>
       <dl className="mt-5 grid gap-3 text-sm md:grid-cols-3">
         <Row label="진단 ID" value={snapshot.assessment_id} />
         <Row label="작성일" value={new Date(snapshot.created_at).toLocaleDateString("ko-KR")} />
@@ -334,4 +395,14 @@ function Row({ label, value }: Readonly<{ label: string; value: string }>) {
       <dd className="font-semibold leading-6 text-[var(--text)]">{value}</dd>
     </div>
   );
+}
+
+function moneyDisplay(result: MoneyResult | undefined) {
+  if (!result) return "비교 불가";
+  if (result.value_eok !== null) return result.label;
+  if (result.status === "incomparable") return "비교 불가";
+  if (result.status === "needs_info") return "추가 확인 필요";
+  if (result.status === "not_applicable") return "해당 없음";
+  if (result.status === "needs_expert_review") return "전문가 검토";
+  return "지원 범위 밖";
 }

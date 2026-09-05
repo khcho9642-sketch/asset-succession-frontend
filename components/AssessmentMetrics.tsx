@@ -33,12 +33,12 @@ export function AssessmentMetrics({ mode = "result" }: Readonly<{ mode?: "result
   const cards = mode === "result"
     ? [
         ["전략별 총 부담", metrics.totalBurden, "확인 과세표준 없이는 미산정"],
-        ["즉시 필요현금", metrics.immediateCash, "입력한 금융자산을 상담 재원 후보로 표시"],
-        ["납부재원 부족액", metrics.fundingGap, "취득가·채무·공제 확인 후 산정"]
+        ["즉시 필요현금", metrics.immediateCash, "산출세액·실행비용이 계산된 범위만 표시"],
+        ["납부재원 부족액", metrics.fundingGap, "필요현금과 조달 가능 금융자산을 비교"]
       ]
     : [
         ["입력 총자산", metrics.totalAssets, "사전진단 자산 금액 합계"],
-        ["입력 금융자산", metrics.financialAssets, "납부재원 후보"],
+        ["확인된 조달 가능 금융자산", metrics.financialAssets, "즉시 필요현금과 다른 값"],
         ["채무·보증금", metrics.estimatedDebt, "직접 입력한 채무만 반영"],
         ["순자산", metrics.netAssets, "채무금액이 있어야 산정"]
       ];
@@ -55,7 +55,7 @@ export function AssessmentMetrics({ mode = "result" }: Readonly<{ mode?: "result
         ))}
       </div>
       <p className="border-l-2 border-[var(--gold)] bg-[var(--ivory)] p-4 text-xs leading-6 text-[var(--muted)]">
-        입력 총자산 {metrics.totalAssets} · 입력 순자산 {metrics.netAssets}. {metrics.confidenceNote}
+        입력 총자산 {metrics.totalAssets} · 입력 순자산 {metrics.netAssets} · 확인된 조달 가능 금융자산 {metrics.financialAssets}. {metrics.confidenceNote}
       </p>
     </section>
   );

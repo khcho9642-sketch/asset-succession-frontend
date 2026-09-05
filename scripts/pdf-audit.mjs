@@ -14,36 +14,41 @@ const seededAssessment = {
   answers: {
     purpose: {
       label: "준비 목적",
-      choices: ["상속"],
-      detail: "상속과 납부재원 준비"
+      choices: ["증여"],
+      detail: "증여와 납부재원 준비"
     },
     family: {
       label: "가족",
       choices: ["부모 2명 기준"],
       detail: "",
-      facts: { "배우자 유무": "있음", "성년 자녀 수": "2명", "미성년 자녀 수": "0명" }
+      facts: { "배우자 유무": "있음", "자녀 수": "2명" }
     },
     assets: {
       label: "자산",
       choices: ["부동산", "금융자산"],
       detail: "",
-      assetAmounts: { "부동산": "42", "금융자산": "8" }
+      assetAmounts: { "부동산": "42", "금융자산": "8" },
+      assetAmountWons: { "부동산": 4_200_000_000, "금융자산": 800_000_000 }
     },
     debt: {
       label: "채무·과거 증여",
       choices: ["담보대출 있음", "최근 10년 증여 있음"],
       detail: "",
-      debtAmounts: { "담보대출 있음": "2" }
+      debtAmounts: { "담보대출 있음": "2" },
+      debtAmountWons: { "담보대출 있음": 200_000_000 }
     },
     goal: {
       label: "승계 목표",
-      choices: ["상속세 납부재원 준비"],
+      choices: ["일부를 미리 이전", "상속세 납부재원 준비"],
       detail: ""
     },
     review: {
       label: "결과 준비",
-      choices: ["세금·비용"],
-      detail: ""
+      choices: ["세금·비용", "납부재원 부족액"],
+      detail: "",
+      taxBaseAmounts: { baseline: "3", "gift-stepwise-transfer": "1.5" },
+      taxBaseAmountWons: { baseline: 300_000_000, "gift-stepwise-transfer": 150_000_000 },
+      taxBaseTaxKind: { baseline: "gift_tax", "gift-stepwise-transfer": "gift_tax" }
     }
   },
   conversation: {
@@ -67,14 +72,19 @@ const requiredText = [
   "Report V2 5/7",
   "Report V2 6/7",
   "Report V2 7/7",
-  "입력 총자산",
+  "우리 가족 자산승계 사전진단 보고서",
+  "확인된 현재 자산가액",
   "50억",
+  "0.5억 산출세액",
+  "0.2억 산출세액",
+  "0.3억 절세 예상",
+  "성년 여부",
   "담보대출",
   "2억",
   "상속세 및 증여세법 제26조",
   "상속세 및 증여세법 제56조",
-  "과세표준 미확인 세액",
-  "숫자가 없는 칸은 누락이 아니라 의도적인 계산 차단입니다."
+  "외부 확인 과세표준",
+  "가족회의 안건"
 ];
 
 const forbiddenPrintText = [
@@ -106,6 +116,16 @@ try {
   const pageCountInDom = await page.locator("[data-report-page]").count();
   if (pageCountInDom !== 7) {
     throw new Error(`Report DOM should contain exactly seven report pages, found ${pageCountInDom}.`);
+  }
+  for (let pageNumber = 1; pageNumber <= 7; pageNumber += 1) {
+    const reportPage = page.locator(`[data-report-page="${pageNumber}"]`);
+    const pageText = await reportPage.innerText();
+    if (pageText.length < 260) {
+      throw new Error(`Report page ${pageNumber} does not have enough readable content density: ${pageText.length} chars.`);
+    }
+    await reportPage.screenshot({
+      path: path.join(outputDir, `a4-report-page-${pageNumber}.png`)
+    });
   }
 
   const printText = await page.locator("body").innerText();

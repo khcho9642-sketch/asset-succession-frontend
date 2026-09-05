@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { readAssessmentFromSession } from "@/lib/assessment";
 import type { AssessmentLoadResult } from "@/lib/assessment";
 import { buildScenarioPlan, normalizeAssessmentSnapshot } from "@/lib/phase2b";
-import type { Recommendation, Scenario, ScenarioPlan } from "@/lib/phase2b";
+import type { MoneyResult, Recommendation, Scenario, ScenarioPlan } from "@/lib/phase2b";
 
 const trackLabels = {
   inheritance: "상속",
@@ -84,8 +84,16 @@ export function ScenarioPlanPanel({ compact = false }: Readonly<{ compact?: bool
             <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{scenario.rationale[0]}</p>
             <dl className="mt-4 grid gap-2 text-sm">
               <div className="grid grid-cols-[7.5rem_1fr] gap-3">
-                <dt className="text-[var(--muted)]">예상 세액</dt>
-                <dd className="font-semibold">{scenario.calculation_result.total_tax.label}</dd>
+                <dt className="text-[var(--muted)]">기준안 세액</dt>
+                <dd className="font-semibold">{moneyDisplay(plan.baseline.calculation_result.total_tax)}</dd>
+              </div>
+              <div className="grid grid-cols-[7.5rem_1fr] gap-3">
+                <dt className="text-[var(--muted)]">대안 세액</dt>
+                <dd className="font-semibold">{moneyDisplay(scenario.calculation_result.total_tax)}</dd>
+              </div>
+              <div className="grid grid-cols-[7.5rem_1fr] gap-3">
+                <dt className="text-[var(--muted)]">절세액</dt>
+                <dd className="font-semibold">{moneyDisplay(scenario.comparison.expected_tax_savings)}</dd>
               </div>
               <div className="grid grid-cols-[7.5rem_1fr] gap-3">
                 <dt className="text-[var(--muted)]">비교 상태</dt>
@@ -101,4 +109,13 @@ export function ScenarioPlanPanel({ compact = false }: Readonly<{ compact?: bool
       </div>
     </section>
   );
+}
+
+function moneyDisplay(result: MoneyResult) {
+  if (result.value_eok !== null) return result.label;
+  if (result.status === "incomparable") return "비교 불가";
+  if (result.status === "needs_info") return "추가 확인 필요";
+  if (result.status === "not_applicable") return "해당 없음";
+  if (result.status === "needs_expert_review") return "전문가 검토";
+  return "지원 범위 밖";
 }

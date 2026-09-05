@@ -96,5 +96,6 @@ export function compareCalculatedResults(
 
 export function formatEok(value: number) {
   const absolute = Math.abs(value);
-  return `${Number.isInteger(absolute) ? absolute.toFixed(0) : absolute.toFixed(1)}억`;
+  const label = `${Number.isInteger(absolute) ? absolute.toFixed(0) : absolute.toFixed(1)}억`;
+  return value < 0 ? `-${label}` : label;
 }

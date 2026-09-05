@@ -251,12 +251,14 @@ function scenarioDefinitions(): ScenarioDefinition[] {
       timeline: ["금융자산 확인", "보험료 감당 가능성 확인", "계약자·수익자 구조 점검"],
       requiredInfo: ["보험 계약자", "수익자", "보험료 재원"],
       evaluate: (facts) => {
-        const lowLiquidity = facts.constraints.includes("insufficient_financial_assets");
+        const wantsLiquidity = hasGoal(facts, "prepare_liquidity");
         return {
-          priority: lowLiquidity || hasGoal(facts, "prepare_liquidity") ? "priority" : "low",
+          priority: wantsLiquidity ? "conditional" : "needs_more_info",
           eligibility: { status: "conditional", reasons: ["보험료 재원과 계약 구조 확인이 필요합니다."] },
           rationale: [
-            lowLiquidity ? "금융자산이 부족해 납부재원 위험신호가 있어 보험 납부재원 보완을 검토합니다." : "납부재원 준비 목표가 확인되면 보험 보완안을 검토합니다."
+            wantsLiquidity
+              ? "납부재원 준비 목표가 있어 보험은 검토 후보로 둡니다. 실제 부족액·계약자·수익자 확인 전에는 우선안으로 확정하지 않습니다."
+              : "실제 부족액과 보험계약 사실이 확인되어야 보험 납부재원 보완안을 평가할 수 있습니다."
           ],
           required_information: ["보험료 감당 가능성", "계약자·피보험자·수익자", "예상 상속세"],
           calculation_status: "needs_info"
@@ -325,6 +327,7 @@ function buildCalculationShell(facts: ClientFacts, context: CalculationContext, 
   const calculated = calculateInheritanceOrGiftTax({
     tax_kind: confirmedTaxBase.tax_kind,
     taxable_value_eok: confirmedTaxBase.taxable_value_eok,
+    taxable_value_won: confirmedTaxBase.taxable_value_won,
     basis_id: confirmedTaxBase.basis_id,
     context
   });
@@ -332,10 +335,14 @@ function buildCalculationShell(facts: ClientFacts, context: CalculationContext, 
     ? { ...result.asset_value, basis: confirmedTaxBase.basis_id }
     : result.asset_value;
 
-  const financialAssets = facts.assets.filter((asset) => asset.type === "financial").reduce((sum, asset) => sum + (asset.current_value_eok ?? 0), 0);
-  if (financialAssets > 0 && calculated.total_tax.value_eok !== null) {
+  const financialAssetsList = facts.assets.filter((asset) => asset.type === "financial");
+  const hasKnownFinancialAssets = financialAssetsList.some((asset) => asset.current_value_eok !== null);
+  const financialAssets = financialAssetsList.reduce((sum, asset) => sum + (asset.current_value_eok ?? 0), 0);
+  if (hasKnownFinancialAssets && calculated.total_tax.value_eok !== null) {
     const gap = Math.max(calculated.total_tax.value_eok - financialAssets, 0);
-    calculated.liquidity_gap = moneyResult(gap, "calculable", gap === 0 ? "입력 금융자산 범위 내" : `${formatEok(gap)} 추가 재원 필요`, confirmedTaxBase.basis_id);
+    calculated.liquidity_gap = moneyResult(gap, "calculable", gap === 0 ? "확인된 금융자산 범위 내" : `${formatEok(gap)} 추가 재원 필요`, confirmedTaxBase.basis_id);
+  } else if (calculated.total_tax.value_eok !== null) {
+    calculated.liquidity_gap = moneyResult(null, "needs_info", "확인된 조달 가능 금융자산 필요", confirmedTaxBase.basis_id);
   }
 
   return calculated;
@@ -345,10 +352,14 @@ function comparisonBasis(facts: ClientFacts) {
   return [
     facts.client_facts_id,
     facts.planning_tracks.join("+"),
+    facts.family.basis,
     facts.family.spouse,
+    facts.family.total_children ?? "children_unknown",
+    facts.family.children_age_status,
     facts.family.adult_children ?? "adult_unknown",
     facts.family.minor_children ?? "minor_unknown",
-    facts.assets.map((asset) => `${asset.type}:${asset.current_value_eok ?? "unknown"}`).join("|")
+    facts.assets.map((asset) => `${asset.type}:${asset.owner}:${asset.current_value_eok ?? "unknown"}`).join("|"),
+    facts.debts.map((debt) => `${debt.type}:${debt.amount_eok ?? "unknown"}`).join("|")
   ].join("::");
 }
 

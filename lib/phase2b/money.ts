@@ -21,6 +21,26 @@ export type ParsedMoney =
       reason: string;
     };
 
+export type ParsedMoneyRange =
+  | {
+      status: "range";
+      min_eok: number;
+      max_eok: number;
+      min_won: number;
+      max_won: number;
+      normalized_label: string;
+      basis: "explicit_unit_range";
+    }
+  | {
+      status: "not_range" | "invalid";
+      min_eok: null;
+      max_eok: null;
+      min_won: null;
+      max_won: null;
+      normalized_label: string;
+      reason: string;
+    };
+
 export type MoneyMention = {
   raw: string;
   parsed: ParsedMoney;
@@ -28,10 +48,18 @@ export type MoneyMention = {
   end: number;
 };
 
-const EOK_WON = 100_000_000;
-const MAN_WON = 10_000;
+export const EOK_WON = 100_000_000;
+export const MAN_WON = 10_000;
 
-export function parseKoreanMoneyToEok(input?: string): ParsedMoney {
+export function eokToWon(valueEok: number) {
+  return Math.round(valueEok * EOK_WON);
+}
+
+export function wonToEok(valueWon: number) {
+  return roundEok(valueWon / EOK_WON);
+}
+
+export function parseKoreanMoneyToEok(input?: string, options: { allowZero?: boolean } = {}): ParsedMoney {
   const raw = input?.trim() ?? "";
   if (!raw) {
     return {
@@ -60,11 +88,13 @@ export function parseKoreanMoneyToEok(input?: string): ParsedMoney {
   }
 
   if (/^\d+(?:\.\d+)?$/.test(normalized)) {
+    const numeric = Number(normalized);
+    if (!isAllowedNonnegative(numeric, options.allowZero)) return invalidNumber(raw, options.allowZero);
     return {
       status: "needs_confirmation",
-      value_eok: Number(normalized),
-      value_won: Number(normalized) * EOK_WON,
-      normalized_label: `${formatNumber(Number(normalized))}억원으로 이해해도 될까요?`,
+      value_eok: numeric,
+      value_won: eokToWon(numeric),
+      normalized_label: `${formatNumber(numeric)}억원으로 이해해도 될까요?`,
       reason: "단위가 없는 숫자는 억원 단위인지 확인이 필요합니다."
     };
   }
@@ -75,7 +105,7 @@ export function parseKoreanMoneyToEok(input?: string): ParsedMoney {
 
   for (const match of normalized.matchAll(/(\d+(?:\.\d+)?)\s*억(?:원)?/g)) {
     const amount = Number(match[1]);
-    if (!isUsablePositive(amount)) return invalidNumber(raw);
+    if (!isAllowedNonnegative(amount, options.allowZero)) return invalidNumber(raw, options.allowZero);
     totalWon += amount * EOK_WON;
     matched = true;
     consumedRanges.push([match.index ?? 0, (match.index ?? 0) + match[0].length]);
@@ -83,7 +113,7 @@ export function parseKoreanMoneyToEok(input?: string): ParsedMoney {
 
   for (const match of normalized.matchAll(/(\d+(?:\.\d+)?)\s*천\s*만(?:원)?/g)) {
     const amount = Number(match[1]);
-    if (!isUsablePositive(amount)) return invalidNumber(raw);
+    if (!isAllowedNonnegative(amount, options.allowZero)) return invalidNumber(raw, options.allowZero);
     totalWon += amount * 1_000 * MAN_WON;
     matched = true;
     consumedRanges.push([match.index ?? 0, (match.index ?? 0) + match[0].length]);
@@ -93,7 +123,7 @@ export function parseKoreanMoneyToEok(input?: string): ParsedMoney {
     const range: [number, number] = [match.index ?? 0, (match.index ?? 0) + match[0].length];
     if (overlaps(range, consumedRanges)) continue;
     const amount = Number(match[1]);
-    if (!isUsablePositive(amount)) return invalidNumber(raw);
+    if (!isAllowedNonnegative(amount, options.allowZero)) return invalidNumber(raw, options.allowZero);
     totalWon += amount * MAN_WON;
     matched = true;
   }
@@ -109,7 +139,7 @@ export function parseKoreanMoneyToEok(input?: string): ParsedMoney {
   }
 
   const valueEok = roundEok(totalWon / EOK_WON);
-  if (!isUsablePositive(valueEok)) return invalidNumber(raw);
+  if (!isAllowedNonnegative(valueEok, options.allowZero)) return invalidNumber(raw, options.allowZero);
 
   return {
     status: "parsed",
@@ -120,19 +150,93 @@ export function parseKoreanMoneyToEok(input?: string): ParsedMoney {
   };
 }
 
+export function parseKoreanMoneyRangeToEok(input?: string): ParsedMoneyRange {
+  const raw = input?.trim() ?? "";
+  if (!raw) {
+    return {
+      status: "not_range",
+      min_eok: null,
+      max_eok: null,
+      min_won: null,
+      max_won: null,
+      normalized_label: "",
+      reason: "입력값이 없습니다."
+    };
+  }
+
+  const normalized = raw.replaceAll(",", "").replace(/\s+/g, " ").trim();
+  const match = normalized.match(/(\d+(?:\.\d+)?\s*(?:억(?:원)?|천\s*만(?:원)?|만(?:원)?)?)\s*(?:~|〜|부터|에서|-)\s*(\d+(?:\.\d+)?\s*(?:억(?:원)?|천\s*만(?:원)?|만(?:원)?)?)/);
+  if (!match) {
+    return {
+      status: "not_range",
+      min_eok: null,
+      max_eok: null,
+      min_won: null,
+      max_won: null,
+      normalized_label: raw,
+      reason: "범위 금액이 아닙니다."
+    };
+  }
+
+  const [, leftRaw, rightRaw] = match;
+  const inferredUnit = rightRaw.match(/억(?:원)?|천\s*만(?:원)?|만(?:원)?/)?.[0] ?? "";
+  const left = parseKoreanMoneyToEok(appendUnitIfMissing(leftRaw, inferredUnit));
+  const right = parseKoreanMoneyToEok(appendUnitIfMissing(rightRaw, inferredUnit));
+  if (left.status !== "parsed" || right.status !== "parsed" || left.value_won > right.value_won) {
+    return {
+      status: "invalid",
+      min_eok: null,
+      max_eok: null,
+      min_won: null,
+      max_won: null,
+      normalized_label: raw,
+      reason: "범위 금액을 해석할 수 없습니다."
+    };
+  }
+
+  return {
+    status: "range",
+    min_eok: left.value_eok,
+    max_eok: right.value_eok,
+    min_won: left.value_won,
+    max_won: right.value_won,
+    normalized_label: `${left.normalized_label}~${right.normalized_label}`,
+    basis: "explicit_unit_range"
+  };
+}
+
 export function extractMoneyMentions(text: string): MoneyMention[] {
   const mentions: MoneyMention[] = [];
-  const pattern = /\d+(?:\.\d+)?\s*(?:억(?:원)?|천\s*만(?:원)?|만(?:원)?)/g;
+  const ranges = extractMoneyRanges(text);
+  const pattern = /\d+(?:\.\d+)?\s*억(?:원)?(?:\s*\d+(?:\.\d+)?\s*천\s*만(?:원)?)?|\d+(?:\.\d+)?\s*천\s*만(?:원)?|\d+(?:\.\d+)?\s*만(?:원)?/g;
   for (const match of text.matchAll(pattern)) {
     const raw = match[0];
+    const start = match.index ?? 0;
+    const end = start + raw.length;
+    if (ranges.some((range) => start >= range.start && end <= range.end)) continue;
     mentions.push({
       raw,
       parsed: parseKoreanMoneyToEok(raw),
+      start,
+      end
+    });
+  }
+  return mentions;
+}
+
+export function extractMoneyRanges(text: string) {
+  const ranges: Array<{ raw: string; parsed: ParsedMoneyRange; start: number; end: number }> = [];
+  const pattern = /(\d+(?:\.\d+)?\s*(?:억(?:원)?|천\s*만(?:원)?|만(?:원)?)?)\s*(?:~|〜|부터|에서|-)\s*(\d+(?:\.\d+)?\s*(?:억(?:원)?|천\s*만(?:원)?|만(?:원)?)?)/g;
+  for (const match of text.matchAll(pattern)) {
+    const raw = match[0];
+    ranges.push({
+      raw,
+      parsed: parseKoreanMoneyRangeToEok(raw),
       start: match.index ?? 0,
       end: (match.index ?? 0) + raw.length
     });
   }
-  return mentions;
+  return ranges;
 }
 
 export function formatEokLabel(value: number | null | undefined) {
@@ -142,17 +246,17 @@ export function formatEokLabel(value: number | null | undefined) {
   return `${trimTrailingZeros(fixed)}억`;
 }
 
-function isUsablePositive(value: number) {
-  return Number.isFinite(value) && value > 0;
+function isAllowedNonnegative(value: number, allowZero = false) {
+  return Number.isFinite(value) && (allowZero ? value >= 0 : value > 0);
 }
 
-function invalidNumber(raw: string): ParsedMoney {
+function invalidNumber(raw: string, allowZero = false): ParsedMoney {
   return {
     status: "invalid",
     value_eok: null,
     value_won: null,
     normalized_label: raw,
-    reason: "해석 가능한 양수 금액이 아닙니다."
+    reason: allowZero ? "해석 가능한 0 이상의 금액이 아닙니다." : "해석 가능한 양수 금액이 아닙니다."
   };
 }
 
@@ -170,4 +274,10 @@ function formatNumber(value: number) {
 
 function trimTrailingZeros(value: string) {
   return value.replace(/\.0+$/, "").replace(/(\.\d*?)0+$/, "$1");
+}
+
+function appendUnitIfMissing(value: string, inferredUnit: string) {
+  const trimmed = value.trim();
+  if (/억(?:원)?|천\s*만(?:원)?|만(?:원)?/.test(trimmed) || !inferredUnit) return trimmed;
+  return `${trimmed}${inferredUnit}`;
 }

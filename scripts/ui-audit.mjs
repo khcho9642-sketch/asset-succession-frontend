@@ -40,21 +40,38 @@ function normalizePath(value) {
 
 async function completeHybridPrecheck(page) {
   await page.goto(`${baseURL}/precheck`, { waitUntil: "networkidle", timeout: 30_000 });
-  await page.getByRole("textbox", { name: "직접 입력" }).fill("상속 준비, 배우자 있음, 자녀 2명, 부동산 42억, 금융자산 8억, 담보대출 2억, 최근 10년 증여 있음, 납부재원 부족액이 궁금합니다.");
+  await page.evaluate(() => window.sessionStorage.clear());
+  await page.reload({ waitUntil: "networkidle" });
+  await page.getByRole("textbox", { name: "직접 입력" }).fill("증여 준비, 배우자 있음, 자녀 2명, 부동산 42억, 금융자산 8억, 담보대출 2억, 최근 10년 증여 있음, 일부를 미리 이전하고 납부재원 부족액이 궁금합니다. 기준안 과세표준 3억, 대안 과세표준 1.5억");
   await page.getByRole("button", { name: "직접 입력 이해하기" }).click();
   await page.getByText("제가 이렇게 이해했습니다.", { exact: true }).waitFor({ timeout: 10_000 });
-  await page.getByRole("button", { name: "맞아요" }).click();
+  await confirmAllCandidateFacts(page);
 
   await page.getByRole("button", { name: "다음" }).click();
   await page.getByRole("button", { name: "다음" }).click();
   await page.getByRole("button", { name: "다음" }).click();
   await page.getByRole("button", { name: "다음" }).click();
-  await page.getByRole("radio", { name: "상속세 납부재원 준비" }).click();
+  if (await page.getByRole("checkbox", { name: "상속세 납부재원 준비" }).getAttribute("aria-checked") !== "true") {
+    await page.getByRole("checkbox", { name: "상속세 납부재원 준비" }).click();
+  }
   await page.getByRole("button", { name: "다음" }).click();
-  await page.getByRole("radio", { name: "세금·비용" }).click();
+  if (await page.getByRole("checkbox", { name: "세금·비용" }).getAttribute("aria-checked") !== "true") {
+    await page.getByRole("checkbox", { name: "세금·비용" }).click();
+  }
+  await page.getByLabel("기준안 확인 과세표준(억원)").fill("3");
+  await page.getByLabel("우선 대안 확인 과세표준(억원)").fill("1.5");
   await page.getByRole("button", { name: "결과 보기" }).click();
   await page.waitForURL("**/precheck/result**", { timeout: 10_000 });
   await page.getByText("개인화 시나리오 플랜").waitFor({ timeout: 10_000 });
+}
+
+async function confirmAllCandidateFacts(page) {
+  for (let attempt = 0; attempt < 20; attempt += 1) {
+    const button = page.getByRole("button", { name: "이 사실만 확정" }).first();
+    if (await button.count() === 0) return;
+    await button.click();
+  }
+  throw new Error("Candidate confirmation loop exceeded expected fact count.");
 }
 
 await mkdir(outputDir, { recursive: true });
@@ -131,7 +148,7 @@ try {
         if (route.name === "precheck-query-bypass" && bodyText.includes("채무나 과거 증여처럼 결과에 영향을 주는 항목이 있나요?")) {
           fail(route.path, viewport.name, "Query parameter step bypass opened a future step directly.");
         }
-        const labels = ["준비 목적", "가족", "자산", "채무·과거 증여", "승계 목표", "결과 준비"];
+        const labels = ["준비 목적"];
         const missingLabels = labels.filter((label) => !bodyText.includes(label));
         if (viewport.name === "desktop" && missingLabels.length > 0) {
           fail(route.path, viewport.name, `Precheck sidebar is missing labels: ${missingLabels.join(", ")}`);
@@ -142,15 +159,26 @@ try {
           fail(route.path, viewport.name, "Mobile first viewport does not surface the planning-purpose question and first choice quickly enough.");
         }
         await page.getByRole("button", { name: "다음" }).click();
-        if (!await page.getByText(/현재 단계의 필수 항목을 입력해야/).isVisible()) {
+        if (!await page.getByText(/현재 질문에 답하거나|필수 항목/).isVisible()) {
           fail(route.path, viewport.name, "Required-choice validation did not block an empty planning-purpose step.");
         }
-        await page.getByRole("textbox", { name: "직접 입력" }).fill("상속 준비, 배우자 있음, 자녀 2명, 부동산 42억, 금융자산 8억");
+        await page.getByRole("textbox", { name: "직접 입력" }).fill("상속 준비, 배우자 있음, 자녀 2명, 아버지 재산이에요. 아파트 두 채와 예금 8억");
         await page.getByRole("button", { name: "직접 입력 이해하기" }).click();
         if (!await page.getByText("제가 이렇게 이해했습니다.", { exact: true }).isVisible()) {
           fail(route.path, viewport.name, "Direct input did not produce a confirmation candidate.");
         }
-        await page.getByRole("button", { name: "맞아요" }).click();
+        const candidateText = await page.locator("body").innerText();
+        if (candidateText.includes("부모 2명 기준") || candidateText.includes("미성년 자녀 수\n0명") || candidateText.includes("부동산 8억")) {
+          fail(route.path, viewport.name, "Conversational parser still makes forbidden family/asset inferences.");
+        }
+        await page.reload({ waitUntil: "networkidle" });
+        if (!await page.getByText("같은 탭의 진행 중 대화를 복원했습니다.").isVisible() || !await page.getByText("제가 이렇게 이해했습니다.", { exact: true }).isVisible()) {
+          fail(route.path, viewport.name, "Draft reload did not restore conversation and pending candidate state.");
+        }
+        await page.getByRole("button", { name: "이 사실만 확정" }).first().click();
+        if (await page.getByRole("button", { name: "제외" }).count() === 0) {
+          fail(route.path, viewport.name, "Candidate facts cannot be individually excluded after partial confirmation.");
+        }
         if (!await page.getByText("확정된 사실").isVisible()) {
           fail(route.path, viewport.name, "Confirmed conversational facts were not displayed after user confirmation.");
         }
@@ -247,7 +275,7 @@ try {
     await flowPage.getByText("개인화 시나리오 플랜").waitFor({ timeout: 10_000 });
     const resultText = await flowPage.locator("body").innerText();
     const assessmentMatch = resultText.match(/AS360-\d{8}-[A-Z0-9]+/);
-    if (!assessmentMatch || !resultText.includes("개인화 시나리오 플랜") || !resultText.includes("입력 총자산") || !resultText.includes("50억")) {
+    if (!assessmentMatch || !resultText.includes("개인화 시나리오 플랜") || !resultText.includes("입력 총자산") || !resultText.includes("50억") || !resultText.includes("0.5억 산출세액") || !resultText.includes("0.3억 절세 예상")) {
       fail("/precheck/result", viewport.name, "Hybrid precheck did not hand confirmed facts to the result page.");
     } else {
       const leakedResultNumbers = ["총자산 55억", "순자산 47억", "가용 현금\n5억", "부모 잔여재산\n55억", "9.5~12억", "6.3~8.6억"].filter((text) => resultText.includes(text));
@@ -263,7 +291,7 @@ try {
       await flowPage.getByText("Report V2 7/7").waitFor({ timeout: 10_000 });
       const reportText = await flowPage.locator("body").innerText();
       const pageCount = await flowPage.locator("[data-report-page]").count();
-      if (!reportText.includes(assessmentMatch[0]) || !reportText.includes("Report V2 7/7") || pageCount !== 7) {
+      if (!reportText.includes(assessmentMatch[0]) || !reportText.includes("Report V2 7/7") || !reportText.includes("우리 가족 자산승계 사전진단 보고서") || !reportText.includes("0.5억 산출세액") || !reportText.includes("0.2억 산출세액") || pageCount !== 7) {
         fail("/report-preview", viewport.name, `Report V2 did not render exactly seven personal pages. pages=${pageCount}`);
       }
       const leakedReportNumbers = ["55억", "9.5~12억", "6.3~8.6억", "채무·보증금\n8억", "입력 순자산\n42억"].filter((text) => reportText.includes(text));
@@ -299,7 +327,7 @@ try {
         fail("/consultation", viewport.name, "Consultation required-field validation did not run.");
       }
       await flowPage.getByLabel("상담 대표자").fill("가족 대표");
-      await flowPage.getByLabel("전화번호").fill("010-0000-0000");
+      await flowPage.getByLabel("전화번호").fill("000-0000-0000");
       await flowPage.getByLabel("상담 희망내용").fill("상속세 납부재원과 일부 증여를 함께 보고 싶습니다.");
       await flowPage.getByLabel(/개인정보 수집·이용/).check();
       await flowPage.getByRole("button", { name: "상담 신청하기" }).click();

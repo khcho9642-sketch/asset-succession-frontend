@@ -30,6 +30,8 @@ export type ClientFacts = {
   family: {
     basis: "one_parent" | "two_parents" | "multiple_heirs" | "unknown";
     spouse: "yes" | "no" | "unknown";
+    total_children: number | null;
+    children_age_status: "known" | "unknown";
     adult_children: number | null;
     minor_children: number | null;
   };
@@ -50,7 +52,12 @@ export type Asset = {
   asset_id: string;
   type: "real_estate" | "financial" | "business_interest" | "insurance" | "other";
   owner: "parent" | "spouse" | "child" | "family_company" | "unknown";
+  owner_note?: string;
   current_value_eok: number | null;
+  current_value_won?: number | null;
+  current_value_status?: "confirmed" | "range" | "needs_confirmation" | "unknown";
+  current_value_range_won?: { min: number; max: number } | null;
+  quantity?: number | null;
   acquisition_value_eok?: number | null;
   acquisition_date?: string | null;
   location_level?: "none" | "city_district" | "full_address_not_collected" | "unknown";
@@ -63,6 +70,7 @@ export type Debt = {
   debt_id: string;
   type: "secured_loan" | "lease_deposit" | "other";
   amount_eok: number | null;
+  amount_won?: number | null;
   linked_asset_id?: string;
   confirmation_status: "confirmed" | "amount_missing" | "unknown";
 };
@@ -126,6 +134,7 @@ export type ConfirmedTaxBase = {
   scenario_id: "baseline" | string;
   tax_kind: Extract<TaxKind, "inheritance_tax" | "gift_tax">;
   taxable_value_eok: number;
+  taxable_value_won: number;
   basis_id: string;
   source: ValueSource;
   confirmation_status: "confirmed";
