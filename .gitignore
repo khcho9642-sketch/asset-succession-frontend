@@ -16,3 +16,6 @@ out/
 .vercel/
 screenshot-*.png
 issue1-*.png
+
+.vercel
+.env*
