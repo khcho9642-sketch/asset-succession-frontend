@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Download, LockKeyhole } from "lucide-react";
+import { AssessmentMetrics } from "@/components/AssessmentMetrics";
 import { AssessmentSummary } from "@/components/AssessmentSummary";
 import { PublicLightNav } from "@/components/PublicLightNav";
 import { StrategyComparison } from "@/components/StrategyComparison";
@@ -14,27 +15,14 @@ export default function ResultPage() {
           <div>
             <p className="text-sm font-semibold tracking-[0.08em] text-[var(--gold)]">사전진단 결과</p>
             <h1 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.055em] text-[var(--navy-950)] md:text-6xl">
-              입력 정보 기준 사전 추정 결과입니다.
+              입력 요약과 전략별 검토 후보입니다.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-              확정 세액이 아니라 가족 회의와 전문가 상담을 위한 비교표입니다. 입력한 내용을 다시 작성하지 않고 상담으로 이어갈 수 있습니다.
+              확정 세액이 아니라 가족 회의와 전문가 상담을 위한 비교표입니다. 입력 자산 합계는 사전진단에서 가져오고, 전략 숫자는 계산엔진 연결 전 합성 예시로 표시합니다.
             </p>
           </div>
           <div className="grid gap-4">
-            <div className="grid gap-4 sm:grid-cols-3">
-              <article className="border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
-                <p className="text-sm text-white/60">총 부담</p>
-                <strong className="mt-4 block text-4xl tracking-[-0.06em]">5.6~12억</strong>
-              </article>
-              <article className="border border-[var(--border)] bg-white p-6">
-                <p className="text-sm text-[var(--muted)]">즉시 필요현금</p>
-                <strong className="mt-4 block text-4xl tracking-[-0.06em] text-[var(--navy-950)]">2.4~3.5억</strong>
-              </article>
-              <article className="border border-[var(--border)] bg-white p-6">
-                <p className="text-sm text-[var(--muted)]">납부재원 부족액</p>
-                <strong className="mt-4 block text-4xl tracking-[-0.06em] text-[var(--navy-950)]">최대 7억</strong>
-              </article>
-            </div>
+            <AssessmentMetrics />
             <div className="grid gap-4 sm:grid-cols-2">
               <article className="border border-[var(--border)] bg-white p-5">
                 <p className="text-sm text-[var(--muted)]">비교 전략</p>
@@ -87,7 +75,7 @@ export default function ResultPage() {
 
         <div className="mt-12 flex flex-wrap items-center gap-4 border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
           <LockKeyhole className="h-5 w-5 text-[var(--gold)]" />
-          <p className="flex-1 text-sm leading-6 text-white/70">본 결과는 입력 정보 기준 사전 추정이며 확정 세액이 아닙니다.</p>
+          <p className="flex-1 text-sm leading-6 text-white/70">본 결과는 입력 스냅샷과 합성 전략 예시를 결합한 화면이며 확정 세액이 아닙니다.</p>
           <Link href="/report-preview" className="inline-flex items-center gap-2 bg-white px-5 py-3 text-sm font-semibold text-[var(--navy-950)]">
             <Download className="h-4 w-4" /> 무료 보고서 다운로드
           </Link>

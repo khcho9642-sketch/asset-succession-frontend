@@ -162,8 +162,8 @@ export function PrecheckWizard() {
   }
 
   return (
-    <section className="mx-auto grid max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[0.78fr_1.22fr] lg:px-8 lg:py-18">
-      <aside className="border border-[var(--border)] bg-white p-6">
+    <section className="mx-auto grid max-w-7xl gap-10 px-4 py-5 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8 lg:py-18">
+      <aside className="hidden border border-[var(--border)] bg-white p-6 lg:block">
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">무료 사전진단</p>
         <h1 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.05em] text-[var(--navy-950)]">
           신고서가 아니라 상담을 시작하는 질문입니다.
@@ -197,12 +197,19 @@ export function PrecheckWizard() {
         </div>
       </aside>
 
-      <section className="border border-[var(--border)] bg-white p-6 md:p-10">
+      <section className="border border-[var(--border)] bg-white p-5 md:p-10">
+        <div className="mb-5 border border-[var(--border)] bg-[var(--ivory)] p-4 lg:hidden">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-sm font-semibold text-[var(--gold)]">{activeStep + 1}/5 {step.label}</p>
+            <p className="text-xs text-[var(--muted)]">무료 사전진단</p>
+          </div>
+          <p className="mt-2 text-xs leading-5 text-[var(--muted)]">주소·실명 없이 큰 금액과 가족 구성만 선택합니다.</p>
+        </div>
         <div className="h-1 bg-[var(--border)]">
           <div className="h-1 bg-[var(--gold)] transition-all" style={{ width: `${progress}%` }} />
         </div>
-        <p className="mt-10 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">{step.eyebrow}</p>
-        <h2 className="mt-4 max-w-2xl text-4xl font-semibold leading-tight tracking-[-0.05em] text-[var(--navy-950)]">
+        <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold)] lg:mt-10">{step.eyebrow}</p>
+        <h2 className="mt-3 max-w-2xl text-3xl font-semibold leading-tight tracking-[-0.05em] text-[var(--navy-950)] md:text-4xl">
           {step.title}
         </h2>
         <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--muted)]">{step.helper}</p>

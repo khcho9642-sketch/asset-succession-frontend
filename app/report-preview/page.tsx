@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CircleAlert, FileText, ShieldCheck, WalletCards } from "lucide-react";
+import { AssessmentMetrics } from "@/components/AssessmentMetrics";
 import { AssessmentSummary } from "@/components/AssessmentSummary";
 import { PublicLightNav } from "@/components/PublicLightNav";
 import { PrintButton } from "@/components/PrintButton";
 import { StrategyComparison } from "@/components/StrategyComparison";
-import { expertIssues, projectSnapshot, strategyBranches } from "@/lib/mockData";
+import { expertIssues, strategyBranches } from "@/lib/mockData";
 
 export default function ReportPreviewPage() {
   return (
@@ -31,18 +32,8 @@ export default function ReportPreviewPage() {
             <AssessmentSummary compact />
           </section>
 
-          <section className="report-section mt-10 grid gap-4 md:grid-cols-4">
-            {[
-              ["총자산", projectSnapshot.totalAssets],
-              ["순자산", projectSnapshot.netAssets],
-              ["가용 현금", projectSnapshot.cashAvailable],
-              ["납부재원 부족", projectSnapshot.estimatedFundingGap]
-            ].map(([label, value]) => (
-              <article key={label} className="border border-[var(--border)] bg-[var(--ivory)] p-5">
-                <p className="text-sm text-[var(--muted)]">{label}</p>
-                <strong className="mt-3 block text-3xl tracking-[-0.05em] text-[var(--navy-950)]">{value}</strong>
-              </article>
-            ))}
+          <section className="report-section mt-8">
+            <AssessmentMetrics mode="report" />
           </section>
 
           <section className="report-section mt-10 grid gap-5 md:grid-cols-2">
@@ -50,14 +41,14 @@ export default function ReportPreviewPage() {
               <FileText className="h-5 w-5 text-[var(--gold)]" />
               <h2 className="mt-5 text-2xl font-semibold tracking-[-0.04em]">가족·자산 요약</h2>
               <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
-                부모 2명과 자녀 2명을 기준으로, 부동산 42억·금융자산 8억·보험 납부재원 후보 5억을 비교합니다.
+                위 사전진단 스냅샷에 기록된 가족 구성과 자산 금액을 기준으로 상담 쟁점을 정리합니다. 주소·계좌·실명 정보는 포함하지 않습니다.
               </p>
             </article>
             <article className="border border-[var(--border)] p-6">
               <ShieldCheck className="h-5 w-5 text-[var(--success)]" />
               <h2 className="mt-5 text-2xl font-semibold tracking-[-0.04em]">선택한 승계 목표</h2>
               <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
-                세금 부담, 즉시 필요현금, 부모 통제권, 자녀 이전효과, 납부재원 부족액을 함께 보는 균형형 검토입니다.
+                사전진단에서 선택한 목표와 우선 관점을 바탕으로 세금 부담, 즉시 필요현금, 통제권, 자녀 이전효과를 함께 검토합니다.
               </p>
             </article>
           </section>
@@ -76,7 +67,7 @@ export default function ReportPreviewPage() {
             <article className="border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
               <WalletCards className="h-5 w-5 text-[var(--gold)]" />
               <h2 className="mt-5 text-2xl font-semibold tracking-[-0.04em]">납부재원 부족 분석</h2>
-              <p className="mt-3 text-sm leading-7 text-white/68">현 상태 유지 후 상속 시 부족액은 7억 수준으로, 보험·단계적 이전·일부 매각 조합 검토가 필요합니다.</p>
+              <p className="mt-3 text-sm leading-7 text-white/68">입력 금융자산은 납부재원 후보로만 표시합니다. 실제 부족액은 취득가액, 채무승계, 공제, 납부기한을 확인한 뒤 정밀 계산에서 확정합니다.</p>
             </article>
             <article className="border border-[var(--border)] p-6">
               <h2 className="text-2xl font-semibold tracking-[-0.04em]">가족법인 검토 가능성</h2>
@@ -85,6 +76,21 @@ export default function ReportPreviewPage() {
             <article className="border border-[var(--border)] p-6">
               <h2 className="text-2xl font-semibold tracking-[-0.04em]">보험 검토 가능성</h2>
               <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{strategyBranches[5].status_detail} 계약자·수익자 구조가 핵심 확인사항입니다.</p>
+            </article>
+          </section>
+
+          <section className="report-section mt-8 grid gap-5 md:grid-cols-3">
+            <article className="border border-[var(--border)] bg-[var(--ivory)] p-6">
+              <h2 className="text-xl font-semibold tracking-[-0.04em]">우선 검토 후보</h2>
+              <p className="mt-3 text-sm leading-7 text-[var(--muted)]">부담부증여, 단계적 증여, 보험 납부재원, 가족법인은 같은 가족 의사결정 표 안에서 비교합니다.</p>
+            </article>
+            <article className="border border-[var(--border)] bg-[var(--ivory)] p-6">
+              <h2 className="text-xl font-semibold tracking-[-0.04em]">다음 준비사항</h2>
+              <p className="mt-3 text-sm leading-7 text-[var(--muted)]">취득가액, 보유기간, 채무증빙, 최근 10년 증여, 보험 계약자·수익자 구조를 확인합니다.</p>
+            </article>
+            <article className="border border-[var(--border)] bg-[var(--ivory)] p-6">
+              <h2 className="text-xl font-semibold tracking-[-0.04em]">가족회의 질문</h2>
+              <p className="mt-3 text-sm leading-7 text-[var(--muted)]">세금 최소화, 부모 통제권, 자녀별 형평성 중 어떤 기준을 우선할지 먼저 합의합니다.</p>
             </article>
           </section>
 

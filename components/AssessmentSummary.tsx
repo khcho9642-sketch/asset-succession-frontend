@@ -2,42 +2,49 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ASSESSMENT_STORAGE_KEY, formatAnswer } from "@/lib/assessment";
-import type { AssessmentSnapshot } from "@/lib/assessment";
+import { formatAnswer, readAssessmentFromSession } from "@/lib/assessment";
+import type { AssessmentLoadResult } from "@/lib/assessment";
 
 export function AssessmentSummary({ compact = false }: Readonly<{ compact?: boolean }>) {
-  const [snapshot, setSnapshot] = useState<AssessmentSnapshot | null | undefined>(undefined);
+  const [loadResult, setLoadResult] = useState<AssessmentLoadResult>({ status: "loading" });
 
   useEffect(() => {
-    const raw = window.sessionStorage.getItem(ASSESSMENT_STORAGE_KEY);
-    if (!raw) {
-      setSnapshot(null);
-      return;
-    }
-    try {
-      setSnapshot(JSON.parse(raw) as AssessmentSnapshot);
-    } catch {
-      setSnapshot(null);
-    }
+    setLoadResult(readAssessmentFromSession());
   }, []);
 
-  if (snapshot === undefined) {
+  if (loadResult.status === "loading") {
     return <div className="border border-[var(--border)] bg-white p-5 text-sm text-[var(--muted)]">사전진단 요약을 확인하는 중입니다.</div>;
   }
 
-  if (!snapshot) {
+  if (loadResult.status === "missing") {
     return (
-      <div className="border border-[var(--border)] bg-white p-6">
+      <div className="border border-[var(--border)] bg-white p-6 empty-assessment-card">
         <p className="text-sm font-semibold text-[var(--gold)]">사전진단 입력값 없음</p>
         <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[var(--navy-950)]">먼저 무료 사전진단을 완료해 주세요.</h2>
         <p className="mt-3 text-sm leading-7 text-[var(--muted)]">이 브라우저 세션에 연결된 진단 스냅샷이 없어 고정 예시만 볼 수 있습니다.</p>
-        <Link href="/precheck" className="mt-5 inline-flex bg-[var(--navy-950)] px-5 py-3 text-sm font-semibold text-white">
+        <Link href="/precheck" className="mt-5 inline-flex bg-[var(--navy-950)] px-5 py-3 text-sm font-semibold text-white print:hidden">
           사전진단 시작하기
         </Link>
       </div>
     );
   }
 
+  if (loadResult.status === "mismatch") {
+    return (
+      <div className="border border-[var(--warning)] bg-[#fff8ee] p-6">
+        <p className="text-sm font-semibold text-[var(--warning)]">사전진단 ID 불일치</p>
+        <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[var(--navy-950)]">현재 URL과 저장된 진단값이 다릅니다.</h2>
+        <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
+          URL ID는 {loadResult.requestedId}이고, 이 브라우저에 저장된 ID는 {loadResult.snapshotId}입니다. 잘못된 가족회의 링크가 섞이지 않도록 새로 진단을 시작해 주세요.
+        </p>
+        <Link href="/precheck" className="mt-5 inline-flex bg-[var(--navy-950)] px-5 py-3 text-sm font-semibold text-white print:hidden">
+          사전진단 다시 시작하기
+        </Link>
+      </div>
+    );
+  }
+
+  const { snapshot } = loadResult;
   const entries = Object.entries(snapshot.answers);
 
   return (

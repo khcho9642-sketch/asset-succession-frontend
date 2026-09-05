@@ -74,6 +74,21 @@ try {
       deviceScaleFactor: 1
     });
 
+    const emptyConsultationPage = await context.newPage();
+    await emptyConsultationPage.goto(`${baseURL}/consultation`, { waitUntil: "networkidle", timeout: 30_000 });
+    const emptyConsultationText = await emptyConsultationPage.locator("body").innerText();
+    if (!emptyConsultationText.includes("상담 신청 전 사전진단이 필요합니다.") || emptyConsultationText.includes("입력한 내용을 다시 작성할 필요가 없습니다.")) {
+      fail("/consultation", viewport.name, "Consultation without stored assessment does not clearly lock the form and remove the handoff-copy.");
+    }
+    if (await emptyConsultationPage.getByRole("button", { name: "상담 신청하기" }).count() > 0) {
+      fail("/consultation", viewport.name, "Consultation without stored assessment still exposes the submit button.");
+    }
+    await emptyConsultationPage.screenshot({
+      path: path.join(outputDir, `${viewport.name}-consultation-empty-locked.png`),
+      fullPage: true
+    });
+    await emptyConsultationPage.close();
+
     for (const route of routes) {
       const page = await context.newPage();
       const url = `${baseURL}${route.path}`;
@@ -160,7 +175,8 @@ try {
 
       if (route.path === "/precheck") {
         const requiredSteps = ["가족", "자산", "채무·과거 증여", "승계 목표", "결과 준비"];
-        const missingSteps = requiredSteps.filter((step) => !bodyText.includes(step));
+        const expectedStepLabels = viewport.name === "mobile" ? ["가족"] : requiredSteps;
+        const missingSteps = expectedStepLabels.filter((step) => !bodyText.includes(step));
         if (missingSteps.length > 0) {
           fail(route.path, viewport.name, `Wizard is missing step labels: ${missingSteps.join(", ")}`);
         }
@@ -177,8 +193,16 @@ try {
           fail(route.path, viewport.name, "No previous-step control was found; the page does not expose reversible wizard navigation.");
         }
 
+        if (viewport.name === "mobile") {
+          const firstQuestionBox = await page.getByText("승계 의사결정에 참여할 가족 구성을 알려주세요.").boundingBox();
+          const firstChoiceBox = await page.getByRole("radio", { name: "부모 2명 기준" }).boundingBox();
+          if (!firstQuestionBox || firstQuestionBox.y > viewport.height * 0.56 || !firstChoiceBox || firstChoiceBox.y > viewport.height * 0.72) {
+            fail(route.path, viewport.name, "Mobile first viewport does not surface the first precheck question and primary choice quickly enough.");
+          }
+        }
+
         const futureStepButton = page.getByRole("button", { name: "결과 준비" });
-        if (!await futureStepButton.isDisabled()) {
+        if (await futureStepButton.count() > 0 && !await futureStepButton.isDisabled()) {
           fail(route.path, viewport.name, "Wizard allows direct jumping to Step 5 before prior required steps are complete.");
         }
 
@@ -238,6 +262,9 @@ try {
           fail(route.path, viewport.name, "Step 3 '잘 모르겠음' is not mutually exclusive with '해당 없음'.");
         }
 
+        await page.getByRole("checkbox", { name: "담보대출 있음" }).click();
+        await page.getByRole("checkbox", { name: "최근 10년 증여 있음" }).click();
+
         await page.getByRole("button", { name: "다음" }).click();
         await page.getByRole("radio", { name: "상속세 납부재원 준비" }).click();
         await page.getByRole("button", { name: "다음" }).click();
@@ -261,14 +288,27 @@ try {
         if (!assessmentMatch || !resultText.includes("부동산: 42억") || !resultText.includes("금융자산: 8억")) {
           fail(route.path, viewport.name, "Assessment snapshot was not handed off to the result page.");
         } else {
+          if (!resultText.includes("50억") || resultText.includes("총자산 55억") || resultText.includes("순자산 47억") || resultText.includes("가용 현금\n5억")) {
+            fail(route.path, viewport.name, "Result page still mixes assessment inputs with fixed projectSnapshot totals or fixed funding-gap values.");
+          }
           await page.screenshot({
             path: path.join(outputDir, `${viewport.name}-result-with-assessment.png`),
             fullPage: true
           });
 
-          await page.goto(`${baseURL}/report-preview`, { waitUntil: "networkidle", timeout: 30_000 });
+          await page.goto(`${baseURL}/precheck/result?assessment_id=AS360-19990101-STALE`, { waitUntil: "networkidle", timeout: 30_000 });
+          const mismatchText = await page.locator("body").innerText();
+          if (!mismatchText.includes("사전진단 ID 불일치")) {
+            fail(route.path, viewport.name, "Result page does not reject mismatched assessment_id query parameters.");
+          }
+          await page.screenshot({
+            path: path.join(outputDir, `${viewport.name}-result-assessment-mismatch.png`),
+            fullPage: true
+          });
+
+          await page.goto(`${baseURL}/report-preview?assessment_id=${encodeURIComponent(assessmentMatch[0])}`, { waitUntil: "networkidle", timeout: 30_000 });
           const reportHandoffText = await page.locator("body").innerText();
-          if (!reportHandoffText.includes(assessmentMatch[0]) || !reportHandoffText.includes("우선 관점: 세금·비용")) {
+          if (!reportHandoffText.includes(assessmentMatch[0]) || !reportHandoffText.includes("우선 관점: 세금·비용") || !reportHandoffText.includes("입력 총자산") || !reportHandoffText.includes("50억")) {
             fail(route.path, viewport.name, "Assessment snapshot was not handed off to report preview.");
           }
           await page.screenshot({
