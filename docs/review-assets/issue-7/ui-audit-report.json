@@ -1,0 +1,119 @@
+{
+  "generatedAt": "2026-09-05T15:24:56.908Z",
+  "baseURL": "http://127.0.0.1:4173",
+  "failures": [],
+  "observations": [
+    {
+      "route": "/",
+      "viewport": "desktop",
+      "screenshot": "desktop-landing.png",
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "route": "/precheck",
+      "viewport": "desktop",
+      "screenshot": "desktop-wizard-step1.png",
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "route": "/precheck?step=3",
+      "viewport": "desktop",
+      "screenshot": "desktop-wizard-step3.png",
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "route": "/precheck/result",
+      "viewport": "desktop",
+      "screenshot": "desktop-result.png",
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "route": "/expert/overview",
+      "viewport": "desktop",
+      "screenshot": "desktop-expert-overview.png",
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "route": "/expert/workspace",
+      "viewport": "desktop",
+      "screenshot": "desktop-expert-workspace.png",
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "route": "/report-preview",
+      "viewport": "desktop",
+      "screenshot": "desktop-report-preview.png",
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "route": "/phase-2b",
+      "viewport": "desktop",
+      "screenshot": "desktop-phase-2b-engine.png",
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "route": "/",
+      "viewport": "mobile",
+      "screenshot": "mobile-landing.png",
+      "documentWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "route": "/precheck",
+      "viewport": "mobile",
+      "screenshot": "mobile-wizard-step1.png",
+      "documentWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "route": "/precheck?step=3",
+      "viewport": "mobile",
+      "screenshot": "mobile-wizard-step3.png",
+      "documentWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "route": "/precheck/result",
+      "viewport": "mobile",
+      "screenshot": "mobile-result.png",
+      "documentWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "route": "/expert/overview",
+      "viewport": "mobile",
+      "screenshot": "mobile-expert-overview.png",
+      "documentWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "route": "/expert/workspace",
+      "viewport": "mobile",
+      "screenshot": "mobile-expert-workspace.png",
+      "documentWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "route": "/report-preview",
+      "viewport": "mobile",
+      "screenshot": "mobile-report-preview.png",
+      "documentWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "route": "/phase-2b",
+      "viewport": "mobile",
+      "screenshot": "mobile-phase-2b-engine.png",
+      "documentWidth": 390,
+      "viewportWidth": 390
+    }
+  ]
+}

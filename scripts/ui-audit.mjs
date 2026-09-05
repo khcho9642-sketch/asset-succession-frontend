@@ -12,7 +12,8 @@ const routes = [
   { name: "result", path: "/precheck/result", area: "public" },
   { name: "expert-overview", path: "/expert/overview", area: "expert" },
   { name: "expert-workspace", path: "/expert/workspace", area: "expert" },
-  { name: "report-preview", path: "/report-preview", area: "public" }
+  { name: "report-preview", path: "/report-preview", area: "public" },
+  { name: "phase-2b-engine", path: "/phase-2b", area: "internal" }
 ];
 
 const viewports = [
@@ -539,6 +540,24 @@ try {
             fail(route.path, viewport.name, `Print preview is missing full comparison metric(s): ${missingPrintFields.join(", ")}`);
           }
           await page.emulateMedia({ media: "screen" });
+        }
+      }
+
+      if (route.path === "/phase-2b") {
+        const requiredEngineLabels = [
+          "PHASE 2B ENGINE FOUNDATION",
+          "상속",
+          "증여",
+          "가업상속·가업승계",
+          "양도",
+          "계산엔진 연결 후 산정",
+          "기준안 계산 후 산정",
+          "Report V2 #5",
+          "Conversational Precheck V2 #6"
+        ];
+        const missingEngineLabels = requiredEngineLabels.filter((label) => !bodyText.includes(label));
+        if (missingEngineLabels.length > 0) {
+          fail(route.path, viewport.name, `Phase 2B engine story is missing contract labels: ${missingEngineLabels.join(", ")}`);
         }
       }
 

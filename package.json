@@ -6,7 +6,8 @@
     "dev": "next dev",
     "lint": "eslint app components lib --ext .ts,.tsx",
     "build": "next build",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:phase2b": "node scripts/run-phase2b-unit-tests.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.41.0",
