@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CircleAlert, FileText, ShieldCheck, WalletCards } from "lucide-react";
+import { AssessmentSummary } from "@/components/AssessmentSummary";
 import { PublicLightNav } from "@/components/PublicLightNav";
 import { PrintButton } from "@/components/PrintButton";
 import { StrategyComparison } from "@/components/StrategyComparison";
@@ -25,6 +26,10 @@ export default function ReportPreviewPage() {
             <PrintButton />
           </div>
           <p className="mt-3 text-xs text-[var(--muted)] print:hidden">단축키 Ctrl+P 또는 브라우저 메뉴에서 PDF 저장을 선택합니다.</p>
+
+          <section className="report-section mt-8">
+            <AssessmentSummary compact />
+          </section>
 
           <section className="report-section mt-10 grid gap-4 md:grid-cols-4">
             {[

@@ -231,22 +231,22 @@ export const wizardSteps: WizardStep[] = [
     label: "가족",
     eyebrow: "Step 1",
     title: "승계 의사결정에 참여할 가족 구성을 알려주세요.",
-    helper: "정확한 실명 대신 관계와 인원만으로도 사전진단을 시작할 수 있습니다.",
-    primaryQuestion: "가족 구성은 어떤 형태에 가깝나요?",
-    choices: ["부모 1명 + 자녀", "부모 2명 + 자녀", "배우자 포함", "공동상속인 많음"],
-    secondaryQuestion: "자녀 세대는 몇 명인가요?",
-    secondaryPlaceholder: "예: 2명"
+    helper: "정확한 실명 대신 관계, 배우자 유무, 자녀 수만으로 사전진단을 시작할 수 있습니다.",
+    primaryQuestion: "상담 기준이 되는 가족 구조는 무엇인가요?",
+    choices: ["부모 1명 기준", "부모 2명 기준", "공동상속인 많음", "아직 정리 전"],
+    secondaryQuestion: "가족 관계에서 특별히 고려할 점이 있나요?",
+    secondaryPlaceholder: "예: 자녀별 형평, 배우자 생활재원"
   },
   {
     key: "assets",
     label: "자산",
     eyebrow: "Step 2",
     title: "승계 대상 자산의 큰 구성을 선택해 주세요.",
-    helper: "주소나 증빙 없이 자산 유형과 대략적인 규모만 입력합니다.",
-    primaryQuestion: "가장 큰 비중의 자산은 무엇인가요?",
+    helper: "상세주소·계좌번호 없이 자산 유형별 대략 금액만 입력합니다.",
+    primaryQuestion: "보유한 자산 유형을 모두 선택해 주세요.",
     choices: ["부동산", "금융자산", "법인지분", "보험", "기타"],
-    secondaryQuestion: "전체 자산 규모는 어느 정도인가요?",
-    secondaryPlaceholder: "예: 55억"
+    secondaryQuestion: "전체 자산을 한 줄로 요약하면 어떻게 보이나요?",
+    secondaryPlaceholder: "예: 부동산 비중이 높고 현금은 5억 내외"
   },
   {
     key: "debt",

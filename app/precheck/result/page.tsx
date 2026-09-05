@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Download, LockKeyhole } from "lucide-react";
+import { AssessmentSummary } from "@/components/AssessmentSummary";
 import { PublicLightNav } from "@/components/PublicLightNav";
 import { StrategyComparison } from "@/components/StrategyComparison";
 import { strategyBranches } from "@/lib/mockData";
@@ -45,6 +46,10 @@ export default function ResultPage() {
               </article>
             </div>
           </div>
+        </div>
+
+        <div className="mt-8">
+          <AssessmentSummary />
         </div>
 
         <section className="mt-12 grid gap-4 lg:grid-cols-3">
