@@ -17,11 +17,12 @@ async function completeWizard(page) {
 
   await page.getByRole("checkbox", { name: "부동산" }).click();
   await page.getByRole("checkbox", { name: "금융자산" }).click();
-  await page.getByPlaceholder("부동산 예: 20억").fill("42억");
-  await page.getByPlaceholder("금융자산 예: 20억").fill("8억");
+  await page.getByLabel("부동산 금액(억원)").fill("42");
+  await page.getByLabel("금융자산 금액(억원)").fill("8");
   await page.getByRole("button", { name: "다음" }).click();
 
   await page.getByRole("checkbox", { name: "담보대출 있음" }).click();
+  await page.getByLabel("담보대출 있음 금액(억원)").fill("2");
   await page.getByRole("checkbox", { name: "최근 10년 증여 있음" }).click();
   await page.getByRole("button", { name: "다음" }).click();
 
@@ -60,9 +61,13 @@ try {
   const assessmentId = resultText.match(/AS360-\d{8}-[A-Z0-9]+/)?.[0];
   assert(assessmentId, "Assessment ID missing from result page.");
   assert(resultText.includes("부동산: 42억") && resultText.includes("금융자산: 8억"), "Assessment answers missing from result page.");
+  assert(resultText.includes("계산엔진 연결 후 산정") && !resultText.includes("9.5~12억") && !resultText.includes("부모 잔여재산\n55억"), "Result page still exposes fixed sample strategy numbers.");
 
   await page.goto(`${baseURL}/report-preview`, { waitUntil: "networkidle" });
-  assert((await page.locator("body").innerText()).includes(assessmentId), "Assessment ID missing from report preview.");
+  const reportText = await page.locator("body").innerText();
+  assert(reportText.includes(assessmentId), "Assessment ID missing from report preview.");
+  assert(reportText.includes("입력 총자산") && reportText.includes("50억"), "Input asset total missing from report preview.");
+  assert(!reportText.includes("55억") && !reportText.includes("9.5~12억") && !reportText.includes("6.3~8.6억"), "Report preview still exposes fixed sample strategy numbers.");
 
   await page.goto(`${baseURL}/consultation`, { waitUntil: "networkidle" });
   assert((await page.locator("body").innerText()).includes(assessmentId), "Assessment ID missing from consultation page.");

@@ -18,7 +18,7 @@ export default function ResultPage() {
               입력 요약과 전략별 검토 후보입니다.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-              확정 세액이 아니라 가족 회의와 전문가 상담을 위한 비교표입니다. 입력 자산 합계는 사전진단에서 가져오고, 전략 숫자는 계산엔진 연결 전 합성 예시로 표시합니다.
+              확정 세액이 아니라 가족 회의와 전문가 상담을 위한 비교표입니다. 입력 자산 합계는 사전진단에서 가져오고, 전략별 세액·부족액은 계산엔진 연결 전까지 숫자로 산정하지 않습니다.
             </p>
           </div>
           <div className="grid gap-4">
@@ -47,7 +47,7 @@ export default function ResultPage() {
             <p className="mt-3 text-sm leading-7 text-[var(--muted)]">세금 총액보다 실제 현금으로 준비해야 할 부족분을 먼저 확인합니다.</p>
           </article>
           <article className="border border-[var(--border)] bg-white p-6">
-            <p className="text-sm font-semibold text-[var(--gold)]">정밀 검토 후보</p>
+            <p className="text-sm font-semibold text-[var(--gold)]">일반 검토 예시</p>
             <h2 className="mt-4 text-2xl font-semibold tracking-[-0.04em]">부담부증여·가족법인</h2>
             <p className="mt-3 text-sm leading-7 text-[var(--muted)]">채무승계 증빙과 지분평가 기준이 확인되어야 비교가 의미 있습니다.</p>
           </article>
@@ -75,7 +75,7 @@ export default function ResultPage() {
 
         <div className="mt-12 flex flex-wrap items-center gap-4 border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
           <LockKeyhole className="h-5 w-5 text-[var(--gold)]" />
-          <p className="flex-1 text-sm leading-6 text-white/70">본 결과는 입력 스냅샷과 합성 전략 예시를 결합한 화면이며 확정 세액이 아닙니다.</p>
+          <p className="flex-1 text-sm leading-6 text-white/70">본 결과는 입력 스냅샷을 바탕으로 상담 쟁점을 정리한 화면이며 확정 세액이 아닙니다.</p>
           <Link href="/report-preview" className="inline-flex items-center gap-2 bg-white px-5 py-3 text-sm font-semibold text-[var(--navy-950)]">
             <Download className="h-4 w-4" /> 무료 보고서 다운로드
           </Link>

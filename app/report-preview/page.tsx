@@ -21,7 +21,7 @@ export default function ReportPreviewPage() {
           <p className="text-sm font-semibold tracking-[0.08em] text-[var(--gold)]">무료 보고서 미리보기</p>
           <h1 className="mt-4 text-4xl font-semibold tracking-[-0.055em] text-[var(--navy-950)]">무료 자산승계 사전진단 보고서</h1>
           <p className="mt-4 text-sm leading-7 text-[var(--muted)]">
-            합성 입력값으로 구성한 가족 회의용 미리보기입니다. 확정 세액이 아니라 상담 전 비교 기준과 추가 확인사항을 정리합니다.
+            입력하신 답변을 바탕으로 구성한 가족 회의용 미리보기입니다. 전략별 세액·부족액은 계산엔진 연결 전까지 숫자로 표시하지 않고, 상담 전 비교 기준과 추가 확인사항만 정리합니다.
           </p>
           <div className="print:hidden">
             <PrintButton />
@@ -56,7 +56,7 @@ export default function ReportPreviewPage() {
           <section className="report-section mt-10">
             <div className="mb-5 flex items-end justify-between gap-4">
               <div>
-                <p className="text-sm font-semibold text-[var(--gold)]">7개 전략 비교</p>
+                <p className="text-sm font-semibold text-[var(--gold)]">7개 전략 검토틀</p>
                 <h2 className="mt-2 text-2xl font-semibold tracking-[-0.04em]">같은 기준으로 본 선택지</h2>
               </div>
             </div>
@@ -66,7 +66,7 @@ export default function ReportPreviewPage() {
           <section className="report-section mt-10 grid gap-5 md:grid-cols-3">
             <article className="border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
               <WalletCards className="h-5 w-5 text-[var(--gold)]" />
-              <h2 className="mt-5 text-2xl font-semibold tracking-[-0.04em]">납부재원 부족 분석</h2>
+              <h2 className="mt-5 text-2xl font-semibold tracking-[-0.04em]">납부재원 검토 방식</h2>
               <p className="mt-3 text-sm leading-7 text-white/68">입력 금융자산은 납부재원 후보로만 표시합니다. 실제 부족액은 취득가액, 채무승계, 공제, 납부기한을 확인한 뒤 정밀 계산에서 확정합니다.</p>
             </article>
             <article className="border border-[var(--border)] p-6">
@@ -81,7 +81,7 @@ export default function ReportPreviewPage() {
 
           <section className="report-section mt-8 grid gap-5 md:grid-cols-3">
             <article className="border border-[var(--border)] bg-[var(--ivory)] p-6">
-              <h2 className="text-xl font-semibold tracking-[-0.04em]">우선 검토 후보</h2>
+              <h2 className="text-xl font-semibold tracking-[-0.04em]">일반 검토 예시</h2>
               <p className="mt-3 text-sm leading-7 text-[var(--muted)]">부담부증여, 단계적 증여, 보험 납부재원, 가족법인은 같은 가족 의사결정 표 안에서 비교합니다.</p>
             </article>
             <article className="border border-[var(--border)] bg-[var(--ivory)] p-6">
@@ -97,7 +97,7 @@ export default function ReportPreviewPage() {
           <section className="report-section mt-10 grid gap-5 md:grid-cols-[0.95fr_1.05fr]">
             <article className="border border-[var(--border)] p-6">
               <CircleAlert className="h-5 w-5 text-[var(--warning)]" />
-              <h2 className="mt-5 text-2xl font-semibold tracking-[-0.04em]">주요 위험신호</h2>
+              <h2 className="mt-5 text-2xl font-semibold tracking-[-0.04em]">일반 위험신호 예시</h2>
               <ul className="mt-5 grid gap-3 text-sm leading-6 text-[var(--muted)]">
                 {expertIssues.map((issue) => (
                   <li key={issue.title}><span className="font-semibold text-[var(--text)]">{issue.title}</span> · {issue.body}</li>

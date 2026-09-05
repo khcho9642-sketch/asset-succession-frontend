@@ -39,8 +39,8 @@ export function AssessmentMetrics({ mode = "result" }: Readonly<{ mode?: "result
     : [
         ["입력 총자산", metrics.totalAssets, "사전진단 자산 금액 합계"],
         ["입력 금융자산", metrics.financialAssets, "납부재원 후보"],
-        ["채무·보증금", metrics.estimatedDebt, "선택 항목 기준 합성 추정"],
-        ["입력 순자산", metrics.netAssets, "총자산에서 확인 채무 차감"]
+        ["채무·보증금", metrics.estimatedDebt, "직접 입력한 채무만 반영"],
+        ["순자산", metrics.netAssets, "채무금액이 있어야 산정"]
       ];
 
   return (

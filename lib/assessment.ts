@@ -6,7 +6,10 @@ export type AssessmentAnswer = {
   detail?: string;
   facts?: Record<string, string>;
   assetAmounts?: Record<string, string>;
+  debtAmounts?: Record<string, string>;
 };
+
+type AssessmentAnswerValue = Omit<AssessmentAnswer, "label">;
 
 export type AssessmentSnapshot = {
   assessment_id: string;
@@ -42,28 +45,49 @@ export function createAssessmentId() {
   return `AS360-${stamp}-${suffix}`;
 }
 
-export function formatAnswer(answer?: AssessmentAnswer) {
+export function formatAnswer(answer?: AssessmentAnswer | AssessmentAnswerValue) {
   if (!answer) return "미입력";
   const parts = [
     answer.choices.length > 0 ? answer.choices.join(", ") : "",
     answer.detail,
     answer.facts ? Object.entries(answer.facts).map(([key, value]) => `${key}: ${value || "미입력"}`).join(" · ") : "",
-    answer.assetAmounts ? Object.entries(answer.assetAmounts).map(([key, value]) => `${key}: ${value || "금액 미입력"}`).join(" · ") : ""
+    answer.assetAmounts ? formatAmountMap(answer.assetAmounts) : "",
+    answer.debtAmounts ? formatAmountMap(answer.debtAmounts) : ""
   ].filter(Boolean);
   return parts.join(" · ") || "미입력";
 }
 
-function parseEokAmount(value?: string) {
+export function parseEokAmount(value?: string) {
   if (!value) return null;
-  const compact = value.replaceAll(",", "").trim();
-  const match = compact.match(/(\d+(?:\.\d+)?)/);
-  if (!match) return null;
-  return Number(match[1]);
+  const compact = value.trim();
+  if (!/^\d+(\.\d+)?$/.test(compact)) return null;
+  const amount = Number(compact);
+  if (!Number.isFinite(amount) || amount <= 0) return null;
+  return amount;
+}
+
+export function normalizeEokAmount(value?: string) {
+  const amount = parseEokAmount(value);
+  if (amount === null) return "";
+  return Number.isInteger(amount) ? amount.toFixed(0) : amount.toString();
+}
+
+function formatAmountMap(amounts: Record<string, string>) {
+  return Object.entries(amounts)
+    .map(([key, value]) => {
+      const amount = parseEokAmount(value);
+      return `${key}: ${amount === null ? "금액 확인 필요" : formatEok(amount)}`;
+    })
+    .join(" · ");
 }
 
 function formatEok(value: number | null) {
   if (value === null || !Number.isFinite(value)) return "추가정보 필요";
   return `${Number.isInteger(value) ? value.toFixed(0) : value.toFixed(1)}억`;
+}
+
+function debtChoiceNeedsAmount(choice: string) {
+  return choice === "담보대출 있음" || choice === "임대보증금 있음";
 }
 
 export function readAssessmentFromSession(search = ""): AssessmentLoadResult {
@@ -91,28 +115,28 @@ export function buildAssessmentMetrics(snapshot: AssessmentSnapshot): Assessment
   const goal = snapshot.answers.goal;
 
   const assetEntries = Object.entries(assets?.assetAmounts ?? {});
-  const totalAssetAmount = assetEntries.reduce((sum, [, amount]) => sum + (parseEokAmount(amount) ?? 0), 0);
-  const hasAssetAmount = assetEntries.some(([, amount]) => parseEokAmount(amount) !== null);
+  const parsedAssetAmounts = assetEntries.map(([, amount]) => parseEokAmount(amount));
+  const hasAssetAmount = assetEntries.length > 0 && parsedAssetAmounts.every((amount) => amount !== null);
+  const totalAssetAmount = hasAssetAmount ? parsedAssetAmounts.reduce((sum, amount) => sum + (amount ?? 0), 0) : null;
   const financialAmount = parseEokAmount(assets?.assetAmounts?.["금융자산"]);
-  const debtAmount =
-    debt?.choices.includes("해당 없음") ? 0 :
-    debt?.choices.includes("담보대출 있음") && debt?.choices.includes("임대보증금 있음") ? 11 :
-    debt?.choices.includes("담보대출 있음") ? 8 :
-    debt?.choices.includes("임대보증금 있음") ? 3 :
-    null;
-  const netAssetAmount = hasAssetAmount && debtAmount !== null ? Math.max(totalAssetAmount - debtAmount, 0) : null;
+  const selectedDebtChoices = debt?.choices.filter(debtChoiceNeedsAmount) ?? [];
+  const parsedDebtAmounts = selectedDebtChoices.map((choice) => parseEokAmount(debt?.debtAmounts?.[choice]));
+  const hasNoDebt = debt?.choices.includes("해당 없음") || (debt && selectedDebtChoices.length === 0 && !debt.choices.includes("잘 모르겠음"));
+  const hasDebtAmount = selectedDebtChoices.length > 0 && parsedDebtAmounts.every((amount) => amount !== null);
+  const debtAmount = hasNoDebt ? 0 : hasDebtAmount ? parsedDebtAmounts.reduce((sum, amount) => sum + (amount ?? 0), 0) : null;
+  const netAssetAmount = totalAssetAmount !== null && debtAmount !== null ? Math.max(totalAssetAmount - debtAmount, 0) : null;
 
   return {
-    totalAssets: hasAssetAmount ? formatEok(totalAssetAmount) : "추가정보 필요",
+    totalAssets: totalAssetAmount !== null ? formatEok(totalAssetAmount) : "자산금액 확인 필요",
     financialAssets: formatEok(financialAmount),
-    estimatedDebt: formatEok(debtAmount),
-    netAssets: formatEok(netAssetAmount),
-    totalBurden: hasAssetAmount ? "전략별 합성 예시" : "추가정보 필요",
+    estimatedDebt: debtAmount !== null ? formatEok(debtAmount) : "채무 금액 미입력",
+    netAssets: netAssetAmount !== null ? formatEok(netAssetAmount) : "순자산 산정 불가",
+    totalBurden: "계산엔진 연결 후 산정",
     immediateCash: financialAmount !== null ? `입력 금융자산 ${formatEok(financialAmount)}` : "금융자산 확인 필요",
-    fundingGap: financialAmount !== null ? "정밀 계산에서 확정" : "납부재원 확인 필요",
+    fundingGap: "정밀 계산에서 산정",
     familySummary: family ? formatAnswer(family) : "미입력",
     assetSummary: assets ? formatAnswer(assets) : "미입력",
     goalSummary: goal ? formatAnswer(goal) : "미입력",
-    confidenceNote: "현재 화면은 세법 계산엔진 연결 전 UI 프로토타입입니다. 가족·자산 합계는 입력 스냅샷에서 표시하고, 전략별 세액 수치는 합성 예시로만 제공합니다."
+    confidenceNote: "현재 화면은 정밀 계산 연결 전 미리보기입니다. 가족·자산 합계와 직접 입력한 채무만 표시하고, 전략별 세액·부족액은 정밀 계산 전까지 숫자로 산정하지 않습니다."
   };
 }

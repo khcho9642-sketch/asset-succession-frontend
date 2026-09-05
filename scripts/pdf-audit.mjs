@@ -22,7 +22,7 @@ const seededAssessment = {
       label: "자산",
       choices: ["부동산", "금융자산"],
       detail: "",
-      assetAmounts: { "부동산": "42억", "금융자산": "8억" }
+      assetAmounts: { "부동산": "42", "금융자산": "8" }
     },
     debt: {
       label: "채무·과거 증여",
@@ -34,7 +34,7 @@ const seededAssessment = {
       choices: ["상속세 납부재원 준비"],
       detail: ""
     },
-    priority: {
+    review: {
       label: "결과 준비",
       choices: ["세금·비용"],
       detail: ""
@@ -48,6 +48,8 @@ const requiredText = [
   "금융자산: 8억",
   "입력 총자산",
   "50억",
+  "채무 금액 미입력",
+  "순자산 산정 불가",
   "현 상태 유지 후 상속",
   "일부·단계적 증여",
   "매각 후 현금 증여",
@@ -70,7 +72,12 @@ const requiredText = [
 const forbiddenPrintText = [
   "사전진단 입력값 없음",
   "먼저 무료 사전진단을 완료해 주세요",
-  "사전진단 시작하기"
+  "사전진단 시작하기",
+  "55억",
+  "9.5~12억",
+  "6.3~8.6억",
+  "채무·보증금\n8억",
+  "입력 순자산\n42억"
 ];
 
 await mkdir(outputDir, { recursive: true });

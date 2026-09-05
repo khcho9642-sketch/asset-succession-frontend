@@ -14,6 +14,7 @@ const fields = [
 ] as const;
 
 type MetricKey = Extract<keyof Strategy, typeof fields[number][1]>;
+type ComparisonMode = "assessment" | "sample";
 
 const mobileDetailFields = fields.filter(([, key]) => !["total_burden", "immediate_cash_required", "liquidity_gap"].includes(key));
 const mobileSummaryFields: ReadonlyArray<readonly [string, MetricKey]> = [
@@ -26,9 +27,32 @@ function StatusBadge({ status }: Readonly<{ status: string }>) {
   return <span className="inline-flex border border-[var(--border)] bg-[var(--ivory)] px-3 py-1 text-xs font-semibold text-[var(--navy-900)]">{status}</span>;
 }
 
-export function StrategyComparison() {
+function getMetric(strategy: Strategy, key: MetricKey, mode: ComparisonMode) {
+  if (mode === "sample") return strategy[key];
+
+  const maskedValues: Record<MetricKey, string> = {
+    current_tax_and_cost: "계산엔진 연결 후 산정",
+    future_tax_and_cost: "계산엔진 연결 후 산정",
+    total_burden: "계산엔진 연결 후 산정",
+    immediate_cash_required: "추가정보 필요",
+    parent_remaining_assets: "가족별 계산 후 산정",
+    child_transferred_assets: "가족별 계산 후 산정",
+    liquidity_gap: "정밀 계산에서 산정",
+    control_level: strategy.control_level,
+    complexity: strategy.complexity
+  };
+
+  return maskedValues[key];
+}
+
+export function StrategyComparison({ mode = "assessment" }: Readonly<{ mode?: ComparisonMode }>) {
   return (
     <>
+      {mode === "assessment" ? (
+        <p className="mb-4 border-l-2 border-[var(--gold)] bg-[var(--ivory)] p-4 text-xs leading-6 text-[var(--muted)]">
+          아래 전략표는 개인 입력값에 대한 확정 계산표가 아닙니다. 계산엔진과 세부 증빙이 연결되기 전까지 세액·부족액·가족별 이전금액은 숫자로 표시하지 않습니다.
+        </p>
+      ) : null}
       <div className="hidden overflow-hidden border border-[var(--border)] bg-white lg:block print:hidden">
         <table className="w-full border-collapse text-left">
           <thead className="bg-[var(--ivory)] text-xs uppercase tracking-[0.12em] text-[var(--muted)]">
@@ -53,15 +77,15 @@ export function StrategyComparison() {
                   <p className="font-semibold text-[var(--text)]">{strategy.name}</p>
                   <p className="mt-1 text-xs leading-5 text-[var(--muted)]">{strategy.key_review_items.join(" · ")}</p>
                 </td>
-                <td className="px-4 py-5 text-sm">{strategy.current_tax_and_cost}</td>
-                <td className="px-4 py-5 text-sm">{strategy.future_tax_and_cost}</td>
-                <td className="bg-[var(--ivory)]/45 px-4 py-5 text-base font-bold text-[var(--navy-950)]">{strategy.total_burden}</td>
-                <td className="bg-[var(--ivory)]/45 px-4 py-5 text-base font-bold text-[var(--navy-950)]">{strategy.immediate_cash_required}</td>
-                <td className="px-4 py-5 text-sm">{strategy.parent_remaining_assets}</td>
-                <td className="px-4 py-5 text-sm">{strategy.child_transferred_assets}</td>
-                <td className="bg-[var(--ivory)]/45 px-4 py-5 text-base font-bold text-[var(--navy-950)]">{strategy.liquidity_gap}</td>
-                <td className="px-4 py-5 text-sm">{strategy.control_level}</td>
-                <td className="px-4 py-5 text-sm">{strategy.complexity}</td>
+                <td className="px-4 py-5 text-sm">{getMetric(strategy, "current_tax_and_cost", mode)}</td>
+                <td className="px-4 py-5 text-sm">{getMetric(strategy, "future_tax_and_cost", mode)}</td>
+                <td className="bg-[var(--ivory)]/45 px-4 py-5 text-base font-bold text-[var(--navy-950)]">{getMetric(strategy, "total_burden", mode)}</td>
+                <td className="bg-[var(--ivory)]/45 px-4 py-5 text-base font-bold text-[var(--navy-950)]">{getMetric(strategy, "immediate_cash_required", mode)}</td>
+                <td className="px-4 py-5 text-sm">{getMetric(strategy, "parent_remaining_assets", mode)}</td>
+                <td className="px-4 py-5 text-sm">{getMetric(strategy, "child_transferred_assets", mode)}</td>
+                <td className="bg-[var(--ivory)]/45 px-4 py-5 text-base font-bold text-[var(--navy-950)]">{getMetric(strategy, "liquidity_gap", mode)}</td>
+                <td className="px-4 py-5 text-sm">{getMetric(strategy, "control_level", mode)}</td>
+                <td className="px-4 py-5 text-sm">{getMetric(strategy, "complexity", mode)}</td>
                 <td className="px-4 py-5"><StatusBadge status={strategy.calculation_status} /></td>
               </tr>
             ))}
@@ -90,7 +114,7 @@ export function StrategyComparison() {
                 {mobileSummaryFields.map(([label, key]) => (
                   <div key={key} className="grid grid-cols-[7.5rem_1fr] gap-3 border-t border-[var(--border)] pt-3 text-sm">
                     <dt className="text-[var(--muted)]">{label}</dt>
-                    <dd className="font-semibold text-[var(--text)]">{strategy[key]}</dd>
+                    <dd className="font-semibold text-[var(--text)]">{getMetric(strategy, key, mode)}</dd>
                   </div>
                 ))}
               </dl>
@@ -101,7 +125,7 @@ export function StrategyComparison() {
                   {mobileDetailFields.map(([label, key]) => (
                     <div key={key} className="grid grid-cols-[7.5rem_1fr] gap-3 border-t border-[var(--border)] pt-3 text-sm">
                       <dt className="text-[var(--muted)]">{label}</dt>
-                      <dd className="font-semibold text-[var(--text)]">{strategy[key]}</dd>
+                      <dd className="font-semibold text-[var(--text)]">{getMetric(strategy, key, mode)}</dd>
                     </div>
                   ))}
                 </dl>
@@ -129,11 +153,11 @@ export function StrategyComparison() {
             {strategyBranches.map((strategy) => (
               <tr key={strategy.name}>
                 <td>{strategy.name}</td>
-                <td>{strategy.current_tax_and_cost}</td>
-                <td>{strategy.future_tax_and_cost}</td>
-                <td>{strategy.total_burden}</td>
-                <td>{strategy.immediate_cash_required}</td>
-                <td>{strategy.liquidity_gap}</td>
+                <td>{getMetric(strategy, "current_tax_and_cost", mode)}</td>
+                <td>{getMetric(strategy, "future_tax_and_cost", mode)}</td>
+                <td>{getMetric(strategy, "total_burden", mode)}</td>
+                <td>{getMetric(strategy, "immediate_cash_required", mode)}</td>
+                <td>{getMetric(strategy, "liquidity_gap", mode)}</td>
                 <td>{strategy.calculation_status}</td>
               </tr>
             ))}
@@ -156,10 +180,10 @@ export function StrategyComparison() {
             {strategyBranches.map((strategy) => (
               <tr key={strategy.name}>
                 <td>{strategy.name}</td>
-                <td>{strategy.parent_remaining_assets}</td>
-                <td>{strategy.child_transferred_assets}</td>
-                <td>{strategy.control_level}</td>
-                <td>{strategy.complexity}</td>
+                <td>{getMetric(strategy, "parent_remaining_assets", mode)}</td>
+                <td>{getMetric(strategy, "child_transferred_assets", mode)}</td>
+                <td>{getMetric(strategy, "control_level", mode)}</td>
+                <td>{getMetric(strategy, "complexity", mode)}</td>
                 <td>{strategy.key_review_items.join(" · ")}</td>
               </tr>
             ))}
