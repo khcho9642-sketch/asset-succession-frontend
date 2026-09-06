@@ -73,6 +73,7 @@ const requiredText = [
   "Report V2 6/7",
   "Report V2 7/7",
   "우리 가족 자산승계 사전진단 보고서",
+  "36개 시나리오 내부 분석 완료",
   "확인된 현재 자산가액",
   "50억",
   "0.5억 산출세액",
@@ -84,7 +85,8 @@ const requiredText = [
   "상속세 및 증여세법 제26조",
   "상속세 및 증여세법 제56조",
   "외부 확인 과세표준",
-  "가족회의 안건"
+  "기준안과 AI 추천 3개 비교",
+  "실행 로드맵·주의사항·공식 근거"
 ];
 
 const forbiddenPrintText = [
@@ -95,7 +97,9 @@ const forbiddenPrintText = [
   "9.5~12억",
   "6.3~8.6억",
   "채무·보증금\n8억",
-  "입력 순자산\n42억"
+  "입력 순자산\n42억",
+  "inheritance-01-current-structure",
+  "gift-01-stepwise-transfer"
 ];
 
 await mkdir(outputDir, { recursive: true });

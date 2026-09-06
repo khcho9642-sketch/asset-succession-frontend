@@ -220,7 +220,7 @@ export const strategyBranches: Strategy[] = [
 
 export const flowSteps = [
   { title: "가족과 자산 구조 입력", body: "정확한 주소나 증빙 없이 큰 틀의 자산 유형과 금액대를 먼저 정리합니다." },
-  { title: "7가지 승계 전략 비교", body: "상속, 증여, 매각, 부담부증여, 가족법인, 보험, 혼합 전략을 같은 기준으로 비교합니다." },
+  { title: "36개 후보 내부 분석", body: "전체 후보는 내부에서만 평가하고, 화면에는 기준안과 개인에게 필요한 추천안만 표시합니다." },
   { title: "무료 사전진단 보고서 확인", body: "확정 세액이 아닌 상담 전 의사결정용 보고서로 쟁점과 방향을 확인합니다." },
   { title: "조경호 회계사 정밀상담 연결", body: "입력한 내용을 다시 쓰지 않고 상담 신청으로 자연스럽게 이어집니다." }
 ];
@@ -300,7 +300,7 @@ export const projectSnapshot = {
   netAssets: "채무 확인 후 산정",
   cashAvailable: "입력 후 확인",
   estimatedFundingGap: "정밀 계산에서 산정",
-  scenarioCount: "7개",
+  scenarioCount: "선별 표시",
   unresolvedIssues: "7건"
 };
 

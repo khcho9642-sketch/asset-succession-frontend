@@ -72,16 +72,17 @@ try {
   const assessmentId = resultText.match(/AS360-\d{8}-[A-Z0-9]+/)?.[0];
   assert(assessmentId, "Assessment ID missing from result page.");
   assert(resultText.includes("개인화 시나리오 플랜"), "ScenarioPlan panel missing from result page.");
+  assert(resultText.includes("36개 시나리오 내부 분석 완료"), "Result page is missing the internal-analysis summary disclosure.");
   assert(resultText.includes("부동산: 42억") && resultText.includes("금융자산: 8억"), "Assessment answers missing from result page.");
-  assert(resultText.includes("50억") && resultText.includes("0.5억 산출세액") && resultText.includes("0.3억 절세 예상") && !resultText.includes("9.5~12억") && !resultText.includes("부모 잔여재산\n55억"), "Result page still exposes fixed sample strategy numbers or misses confirmed-tax-base calculation.");
+  assert(resultText.includes("50억") && resultText.includes("0.5억 산출세액") && resultText.includes("0.3억 절세 예상") && !resultText.includes("9.5~12억") && !resultText.includes("부모 잔여재산\n55억") && !resultText.includes("inheritance-01-current-structure"), "Result page still exposes fixed sample strategy numbers, internal candidate IDs, or misses confirmed-tax-base calculation.");
 
   await page.goto(`${baseURL}/report-preview?assessment_id=${encodeURIComponent(assessmentId)}`, { waitUntil: "networkidle" });
   await page.getByText("Report V2 7/7").waitFor({ timeout: 10_000 });
   const reportText = await page.locator("body").innerText();
   assert(reportText.includes(assessmentId), "Assessment ID missing from report preview.");
   assert(await page.locator("[data-report-page]").count() === 7, "Report V2 should render exactly seven pages.");
-  assert(reportText.includes("Report V2 7/7") && reportText.includes("우리 가족 자산승계 사전진단 보고서") && reportText.includes("50억") && reportText.includes("0.5억 산출세액") && reportText.includes("0.2억 산출세액"), "Seven-page report content missing confirmed calculation flow.");
-  assert(!reportText.includes("55억") && !reportText.includes("9.5~12억") && !reportText.includes("6.3~8.6억"), "Report preview still exposes fixed sample strategy numbers.");
+  assert(reportText.includes("Report V2 7/7") && reportText.includes("우리 가족 자산승계 사전진단 보고서") && reportText.includes("36개 시나리오 내부 분석 완료") && reportText.includes("50억") && reportText.includes("0.5억 산출세액") && reportText.includes("0.2억 산출세액"), "Seven-page report content missing confirmed calculation flow.");
+  assert(!reportText.includes("55억") && !reportText.includes("9.5~12억") && !reportText.includes("6.3~8.6억") && !reportText.includes("inheritance-01-current-structure"), "Report preview still exposes fixed sample strategy numbers or internal candidate IDs.");
 
   await page.goto(`${baseURL}/consultation`, { waitUntil: "networkidle" });
   await page.getByText(assessmentId).first().waitFor({ timeout: 10_000 });
@@ -109,6 +110,7 @@ try {
       "query step bypass blocked",
       "hybrid direct input individual confirmation works",
       "confirmed taxable-base input reaches result, seven-page report, and consultation",
+      "36 internal scenario candidates stay summarized rather than exposed as a list",
       "consultation required validation and local success state work"
     ]
   }, null, 2));

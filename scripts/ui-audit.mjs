@@ -244,6 +244,8 @@ try {
       if (route.path === "/phase-2b") {
         const requiredEngineLabels = [
           "PHASE 2B ENGINE FOUNDATION",
+          "36개 시나리오 내부 분석 완료",
+          "사용자 노출 결과",
           "상속",
           "증여",
           "가업상속·가업승계",
@@ -256,6 +258,15 @@ try {
         const missingEngineLabels = requiredEngineLabels.filter((label) => !bodyText.includes(label));
         if (missingEngineLabels.length > 0) {
           fail(route.path, viewport.name, `Phase 2B engine story is missing contract labels: ${missingEngineLabels.join(", ")}`);
+        }
+        const leakedInternalCandidates = [
+          "inheritance-01-current-structure",
+          "gift-01-stepwise-transfer",
+          "business-01-succession-deduction",
+          "capital-01-sell-then-gift"
+        ].filter((label) => bodyText.includes(label));
+        if (leakedInternalCandidates.length > 0) {
+          fail(route.path, viewport.name, `Phase 2B page leaked internal candidate IDs: ${leakedInternalCandidates.join(", ")}`);
         }
       }
 
@@ -275,10 +286,10 @@ try {
     await flowPage.getByText("개인화 시나리오 플랜").waitFor({ timeout: 10_000 });
     const resultText = await flowPage.locator("body").innerText();
     const assessmentMatch = resultText.match(/AS360-\d{8}-[A-Z0-9]+/);
-    if (!assessmentMatch || !resultText.includes("개인화 시나리오 플랜") || !resultText.includes("입력 총자산") || !resultText.includes("50억") || !resultText.includes("0.5억 산출세액") || !resultText.includes("0.3억 절세 예상")) {
+    if (!assessmentMatch || !resultText.includes("개인화 시나리오 플랜") || !resultText.includes("36개 시나리오 내부 분석 완료") || !resultText.includes("입력 총자산") || !resultText.includes("50억") || !resultText.includes("0.5억 산출세액") || !resultText.includes("0.3억 절세 예상")) {
       fail("/precheck/result", viewport.name, "Hybrid precheck did not hand confirmed facts to the result page.");
     } else {
-      const leakedResultNumbers = ["총자산 55억", "순자산 47억", "가용 현금\n5억", "부모 잔여재산\n55억", "9.5~12억", "6.3~8.6억"].filter((text) => resultText.includes(text));
+      const leakedResultNumbers = ["총자산 55억", "순자산 47억", "가용 현금\n5억", "부모 잔여재산\n55억", "9.5~12억", "6.3~8.6억", "inheritance-01-current-structure", "gift-01-stepwise-transfer"].filter((text) => resultText.includes(text));
       if (leakedResultNumbers.length > 0) {
         fail("/precheck/result", viewport.name, `Result page leaked stale sample numbers: ${leakedResultNumbers.join(", ")}`);
       }
@@ -291,10 +302,10 @@ try {
       await flowPage.getByText("Report V2 7/7").waitFor({ timeout: 10_000 });
       const reportText = await flowPage.locator("body").innerText();
       const pageCount = await flowPage.locator("[data-report-page]").count();
-      if (!reportText.includes(assessmentMatch[0]) || !reportText.includes("Report V2 7/7") || !reportText.includes("우리 가족 자산승계 사전진단 보고서") || !reportText.includes("0.5억 산출세액") || !reportText.includes("0.2억 산출세액") || pageCount !== 7) {
+      if (!reportText.includes(assessmentMatch[0]) || !reportText.includes("Report V2 7/7") || !reportText.includes("우리 가족 자산승계 사전진단 보고서") || !reportText.includes("36개 시나리오 내부 분석 완료") || !reportText.includes("0.5억 산출세액") || !reportText.includes("0.2억 산출세액") || pageCount !== 7) {
         fail("/report-preview", viewport.name, `Report V2 did not render exactly seven personal pages. pages=${pageCount}`);
       }
-      const leakedReportNumbers = ["55억", "9.5~12억", "6.3~8.6억", "채무·보증금\n8억", "입력 순자산\n42억"].filter((text) => reportText.includes(text));
+      const leakedReportNumbers = ["55억", "9.5~12억", "6.3~8.6억", "채무·보증금\n8억", "입력 순자산\n42억", "inheritance-01-current-structure", "gift-01-stepwise-transfer"].filter((text) => reportText.includes(text));
       if (leakedReportNumbers.length > 0) {
         fail("/report-preview", viewport.name, `Report preview leaked stale sample numbers: ${leakedReportNumbers.join(", ")}`);
       }

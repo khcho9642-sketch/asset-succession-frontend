@@ -1,7 +1,14 @@
 import Link from "next/link";
 import { ArrowRight, FileText, ShieldCheck } from "lucide-react";
 import { PublicNav } from "@/components/PublicNav";
-import { flowSteps, publicValuePoints, strategyBranches, simulationDisclaimer } from "@/lib/mockData";
+import { flowSteps, publicValuePoints, simulationDisclaimer } from "@/lib/mockData";
+
+const selectionFlowCards = [
+  { title: "36개 후보 내부 분석", body: "가족관계·자산·채무·목표를 기준으로 적용 가능성을 먼저 좁힙니다." },
+  { title: "기준안 1개", body: "현 상태 그대로 두는 경우를 비교 기준으로 고정합니다." },
+  { title: "AI 추천 최대 3개", body: "가족에게 실제로 볼 필요가 있는 대안만 결과와 보고서에 표시합니다." },
+  { title: "재원 보완안", body: "보험·연부연납·현금흐름은 절세안과 분리해 납부 가능성 관점으로 봅니다." }
+];
 
 export default function LandingPage() {
   return (
@@ -18,7 +25,7 @@ export default function LandingPage() {
             </h1>
             <p className="mt-7 max-w-[calc(100vw-3rem)] text-lg leading-8 text-white/72 md:max-w-2xl md:text-xl">
               <span className="block">상속·증여·매각·가족법인·보험 활용까지</span>
-              <span className="block">가능한 자산승계 시나리오를 한 번에 비교합니다.</span>
+              <span className="block">내부 후보를 분석한 뒤 필요한 결과만 간결하게 보여드립니다.</span>
             </p>
             <p className="mt-4 max-w-2xl border-l border-[var(--gold)]/60 pl-4 text-sm leading-7 text-white/70">
               세액 확정 화면이 아니라, 가족 회의 전에 “어떤 선택지를 더 깊게 검토할지” 정리하는 비교 기준입니다.
@@ -44,23 +51,19 @@ export default function LandingPage() {
           <div className="relative hidden md:block">
             <div className="border border-white/12 bg-white/[0.04] p-5 backdrop-blur">
               <div className="border border-white/10 bg-[var(--navy-950)]/70 p-6">
-                <p className="text-xs font-semibold tracking-[0.08em] text-[var(--gold)]">7가지 승계지도</p>
+                <p className="text-xs font-semibold tracking-[0.08em] text-[var(--gold)]">추천 결과 노출 방식</p>
                 <div className="mt-6 grid gap-3">
-                  {strategyBranches.map((strategy, index) => {
-                    const Icon = strategy.icon;
-                    return (
-                      <div key={strategy.name} className="flex items-center gap-4 border border-white/10 bg-white/[0.035] p-4">
-                        <span className="flex h-9 w-9 items-center justify-center border border-[var(--gold)]/45 text-[var(--gold)]">
-                          <Icon className="h-4 w-4" />
-                        </span>
-                        <div className="min-w-0 flex-1">
-                          <p className="text-sm font-semibold">{strategy.name}</p>
-                          <p className="mt-1 text-xs text-white/68">{strategy.description}</p>
-                        </div>
-                        <span className="text-xs text-white/38">0{index + 1}</span>
+                  {selectionFlowCards.map((item, index) => (
+                    <div key={item.title} className="flex items-center gap-4 border border-white/10 bg-white/[0.035] p-4">
+                      <span className="flex h-9 w-9 items-center justify-center border border-[var(--gold)]/45 text-xs font-semibold text-[var(--gold)]">
+                        0{index + 1}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-semibold">{item.title}</p>
+                        <p className="mt-1 text-xs text-white/68">{item.body}</p>
                       </div>
-                    );
-                  })}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

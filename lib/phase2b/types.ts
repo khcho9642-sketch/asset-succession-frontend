@@ -221,9 +221,28 @@ export type ScenarioPlan = {
   baseline: Baseline;
   scenarios: Scenario[];
   recommendations: Recommendation[];
+  internal_analysis: ScenarioInternalAnalysis;
+  display_scenarios: ScenarioDisplayPlan;
   unknown_items: string[];
   report_v2_contract: ReportV2Contract;
   conversational_precheck_contract: ConversationalPrecheckContract;
+};
+
+export type ScenarioInternalAnalysis = {
+  candidate_library_count: number;
+  evaluated_candidate_count: number;
+  analysis_status: "completed";
+  user_visible_disclosure: "summary_only";
+  disclosure_label: string;
+  hidden_candidate_lists: true;
+};
+
+export type ScenarioDisplayPlan = {
+  baseline: Baseline;
+  recommended: Scenario[];
+  additional_reviews: Scenario[];
+  liquidity_support: Scenario | null;
+  comparison_scenarios: Scenario[];
 };
 
 export type Recommendation = {

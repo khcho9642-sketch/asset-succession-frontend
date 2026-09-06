@@ -8,7 +8,7 @@ import {
   moneyResult
 } from "../lib/phase2b/calculation";
 import { getQuestionHelp, parseConversationalInput } from "../lib/phase2b/conversation";
-import { buildScenarioPlan } from "../lib/phase2b/engine";
+import { buildScenarioPlan, getInternalScenarioCandidateLibraryCount } from "../lib/phase2b/engine";
 import { phase2bFixtures } from "../lib/phase2b/fixtures";
 import { parseKoreanMoneyRangeToEok, parseKoreanMoneyToEok } from "../lib/phase2b/money";
 import { normalizeAssessmentSnapshot } from "../lib/phase2b/normalize";
@@ -250,6 +250,27 @@ describe("Phase 2B scenario engine", () => {
     const plan = buildScenarioPlan(phase2bFixtures.caseAInheritance);
     const insurance = plan.scenarios.find((scenario) => scenario.scenario_id === "inheritance-insurance-liquidity");
     assert.notEqual(insurance?.priority, "priority");
+  });
+
+  it("keeps the 36-scenario candidate library internal and exposes only selected results", () => {
+    const plan = buildScenarioPlan(phase2bFixtures.caseAInheritance);
+    assert.equal(getInternalScenarioCandidateLibraryCount(), 36);
+    assert.equal(plan.internal_analysis.candidate_library_count, 36);
+    assert.equal(plan.internal_analysis.evaluated_candidate_count, 36);
+    assert.equal(plan.internal_analysis.disclosure_label, "36개 시나리오 내부 분석 완료");
+    assert.equal(plan.internal_analysis.user_visible_disclosure, "summary_only");
+    assert.equal(plan.internal_analysis.hidden_candidate_lists, true);
+    assert.equal(plan.display_scenarios.baseline.baseline_id, plan.baseline.baseline_id);
+    assert.ok(plan.display_scenarios.recommended.length <= 3);
+    assert.ok(plan.display_scenarios.additional_reviews.length <= 2);
+    assert.ok(plan.display_scenarios.comparison_scenarios.length <= 6);
+    assert.ok(plan.display_scenarios.comparison_scenarios.every((scenario) => scenario.priority !== "baseline"));
+  });
+
+  it("separates insurance liquidity support from the main three recommendations", () => {
+    const plan = buildScenarioPlan(phase2bFixtures.caseAInheritance);
+    assert.ok(plan.display_scenarios.recommended.every((scenario) => scenario.scenario_id !== "inheritance-insurance-liquidity"));
+    assert.equal(plan.display_scenarios.liquidity_support?.scenario_id, "inheritance-insurance-liquidity");
   });
 });
 

@@ -7,7 +7,7 @@ import { PrintButton } from "@/components/PrintButton";
 import { buildAssessmentMetrics, formatAnswer, readAssessmentFromSession } from "@/lib/assessment";
 import type { AssessmentLoadResult, AssessmentMetrics as Metrics, AssessmentSnapshot } from "@/lib/assessment";
 import { buildScenarioPlan, normalizeAssessmentSnapshot, SUPPORTED_TAX_LAW_REFERENCES } from "@/lib/phase2b";
-import type { MoneyResult, Scenario, ScenarioPlan } from "@/lib/phase2b";
+import type { ClientFacts, MoneyResult, Scenario, ScenarioPlan } from "@/lib/phase2b";
 
 const trackLabels = {
   inheritance: "상속",
@@ -75,11 +75,14 @@ export function ReportV2Preview() {
   }
 
   const { snapshot, facts, metrics, plan } = viewModel;
-  const priorityScenarios = plan.recommendations
-    .map((recommendation) => plan.scenarios.find((scenario) => scenario.scenario_id === recommendation.scenario_id))
-    .filter((scenario): scenario is Scenario => Boolean(scenario))
-    .slice(0, 3);
-  const primaryAlternative = priorityScenarios.find((scenario) => scenario.calculation_result.status === "calculable") ?? priorityScenarios[0];
+  const {
+    recommended: recommendedScenarios,
+    additional_reviews: additionalReviews,
+    liquidity_support: liquiditySupport
+  } = plan.display_scenarios;
+  const primaryAlternative = recommendedScenarios.find((scenario) => scenario.calculation_result.status === "calculable") ?? recommendedScenarios[0];
+  const firstTwoRecommendations = recommendedScenarios.slice(0, 2);
+  const thirdRecommendation = recommendedScenarios[2] ?? null;
 
   return (
     <article className="report-book mt-8">
@@ -113,15 +116,18 @@ export function ReportV2Preview() {
           </Card>
           <Card title="우선 검토 방향">
             <ol className="grid gap-2">
-              {priorityScenarios.map((scenario, index) => (
+              {recommendedScenarios.map((scenario, index) => (
                 <li key={scenario.scenario_id}>{index + 1}. {scenario.name} · {statusLabels[scenario.calculation_result.status]} · {scenario.eligibility.status}</li>
               ))}
             </ol>
+            <p className="mt-3 border-l-2 border-[var(--gold)] pl-3 text-xs leading-5">
+              {plan.internal_analysis.disclosure_label}. 보고서에는 추천된 결과만 표시합니다.
+            </p>
           </Card>
         </section>
       </ReportPage>
 
-      <ReportPage pageNumber={2} title="가족·자산 지도" eyebrow="Report V2 2/7">
+      <ReportPage pageNumber={2} title="확인된 가족·자산 현황" eyebrow="Report V2 2/7">
         <TwoColumnFacts metrics={metrics} snapshot={snapshot} />
         <section className="mt-7 grid gap-5 md:grid-cols-2">
           <TableCard title="자산 입력">
@@ -149,7 +155,12 @@ export function ReportV2Preview() {
         </section>
       </ReportPage>
 
-      <ReportPage pageNumber={3} title="확정 사실과 계산상태" eyebrow="Report V2 3/7">
+      <ReportPage pageNumber={3} title="현 상태 기준 상속세와 납세재원" eyebrow="Report V2 3/7">
+        <section className="grid gap-5 md:grid-cols-3">
+          <MetricCard label="현재 상태 기준안" value={plan.baseline.name} helper={plan.baseline.description} />
+          <MetricCard label="기준안 세액" value={moneyDisplay(plan.baseline.calculation_result.total_tax)} helper="확인 과세표준이 있을 때만 산출세액 표시" highlight />
+          <MetricCard label="납부재원" value={moneyDisplay(plan.baseline.calculation_result.liquidity_gap)} helper="확인된 금융자산과 필요현금 비교" />
+        </section>
         <table className="report-table w-full border-collapse text-left">
           <thead>
             <tr>
@@ -186,100 +197,73 @@ export function ReportV2Preview() {
             </tr>
           </tbody>
         </table>
-        <section className="mt-7 border border-[var(--border)] p-5">
-          <h3 className="text-lg font-semibold tracking-[-0.04em]">공식 근거</h3>
-          <ul className="mt-4 grid gap-3 text-sm leading-6 text-[var(--muted)]">
-            {SUPPORTED_TAX_LAW_REFERENCES.map((reference) => (
-              <li key={reference.label}>
-                <span className="font-semibold text-[var(--text)]">{reference.label}</span> · {reference.note}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4 text-sm leading-6 text-[var(--muted)]">기준일: {plan.context.valuation_date} · 법령/규칙 버전: {plan.context.law_version}</p>
-        </section>
         <TableCard title="추가 확인 필요정보" className="mt-7">
           {plan.unknown_items.slice(0, 10).map((item) => <Row key={item} label="확인 필요" value={item} />)}
         </TableCard>
       </ReportPage>
 
-      <ReportPage pageNumber={4} title="우선 시나리오 2~3개" eyebrow="Report V2 4/7">
-        <div className="grid gap-4">
-          {priorityScenarios.map((scenario, index) => (
-            <article key={scenario.scenario_id} className="border border-[var(--border)] bg-[var(--ivory)] p-5">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-sm font-semibold text-[var(--gold)]">우선순위 {index + 1}</p>
-                <span className="text-xs text-[var(--muted)]">{statusLabels[scenario.calculation_result.status]}</span>
-              </div>
-              <h3 className="mt-2 text-xl font-semibold tracking-[-0.04em]">{scenario.name}</h3>
-              <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{scenario.rationale.join(" ")}</p>
-              <dl className="mt-4 grid gap-2 text-sm">
-                <Row label="당사자" value={scenario.track === "business_succession" ? "주주·후계자·회사" : "부모·배우자·자녀"} />
-                <Row label="대상자산" value={facts.assets.map((asset) => assetLabels[asset.type]).join(" · ") || "확인 필요"} />
-                <Row label="재원" value={moneyDisplay(scenario.calculation_result.liquidity_gap)} />
-                <Row label="선행확인" value={scenario.required_information.slice(0, 3).join(" · ")} />
-              </dl>
-            </article>
-          ))}
-        </div>
-      </ReportPage>
-
-      <ReportPage pageNumber={5} title="기준안·대안 비교" eyebrow="Report V2 5/7">
+      <ReportPage pageNumber={4} title="기준안과 AI 추천 3개 비교" eyebrow="Report V2 4/7">
         <table className="report-table w-full border-collapse text-left">
           <thead>
             <tr>
               <th>구분</th>
-              <th>트랙</th>
-              <th>예상 세액</th>
-              <th>총부담</th>
-              <th>절세·순효과</th>
-              <th>상태</th>
+              <th>세금</th>
+              <th>현금</th>
+              <th>기간</th>
+              <th>위험</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>{plan.baseline.name}</td>
-              <td>{trackLabels[plan.baseline.track]}</td>
               <td>{moneyDisplay(plan.baseline.calculation_result.total_tax)}</td>
-              <td>{moneyDisplay(plan.baseline.calculation_result.total_burden)}</td>
-              <td>기준안</td>
-              <td>{statusLabels[plan.baseline.calculation_result.status]}</td>
+              <td>{moneyDisplay(plan.baseline.calculation_result.liquidity_gap)}</td>
+              <td>상속 발생시점</td>
+              <td>{plan.baseline.calculation_result.status === "calculable" ? "과세표준 확인" : "기준정보 확인 필요"}</td>
             </tr>
-            {plan.scenarios.slice(0, 6).map((scenario) => (
+            {recommendedScenarios.map((scenario, index) => (
               <tr key={scenario.scenario_id}>
-                <td>{scenario.name}</td>
-                <td>{trackLabels[scenario.track]}</td>
+                <td>AI 추천 {index + 1} · {scenario.name}</td>
                 <td>{moneyDisplay(scenario.calculation_result.total_tax)}</td>
-                <td>{moneyDisplay(scenario.calculation_result.total_burden)}</td>
-                <td>{moneyDisplay(scenario.comparison.expected_net_effect)}</td>
-                <td>{statusLabels[scenario.comparison.comparison_status]}</td>
+                <td>{moneyDisplay(scenario.calculation_result.liquidity_gap)}</td>
+                <td>{scenario.timeline.length}단계</td>
+                <td>{scenario.required_information.slice(0, 2).join(" · ") || statusLabels[scenario.calculation_status]}</td>
               </tr>
             ))}
           </tbody>
         </table>
         <p className="mt-5 border-l-2 border-[var(--gold)] bg-[var(--ivory)] p-4 text-sm leading-6 text-[var(--muted)]">
-          기준안과 대안의 평가기준일, 입력 스냅샷, 법령/규칙 버전, 비교기간, 포함 세목, 가족 사실이 구조적으로 일치하지 않으면 절세액을 만들지 않습니다.
+          기준안과 추천안은 같은 입력 스냅샷과 같은 기준일에서만 비교합니다. {plan.internal_analysis.disclosure_label}.
         </p>
       </ReportPage>
 
-      <ReportPage pageNumber={6} title="실행 타임라인" eyebrow="Report V2 6/7">
+      <ReportPage pageNumber={5} title="추천안 1·2 상세" eyebrow="Report V2 5/7">
         <div className="grid gap-4">
-          {priorityScenarios.map((scenario) => (
-            <article key={scenario.scenario_id} className="border border-[var(--border)] p-5">
-              <h3 className="text-lg font-semibold tracking-[-0.04em]">{scenario.name}</h3>
-              <ol className="mt-3 grid gap-2 text-sm leading-6 text-[var(--muted)]">
-                {scenario.timeline.map((event, index) => (
-                  <li key={event}>{index + 1}. {event}</li>
-                ))}
-              </ol>
-              <p className="mt-3 border-l-2 border-[var(--gold)] pl-3 text-sm leading-6 text-[var(--muted)]">
-                생활자금·재원·계약 당사자는 선행 확인 후 실행 여부를 정합니다. 미상 정보가 남으면 실행 단계로 넘기지 않습니다.
-              </p>
-            </article>
+          {firstTwoRecommendations.map((scenario, index) => (
+            <ScenarioDetailCard key={scenario.scenario_id} scenario={scenario} title={`AI 추천 ${index + 1}`} facts={facts} />
           ))}
         </div>
       </ReportPage>
 
-      <ReportPage pageNumber={7} title="가족회의 안건" eyebrow="Report V2 7/7">
+      <ReportPage pageNumber={6} title="추천안 3과 납세재원 보완안" eyebrow="Report V2 6/7">
+        <div className="grid gap-4">
+          {thirdRecommendation ? <ScenarioDetailCard scenario={thirdRecommendation} title="AI 추천 3" facts={facts} /> : <Card title="AI 추천 3"><p>현재 입력만으로는 세 번째 추천안을 억지로 만들지 않습니다.</p></Card>}
+          {liquiditySupport ? (
+            <ScenarioDetailCard scenario={liquiditySupport} title="납세재원 보완안" facts={facts} note="보험·연부연납·현금흐름은 절세안이 아니라 세금 납부 가능성을 높이는 보완안으로 분리합니다." />
+          ) : null}
+          {additionalReviews.length > 0 ? (
+            <Card title="추가 확인 시 검토안">
+              <ul className="grid gap-2">
+                {additionalReviews.map((scenario) => (
+                  <li key={scenario.scenario_id}>{scenario.name} · {scenario.required_information.slice(0, 2).join(" · ")}</li>
+                ))}
+              </ul>
+            </Card>
+          ) : null}
+        </div>
+      </ReportPage>
+
+      <ReportPage pageNumber={7} title="실행 로드맵·주의사항·공식 근거" eyebrow="Report V2 7/7">
         <section className="grid gap-5 md:grid-cols-2">
           <Card title="회의에서 정할 것">
             <ol className="grid gap-2">
@@ -297,6 +281,17 @@ export function ReportV2Preview() {
               <li>4. 과거 증여 금액과 일자</li>
             </ol>
           </Card>
+        </section>
+        <section className="mt-7 border border-[var(--border)] p-5">
+          <h3 className="text-lg font-semibold tracking-[-0.04em]">공식 근거</h3>
+          <ul className="mt-4 grid gap-3 text-sm leading-6 text-[var(--muted)]">
+            {SUPPORTED_TAX_LAW_REFERENCES.map((reference) => (
+              <li key={reference.label}>
+                <span className="font-semibold text-[var(--text)]">{reference.label}</span> · {reference.note}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm leading-6 text-[var(--muted)]">기준일: {plan.context.valuation_date} · 법령/규칙 버전: {plan.context.law_version}</p>
         </section>
         <TableCard title="미상정보와 재검토 시점" className="mt-7">
           {plan.unknown_items.slice(0, 6).map((item) => <Row key={item} label="미상" value={`${item} · 상담 전 확인`} />)}
@@ -325,6 +320,28 @@ function Header({ snapshot, plan }: Readonly<{ snapshot: AssessmentSnapshot; pla
         <Row label="검토 트랙" value={plan.facts.planning_tracks.map((track) => trackLabels[track]).join(" · ")} />
       </dl>
     </section>
+  );
+}
+
+function ScenarioDetailCard({ scenario, title, facts, note }: Readonly<{ scenario: Scenario; title: string; facts: ClientFacts; note?: string }>) {
+  return (
+    <article className="border border-[var(--border)] bg-[var(--ivory)] p-5">
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-sm font-semibold text-[var(--gold)]">{title}</p>
+        <span className="text-xs text-[var(--muted)]">{statusLabels[scenario.calculation_result.status]}</span>
+      </div>
+      <h3 className="mt-2 text-xl font-semibold tracking-[-0.04em]">{scenario.name}</h3>
+      <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{scenario.rationale.join(" ")}</p>
+      <dl className="mt-4 grid gap-2 text-sm">
+        <Row label="트랙" value={trackLabels[scenario.track]} />
+        <Row label="당사자" value={scenario.track === "business_succession" ? "주주·후계자·회사" : "부모·배우자·자녀"} />
+        <Row label="대상자산" value={facts.assets.map((asset) => assetLabels[asset.type]).join(" · ") || "확인 필요"} />
+        <Row label="예상 세액" value={moneyDisplay(scenario.calculation_result.total_tax)} />
+        <Row label="필요 현금" value={moneyDisplay(scenario.calculation_result.liquidity_gap)} />
+        <Row label="선행확인" value={scenario.required_information.slice(0, 3).join(" · ")} />
+      </dl>
+      {note ? <p className="mt-4 border-l-2 border-[var(--gold)] pl-3 text-sm leading-6 text-[var(--muted)]">{note}</p> : null}
+    </article>
   );
 }
 

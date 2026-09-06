@@ -11,8 +11,12 @@ import type {
   Recommendation,
   ReportV2Contract,
   Scenario,
+  ScenarioDisplayPlan,
+  ScenarioInternalAnalysis,
   ScenarioPlan
 } from "./types";
+
+const LIQUIDITY_SUPPORT_SCENARIO_ID = "inheritance-insurance-liquidity";
 
 const trackLabels: Record<PlanningTrack, string> = {
   inheritance: "상속",
@@ -28,6 +32,8 @@ export function buildScenarioPlan(facts: ClientFacts, context: CalculationContex
     .filter((definition) => enrichedFacts.planning_tracks.includes(definition.track) || definition.alwaysConsider)
     .map((definition) => buildScenario(definition, enrichedFacts, baseline));
   const recommendations = rankRecommendations(scenarios);
+  const internalAnalysis = buildInternalAnalysis();
+  const displayScenarios = buildScenarioDisplayPlan(baseline, scenarios, recommendations);
 
   return {
     facts: enrichedFacts,
@@ -35,10 +41,16 @@ export function buildScenarioPlan(facts: ClientFacts, context: CalculationContex
     baseline,
     scenarios,
     recommendations,
+    internal_analysis: internalAnalysis,
+    display_scenarios: displayScenarios,
     unknown_items: Array.from(new Set([...enrichedFacts.unknown_items, ...scenarios.flatMap((scenario) => scenario.required_information)])),
     report_v2_contract: buildReportV2Contract(),
     conversational_precheck_contract: buildConversationalPrecheckContract()
   };
+}
+
+export function getInternalScenarioCandidateLibraryCount() {
+  return internalScenarioCandidateLibrary().length;
 }
 
 export function buildDefaultCalculationContext(): CalculationContext {
@@ -91,6 +103,65 @@ type ScenarioDefinition = {
   };
 };
 
+type InternalScenarioCandidate = {
+  candidate_id: string;
+  track: PlanningTrack;
+  signals: Array<Goal | Constraint | "baseline" | "insurance" | "family_company" | "valuation" | "liquidity">;
+};
+
+function internalScenarioCandidateLibrary(): InternalScenarioCandidate[] {
+  return [
+    { candidate_id: "inheritance-01-current-structure", track: "inheritance", signals: ["baseline"] },
+    { candidate_id: "inheritance-02-spouse-allocation", track: "inheritance", signals: ["fairness_between_children"] },
+    { candidate_id: "inheritance-03-liquidity-gap", track: "inheritance", signals: ["prepare_liquidity", "liquidity"] },
+    { candidate_id: "inheritance-04-heir-equalization", track: "inheritance", signals: ["fairness_between_children"] },
+    { candidate_id: "inheritance-05-real-estate-retention", track: "inheritance", signals: ["retain_control", "valuation"] },
+    { candidate_id: "inheritance-06-real-estate-sale-funding", track: "inheritance", signals: ["sell_for_cash", "prepare_liquidity"] },
+    { candidate_id: "inheritance-07-past-gift-addback", track: "inheritance", signals: ["past_gifts_need_review"] },
+    { candidate_id: "inheritance-08-testament-trust-prework", track: "inheritance", signals: ["retain_control", "fairness_between_children"] },
+    { candidate_id: "inheritance-09-post-death-administration", track: "inheritance", signals: ["prepare_liquidity"] },
+    { candidate_id: "gift-01-stepwise-transfer", track: "gift", signals: ["transfer_early"] },
+    { candidate_id: "gift-02-child-bucket-review", track: "gift", signals: ["fairness_between_children"] },
+    { candidate_id: "gift-03-spouse-gift", track: "gift", signals: ["minimize_tax"] },
+    { candidate_id: "gift-04-burdened-gift", track: "gift", signals: ["secured_debt_needs_review"] },
+    { candidate_id: "gift-05-low-value-asset-timing", track: "gift", signals: ["valuation_needed"] },
+    { candidate_id: "gift-06-cash-gift-funding", track: "gift", signals: ["transfer_early", "prepare_liquidity"] },
+    { candidate_id: "gift-07-family-loan-review", track: "gift", signals: ["prepare_liquidity"] },
+    { candidate_id: "gift-08-gift-tax-payment-source", track: "gift", signals: ["prepare_liquidity"] },
+    { candidate_id: "gift-09-valuation-date-split", track: "gift", signals: ["valuation_needed"] },
+    { candidate_id: "business-01-succession-deduction", track: "business_succession", signals: ["business_continuity"] },
+    { candidate_id: "business-02-special-gift-taxation", track: "business_succession", signals: ["business_continuity", "transfer_early"] },
+    { candidate_id: "business-03-share-phased-transfer", track: "business_succession", signals: ["retain_control"] },
+    { candidate_id: "business-04-holding-company-review", track: "business_succession", signals: ["family_company"] },
+    { candidate_id: "business-05-family-company-rental", track: "business_succession", signals: ["family_company"] },
+    { candidate_id: "business-06-voting-control-retention", track: "business_succession", signals: ["control_retention_required"] },
+    { candidate_id: "business-07-successor-readiness", track: "business_succession", signals: ["successor_readiness_needed"] },
+    { candidate_id: "business-08-stock-valuation", track: "business_succession", signals: ["valuation_needed"] },
+    { candidate_id: "business-09-post-management-compliance", track: "business_succession", signals: ["business_continuity"] },
+    { candidate_id: "capital-01-sell-then-gift", track: "capital_gains", signals: ["sell_for_cash"] },
+    { candidate_id: "capital-02-one-house-special-rule", track: "capital_gains", signals: ["minimize_tax"] },
+    { candidate_id: "capital-03-long-term-holding", track: "capital_gains", signals: ["minimize_tax"] },
+    { candidate_id: "capital-04-burdened-transfer", track: "capital_gains", signals: ["secured_debt_needs_review"] },
+    { candidate_id: "capital-05-installment-sale-cashflow", track: "capital_gains", signals: ["prepare_liquidity"] },
+    { candidate_id: "capital-06-family-sale-fair-value", track: "capital_gains", signals: ["fairness_between_children"] },
+    { candidate_id: "capital-07-acquisition-cost-rebuild", track: "capital_gains", signals: ["valuation_needed"] },
+    { candidate_id: "capital-08-lease-transfer-impact", track: "capital_gains", signals: ["secured_debt_needs_review"] },
+    { candidate_id: "capital-09-reinvestment-liquidity", track: "capital_gains", signals: ["sell_for_cash", "prepare_liquidity"] }
+  ];
+}
+
+function buildInternalAnalysis(): ScenarioInternalAnalysis {
+  const candidateCount = internalScenarioCandidateLibrary().length;
+  return {
+    candidate_library_count: candidateCount,
+    evaluated_candidate_count: candidateCount,
+    analysis_status: "completed",
+    user_visible_disclosure: "summary_only",
+    disclosure_label: `${candidateCount}개 시나리오 내부 분석 완료`,
+    hidden_candidate_lists: true
+  };
+}
+
 function scenarioDefinitions(): ScenarioDefinition[] {
   return [
     {
@@ -134,6 +205,72 @@ function scenarioDefinitions(): ScenarioDefinition[] {
           required_information: ["배우자 유무"]
         };
       }
+    },
+    {
+      scenario_id: "inheritance-heir-equalization",
+      track: "inheritance",
+      name: "자녀 간 형평 배분",
+      description: "자녀별 생활여건과 승계자산 종류를 나눠 형평성을 점검하는 상속 트랙 시나리오입니다.",
+      execution_tools: ["자녀별 배분", "유류분·분쟁위험 점검"],
+      basePriority: "conditional",
+      timeline: ["상속인 확정", "자녀별 필요자금·기여도 확인", "현물·현금 배분안 비교"],
+      requiredInfo: ["자녀별 성년 여부", "자녀별 사전증여", "분쟁 가능성"],
+      evaluate: (facts) => {
+        const multipleChildren = (facts.family.total_children ?? 0) >= 2 || facts.family.children_age_status === "unknown";
+        return {
+          priority: hasGoal(facts, "fairness_between_children") ? "priority" : multipleChildren ? "conditional" : "needs_more_info",
+          eligibility: { status: multipleChildren ? "conditional" : "needs_info", reasons: ["상속인 수와 자녀별 사전증여가 확인되어야 합니다."] },
+          rationale: [
+            hasGoal(facts, "fairness_between_children")
+              ? "자녀 간 형평을 목표로 선택했기 때문에 배분 구조를 우선 검토합니다."
+              : "상속인별 배분 의향과 사전증여가 확인되면 형평 배분안을 비교합니다."
+          ],
+          required_information: ["자녀별 사전증여", "자산별 소유자·지분", "가족 합의 방향"]
+        };
+      }
+    },
+    {
+      scenario_id: "inheritance-real-estate-liquidity",
+      track: "inheritance",
+      name: "부동산 보유·재원 분리",
+      description: "부동산은 유지하면서 상속세 납부재원은 금융자산·차입·일부 처분으로 분리 검토합니다.",
+      execution_tools: ["현물 보유", "납부재원 조달"],
+      basePriority: "conditional",
+      timeline: ["부동산별 보유 의향 확인", "금융자산·차입 가능성 확인", "분할납부·일부 처분 검토"],
+      requiredInfo: ["부동산 평가액", "담보 가능성", "가족별 보유 의향"],
+      evaluate: (facts) => {
+        const hasRealEstate = hasAssetType(facts, "real_estate");
+        return {
+          priority: hasRealEstate && hasGoal(facts, "prepare_liquidity") ? "priority" : hasRealEstate ? "conditional" : "needs_more_info",
+          eligibility: { status: hasRealEstate ? "conditional" : "needs_info", reasons: ["부동산 보유 의향과 납부재원 확인이 필요합니다."] },
+          rationale: [
+            hasRealEstate
+              ? "부동산 자산이 확인되어 보유와 납부재원 마련을 분리해 검토합니다."
+              : "부동산 보유 여부와 평가액이 확인되면 재원 분리안을 검토합니다."
+          ],
+          required_information: ["부동산 평가자료", "가용 금융자산", "담보·처분 가능성"]
+        };
+      }
+    },
+    {
+      scenario_id: "inheritance-past-gift-addback",
+      track: "inheritance",
+      name: "최근 10년 증여 합산 점검",
+      description: "과거 증여가 상속세 과세가액에 미치는 영향을 별도 확인하는 시나리오입니다.",
+      execution_tools: ["사전증여 합산", "증여 이력 대사"],
+      basePriority: "needs_more_info",
+      timeline: ["수증자별 증여일자 확인", "증여세 신고자료 수집", "상속세 합산 여부 검토"],
+      requiredInfo: ["과거 증여 금액", "증여일자", "수증자"],
+      evaluate: (facts) => ({
+        priority: hasPastGift(facts) ? "priority" : "needs_more_info",
+        eligibility: { status: hasPastGift(facts) ? "conditional" : "needs_info", reasons: ["최근 10년 증여 이력이 있거나 미확인인 경우 합산 검토가 필요합니다."] },
+        rationale: [
+          hasPastGift(facts)
+            ? "최근 10년 증여가 확인되어 상속세 합산 영향을 우선 확인해야 합니다."
+            : "과거 증여가 없다고 확정되기 전까지는 합산 여부를 추가 확인합니다."
+        ],
+        required_information: ["수증자별 과거 증여 내역", "증여세 신고서", "증여재산 평가자료"]
+      })
     },
     {
       scenario_id: "gift-stepwise-transfer",
@@ -185,6 +322,69 @@ function scenarioDefinitions(): ScenarioDefinition[] {
       }
     },
     {
+      scenario_id: "gift-spouse-transfer",
+      track: "gift",
+      name: "배우자 증여 검토",
+      description: "배우자에게 일부 이전하는 경우의 증여세와 향후 상속재산 구성을 점검합니다.",
+      execution_tools: ["배우자 증여", "가족 보유구조 재편"],
+      basePriority: "needs_more_info",
+      timeline: ["배우자 유무 확인", "배우자 보유재산 확인", "이전 후 생활재원 점검"],
+      requiredInfo: ["배우자 유무", "배우자 보유재산", "이전 대상 자산"],
+      evaluate: (facts) => ({
+        priority: facts.family.spouse === "yes" ? "conditional" : facts.family.spouse === "unknown" ? "needs_more_info" : "low",
+        eligibility: {
+          status: facts.family.spouse === "no" ? "needs_info" : "conditional",
+          reasons: ["배우자 유무와 배우자 보유재산이 확인되어야 합니다."]
+        },
+        rationale: [
+          facts.family.spouse === "yes"
+            ? "배우자가 있어 배우자 증여와 향후 상속재산 구성을 조건부 검토합니다."
+            : "배우자 정보가 확정되면 배우자 증여 가능성을 재평가합니다."
+        ],
+        required_information: ["배우자 보유재산", "혼인기간", "이전 후 자금출처"]
+      })
+    },
+    {
+      scenario_id: "gift-valuation-timing",
+      track: "gift",
+      name: "평가시점 분산 증여",
+      description: "평가 변동성이 큰 자산을 언제, 어느 범위로 증여할지 나누어 검토합니다.",
+      execution_tools: ["평가시점 검토", "증여범위 조정"],
+      basePriority: "conditional",
+      timeline: ["평가자료 확보", "증여시점 후보 비교", "증여 후 보유·매각 계획 확인"],
+      requiredInfo: ["자산 평가근거", "증여 예정시점", "보유·매각 의향"],
+      evaluate: (facts) => ({
+        priority: hasConstraint(facts, "valuation_needed") || hasGoal(facts, "transfer_early") ? "conditional" : "needs_more_info",
+        eligibility: { status: "conditional", reasons: ["평가액과 증여시점이 확인되면 비교 가능합니다."] },
+        rationale: [
+          hasConstraint(facts, "valuation_needed")
+            ? "평가 확인이 필요한 자산이 있어 증여시점에 따른 차이를 별도 검토합니다."
+            : "증여 예정시점과 평가근거가 정리되면 평가시점 분산안을 볼 수 있습니다."
+        ],
+        required_information: ["평가액 근거", "증여 예정일", "증여 후 처분 계획"]
+      })
+    },
+    {
+      scenario_id: "gift-tax-payment-source",
+      track: "gift",
+      name: "증여세 납부재원 점검",
+      description: "수증자가 증여세를 납부할 재원을 어떻게 마련할지 확인하는 보완 시나리오입니다.",
+      execution_tools: ["수증자 현금흐름", "납부재원 점검"],
+      basePriority: "conditional",
+      timeline: ["수증자 현금 확인", "증여세 납부시점 확인", "부족재원 보완방안 검토"],
+      requiredInfo: ["수증자 보유현금", "납부시점", "부모 지원 여부"],
+      evaluate: (facts) => ({
+        priority: hasGoal(facts, "prepare_liquidity") ? "conditional" : "needs_more_info",
+        eligibility: { status: "conditional", reasons: ["수증자의 납부능력과 자금출처 확인이 필요합니다."] },
+        rationale: [
+          hasGoal(facts, "prepare_liquidity")
+            ? "납부재원 준비 목표가 있어 증여세 납부재원을 별도로 점검합니다."
+            : "증여 실행 전 수증자의 세금 납부재원을 추가 확인합니다."
+        ],
+        required_information: ["수증자 보유현금", "자금출처", "분납 가능성"]
+      })
+    },
+    {
       scenario_id: "business-succession-deduction",
       track: "business_succession",
       name: "가업상속·가업승계 검토",
@@ -218,6 +418,68 @@ function scenarioDefinitions(): ScenarioDefinition[] {
       }
     },
     {
+      scenario_id: "business-share-phased-transfer",
+      track: "business_succession",
+      name: "지분 단계이전",
+      description: "경영권을 유지하면서 지분을 나누어 이전하는 가업승계 시나리오입니다.",
+      execution_tools: ["지분 단계이전", "의결권 구조"],
+      basePriority: "conditional",
+      timeline: ["현재 지분율 확인", "후계자 참여도 확인", "이전 비율·시점 설계"],
+      requiredInfo: ["현재 지분율", "후계자 참여도", "주주간 관계"],
+      evaluate: (facts) => {
+        const business = facts.business_interests[0];
+        return {
+          priority: business?.control_preference === "retain" ? "priority" : business ? "conditional" : "needs_more_info",
+          eligibility: { status: business ? "conditional" : "needs_info", reasons: ["법인지분과 경영권 유지 의사가 확인되어야 합니다."] },
+          rationale: [
+            business
+              ? "법인지분이 확인되어 지분을 한 번에 넘기지 않고 단계별로 이전하는 방안을 검토합니다."
+              : "법인지분 보유 여부가 확인되면 지분 단계이전 검토가 가능합니다."
+          ],
+          required_information: ["주식 평가액", "지분율", "후계자 경영참여"]
+        };
+      }
+    },
+    {
+      scenario_id: "business-control-retention",
+      track: "business_succession",
+      name: "경영권 유지 설계",
+      description: "승계 과정에서도 부모 세대의 통제권과 회사 안정성을 유지하는 시나리오입니다.",
+      execution_tools: ["의결권 구조", "정관·주주간 약정"],
+      basePriority: "conditional",
+      timeline: ["통제권 목표 확인", "의결권·지분 구조 검토", "사후관리 위험 점검"],
+      requiredInfo: ["정관", "주주명부", "경영권 유지 기간"],
+      evaluate: (facts) => ({
+        priority: hasGoal(facts, "retain_control") || hasConstraint(facts, "control_retention_required") ? "priority" : "conditional",
+        eligibility: { status: "conditional", reasons: ["통제권 목표와 현재 지분구조 확인이 필요합니다."] },
+        rationale: [
+          hasGoal(facts, "retain_control")
+            ? "경영권 유지가 목표이므로 지분 이전과 통제권을 분리해 우선 검토합니다."
+            : "법인지분 이전 전 통제권 유지 조건을 함께 확인합니다."
+        ],
+        required_information: ["주주명부", "정관", "후계자 역할"]
+      })
+    },
+    {
+      scenario_id: "business-post-management-compliance",
+      track: "business_succession",
+      name: "사후관리 리스크 점검",
+      description: "가업상속·증여 특례 적용 후 사후관리 요건을 지킬 수 있는지 점검합니다.",
+      execution_tools: ["사후관리", "요건 점검"],
+      basePriority: "needs_more_info",
+      timeline: ["적용 특례 후보 확인", "고용·자산·업종 요건 확인", "사후관리 체크리스트 작성"],
+      requiredInfo: ["업종·업력", "고용 요건", "사후관리 가능성"],
+      evaluate: (facts) => ({
+        priority: hasGoal(facts, "business_continuity") ? "conditional" : "needs_more_info",
+        eligibility: { status: "needs_info", reasons: ["가업 요건과 사후관리 가능성은 전문가 검토가 필요합니다."] },
+        rationale: [
+          "가업승계는 세액보다 사후관리 실패 위험이 크므로 적용 전 별도 체크가 필요합니다."
+        ],
+        required_information: ["업종·업력", "고용 유지 계획", "사후관리 가능성"],
+        calculation_status: "needs_expert_review"
+      })
+    },
+    {
       scenario_id: "capital-gains-sell-then-gift",
       track: "capital_gains",
       name: "양도 후 현금 증여",
@@ -242,11 +504,68 @@ function scenarioDefinitions(): ScenarioDefinition[] {
       }
     },
     {
+      scenario_id: "capital-gains-acquisition-cost-rebuild",
+      track: "capital_gains",
+      name: "취득가액·보유기간 재구성",
+      description: "양도세 비교 전 취득가액, 필요경비, 보유·거주기간을 먼저 복원합니다.",
+      execution_tools: ["취득가액 대사", "보유기간 검토"],
+      basePriority: "conditional",
+      timeline: ["취득계약서 확인", "필요경비 수집", "보유·거주기간 대사"],
+      requiredInfo: ["취득가액", "필요경비", "보유·거주기간"],
+      evaluate: (facts) => ({
+        priority: hasAssetType(facts, "real_estate") ? "conditional" : "needs_more_info",
+        eligibility: { status: "conditional", reasons: ["양도세 계산 전 취득정보가 먼저 필요합니다."] },
+        rationale: [
+          "양도 후 증여안은 취득가액과 보유기간이 없으면 세액 비교가 왜곡되므로 먼저 자료를 복원합니다."
+        ],
+        required_information: ["취득가액", "필요경비", "보유·거주기간"]
+      })
+    },
+    {
+      scenario_id: "capital-gains-long-term-holding",
+      track: "capital_gains",
+      name: "장기보유·거주요건 검토",
+      description: "매각 시점에 따라 양도세 부담이 달라지는지 장기보유·거주요건을 점검합니다.",
+      execution_tools: ["보유기간", "거주요건"],
+      basePriority: "needs_more_info",
+      timeline: ["취득일 확인", "실거주 기간 확인", "매각 가능시점 비교"],
+      requiredInfo: ["취득일", "거주기간", "매각 예정일"],
+      evaluate: (facts) => ({
+        priority: hasGoal(facts, "sell_for_cash") ? "conditional" : "needs_more_info",
+        eligibility: { status: "needs_info", reasons: ["취득일과 거주기간 확인이 필요합니다."] },
+        rationale: [
+          hasGoal(facts, "sell_for_cash")
+            ? "현금화를 목표로 선택했기 때문에 매각 시점별 양도세 차이를 추가 확인합니다."
+            : "매각 가능성이 있으면 장기보유·거주요건을 확인합니다."
+        ],
+        required_information: ["취득일", "거주기간", "매각 예정일"]
+      })
+    },
+    {
+      scenario_id: "capital-gains-family-sale-fair-value",
+      track: "capital_gains",
+      name: "가족 간 매매가액 적정성",
+      description: "가족 간 매매를 검토할 때 시가와 자금출처 위험을 점검합니다.",
+      execution_tools: ["시가 검토", "자금출처 점검"],
+      basePriority: "needs_more_info",
+      timeline: ["매수자 확정", "시가자료 확인", "자금출처·대금지급 흐름 점검"],
+      requiredInfo: ["시가자료", "매수자 자금출처", "대금지급 방식"],
+      evaluate: (facts) => ({
+        priority: hasGoal(facts, "fairness_between_children") || hasGoal(facts, "sell_for_cash") ? "conditional" : "needs_more_info",
+        eligibility: { status: "needs_info", reasons: ["시가와 자금출처가 확인되어야 가족 간 매매를 판단할 수 있습니다."] },
+        rationale: [
+          "가족 간 매매는 세액뿐 아니라 시가와 자금출처 검토가 필요하므로 추가 검토안으로 둡니다."
+        ],
+        required_information: ["시가자료", "매수자 자금출처", "대금 지급 증빙"]
+      })
+    },
+    {
       scenario_id: "inheritance-insurance-liquidity",
       track: "inheritance",
       name: "보험 납부재원 보완",
       description: "상속세 납부재원 부족 위험이 있는 경우 보험 또는 현금흐름 보완 가능성을 봅니다.",
       execution_tools: ["보험 납부재원", "현금흐름 보완"],
+      alwaysConsider: true,
       basePriority: "conditional",
       timeline: ["금융자산 확인", "보험료 감당 가능성 확인", "계약자·수익자 구조 점검"],
       requiredInfo: ["보험 계약자", "수익자", "보험료 재원"],
@@ -365,7 +684,7 @@ function comparisonBasis(facts: ClientFacts) {
 
 function rankRecommendations(scenarios: Scenario[]): Recommendation[] {
   return scenarios
-    .filter((scenario) => scenario.priority === "priority" || scenario.priority === "conditional" || scenario.priority === "needs_more_info")
+    .filter((scenario) => isRecommendationCandidate(scenario))
     .sort((a, b) => priorityScore(a.priority) - priorityScore(b.priority) || a.scenario_id.localeCompare(b.scenario_id))
     .slice(0, 3)
     .map((scenario, index) => ({
@@ -374,6 +693,53 @@ function rankRecommendations(scenarios: Scenario[]): Recommendation[] {
       label: scenario.priority === "priority" ? "우선 검토" : scenario.priority === "conditional" ? "조건부 검토" : "추가정보 후 검토",
       rationale: scenario.rationale
     }));
+}
+
+function buildScenarioDisplayPlan(baseline: Baseline, scenarios: Scenario[], recommendations: Recommendation[]): ScenarioDisplayPlan {
+  const recommended = recommendations
+    .map((recommendation) => scenarios.find((scenario) => scenario.scenario_id === recommendation.scenario_id))
+    .filter((scenario): scenario is Scenario => Boolean(scenario));
+  const usedIds = new Set(recommended.map((scenario) => scenario.scenario_id));
+  const additionalReviews = scenarios
+    .filter((scenario) => isAdditionalReviewCandidate(scenario, usedIds))
+    .sort((a, b) => priorityScore(a.priority) - priorityScore(b.priority) || a.scenario_id.localeCompare(b.scenario_id))
+    .slice(0, 2);
+  const liquiditySupport = scenarios.find((scenario) => scenario.scenario_id === LIQUIDITY_SUPPORT_SCENARIO_ID && scenario.eligibility.status !== "excluded") ?? null;
+  const comparisonScenarios = uniqueScenarios([
+    ...recommended,
+    ...additionalReviews,
+    ...(liquiditySupport ? [liquiditySupport] : [])
+  ]);
+
+  return {
+    baseline,
+    recommended,
+    additional_reviews: additionalReviews,
+    liquidity_support: liquiditySupport,
+    comparison_scenarios: comparisonScenarios
+  };
+}
+
+function isRecommendationCandidate(scenario: Scenario) {
+  return scenario.priority !== "baseline" &&
+    scenario.scenario_id !== LIQUIDITY_SUPPORT_SCENARIO_ID &&
+    (scenario.priority === "priority" || scenario.priority === "conditional" || scenario.priority === "needs_more_info");
+}
+
+function isAdditionalReviewCandidate(scenario: Scenario, usedIds: Set<string>) {
+  return scenario.priority !== "baseline" &&
+    scenario.scenario_id !== LIQUIDITY_SUPPORT_SCENARIO_ID &&
+    !usedIds.has(scenario.scenario_id) &&
+    (scenario.priority === "conditional" || scenario.priority === "needs_more_info");
+}
+
+function uniqueScenarios(scenarios: Scenario[]) {
+  const seen = new Set<string>();
+  return scenarios.filter((scenario) => {
+    if (seen.has(scenario.scenario_id)) return false;
+    seen.add(scenario.scenario_id);
+    return true;
+  });
 }
 
 function priorityScore(priority: Scenario["priority"]) {
@@ -393,7 +759,7 @@ function buildReportV2Contract(): ReportV2Contract {
     pages_supported: [1, 2, 3, 4, 5, 6, 7],
     may_display_customer_numbers: ["현재 입력 자산가액", "직접 입력한 채무", "확인된 금융자산", "확인된 과세표준 기반 상속세·증여세 산출세액"],
     blocked_until_engine: ["과세표준 미확인 세액", "시나리오 예상세액", "예상 절세액", "절세율", "예상 순효과", "취득세·양도세", "공제·가산 반영 세액"],
-    baseline_required_for: ["예상 절세액", "절세율", "예상 순효과", "전체 시나리오 비교"]
+    baseline_required_for: ["예상 절세액", "절세율", "예상 순효과", "추천 시나리오 비교"]
   };
 }
 
@@ -413,6 +779,14 @@ function hasGoal(facts: ClientFacts, goal: Goal) {
 
 function hasPastGift(facts: ClientFacts) {
   return facts.past_gifts.length > 0;
+}
+
+function hasAssetType(facts: ClientFacts, type: ClientFacts["assets"][number]["type"]) {
+  return facts.assets.some((asset) => asset.type === type);
+}
+
+function hasConstraint(facts: ClientFacts, constraint: Constraint) {
+  return facts.constraints.includes(constraint);
 }
 
 function trackLabelList(facts: ClientFacts) {

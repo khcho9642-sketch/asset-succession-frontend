@@ -4,8 +4,6 @@ import { AssessmentMetrics } from "@/components/AssessmentMetrics";
 import { AssessmentSummary } from "@/components/AssessmentSummary";
 import { PublicLightNav } from "@/components/PublicLightNav";
 import { ScenarioPlanPanel } from "@/components/ScenarioPlanPanel";
-import { StrategyComparison } from "@/components/StrategyComparison";
-import { strategyBranches } from "@/lib/mockData";
 
 export default function ResultPage() {
   return (
@@ -16,22 +14,22 @@ export default function ResultPage() {
           <div>
             <p className="text-sm font-semibold tracking-[0.08em] text-[var(--gold)]">사전진단 결과</p>
             <h1 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.055em] text-[var(--navy-950)] md:text-6xl">
-              입력 요약과 전략별 검토 후보입니다.
+              입력 요약과 선별된 검토 후보입니다.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-              확정 세액이 아니라 가족 회의와 전문가 상담을 위한 비교표입니다. 입력 자산 합계는 사전진단에서 가져오고, 전략별 세액·부족액은 계산엔진 연결 전까지 숫자로 산정하지 않습니다.
+              확정 세액이 아니라 가족 회의와 전문가 상담을 위한 비교표입니다. 입력 자산 합계는 사전진단에서 가져오고, 지금 필요한 기준안·추천안·보완안만 보여드립니다.
             </p>
           </div>
           <div className="grid gap-4">
             <AssessmentMetrics />
             <div className="grid gap-4 sm:grid-cols-2">
               <article className="border border-[var(--border)] bg-white p-5">
-                <p className="text-sm text-[var(--muted)]">비교 전략</p>
-                <strong className="mt-3 block text-3xl tracking-[-0.06em] text-[var(--navy-950)]">7개</strong>
+                <p className="text-sm text-[var(--muted)]">AI 추천 시나리오</p>
+                <strong className="mt-3 block text-3xl tracking-[-0.06em] text-[var(--navy-950)]">최대 3개</strong>
               </article>
               <article className="border border-[var(--border)] bg-white p-5">
-                <p className="text-sm text-[var(--muted)]">주요 검토사항</p>
-                <strong className="mt-3 block text-3xl tracking-[-0.06em] text-[var(--navy-950)]">11건</strong>
+                <p className="text-sm text-[var(--muted)]">내부 후보 분석</p>
+                <strong className="mt-3 block text-3xl tracking-[-0.06em] text-[var(--navy-950)]">36개</strong>
               </article>
             </div>
           </div>
@@ -61,21 +59,6 @@ export default function ResultPage() {
             <h2 className="mt-4 text-2xl font-semibold tracking-[-0.04em]">가족 회의용 공유</h2>
             <p className="mt-3 text-sm leading-7 text-white/68">개인정보 없이 같은 가정과 비교표만 보고, 상담 전 질문을 정리합니다.</p>
           </article>
-        </section>
-
-        <div className="mt-8">
-          <StrategyComparison />
-        </div>
-
-        <section className="mt-12 grid gap-5 lg:grid-cols-3">
-          {strategyBranches.slice(0, 3).map((strategy) => (
-            <article key={strategy.name} className="border border-[var(--border)] bg-white p-6">
-              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--gold)]">{strategy.calculation_status}</span>
-              <h2 className="mt-5 text-2xl font-semibold tracking-[-0.04em]">{strategy.name}</h2>
-              <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{strategy.description}</p>
-              <p className="mt-4 border-l-2 border-[var(--gold)] pl-3 text-sm leading-6 text-[var(--muted)]">{strategy.status_detail}</p>
-            </article>
-          ))}
         </section>
 
         <div className="mt-12 flex flex-wrap items-center gap-4 border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
