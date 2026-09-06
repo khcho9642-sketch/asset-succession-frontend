@@ -1,4 +1,5 @@
 import { parseKoreanMoneyToEok } from "./phase2b/money";
+import { calculateProgressiveTaxEok } from "./phase2b/tax";
 
 export const ASSESSMENT_STORAGE_KEY = "as360.precheck.assessment.v1";
 export const PRECHECK_DRAFT_STORAGE_KEY = "as360.precheck.draft.v2";
@@ -122,6 +123,24 @@ export function createDemoAssessmentSnapshot(): AssessmentSnapshot {
           "첫째 자녀 상환능력": "있음",
           "둘째 자녀 상환능력": "부족",
           "상속세 납부 가능 현금": "3"
+        },
+        taxBaseAmounts: {
+          baseline: "30",
+          "gift-stepwise-transfer": "12",
+          "gift-family-loan-and-gift-mix": "14",
+          "inheritance-spouse-allocation": "20",
+          "capital-gains-acquisition-cost-rebuild": "18",
+          "capital-gains-sell-then-gift": "16",
+          "inheritance-insurance-liquidity": "30"
+        },
+        taxBaseTaxKind: {
+          baseline: "inheritance_tax",
+          "gift-stepwise-transfer": "inheritance_tax",
+          "gift-family-loan-and-gift-mix": "inheritance_tax",
+          "inheritance-spouse-allocation": "inheritance_tax",
+          "capital-gains-acquisition-cost-rebuild": "inheritance_tax",
+          "capital-gains-sell-then-gift": "inheritance_tax",
+          "inheritance-insurance-liquidity": "inheritance_tax"
         }
       }
     },
@@ -195,13 +214,26 @@ function formatRangeMap(ranges: Record<string, { min_won: number; max_won: numbe
 }
 
 function formatTaxBaseMap(amounts: Record<string, string>) {
-  return Object.entries(amounts)
+  const formatted = Object.entries(amounts)
     .map(([key, value]) => {
       const amount = parseNonnegativeEokAmount(value);
-      const label = key === "baseline" ? "기준안 과세표준" : "대안 과세표준";
-      return `${label}: ${amount === null ? "미입력" : formatEok(amount)}`;
+      return `${formatTaxBaseLabel(key)} ${amount === null ? "미입력" : formatEok(amount)}`;
     })
-    .join(" · ");
+    .join(" / ");
+  return formatted ? `과세표준: ${formatted}` : "";
+}
+
+function formatTaxBaseLabel(key: string) {
+  const labels: Record<string, string> = {
+    baseline: "기준안",
+    "gift-stepwise-transfer": "사전증여",
+    "gift-family-loan-and-gift-mix": "대출·증여 배분",
+    "inheritance-spouse-allocation": "배우자 배분",
+    "capital-gains-acquisition-cost-rebuild": "취득가액 재구성",
+    "capital-gains-sell-then-gift": "양도 후 증여",
+    "inheritance-insurance-liquidity": "보험 재원보완"
+  };
+  return labels[key] ?? key;
 }
 
 function formatEok(value: number | null) {
@@ -262,15 +294,18 @@ export function buildAssessmentMetrics(snapshot: AssessmentSnapshot): Assessment
   const debtAmount = hasNoDebt ? 0 : hasDebtAmount ? parsedDebtAmounts.reduce((sum, amount) => sum + (amount ?? 0), 0) : null;
   const netAssetAmount = totalAssetAmount !== null && debtAmount !== null ? totalAssetAmount - debtAmount : null;
   const hasConfirmedTaxBase = Boolean(snapshot.answers.review?.taxBaseAmounts && Object.values(snapshot.answers.review.taxBaseAmounts).some((value) => parseNonnegativeEokAmount(value) !== null));
+  const baselineTaxBase = parseNonnegativeEokAmount(snapshot.answers.review?.taxBaseAmounts?.baseline);
+  const baselineTax = baselineTaxBase === null ? null : calculateProgressiveTaxEok(baselineTaxBase);
+  const fundingGap = baselineTax !== null && financialAmount !== null ? Math.max(baselineTax - financialAmount, 0) : null;
 
   return {
     totalAssets: totalAssetAmount !== null ? formatEok(totalAssetAmount) : "자산금액 확인 필요",
     financialAssets: formatEok(financialAmount),
     estimatedDebt: debtAmount !== null ? formatEok(debtAmount) : "채무 금액 미입력",
     netAssets: netAssetAmount !== null ? formatEok(netAssetAmount) : "순자산 산정 불가",
-    totalBurden: hasConfirmedTaxBase ? "확정 과세표준 기준 계산 가능" : "확정 과세표준 미입력",
-    immediateCash: hasConfirmedTaxBase ? "확정 산출세액 기준 확인" : "세액 계산 후 확정",
-    fundingGap: hasConfirmedTaxBase ? "세액과 금융자산 비교 가능" : "비교 불가",
+    totalBurden: baselineTax !== null ? `${formatEok(baselineTax)} 산출세액` : hasConfirmedTaxBase ? "확정 과세표준 기준 계산 가능" : "확정 과세표준 미입력",
+    immediateCash: baselineTax !== null ? `${formatEok(baselineTax)} 필요` : hasConfirmedTaxBase ? "확정 산출세액 기준 확인" : "세액 계산 후 확정",
+    fundingGap: fundingGap !== null ? (fundingGap === 0 ? "확인된 금융자산 범위 내" : `${formatEok(fundingGap)} 부족`) : hasConfirmedTaxBase ? "세액과 금융자산 비교 가능" : "비교 불가",
     familySummary: family ? formatAnswer(family) : "미입력",
     assetSummary: assets ? formatAnswer(assets) : "미입력",
     goalSummary: goal ? formatAnswer(goal) : "미입력",

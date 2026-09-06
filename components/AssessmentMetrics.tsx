@@ -29,12 +29,14 @@ export function AssessmentMetrics({ mode = "result" }: Readonly<{ mode?: "result
     );
   }
 
-  const { metrics } = loadResult;
+  const { metrics, snapshot } = loadResult;
+  const hasCalculatedBaseline = metrics.totalBurden.includes("산출세액");
+  const isDemoSnapshot = snapshot.assessment_id === "AS360-20260906-DEMO1";
   const cards = mode === "result"
     ? [
-        ["전략별 총 부담", metrics.totalBurden, "확인 과세표준 없이는 미산정"],
-        ["즉시 필요현금", metrics.immediateCash, "산출세액·실행비용이 계산된 범위만 표시"],
-        ["납부재원 부족액", metrics.fundingGap, "필요현금과 조달 가능 금융자산을 비교"]
+        ["전략별 총 부담", metrics.totalBurden, hasCalculatedBaseline ? "확인 과세표준에 세율표를 적용한 산출세액" : "확인 과세표준 없이는 미산정"],
+        ["즉시 필요현금", metrics.immediateCash, hasCalculatedBaseline ? "기준안 산출세액을 현금 필요액으로 표시" : "산출세액·실행비용이 계산된 범위만 표시"],
+        ["납부재원 부족액", metrics.fundingGap, hasCalculatedBaseline ? "산출세액과 확인 금융자산을 비교" : "필요현금과 조달 가능 금융자산을 비교"]
       ]
     : [
         ["입력 총자산", metrics.totalAssets, "사전진단 자산 금액 합계"],
@@ -54,7 +56,7 @@ export function AssessmentMetrics({ mode = "result" }: Readonly<{ mode?: "result
           >
             <p className={`text-sm ${index === 0 ? "text-white/60" : "text-[var(--muted)]"}`}>{label}</p>
             <strong className={`motion-metric-value mt-3 block text-3xl tracking-[-0.06em] ${index === 0 ? "text-white" : "text-[var(--navy-950)]"}`}>
-              <AnimatedMetricValue value={value} enabled={mode === "result"} />
+              <AnimatedMetricValue value={value} enabled={mode === "result" && !isDemoSnapshot} />
             </strong>
             <p className={`mt-3 text-xs leading-5 ${index === 0 ? "text-white/55" : "text-[var(--muted)]"}`}>{helper}</p>
           </article>

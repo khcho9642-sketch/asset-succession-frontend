@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Download, LockKeyhole } from "lucide-react";
+import { ArrowRight, FileText, LockKeyhole } from "lucide-react";
 import { AssessmentMetrics } from "@/components/AssessmentMetrics";
 import { AssessmentSummary } from "@/components/AssessmentSummary";
 import { PublicLightNav } from "@/components/PublicLightNav";
@@ -65,10 +65,10 @@ export default function ResultPage() {
           <LockKeyhole className="h-5 w-5 text-[var(--gold)]" />
           <p className="flex-1 text-sm leading-6 text-white/70">본 결과는 입력 스냅샷을 바탕으로 상담 쟁점을 정리한 화면이며 확정 세액이 아닙니다.</p>
           <Link href="/report-preview" className="motion-press inline-flex items-center gap-2 bg-white px-5 py-3 text-sm font-semibold text-[var(--navy-950)]">
-            <Download className="h-4 w-4" /> 무료 보고서 다운로드
+            <FileText className="h-4 w-4" /> 무료 보고서 미리보기
           </Link>
           <Link href="/consultation" className="motion-press inline-flex items-center gap-2 border border-white/20 px-5 py-3 text-sm font-semibold text-white">
-            이 결과로 조경호 회계사에게 상담하기 <ArrowRight className="h-4 w-4" />
+            이 결과로 전문가 상담 신청하기 <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>

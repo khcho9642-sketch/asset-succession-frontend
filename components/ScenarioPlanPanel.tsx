@@ -54,6 +54,24 @@ export function ScenarioPlanPanel({ compact = false }: Readonly<{ compact?: bool
   }
 
   const { recommended, additional_reviews: additionalReviews, liquidity_support: liquiditySupport, comparison_scenarios: comparisonScenarios } = plan.display_scenarios;
+  const comparisonRows = [
+    {
+      key: plan.baseline.baseline_id,
+      name: plan.baseline.name,
+      tax: moneyDisplay(plan.baseline.calculation_result.total_tax),
+      cash: moneyDisplay(plan.baseline.calculation_result.liquidity_gap),
+      period: "상속 발생시점",
+      risk: baselineRiskLabel(plan.baseline)
+    },
+    ...comparisonScenarios.map((scenario) => ({
+      key: scenario.scenario_id,
+      name: scenario.name,
+      tax: moneyDisplay(scenario.calculation_result.total_tax),
+      cash: moneyDisplay(scenario.calculation_result.liquidity_gap),
+      period: periodLabel(scenario),
+      risk: riskLabel(scenario)
+    }))
+  ];
 
   return (
     <section className="border border-[var(--border)] bg-white p-6">
@@ -130,7 +148,33 @@ export function ScenarioPlanPanel({ compact = false }: Readonly<{ compact?: bool
         ))}
       </div>
 
-      <div className="mt-6 overflow-x-auto">
+      <div className="mt-6 grid gap-3 sm:hidden">
+        {comparisonRows.map((row) => (
+          <article key={row.key} className="border border-[var(--border)] bg-white p-4">
+            <h3 className="text-base font-semibold tracking-[-0.03em] text-[var(--navy-950)]">{row.name}</h3>
+            <dl className="mt-3 grid grid-cols-2 gap-3 text-sm">
+              <div>
+                <dt className="text-xs text-[var(--muted)]">세금</dt>
+                <dd className="mt-1 font-semibold">{row.tax}</dd>
+              </div>
+              <div>
+                <dt className="text-xs text-[var(--muted)]">현금</dt>
+                <dd className="mt-1 font-semibold">{row.cash}</dd>
+              </div>
+              <div>
+                <dt className="text-xs text-[var(--muted)]">기간</dt>
+                <dd className="mt-1 font-semibold">{row.period}</dd>
+              </div>
+              <div>
+                <dt className="text-xs text-[var(--muted)]">위험</dt>
+                <dd className="mt-1 font-semibold">{row.risk}</dd>
+              </div>
+            </dl>
+          </article>
+        ))}
+      </div>
+
+      <div className="mt-6 hidden overflow-x-auto sm:block">
         <table className="w-full min-w-[720px] border-collapse text-left text-sm">
           <thead className="bg-[var(--ivory)]">
             <tr>
@@ -142,20 +186,13 @@ export function ScenarioPlanPanel({ compact = false }: Readonly<{ compact?: bool
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="border border-[var(--border)] px-4 py-3 font-semibold">{plan.baseline.name}</td>
-              <td className="border border-[var(--border)] px-4 py-3">{moneyDisplay(plan.baseline.calculation_result.total_tax)}</td>
-              <td className="border border-[var(--border)] px-4 py-3">{moneyDisplay(plan.baseline.calculation_result.liquidity_gap)}</td>
-              <td className="border border-[var(--border)] px-4 py-3">상속 발생시점</td>
-              <td className="border border-[var(--border)] px-4 py-3">{baselineRiskLabel(plan.baseline)}</td>
-            </tr>
-            {comparisonScenarios.map((scenario) => (
-              <tr key={scenario.scenario_id}>
-                <td className="border border-[var(--border)] px-4 py-3 font-semibold">{scenario.name}</td>
-                <td className="border border-[var(--border)] px-4 py-3">{moneyDisplay(scenario.calculation_result.total_tax)}</td>
-                <td className="border border-[var(--border)] px-4 py-3">{moneyDisplay(scenario.calculation_result.liquidity_gap)}</td>
-                <td className="border border-[var(--border)] px-4 py-3">{periodLabel(scenario)}</td>
-                <td className="border border-[var(--border)] px-4 py-3">{riskLabel(scenario)}</td>
+            {comparisonRows.map((row) => (
+              <tr key={row.key}>
+                <td className="border border-[var(--border)] px-4 py-3 font-semibold">{row.name}</td>
+                <td className="border border-[var(--border)] px-4 py-3">{row.tax}</td>
+                <td className="border border-[var(--border)] px-4 py-3">{row.cash}</td>
+                <td className="border border-[var(--border)] px-4 py-3">{row.period}</td>
+                <td className="border border-[var(--border)] px-4 py-3">{row.risk}</td>
               </tr>
             ))}
           </tbody>
