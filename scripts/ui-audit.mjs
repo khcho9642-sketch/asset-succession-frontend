@@ -42,7 +42,7 @@ async function completeHybridPrecheck(page) {
   await page.goto(`${baseURL}/precheck`, { waitUntil: "networkidle", timeout: 30_000 });
   await page.evaluate(() => window.sessionStorage.clear());
   await page.reload({ waitUntil: "networkidle" });
-  await page.getByRole("textbox", { name: "직접 입력" }).fill("증여 준비, 배우자 있음, 자녀 2명, 부동산 42억, 금융자산 8억, 담보대출 2억, 최근 10년 증여 있음, 일부를 미리 이전하고 납부재원 부족액이 궁금합니다. 기준안 과세표준 3억, 대안 과세표준 1.5억");
+  await page.getByRole("textbox", { name: "직접 입력" }).fill(requiredFiftyEokConversation());
   await page.getByRole("button", { name: "직접 입력 이해하기" }).click();
   await page.getByText("제가 이렇게 이해했습니다.", { exact: true }).waitFor({ timeout: 10_000 });
   await confirmAllCandidateFacts(page);
@@ -51,18 +51,44 @@ async function completeHybridPrecheck(page) {
   await page.getByRole("button", { name: "다음" }).click();
   await page.getByRole("button", { name: "다음" }).click();
   await page.getByRole("button", { name: "다음" }).click();
-  if (await page.getByRole("checkbox", { name: "상속세 납부재원 준비" }).getAttribute("aria-checked") !== "true") {
-    await page.getByRole("checkbox", { name: "상속세 납부재원 준비" }).click();
-  }
   await page.getByRole("button", { name: "다음" }).click();
-  if (await page.getByRole("checkbox", { name: "세금·비용" }).getAttribute("aria-checked") !== "true") {
-    await page.getByRole("checkbox", { name: "세금·비용" }).click();
+  await page.getByText("분석을 시작하기 전에 더 말씀하고 싶은 내용이나 궁금한 점이 있나요?").waitFor({ timeout: 10_000 });
+  if ((await page.locator("body").innerText()).includes("분석 시작")) {
+    fail("/precheck", "flow", "Final review still exposes the forbidden '분석 시작' label.");
   }
-  await page.getByLabel("기준안 확인 과세표준(억원)").fill("3");
-  await page.getByLabel("우선 대안 확인 과세표준(억원)").fill("1.5");
-  await page.getByRole("button", { name: "결과 보기" }).click();
+  await page.getByRole("button", { name: "궁금한 점 질문하기" }).click();
+  await page.getByRole("textbox", { name: "직접 입력" }).fill("부모 자녀 대출은 차용증만 있으면 괜찮나요?");
+  await page.getByRole("button", { name: "질문 보내기" }).click();
+  await page.getByText("차용증뿐 아니라 이자와 원금의 실제 지급").waitFor({ timeout: 10_000 });
+  await page.getByRole("button", { name: "추가로 이야기하기" }).click();
+  await page.getByRole("textbox", { name: "직접 입력" }).fill("첫째는 상환능력 있음, 둘째는 상환능력 부족");
+  await page.getByRole("button", { name: "추가 내용 이해하기" }).click();
+  await page.getByText("제가 이렇게 이해했습니다.", { exact: true }).waitFor({ timeout: 10_000 });
+  await confirmAllCandidateFacts(page);
+  await page.getByRole("button", { name: "맞춤 보고서 만들기" }).click();
+  await page.getByText("맞춤 보고서를 만들어 주세요.").waitFor({ timeout: 10_000 });
+  await page.getByText("맞춤 보고서 작성 중").waitFor({ timeout: 10_000 });
   await page.waitForURL("**/precheck/result**", { timeout: 10_000 });
   await page.getByText("개인화 시나리오 플랜").waitFor({ timeout: 10_000 });
+}
+
+function requiredFiftyEokConversation() {
+  return [
+    "본인 자산",
+    "총자산 50억원",
+    "금융자산 30억원",
+    "아파트 20억원",
+    "채무 없음",
+    "배우자 1명",
+    "성인 자녀 2명",
+    "3년 전 자녀별 1억원 증여 및 신고",
+    "목표: 세금 부담 절감과 노후생활비 유지",
+    "자녀에게 5억원 대출 검토",
+    "첫째는 상환능력 있음",
+    "둘째는 상환능력 부족",
+    "보험 없음",
+    "상속세 납부 가능 현금 3억원"
+  ].join(", ");
 }
 
 async function confirmAllCandidateFacts(page) {
@@ -286,8 +312,25 @@ try {
     await flowPage.getByText("개인화 시나리오 플랜").waitFor({ timeout: 10_000 });
     const resultText = await flowPage.locator("body").innerText();
     const assessmentMatch = resultText.match(/AS360-\d{8}-[A-Z0-9]+/);
-    if (!assessmentMatch || !resultText.includes("개인화 시나리오 플랜") || !resultText.includes("36개 시나리오 내부 분석 완료") || !resultText.includes("입력 총자산") || !resultText.includes("50억") || !resultText.includes("0.5억 산출세액") || !resultText.includes("0.3억 절세 예상")) {
-      fail("/precheck/result", viewport.name, "Hybrid precheck did not hand confirmed facts to the result page.");
+    const requiredResultText = [
+      "개인화 시나리오 플랜",
+      "36개 시나리오 내부 분석 완료",
+      "입력 총자산",
+      "50억",
+      "가족 분산·단계적 사전증여",
+      "첫째 대출·둘째 증여 배분",
+      "배우자 상속공제 고려 재산배분",
+      "부모의 대여금 채권은 상속재산에서 자동 제외되지 않음",
+      "자산 구성",
+      "기준안과 추천안 비교",
+      "납세재원과 부족액",
+      "증여·대출·상속 실행 타임라인"
+    ];
+    const missingResultText = requiredResultText.filter((text) => !resultText.includes(text));
+    if (!assessmentMatch || missingResultText.length > 0) {
+      fail("/precheck/result", viewport.name, `Hybrid precheck did not hand confirmed facts to the result page. Missing: ${missingResultText.join(", ")}`);
+    } else if (resultText.includes("0.5억 산출세액") || resultText.includes("0.3억 절세 예상")) {
+      fail("/precheck/result", viewport.name, "Result page fabricated calculated tax values without a confirmed taxable base.");
     } else {
       const leakedResultNumbers = ["총자산 55억", "순자산 47억", "가용 현금\n5억", "부모 잔여재산\n55억", "9.5~12억", "6.3~8.6억", "inheritance-01-current-structure", "gift-01-stepwise-transfer"].filter((text) => resultText.includes(text));
       if (leakedResultNumbers.length > 0) {
@@ -302,8 +345,25 @@ try {
       await flowPage.getByText("Report V2 7/7").waitFor({ timeout: 10_000 });
       const reportText = await flowPage.locator("body").innerText();
       const pageCount = await flowPage.locator("[data-report-page]").count();
-      if (!reportText.includes(assessmentMatch[0]) || !reportText.includes("Report V2 7/7") || !reportText.includes("우리 가족 자산승계 사전진단 보고서") || !reportText.includes("36개 시나리오 내부 분석 완료") || !reportText.includes("0.5억 산출세액") || !reportText.includes("0.2억 산출세액") || pageCount !== 7) {
-        fail("/report-preview", viewport.name, `Report V2 did not render exactly seven personal pages. pages=${pageCount}`);
+      const requiredReportText = [
+        assessmentMatch[0],
+        "Report V2 7/7",
+        "우리 가족 자산승계 사전진단 보고서",
+        "36개 시나리오 내부 분석 완료",
+        "가족 분산·단계적 사전증여",
+        "첫째 대출·둘째 증여 배분",
+        "배우자 상속공제 고려 재산배분",
+        "자산 구성",
+        "기준안과 추천안 비교",
+        "납세재원과 부족액",
+        "증여·대출·상속 실행 타임라인"
+      ];
+      const missingReportText = requiredReportText.filter((text) => !reportText.includes(text));
+      if (pageCount !== 7 || missingReportText.length > 0) {
+        fail("/report-preview", viewport.name, `Report V2 did not render exactly seven personal pages or required content. pages=${pageCount}, missing=${missingReportText.join(", ")}`);
+      }
+      if (reportText.includes("0.5억 산출세액") || reportText.includes("0.2억 산출세액")) {
+        fail("/report-preview", viewport.name, "Report preview fabricated calculated tax values without a confirmed taxable base.");
       }
       const leakedReportNumbers = ["55억", "9.5~12억", "6.3~8.6억", "채무·보증금\n8억", "입력 순자산\n42억", "inheritance-01-current-structure", "gift-01-stepwise-transfer"].filter((text) => reportText.includes(text));
       if (leakedReportNumbers.length > 0) {

@@ -152,6 +152,22 @@ describe("Phase 2B scenario engine", () => {
     assert.ok(parsed.facts.every((fact) => fact.confidence));
   });
 
+  it("parses the required 50억원 conversation without treating parent-child lending as secured debt", () => {
+    const parsed = parseConversationalInput(requiredFiftyEokConversation());
+    assert.equal(parsed.status, "candidate");
+    assert.ok(parsed.facts.some((fact) => fact.label === "준비 목적" && fact.value === "여러 방법 비교"));
+    assert.ok(parsed.facts.some((fact) => fact.label === "자산" && fact.value === "금융자산 30억"));
+    assert.ok(parsed.facts.some((fact) => fact.label === "자산" && fact.value === "부동산 20억"));
+    assert.ok(parsed.facts.some((fact) => fact.label === "채무 여부" && fact.value === "없음"));
+    assert.ok(parsed.facts.some((fact) => fact.label === "과거 증여 상세" && fact.value.includes("자녀별 1억")));
+    assert.ok(parsed.facts.some((fact) => fact.label === "부모·자녀 대출 검토" && fact.value.includes("5억")));
+    assert.ok(parsed.facts.some((fact) => fact.label === "첫째 자녀 상환능력" && fact.value === "있음"));
+    assert.ok(parsed.facts.some((fact) => fact.label === "둘째 자녀 상환능력" && fact.value === "부족"));
+    assert.ok(parsed.facts.some((fact) => fact.label === "보험" && fact.value === "없음"));
+    assert.ok(parsed.facts.some((fact) => fact.label === "상속세 납부 가능 현금" && fact.value === "3억"));
+    assert.ok(!parsed.facts.some((fact) => fact.value === "담보대출 있음" || (fact.target.kind === "choice" && fact.target.choice === "담보대출 있음")));
+  });
+
   it("does not infer parent basis or child age buckets from spouse and child count", () => {
     const parsed = parseConversationalInput("배우자 있음, 자녀 2명");
     assert.equal(parsed.status, "candidate");
@@ -272,6 +288,38 @@ describe("Phase 2B scenario engine", () => {
     assert.ok(plan.display_scenarios.recommended.every((scenario) => scenario.scenario_id !== "inheritance-insurance-liquidity"));
     assert.equal(plan.display_scenarios.liquidity_support?.scenario_id, "inheritance-insurance-liquidity");
   });
+
+  it("prioritizes the required 50억원 case without exposing insurance as a direct tax-saving recommendation", () => {
+    const plan = buildScenarioPlan(normalizeAssessmentSnapshot(requiredFiftyEokSnapshot()));
+    assert.deepEqual(plan.display_scenarios.recommended.map((scenario) => scenario.name), [
+      "가족 분산·단계적 사전증여",
+      "첫째 대출·둘째 증여 배분",
+      "배우자 상속공제 고려 재산배분"
+    ]);
+    assert.equal(plan.display_scenarios.liquidity_support?.name, "보험 납부재원 보완");
+    assert.ok(plan.display_scenarios.recommended.every((scenario) => scenario.scenario_id !== "inheritance-insurance-liquidity"));
+    const loanScenario = plan.display_scenarios.recommended.find((scenario) => scenario.scenario_id === "gift-family-loan-and-gift-mix");
+    assert.ok(loanScenario?.required_information.includes("부모의 대여금 채권은 상속재산에서 자동 제외되지 않음"));
+    assert.ok(loanScenario?.required_information.includes("미상환 또는 채무면제 시 증여 위험"));
+  });
+
+  it("changes recommended scenarios across financial-heavy, real-estate-heavy, and business-family inputs", () => {
+    const financialPlan = buildScenarioPlan(financialHeavyFacts());
+    const realEstatePlan = buildScenarioPlan(realEstateHeavyFacts());
+    const businessPlan = buildScenarioPlan(businessFamilyFacts());
+    const financialRecommendations = financialPlan.display_scenarios.recommended.map((scenario) => scenario.scenario_id);
+    const realEstateRecommendations = realEstatePlan.display_scenarios.recommended.map((scenario) => scenario.scenario_id);
+    const businessRecommendations = businessPlan.display_scenarios.recommended.map((scenario) => scenario.scenario_id);
+
+    assert.notDeepEqual(financialRecommendations, realEstateRecommendations);
+    assert.notDeepEqual(financialRecommendations, businessRecommendations);
+    assert.notDeepEqual(realEstateRecommendations, businessRecommendations);
+    assert.ok(financialRecommendations.includes("gift-stepwise-transfer"));
+    assert.ok(realEstateRecommendations.includes("inheritance-real-estate-liquidity"));
+    assert.ok(businessRecommendations.every((scenarioId) => scenarioId.startsWith("business-")));
+    assert.ok(!financialRecommendations.some((scenarioId) => scenarioId.startsWith("business-")));
+    assert.ok(!realEstateRecommendations.some((scenarioId) => scenarioId.startsWith("business-")));
+  });
 });
 
 function serializePriorities(plan: ReturnType<typeof buildScenarioPlan>) {
@@ -363,5 +411,153 @@ function assessmentSnapshotWithTaxBases(options: {
       raw_inputs: [],
       current_question_key: "review"
     }
+  };
+}
+
+function requiredFiftyEokConversation() {
+  return [
+    "본인 자산",
+    "총자산 50억원",
+    "금융자산 30억원",
+    "아파트 20억원",
+    "채무 없음",
+    "배우자 1명",
+    "성인 자녀 2명",
+    "3년 전 자녀별 1억원 증여 및 신고",
+    "목표: 세금 부담 절감과 노후생활비 유지",
+    "자녀에게 5억원 대출 검토",
+    "첫째는 상환능력 있음",
+    "둘째는 상환능력 부족",
+    "보험 없음",
+    "상속세 납부 가능 현금 3억원"
+  ].join(", ");
+}
+
+function requiredFiftyEokSnapshot(): AssessmentSnapshot {
+  return {
+    assessment_id: "AS360-20260906-REQ50",
+    created_at: "2026-09-06T00:00:00.000Z",
+    review_focus: ["전체 요약 먼저 보기"],
+    answers: {
+      purpose: { label: "준비 목적", choices: ["여러 방법 비교"], detail: "" },
+      family: {
+        label: "가족",
+        choices: ["부모 1명 기준"],
+        detail: "",
+        facts: { "배우자 유무": "있음", "자녀 수": "2명", "성년 자녀 수": "2명", "미성년 자녀 수": "0명" }
+      },
+      assets: {
+        label: "자산",
+        choices: ["금융자산", "부동산"],
+        detail: "",
+        assetAmounts: { "금융자산": "30", "부동산": "20" },
+        assetAmountWons: { "금융자산": eokAmountToWon(30), "부동산": eokAmountToWon(20) },
+        facts: { "보험": "없음" }
+      },
+      debt: {
+        label: "채무·과거 증여",
+        choices: ["최근 10년 증여 있음"],
+        detail: "",
+        facts: { "채무 여부": "없음", "과거 증여 상세": "3년 전 자녀별 1억 증여 및 신고" }
+      },
+      goal: { label: "승계 목표", choices: ["세금 부담 절감", "노후생활비 유지", "상속세 납부재원 준비"], detail: "" },
+      review: {
+        label: "결과 준비",
+        choices: ["전체 요약 먼저 보기"],
+        detail: "",
+        facts: {
+          "부모·자녀 대출 검토": "5",
+          "첫째 자녀 상환능력": "있음",
+          "둘째 자녀 상환능력": "부족",
+          "상속세 납부 가능 현금": "3"
+        }
+      }
+    },
+    conversation: {
+      messages: [{ role: "user", text: requiredFiftyEokConversation(), created_at: "2026-09-06T00:00:00.000Z" }],
+      confirmed_facts: [],
+      raw_inputs: [requiredFiftyEokConversation()],
+      current_question_key: "review"
+    }
+  };
+}
+
+function financialHeavyFacts(): ClientFacts {
+  return {
+    ...phase2bFixtures.caseAInheritance,
+    client_facts_id: "UNIT-FINANCIAL-HEAVY",
+    planning_tracks: ["inheritance", "gift"],
+    assets: [
+      {
+        asset_id: "financial-cash",
+        type: "financial",
+        owner: "parent",
+        current_value_eok: 42,
+        location_level: "none",
+        disposable: "yes",
+        succession_preference: "compare"
+      },
+      {
+        asset_id: "financial-home",
+        type: "real_estate",
+        owner: "parent",
+        current_value_eok: 8,
+        location_level: "city_district",
+        disposable: "partial",
+        succession_preference: "keep"
+      }
+    ],
+    business_interests: [],
+    goals: ["minimize_tax", "transfer_early", "maintain_living_expenses"],
+    constraints: [],
+    intrafamily_loans: [],
+    insurance_status: "none",
+    available_tax_payment_cash_eok: 10
+  };
+}
+
+function realEstateHeavyFacts(): ClientFacts {
+  return {
+    ...phase2bFixtures.caseAInheritance,
+    client_facts_id: "UNIT-REAL-ESTATE-HEAVY",
+    planning_tracks: ["inheritance"],
+    assets: [
+      {
+        asset_id: "real-estate-main",
+        type: "real_estate",
+        owner: "parent",
+        current_value_eok: 46,
+        location_level: "city_district",
+        disposable: "partial",
+        succession_preference: "keep"
+      },
+      {
+        asset_id: "real-estate-cash",
+        type: "financial",
+        owner: "parent",
+        current_value_eok: 4,
+        location_level: "none",
+        disposable: "yes",
+        succession_preference: "compare"
+      }
+    ],
+    business_interests: [],
+    goals: ["prepare_liquidity", "maintain_living_expenses"],
+    constraints: ["valuation_needed"],
+    intrafamily_loans: [],
+    insurance_status: "none",
+    available_tax_payment_cash_eok: 3
+  };
+}
+
+function businessFamilyFacts(): ClientFacts {
+  return {
+    ...phase2bFixtures.caseCBusinessSuccession,
+    client_facts_id: "UNIT-BUSINESS-FAMILY",
+    planning_tracks: ["business_succession"],
+    goals: ["business_continuity", "retain_control", "compare_options"],
+    intrafamily_loans: [],
+    insurance_status: "unknown",
+    available_tax_payment_cash_eok: null
   };
 }

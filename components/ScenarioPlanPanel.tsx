@@ -6,6 +6,7 @@ import { readAssessmentFromSession } from "@/lib/assessment";
 import type { AssessmentLoadResult } from "@/lib/assessment";
 import { buildScenarioPlan, normalizeAssessmentSnapshot } from "@/lib/phase2b";
 import type { Baseline, MoneyResult, Scenario, ScenarioPlan } from "@/lib/phase2b";
+import { ScenarioVisualGrid } from "@/components/ScenarioVisuals";
 
 const trackLabels = {
   inheritance: "상속",
@@ -84,6 +85,8 @@ export function ScenarioPlanPanel({ compact = false }: Readonly<{ compact?: bool
         </article>
       </div>
 
+      <ScenarioVisualGrid plan={plan} />
+
       <div className={`mt-6 grid gap-4 ${compact ? "" : "lg:grid-cols-3"}`}>
         {recommended.map((scenario, index) => (
           <article key={scenario.scenario_id} className="border border-[var(--border)] bg-[var(--ivory)] p-5">
@@ -93,6 +96,14 @@ export function ScenarioPlanPanel({ compact = false }: Readonly<{ compact?: bool
             </div>
             <h3 className="mt-3 text-xl font-semibold tracking-[-0.04em] text-[var(--navy-950)]">{scenario.name}</h3>
             <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{scenario.rationale[0]}</p>
+            <div className="mt-4 border-t border-[var(--border)] pt-3">
+              <p className="text-xs font-semibold text-[var(--gold)]">적용 조건·위험</p>
+              <ul className="mt-2 grid gap-1 text-xs leading-5 text-[var(--muted)]">
+                {scenario.required_information.slice(0, 5).map((item) => (
+                  <li key={item}>· {item}</li>
+                ))}
+              </ul>
+            </div>
             <dl className="mt-4 grid gap-2 text-sm">
               <div className="grid grid-cols-[7.5rem_1fr] gap-3">
                 <dt className="text-[var(--muted)]">기준안 세액</dt>

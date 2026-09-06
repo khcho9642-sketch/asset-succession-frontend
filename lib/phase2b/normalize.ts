@@ -19,7 +19,9 @@ const trackByChoice: Record<string, PlanningTrack[]> = {
 };
 
 const goalByChoice: Record<string, Goal> = {
+  "세금 부담 절감": "minimize_tax",
   "현재 구조 유지": "retain_control",
+  "노후생활비 유지": "maintain_living_expenses",
   "일부를 미리 이전": "transfer_early",
   "자산을 매각해 현금화": "sell_for_cash",
   "가족법인 활용": "business_continuity",
@@ -61,6 +63,10 @@ export function normalizeAssessmentSnapshot(snapshot: AssessmentSnapshot): Clien
   const childrenAgeKnown = adultChildren !== null || minorChildren !== null;
   const ownerNeedsConfirmation = assetsAnswer?.facts?.["소유자 관계"] || assets.some((asset) => asset.owner === "unknown");
   const confirmed_tax_bases = buildConfirmedTaxBases(snapshot);
+  const intrafamilyLoans = buildIntrafamilyLoans(snapshot);
+  const insuranceStatus = inferInsuranceStatus(snapshot);
+  const availableTaxPaymentCash = parseEokAmount(factValue("상속세 납부 가능 현금", snapshot));
+  const debtStatus = inferDebtStatus(debtAnswer, debts);
   const unknown_items = [
     family?.choices.length || family?.facts?.["가족 기준"] ? "" : "피상속인·부모 수 기준",
     family?.facts?.["배우자 유무"] ? "" : "배우자 유무",
@@ -69,7 +75,10 @@ export function normalizeAssessmentSnapshot(snapshot: AssessmentSnapshot): Clien
     ownerNeedsConfirmation ? "작성자와 실제 재산 소유자·지분" : "",
     assets.some((asset) => asset.current_value_eok === null) ? "자산별 확정 금액" : "",
     debts.some((debt) => debt.amount_eok === null) ? "채무 금액" : "",
-    debtAnswer?.choices.includes("최근 10년 증여 있음") ? "최근 10년 증여 금액과 일자" : "",
+    debtAnswer?.choices.includes("최근 10년 증여 있음") && !factValue("과거 증여 상세", snapshot) ? "최근 10년 증여 금액과 일자" : "",
+    intrafamilyLoans.length > 0 ? "부모·자녀 대여 이자·원금 실제 지급 증빙" : "",
+    intrafamilyLoans.some((loan) => loan.repayment_capacity === "no") ? "상환능력 부족 자녀의 증여 위험과 최종 배분 차이" : "",
+    availableTaxPaymentCash === null ? "상속세 납부 가능 현금" : "",
     confirmed_tax_bases.length === 0 ? "외부 확인 과세표준" : "",
     reviewAnswer?.choices.length ? "" : "결과 비교 관점"
   ].filter(Boolean);
@@ -93,12 +102,16 @@ export function normalizeAssessmentSnapshot(snapshot: AssessmentSnapshot): Clien
     },
     assets,
     debts,
+    debt_status: debtStatus,
     past_gifts: debtAnswer?.choices.includes("최근 10년 증여 있음")
-      ? [{ gift_id: "assessment-past-gift-1", recipient: "unknown", amount_eok: null, confirmation_status: "amount_missing" }]
+      ? [{ gift_id: "assessment-past-gift-1", recipient: "adult_child", amount_eok: parseEokAmount(factValue("과거 증여 상세", snapshot)), gift_date: pastGiftDate(factValue("과거 증여 상세", snapshot)), confirmation_status: parseEokAmount(factValue("과거 증여 상세", snapshot)) === null ? "amount_missing" : "confirmed" }]
       : [],
     insurance: assetsAnswer?.choices.includes("보험") || goalAnswer?.choices.includes("상속세 납부재원 준비")
       ? [{ policy_id: "assessment-insurance-1", premium_capacity: "unknown" }]
       : [],
+    insurance_status: insuranceStatus,
+    intrafamily_loans: intrafamilyLoans,
+    available_tax_payment_cash_eok: availableTaxPaymentCash,
     business_interests: assetsAnswer?.choices.includes("법인지분")
       ? [{
           business_interest_id: "assessment-business-1",
@@ -197,6 +210,83 @@ function inferTaxKind(snapshot: AssessmentSnapshot) {
     ...(snapshot.answers.goal?.choices ?? [])
   ].join(" ");
   return /증여|미리|이전/.test(choices) ? "gift_tax" as const : "inheritance_tax" as const;
+}
+
+function buildIntrafamilyLoans(snapshot: AssessmentSnapshot) {
+  const loanFact = factValue("부모·자녀 대출 검토", snapshot);
+  const loanAmount = parseEokAmount(loanFact);
+  const firstCapacity = repaymentCapacity(factValue("첫째 자녀 상환능력", snapshot));
+  const secondCapacity = repaymentCapacity(factValue("둘째 자녀 상환능력", snapshot));
+  const hasLoanSignal = loanFact || firstCapacity !== "unknown" || secondCapacity !== "unknown";
+  if (!hasLoanSignal) return [];
+
+  const loans = [];
+  if (firstCapacity !== "unknown") {
+    loans.push({
+      loan_id: "assessment-family-loan-first-child",
+      target_child: "first_child" as const,
+      amount_eok: loanAmount,
+      confirmation_status: loanAmount === null ? "amount_missing" as const : "confirmed" as const,
+      repayment_capacity: firstCapacity,
+      note: "차용증뿐 아니라 이자와 원금의 실제 지급흐름 확인 필요"
+    });
+  }
+  if (secondCapacity !== "unknown") {
+    loans.push({
+      loan_id: "assessment-family-loan-second-child",
+      target_child: "second_child" as const,
+      amount_eok: loanAmount,
+      confirmation_status: loanAmount === null ? "amount_missing" as const : "confirmed" as const,
+      repayment_capacity: secondCapacity,
+      note: "상환능력 부족 시 증여 또는 채무면제 위험 검토 필요"
+    });
+  }
+  if (loans.length === 0) {
+    loans.push({
+      loan_id: "assessment-family-loan-unknown-child",
+      target_child: "unknown" as const,
+      amount_eok: loanAmount,
+      confirmation_status: loanAmount === null ? "amount_missing" as const : "confirmed" as const,
+      repayment_capacity: "unknown" as const,
+      note: "대여 대상 자녀와 상환능력 확인 필요"
+    });
+  }
+  return loans;
+}
+
+function repaymentCapacity(value?: string) {
+  if (!value) return "unknown" as const;
+  if (/부족|없|어려/.test(value)) return "no" as const;
+  if (/있|가능/.test(value)) return "yes" as const;
+  return "unknown" as const;
+}
+
+function inferInsuranceStatus(snapshot: AssessmentSnapshot) {
+  const insuranceFact = factValue("보험", snapshot);
+  if (insuranceFact && /없/.test(insuranceFact)) return "none" as const;
+  if (snapshot.answers.assets?.choices.includes("보험")) return "has_policy" as const;
+  return "unknown" as const;
+}
+
+function inferDebtStatus(debtAnswer: AssessmentSnapshot["answers"][string] | undefined, debts: Debt[]) {
+  if (debtAnswer?.choices.includes("해당 없음") || debtAnswer?.facts?.["채무 여부"] === "없음") return "none" as const;
+  if (debts.length > 0) return "has_debt" as const;
+  return "unknown" as const;
+}
+
+function pastGiftDate(value?: string) {
+  if (!value) return null;
+  const match = value.match(/(\d+)\s*년\s*전/);
+  return match ? `${match[1]}년 전` : null;
+}
+
+function factValue(label: string, snapshot: AssessmentSnapshot) {
+  const answers = Object.values(snapshot.answers);
+  const answerFact = answers
+    .map((answer) => answer.facts?.[label])
+    .find((value): value is string => Boolean(value));
+  if (answerFact) return answerFact;
+  return snapshot.conversation?.confirmed_facts.find((fact) => fact.label === label)?.value;
 }
 
 function uniqueTracks(values: PlanningTrack[]) {

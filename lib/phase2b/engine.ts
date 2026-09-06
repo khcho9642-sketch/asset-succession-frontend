@@ -183,7 +183,7 @@ function scenarioDefinitions(): ScenarioDefinition[] {
     {
       scenario_id: "inheritance-spouse-allocation",
       track: "inheritance",
-      name: "배우자 배분 조정",
+      name: "배우자 상속공제 고려 재산배분",
       description: "배우자 생활재원과 배우자공제 영향을 함께 보는 상속 트랙 시나리오입니다.",
       execution_tools: ["배우자 배분", "상속공제 검토"],
       basePriority: "conditional",
@@ -275,23 +275,63 @@ function scenarioDefinitions(): ScenarioDefinition[] {
     {
       scenario_id: "gift-stepwise-transfer",
       track: "gift",
-      name: "일부·단계적 증여",
+      name: "가족 분산·단계적 사전증여",
       description: "증여 시점과 증여재산공제, 과거 10년 증여 합산 위험을 나눠 검토합니다.",
       execution_tools: ["단계적 증여", "증여 시점 분산"],
       basePriority: "conditional",
       timeline: ["수증자 확정", "과거 10년 증여 확인", "1차 이전 범위 산정", "추가 증여 재검토"],
       requiredInfo: ["수증자", "증여 대상 금액", "과거 10년 증여"],
       evaluate: (facts) => ({
-        priority: hasGoal(facts, "transfer_early") ? "priority" : "conditional",
+        priority: hasGoal(facts, "transfer_early") || hasGoal(facts, "minimize_tax") || hasPastGift(facts) ? "priority" : "conditional",
         eligibility: { status: "conditional", reasons: ["수증자·증여 시점·과거 증여가 확인되면 비교 가능합니다."] },
         rationale: [
-          hasGoal(facts, "transfer_early")
-            ? "일부를 미리 이전하고 싶다고 답했기 때문에 단계적 증여를 우선 검토합니다."
+          hasGoal(facts, "transfer_early") || hasGoal(facts, "minimize_tax") || hasPastGift(facts)
+            ? "세금 부담 절감, 과거 증여, 생전 이전 가능성이 확인되어 가족별 분산·단계적 사전증여를 우선 검토합니다."
             : "증여 트랙 또는 비교 모드가 활성화되어 단계적 증여를 조건부 후보로 둡니다.",
           hasPastGift(facts) ? "최근 10년 증여가 있어 증여 합산 검토를 강화합니다." : "과거 증여가 없거나 미확인 상태이므로 합산 여부 확인이 필요합니다."
         ],
         required_information: hasPastGift(facts) ? ["과거 증여 금액과 일자", "증여 대상 평가액"] : ["증여 대상 평가액", "증여 시점"]
       })
+    },
+    {
+      scenario_id: "gift-family-loan-and-gift-mix",
+      track: "gift",
+      name: "첫째 대출·둘째 증여 배분",
+      description: "자녀별 상환능력이 다른 경우 부모·자녀 대여와 증여를 같은 금액처럼 보지 않고 분리 검토합니다.",
+      execution_tools: ["부모·자녀 대여", "자녀별 증여 배분", "상환능력 점검"],
+      basePriority: "needs_more_info",
+      timeline: ["자녀별 상환능력 확인", "차용증·이자·원금 지급흐름 설계", "증여 전환 위험 점검", "최종 재산배분 차이 확인"],
+      requiredInfo: ["자녀별 상환능력", "차용증", "이자·원금 실제 지급", "미상환·채무면제 위험"],
+      evaluate: (facts) => {
+        const loans = facts.intrafamily_loans ?? [];
+        const hasLoanSignal = loans.length > 0 || hasConstraint(facts, "intrafamily_loan_needs_review");
+        const firstCanRepay = loans.some((loan) => loan.target_child === "first_child" && loan.repayment_capacity === "yes");
+        const secondCannotRepay = loans.some((loan) => loan.target_child === "second_child" && loan.repayment_capacity === "no");
+        const multipleChildren = (facts.family.total_children ?? 0) >= 2;
+        return {
+          priority: hasLoanSignal ? "priority" : multipleChildren ? "conditional" : "needs_more_info",
+          eligibility: {
+            status: hasLoanSignal || multipleChildren ? "conditional" : "needs_info",
+            reasons: [hasLoanSignal ? "부모·자녀 대여 검토와 자녀별 상환능력 차이가 확인되었습니다." : "자녀별 상환능력과 대여 의향 확인이 필요합니다."]
+          },
+          rationale: [
+            hasLoanSignal
+              ? "부모·자녀 대출 검토가 확인되어 상환능력이 있는 자녀는 대여, 상환능력이 부족한 자녀는 증여 또는 다른 배분 방식으로 나누어 검토합니다."
+              : "자녀가 2명 이상이면 대여와 증여를 동일한 이전으로 보지 않고 자녀별 지급능력을 확인해야 합니다.",
+            firstCanRepay && secondCannotRepay
+              ? "첫째는 상환능력이 있고 둘째는 부족하다고 확인되어 최종 재산배분 차이와 증여 위험을 따로 표시합니다."
+              : "자녀별 상환능력 차이가 확인되면 대여금 채권과 증여 위험을 분리합니다."
+          ],
+          required_information: [
+            "자녀의 실제 상환능력",
+            "차용증뿐 아니라 이자와 원금의 실제 지급",
+            "부모의 대여금 채권은 상속재산에서 자동 제외되지 않음",
+            "미상환 또는 채무면제 시 증여 위험",
+            "첫째와 둘째의 최종 재산배분 차이"
+          ],
+          calculation_status: "needs_expert_review"
+        };
+      }
     },
     {
       scenario_id: "gift-burdened-gift",
@@ -428,13 +468,20 @@ function scenarioDefinitions(): ScenarioDefinition[] {
       requiredInfo: ["현재 지분율", "후계자 참여도", "주주간 관계"],
       evaluate: (facts) => {
         const business = facts.business_interests[0];
+        if (!business) {
+          return {
+            priority: "excluded",
+            eligibility: { status: "excluded", reasons: ["법인지분 또는 가업승계 관심이 확인되지 않았습니다."] },
+            rationale: ["비상장법인 지분이 없으면 지분 단계이전은 현재 조건에서는 제외합니다."],
+            required_information: ["법인지분 보유 여부"],
+            calculation_status: "not_applicable"
+          };
+        }
         return {
-          priority: business?.control_preference === "retain" ? "priority" : business ? "conditional" : "needs_more_info",
-          eligibility: { status: business ? "conditional" : "needs_info", reasons: ["법인지분과 경영권 유지 의사가 확인되어야 합니다."] },
+          priority: business.control_preference === "retain" ? "priority" : "conditional",
+          eligibility: { status: "conditional", reasons: ["법인지분과 경영권 유지 의사가 확인되어야 합니다."] },
           rationale: [
-            business
-              ? "법인지분이 확인되어 지분을 한 번에 넘기지 않고 단계별로 이전하는 방안을 검토합니다."
-              : "법인지분 보유 여부가 확인되면 지분 단계이전 검토가 가능합니다."
+            "법인지분이 확인되어 지분을 한 번에 넘기지 않고 단계별로 이전하는 방안을 검토합니다."
           ],
           required_information: ["주식 평가액", "지분율", "후계자 경영참여"]
         };
@@ -449,16 +496,27 @@ function scenarioDefinitions(): ScenarioDefinition[] {
       basePriority: "conditional",
       timeline: ["통제권 목표 확인", "의결권·지분 구조 검토", "사후관리 위험 점검"],
       requiredInfo: ["정관", "주주명부", "경영권 유지 기간"],
-      evaluate: (facts) => ({
-        priority: hasGoal(facts, "retain_control") || hasConstraint(facts, "control_retention_required") ? "priority" : "conditional",
-        eligibility: { status: "conditional", reasons: ["통제권 목표와 현재 지분구조 확인이 필요합니다."] },
-        rationale: [
-          hasGoal(facts, "retain_control")
-            ? "경영권 유지가 목표이므로 지분 이전과 통제권을 분리해 우선 검토합니다."
-            : "법인지분 이전 전 통제권 유지 조건을 함께 확인합니다."
-        ],
-        required_information: ["주주명부", "정관", "후계자 역할"]
-      })
+      evaluate: (facts) => {
+        if (facts.business_interests.length === 0) {
+          return {
+            priority: "excluded",
+            eligibility: { status: "excluded", reasons: ["법인지분 또는 가업승계 관심이 확인되지 않았습니다."] },
+            rationale: ["비상장법인 지분이 없으면 경영권 유지 설계는 현재 조건에서는 제외합니다."],
+            required_information: ["법인지분 보유 여부"],
+            calculation_status: "not_applicable"
+          };
+        }
+        return {
+          priority: hasGoal(facts, "retain_control") || hasConstraint(facts, "control_retention_required") ? "priority" : "conditional",
+          eligibility: { status: "conditional", reasons: ["통제권 목표와 현재 지분구조 확인이 필요합니다."] },
+          rationale: [
+            hasGoal(facts, "retain_control")
+              ? "경영권 유지가 목표이므로 지분 이전과 통제권을 분리해 우선 검토합니다."
+              : "법인지분 이전 전 통제권 유지 조건을 함께 확인합니다."
+          ],
+          required_information: ["주주명부", "정관", "후계자 역할"]
+        };
+      }
     },
     {
       scenario_id: "business-post-management-compliance",
@@ -469,15 +527,26 @@ function scenarioDefinitions(): ScenarioDefinition[] {
       basePriority: "needs_more_info",
       timeline: ["적용 특례 후보 확인", "고용·자산·업종 요건 확인", "사후관리 체크리스트 작성"],
       requiredInfo: ["업종·업력", "고용 요건", "사후관리 가능성"],
-      evaluate: (facts) => ({
-        priority: hasGoal(facts, "business_continuity") ? "conditional" : "needs_more_info",
-        eligibility: { status: "needs_info", reasons: ["가업 요건과 사후관리 가능성은 전문가 검토가 필요합니다."] },
-        rationale: [
-          "가업승계는 세액보다 사후관리 실패 위험이 크므로 적용 전 별도 체크가 필요합니다."
-        ],
-        required_information: ["업종·업력", "고용 유지 계획", "사후관리 가능성"],
-        calculation_status: "needs_expert_review"
-      })
+      evaluate: (facts) => {
+        if (facts.business_interests.length === 0) {
+          return {
+            priority: "excluded",
+            eligibility: { status: "excluded", reasons: ["법인지분 또는 가업승계 관심이 확인되지 않았습니다."] },
+            rationale: ["비상장법인 지분이 없으면 가업 사후관리 리스크 점검은 현재 조건에서는 제외합니다."],
+            required_information: ["법인지분 보유 여부"],
+            calculation_status: "not_applicable"
+          };
+        }
+        return {
+          priority: hasGoal(facts, "business_continuity") ? "conditional" : "needs_more_info",
+          eligibility: { status: "needs_info", reasons: ["가업 요건과 사후관리 가능성은 전문가 검토가 필요합니다."] },
+          rationale: [
+            "가업승계는 세액보다 사후관리 실패 위험이 크므로 적용 전 별도 체크가 필요합니다."
+          ],
+          required_information: ["업종·업력", "고용 유지 계획", "사후관리 가능성"],
+          calculation_status: "needs_expert_review"
+        };
+      }
     },
     {
       scenario_id: "capital-gains-sell-then-gift",
@@ -621,6 +690,8 @@ function deriveConstraints(facts: ClientFacts): Constraint[] {
   if (totalAssets > 0 && financialAssets / totalAssets < 0.2) constraints.push("insufficient_financial_assets");
   if (facts.past_gifts.length > 0) constraints.push("past_gifts_need_review");
   if (facts.debts.length > 0) constraints.push("secured_debt_needs_review");
+  if ((facts.intrafamily_loans ?? []).length > 0) constraints.push("intrafamily_loan_needs_review");
+  if ((facts.intrafamily_loans ?? []).some((loan) => loan.repayment_capacity === "no")) constraints.push("repayment_capacity_gap");
   if (facts.assets.some((asset) => asset.current_value_eok === null || asset.type === "real_estate" || asset.type === "business_interest")) constraints.push("valuation_needed");
   if (facts.goals.includes("retain_control")) constraints.push("control_retention_required");
   if (facts.business_interests.length > 0) constraints.push("successor_readiness_needed");
@@ -685,7 +756,7 @@ function comparisonBasis(facts: ClientFacts) {
 function rankRecommendations(scenarios: Scenario[]): Recommendation[] {
   return scenarios
     .filter((scenario) => isRecommendationCandidate(scenario))
-    .sort((a, b) => priorityScore(a.priority) - priorityScore(b.priority) || a.scenario_id.localeCompare(b.scenario_id))
+    .sort((a, b) => priorityScore(a.priority) - priorityScore(b.priority) || recommendationOrderScore(a) - recommendationOrderScore(b) || a.name.localeCompare(b.name))
     .slice(0, 3)
     .map((scenario, index) => ({
       scenario_id: scenario.scenario_id,
@@ -751,6 +822,26 @@ function priorityScore(priority: Scenario["priority"]) {
     low: 4,
     excluded: 5
   }[priority];
+}
+
+function recommendationOrderScore(scenario: Scenario) {
+  const order: Record<string, number> = {
+    "gift-stepwise-transfer": 10,
+    "gift-family-loan-and-gift-mix": 20,
+    "inheritance-spouse-allocation": 30,
+    "inheritance-past-gift-addback": 40,
+    "inheritance-real-estate-liquidity": 50,
+    "inheritance-heir-equalization": 60,
+    "business-succession-deduction": 10,
+    "business-share-phased-transfer": 20,
+    "business-control-retention": 30,
+    "business-post-management-compliance": 40,
+    "capital-gains-sell-then-gift": 10,
+    "capital-gains-acquisition-cost-rebuild": 20,
+    "capital-gains-long-term-holding": 30,
+    "capital-gains-family-sale-fair-value": 40
+  };
+  return order[scenario.scenario_id] ?? 100;
 }
 
 function buildReportV2Contract(): ReportV2Contract {

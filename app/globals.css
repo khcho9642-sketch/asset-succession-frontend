@@ -103,14 +103,14 @@ textarea {
 }
 
 .report-table {
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: -0.02em;
 }
 
 .report-table th,
 .report-table td {
   border: 1px solid var(--border);
-  padding: 8px;
+  padding: 7px;
   vertical-align: top;
 }
 
@@ -148,10 +148,10 @@ textarea {
     height: 297mm;
     margin: 0;
     overflow: hidden;
-    padding: 13mm !important;
+    padding: 11mm !important;
     break-after: page;
     page-break-after: always;
-    font-size: 10.5pt;
+    font-size: 11pt;
   }
 
   .report-page:last-child {
@@ -172,7 +172,7 @@ textarea {
 
   .report-table,
   .print-comparison-table {
-    font-size: 8.5pt;
+    font-size: 10.5pt;
     letter-spacing: -0.02em;
   }
 
@@ -181,7 +181,7 @@ textarea {
   .print-comparison-table th,
   .print-comparison-table td {
     border: 1px solid #d8dde2;
-    padding: 4px;
+    padding: 3.5px;
     vertical-align: top;
   }
 
@@ -189,5 +189,19 @@ textarea {
   .print-comparison-table th {
     background: #f7f5f0;
     font-weight: 700;
+  }
+
+  .report-chart {
+    font-size: 11pt;
+  }
+
+  .report-chart h3 {
+    font-size: 13pt;
+  }
+
+  .report-chart p,
+  .report-chart span,
+  .report-chart li {
+    color: #18212b;
   }
 }

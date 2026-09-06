@@ -4,7 +4,7 @@ import type { TaxKind } from "./types";
 export type ConversationFactTarget =
   | { answerKey: "purpose"; kind: "choice"; choice: string }
   | { answerKey: "family"; kind: "choice"; choice: string }
-  | { answerKey: "family"; kind: "fact"; label: string; value: string }
+  | { answerKey: "family" | "assets" | "debt" | "goal" | "review"; kind: "fact"; label: string; value: string }
   | {
       answerKey: "assets";
       kind: "choice";
@@ -15,7 +15,6 @@ export type ConversationFactTarget =
       range?: { min_won: number; max_won: number; label: string };
       quantity?: number;
     }
-  | { answerKey: "assets"; kind: "fact"; label: string; value: string }
   | {
       answerKey: "debt";
       kind: "choice";
@@ -63,14 +62,14 @@ const trackChoices: Array<{ choice: string; patterns: RegExp[] }> = [
 ];
 
 const assetDefinitions: AssetDefinition[] = [
-  { label: "법인지분", patterns: [/법인\s*지분|회사\s*지분|비상장\s*주식/] },
+  { label: "법인지분", patterns: [/법인\s*지분|회사\s*지분|비상장\s*주식|비상장주식/] },
   { label: "부동산", patterns: [/부동산|아파트|건물|상가|토지|주택/] },
   { label: "금융자산", patterns: [/금융\s*자산|예금|현금|주식|펀드|계좌/] },
   { label: "보험", patterns: [/보험/] }
 ];
 
 const debtLabels = [
-  { label: "담보대출 있음", patterns: [/담보대출|대출|근저당/] },
+  { label: "담보대출 있음", patterns: [/담보대출|주택담보대출|부동산\s*대출|근저당/] },
   { label: "임대보증금 있음", patterns: [/임대보증금|전세보증금|보증금/] }
 ];
 
@@ -100,6 +99,7 @@ export function parseConversationalInput(rawText: string): ConversationParseResu
     ...extractDebtFacts(text),
     ...extractGoalFacts(text),
     ...extractReviewFacts(text),
+    ...extractSpecialSituationFacts(text),
     ...extractTaxBaseFacts(text)
   ];
 
@@ -198,6 +198,7 @@ function extractAssetFacts(text: string): ConversationCandidateFact[] {
   const facts: ConversationCandidateFact[] = [];
 
   for (const mention of mentions) {
+    if (mention.definition.label === "보험" && /보험\s*없(?:음|습니다)?|보험은\s*없/.test(text)) continue;
     const amount = moneyForAssetMention(text, mention, mentions);
     const quantity = parseAssetQuantity(text, mention);
     const target: Extract<ConversationFactTarget, { answerKey: "assets"; kind: "choice" }> = {
@@ -241,11 +242,11 @@ function extractAssetFacts(text: string): ConversationCandidateFact[] {
 }
 
 function extractDebtFacts(text: string): ConversationCandidateFact[] {
+  const facts: ConversationCandidateFact[] = [];
   if (/채무\s*없(?:음|습니다)?|대출\s*없(?:음|습니다)?|보증금\s*없(?:음|습니다)?|빚\s*없(?:음|습니다)?/.test(text) && !/같|아마|듯|모르|확실/.test(text)) {
-    return [fact("debt-none", "채무·과거 증여", "해당 없음", text, { answerKey: "debt", kind: "choice", choice: "해당 없음" })];
+    facts.push(fact("debt-none", "채무 여부", "없음", text, { answerKey: "debt", kind: "fact", label: "채무 여부", value: "없음" }));
   }
 
-  const facts: ConversationCandidateFact[] = [];
   if (/(채무|대출|보증금|빚).*(없.*같|없는\s*듯|아마\s*없|확실.*않|잘\s*모르)/.test(text)) {
     return [fact("debt-unknown-none", "채무 여부", "채무 미확정(없을 가능성)", text, { answerKey: "debt", kind: "choice", choice: "잘 모르겠음", amountStatus: "unknown" }, "needs_confirmation")];
   }
@@ -267,8 +268,19 @@ function extractDebtFacts(text: string): ConversationCandidateFact[] {
     facts.push(fact(`debt-${debt.label}`, "채무", amount ? `${debt.label} ${formatEokLabel(amount.parsed.value_eok)}` : `${debt.label} 금액 확인 필요`, text, target, amount ? "high" : "needs_confirmation"));
   }
 
-  if (/최근\s*10년|10년|증여\s*받|증여\s*한/.test(text)) {
+  if (/최근\s*10년|10년|(\d+)\s*년\s*전.*증여|증여.*신고|증여\s*받|증여\s*한/.test(text)) {
     facts.push(fact("past-gift", "과거 증여", "최근 10년 증여 있음", text, { answerKey: "debt", kind: "choice", choice: "최근 10년 증여 있음" }));
+    const pastGiftAmount = extractMoneyMentions(text).find((money) => money.parsed.status === "parsed" && /증여/.test(text.slice(Math.max(0, money.start - 16), Math.min(text.length, money.end + 24))));
+    const yearsAgo = text.match(/(\d+)\s*년\s*전/)?.[0];
+    if (pastGiftAmount && pastGiftAmount.parsed.status === "parsed") {
+      facts.push(fact(
+        "past-gift-detail",
+        "과거 증여 상세",
+        `${yearsAgo ? `${yearsAgo} ` : ""}${/자녀별/.test(text) ? "자녀별 " : ""}${formatEokLabel(pastGiftAmount.parsed.value_eok)} 증여${/신고/.test(text) ? " 및 신고" : ""}`,
+        text,
+        { answerKey: "debt", kind: "fact", label: "과거 증여 상세", value: `${yearsAgo ? `${yearsAgo} ` : ""}${/자녀별/.test(text) ? "자녀별 " : ""}${pastGiftAmount.parsed.value_eok}억 증여${/신고/.test(text) ? " 및 신고" : ""}` }
+      ));
+    }
   }
 
   return facts;
@@ -276,11 +288,13 @@ function extractDebtFacts(text: string): ConversationCandidateFact[] {
 
 function extractGoalFacts(text: string): ConversationCandidateFact[] {
   const candidates: Array<[string, RegExp]> = [
+    ["세금 부담 절감", /절세|세금\s*부담\s*절감|세금.*줄|세금.*낮/],
+    ["노후생활비 유지", /노후|생활비|생활\s*재원/],
     ["상속세 납부재원 준비", /납부재원|현금\s*부족|세금\s*낼/],
     ["일부를 미리 이전", /미리|생전|일부.*이전|먼저\s*주/],
     ["자산을 매각해 현금화", /매각|팔아서|현금화/],
     ["가족법인 활용", /가족법인|법인\s*활용/],
-    ["현재 구조 유지", /유지|그대로/]
+    ["현재 구조 유지", /현재\s*구조\s*유지|그대로\s*유지/]
   ];
   return candidates
     .filter(([, pattern]) => pattern.test(text))
@@ -300,6 +314,90 @@ function extractReviewFacts(text: string): ConversationCandidateFact[] {
     .filter(([, pattern]) => pattern.test(text))
     .slice(0, 3)
     .map(([choice], index) => fact(`review-${index}`, "결과 관점", choice, text, { answerKey: "review", kind: "choice", choice }));
+}
+
+function extractSpecialSituationFacts(text: string): ConversationCandidateFact[] {
+  const facts: ConversationCandidateFact[] = [];
+  if (/자녀.*대출|부모.*대여|차용증|대여금|상환능력/.test(text)) {
+    const loanMoney = extractMoneyMentions(text).find((money) => {
+      const windowText = text.slice(Math.max(0, money.start - 18), Math.min(text.length, money.end + 24));
+      return /대출|대여|차용/.test(windowText) && money.parsed.status === "parsed";
+    });
+    if (loanMoney && loanMoney.parsed.status === "parsed") {
+      facts.push(fact(
+        "family-loan-amount",
+        "부모·자녀 대출 검토",
+        `${formatEokLabel(loanMoney.parsed.value_eok)} 대여 검토`,
+        text,
+        { answerKey: "review", kind: "fact", label: "부모·자녀 대출 검토", value: String(loanMoney.parsed.value_eok) }
+      ));
+    } else {
+      facts.push(fact(
+        "family-loan-review",
+        "부모·자녀 대출 검토",
+        "금액 확인 필요",
+        text,
+        { answerKey: "review", kind: "fact", label: "부모·자녀 대출 검토", value: "금액 확인 필요" },
+        "needs_confirmation"
+      ));
+    }
+  }
+
+  const firstCapacity = childRepaymentCapacity(text, /첫째|장남|장녀|1번\s*자녀|첫\s*자녀/);
+  if (firstCapacity) {
+    facts.push(fact(
+      "first-child-repayment-capacity",
+      "첫째 자녀 상환능력",
+      firstCapacity,
+      text,
+      { answerKey: "review", kind: "fact", label: "첫째 자녀 상환능력", value: firstCapacity }
+    ));
+  }
+
+  const secondCapacity = childRepaymentCapacity(text, /둘째|차남|차녀|2번\s*자녀|두\s*번째\s*자녀/);
+  if (secondCapacity) {
+    facts.push(fact(
+      "second-child-repayment-capacity",
+      "둘째 자녀 상환능력",
+      secondCapacity,
+      text,
+      { answerKey: "review", kind: "fact", label: "둘째 자녀 상환능력", value: secondCapacity }
+    ));
+  }
+
+  if (/보험\s*없(?:음|습니다)?|보험은\s*없/.test(text)) {
+    facts.push(fact("insurance-none", "보험", "없음", text, { answerKey: "assets", kind: "fact", label: "보험", value: "없음" }));
+  }
+
+  const cashMoney = extractMoneyMentions(text).find((money) => {
+    const windowText = text.slice(Math.max(0, money.start - 24), Math.min(text.length, money.end + 24));
+    return /(상속세|세금).*(납부|낼)|납부\s*가능\s*현금|현금/.test(windowText) && money.parsed.status === "parsed";
+  });
+  if (cashMoney && cashMoney.parsed.status === "parsed" && /납부\s*가능\s*현금|상속세.*현금|세금.*현금/.test(text)) {
+    facts.push(fact(
+      "tax-payment-cash",
+      "상속세 납부 가능 현금",
+      formatEokLabel(cashMoney.parsed.value_eok),
+      text,
+      { answerKey: "review", kind: "fact", label: "상속세 납부 가능 현금", value: String(cashMoney.parsed.value_eok) }
+    ));
+  }
+
+  return facts;
+}
+
+function childRepaymentCapacity(text: string, childPattern: RegExp) {
+  const childMatch = text.match(childPattern);
+  if (!childMatch || childMatch.index === undefined) return null;
+  const nextChildMatch = text.slice(childMatch.index + childMatch[0].length).match(/첫째|장남|장녀|1번\s*자녀|첫\s*자녀|둘째|차남|차녀|2번\s*자녀|두\s*번째\s*자녀/);
+  const windowEnd = nextChildMatch?.index === undefined
+    ? Math.min(text.length, childMatch.index + 44)
+    : childMatch.index + childMatch[0].length + nextChildMatch.index;
+  const windowText = text.slice(childMatch.index, windowEnd);
+  if (!/(상환능력|갚을\s*능력|상환)/.test(windowText)) return null;
+  if (/부족|없|어려/.test(windowText)) return "부족";
+  if (/있|가능/.test(windowText)) return "있음";
+  return null;
 }
 
 function extractTaxBaseFacts(text: string): ConversationCandidateFact[] {

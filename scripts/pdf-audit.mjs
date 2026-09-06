@@ -10,56 +10,57 @@ const assessmentStorageKey = "as360.precheck.assessment.v1";
 const seededAssessment = {
   assessment_id: "AS360-20260906-PDFAUD",
   created_at: "2026-09-06T00:00:00.000Z",
-  review_focus: ["세금·비용"],
+  review_focus: ["전체 요약 먼저 보기"],
   answers: {
     purpose: {
       label: "준비 목적",
-      choices: ["증여"],
-      detail: "증여와 납부재원 준비"
+      choices: ["여러 방법 비교"],
+      detail: "상속·증여를 함께 비교"
     },
     family: {
       label: "가족",
-      choices: ["부모 2명 기준"],
+      choices: ["부모 1명 기준"],
       detail: "",
-      facts: { "배우자 유무": "있음", "자녀 수": "2명" }
+      facts: { "배우자 유무": "있음", "자녀 수": "2명", "성년 자녀 수": "2명", "미성년 자녀 수": "0명" }
     },
     assets: {
       label: "자산",
-      choices: ["부동산", "금융자산"],
+      choices: ["금융자산", "부동산"],
       detail: "",
-      assetAmounts: { "부동산": "42", "금융자산": "8" },
-      assetAmountWons: { "부동산": 4_200_000_000, "금융자산": 800_000_000 }
+      assetAmounts: { "금융자산": "30", "부동산": "20" },
+      assetAmountWons: { "금융자산": 3_000_000_000, "부동산": 2_000_000_000 },
+      facts: { "보험": "없음" }
     },
     debt: {
       label: "채무·과거 증여",
-      choices: ["담보대출 있음", "최근 10년 증여 있음"],
+      choices: ["최근 10년 증여 있음"],
       detail: "",
-      debtAmounts: { "담보대출 있음": "2" },
-      debtAmountWons: { "담보대출 있음": 200_000_000 }
+      facts: { "채무 여부": "없음", "과거 증여 상세": "3년 전 자녀별 1억 증여 및 신고" }
     },
     goal: {
       label: "승계 목표",
-      choices: ["일부를 미리 이전", "상속세 납부재원 준비"],
+      choices: ["세금 부담 절감", "노후생활비 유지", "상속세 납부재원 준비"],
       detail: ""
     },
     review: {
       label: "결과 준비",
-      choices: ["세금·비용", "납부재원 부족액"],
+      choices: ["전체 요약 먼저 보기"],
       detail: "",
-      taxBaseAmounts: { baseline: "3", "gift-stepwise-transfer": "1.5" },
-      taxBaseAmountWons: { baseline: 300_000_000, "gift-stepwise-transfer": 150_000_000 },
-      taxBaseTaxKind: { baseline: "gift_tax", "gift-stepwise-transfer": "gift_tax" }
+      facts: {
+        "부모·자녀 대출 검토": "5",
+        "첫째 자녀 상환능력": "있음",
+        "둘째 자녀 상환능력": "부족",
+        "상속세 납부 가능 현금": "3"
+      }
     }
   },
   conversation: {
     messages: [
-      { role: "user", text: "상속 준비, 배우자 있음, 자녀 2명, 부동산 42억, 금융자산 8억", created_at: "2026-09-06T00:00:00.000Z" },
-      { role: "assistant", text: "제가 이렇게 이해했습니다.", created_at: "2026-09-06T00:00:01.000Z" }
+      { role: "user", text: "본인 자산, 총자산 50억원, 금융자산 30억원, 아파트 20억원, 채무 없음, 배우자 1명, 성인 자녀 2명, 3년 전 자녀별 1억원 증여 및 신고, 목표: 세금 부담 절감과 노후생활비 유지, 자녀에게 5억원 대출 검토, 첫째는 상환능력 있음, 둘째는 상환능력 부족, 보험 없음, 상속세 납부 가능 현금 3억원", created_at: "2026-09-06T00:00:00.000Z" },
+      { role: "user", text: "맞춤 보고서를 만들어 주세요.", created_at: "2026-09-06T00:00:01.000Z" }
     ],
-    confirmed_facts: [
-      { id: "fixture-purpose", label: "준비 목적", value: "상속", raw_text: "상속 준비", confidence: "high" }
-    ],
-    raw_inputs: ["상속 준비, 배우자 있음, 자녀 2명, 부동산 42억, 금융자산 8억"]
+    confirmed_facts: [],
+    raw_inputs: ["본인 자산, 총자산 50억원, 금융자산 30억원, 아파트 20억원, 채무 없음, 배우자 1명, 성인 자녀 2명, 3년 전 자녀별 1억원 증여 및 신고, 목표: 세금 부담 절감과 노후생활비 유지, 자녀에게 5억원 대출 검토, 첫째는 상환능력 있음, 둘째는 상환능력 부족, 보험 없음, 상속세 납부 가능 현금 3억원", "맞춤 보고서를 만들어 주세요."]
   }
 };
 
@@ -76,12 +77,17 @@ const requiredText = [
   "36개 시나리오 내부 분석 완료",
   "확인된 현재 자산가액",
   "50억",
-  "0.5억 산출세액",
-  "0.2억 산출세액",
-  "0.3억 절세 예상",
+  "가족 분산·단계적 사전증여",
+  "첫째 대출·둘째 증여 배분",
+  "배우자 상속공제 고려 재산배분",
+  "부모의 대여금 채권은 상속재산에서 자동 제외되지 않음",
+  "자산 구성",
+  "기준안과 추천안 비교",
+  "납세재원과 부족액",
+  "증여·대출·상속 실행 타임라인",
   "성년 여부",
-  "담보대출",
-  "2억",
+  "채무",
+  "채무 없음",
   "상속세 및 증여세법 제26조",
   "상속세 및 증여세법 제56조",
   "외부 확인 과세표준",
@@ -98,6 +104,9 @@ const forbiddenPrintText = [
   "6.3~8.6억",
   "채무·보증금\n8억",
   "입력 순자산\n42억",
+  "0.5억 산출세액",
+  "0.2억 산출세액",
+  "0.3억 절세 예상",
   "inheritance-01-current-structure",
   "gift-01-stepwise-transfer"
 ];

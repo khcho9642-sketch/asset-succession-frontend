@@ -37,8 +37,12 @@ export type ClientFacts = {
   };
   assets: Asset[];
   debts: Debt[];
+  debt_status?: "none" | "has_debt" | "unknown";
   past_gifts: PastGift[];
   insurance: InsurancePolicy[];
+  insurance_status?: "has_policy" | "none" | "unknown";
+  intrafamily_loans?: IntrafamilyLoan[];
+  available_tax_payment_cash_eok?: number | null;
   business_interests: BusinessInterest[];
   goals: Goal[];
   constraints: Constraint[];
@@ -92,6 +96,15 @@ export type InsurancePolicy = {
   note?: string;
 };
 
+export type IntrafamilyLoan = {
+  loan_id: string;
+  target_child: "first_child" | "second_child" | "child" | "unknown";
+  amount_eok: number | null;
+  repayment_capacity: "yes" | "no" | "unknown";
+  confirmation_status: "confirmed" | "amount_missing" | "unknown";
+  note?: string;
+};
+
 export type BusinessInterest = {
   business_interest_id: string;
   company_type: "private_company" | "listed_company" | "family_company" | "unknown";
@@ -108,6 +121,7 @@ export type Goal =
   | "prepare_liquidity"
   | "retain_control"
   | "fairness_between_children"
+  | "maintain_living_expenses"
   | "transfer_early"
   | "sell_for_cash"
   | "business_continuity"
@@ -117,6 +131,8 @@ export type Constraint =
   | "insufficient_financial_assets"
   | "past_gifts_need_review"
   | "secured_debt_needs_review"
+  | "intrafamily_loan_needs_review"
+  | "repayment_capacity_gap"
   | "valuation_needed"
   | "control_retention_required"
   | "successor_readiness_needed";

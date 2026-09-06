@@ -36,6 +36,7 @@ type WizardAnswer = {
 };
 type WizardAnswers = Record<string, WizardAnswer>;
 type ConversationMessage = { role: "user" | "assistant"; text: string; created_at: string };
+type FinalInteractionMode = "idle" | "additional" | "question" | "generating";
 type DraftState = {
   activeStep: number;
   answers: WizardAnswers;
@@ -43,9 +44,17 @@ type DraftState = {
   candidate: ConversationParseResult | null;
   confirmedFacts: ConversationCandidateFact[];
   conversationMessages: ConversationMessage[];
+  finalInteractionMode?: FinalInteractionMode;
 };
 
 const exclusiveChoices = new Set(["해당 없음", "잘 모르겠음", "아직 모르겠음", "아직 잘 모르겠어요", "아직 정리 전"]);
+const finalReviewPrompt = "분석을 시작하기 전에 더 말씀하고 싶은 내용이나 궁금한 점이 있나요?\n재산을 누구에게 더 주고 싶은지, 걱정되는 세금이나 가족 문제가 있는지 편하게 말씀해 주세요. 저에게 먼저 질문하셔도 됩니다.";
+const reportGenerationSteps = [
+  "가족관계와 자산구조 확인 중",
+  "적합한 승계 시나리오 비교 중",
+  "세금과 납부재원 영향 분석 중",
+  "맞춤 보고서 작성 중"
+];
 
 function getInitialStep() {
   return 0;
@@ -65,6 +74,8 @@ export function PrecheckWizard() {
   const [derivedInvalidated, setDerivedInvalidated] = useState(false);
   const [hydrated, setHydrated] = useState(false);
   const [isSubmittingInput, setIsSubmittingInput] = useState(false);
+  const [finalInteractionMode, setFinalInteractionMode] = useState<FinalInteractionMode>("idle");
+  const [visibleGenerationSteps, setVisibleGenerationSteps] = useState<string[]>([]);
   const submittingInputRef = useRef(false);
   const lastSubmissionRef = useRef("");
   const visibleSteps = useMemo(() => getVisibleSteps(answers), [answers]);
@@ -101,6 +112,7 @@ export function PrecheckWizard() {
         setCandidate(draft.candidate ?? null);
         setConfirmedFacts(draft.confirmedFacts ?? []);
         setConversationMessages(draft.conversationMessages ?? []);
+        setFinalInteractionMode(draft.finalInteractionMode ?? "idle");
         setDraftRestored(true);
       }
     } catch {
@@ -122,10 +134,11 @@ export function PrecheckWizard() {
       directInput,
       candidate,
       confirmedFacts,
-      conversationMessages
+      conversationMessages,
+      finalInteractionMode
     };
     window.sessionStorage.setItem(PRECHECK_DRAFT_STORAGE_KEY, JSON.stringify(draft));
-  }, [answers, candidate, confirmedFacts, conversationMessages, directInput, hydrated, safeActiveStep]);
+  }, [answers, candidate, confirmedFacts, conversationMessages, directInput, finalInteractionMode, hydrated, safeActiveStep]);
 
   function isStepComplete(index: number) {
     const item = visibleSteps[index];
@@ -135,6 +148,7 @@ export function PrecheckWizard() {
       return answer.choices.length > 0 || Object.values(answer.facts ?? {}).some(Boolean);
     }
     if (item.key === "goal") return answer.choices.length > 0 && answer.choices.length <= 3;
+    if (item.key === "review") return true;
     return answer.choices.length > 0;
   }
 
@@ -282,15 +296,27 @@ export function PrecheckWizard() {
   function understandDirectInput() {
     const input = directInput.trim();
     if (submittingInputRef.current || lastSubmissionRef.current === input) return;
+    if (isFinalReviewStep && finalInteractionMode === "question") {
+      answerFinalQuestion(input);
+      return;
+    }
     submittingInputRef.current = true;
     setIsSubmittingInput(true);
     lastSubmissionRef.current = input;
     const parsed = parseConversationalInput(input);
-    setCandidate(parsed);
+    const conflicts = describeFactConflicts(parsed.facts, answers);
+    const assistantText = isFinalReviewStep && finalInteractionMode === "additional"
+      ? [
+          parsed.assistantText,
+          parsed.facts.length > 0 ? `새로 입력된 사실 후보 ${parsed.facts.length}개를 찾았습니다. 맞는 항목만 확정하면 마지막 확인 단계에 반영됩니다.` : "",
+          conflicts.length > 0 ? `기존 답변과 충돌 가능성이 있어 다시 확인이 필요합니다: ${conflicts.join(" / ")}` : ""
+        ].filter(Boolean).join(" ")
+      : parsed.assistantText;
+    setCandidate({ ...parsed, assistantText });
     setConversationMessages((previous) => [
       ...previous,
       { role: "user", text: input || "(빈 입력)", created_at: new Date().toISOString() },
-      { role: "assistant", text: parsed.assistantText, created_at: new Date().toISOString() }
+      { role: "assistant", text: assistantText, created_at: new Date().toISOString() }
     ]);
     window.setTimeout(() => {
       submittingInputRef.current = false;
@@ -299,6 +325,9 @@ export function PrecheckWizard() {
   }
 
   function confirmCandidateFact(fact: ConversationCandidateFact) {
+    const remainingAfterConfirm = candidate?.status === "candidate"
+      ? candidate.facts.filter((item) => item.id !== fact.id || item.value !== fact.value)
+      : [];
     setAnswers((previous) => applyCandidateFacts(previous, [fact]));
     setConfirmedFacts((previous) => dedupeConfirmedFacts([...previous, fact]));
     setCandidate((previous) => {
@@ -306,9 +335,18 @@ export function PrecheckWizard() {
       const remaining = previous.facts.filter((item) => item.id !== fact.id || item.value !== fact.value);
       return remaining.length > 0 ? { ...previous, facts: remaining } : null;
     });
+    if (isFinalReviewStep && finalInteractionMode === "additional" && remainingAfterConfirm.length === 0) {
+      setFinalInteractionMode("idle");
+    }
     setConversationMessages((previous) => [
       ...previous,
-      { role: "assistant", text: `확정: ${fact.label} — ${fact.value}`, created_at: new Date().toISOString() }
+      {
+        role: "assistant",
+        text: isFinalReviewStep && finalInteractionMode === "additional"
+          ? `새로 입력된 사실 요약: ${fact.label} — ${fact.value}. 반영했습니다. 마지막 확인 단계로 돌아왔습니다.`
+          : `확정: ${fact.label} — ${fact.value}`,
+        created_at: new Date().toISOString()
+      }
     ]);
     setShowError(false);
     invalidateDerivedSnapshot();
@@ -365,20 +403,81 @@ export function PrecheckWizard() {
     setActiveStep((value) => Math.min(value + 1, visibleSteps.length - 1));
   }
 
-  function showResult() {
-    if (!isStepComplete(safeActiveStep)) {
-      setError("결과를 보려면 마지막 확인 질문에서 최소 하나의 관점을 선택해 주세요.");
+  function requestAdditionalStory() {
+    setFinalInteractionMode("additional");
+    setCandidate(null);
+    setDirectInput("");
+    setShowError(false);
+    setConversationMessages((previous) => [
+      ...previous,
+      { role: "assistant", text: "좋아요. 추가로 알려줄 가족관계, 자산, 채무, 사전증여, 보험, 목표를 자유롭게 적어주세요. 맞는 사실만 확정하면 보고서 전 단계에 반영합니다.", created_at: new Date().toISOString() }
+    ]);
+  }
+
+  function requestQuestionBeforeReport() {
+    setFinalInteractionMode("question");
+    setCandidate(null);
+    setDirectInput("");
+    setShowError(false);
+    setConversationMessages((previous) => [
+      ...previous,
+      { role: "assistant", text: "궁금한 점을 적어주세요. 현재 확인된 정보 범위에서만 답하고, 답변 뒤 다시 맞춤 보고서 생성 여부를 확인하겠습니다.", created_at: new Date().toISOString() }
+    ]);
+  }
+
+  function answerFinalQuestion(input: string) {
+    if (submittingInputRef.current || lastSubmissionRef.current === input) return;
+    if (!input) {
+      setError("질문 내용을 한 줄 이상 적어 주세요.");
       return;
     }
+    submittingInputRef.current = true;
+    setIsSubmittingInput(true);
+    lastSubmissionRef.current = input;
+    const answer = buildQuestionAnswer(input, answers, confirmedFacts);
+    setConversationMessages((previous) => [
+      ...previous,
+      { role: "user", text: input, created_at: new Date().toISOString() },
+      { role: "assistant", text: answer, created_at: new Date().toISOString() },
+      { role: "assistant", text: finalReviewPrompt, created_at: new Date().toISOString() }
+    ]);
+    setDirectInput("");
+    setCandidate(null);
+    setFinalInteractionMode("idle");
+    setShowError(false);
+    window.setTimeout(() => {
+      submittingInputRef.current = false;
+      setIsSubmittingInput(false);
+    }, 350);
+  }
+
+  function startReportGeneration() {
+    if (!isFinalReviewStep) return;
+    const reportRequest: ConversationMessage = { role: "user", text: "맞춤 보고서를 만들어 주세요.", created_at: new Date().toISOString() };
+    setConversationMessages((previous) => [...previous, reportRequest]);
+    setCandidate(null);
+    setDirectInput("");
+    setVisibleGenerationSteps([]);
+    setFinalInteractionMode("generating");
+    setShowError(false);
+    reportGenerationSteps.forEach((_, index) => {
+      window.setTimeout(() => setVisibleGenerationSteps(reportGenerationSteps.slice(0, index + 1)), 180 * (index + 1));
+    });
+    window.setTimeout(() => showResult([reportRequest]), 950);
+  }
+
+  function showResult(extraMessages: ConversationMessage[] = []) {
+    const finalMessages = [...conversationMessages, ...extraMessages];
+    const reviewChoices = answers.review?.choices && answers.review.choices.length > 0 ? answers.review.choices : ["전체 요약 먼저 보기"];
     const snapshot = {
       assessment_id: createAssessmentId(),
       created_at: new Date().toISOString(),
-      review_focus: answers.review?.choices ?? currentAnswer.choices,
+      review_focus: reviewChoices,
       conversation: {
-        messages: conversationMessages,
+        messages: finalMessages,
         confirmed_facts: confirmedFacts,
         pending_candidates: candidate?.facts ?? [],
-        raw_inputs: conversationMessages.filter((message) => message.role === "user").map((message) => message.text),
+        raw_inputs: finalMessages.filter((message) => message.role === "user").map((message) => message.text),
         current_question_key: step.key
       },
       answers: Object.fromEntries(
@@ -499,6 +598,52 @@ export function PrecheckWizard() {
         ) : null}
 
         <div className="mt-8 grid gap-6">
+          {isFinalReviewStep ? (
+            <section className="border-2 border-[var(--gold)] bg-white p-4" aria-label="맞춤 보고서 생성 전 마지막 확인">
+              <p className="text-sm font-semibold text-[var(--text)]">마지막 확인</p>
+              <p className="mt-3 whitespace-pre-line text-base leading-7 text-[var(--navy-950)]">{finalReviewPrompt}</p>
+              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                <button
+                  type="button"
+                  onClick={requestAdditionalStory}
+                  disabled={finalInteractionMode === "generating"}
+                  aria-pressed={finalInteractionMode === "additional"}
+                  className={`min-h-16 border px-4 py-3 text-left text-sm font-semibold ${finalInteractionMode === "additional" ? "border-[var(--gold)] bg-[var(--ivory)]" : "border-[var(--border)] bg-white"}`}
+                >
+                  추가로 이야기하기
+                  <span className="mt-1 block text-xs font-normal leading-5 text-[var(--muted)]">새 사실을 후보로 뽑고 개별 확정합니다.</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={requestQuestionBeforeReport}
+                  disabled={finalInteractionMode === "generating"}
+                  aria-pressed={finalInteractionMode === "question"}
+                  className={`min-h-16 border px-4 py-3 text-left text-sm font-semibold ${finalInteractionMode === "question" ? "border-[var(--gold)] bg-[var(--ivory)]" : "border-[var(--border)] bg-white"}`}
+                >
+                  궁금한 점 질문하기
+                  <span className="mt-1 block text-xs font-normal leading-5 text-[var(--muted)]">현재 확인된 정보 범위에서만 답합니다.</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={startReportGeneration}
+                  disabled={finalInteractionMode === "generating"}
+                  className="min-h-16 bg-[var(--navy-950)] px-4 py-3 text-left text-sm font-semibold text-white disabled:cursor-wait disabled:opacity-80"
+                >
+                  맞춤 보고서 만들기
+                  <span className="mt-1 block text-xs font-normal leading-5 text-white/62">완료 후 결과 화면으로 자동 이동합니다.</span>
+                </button>
+              </div>
+              {finalInteractionMode === "generating" ? (
+                <ol className="mt-5 grid gap-2 border border-[var(--border)] bg-[var(--ivory)] p-4 text-sm" aria-live="polite">
+                  {reportGenerationSteps.map((item) => (
+                    <li key={item} className={visibleGenerationSteps.includes(item) ? "font-semibold text-[var(--navy-950)]" : "text-[var(--muted)]"}>
+                      {visibleGenerationSteps.includes(item) ? "✓ " : "· "}{item}
+                    </li>
+                  ))}
+                </ol>
+              ) : null}
+            </section>
+          ) : (
           <fieldset className="border-2 border-[var(--gold)] bg-white p-4">
             <legend className="px-2 text-sm font-semibold text-[var(--text)]">현재 질문 · {step.primaryQuestion}</legend>
             <div className="mt-3 grid gap-3 sm:grid-cols-2" role={isMultiSelectStep ? "group" : "radiogroup"} aria-label={step.primaryQuestion}>
@@ -540,12 +685,18 @@ export function PrecheckWizard() {
               </button>
             </div>
           </fieldset>
+          )}
 
+          {!isFinalReviewStep || finalInteractionMode === "additional" || finalInteractionMode === "question" ? (
           <section className="border border-[var(--border)] bg-[var(--ivory)] p-4" aria-label="직접 입력으로 답하기">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <p className="text-sm font-semibold text-[var(--navy-950)]">직접 입력</p>
-                <p className="mt-1 text-xs leading-5 text-[var(--muted)]">말하듯 적은 뒤 맞는 사실만 개별 확정합니다. 후보는 확정 전까지 계산에 쓰지 않습니다.</p>
+                <p className="mt-1 text-xs leading-5 text-[var(--muted)]">
+                  {finalInteractionMode === "question"
+                    ? "질문에 답한 뒤 대화를 종료하지 않고 다시 보고서 생성 여부를 확인합니다."
+                    : "말하듯 적은 뒤 맞는 사실만 개별 확정합니다. 후보는 확정 전까지 계산에 쓰지 않습니다."}
+                </p>
               </div>
               {confirmedFacts.length > 0 ? (
                 <span className="border border-[var(--border)] bg-white px-3 py-2 text-xs font-semibold text-[var(--success)]">
@@ -554,7 +705,11 @@ export function PrecheckWizard() {
               ) : null}
             </div>
             <label className="mt-4 grid gap-2">
-              <span className="text-xs font-semibold text-[var(--muted)]">예: 상속 준비, 배우자 있음, 자녀 2명, 부동산 42억, 금융자산 8억</span>
+              <span className="text-xs font-semibold text-[var(--muted)]">
+                {finalInteractionMode === "question"
+                  ? "예: 부모·자녀 대출은 차용증만 있으면 괜찮나요?"
+                  : "예: 상속 준비, 배우자 있음, 자녀 2명, 부동산 42억, 금융자산 8억"}
+              </span>
               <textarea
                 aria-label="직접 입력"
                 className="min-h-20 border border-[var(--border)] bg-white px-4 py-3 text-base outline-none focus:border-[var(--gold)]"
@@ -569,7 +724,7 @@ export function PrecheckWizard() {
                   event.preventDefault();
                   understandDirectInput();
                 }}
-                placeholder="세법 용어 몰라도 됩니다. 지금 아는 만큼만 적어주세요."
+                placeholder={finalInteractionMode === "question" ? "궁금한 점을 한 줄로 적어주세요." : "세법 용어 몰라도 됩니다. 지금 아는 만큼만 적어주세요."}
               />
             </label>
             <div className="mt-3 flex flex-wrap items-center gap-3">
@@ -579,7 +734,7 @@ export function PrecheckWizard() {
                 onClick={understandDirectInput}
                 className="inline-flex min-h-12 items-center gap-2 bg-[var(--navy-950)] px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
               >
-                직접 입력 이해하기
+                {finalInteractionMode === "question" ? "질문 보내기" : finalInteractionMode === "additional" ? "추가 내용 이해하기" : "직접 입력 이해하기"}
               </button>
               <p className="text-xs leading-5 text-[var(--muted)]">Enter 전송은 한글 조합 중에는 막고, 연속 클릭은 한 번만 반영합니다.</p>
             </div>
@@ -617,6 +772,7 @@ export function PrecheckWizard() {
               </div>
             ) : null}
           </section>
+          ) : null}
 
           {step.key === "family" ? (
             <div className="grid gap-4 md:grid-cols-2">
@@ -788,15 +944,11 @@ export function PrecheckWizard() {
           >
             <ArrowLeft className="h-4 w-4" /> 이전
           </button>
-          {isFinalReviewStep ? (
-            <button type="button" onClick={showResult} className="inline-flex items-center gap-3 bg-[var(--navy-950)] px-6 py-4 text-sm font-semibold text-white">
-              결과 보기 <ArrowRight className="h-4 w-4" />
-            </button>
-          ) : (
+          {!isFinalReviewStep ? (
             <button type="button" onClick={goNext} className="inline-flex items-center gap-3 bg-[var(--navy-950)] px-6 py-4 text-sm font-semibold text-white">
               다음 <ArrowRight className="h-4 w-4" />
             </button>
-          )}
+          ) : null}
         </div>
         <p className="mt-6 text-xs text-[var(--muted)]">{simulationDisclaimer}</p>
       </section>
@@ -946,4 +1098,62 @@ function filterRecord<T>(record: Record<string, T> | undefined, keys: string[]) 
 function omitKey<T>(record: Record<string, T> | undefined, key: string) {
   if (!record) return undefined;
   return Object.fromEntries(Object.entries(record).filter(([entryKey]) => entryKey !== key)) as Record<string, T>;
+}
+
+function describeFactConflicts(facts: ConversationCandidateFact[], answers: WizardAnswers) {
+  return facts
+    .map((fact) => {
+      if (fact.target.kind !== "fact") return null;
+      const existing = answers[fact.target.answerKey]?.facts?.[fact.target.label];
+      if (!existing || existing === fact.target.value) return null;
+      return `${fact.target.label}: 기존 ${existing}, 새 입력 ${fact.target.value}`;
+    })
+    .filter((item): item is string => Boolean(item));
+}
+
+function buildQuestionAnswer(input: string, answers: WizardAnswers, confirmedFacts: ConversationCandidateFact[]) {
+  const family = answers.family?.facts ?? {};
+  const assetSummary = answers.assets ? formatAnswer(answers.assets) : "자산 정보 미입력";
+  const familySummary = [
+    family["배우자 유무"] ? `배우자 ${family["배우자 유무"]}` : "",
+    family["자녀 수"] ? `자녀 ${family["자녀 수"]}` : "",
+    family["성년 자녀 수"] ? `성년 자녀 ${family["성년 자녀 수"]}` : ""
+  ].filter(Boolean).join(", ") || "가족관계 미확정";
+  const confirmedLine = confirmedFacts.length > 0
+    ? `현재 확정된 추가 사실은 ${confirmedFacts.slice(-4).map((fact) => `${fact.label} ${fact.value}`).join(", ")}입니다.`
+    : "아직 확정된 추가 사실은 많지 않습니다.";
+
+  if (/대출|차용|대여|상환|부모.*자녀|자녀.*부모/.test(input)) {
+    return [
+      `현재 정보(${familySummary}, ${assetSummary}) 기준으로는 부모·자녀 대출을 절세안처럼 단정하면 안 됩니다.`,
+      "자녀의 실제 상환능력이 필요하고, 차용증뿐 아니라 이자와 원금의 실제 지급이 이어져야 합니다.",
+      "부모의 대여금 채권은 상속재산에서 자동으로 제외되지 않습니다.",
+      "미상환되거나 나중에 채무면제가 되면 증여 위험이 생길 수 있습니다.",
+      "첫째와 둘째의 상환능력이 다르면 최종 재산배분 차이를 가족회의에서 별도로 확인해야 합니다.",
+      `${confirmedLine} 답변을 반영하려면 추가로 이야기하기에서 사실을 확정한 뒤 맞춤 보고서를 만들면 됩니다.`
+    ].join(" ");
+  }
+
+  if (/보험/.test(input)) {
+    return [
+      `현재 정보(${familySummary}) 기준에서 보험은 직접적인 절세안으로 보기보다 납세재원 보완안으로 분리해 보는 편이 안전합니다.`,
+      "계약자·피보험자·수익자, 보험료 재원, 실제 예상 상속세가 확인되기 전에는 확정 효과를 숫자로 만들지 않습니다.",
+      `${confirmedLine} 질문 답변 후에도 보고서는 바로 만들 수 있습니다.`
+    ].join(" ");
+  }
+
+  if (/상속세|증여세|양도세|세금|절세/.test(input)) {
+    return [
+      `현재 정보(${familySummary}, ${assetSummary})만으로 과세표준·공제·가산을 확정할 수는 없습니다.`,
+      "그래서 보고서에는 임의 세액 대신 추가 확인 필요 또는 확인 과세표준이 있는 범위의 계산만 표시합니다.",
+      "다만 가족 분산 증여, 배우자공제 고려 배분, 납부재원 보완은 우선 검토 후보가 될 수 있습니다.",
+      `${confirmedLine}`
+    ].join(" ");
+  }
+
+  return [
+    `좋은 질문입니다. 현재 확인된 정보는 ${familySummary}, ${assetSummary}입니다.`,
+    "이 단계에서는 확정 세무상담처럼 단정하지 않고, 맞춤 보고서에서 추가 확인 필요정보와 추천 후보를 분리해 보여드립니다.",
+    `${confirmedLine} 더 반영할 사실이 있으면 추가로 이야기하기를, 바로 보려면 맞춤 보고서 만들기를 선택해 주세요.`
+  ].join(" ");
 }

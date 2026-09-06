@@ -11,7 +11,7 @@ async function completeHybridPrecheck(page) {
   await page.goto(`${baseURL}/precheck`, { waitUntil: "networkidle" });
   await page.evaluate(() => window.sessionStorage.clear());
   await page.reload({ waitUntil: "networkidle" });
-  await page.getByRole("textbox", { name: "직접 입력" }).fill("증여 준비, 배우자 있음, 자녀 2명, 부동산 42억, 금융자산 8억, 담보대출 2억, 최근 10년 증여 있음, 일부를 미리 이전하고 납부재원이 궁금합니다. 기준안 과세표준 3억, 대안 과세표준 1.5억");
+  await page.getByRole("textbox", { name: "직접 입력" }).fill(requiredFiftyEokConversation());
   await page.getByRole("button", { name: "직접 입력 이해하기" }).click();
   await page.getByText("제가 이렇게 이해했습니다.", { exact: true }).waitFor({ timeout: 10_000 });
   await confirmAllCandidateFacts(page);
@@ -19,18 +19,37 @@ async function completeHybridPrecheck(page) {
   await page.getByRole("button", { name: "다음" }).click();
   await page.getByRole("button", { name: "다음" }).click();
   await page.getByRole("button", { name: "다음" }).click();
-  if (await page.getByRole("checkbox", { name: "상속세 납부재원 준비" }).getAttribute("aria-checked") !== "true") {
-    await page.getByRole("checkbox", { name: "상속세 납부재원 준비" }).click();
-  }
   await page.getByRole("button", { name: "다음" }).click();
-  if (await page.getByRole("checkbox", { name: "세금·비용" }).getAttribute("aria-checked") !== "true") {
-    await page.getByRole("checkbox", { name: "세금·비용" }).click();
-  }
-  await page.getByLabel("기준안 확인 과세표준(억원)").fill("3");
-  await page.getByLabel("우선 대안 확인 과세표준(억원)").fill("1.5");
-  await page.getByRole("button", { name: "결과 보기" }).click();
+  await page.getByText("분석을 시작하기 전에 더 말씀하고 싶은 내용이나 궁금한 점이 있나요?").waitFor({ timeout: 10_000 });
+  assert(!(await page.locator("body").innerText()).includes("분석 시작"), "Final precheck stage exposes forbidden 분석 시작 label.");
+  await page.getByRole("button", { name: "궁금한 점 질문하기" }).click();
+  await page.getByRole("textbox", { name: "직접 입력" }).fill("부모 자녀 대출은 차용증만 있으면 괜찮나요?");
+  await page.getByRole("button", { name: "질문 보내기" }).click();
+  await page.getByText("부모의 대여금 채권은 상속재산에서 자동으로 제외되지 않습니다.").waitFor({ timeout: 10_000 });
+  await page.getByRole("button", { name: "맞춤 보고서 만들기" }).click();
+  await page.getByText("맞춤 보고서를 만들어 주세요.").waitFor({ timeout: 10_000 });
+  await page.getByText("맞춤 보고서 작성 중").waitFor({ timeout: 10_000 });
   await page.waitForURL("**/precheck/result**");
   await page.getByText("개인화 시나리오 플랜").waitFor({ timeout: 10_000 });
+}
+
+function requiredFiftyEokConversation() {
+  return [
+    "본인 자산",
+    "총자산 50억원",
+    "금융자산 30억원",
+    "아파트 20억원",
+    "채무 없음",
+    "배우자 1명",
+    "성인 자녀 2명",
+    "3년 전 자녀별 1억원 증여 및 신고",
+    "목표: 세금 부담 절감과 노후생활비 유지",
+    "자녀에게 5억원 대출 검토",
+    "첫째는 상환능력 있음",
+    "둘째는 상환능력 부족",
+    "보험 없음",
+    "상속세 납부 가능 현금 3억원"
+  ].join(", ");
 }
 
 async function confirmAllCandidateFacts(page) {
@@ -73,16 +92,19 @@ try {
   assert(assessmentId, "Assessment ID missing from result page.");
   assert(resultText.includes("개인화 시나리오 플랜"), "ScenarioPlan panel missing from result page.");
   assert(resultText.includes("36개 시나리오 내부 분석 완료"), "Result page is missing the internal-analysis summary disclosure.");
-  assert(resultText.includes("부동산: 42억") && resultText.includes("금융자산: 8억"), "Assessment answers missing from result page.");
-  assert(resultText.includes("50억") && resultText.includes("0.5억 산출세액") && resultText.includes("0.3억 절세 예상") && !resultText.includes("9.5~12억") && !resultText.includes("부모 잔여재산\n55억") && !resultText.includes("inheritance-01-current-structure"), "Result page still exposes fixed sample strategy numbers, internal candidate IDs, or misses confirmed-tax-base calculation.");
+  assert(resultText.includes("부동산: 20억") && resultText.includes("금융자산: 30억"), "Assessment answers missing from result page.");
+  assert(resultText.includes("50억") && resultText.includes("가족 분산·단계적 사전증여") && resultText.includes("첫째 대출·둘째 증여 배분") && resultText.includes("배우자 상속공제 고려 재산배분"), "Result page is missing the required selected recommendations.");
+  assert(resultText.includes("자산 구성") && resultText.includes("기준안과 추천안 비교") && resultText.includes("납세재원과 부족액") && resultText.includes("증여·대출·상속 실행 타임라인"), "Result page is missing required visual sections.");
+  assert(!resultText.includes("0.5억 산출세액") && !resultText.includes("0.3억 절세 예상") && !resultText.includes("9.5~12억") && !resultText.includes("부모 잔여재산\n55억") && !resultText.includes("inheritance-01-current-structure"), "Result page still exposes fabricated calculations, fixed sample strategy numbers, or internal candidate IDs.");
 
   await page.goto(`${baseURL}/report-preview?assessment_id=${encodeURIComponent(assessmentId)}`, { waitUntil: "networkidle" });
   await page.getByText("Report V2 7/7").waitFor({ timeout: 10_000 });
   const reportText = await page.locator("body").innerText();
   assert(reportText.includes(assessmentId), "Assessment ID missing from report preview.");
   assert(await page.locator("[data-report-page]").count() === 7, "Report V2 should render exactly seven pages.");
-  assert(reportText.includes("Report V2 7/7") && reportText.includes("우리 가족 자산승계 사전진단 보고서") && reportText.includes("36개 시나리오 내부 분석 완료") && reportText.includes("50억") && reportText.includes("0.5억 산출세액") && reportText.includes("0.2억 산출세액"), "Seven-page report content missing confirmed calculation flow.");
-  assert(!reportText.includes("55억") && !reportText.includes("9.5~12억") && !reportText.includes("6.3~8.6억") && !reportText.includes("inheritance-01-current-structure"), "Report preview still exposes fixed sample strategy numbers or internal candidate IDs.");
+  assert(reportText.includes("Report V2 7/7") && reportText.includes("우리 가족 자산승계 사전진단 보고서") && reportText.includes("36개 시나리오 내부 분석 완료") && reportText.includes("50억") && reportText.includes("첫째 대출·둘째 증여 배분"), "Seven-page report content missing selected recommendation flow.");
+  assert(reportText.includes("자산 구성") && reportText.includes("기준안과 추천안 비교") && reportText.includes("납세재원과 부족액") && reportText.includes("증여·대출·상속 실행 타임라인"), "Seven-page report is missing required visual sections.");
+  assert(!reportText.includes("0.5억 산출세액") && !reportText.includes("0.2억 산출세액") && !reportText.includes("55억") && !reportText.includes("9.5~12억") && !reportText.includes("6.3~8.6억") && !reportText.includes("inheritance-01-current-structure"), "Report preview still exposes fabricated calculations, fixed sample strategy numbers, or internal candidate IDs.");
 
   await page.goto(`${baseURL}/consultation`, { waitUntil: "networkidle" });
   await page.getByText(assessmentId).first().waitFor({ timeout: 10_000 });
@@ -109,7 +131,8 @@ try {
       "mobile horizontal overflow absent",
       "query step bypass blocked",
       "hybrid direct input individual confirmation works",
-      "confirmed taxable-base input reaches result, seven-page report, and consultation",
+      "final free-question stage and custom-report CTA auto-transition work",
+      "required 50억원 conversation reaches result, seven-page report, and consultation",
       "36 internal scenario candidates stay summarized rather than exposed as a list",
       "consultation required validation and local success state work"
     ]

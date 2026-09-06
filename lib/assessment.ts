@@ -179,7 +179,7 @@ export function buildAssessmentMetrics(snapshot: AssessmentSnapshot): Assessment
   const financialAmount = parseEokAmount(assets?.assetAmounts?.["금융자산"]);
   const selectedDebtChoices = debt?.choices.filter(debtChoiceNeedsAmount) ?? [];
   const parsedDebtAmounts = selectedDebtChoices.map((choice) => parseEokAmount(debt?.debtAmounts?.[choice]));
-  const hasNoDebt = debt?.choices.includes("해당 없음");
+  const hasNoDebt = debt?.choices.includes("해당 없음") || debt?.facts?.["채무 여부"] === "없음";
   const hasDebtAmount = selectedDebtChoices.length > 0 && parsedDebtAmounts.every((amount) => amount !== null);
   const debtAmount = hasNoDebt ? 0 : hasDebtAmount ? parsedDebtAmounts.reduce((sum, amount) => sum + (amount ?? 0), 0) : null;
   const netAssetAmount = totalAssetAmount !== null && debtAmount !== null ? totalAssetAmount - debtAmount : null;
