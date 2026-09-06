@@ -13,6 +13,10 @@
   --success: #28745a;
   --warning: #a9691e;
   --danger: #b84848;
+  --motion-fast: 180ms;
+  --motion-medium: 240ms;
+  --motion-slow: 650ms;
+  --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -73,6 +77,229 @@ textarea {
   background: rgba(185, 154, 97, 0.3);
 }
 
+@keyframes motion-ai-message {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes motion-user-message {
+  from {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes motion-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes motion-bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes motion-donut-draw {
+  from {
+    clip-path: polygon(50% 50%, 50% 0, 50% 0, 50% 0);
+    opacity: 0.7;
+  }
+
+  to {
+    clip-path: polygon(50% 50%, 50% 0, 100% 0, 100% 100%, 0 100%, 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes motion-typing-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+.motion-press {
+  transition:
+    transform var(--motion-fast) var(--motion-ease-out),
+    border-color var(--motion-fast) var(--motion-ease-out),
+    box-shadow var(--motion-fast) var(--motion-ease-out),
+    background-color var(--motion-fast) var(--motion-ease-out);
+}
+
+.motion-press:not(:disabled):active {
+  transform: scale(0.98);
+}
+
+.motion-chat-bubble {
+  width: fit-content;
+  max-width: min(34rem, 100%);
+  border: 1px solid var(--border);
+  padding: 0.75rem 0.875rem;
+  line-height: 1.55;
+  opacity: 1;
+}
+
+.motion-chat-ai {
+  justify-self: start;
+  background: #ffffff;
+  color: var(--muted);
+}
+
+.motion-chat-user {
+  justify-self: end;
+  border-color: rgba(185, 154, 97, 0.45);
+  background: var(--navy-950);
+  color: #ffffff;
+}
+
+.motion-chat-ai.motion-enter {
+  animation: motion-ai-message var(--motion-medium) var(--motion-ease-out) both;
+}
+
+.motion-chat-user.motion-enter {
+  animation: motion-user-message var(--motion-medium) var(--motion-ease-out) both;
+}
+
+.motion-choice-enter,
+.motion-result-stage,
+.motion-response-card,
+.motion-generation-panel,
+.motion-recommendation-card,
+.motion-chart-card,
+.motion-timeline-item {
+  animation: motion-fade-up var(--motion-medium) var(--motion-ease-out) both;
+}
+
+.motion-generation-step {
+  opacity: 0.46;
+  transform: translateY(2px);
+  transition:
+    opacity var(--motion-medium) var(--motion-ease-out),
+    transform var(--motion-medium) var(--motion-ease-out),
+    color var(--motion-medium) var(--motion-ease-out);
+}
+
+.motion-generation-step.is-complete {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.motion-check-icon {
+  transform: scale(0.86);
+  transition: transform var(--motion-medium) var(--motion-ease-out);
+}
+
+.motion-generation-step.is-complete .motion-check-icon {
+  transform: scale(1);
+}
+
+.typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: 1rem;
+}
+
+.typing-dots span {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 999px;
+  background: var(--gold);
+  animation: motion-typing-dot 900ms var(--motion-ease-out) infinite;
+}
+
+.typing-dots span:nth-child(2) {
+  animation-delay: 120ms;
+}
+
+.typing-dots span:nth-child(3) {
+  animation-delay: 240ms;
+}
+
+.motion-metric-value {
+  font-variant-numeric: tabular-nums;
+}
+
+.motion-recommendation-card {
+  transition:
+    transform var(--motion-medium) var(--motion-ease-out),
+    box-shadow var(--motion-medium) var(--motion-ease-out),
+    border-color var(--motion-medium) var(--motion-ease-out),
+    background-color var(--motion-medium) var(--motion-ease-out);
+}
+
+.motion-recommendation-card.is-selected {
+  border-color: var(--navy-950);
+  background: #ffffff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .motion-recommendation-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(7, 20, 33, 0.08);
+  }
+}
+
+.motion-bar-fill {
+  transform-origin: left center;
+  animation: motion-bar-grow 560ms var(--motion-ease-out) both;
+}
+
+.motion-donut {
+  animation: motion-donut-draw var(--motion-slow) var(--motion-ease-out) both;
+}
+
+.motion-timeline-item {
+  position: relative;
+}
+
+.motion-timeline-item::before {
+  content: "";
+  position: absolute;
+  left: 0.875rem;
+  top: 1.9rem;
+  width: 1px;
+  height: calc(100% - 0.5rem);
+  background: rgba(185, 154, 97, 0.42);
+  transform-origin: top center;
+  animation: motion-bar-grow 520ms var(--motion-ease-out) both;
+}
+
+.motion-timeline-item:last-child::before {
+  display: none;
+}
+
 .premium-light {
   background: linear-gradient(180deg, #ffffff 0%, var(--background) 100%);
 }
@@ -126,15 +353,74 @@ textarea {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+
+  .motion-chat-bubble,
+  .motion-choice-enter,
+  .motion-result-stage,
+  .motion-response-card,
+  .motion-generation-panel,
+  .motion-recommendation-card,
+  .motion-chart-card,
+  .motion-timeline-item,
+  .motion-bar-fill,
+  .motion-donut {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .typing-dots span {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media print {
   @page {
     size: A4;
     margin: 0;
   }
 
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
   html,
   body {
     background: #ffffff;
+    scroll-behavior: auto;
+  }
+
+  .motion-chat-bubble,
+  .motion-choice-enter,
+  .motion-result-stage,
+  .motion-response-card,
+  .motion-generation-panel,
+  .motion-recommendation-card,
+  .motion-chart-card,
+  .motion-timeline-item,
+  .motion-bar-fill,
+  .motion-donut {
+    opacity: 1 !important;
+    clip-path: none !important;
   }
 
   .report-book {

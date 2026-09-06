@@ -89,9 +89,13 @@ export function ScenarioPlanPanel({ compact = false }: Readonly<{ compact?: bool
 
       <div className={`mt-6 grid gap-4 ${compact ? "" : "lg:grid-cols-3"}`}>
         {recommended.map((scenario, index) => (
-          <article key={scenario.scenario_id} className="border border-[var(--border)] bg-[var(--ivory)] p-5">
+          <article
+            key={scenario.scenario_id}
+            className={`motion-recommendation-card border p-5 ${index === 0 ? "is-selected" : "border-[var(--border)] bg-[var(--ivory)]"}`}
+            style={{ animationDelay: `${index * 70}ms` }}
+          >
             <div className="flex items-center justify-between gap-3">
-              <span className="text-xs font-semibold text-[var(--gold)]">AI 추천 {index + 1}</span>
+              <span className="text-xs font-semibold text-[var(--gold)]">{index === 0 ? "우선 검토" : `AI 추천 ${index + 1}`}</span>
               <span className="text-xs text-[var(--muted)]">{statusLabels[scenario.calculation_result.status]}</span>
             </div>
             <h3 className="mt-3 text-xl font-semibold tracking-[-0.04em] text-[var(--navy-950)]">{scenario.name}</h3>
@@ -161,7 +165,7 @@ export function ScenarioPlanPanel({ compact = false }: Readonly<{ compact?: bool
       {additionalReviews.length > 0 ? (
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
           {additionalReviews.map((scenario) => (
-            <article key={scenario.scenario_id} className="border border-[var(--border)] bg-white p-5">
+            <article key={scenario.scenario_id} className="motion-recommendation-card border border-[var(--border)] bg-white p-5">
               <p className="text-xs font-semibold text-[var(--gold)]">추가 확인 시 검토</p>
               <h3 className="mt-3 text-lg font-semibold tracking-[-0.04em] text-[var(--navy-950)]">{scenario.name}</h3>
               <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{scenario.required_information.slice(0, 3).join(" · ")}</p>
@@ -171,7 +175,7 @@ export function ScenarioPlanPanel({ compact = false }: Readonly<{ compact?: bool
       ) : null}
 
       {liquiditySupport ? (
-        <article className="mt-6 border border-[var(--border)] bg-[var(--navy-950)] p-5 text-white">
+        <article className="motion-result-stage mt-6 border border-[var(--border)] bg-[var(--navy-950)] p-5 text-white">
           <p className="text-xs font-semibold text-[var(--gold)]">납세재원 보완안</p>
           <h3 className="mt-3 text-xl font-semibold tracking-[-0.04em]">{liquiditySupport.name}</h3>
           <p className="mt-3 text-sm leading-6 text-white/68">

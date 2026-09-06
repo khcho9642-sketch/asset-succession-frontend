@@ -130,6 +130,29 @@ try {
   if (pageCountInDom !== 7) {
     throw new Error(`Report DOM should contain exactly seven report pages, found ${pageCountInDom}.`);
   }
+  const printMotionLeaks = await page.evaluate(() => {
+    const animatedSelectors = [
+      ".motion-result-stage",
+      ".motion-recommendation-card",
+      ".motion-chart-card",
+      ".motion-bar-fill",
+      ".motion-donut",
+      ".motion-timeline-item"
+    ].join(",");
+    return Array.from(document.querySelectorAll(animatedSelectors)).flatMap((element) => {
+      const styles = window.getComputedStyle(element);
+      const hasAnimation = styles.animationName !== "none" || styles.animationDuration !== "0s";
+      const hasTransition = styles.transitionDuration !== "0s";
+      const hasTransform = styles.transform !== "none";
+      const hidden = styles.opacity === "0";
+      return hasAnimation || hasTransition || hasTransform || hidden
+        ? [`${element.className}: animation=${styles.animationName}/${styles.animationDuration}, transition=${styles.transitionDuration}, transform=${styles.transform}, opacity=${styles.opacity}`]
+        : [];
+    }).slice(0, 5);
+  });
+  if (printMotionLeaks.length > 0) {
+    throw new Error(`Print/PDF media still exposes active motion state: ${printMotionLeaks.join(" | ")}`);
+  }
   for (let pageNumber = 1; pageNumber <= 7; pageNumber += 1) {
     const reportPage = page.locator(`[data-report-page="${pageNumber}"]`);
     const pageText = await reportPage.innerText();

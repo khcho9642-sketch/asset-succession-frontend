@@ -38,12 +38,20 @@ function normalizePath(value) {
   }
 }
 
+async function stableScreenshot(page, options) {
+  await page.waitForTimeout(850);
+  await page.screenshot({ timeout: 30_000, ...options });
+}
+
 async function completeHybridPrecheck(page) {
   await page.goto(`${baseURL}/precheck`, { waitUntil: "networkidle", timeout: 30_000 });
   await page.evaluate(() => window.sessionStorage.clear());
   await page.reload({ waitUntil: "networkidle" });
   await page.getByRole("textbox", { name: "직접 입력" }).fill(requiredFiftyEokConversation());
   await page.getByRole("button", { name: "직접 입력 이해하기" }).click();
+  await page.getByTestId("typing-indicator").waitFor({ state: "visible", timeout: 1_000 }).catch(() => {
+    fail("/precheck", "flow", "AI reply typing dots did not appear before the interpreted response.");
+  });
   await page.getByText("제가 이렇게 이해했습니다.", { exact: true }).waitFor({ timeout: 10_000 });
   await confirmAllCandidateFacts(page);
 
@@ -59,6 +67,9 @@ async function completeHybridPrecheck(page) {
   await page.getByRole("button", { name: "궁금한 점 질문하기" }).click();
   await page.getByRole("textbox", { name: "직접 입력" }).fill("부모 자녀 대출은 차용증만 있으면 괜찮나요?");
   await page.getByRole("button", { name: "질문 보내기" }).click();
+  await page.getByTestId("typing-indicator").waitFor({ state: "visible", timeout: 1_000 }).catch(() => {
+    fail("/precheck", "flow", "Final-question answer did not show a short typing indicator.");
+  });
   await page.getByText("차용증뿐 아니라 이자와 원금의 실제 지급").waitFor({ timeout: 10_000 });
   await page.getByRole("button", { name: "추가로 이야기하기" }).click();
   await page.getByRole("textbox", { name: "직접 입력" }).fill("첫째는 상환능력 있음, 둘째는 상환능력 부족");
@@ -67,6 +78,8 @@ async function completeHybridPrecheck(page) {
   await confirmAllCandidateFacts(page);
   await page.getByRole("button", { name: "맞춤 보고서 만들기" }).click();
   await page.getByText("맞춤 보고서를 만들어 주세요.").waitFor({ timeout: 10_000 });
+  await page.locator(".motion-generation-panel").waitFor({ state: "visible", timeout: 10_000 });
+  await page.locator(".motion-generation-step.is-complete").nth(3).waitFor({ state: "visible", timeout: 10_000 });
   await page.getByText("맞춤 보고서 작성 중").waitFor({ timeout: 10_000 });
   await page.waitForURL("**/precheck/result**", { timeout: 10_000 });
   await page.getByText("개인화 시나리오 플랜").waitFor({ timeout: 10_000 });
@@ -120,7 +133,7 @@ try {
     if (await emptyConsultationPage.getByRole("button", { name: "상담 신청하기" }).count() > 0) {
       fail("/consultation", viewport.name, "Consultation without stored assessment still exposes the submit button.");
     }
-    await emptyConsultationPage.screenshot({
+    await stableScreenshot(emptyConsultationPage, {
       path: path.join(outputDir, `${viewport.name}-consultation-empty-locked.png`),
       fullPage: true
     });
@@ -136,7 +149,7 @@ try {
         continue;
       }
 
-      await page.screenshot({
+      await stableScreenshot(page, {
         path: path.join(outputDir, `${viewport.name}-${route.name}.png`),
         fullPage: true
       });
@@ -181,6 +194,16 @@ try {
         }
         const questionBox = await page.getByText("어떤 준비를 고민하고 계신가요?").first().boundingBox();
         const firstChoiceBox = await page.getByRole("radio", { name: "상속" }).first().boundingBox();
+        const firstChoiceMotion = await page.getByRole("radio", { name: "상속" }).first().evaluate((element) => {
+          const styles = window.getComputedStyle(element);
+          return {
+            hasClass: element.classList.contains("motion-choice-enter"),
+            animationDuration: styles.animationDuration
+          };
+        });
+        if (!firstChoiceMotion.hasClass || firstChoiceMotion.animationDuration === "0s") {
+          fail(route.path, viewport.name, "Quick choice buttons are missing their normal sequential entrance motion.");
+        }
         if (viewport.name === "mobile" && (!questionBox || questionBox.y > viewport.height * 0.54 || !firstChoiceBox || firstChoiceBox.y > viewport.height * 0.78)) {
           fail(route.path, viewport.name, "Mobile first viewport does not surface the planning-purpose question and first choice quickly enough.");
         }
@@ -190,6 +213,10 @@ try {
         }
         await page.getByRole("textbox", { name: "직접 입력" }).fill("상속 준비, 배우자 있음, 자녀 2명, 아버지 재산이에요. 아파트 두 채와 예금 8억");
         await page.getByRole("button", { name: "직접 입력 이해하기" }).click();
+        await page.getByTestId("typing-indicator").waitFor({ state: "visible", timeout: 1_000 }).catch(() => {
+          fail(route.path, viewport.name, "Direct input did not show the AI typing dots before candidate extraction.");
+        });
+        await page.getByText("제가 이렇게 이해했습니다.", { exact: true }).waitFor({ timeout: 10_000 }).catch(() => undefined);
         if (!await page.getByText("제가 이렇게 이해했습니다.", { exact: true }).isVisible()) {
           fail(route.path, viewport.name, "Direct input did not produce a confirmation candidate.");
         }
@@ -311,6 +338,16 @@ try {
     await completeHybridPrecheck(flowPage);
     await flowPage.getByText("개인화 시나리오 플랜").waitFor({ timeout: 10_000 });
     const resultText = await flowPage.locator("body").innerText();
+    const resultMotion = await flowPage.evaluate(() => ({
+      stages: document.querySelectorAll(".motion-result-stage").length,
+      cards: document.querySelectorAll(".motion-recommendation-card").length,
+      bars: document.querySelectorAll(".motion-bar-fill").length,
+      donut: document.querySelectorAll(".motion-donut").length,
+      timeline: document.querySelectorAll(".motion-timeline-item").length
+    }));
+    if (resultMotion.stages < 3 || resultMotion.cards < 3 || resultMotion.bars < 4 || resultMotion.donut < 1 || resultMotion.timeline < 3) {
+      fail("/precheck/result", viewport.name, `Result motion hooks are incomplete: ${JSON.stringify(resultMotion)}.`);
+    }
     const assessmentMatch = resultText.match(/AS360-\d{8}-[A-Z0-9]+/);
     const requiredResultText = [
       "개인화 시나리오 플랜",
@@ -336,7 +373,7 @@ try {
       if (leakedResultNumbers.length > 0) {
         fail("/precheck/result", viewport.name, `Result page leaked stale sample numbers: ${leakedResultNumbers.join(", ")}`);
       }
-      await flowPage.screenshot({
+      await stableScreenshot(flowPage, {
         path: path.join(outputDir, `${viewport.name}-result-with-hybrid-assessment.png`),
         fullPage: true
       });
@@ -369,14 +406,14 @@ try {
       if (leakedReportNumbers.length > 0) {
         fail("/report-preview", viewport.name, `Report preview leaked stale sample numbers: ${leakedReportNumbers.join(", ")}`);
       }
-      await flowPage.screenshot({
+      await stableScreenshot(flowPage, {
         path: path.join(outputDir, `${viewport.name}-report-v2-seven-pages.png`),
         fullPage: true
       });
 
       if (viewport.name === "desktop") {
         await flowPage.emulateMedia({ media: "print" });
-        await flowPage.screenshot({
+        await stableScreenshot(flowPage, {
           path: path.join(outputDir, "desktop-report-v2-print.png"),
           fullPage: true
         });
@@ -406,7 +443,7 @@ try {
       if (!successText.includes("상담 신청이 접수되었습니다.") || !successText.includes("RCV-") || !successText.includes(assessmentMatch[0])) {
         fail("/consultation", viewport.name, "Consultation local success state did not preserve receipt and assessment IDs.");
       }
-      await flowPage.screenshot({
+      await stableScreenshot(flowPage, {
         path: path.join(outputDir, `${viewport.name}-consultation-success.png`),
         fullPage: true
       });
@@ -415,6 +452,28 @@ try {
 
     await context.close();
   }
+
+  const reducedContext = await browser.newContext({
+    viewport: { width: 390, height: 844 },
+    deviceScaleFactor: 1,
+    reducedMotion: "reduce"
+  });
+  const reducedPage = await reducedContext.newPage();
+  await reducedPage.goto(`${baseURL}/precheck`, { waitUntil: "networkidle", timeout: 30_000 });
+  const reducedMotion = await reducedPage.locator(".motion-choice-enter").first().evaluate((element) => {
+    const styles = window.getComputedStyle(element);
+    return {
+      animationDuration: styles.animationDuration,
+      transitionDuration: styles.transitionDuration,
+      transform: styles.transform,
+      opacity: styles.opacity
+    };
+  });
+  if (reducedMotion.animationDuration !== "0s" || reducedMotion.transitionDuration !== "0s" || reducedMotion.transform !== "none" || reducedMotion.opacity === "0") {
+    fail("/precheck", "reduced-motion", `Reduced-motion mode did not disable entrance animation cleanly: ${JSON.stringify(reducedMotion)}.`);
+  }
+  await reducedPage.close();
+  await reducedContext.close();
 } finally {
   await browser.close();
 }

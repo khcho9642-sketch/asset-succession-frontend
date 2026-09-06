@@ -76,8 +76,12 @@ export function PrecheckWizard() {
   const [isSubmittingInput, setIsSubmittingInput] = useState(false);
   const [finalInteractionMode, setFinalInteractionMode] = useState<FinalInteractionMode>("idle");
   const [visibleGenerationSteps, setVisibleGenerationSteps] = useState<string[]>([]);
+  const [isTypingIndicatorVisible, setIsTypingIndicatorVisible] = useState(false);
   const submittingInputRef = useRef(false);
   const lastSubmissionRef = useRef("");
+  const conversationLogRef = useRef<HTMLOListElement>(null);
+  const restoredMessageCountRef = useRef(0);
+  const previousConversationLengthRef = useRef(0);
   const visibleSteps = useMemo(() => getVisibleSteps(answers), [answers]);
   const safeActiveStep = Math.min(activeStep, Math.max(visibleSteps.length - 1, 0));
   const step = visibleSteps[safeActiveStep] ?? wizardSteps[0];
@@ -111,12 +115,17 @@ export function PrecheckWizard() {
         setDirectInput(draft.directInput ?? "");
         setCandidate(draft.candidate ?? null);
         setConfirmedFacts(draft.confirmedFacts ?? []);
-        setConversationMessages(draft.conversationMessages ?? []);
+        const restoredMessages = draft.conversationMessages ?? [];
+        setConversationMessages(restoredMessages);
+        restoredMessageCountRef.current = restoredMessages.length;
+        previousConversationLengthRef.current = restoredMessages.length;
         setFinalInteractionMode(draft.finalInteractionMode ?? "idle");
         setDraftRestored(true);
       }
     } catch {
       window.sessionStorage.removeItem(PRECHECK_DRAFT_STORAGE_KEY);
+      restoredMessageCountRef.current = 0;
+      previousConversationLengthRef.current = 0;
     } finally {
       setHydrated(true);
     }
@@ -139,6 +148,22 @@ export function PrecheckWizard() {
     };
     window.sessionStorage.setItem(PRECHECK_DRAFT_STORAGE_KEY, JSON.stringify(draft));
   }, [answers, candidate, confirmedFacts, conversationMessages, directInput, finalInteractionMode, hydrated, safeActiveStep]);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    const log = conversationLogRef.current;
+    if (!log) return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isInitialRestore =
+      draftRestored &&
+      previousConversationLengthRef.current === conversationMessages.length &&
+      conversationMessages.length === restoredMessageCountRef.current;
+    log.scrollTo({
+      top: log.scrollHeight,
+      behavior: prefersReducedMotion || isInitialRestore ? "auto" : "smooth"
+    });
+    previousConversationLengthRef.current = conversationMessages.length;
+  }, [conversationMessages.length, draftRestored, hydrated, isTypingIndicatorVisible]);
 
   function isStepComplete(index: number) {
     const item = visibleSteps[index];
@@ -302,6 +327,7 @@ export function PrecheckWizard() {
     }
     submittingInputRef.current = true;
     setIsSubmittingInput(true);
+    setIsTypingIndicatorVisible(true);
     lastSubmissionRef.current = input;
     const parsed = parseConversationalInput(input);
     const conflicts = describeFactConflicts(parsed.facts, answers);
@@ -312,16 +338,21 @@ export function PrecheckWizard() {
           conflicts.length > 0 ? `기존 답변과 충돌 가능성이 있어 다시 확인이 필요합니다: ${conflicts.join(" / ")}` : ""
         ].filter(Boolean).join(" ")
       : parsed.assistantText;
-    setCandidate({ ...parsed, assistantText });
+    setCandidate(null);
     setConversationMessages((previous) => [
       ...previous,
-      { role: "user", text: input || "(빈 입력)", created_at: new Date().toISOString() },
-      { role: "assistant", text: assistantText, created_at: new Date().toISOString() }
+      { role: "user", text: input || "(빈 입력)", created_at: new Date().toISOString() }
     ]);
     window.setTimeout(() => {
+      setCandidate({ ...parsed, assistantText });
+      setConversationMessages((previous) => [
+        ...previous,
+        { role: "assistant", text: assistantText, created_at: new Date().toISOString() }
+      ]);
+      setIsTypingIndicatorVisible(false);
       submittingInputRef.current = false;
       setIsSubmittingInput(false);
-    }, 350);
+    }, 240);
   }
 
   function confirmCandidateFact(fact: ConversationCandidateFact) {
@@ -433,22 +464,27 @@ export function PrecheckWizard() {
     }
     submittingInputRef.current = true;
     setIsSubmittingInput(true);
+    setIsTypingIndicatorVisible(true);
     lastSubmissionRef.current = input;
     const answer = buildQuestionAnswer(input, answers, confirmedFacts);
     setConversationMessages((previous) => [
       ...previous,
-      { role: "user", text: input, created_at: new Date().toISOString() },
-      { role: "assistant", text: answer, created_at: new Date().toISOString() },
-      { role: "assistant", text: finalReviewPrompt, created_at: new Date().toISOString() }
+      { role: "user", text: input, created_at: new Date().toISOString() }
     ]);
     setDirectInput("");
     setCandidate(null);
-    setFinalInteractionMode("idle");
     setShowError(false);
     window.setTimeout(() => {
+      setConversationMessages((previous) => [
+        ...previous,
+        { role: "assistant", text: answer, created_at: new Date().toISOString() },
+        { role: "assistant", text: finalReviewPrompt, created_at: new Date().toISOString() }
+      ]);
+      setFinalInteractionMode("idle");
+      setIsTypingIndicatorVisible(false);
       submittingInputRef.current = false;
       setIsSubmittingInput(false);
-    }, 350);
+    }, 240);
   }
 
   function startReportGeneration() {
@@ -520,7 +556,7 @@ export function PrecheckWizard() {
 
   return (
     <section className="mx-auto grid max-w-7xl gap-10 px-4 py-5 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8 lg:py-18">
-      <aside className="hidden border border-[var(--border)] bg-white p-6 lg:block">
+      <aside className="motion-result-stage hidden border border-[var(--border)] bg-white p-6 lg:block">
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold)]">무료 사전진단</p>
         <h1 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.05em] text-[var(--navy-950)]">
           신고서가 아니라 상담을 시작하는 질문입니다.
@@ -535,7 +571,7 @@ export function PrecheckWizard() {
               type="button"
               onClick={() => moveToStep(index)}
               disabled={!isStepUnlocked(index)}
-              className={`flex items-center gap-3 border px-4 py-3 text-left transition ${
+              className={`motion-press flex items-center gap-3 border px-4 py-3 text-left transition ${
                 index <= safeActiveStep ? "border-[var(--gold)] bg-[var(--ivory)]" : "border-[var(--border)]"
               }`}
               aria-current={index === safeActiveStep ? "step" : undefined}
@@ -557,7 +593,7 @@ export function PrecheckWizard() {
         </div>
       </aside>
 
-      <section className="border border-[var(--border)] bg-white p-5 md:p-10">
+      <section className="motion-result-stage border border-[var(--border)] bg-white p-5 md:p-10" style={{ animationDelay: "60ms" }}>
         <div className="mb-5 border border-[var(--border)] bg-[var(--ivory)] p-4 lg:hidden">
           <div className="flex items-center justify-between gap-3">
             <p className="text-sm font-semibold text-[var(--gold)]">{safeActiveStep + 1}/{visibleSteps.length} {step.label}</p>
@@ -587,19 +623,37 @@ export function PrecheckWizard() {
         {conversationMessages.length > 0 ? (
           <section className="mt-6 border border-[var(--border)] bg-[var(--ivory)] p-4" aria-label="대화 이력">
             <p className="text-sm font-semibold text-[var(--navy-950)]">대화 이력</p>
-            <ol className="mt-3 grid max-h-48 gap-2 overflow-auto text-xs leading-5">
-              {conversationMessages.slice(-8).map((message, index) => (
-                <li key={`${message.created_at}-${index}`} className={message.role === "user" ? "text-[var(--text)]" : "text-[var(--muted)]"}>
-                  <span className="font-semibold">{message.role === "user" ? "사용자" : "인터뷰"}</span> · {message.text}
+            <ol ref={conversationLogRef} className="mt-3 grid max-h-56 gap-2 overflow-auto text-xs leading-5">
+              {conversationMessages.slice(-8).map((message, index) => {
+                const absoluteIndex = Math.max(conversationMessages.length - 8, 0) + index;
+                const shouldAnimate = hydrated && absoluteIndex >= restoredMessageCountRef.current;
+                return (
+                  <li
+                    key={`${message.created_at}-${index}`}
+                    className={`motion-chat-bubble ${message.role === "user" ? "motion-chat-user" : "motion-chat-ai"} ${shouldAnimate ? "motion-enter" : ""}`}
+                    style={{ animationDelay: shouldAnimate ? `${Math.min(index, 4) * 35}ms` : undefined }}
+                  >
+                    <span className="font-semibold">{message.role === "user" ? "사용자" : "자동 사전진단"}</span> · {message.text}
+                  </li>
+                );
+              })}
+              {isTypingIndicatorVisible ? (
+                <li className="motion-chat-bubble motion-chat-ai motion-enter" data-testid="typing-indicator" aria-label="자동 사전진단 답변 작성 중">
+                  <span className="sr-only">자동 사전진단 답변 작성 중</span>
+                  <span className="typing-dots" aria-hidden="true">
+                    <span />
+                    <span />
+                    <span />
+                  </span>
                 </li>
-              ))}
+              ) : null}
             </ol>
           </section>
         ) : null}
 
         <div className="mt-8 grid gap-6">
           {isFinalReviewStep ? (
-            <section className="border-2 border-[var(--gold)] bg-white p-4" aria-label="맞춤 보고서 생성 전 마지막 확인">
+            <section className="motion-response-card border-2 border-[var(--gold)] bg-white p-4" aria-label="맞춤 보고서 생성 전 마지막 확인">
               <p className="text-sm font-semibold text-[var(--text)]">마지막 확인</p>
               <p className="mt-3 whitespace-pre-line text-base leading-7 text-[var(--navy-950)]">{finalReviewPrompt}</p>
               <div className="mt-5 grid gap-3 sm:grid-cols-3">
@@ -608,7 +662,8 @@ export function PrecheckWizard() {
                   onClick={requestAdditionalStory}
                   disabled={finalInteractionMode === "generating"}
                   aria-pressed={finalInteractionMode === "additional"}
-                  className={`min-h-16 border px-4 py-3 text-left text-sm font-semibold ${finalInteractionMode === "additional" ? "border-[var(--gold)] bg-[var(--ivory)]" : "border-[var(--border)] bg-white"}`}
+                  className={`motion-choice-enter motion-press min-h-16 border px-4 py-3 text-left text-sm font-semibold ${finalInteractionMode === "additional" ? "border-[var(--gold)] bg-[var(--ivory)]" : "border-[var(--border)] bg-white"}`}
+                  style={{ animationDelay: "40ms" }}
                 >
                   추가로 이야기하기
                   <span className="mt-1 block text-xs font-normal leading-5 text-[var(--muted)]">새 사실을 후보로 뽑고 개별 확정합니다.</span>
@@ -618,7 +673,8 @@ export function PrecheckWizard() {
                   onClick={requestQuestionBeforeReport}
                   disabled={finalInteractionMode === "generating"}
                   aria-pressed={finalInteractionMode === "question"}
-                  className={`min-h-16 border px-4 py-3 text-left text-sm font-semibold ${finalInteractionMode === "question" ? "border-[var(--gold)] bg-[var(--ivory)]" : "border-[var(--border)] bg-white"}`}
+                  className={`motion-choice-enter motion-press min-h-16 border px-4 py-3 text-left text-sm font-semibold ${finalInteractionMode === "question" ? "border-[var(--gold)] bg-[var(--ivory)]" : "border-[var(--border)] bg-white"}`}
+                  style={{ animationDelay: "90ms" }}
                 >
                   궁금한 점 질문하기
                   <span className="mt-1 block text-xs font-normal leading-5 text-[var(--muted)]">현재 확인된 정보 범위에서만 답합니다.</span>
@@ -627,27 +683,34 @@ export function PrecheckWizard() {
                   type="button"
                   onClick={startReportGeneration}
                   disabled={finalInteractionMode === "generating"}
-                  className="min-h-16 bg-[var(--navy-950)] px-4 py-3 text-left text-sm font-semibold text-white disabled:cursor-wait disabled:opacity-80"
+                  className="motion-choice-enter motion-press min-h-16 bg-[var(--navy-950)] px-4 py-3 text-left text-sm font-semibold text-white disabled:cursor-wait disabled:opacity-80"
+                  style={{ animationDelay: "140ms" }}
                 >
                   맞춤 보고서 만들기
                   <span className="mt-1 block text-xs font-normal leading-5 text-white/62">완료 후 결과 화면으로 자동 이동합니다.</span>
                 </button>
               </div>
               {finalInteractionMode === "generating" ? (
-                <ol className="mt-5 grid gap-2 border border-[var(--border)] bg-[var(--ivory)] p-4 text-sm" aria-live="polite">
+                <ol className="motion-generation-panel mt-5 grid gap-2 border border-[var(--border)] bg-[var(--ivory)] p-4 text-sm" aria-live="polite">
                   {reportGenerationSteps.map((item) => (
-                    <li key={item} className={visibleGenerationSteps.includes(item) ? "font-semibold text-[var(--navy-950)]" : "text-[var(--muted)]"}>
-                      {visibleGenerationSteps.includes(item) ? "✓ " : "· "}{item}
+                    <li
+                      key={item}
+                      className={`motion-generation-step flex items-center gap-2 ${visibleGenerationSteps.includes(item) ? "is-complete font-semibold text-[var(--navy-950)]" : "text-[var(--muted)]"}`}
+                    >
+                      <span className={`motion-check-icon flex h-5 w-5 items-center justify-center rounded-full ${visibleGenerationSteps.includes(item) ? "bg-[var(--success)] text-white" : "border border-[var(--border)] text-[var(--muted)]"}`}>
+                        {visibleGenerationSteps.includes(item) ? <Check className="h-3 w-3" /> : "·"}
+                      </span>
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ol>
               ) : null}
             </section>
           ) : (
-          <fieldset className="border-2 border-[var(--gold)] bg-white p-4">
+          <fieldset className="motion-response-card border-2 border-[var(--gold)] bg-white p-4">
             <legend className="px-2 text-sm font-semibold text-[var(--text)]">현재 질문 · {step.primaryQuestion}</legend>
             <div className="mt-3 grid gap-3 sm:grid-cols-2" role={isMultiSelectStep ? "group" : "radiogroup"} aria-label={step.primaryQuestion}>
-              {step.choices.map((choice) => {
+              {step.choices.map((choice, index) => {
                 const selected = currentAnswer.choices.includes(choice);
                 return (
                   <button
@@ -657,11 +720,12 @@ export function PrecheckWizard() {
                     aria-checked={selected}
                     aria-pressed={selected}
                     onClick={() => updateChoice(choice)}
-                    className={`flex items-center justify-between border px-5 py-4 text-left text-sm font-semibold transition ${
+                    className={`motion-choice-enter motion-press flex items-center justify-between border px-5 py-4 text-left text-sm font-semibold transition ${
                       selected
                         ? "border-[var(--gold)] bg-[var(--ivory)] text-[var(--navy-950)]"
                         : "border-[var(--border)] hover:border-[var(--gold)]"
                     }`}
+                    style={{ animationDelay: `${Math.min(index, 5) * 45}ms` }}
                   >
                     <span className="flex items-center gap-3">
                       {isMultiSelectStep ? (
@@ -677,10 +741,10 @@ export function PrecheckWizard() {
               })}
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
-              <button type="button" onClick={showQuestionHelp} className="inline-flex min-h-11 items-center gap-2 border border-[var(--border)] px-4 py-2 text-sm font-semibold">
+              <button type="button" onClick={showQuestionHelp} className="motion-press inline-flex min-h-11 items-center gap-2 border border-[var(--border)] px-4 py-2 text-sm font-semibold">
                 <HelpCircle className="h-4 w-4" /> 왜 물어보나요?
               </button>
-              <button type="button" onClick={markUnknownAndContinue} className="inline-flex min-h-11 border border-[var(--border)] px-4 py-2 text-sm font-semibold">
+              <button type="button" onClick={markUnknownAndContinue} className="motion-press inline-flex min-h-11 border border-[var(--border)] px-4 py-2 text-sm font-semibold">
                 모르겠어요 / 나중에 확인
               </button>
             </div>
@@ -688,7 +752,7 @@ export function PrecheckWizard() {
           )}
 
           {!isFinalReviewStep || finalInteractionMode === "additional" || finalInteractionMode === "question" ? (
-          <section className="border border-[var(--border)] bg-[var(--ivory)] p-4" aria-label="직접 입력으로 답하기">
+          <section className="motion-response-card border border-[var(--border)] bg-[var(--ivory)] p-4" aria-label="직접 입력으로 답하기" style={{ animationDelay: "70ms" }}>
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <p className="text-sm font-semibold text-[var(--navy-950)]">직접 입력</p>
@@ -732,14 +796,14 @@ export function PrecheckWizard() {
                 type="button"
                 disabled={isSubmittingInput}
                 onClick={understandDirectInput}
-                className="inline-flex min-h-12 items-center gap-2 bg-[var(--navy-950)] px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
+                className="motion-press inline-flex min-h-12 items-center gap-2 bg-[var(--navy-950)] px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {finalInteractionMode === "question" ? "질문 보내기" : finalInteractionMode === "additional" ? "추가 내용 이해하기" : "직접 입력 이해하기"}
               </button>
               <p className="text-xs leading-5 text-[var(--muted)]">Enter 전송은 한글 조합 중에는 막고, 연속 클릭은 한 번만 반영합니다.</p>
             </div>
             {candidate ? (
-              <div className="mt-4 border border-[var(--border)] bg-white p-4" role="status" aria-live="polite">
+              <div className="motion-response-card mt-4 border border-[var(--border)] bg-white p-4" role="status" aria-live="polite">
                 <p className="text-sm font-semibold text-[var(--navy-950)]">{candidate.status === "candidate" ? "제가 이렇게 이해했습니다." : "도움말"}</p>
                 <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{candidate.assistantText}</p>
                 {candidate.facts.length > 0 ? (
@@ -752,10 +816,10 @@ export function PrecheckWizard() {
                           <span className="mt-1 block text-xs text-[var(--muted)]">확신도: {fact.confidence}</span>
                         </span>
                         <span className="flex flex-wrap gap-2">
-                          <button type="button" onClick={() => confirmCandidateFact(fact)} className="inline-flex min-h-10 bg-[var(--success)] px-3 py-2 text-xs font-semibold text-white">
+                          <button type="button" onClick={() => confirmCandidateFact(fact)} className="motion-press inline-flex min-h-10 bg-[var(--success)] px-3 py-2 text-xs font-semibold text-white">
                             이 사실만 확정
                           </button>
-                          <button type="button" onClick={() => excludeCandidateFact(fact)} className="inline-flex min-h-10 items-center gap-1 border border-[var(--border)] bg-white px-3 py-2 text-xs font-semibold">
+                          <button type="button" onClick={() => excludeCandidateFact(fact)} className="motion-press inline-flex min-h-10 items-center gap-1 border border-[var(--border)] bg-white px-3 py-2 text-xs font-semibold">
                             <X className="h-3 w-3" /> 제외
                           </button>
                         </span>
@@ -765,8 +829,8 @@ export function PrecheckWizard() {
                 ) : null}
                 {candidate.status === "candidate" ? (
                   <div className="mt-4 flex flex-wrap gap-2">
-                    <button type="button" onClick={() => dismissCandidate("좋아요. 문장을 고쳐서 다시 입력하면 다시 후보를 뽑겠습니다.")} className="inline-flex min-h-11 border border-[var(--border)] px-4 py-2 text-sm font-semibold">문장 수정하기</button>
-                    <button type="button" onClick={() => dismissCandidate("확정하지 않고 넘어가도 됩니다. 모르는 항목은 추가정보 필요로 남겨둘게요.")} className="inline-flex min-h-11 border border-[var(--border)] px-4 py-2 text-sm font-semibold">나중에 확인</button>
+                    <button type="button" onClick={() => dismissCandidate("좋아요. 문장을 고쳐서 다시 입력하면 다시 후보를 뽑겠습니다.")} className="motion-press inline-flex min-h-11 border border-[var(--border)] px-4 py-2 text-sm font-semibold">문장 수정하기</button>
+                    <button type="button" onClick={() => dismissCandidate("확정하지 않고 넘어가도 됩니다. 모르는 항목은 추가정보 필요로 남겨둘게요.")} className="motion-press inline-flex min-h-11 border border-[var(--border)] px-4 py-2 text-sm font-semibold">나중에 확인</button>
                   </div>
                 ) : null}
               </div>
@@ -940,12 +1004,12 @@ export function PrecheckWizard() {
             type="button"
             onClick={() => setActiveStep((value) => Math.max(value - 1, 0))}
             disabled={safeActiveStep === 0}
-            className="inline-flex items-center gap-2 border border-[var(--border)] px-5 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-40"
+            className="motion-press inline-flex items-center gap-2 border border-[var(--border)] px-5 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-40"
           >
             <ArrowLeft className="h-4 w-4" /> 이전
           </button>
           {!isFinalReviewStep ? (
-            <button type="button" onClick={goNext} className="inline-flex items-center gap-3 bg-[var(--navy-950)] px-6 py-4 text-sm font-semibold text-white">
+            <button type="button" onClick={goNext} className="motion-press inline-flex items-center gap-3 bg-[var(--navy-950)] px-6 py-4 text-sm font-semibold text-white">
               다음 <ArrowRight className="h-4 w-4" />
             </button>
           ) : null}

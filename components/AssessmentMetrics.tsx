@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { readAssessmentFromSession } from "@/lib/assessment";
 import type { AssessmentLoadResult } from "@/lib/assessment";
 
@@ -47,9 +47,15 @@ export function AssessmentMetrics({ mode = "result" }: Readonly<{ mode?: "result
     <section className="grid gap-4">
       <div className={`grid gap-4 ${mode === "result" ? "sm:grid-cols-3" : "md:grid-cols-4"}`}>
         {cards.map(([label, value, helper], index) => (
-          <article key={label} className={`border border-[var(--border)] p-5 ${index === 0 ? "bg-[var(--navy-950)] text-white" : "bg-white"}`}>
+          <article
+            key={label}
+            className={`motion-result-stage border border-[var(--border)] p-5 ${index === 0 ? "bg-[var(--navy-950)] text-white" : "bg-white"}`}
+            style={{ animationDelay: `${120 + index * 70}ms` }}
+          >
             <p className={`text-sm ${index === 0 ? "text-white/60" : "text-[var(--muted)]"}`}>{label}</p>
-            <strong className={`mt-3 block text-3xl tracking-[-0.06em] ${index === 0 ? "text-white" : "text-[var(--navy-950)]"}`}>{value}</strong>
+            <strong className={`motion-metric-value mt-3 block text-3xl tracking-[-0.06em] ${index === 0 ? "text-white" : "text-[var(--navy-950)]"}`}>
+              <AnimatedMetricValue value={value} enabled={mode === "result"} />
+            </strong>
             <p className={`mt-3 text-xs leading-5 ${index === 0 ? "text-white/55" : "text-[var(--muted)]"}`}>{helper}</p>
           </article>
         ))}
@@ -59,4 +65,59 @@ export function AssessmentMetrics({ mode = "result" }: Readonly<{ mode?: "result
       </p>
     </section>
   );
+}
+
+function AnimatedMetricValue({ value, enabled }: Readonly<{ value: string; enabled: boolean }>) {
+  const parsed = useMemo(() => parseDisplayNumber(value), [value]);
+  const [displayValue, setDisplayValue] = useState(value);
+
+  useEffect(() => {
+    if (!enabled || !parsed) {
+      setDisplayValue(value);
+      return;
+    }
+
+    const parsedValue = parsed;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      setDisplayValue(value);
+      return;
+    }
+
+    let frame = 0;
+    const start = performance.now();
+    const duration = 620;
+
+    function tick(now: number) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const nextNumber = parsedValue.number * eased;
+      setDisplayValue(progress >= 1 ? value : `${parsedValue.prefix}${formatAnimatedNumber(nextNumber, parsedValue.decimals)}${parsedValue.suffix}`);
+      if (progress < 1) frame = window.requestAnimationFrame(tick);
+    }
+
+    setDisplayValue(`${parsedValue.prefix}${formatAnimatedNumber(0, parsedValue.decimals)}${parsedValue.suffix}`);
+    frame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frame);
+  }, [enabled, parsed, value]);
+
+  return <>{displayValue}</>;
+}
+
+function parseDisplayNumber(value: string) {
+  const match = value.match(/-?\d+(?:\.\d+)?/);
+  if (!match || match.index === undefined) return null;
+  const number = Number(match[0]);
+  if (!Number.isFinite(number)) return null;
+  return {
+    number,
+    decimals: match[0].includes(".") ? match[0].split(".")[1].length : 0,
+    prefix: value.slice(0, match.index),
+    suffix: value.slice(match.index + match[0].length)
+  };
+}
+
+function formatAnimatedNumber(value: number, decimals: number) {
+  if (decimals > 0) return value.toFixed(decimals);
+  return Math.round(value).toLocaleString("ko-KR");
 }
