@@ -219,10 +219,10 @@ export const strategyBranches: Strategy[] = [
 ];
 
 export const flowSteps = [
-  { title: "가족과 자산 구조 입력", body: "정확한 주소나 증빙 없이 큰 틀의 자산 유형과 금액대를 먼저 정리합니다." },
-  { title: "36개 후보 내부 분석", body: "전체 후보는 내부에서만 평가하고, 화면에는 기준안과 개인에게 필요한 추천안만 표시합니다." },
-  { title: "무료 사전진단 보고서 확인", body: "확정 세액이 아닌 상담 전 의사결정용 보고서로 쟁점과 방향을 확인합니다." },
-  { title: "조경호 회계사 정밀상담 연결", body: "입력한 내용을 다시 쓰지 않고 상담 신청으로 자연스럽게 이어집니다." }
+  { title: "AI 사전분석", body: "가족관계와 자산구성을 실명 없이 먼저 정리합니다." },
+  { title: "36개 후보 비교", body: "전체 후보는 내부에서만 평가하고 화면에는 필요한 결과만 표시합니다." },
+  { title: "핵심 대안 선별", body: "현 상태 기준안과 AI 추천 최대 3개를 우선 비교합니다." },
+  { title: "맞춤 보고서", body: "확정 세액이 아닌 상담 전 의사결정용 7페이지 보고서로 정리합니다." }
 ];
 
 export const wizardSteps: WizardStep[] = [
@@ -287,7 +287,7 @@ export const wizardSteps: WizardStep[] = [
     eyebrow: "Step 6",
     title: "맞춤 보고서를 만들기 전에 마지막으로 확인합니다.",
     helper: "아래 요약은 브라우저 안에서만 표시됩니다. 추가로 말할 내용이나 질문이 있으면 먼저 반영한 뒤 보고서를 만듭니다.",
-    primaryQuestion: "분석을 시작하기 전에 더 말씀하고 싶은 내용이나 궁금한 점이 있나요?",
+    primaryQuestion: "추가로 말씀하시거나 궁금한 점이 있나요?",
     choices: ["전체 요약 먼저 보기"]
   }
 ];
@@ -322,7 +322,7 @@ export const timelineEvents = [
 export const publicNav = [
   { href: "/", label: "서비스 소개" },
   { href: "/precheck", label: "무료 진단" },
-  { href: "/precheck/result", label: "결과 예시" },
+  { href: "/precheck/result?demo=1", label: "샘플 보고서" },
   { href: "/consultation", label: "상담 신청" }
 ];
 

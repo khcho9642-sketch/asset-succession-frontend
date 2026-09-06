@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { buildAssessmentMetrics, eokAmountToWon } from "../lib/assessment";
+import { buildAssessmentMetrics, eokAmountToWon, parseEokAmount } from "../lib/assessment";
 import type { AssessmentSnapshot } from "../lib/assessment";
 import {
   buildBaselineRequiredComparison,
@@ -106,6 +106,13 @@ describe("Phase 2B scenario engine", () => {
     assert.equal(parseKoreanMoneyToEok("42").status, "needs_confirmation");
     assert.equal(parseKoreanMoneyToEok("-5억").status, "invalid");
     assert.equal(parseKoreanMoneyToEok("abc").status, "invalid");
+    assert.equal(parseEokAmount("50억"), 50);
+    assert.equal(parseEokAmount("3억 5천만원"), 3.5);
+    assert.equal(parseEokAmount("5,000만원"), 0.5);
+    assert.equal(parseEokAmount("50,000"), 50000);
+    assert.equal(parseEokAmount("-5"), null);
+    assert.equal(parseEokAmount("abc"), null);
+    assert.equal(parseEokAmount("50억 abc"), null);
   });
 
   it("keeps money ranges as ranges rather than confirmed sums", () => {

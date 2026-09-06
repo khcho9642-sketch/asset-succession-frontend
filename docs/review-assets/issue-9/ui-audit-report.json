@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T05:02:15.367Z",
+  "generatedAt": "2026-09-06T15:10:27.442Z",
   "baseURL": "http://127.0.0.1:4173",
   "failures": [],
   "observations": [
@@ -28,6 +28,13 @@
       "route": "/precheck/result",
       "viewport": "desktop",
       "screenshot": "desktop-result-empty.png",
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "route": "/precheck/result?demo=1",
+      "viewport": "desktop",
+      "screenshot": "desktop-result-demo.png",
       "documentWidth": 1440,
       "viewportWidth": 1440
     },
@@ -84,6 +91,13 @@
       "route": "/precheck/result",
       "viewport": "mobile",
       "screenshot": "mobile-result-empty.png",
+      "documentWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "route": "/precheck/result?demo=1",
+      "viewport": "mobile",
+      "screenshot": "mobile-result-demo.png",
       "documentWidth": 390,
       "viewportWidth": 390
     },

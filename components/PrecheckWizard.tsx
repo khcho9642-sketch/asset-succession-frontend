@@ -36,7 +36,7 @@ type WizardAnswer = {
 };
 type WizardAnswers = Record<string, WizardAnswer>;
 type ConversationMessage = { role: "user" | "assistant"; text: string; created_at: string };
-type FinalInteractionMode = "idle" | "additional" | "question" | "generating";
+type FinalInteractionMode = "idle" | "additional" | "generating";
 type DraftState = {
   activeStep: number;
   answers: WizardAnswers;
@@ -48,12 +48,13 @@ type DraftState = {
 };
 
 const exclusiveChoices = new Set(["해당 없음", "잘 모르겠음", "아직 모르겠음", "아직 잘 모르겠어요", "아직 정리 전"]);
-const finalReviewPrompt = "분석을 시작하기 전에 더 말씀하고 싶은 내용이나 궁금한 점이 있나요?\n재산을 누구에게 더 주고 싶은지, 걱정되는 세금이나 가족 문제가 있는지 편하게 말씀해 주세요. 저에게 먼저 질문하셔도 됩니다.";
+const finalReviewPrompt = "추가로 말씀하시거나 궁금한 점이 있나요?";
 const reportGenerationSteps = [
-  "가족관계와 자산구조 확인 중",
-  "적합한 승계 시나리오 비교 중",
-  "세금과 납부재원 영향 분석 중",
-  "맞춤 보고서 작성 중"
+  "가족관계와 상속공제 검토",
+  "최근 10년 증여내역 검토",
+  "부모·자녀 대출 실행 가능성 검토",
+  "상속세 납부재원 검토",
+  "부동산과 금융자산 이전 방법 비교"
 ];
 
 function getInitialStep() {
@@ -321,7 +322,7 @@ export function PrecheckWizard() {
   function understandDirectInput() {
     const input = directInput.trim();
     if (submittingInputRef.current || lastSubmissionRef.current === input) return;
-    if (isFinalReviewStep && finalInteractionMode === "question") {
+    if (isFinalReviewStep && finalInteractionMode === "additional" && looksLikeQuestion(input)) {
       answerFinalQuestion(input);
       return;
     }
@@ -329,21 +330,21 @@ export function PrecheckWizard() {
     setIsSubmittingInput(true);
     setIsTypingIndicatorVisible(true);
     lastSubmissionRef.current = input;
-    const parsed = parseConversationalInput(input);
-    const conflicts = describeFactConflicts(parsed.facts, answers);
-    const assistantText = isFinalReviewStep && finalInteractionMode === "additional"
-      ? [
-          parsed.assistantText,
-          parsed.facts.length > 0 ? `새로 입력된 사실 후보 ${parsed.facts.length}개를 찾았습니다. 맞는 항목만 확정하면 마지막 확인 단계에 반영됩니다.` : "",
-          conflicts.length > 0 ? `기존 답변과 충돌 가능성이 있어 다시 확인이 필요합니다: ${conflicts.join(" / ")}` : ""
-        ].filter(Boolean).join(" ")
-      : parsed.assistantText;
     setCandidate(null);
     setConversationMessages((previous) => [
       ...previous,
       { role: "user", text: input || "(빈 입력)", created_at: new Date().toISOString() }
     ]);
     window.setTimeout(() => {
+      const parsed = parseConversationalInput(input);
+      const conflicts = describeFactConflicts(parsed.facts, answers);
+      const assistantText = isFinalReviewStep && finalInteractionMode === "additional"
+        ? [
+            parsed.assistantText,
+            parsed.facts.length > 0 ? `새로 입력된 사실 후보 ${parsed.facts.length}개를 찾았습니다. 맞는 항목만 확정하면 마지막 확인 단계에 반영됩니다.` : "",
+            conflicts.length > 0 ? `기존 답변과 충돌 가능성이 있어 다시 확인이 필요합니다: ${conflicts.join(" / ")}` : ""
+          ].filter(Boolean).join(" ")
+        : parsed.assistantText;
       setCandidate({ ...parsed, assistantText });
       setConversationMessages((previous) => [
         ...previous,
@@ -352,7 +353,7 @@ export function PrecheckWizard() {
       setIsTypingIndicatorVisible(false);
       submittingInputRef.current = false;
       setIsSubmittingInput(false);
-    }, 240);
+    }, 420);
   }
 
   function confirmCandidateFact(fact: ConversationCandidateFact) {
@@ -426,6 +427,11 @@ export function PrecheckWizard() {
   }
 
   function goNext() {
+    const amountError = getCurrentAmountValidationError();
+    if (amountError) {
+      setError(amountError);
+      return;
+    }
     if (!isStepComplete(safeActiveStep)) {
       setError("현재 질문에 답하거나 ‘모르겠어요/나중에 확인’을 선택해야 다음으로 이동할 수 있습니다.");
       return;
@@ -441,25 +447,14 @@ export function PrecheckWizard() {
     setShowError(false);
     setConversationMessages((previous) => [
       ...previous,
-      { role: "assistant", text: "좋아요. 추가로 알려줄 가족관계, 자산, 채무, 사전증여, 보험, 목표를 자유롭게 적어주세요. 맞는 사실만 확정하면 보고서 전 단계에 반영합니다.", created_at: new Date().toISOString() }
-    ]);
-  }
-
-  function requestQuestionBeforeReport() {
-    setFinalInteractionMode("question");
-    setCandidate(null);
-    setDirectInput("");
-    setShowError(false);
-    setConversationMessages((previous) => [
-      ...previous,
-      { role: "assistant", text: "궁금한 점을 적어주세요. 현재 확인된 정보 범위에서만 답하고, 답변 뒤 다시 맞춤 보고서 생성 여부를 확인하겠습니다.", created_at: new Date().toISOString() }
+      { role: "assistant", text: "좋아요. 재산을 누구에게 더 주고 싶은지, 걱정되는 세금이나 가족 문제가 있는지 편하게 적어 주세요. 질문이면 현재 확인된 정보 범위에서 먼저 답하고, 새 사실이면 후보로 요약해 반영 여부를 확인하겠습니다.", created_at: new Date().toISOString() }
     ]);
   }
 
   function answerFinalQuestion(input: string) {
     if (submittingInputRef.current || lastSubmissionRef.current === input) return;
     if (!input) {
-      setError("질문 내용을 한 줄 이상 적어 주세요.");
+      setError("추가 내용이나 질문을 한 줄 이상 적어 주세요.");
       return;
     }
     submittingInputRef.current = true;
@@ -484,22 +479,47 @@ export function PrecheckWizard() {
       setIsTypingIndicatorVisible(false);
       submittingInputRef.current = false;
       setIsSubmittingInput(false);
-    }, 240);
+    }, 420);
   }
 
   function startReportGeneration() {
     if (!isFinalReviewStep) return;
-    const reportRequest: ConversationMessage = { role: "user", text: "맞춤 보고서를 만들어 주세요.", created_at: new Date().toISOString() };
-    setConversationMessages((previous) => [...previous, reportRequest]);
+    const amountError = getCurrentAmountValidationError();
+    if (amountError) {
+      setError(amountError);
+      return;
+    }
+    const reportRequest: ConversationMessage = { role: "user", text: "없어요, 분석해 주세요", created_at: new Date().toISOString() };
+    const assistantAck: ConversationMessage = {
+      role: "assistant",
+      text: "알겠습니다. 확인된 정보를 기준으로 적용 가능한 자산승계 방법을 분석하겠습니다.",
+      created_at: new Date(Date.now() + 1).toISOString()
+    };
+    const completionMessage: ConversationMessage = {
+      role: "assistant",
+      text: "분석이 완료되었습니다.",
+      created_at: new Date(Date.now() + 2).toISOString()
+    };
+    const resultGuide: ConversationMessage = {
+      role: "assistant",
+      text: "현재 상황에서는 다음 3개 방법을 우선 비교할 가치가 있습니다.",
+      created_at: new Date(Date.now() + 3).toISOString()
+    };
+    setConversationMessages((previous) => [...previous, reportRequest, assistantAck]);
     setCandidate(null);
     setDirectInput("");
     setVisibleGenerationSteps([]);
     setFinalInteractionMode("generating");
     setShowError(false);
     reportGenerationSteps.forEach((_, index) => {
-      window.setTimeout(() => setVisibleGenerationSteps(reportGenerationSteps.slice(0, index + 1)), 180 * (index + 1));
+      window.setTimeout(() => setVisibleGenerationSteps(reportGenerationSteps.slice(0, index + 1)), 150 * (index + 1));
     });
-    window.setTimeout(() => showResult([reportRequest]), 950);
+    window.setTimeout(() => {
+      setConversationMessages((previous) => [...previous, completionMessage, resultGuide]);
+    }, 1_050);
+    window.setTimeout(() => {
+      showResult([reportRequest, assistantAck, completionMessage, resultGuide]);
+    }, 1_650);
   }
 
   function showResult(extraMessages: ConversationMessage[] = []) {
@@ -552,6 +572,36 @@ export function PrecheckWizard() {
   function invalidateDerivedSnapshot() {
     if (typeof window !== "undefined") window.sessionStorage.removeItem(ASSESSMENT_STORAGE_KEY);
     setDerivedInvalidated(true);
+  }
+
+  function getCurrentAmountValidationError() {
+    if (isAssetStep) {
+      const invalidAsset = currentAnswer.choices
+        .filter((choice) => !exclusiveChoices.has(choice))
+        .find((asset) => {
+          const value = currentAnswer.assetAmounts?.[asset]?.trim();
+          return Boolean(value) && parseEokAmount(value) === null;
+        });
+      if (invalidAsset) return `${invalidAsset} 금액은 0보다 큰 금액으로 입력해 주세요. 예: 50억, 3억 5천만원, 5,000만원, 50`;
+    }
+
+    if (isDebtStep) {
+      const invalidDebt = currentAnswer.choices
+        .filter((choice) => choice === "담보대출 있음" || choice === "임대보증금 있음")
+        .find((debt) => {
+          const value = currentAnswer.debtAmounts?.[debt]?.trim();
+          return Boolean(value) && parseEokAmount(value) === null;
+        });
+      if (invalidDebt) return `${invalidDebt} 금액은 0보다 큰 금액으로 입력해 주세요. 예: 3억, 5,000만원, 0.5억`;
+    }
+
+    if (isReviewStep) {
+      const invalidTaxBase = Object.entries(answers.review?.taxBaseAmounts ?? {})
+        .find(([, value]) => value.trim() && parseNonnegativeEokAmount(value) === null);
+      if (invalidTaxBase) return "확인 과세표준은 0 이상의 금액으로 입력해 주세요. 예: 0, 3억, 5,000만원";
+    }
+
+    return "";
   }
 
   return (
@@ -656,7 +706,10 @@ export function PrecheckWizard() {
             <section className="motion-response-card border-2 border-[var(--gold)] bg-white p-4" aria-label="맞춤 보고서 생성 전 마지막 확인">
               <p className="text-sm font-semibold text-[var(--text)]">마지막 확인</p>
               <p className="mt-3 whitespace-pre-line text-base leading-7 text-[var(--navy-950)]">{finalReviewPrompt}</p>
-              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                재산을 누구에게 더 주고 싶은지, 걱정되는 세금이나 가족 문제가 있는지 편하게 말씀해 주세요. 저에게 먼저 질문하셔도 됩니다.
+              </p>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 <button
                   type="button"
                   onClick={requestAdditionalStory}
@@ -665,28 +718,17 @@ export function PrecheckWizard() {
                   className={`motion-choice-enter motion-press min-h-16 border px-4 py-3 text-left text-sm font-semibold ${finalInteractionMode === "additional" ? "border-[var(--gold)] bg-[var(--ivory)]" : "border-[var(--border)] bg-white"}`}
                   style={{ animationDelay: "40ms" }}
                 >
-                  추가로 이야기하기
-                  <span className="mt-1 block text-xs font-normal leading-5 text-[var(--muted)]">새 사실을 후보로 뽑고 개별 확정합니다.</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={requestQuestionBeforeReport}
-                  disabled={finalInteractionMode === "generating"}
-                  aria-pressed={finalInteractionMode === "question"}
-                  className={`motion-choice-enter motion-press min-h-16 border px-4 py-3 text-left text-sm font-semibold ${finalInteractionMode === "question" ? "border-[var(--gold)] bg-[var(--ivory)]" : "border-[var(--border)] bg-white"}`}
-                  style={{ animationDelay: "90ms" }}
-                >
-                  궁금한 점 질문하기
-                  <span className="mt-1 block text-xs font-normal leading-5 text-[var(--muted)]">현재 확인된 정보 범위에서만 답합니다.</span>
+                  내용 추가
+                  <span className="mt-1 block text-xs font-normal leading-5 text-[var(--muted)]">새 사실은 후보로 요약하고, 질문은 현재 정보 범위에서 답합니다.</span>
                 </button>
                 <button
                   type="button"
                   onClick={startReportGeneration}
                   disabled={finalInteractionMode === "generating"}
                   className="motion-choice-enter motion-press min-h-16 bg-[var(--navy-950)] px-4 py-3 text-left text-sm font-semibold text-white disabled:cursor-wait disabled:opacity-80"
-                  style={{ animationDelay: "140ms" }}
+                  style={{ animationDelay: "90ms" }}
                 >
-                  맞춤 보고서 만들기
+                  없어요, 분석해 주세요
                   <span className="mt-1 block text-xs font-normal leading-5 text-white/62">완료 후 결과 화면으로 자동 이동합니다.</span>
                 </button>
               </div>
@@ -703,6 +745,11 @@ export function PrecheckWizard() {
                       <span>{item}</span>
                     </li>
                   ))}
+                  {visibleGenerationSteps.length === reportGenerationSteps.length ? (
+                    <li className="motion-generation-step is-complete mt-2 border-t border-[var(--border)] pt-3 font-semibold text-[var(--success)]">
+                      분석이 완료되었습니다. 현재 상황에서는 다음 3개 방법을 우선 비교할 가치가 있습니다.
+                    </li>
+                  ) : null}
                 </ol>
               ) : null}
             </section>
@@ -751,14 +798,14 @@ export function PrecheckWizard() {
           </fieldset>
           )}
 
-          {!isFinalReviewStep || finalInteractionMode === "additional" || finalInteractionMode === "question" ? (
+          {!isFinalReviewStep || finalInteractionMode === "additional" ? (
           <section className="motion-response-card border border-[var(--border)] bg-[var(--ivory)] p-4" aria-label="직접 입력으로 답하기" style={{ animationDelay: "70ms" }}>
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <p className="text-sm font-semibold text-[var(--navy-950)]">직접 입력</p>
                 <p className="mt-1 text-xs leading-5 text-[var(--muted)]">
-                  {finalInteractionMode === "question"
-                    ? "질문에 답한 뒤 대화를 종료하지 않고 다시 보고서 생성 여부를 확인합니다."
+                  {finalInteractionMode === "additional"
+                    ? "추가 내용이나 질문을 적어 주세요. 질문에는 답변 후 다시 마지막 확인으로 돌아옵니다."
                     : "말하듯 적은 뒤 맞는 사실만 개별 확정합니다. 후보는 확정 전까지 계산에 쓰지 않습니다."}
                 </p>
               </div>
@@ -770,8 +817,8 @@ export function PrecheckWizard() {
             </div>
             <label className="mt-4 grid gap-2">
               <span className="text-xs font-semibold text-[var(--muted)]">
-                {finalInteractionMode === "question"
-                  ? "예: 부모·자녀 대출은 차용증만 있으면 괜찮나요?"
+                {finalInteractionMode === "additional"
+                  ? "예: 부모·자녀 대출은 차용증만 있으면 괜찮나요? / 첫째는 상환능력 있음"
                   : "예: 상속 준비, 배우자 있음, 자녀 2명, 부동산 42억, 금융자산 8억"}
               </span>
               <textarea
@@ -788,7 +835,7 @@ export function PrecheckWizard() {
                   event.preventDefault();
                   understandDirectInput();
                 }}
-                placeholder={finalInteractionMode === "question" ? "궁금한 점을 한 줄로 적어주세요." : "세법 용어 몰라도 됩니다. 지금 아는 만큼만 적어주세요."}
+                placeholder={finalInteractionMode === "additional" ? "추가로 말하고 싶은 내용이나 궁금한 점을 적어주세요." : "세법 용어 몰라도 됩니다. 지금 아는 만큼만 적어주세요."}
               />
             </label>
             <div className="mt-3 flex flex-wrap items-center gap-3">
@@ -798,7 +845,7 @@ export function PrecheckWizard() {
                 onClick={understandDirectInput}
                 className="motion-press inline-flex min-h-12 items-center gap-2 bg-[var(--navy-950)] px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {finalInteractionMode === "question" ? "질문 보내기" : finalInteractionMode === "additional" ? "추가 내용 이해하기" : "직접 입력 이해하기"}
+                {finalInteractionMode === "additional" ? "내용 추가" : "직접 입력 이해하기"}
               </button>
               <p className="text-xs leading-5 text-[var(--muted)]">Enter 전송은 한글 조합 중에는 막고, 연속 클릭은 한 번만 반영합니다.</p>
             </div>
@@ -873,16 +920,17 @@ export function PrecheckWizard() {
                     <span className="text-sm text-[var(--muted)]">{asset} 금액</span>
                     <span className="flex border border-[var(--border)] bg-[var(--ivory)] focus-within:border-[var(--gold)]">
                       <input
-                        type="number"
+                        type="text"
                         inputMode="decimal"
-                        min="0.1"
-                        step="0.1"
                         aria-label={`${asset} 금액(억원)`}
                         className="w-full bg-transparent px-5 py-4 text-base outline-none"
                         value={currentAnswer.assetAmounts?.[asset] ?? ""}
                         onChange={(event) => updateAssetAmount(asset, event.target.value)}
-                        onBlur={(event) => updateAssetAmount(asset, normalizeEokAmount(event.target.value))}
-                        placeholder="모르면 비워둠"
+                        onBlur={(event) => {
+                          const normalized = normalizeEokAmount(event.target.value);
+                          updateAssetAmount(asset, normalized || event.target.value.trim());
+                        }}
+                        placeholder="예: 20, 20억, 5,000만원"
                       />
                       <span className="flex items-center px-4 text-sm font-semibold text-[var(--muted)]">억원</span>
                     </span>
@@ -892,7 +940,7 @@ export function PrecheckWizard() {
                   </label>
                 ))}
               </div>
-              <p className="text-xs leading-5 text-[var(--muted)]">확정 금액은 0보다 큰 숫자만 입력합니다. 모르면 비워두고 unknown으로 진행합니다.</p>
+              <p className="text-xs leading-5 text-[var(--muted)]">확정 금액은 0보다 큰 금액만 입력합니다. 숫자는 억원 단위로 보고, 억·만원 단위도 지원합니다. 모르면 비워두고 unknown으로 진행합니다.</p>
             </div>
           ) : null}
 
@@ -905,16 +953,17 @@ export function PrecheckWizard() {
                     <span className="text-sm text-[var(--muted)]">{debt} 금액</span>
                     <span className="flex border border-[var(--border)] bg-[var(--ivory)] focus-within:border-[var(--gold)]">
                       <input
-                        type="number"
+                        type="text"
                         inputMode="decimal"
-                        min="0.1"
-                        step="0.1"
                         aria-label={`${debt} 금액(억원)`}
                         className="w-full bg-transparent px-5 py-4 text-base outline-none"
                         value={currentAnswer.debtAmounts?.[debt] ?? ""}
                         onChange={(event) => updateDebtAmount(debt, event.target.value)}
-                        onBlur={(event) => updateDebtAmount(debt, normalizeEokAmount(event.target.value))}
-                        placeholder="모르면 비워둠"
+                        onBlur={(event) => {
+                          const normalized = normalizeEokAmount(event.target.value);
+                          updateDebtAmount(debt, normalized || event.target.value.trim());
+                        }}
+                        placeholder="예: 3, 3억, 5,000만원"
                       />
                       <span className="flex items-center px-4 text-sm font-semibold text-[var(--muted)]">억원</span>
                     </span>
@@ -1026,16 +1075,17 @@ function TaxBaseInput({ label, value, onChange }: Readonly<{ label: string; valu
       <span className="text-sm text-[var(--muted)]">{label}</span>
       <span className="flex border border-[var(--border)] bg-white focus-within:border-[var(--gold)]">
         <input
-          type="number"
+          type="text"
           inputMode="decimal"
-          min="0"
-          step="0.1"
           aria-label={label}
           className="w-full bg-transparent px-5 py-4 text-base outline-none"
           value={value}
           onChange={(event) => onChange(event.target.value)}
-          onBlur={(event) => onChange(normalizeNonnegativeEokAmount(event.target.value))}
-          placeholder="예: 3 또는 0"
+          onBlur={(event) => {
+            const normalized = normalizeNonnegativeEokAmount(event.target.value);
+            onChange(normalized || event.target.value.trim());
+          }}
+          placeholder="예: 3, 3억, 0"
         />
         <span className="flex items-center px-4 text-sm font-semibold text-[var(--muted)]">억원</span>
       </span>
@@ -1175,6 +1225,10 @@ function describeFactConflicts(facts: ConversationCandidateFact[], answers: Wiza
     .filter((item): item is string => Boolean(item));
 }
 
+function looksLikeQuestion(input: string) {
+  return /[?？]|궁금|괜찮|되나|되나요|되나요|될까|될까요|어떻게|뭐|무엇|왜|가능|안전|위험|문제/.test(input);
+}
+
 function buildQuestionAnswer(input: string, answers: WizardAnswers, confirmedFacts: ConversationCandidateFact[]) {
   const family = answers.family?.facts ?? {};
   const assetSummary = answers.assets ? formatAnswer(answers.assets) : "자산 정보 미입력";
@@ -1194,7 +1248,7 @@ function buildQuestionAnswer(input: string, answers: WizardAnswers, confirmedFac
       "부모의 대여금 채권은 상속재산에서 자동으로 제외되지 않습니다.",
       "미상환되거나 나중에 채무면제가 되면 증여 위험이 생길 수 있습니다.",
       "첫째와 둘째의 상환능력이 다르면 최종 재산배분 차이를 가족회의에서 별도로 확인해야 합니다.",
-      `${confirmedLine} 답변을 반영하려면 추가로 이야기하기에서 사실을 확정한 뒤 맞춤 보고서를 만들면 됩니다.`
+      `${confirmedLine} 답변을 사실로 반영하려면 내용 추가에서 후보를 확정한 뒤 없어요, 분석해 주세요를 선택하면 됩니다.`
     ].join(" ");
   }
 
@@ -1218,6 +1272,6 @@ function buildQuestionAnswer(input: string, answers: WizardAnswers, confirmedFac
   return [
     `좋은 질문입니다. 현재 확인된 정보는 ${familySummary}, ${assetSummary}입니다.`,
     "이 단계에서는 확정 세무상담처럼 단정하지 않고, 맞춤 보고서에서 추가 확인 필요정보와 추천 후보를 분리해 보여드립니다.",
-    `${confirmedLine} 더 반영할 사실이 있으면 추가로 이야기하기를, 바로 보려면 맞춤 보고서 만들기를 선택해 주세요.`
+    `${confirmedLine} 더 반영할 사실이나 질문이 있으면 내용 추가를, 바로 보려면 없어요, 분석해 주세요를 선택해 주세요.`
   ].join(" ");
 }

@@ -1,3 +1,5 @@
+import { parseKoreanMoneyToEok } from "./phase2b/money";
+
 export const ASSESSMENT_STORAGE_KEY = "as360.precheck.assessment.v1";
 export const PRECHECK_DRAFT_STORAGE_KEY = "as360.precheck.draft.v2";
 
@@ -60,6 +62,85 @@ export function createAssessmentId() {
   return `AS360-${stamp}-${suffix}`;
 }
 
+export function createDemoAssessmentSnapshot(): AssessmentSnapshot {
+  const createdAt = "2026-09-06T00:00:00.000Z";
+  const demoInput = [
+    "본인 자산",
+    "총자산 50억원",
+    "금융자산 30억원",
+    "아파트 20억원",
+    "채무 없음",
+    "배우자 1명",
+    "성인 자녀 2명",
+    "3년 전 자녀별 1억원 증여 및 신고",
+    "목표: 세금 부담 절감과 노후생활비 유지",
+    "자녀에게 5억원 대출 검토",
+    "첫째는 상환능력 있음",
+    "둘째는 상환능력 부족",
+    "보험 없음",
+    "상속세 납부 가능 현금 3억원"
+  ].join(", ");
+
+  return {
+    assessment_id: "AS360-20260906-DEMO1",
+    created_at: createdAt,
+    review_focus: ["전체 요약 먼저 보기"],
+    answers: {
+      purpose: { label: "준비 목적", choices: ["여러 방법 비교"], detail: "상속·증여를 함께 비교" },
+      family: {
+        label: "가족",
+        choices: ["부모 1명 기준"],
+        detail: "",
+        facts: { "배우자 유무": "있음", "자녀 수": "2명", "성년 자녀 수": "2명", "미성년 자녀 수": "0명" }
+      },
+      assets: {
+        label: "자산",
+        choices: ["금융자산", "부동산"],
+        detail: "",
+        facts: { "보험": "없음", "소유자 관계": "본인 자산 — 실제 소유자와 지분은 상담 전 확인 필요" },
+        assetAmounts: { "금융자산": "30", "부동산": "20" },
+        assetAmountWons: { "금융자산": 3_000_000_000, "부동산": 2_000_000_000 },
+        assetAmountStatus: { "금융자산": "confirmed", "부동산": "confirmed" }
+      },
+      debt: {
+        label: "채무·과거 증여",
+        choices: ["최근 10년 증여 있음"],
+        detail: "",
+        facts: { "채무 여부": "없음", "과거 증여 상세": "3년 전 자녀별 1억 증여 및 신고" }
+      },
+      goal: {
+        label: "승계 목표",
+        choices: ["세금 부담 절감", "노후생활비 유지", "상속세 납부재원 준비"],
+        detail: ""
+      },
+      review: {
+        label: "결과 준비",
+        choices: ["전체 요약 먼저 보기"],
+        detail: "",
+        facts: {
+          "부모·자녀 대출 검토": "5",
+          "첫째 자녀 상환능력": "있음",
+          "둘째 자녀 상환능력": "부족",
+          "상속세 납부 가능 현금": "3"
+        }
+      }
+    },
+    conversation: {
+      messages: [
+        { role: "user", text: demoInput, created_at: createdAt },
+        { role: "user", text: "없어요, 분석해 주세요", created_at: "2026-09-06T00:00:01.000Z" },
+        { role: "assistant", text: "알겠습니다. 확인된 정보를 기준으로 적용 가능한 자산승계 방법을 분석하겠습니다.", created_at: "2026-09-06T00:00:02.000Z" },
+        { role: "assistant", text: "분석이 완료되었습니다.", created_at: "2026-09-06T00:00:03.000Z" },
+        { role: "assistant", text: "현재 상황에서는 다음 3개 방법을 우선 비교할 가치가 있습니다.", created_at: "2026-09-06T00:00:04.000Z" }
+      ],
+      confirmed_facts: [],
+      pending_candidates: [],
+      raw_inputs: [demoInput, "없어요, 분석해 주세요"],
+      current_question_key: "review"
+    }
+  };
+}
+
 export function formatAnswer(answer?: AssessmentAnswer | AssessmentAnswerValue) {
   if (!answer) return "미입력";
   const parts = [
@@ -75,12 +156,7 @@ export function formatAnswer(answer?: AssessmentAnswer | AssessmentAnswerValue) 
 }
 
 export function parseEokAmount(value?: string) {
-  if (!value) return null;
-  const compact = value.trim();
-  if (!/^\d+(\.\d+)?$/.test(compact)) return null;
-  const amount = Number(compact);
-  if (!Number.isFinite(amount) || amount <= 0) return null;
-  return amount;
+  return parseExplicitEokInput(value, false);
 }
 
 export function normalizeEokAmount(value?: string) {
@@ -90,12 +166,7 @@ export function normalizeEokAmount(value?: string) {
 }
 
 export function parseNonnegativeEokAmount(value?: string) {
-  if (value === undefined || value === null) return null;
-  const compact = value.trim();
-  if (!/^\d+(\.\d+)?$/.test(compact)) return null;
-  const amount = Number(compact);
-  if (!Number.isFinite(amount) || amount < 0) return null;
-  return amount;
+  return parseExplicitEokInput(value, true);
 }
 
 export function normalizeNonnegativeEokAmount(value?: string) {
@@ -151,7 +222,14 @@ function debtChoiceNeedsAmount(choice: string) {
 export function readAssessmentFromSession(search = ""): AssessmentLoadResult {
   if (typeof window === "undefined") return { status: "loading" };
 
-  const requestedId = new URLSearchParams(search || window.location.search).get("assessment_id");
+  const params = new URLSearchParams(search || window.location.search);
+  const requestedId = params.get("assessment_id");
+  if (params.get("demo") === "1") {
+    const snapshot = createDemoAssessmentSnapshot();
+    window.sessionStorage.setItem(ASSESSMENT_STORAGE_KEY, JSON.stringify(snapshot));
+    return { status: "ready", snapshot, metrics: buildAssessmentMetrics(snapshot) };
+  }
+
   const raw = window.sessionStorage.getItem(ASSESSMENT_STORAGE_KEY);
   if (!raw) return { status: "missing" };
 
@@ -200,4 +278,24 @@ export function buildAssessmentMetrics(snapshot: AssessmentSnapshot): Assessment
       ? "현재 화면은 사용자가 별도로 확인한 과세표준에 한해 산출세액을 계산합니다. 일반 자산가액을 과세표준으로 간주하지 않습니다."
       : "현재 화면은 정밀 계산 연결 전 미리보기입니다. 가족·자산 합계와 직접 입력한 채무만 표시하고, 세액·부족액은 확인 과세표준 전까지 숫자로 산정하지 않습니다."
   };
+}
+
+function parseExplicitEokInput(value: string | undefined, allowZero: boolean) {
+  if (value === undefined || value === null) return null;
+  const raw = value.trim();
+  if (!raw) return null;
+  if (/[−-]/.test(raw) || /마이너스|음수/.test(raw)) return null;
+
+  const compact = raw.replaceAll(",", "").replace(/\s+/g, "");
+  if (/^\d+(\.\d+)?$/.test(compact)) {
+    const amount = Number(compact);
+    if (!Number.isFinite(amount) || (allowZero ? amount < 0 : amount <= 0)) return null;
+    return amount;
+  }
+
+  const explicitUnitExpression = /^(?:(\d+(?:\.\d+)?)억(?:원)?)?(?:(\d+(?:\.\d+)?)천만(?:원)?|(\d+(?:\.\d+)?)만(?:원)?)?$/;
+  if (!explicitUnitExpression.test(compact) || !/\d/.test(compact) || !/억|만/.test(compact)) return null;
+  const parsed = parseKoreanMoneyToEok(raw, { allowZero });
+  if (parsed.status !== "parsed") return null;
+  return parsed.value_eok;
 }

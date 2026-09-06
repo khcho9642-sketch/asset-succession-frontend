@@ -10,6 +10,7 @@ const routes = [
   { name: "precheck", path: "/precheck", area: "public" },
   { name: "precheck-query-bypass", path: "/precheck?step=3", area: "public" },
   { name: "result-empty", path: "/precheck/result", area: "public" },
+  { name: "result-demo", path: "/precheck/result?demo=1", area: "public" },
   { name: "expert-overview", path: "/expert/overview", area: "expert" },
   { name: "expert-workspace", path: "/expert/workspace", area: "expert" },
   { name: "report-empty", path: "/report-preview", area: "public" },
@@ -60,27 +61,33 @@ async function completeHybridPrecheck(page) {
   await page.getByRole("button", { name: "다음" }).click();
   await page.getByRole("button", { name: "다음" }).click();
   await page.getByRole("button", { name: "다음" }).click();
-  await page.getByText("분석을 시작하기 전에 더 말씀하고 싶은 내용이나 궁금한 점이 있나요?").waitFor({ timeout: 10_000 });
+  await page.getByText("추가로 말씀하시거나 궁금한 점이 있나요?").waitFor({ timeout: 10_000 });
   if ((await page.locator("body").innerText()).includes("분석 시작")) {
     fail("/precheck", "flow", "Final review still exposes the forbidden '분석 시작' label.");
   }
-  await page.getByRole("button", { name: "궁금한 점 질문하기" }).click();
+  const finalReviewText = await page.locator("body").innerText();
+  if (finalReviewText.includes("궁금한 점 질문하기") || finalReviewText.includes("맞춤 보고서 만들기")) {
+    fail("/precheck", "flow", "Final review still exposes removed button labels.");
+  }
+  await page.getByRole("button", { name: "내용 추가" }).first().click();
   await page.getByRole("textbox", { name: "직접 입력" }).fill("부모 자녀 대출은 차용증만 있으면 괜찮나요?");
-  await page.getByRole("button", { name: "질문 보내기" }).click();
+  await page.getByRole("button", { name: "내용 추가" }).last().click();
   await page.getByTestId("typing-indicator").waitFor({ state: "visible", timeout: 1_000 }).catch(() => {
     fail("/precheck", "flow", "Final-question answer did not show a short typing indicator.");
   });
   await page.getByText("차용증뿐 아니라 이자와 원금의 실제 지급").waitFor({ timeout: 10_000 });
-  await page.getByRole("button", { name: "추가로 이야기하기" }).click();
+  await page.getByRole("button", { name: "내용 추가" }).first().click();
   await page.getByRole("textbox", { name: "직접 입력" }).fill("첫째는 상환능력 있음, 둘째는 상환능력 부족");
-  await page.getByRole("button", { name: "추가 내용 이해하기" }).click();
+  await page.getByRole("button", { name: "내용 추가" }).last().click();
   await page.getByText("제가 이렇게 이해했습니다.", { exact: true }).waitFor({ timeout: 10_000 });
   await confirmAllCandidateFacts(page);
-  await page.getByRole("button", { name: "맞춤 보고서 만들기" }).click();
-  await page.getByText("맞춤 보고서를 만들어 주세요.").waitFor({ timeout: 10_000 });
+  await page.getByRole("button", { name: "없어요, 분석해 주세요" }).click();
+  await page.getByText("알겠습니다. 확인된 정보를 기준으로 적용 가능한 자산승계 방법을 분석하겠습니다.").waitFor({ timeout: 10_000 });
   await page.locator(".motion-generation-panel").waitFor({ state: "visible", timeout: 10_000 });
-  await page.locator(".motion-generation-step.is-complete").nth(3).waitFor({ state: "visible", timeout: 10_000 });
-  await page.getByText("맞춤 보고서 작성 중").waitFor({ timeout: 10_000 });
+  await page.locator(".motion-generation-step.is-complete").nth(4).waitFor({ state: "visible", timeout: 10_000 });
+  await page.getByText("부동산과 금융자산 이전 방법 비교").waitFor({ timeout: 10_000 });
+  await page.locator(".motion-chat-ai").filter({ hasText: "분석이 완료되었습니다." }).last().waitFor({ timeout: 10_000 });
+  await page.locator(".motion-chat-ai").filter({ hasText: "현재 상황에서는 다음 3개 방법을 우선 비교할 가치가 있습니다." }).last().waitFor({ timeout: 10_000 });
   await page.waitForURL("**/precheck/result**", { timeout: 10_000 });
   await page.getByText("개인화 시나리오 플랜").waitFor({ timeout: 10_000 });
 }
@@ -173,6 +180,49 @@ try {
 
       const bodyText = await page.locator("body").innerText();
 
+      if (route.path === "/") {
+        const requiredHeroCopy = [
+          "ASSET SUCCESSION 360",
+          "우리 가족의 자산승계,",
+          "AI에게 무료로 물어보세요.",
+          "AI가 36개 자산승계 전략 후보를 비교해 우리 가족에게 필요한 핵심 대안을 선별합니다.",
+          "AI 무료 사전진단 시작하기",
+          "샘플 보고서 보기",
+          "전문상담 단계에서는 국세청 20년 경력 세무전문가와 회계사가 중요한 세무 쟁점과 실행 가능성을 함께 검토합니다.",
+          "전문가의 경험에 AI의 속도를 더했습니다",
+          "고객 이익 최우선",
+          "AI 기반 정밀 분석",
+          "신속한 실행과 합리적인 비용"
+        ];
+        const missingHeroCopy = requiredHeroCopy.filter((text) => !bodyText.includes(text));
+        if (missingHeroCopy.length > 0) {
+          fail(route.path, viewport.name, `Landing hero/differentiation copy missing: ${missingHeroCopy.join(", ")}`);
+        }
+        const heroVideo = page.locator("video[aria-label='AI가 가족관계와 자산 정보를 분석하는 추상 모션 영상']");
+        if (await heroVideo.count() !== 1) {
+          fail(route.path, viewport.name, "Landing hero video is missing.");
+        } else {
+          const videoState = await heroVideo.evaluate((element) => ({
+            autoplay: element.autoplay,
+            muted: element.muted,
+            loop: element.loop,
+            playsInline: element.playsInline,
+            controls: element.controls,
+            objectFit: window.getComputedStyle(element).objectFit,
+            poster: element.getAttribute("poster")
+          }));
+          if (!videoState.autoplay || !videoState.muted || !videoState.loop || !videoState.playsInline || videoState.controls || videoState.objectFit !== "contain" || !videoState.poster?.includes("/media/asset-succession-ai-hero-poster.jpg")) {
+            fail(route.path, viewport.name, `Landing hero video attributes are incorrect: ${JSON.stringify(videoState)}`);
+          }
+        }
+        for (const mediaPath of ["/media/asset-succession-ai-hero.mp4", "/media/asset-succession-ai-hero-poster.jpg"]) {
+          const mediaResponse = await page.request.get(`${baseURL}${mediaPath}`);
+          if (!mediaResponse.ok()) {
+            fail(route.path, viewport.name, `Hero media did not return 200: ${mediaPath} ${mediaResponse.status()}`);
+          }
+        }
+      }
+
       if (route.area === "public") {
         const expertLinks = await page.locator('a[href^="/expert"]').count();
         if (expertLinks > 0) {
@@ -246,6 +296,21 @@ try {
         const missingPriorityMetrics = priorityMetrics.filter((metric) => bodyText.indexOf(metric) < 0 || (firstCountIndex >= 0 && bodyText.indexOf(metric) > firstCountIndex));
         if (missingPriorityMetrics.length > 0) {
           fail(route.path, viewport.name, `Result page does not prioritize decision metrics above counts: ${missingPriorityMetrics.join(", ")}`);
+        }
+      }
+
+      if (route.path === "/precheck/result?demo=1") {
+        const requiredDemoText = [
+          "AS360-20260906-DEMO1",
+          "개인화 시나리오 플랜",
+          "50억",
+          "가족 분산·단계적 사전증여",
+          "첫째 대출·둘째 증여 배분",
+          "배우자 상속공제 고려 재산배분"
+        ];
+        const missingDemoText = requiredDemoText.filter((text) => !bodyText.includes(text));
+        if (missingDemoText.length > 0) {
+          fail(route.path, viewport.name, `Demo sample result did not render expected synthetic data: ${missingDemoText.join(", ")}`);
         }
       }
 
@@ -471,6 +536,18 @@ try {
   });
   if (reducedMotion.animationDuration !== "0s" || reducedMotion.transitionDuration !== "0s" || reducedMotion.transform !== "none" || reducedMotion.opacity === "0") {
     fail("/precheck", "reduced-motion", `Reduced-motion mode did not disable entrance animation cleanly: ${JSON.stringify(reducedMotion)}.`);
+  }
+  await reducedPage.goto(`${baseURL}/`, { waitUntil: "networkidle", timeout: 30_000 });
+  const reducedHeroMedia = await reducedPage.evaluate(() => {
+    const video = document.querySelector(".hero-video-motion");
+    const poster = document.querySelector(".hero-video-poster");
+    return {
+      videoDisplay: video ? window.getComputedStyle(video).display : "missing",
+      posterDisplay: poster ? window.getComputedStyle(poster).display : "missing"
+    };
+  });
+  if (reducedHeroMedia.videoDisplay !== "none" || reducedHeroMedia.posterDisplay === "none" || reducedHeroMedia.posterDisplay === "missing") {
+    fail("/", "reduced-motion", `Hero video did not fall back to poster in reduced-motion mode: ${JSON.stringify(reducedHeroMedia)}.`);
   }
   await reducedPage.close();
   await reducedContext.close();

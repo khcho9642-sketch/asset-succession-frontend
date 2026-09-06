@@ -310,6 +310,22 @@ textarea {
     linear-gradient(135deg, var(--navy-950) 0%, var(--navy-900) 100%);
 }
 
+.hero-video-motion {
+  display: block;
+}
+
+.hero-video-motion.is-failed {
+  display: none;
+}
+
+.hero-video-poster {
+  display: none;
+}
+
+.hero-video-poster.is-active {
+  display: block;
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -387,6 +403,14 @@ textarea {
     opacity: 1;
     transform: none;
   }
+
+  .hero-video-motion {
+    display: none !important;
+  }
+
+  .hero-video-poster {
+    display: block !important;
+  }
 }
 
 @media print {
@@ -421,6 +445,14 @@ textarea {
   .motion-donut {
     opacity: 1 !important;
     clip-path: none !important;
+  }
+
+  .hero-video-motion {
+    display: none !important;
+  }
+
+  .hero-video-poster {
+    display: block !important;
   }
 
   .report-book {
