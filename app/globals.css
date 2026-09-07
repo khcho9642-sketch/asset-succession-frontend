@@ -312,6 +312,12 @@ textarea {
 
 .hero-video-motion {
   display: block;
+  height: 112%;
+  inset: -6%;
+  max-width: none;
+  object-fit: cover;
+  position: absolute;
+  width: 112%;
 }
 
 .hero-video-motion.is-failed {
@@ -320,6 +326,12 @@ textarea {
 
 .hero-video-poster {
   display: none;
+  height: 112%;
+  inset: -6%;
+  max-width: none;
+  object-fit: cover;
+  position: absolute;
+  width: 112%;
 }
 
 .hero-video-poster.is-active {

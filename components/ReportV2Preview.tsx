@@ -35,7 +35,7 @@ const statusLabels = {
 } as const;
 
 export function ReportV2Preview() {
-  const [loadResult, setLoadResult] = useState<AssessmentLoadResult>({ status: "loading" });
+  const [loadResult, setLoadResult] = useState<AssessmentLoadResult>({ status: "missing" });
 
   useEffect(() => {
     setLoadResult(readAssessmentFromSession());

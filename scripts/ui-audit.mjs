@@ -211,7 +211,7 @@ try {
             objectFit: window.getComputedStyle(element).objectFit,
             poster: element.getAttribute("poster")
           }));
-          if (!videoState.autoplay || !videoState.muted || !videoState.loop || !videoState.playsInline || videoState.controls || videoState.objectFit !== "contain" || !videoState.poster?.includes("/media/asset-succession-ai-hero-poster.jpg")) {
+          if (!videoState.autoplay || !videoState.muted || !videoState.loop || !videoState.playsInline || videoState.controls || videoState.objectFit !== "cover" || !videoState.poster?.includes("/media/asset-succession-ai-hero-poster.jpg")) {
             fail(route.path, viewport.name, `Landing hero video attributes are incorrect: ${JSON.stringify(videoState)}`);
           }
         }
