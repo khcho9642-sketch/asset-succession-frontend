@@ -87,18 +87,11 @@ try {
       assert(layout.textLength > minimumTextLength, `${viewport.name} route did not render enough content: ${route}`);
       assert(layout.scrollWidth <= layout.width + 2, `${viewport.name} horizontal overflow on ${route}: ${layout.scrollWidth} > ${layout.width}`);
       if (route === "/") {
-        const video = page.locator("video[aria-label='AI가 가족관계와 자산 정보를 분석하는 추상 모션 영상']");
-        assert(await video.count() === 1, `${viewport.name} landing is missing the hero video.`);
-        const videoState = await video.evaluate((element) => ({
-          autoplay: element.autoplay,
-          muted: element.muted,
-          loop: element.loop,
-          playsInline: element.playsInline,
-          controls: element.controls,
-          poster: element.getAttribute("poster")
-        }));
-        assert(videoState.autoplay && videoState.muted && videoState.loop && videoState.playsInline && !videoState.controls, `${viewport.name} hero video attributes are incorrect: ${JSON.stringify(videoState)}`);
-        assert(videoState.poster?.includes("/media/asset-succession-ai-hero-poster.jpg"), `${viewport.name} hero video poster is missing.`);
+        const bodyText = await page.locator("body").innerText();
+        assert(bodyText.includes("막막한 자산승계,") && bodyText.includes("우리 가족의 3가지 전략부터."), `${viewport.name} landing hero headline missing.`);
+        assert(bodyText.includes("무료 AI 사전진단 시작하기") && bodyText.includes("샘플 보고서 보기"), `${viewport.name} landing hero CTA missing.`);
+        assert(bodyText.includes("우리 가족 자산승계 진단서") && bodyText.includes("분할 증여"), `${viewport.name} landing paper carousel first report missing.`);
+        assert(await page.getByRole("button", { name: "2번째 보고서 보기" }).count() === 1, `${viewport.name} landing carousel dot controls missing.`);
       }
     }
     await page.close();
