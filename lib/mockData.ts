@@ -52,7 +52,7 @@ export type WizardStep = {
   secondaryPlaceholder?: string;
 };
 
-export const publicValuePoints = ["회원가입 없이", "상세주소 불필요", "결과 즉시 확인"];
+export const publicValuePoints = ["36개 전략 비교", "세무전문가·회계사 검토", "합리적인 비용"];
 
 export const strategyBranches: Strategy[] = [
   {

@@ -182,13 +182,20 @@ try {
 
       if (route.path === "/") {
         const requiredHeroCopy = [
-          "ASSET SUCCESSION 360",
-          "우리 가족의 자산승계,",
-          "AI에게 무료로 물어보세요.",
-          "AI가 36개 자산승계 전략 후보를 비교해 우리 가족에게 필요한 핵심 대안을 선별합니다.",
-          "AI 무료 사전진단 시작하기",
+          "AI × 세무전문가 자산승계 진단",
+          "막막한 자산승계,",
+          "우리 가족의 3가지 전략부터.",
+          "양도·상속·증여·가업승계까지,",
+          "AI가 36개 전략 후보를 비교합니다.",
+          "무료 AI 사전진단 시작하기",
           "샘플 보고서 보기",
-          "전문상담 단계에서는 국세청 20년 경력 세무전문가와 회계사가 중요한 세무 쟁점과 실행 가능성을 함께 검토합니다.",
+          "약 5분 · 결과 즉시 확인",
+          "36개 전략 비교 · 세무전문가·회계사 검토 · 합리적인 비용",
+          "우리 가족 자산승계 진단서",
+          "장남 (사업 승계)",
+          "장녀 (자산 분산)",
+          "차남 (생활 안정)",
+          "분할 증여",
           "전문가의 경험에 AI의 속도를 더했습니다",
           "고객 이익 최우선",
           "AI 기반 정밀 분석",
@@ -198,28 +205,20 @@ try {
         if (missingHeroCopy.length > 0) {
           fail(route.path, viewport.name, `Landing hero/differentiation copy missing: ${missingHeroCopy.join(", ")}`);
         }
-        const heroVideo = page.locator("video[aria-label='AI가 가족관계와 자산 정보를 분석하는 추상 모션 영상']");
-        if (await heroVideo.count() !== 1) {
-          fail(route.path, viewport.name, "Landing hero video is missing.");
-        } else {
-          const videoState = await heroVideo.evaluate((element) => ({
-            autoplay: element.autoplay,
-            muted: element.muted,
-            loop: element.loop,
-            playsInline: element.playsInline,
-            controls: element.controls,
-            objectFit: window.getComputedStyle(element).objectFit,
-            poster: element.getAttribute("poster")
+        const carouselState = await page.locator(".paper-carousel").evaluate((element) => {
+          const buttons = [...element.querySelectorAll("button")].map((button) => ({
+            text: button.textContent?.trim(),
+            pressed: button.getAttribute("aria-pressed")
           }));
-          if (!videoState.autoplay || !videoState.muted || !videoState.loop || !videoState.playsInline || videoState.controls || videoState.objectFit !== "cover" || !videoState.poster?.includes("/media/asset-succession-ai-hero-poster.jpg")) {
-            fail(route.path, viewport.name, `Landing hero video attributes are incorrect: ${JSON.stringify(videoState)}`);
-          }
-        }
-        for (const mediaPath of ["/media/asset-succession-ai-hero.mp4", "/media/asset-succession-ai-hero-poster.jpg"]) {
-          const mediaResponse = await page.request.get(`${baseURL}${mediaPath}`);
-          if (!mediaResponse.ok()) {
-            fail(route.path, viewport.name, `Hero media did not return 200: ${mediaPath} ${mediaResponse.status()}`);
-          }
+          const card = element.querySelector(".paper-page-card");
+          return {
+            hasCarousel: Boolean(element),
+            hasCard: Boolean(card),
+            buttons
+          };
+        }).catch(() => ({ hasCarousel: false, hasCard: false, buttons: [] }));
+        if (!carouselState.hasCarousel || !carouselState.hasCard || carouselState.buttons.length !== 3 || carouselState.buttons[0]?.text !== "●" || carouselState.buttons[1]?.text !== "○") {
+          fail(route.path, viewport.name, `Landing paper carousel controls are incorrect: ${JSON.stringify(carouselState)}`);
         }
       }
 
@@ -539,15 +538,15 @@ try {
   }
   await reducedPage.goto(`${baseURL}/`, { waitUntil: "networkidle", timeout: 30_000 });
   const reducedHeroMedia = await reducedPage.evaluate(() => {
-    const video = document.querySelector(".hero-video-motion");
-    const poster = document.querySelector(".hero-video-poster");
+    const carousel = document.querySelector(".paper-carousel");
+    const card = document.querySelector(".paper-page-card");
     return {
-      videoDisplay: video ? window.getComputedStyle(video).display : "missing",
-      posterDisplay: poster ? window.getComputedStyle(poster).display : "missing"
+      carouselPerspective: carousel ? window.getComputedStyle(carousel).perspective : "missing",
+      cardTransform: card ? window.getComputedStyle(card).transform : "missing"
     };
   });
-  if (reducedHeroMedia.videoDisplay !== "none" || reducedHeroMedia.posterDisplay === "none" || reducedHeroMedia.posterDisplay === "missing") {
-    fail("/", "reduced-motion", `Hero video did not fall back to poster in reduced-motion mode: ${JSON.stringify(reducedHeroMedia)}.`);
+  if (reducedHeroMedia.carouselPerspective !== "none" || reducedHeroMedia.cardTransform !== "none") {
+    fail("/", "reduced-motion", `Hero carousel did not minimize 3D motion in reduced-motion mode: ${JSON.stringify(reducedHeroMedia)}.`);
   }
   await reducedPage.close();
   await reducedContext.close();

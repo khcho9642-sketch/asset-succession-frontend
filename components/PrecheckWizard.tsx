@@ -122,6 +122,16 @@ export function PrecheckWizard() {
         previousConversationLengthRef.current = restoredMessages.length;
         setFinalInteractionMode(draft.finalInteractionMode ?? "idle");
         setDraftRestored(true);
+      } else {
+        const purpose = getPurposeFromQuery(window.location.search);
+        if (purpose) {
+          setAnswers({
+            purpose: {
+              choices: [purpose],
+              detail: ""
+            }
+          });
+        }
       }
     } catch {
       window.sessionStorage.removeItem(PRECHECK_DRAFT_STORAGE_KEY);
@@ -1104,6 +1114,20 @@ function getVisibleSteps(answers: WizardAnswers): WizardStep[] {
     if (item.key === "debt") return !hasOnlyCapitalGains && !hasOnlyBusiness;
     return true;
   });
+}
+
+function getPurposeFromQuery(search: string) {
+  const params = new URLSearchParams(search);
+  const purpose = params.get("purpose") ?? "";
+  const normalizedPurpose = purpose.trim().toLowerCase();
+  const purposeByQuery: Record<string, string> = {
+    "capital-gains": "양도",
+    transfer: "양도",
+    inheritance: "상속",
+    gift: "증여",
+    business: "가업·회사 승계"
+  };
+  return purposeByQuery[normalizedPurpose] ?? "";
 }
 
 function branchLabel(step: WizardStep, answers: WizardAnswers) {

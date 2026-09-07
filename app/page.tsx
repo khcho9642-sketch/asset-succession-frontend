@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, FileText, Gauge, ShieldCheck, Sparkles } from "lucide-react";
-import { HeroVideoCard } from "@/components/HeroVideoCard";
+import { HeroPaperCarousel } from "@/components/HeroPaperCarousel";
 import { PublicNav } from "@/components/PublicNav";
-import { flowSteps, publicValuePoints, simulationDisclaimer } from "@/lib/mockData";
+import { flowSteps, simulationDisclaimer } from "@/lib/mockData";
 
 const differentiators = [
   { title: "36개 전략 비교", body: "상속·증여·양도·가업승계 후보를 내부에서 비교합니다.", icon: Sparkles },
@@ -19,40 +19,39 @@ const customerValues = [
 export default function LandingPage() {
   return (
     <main className="min-h-screen bg-[var(--background)]">
-      <section className="hero-light relative min-h-[92vh] overflow-hidden text-white">
+      <section className="paper-hero relative overflow-hidden bg-[#EFEAE0] text-[#26221B]">
         <PublicNav />
-        <div className="mx-auto grid min-h-[92vh] max-w-7xl items-center gap-10 px-6 pb-16 pt-28 lg:grid-cols-[1.04fr_0.96fr] lg:px-8 lg:pt-28">
-          <div className="motion-result-stage">
-            <p className="text-sm font-semibold tracking-[0.16em] text-[var(--gold)]">ASSET SUCCESSION 360</p>
-            <h1 className="mt-6 max-w-4xl text-[2.35rem] font-semibold leading-[1.04] tracking-[-0.065em] sm:text-[2.65rem] md:text-[3.9rem]">
-              <span className="block">우리 가족의 자산승계,</span>
-              <span className="block">AI에게 무료로 물어보세요.</span>
+        <div className="mx-auto grid min-h-[700px] max-w-7xl items-start gap-9 px-5 pb-6 pt-24 sm:px-6 md:pb-10 lg:grid-cols-[1.16fr_0.84fr] lg:px-8 lg:pt-28">
+          <div className="motion-result-stage max-w-3xl">
+            <p className="inline-flex border border-[#B23A2A]/24 bg-[#F8F4EA] px-3 py-2 text-xs font-bold tracking-[0.18em] text-[#B23A2A]">
+              AI × 세무전문가 자산승계 진단
+            </p>
+            <h1 className="mt-6 text-[1.86rem] font-semibold leading-[1.08] tracking-[-0.085em] text-[#26221B] sm:text-[3rem] md:text-[3.4rem] lg:text-[3.6rem]">
+              <span className="block whitespace-nowrap">막막한 자산승계,</span>
+              <span className="block whitespace-nowrap">우리 가족의 3가지 전략부터.</span>
             </h1>
-            <p className="mt-7 max-w-[calc(100vw-3rem)] text-[1.06rem] leading-8 text-white/74 md:max-w-2xl md:text-[1.18rem]">
-              AI가 36개 자산승계 전략 후보를 비교해 우리 가족에게 필요한 핵심 대안을 선별합니다.
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#6B6152] md:text-xl">
+              <span className="block">양도·상속·증여·가업승계까지,</span>
+              <span className="block">AI가 36개 전략 후보를 비교합니다.</span>
             </p>
-            <p className="mt-4 max-w-2xl border-l border-[var(--gold)]/60 pl-4 text-sm leading-7 text-white/70">
-              전문상담 단계에서는 국세청 20년 경력 세무전문가와 회계사가 중요한 세무 쟁점과 실행 가능성을 함께 검토합니다.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <Link href="/precheck" className="motion-press inline-flex min-h-12 items-center gap-3 bg-white px-5 py-4 text-[15px] font-semibold text-[var(--navy-950)] transition hover:bg-[var(--ivory)] sm:px-6">
-                AI 무료 사전진단 시작하기
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Link href="/precheck" className="motion-press inline-flex min-h-12 items-center justify-center gap-3 bg-[#B23A2A] px-5 py-4 text-[15px] font-semibold text-white transition hover:bg-[#9F2F22] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B23A2A] sm:px-6">
+                무료 AI 사전진단 시작하기
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/precheck/result?demo=1" className="motion-press inline-flex min-h-12 items-center gap-3 border border-white/20 px-5 py-4 text-[15px] font-semibold text-white/85 transition hover:border-white/50 sm:px-6">
+              <Link href="/precheck/result?demo=1" className="motion-press inline-flex min-h-12 items-center justify-center border border-[#7A6139]/35 bg-[#F8F4EA] px-5 py-4 text-[15px] font-semibold text-[#26221B] transition hover:border-[#B23A2A] hover:text-[#B23A2A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B23A2A] sm:px-6">
                 샘플 보고서 보기
               </Link>
             </div>
-            <div className="mt-7 flex flex-wrap gap-3 text-sm text-white/68">
-              {publicValuePoints.map((point) => (
-                <span key={point} className="border border-white/15 px-3 py-2">
-                  {point}
-                </span>
-              ))}
-            </div>
+            <p className="mt-4 text-sm font-semibold text-[#6B6152]">약 5분 · 결과 즉시 확인</p>
           </div>
 
-          <HeroVideoCard />
+          <HeroPaperCarousel />
+        </div>
+        <div className="mx-auto max-w-7xl px-5 pb-8 sm:px-6 lg:px-8">
+          <div className="border-y border-[#D7CDBD] py-4 text-center text-sm font-semibold text-[#6B6152]">
+            36개 전략 비교 · 세무전문가·회계사 검토 · 합리적인 비용
+          </div>
         </div>
       </section>
 

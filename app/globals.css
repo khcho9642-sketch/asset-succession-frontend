@@ -304,38 +304,107 @@ textarea {
   background: linear-gradient(180deg, #ffffff 0%, var(--background) 100%);
 }
 
-.hero-light {
+.paper-hero {
   background:
-    radial-gradient(circle at 82% 18%, rgba(185, 154, 97, 0.18), transparent 28rem),
-    linear-gradient(135deg, var(--navy-950) 0%, var(--navy-900) 100%);
+    linear-gradient(90deg, rgba(178, 58, 42, 0.055) 0 1px, transparent 1px 100%),
+    linear-gradient(180deg, rgba(122, 97, 57, 0.048) 0 1px, transparent 1px 100%),
+    #efeae0;
+  background-size: 44px 44px;
 }
 
-.hero-video-motion {
-  display: block;
-  height: 112%;
-  inset: -6%;
-  max-width: none;
-  object-fit: cover;
+.paper-hero::before {
+  content: "";
   position: absolute;
-  width: 112%;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(248, 244, 234, 0.9), transparent 28rem),
+    radial-gradient(circle at 82% 26%, rgba(178, 58, 42, 0.08), transparent 22rem);
 }
 
-.hero-video-motion.is-failed {
-  display: none;
+.paper-hero > :not(header) {
+  position: relative;
+  z-index: 1;
 }
 
-.hero-video-poster {
-  display: none;
-  height: 112%;
-  inset: -6%;
-  max-width: none;
-  object-fit: cover;
+.paper-carousel {
+  outline: none;
+  perspective: 1200px;
+}
+
+.paper-stack {
+  position: relative;
+  min-height: 34rem;
+}
+
+.paper-stack::before,
+.paper-stack::after {
+  content: "";
   position: absolute;
-  width: 112%;
+  inset: 1.1rem 0.45rem auto 0.45rem;
+  height: calc(100% - 1.3rem);
+  border: 1px solid #d8ccb9;
+  background: #f8f4ea;
+  box-shadow: 0 16px 34px rgba(38, 34, 27, 0.08);
+  transform-origin: center bottom;
 }
 
-.hero-video-poster.is-active {
-  display: block;
+.paper-stack::before {
+  transform: rotate(-3.2deg) translateX(-0.7rem);
+}
+
+.paper-stack::after {
+  transform: rotate(2.3deg) translateX(0.7rem);
+}
+
+.paper-page-card {
+  position: relative;
+  z-index: 1;
+  min-height: 34rem;
+  overflow: hidden;
+  border: 1px solid #d8ccb9;
+  background: #f8f4ea;
+  padding: 1.45rem;
+  box-shadow: 0 24px 52px rgba(38, 34, 27, 0.14);
+  transform: rotate(-0.7deg);
+  animation: motion-fade-up var(--motion-medium) var(--motion-ease-out) both;
+  transition:
+    transform var(--motion-medium) var(--motion-ease-out),
+    box-shadow var(--motion-medium) var(--motion-ease-out);
+}
+
+.paper-carousel:focus-visible .paper-page-card,
+.paper-carousel:hover .paper-page-card {
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: 0 28px 56px rgba(38, 34, 27, 0.16);
+}
+
+.paper-page-curl {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 4.3rem;
+  height: 4.3rem;
+  border-top: 1px solid #d6cab8;
+  border-left: 1px solid #d6cab8;
+  background: linear-gradient(135deg, rgba(255, 253, 248, 0.2), #efe4d3 62%, #c8b99d);
+  box-shadow: -8px -8px 18px rgba(38, 34, 27, 0.08);
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+}
+
+.paper-page-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0, transparent 4.7rem, rgba(178, 58, 42, 0.16) 4.75rem, transparent 4.84rem),
+    radial-gradient(circle at 92% 10%, rgba(122, 97, 57, 0.08), transparent 12rem);
+}
+
+.paper-page-card > * {
+  position: relative;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -416,12 +485,14 @@ textarea {
     transform: none;
   }
 
-  .hero-video-motion {
-    display: none !important;
+  .paper-carousel {
+    perspective: none;
   }
 
-  .hero-video-poster {
-    display: block !important;
+  .paper-stack::before,
+  .paper-stack::after,
+  .paper-page-card {
+    transform: none !important;
   }
 }
 
@@ -459,12 +530,10 @@ textarea {
     clip-path: none !important;
   }
 
-  .hero-video-motion {
-    display: none !important;
-  }
-
-  .hero-video-poster {
-    display: block !important;
+  .paper-stack::before,
+  .paper-stack::after,
+  .paper-page-card {
+    transform: none !important;
   }
 
   .report-book {
@@ -533,5 +602,21 @@ textarea {
   .report-chart span,
   .report-chart li {
     color: #18212b;
+  }
+}
+
+@media (max-width: 640px) {
+  .paper-stack,
+  .paper-page-card {
+    min-height: 24.5rem;
+  }
+
+  .paper-page-card {
+    padding: 1rem;
+  }
+
+  .paper-page-curl {
+    width: 3.25rem;
+    height: 3.25rem;
   }
 }
