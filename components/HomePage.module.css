@@ -8,6 +8,7 @@
   --paper-line: #d4cbbb;
   --paper-serif: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", "Batang", serif;
   --paper-duration: 280ms;
+  --paper-turn-duration: 680ms;
   --paper-ease: cubic-bezier(0.2, 0.65, 0.3, 1);
   background: var(--paper-background);
   color: var(--paper-ink);
@@ -51,13 +52,43 @@
 
 /* Three actual sheets share a grid cell, keeping the carousel's height stable. */
 .carousel { min-width: 0; width: 100%; max-width: 590px; margin-inline: auto; outline: none; perspective: none; touch-action: pan-y pinch-zoom; }
-.paperStack { display: grid; isolation: isolate; margin: 16px 14px 20px 4px; }
+.paperStack { position: relative; display: grid; isolation: isolate; margin: 16px 14px 20px 4px; perspective: 1800px; perspective-origin: 50% 50%; }
 .paper { grid-area: 1 / 1; position: relative; min-width: 0; border: 1px solid var(--paper-line); border-radius: 4px 4px 25px 4px; background: var(--paper-card); box-shadow: 0 16px 32px #26221b1a; transform-origin: bottom center; transition: transform var(--paper-duration) var(--paper-ease), opacity var(--paper-duration) var(--paper-ease); }
 .paper[data-position="0"] { z-index: 3; transform: rotate(-.6deg); }
 .paper[data-position="1"] { z-index: 2; transform: translate(7px, -9px) rotate(.3deg); pointer-events: none; }
 .paper[data-position="2"] { z-index: 1; transform: translate(10px, -15px) rotate(.65deg); pointer-events: none; }
-.paper[data-position="0"]::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; animation: pageSettle var(--paper-duration) var(--paper-ease); }
-@keyframes pageSettle { from { background: #efeae05c; } to { background: transparent; } }
+.paperStack[data-turning="true"] > .paper { transition-duration: var(--paper-turn-duration); }
+/* Keep the outgoing text on its own leaf until the lifted right edge reaches the spine. */
+.paper.turningPaper {
+  position: absolute; inset: 0; z-index: 6; pointer-events: none;
+  transform-origin: 0 50%; backface-visibility: hidden;
+  animation: paperTurnForward var(--paper-turn-duration) cubic-bezier(.32, .02, .25, 1) both;
+  transition: none; will-change: transform, opacity;
+}
+.paper.turningPaper[data-direction="back"] { transform-origin: 100% 50%; animation-name: paperTurnBack; }
+.turningPaper::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(90deg, transparent 28%, #6b615212 64%, #6b615240 90%, #fffdf880);
+  animation: paperFoldShade var(--paper-turn-duration) ease-out both;
+}
+.turningPaper[data-direction="back"]::after { background: linear-gradient(270deg, transparent 28%, #6b615212 64%, #6b615240 90%, #fffdf880); }
+.turningPaper .paperCurl { transform-origin: right bottom; animation: paperCornerLift var(--paper-turn-duration) ease-out both; }
+@keyframes paperTurnForward {
+  0% { transform: rotate(var(--paper-front-angle, -.6deg)) rotateY(0deg); opacity: 1; }
+  25% { transform: rotate(-.8deg) rotateY(-20deg) skewY(-.4deg); opacity: 1; }
+  65% { transform: rotate(-.4deg) rotateY(-66deg) skewY(-1.1deg); opacity: 1; }
+  90% { transform: rotateY(-84deg) skewY(-.3deg); opacity: .85; }
+  100% { transform: rotateY(-89.5deg); opacity: 0; }
+}
+@keyframes paperTurnBack {
+  0% { transform: rotate(var(--paper-front-angle, -.6deg)) rotateY(0deg); opacity: 1; }
+  25% { transform: rotate(.8deg) rotateY(20deg) skewY(.4deg); opacity: 1; }
+  65% { transform: rotate(.4deg) rotateY(66deg) skewY(1.1deg); opacity: 1; }
+  90% { transform: rotateY(84deg) skewY(.3deg); opacity: .85; }
+  100% { transform: rotateY(89.5deg); opacity: 0; }
+}
+@keyframes paperFoldShade { 0%, 100% { opacity: 0; } 35% { opacity: .35; } 70% { opacity: .9; } }
+@keyframes paperCornerLift { 0%, 100% { transform: scale(1); } 45% { transform: scale(1.7, 1.4); } }
 .paper[data-position="0"] .reportContent { opacity: 1; }
 .paper[data-position]:not([data-position="0"]) .reportContent { opacity: 0; }
 .reportImage { display: none; width: 100%; height: auto; border-radius: inherit; }
@@ -176,7 +207,7 @@
   .heroActions { margin-top: 32px; gap: 14px; flex-wrap: wrap; }
   .primaryButton, .secondaryButton { font-size: 16px; padding-inline: 24px; min-height: 58px; }
   .carousel { max-width: none; }
-  .paperStack { margin: 14px 30px 28px 0; }
+  .paperStack { --paper-front-angle: -1.6deg; margin: 14px 30px 28px 0; }
   .paper[data-position="0"] { transform: rotate(-1.6deg); }
   .paper[data-position="1"] { transform: translate(17px, 1px) rotate(2.5deg); }
   .paper[data-position="2"] { transform: translate(29px, 9px) rotate(4.5deg); }
@@ -203,11 +234,13 @@
 @media (prefers-reduced-motion: reduce) {
   .home *, .home *::before, .home *::after { animation: none !important; transition: none !important; }
   .paper, .seal { transform: none !important; }
+  .paperStack { perspective: none; }
+  .turningPaper { display: none !important; }
   .paper[data-position="1"] { translate: 7px -7px; }
   .paper[data-position="2"] { translate: 14px -14px; }
 }
 @media print {
   .home *, .home *::before, .home *::after { animation: none !important; transition: none !important; transform: none !important; translate: none !important; }
-  .paper:not([data-position="0"]), .carouselControls, .skipLink { display: none !important; }
+  .paper:not([data-position="0"]), .turningPaper, .carouselControls, .skipLink { display: none !important; }
   .paper { box-shadow: none; }
 }

@@ -6,8 +6,34 @@ import { useEffect, useRef, useState } from "react";
 import { HeroReportContent, heroReports } from "./HeroReportContent";
 import styles from "./HomePage.module.css";
 
+const AUTO_ADVANCE_MS = 2000;
+type PageState = { index: number; outgoing: number | null; direction: "forward" | "back"; sequence: number };
+
+function turnPage(current: PageState, target: number, reducedMotion: boolean): PageState {
+  const index = (target + heroReports.length) % heroReports.length;
+  if (index === current.index) return current;
+  return {
+    index,
+    outgoing: reducedMotion ? null : current.index,
+    direction: (index - current.index + heroReports.length) % heroReports.length === 1 ? "forward" : "back",
+    sequence: current.sequence + 1
+  };
+}
+
+function ReportSheet({ index }: { index: number }) {
+  const report = heroReports[index];
+  return <>
+    <Image src={report.image} alt="" aria-hidden="true" className={styles.reportImage}
+      width={1474} height={1067} sizes="(min-width: 1024px) 48vw, 1px" unoptimized
+      loading={index === 0 ? "eager" : "lazy"} />
+    <HeroReportContent index={index} />
+    <span className={styles.paperCurl} aria-hidden="true" />
+  </>;
+}
+
 export function HeroPaperCarousel() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [pageState, setPageState] = useState<PageState>({ index: 0, outgoing: null, direction: "forward", sequence: 0 });
+  const activeIndex = pageState.index;
   const [pointerPaused, setPointerPaused] = useState(false);
   const [focusPaused, setFocusPaused] = useState(false);
   const [manuallyPaused, setManuallyPaused] = useState(false);
@@ -33,17 +59,27 @@ export function HeroPaperCarousel() {
 
   useEffect(() => {
     if (paused) return;
-    // Each page gets the full reading interval, including after manual changes.
+    // Starts are two seconds apart; completing the leaf animation does not reset this timer.
     const timer = window.setTimeout(() => {
       setManualChange(false);
-      setActiveIndex((index) => (index + 1) % heroReports.length);
-    }, 4000);
+      setPageState((current) => turnPage(current, current.index + 1, reducedMotion));
+    }, AUTO_ADVANCE_MS);
     return () => window.clearTimeout(timer);
-  }, [paused, activeIndex]);
+  }, [paused, activeIndex, reducedMotion]);
+
+  useEffect(() => {
+    if (pageState.outgoing === null) return;
+    const sequence = pageState.sequence;
+    // Also settle if animationend is cancelled by print, a preference change or tab suspension.
+    const timer = window.setTimeout(() => {
+      setPageState((current) => current.sequence === sequence ? { ...current, outgoing: null } : current);
+    }, 850);
+    return () => window.clearTimeout(timer);
+  }, [pageState.outgoing, pageState.sequence]);
 
   function goTo(index: number) {
     setManualChange(true);
-    setActiveIndex((index + heroReports.length) % heroReports.length);
+    setPageState((current) => turnPage(current, index, reducedMotion));
   }
 
   return (
@@ -77,21 +113,28 @@ export function HeroPaperCarousel() {
         setPointerPaused(false);
       }}
       onTouchCancel={() => { touchStart.current = null; setPointerPaused(false); }}>
-      <div className={styles.paperStack}>
+      <div className={styles.paperStack} data-turning={pageState.outgoing !== null && !reducedMotion}>
         {heroReports.map((report, index) => {
           const position = (index - activeIndex + heroReports.length) % heroReports.length;
           return (
             <article key={report.image} className={styles.paper} data-position={position}
               data-testid="hero-report" aria-label={report.title} aria-roledescription="슬라이드"
               aria-hidden={position !== 0} inert={position !== 0}>
-              <Image src={report.image} alt="" aria-hidden="true" className={styles.reportImage}
-                width={1474} height={1067} sizes="(min-width: 1024px) 48vw, 1px" unoptimized
-                loading={index === 0 ? "eager" : "lazy"} />
-              <HeroReportContent index={index} />
-              <span className={styles.paperCurl} aria-hidden="true" />
+              <ReportSheet index={index} />
             </article>
           );
         })}
+        {pageState.outgoing !== null && !reducedMotion ? (
+          <div key={pageState.sequence} className={`${styles.paper} ${styles.turningPaper}`}
+            data-position="0" data-direction={pageState.direction} data-testid="turning-paper" aria-hidden="true" inert
+            onAnimationEnd={(event) => {
+              if (event.target !== event.currentTarget || event.pseudoElement) return;
+              const sequence = pageState.sequence;
+              setPageState((current) => current.sequence === sequence ? { ...current, outgoing: null } : current);
+            }}>
+            <ReportSheet index={pageState.outgoing} />
+          </div>
+        ) : null}
       </div>
       <div className={styles.carouselControls}>
         <div className={styles.dots} aria-label="보고서 페이지 선택">

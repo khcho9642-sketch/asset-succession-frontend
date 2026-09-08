@@ -50,7 +50,7 @@ try {
     for (let index = 0; index < 3; index++) {
       await page.getByRole('button', { name: (index + 1) + '번째 보고서 보기' }).click();
       assert.equal(await carousel.getAttribute('data-active-page'), String(index + 1));
-      await sleep(320);
+      await page.getByTestId('turning-paper').waitFor({ state: 'detached' });
       const active = page.getByTestId('hero-report').filter({ has: page.getByRole('heading', { name: titles[index], exact: true }) });
       const text = (await active.innerText()).replace(/\s+/g, ' ').trim();
       if (width === widths[0]) baseline.push(text);
@@ -63,7 +63,7 @@ try {
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Report causes overflow');
     }
     await carousel.press('Home');
-    await sleep(320);
+    await page.getByTestId('turning-paper').waitFor({ state: 'detached' });
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({ path: path.join(output, width + '-full.png'), fullPage: true, animations: 'disabled' });
     await carousel.press('ArrowRight');

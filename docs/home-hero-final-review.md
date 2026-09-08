@@ -13,7 +13,7 @@ Approved image commit: `6f4cbbf67f52e24cea2e9f617b4cae972ef8b308`
 - Trust copy: **회원가입 없이 · 약 5분 · 결과 즉시 확인**. Service areas and consultation steps live below the hero rather than repeating value cards inside it.
 - Three stacked report sheets use the supplied report WebP files on desktop. Below 1024px, the same approved content is reflowed as semantic HTML so the family tree, asset allocation, strategy conditions and roadmap remain readable. Whole-page reference images are never rendered as page content or backgrounds.
 - Report 1 retains 장남 (사업 승계), 장녀 (자산 분산), 차남 (생활 안정), and 분할 증여. Report examples are labeled as samples, separate from calculated customer results.
-- Four-second automatic advancement, dots, Left/Right/Home/End keys, horizontal swipe, hover/focus pause and explicit pause. Vertical touch scrolling does not change pages. Background tabs and reduced-motion preference pause automatic advancement. Print disables motion.
+- Two-second automatic advancement with a 680ms paper-leaf turn. The outgoing text remains on the lifted sheet until it reveals the next report. Dots, Left/Right/Home/End keys, horizontal swipe, hover/focus pause and explicit pause remain supported. Vertical touch scrolling does not change pages. Background tabs and reduced-motion preference pause automatic advancement. Print disables motion.
 - No additional dependencies, account setup, production deployment or main-branch changes.
 
 ## Verification
@@ -38,6 +38,18 @@ The initial browser check found a 5px overflow from a rotated mobile back sheet.
 ![Readable mobile family report](review-assets/home-hero-final/mobile-family-report.png)
 
 ![Full homepage desktop](review-assets/home-hero-final/desktop-full.png)
+
+## Two-second paper-turn refinement
+
+Re-ran lint, build (including TypeScript validation), and the complete homepage audit after the motion-only change. The broader unit/smoke/UI results above belong to the preceding final-design baseline.
+
+Added `node scripts/paper-turn-audit.mjs`: passed at 375, 390, 430, 768 and 1440px. Observed automatic turn starts were 2,005–2,019ms apart. Sampled the actual CSS animation at 0, 170, 340, 510 and 670ms; no horizontal overflow occurred during the turn. Verified that the outgoing report stays attached to the turning sheet, reverse turns work, rapid key input settles on the latest page, reduced motion stops autoplay, and print hides the transient sheet. The visual duplicate is hidden from assistive technology.
+
+Manually inspected desktop and mobile captures at 170ms and 340ms. These are deliberately paused animation frames, not static page layouts; the actual turn finishes in 680ms. Desktop captures use 1440 × 900 and motion-detail mobile captures use 390 × 900; the homepage regression separately covers the 390 × 844 initial viewport.
+
+![Desktop mid-turn](review-assets/home-hero-final/paper-turn-desktop.png)
+
+![Mobile mid-turn](review-assets/home-hero-final/paper-turn-mobile.png)
 
 ## Scope of evidence
 
