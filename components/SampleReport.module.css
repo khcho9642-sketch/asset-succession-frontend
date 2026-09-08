@@ -56,23 +56,22 @@
 .previous svg, .next svg { display: block; width: 36px; height: 36px; flex-shrink: 0; }
 .previous:hover:not(:disabled), .next:hover:not(:disabled) { border-color: var(--sample-ink); }
 .previous:disabled, .next:disabled { opacity: .3; cursor: default; }
-.document { position: absolute; top: 50%; left: 50%; width: 940px; min-width: 940px; transform-origin: center center; }
+.document { position: absolute; top: 50%; left: 50%; width: var(--sample-sheet-width); height: var(--sample-sheet-height); transform-origin: center center; }
 .document[data-fitted="false"] { visibility: hidden; }
+.imageSheet { position: relative; width: 100%; height: 100%; margin: 0; padding: 0; background: var(--sample-raised); }
+.pageImage { display: block; width: 100%; height: 100%; object-fit: contain; }
 .expanded { position: fixed; z-index: 100; inset: 0; height: 100dvh; }
 .srOnly, .skipLink:not(:focus) { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .skipLink:focus { position: fixed; top: 8px; left: 8px; z-index: 110; padding: 12px; background: white; color: var(--sample-ink); }
 @media screen {
-  .document :global(.report-book) { display: block; margin: 0; gap: 0; }
-  .document :global(.report-book) > div:first-child { display: none; }
-  .viewer .document :global(.report-page) { display: none; height: var(--sample-sheet-height); }
+  .viewer .imageSheet { display: none; }
   .viewer[data-current-page="1"] .document :global([data-report-page="1"]),
   .viewer[data-current-page="2"] .document :global([data-report-page="2"]),
   .viewer[data-current-page="3"] .document :global([data-report-page="3"]),
   .viewer[data-current-page="4"] .document :global([data-report-page="4"]),
   .viewer[data-current-page="5"] .document :global([data-report-page="5"]),
   .viewer[data-current-page="6"] .document :global([data-report-page="6"]),
-  .viewer[data-current-page="7"] .document :global([data-report-page="7"]) { display: flex; }
-  .viewer .document[data-sample-measuring="true"] :global(.report-page) { display: flex; position: absolute; top: 0; left: 0; height: auto; min-height: 0; visibility: hidden; }
+  .viewer[data-current-page="7"] .document :global([data-report-page="7"]) { display: block; }
 }
 @media (max-width: 640px) {
   .samplePage .header { padding: 4px 12px; gap: 10px; }
@@ -100,5 +99,7 @@
   .page, .samplePage { min-height: 0; height: auto; display: block; background: transparent; overflow: visible; }
   .header, .viewerToolbar, .contentsBackdrop, .previous, .next, .skipLink { display: none !important; }
   .main, .viewer, .readingArea, .stage, .document { display: block; position: static; width: 100%; min-width: 0; max-width: none; height: auto; min-height: 0; margin: 0; padding: 0; border: 0; overflow: visible; transform: none !important; visibility: visible !important; }
-  .document :global(.report-page) { display: flex; }
+  .imageSheet { display: block; width: 210mm; height: 297mm; break-inside: avoid; break-after: page; page-break-after: always; }
+  .imageSheet:last-child { break-after: auto; page-break-after: auto; }
+  .imageSheet .srOnly { display: none; }
 }

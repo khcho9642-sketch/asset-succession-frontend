@@ -1,60 +1,39 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
-import { TaxComparisonReport } from "@/components/TaxComparisonReport";
-import { createSampleTaxReport, sampleTaxReportSections } from "@/lib/sampleTaxReport";
+import Image from "next/image";
+import { sampleReportPages } from "@/lib/sampleReport";
 import styles from "./SampleReport.module.css";
 
-const PAGE_COUNT = sampleTaxReportSections.length;
+const PAGE_COUNT = sampleReportPages.length;
+// One A4 canvas for every original image; contain preserves each image's proportions.
+const SHEET_WIDTH = 1050;
+const SHEET_HEIGHT = 1485;
 
 export function SampleReportViewer() {
-  const [{ snapshot, comparison }] = useState(createSampleTaxReport);
   const [currentPage, setCurrentPage] = useState(1);
   const [contentsOpen, setContentsOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  const [fit, setFit] = useState({ height: 0, scale: 1 });
+  const [scale, setScale] = useState<number | null>(null);
   const viewerRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
-  const documentRef = useRef<HTMLDivElement>(null);
   const contentsButtonRef = useRef<HTMLButtonElement>(null);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   useLayoutEffect(() => {
     const stage = stageRef.current;
-    const report = documentRef.current;
-    const sheets = report?.querySelectorAll<HTMLElement>("[data-report-page]");
-    if (!stage || !report || !sheets?.length) return;
-    let disposed = false;
-    let sheetWidth = 0;
-    let sheetHeight = 0;
+    if (!stage) return;
     function fitBook() {
-      if (disposed || !stage || !sheetWidth || !sheetHeight || !stage.clientWidth || !stage.clientHeight || matchMedia("print").matches) return;
-      const scale = Math.min(stage.clientWidth / sheetWidth, stage.clientHeight / sheetHeight);
-      if (!Number.isFinite(scale) || scale <= 0) return;
-      setFit(previous => previous.height === sheetHeight && Math.abs(previous.scale - scale) < .0001
-        ? previous : { height: sheetHeight, scale });
+      if (!stage?.clientWidth || !stage.clientHeight || matchMedia("print").matches) return;
+      const nextScale = Math.min(stage.clientWidth / SHEET_WIDTH, stage.clientHeight / SHEET_HEIGHT);
+      if (!Number.isFinite(nextScale) || nextScale <= 0) return;
+      setScale(previous => previous !== null && Math.abs(previous - nextScale) < .0001 ? previous : nextScale);
     }
 
-    function measureBook() {
-      if (disposed || !report || !sheets?.length || matchMedia("print").matches) return;
-      // Measure every sheet at its natural height before fixing one common canvas.
-      // Restore the screen state synchronously, before the browser can paint it.
-      report.setAttribute("data-sample-measuring", "true");
-      try {
-        sheetWidth = Math.max(...Array.from(sheets, sheet => sheet.offsetWidth));
-        sheetHeight = Math.max(...Array.from(sheets, sheet => sheet.offsetHeight));
-      } finally {
-        report.removeAttribute("data-sample-measuring");
-      }
-      fitBook();
-    }
-
-    measureBook();
+    fitBook();
     const observer = new ResizeObserver(fitBook);
     observer.observe(stage);
-    void document.fonts.ready.then(measureBook);
-    document.fonts.addEventListener("loadingdone", measureBook);
-    return () => { disposed = true; observer.disconnect(); document.fonts.removeEventListener("loadingdone", measureBook); };
+    return () => observer.disconnect();
   }, [expanded]);
 
   function goToPage(number: number, focusViewer = false) {
@@ -88,14 +67,14 @@ export function SampleReportViewer() {
             aria-expanded={contentsOpen} aria-controls="sample-report-contents" onClick={() => setContentsOpen(open => !open)}>목차</button>
           <nav id="sample-report-contents" data-sample-contents className={styles.contentsPanel} aria-label="보고서 목차" hidden={!contentsOpen}>
             <p>보고서 목차 <span>7장</span></p>
-            <ol>{sampleTaxReportSections.map((title, index) => <li key={title}>
+            <ol>{sampleReportPages.map(({ title }, index) => <li key={title}>
               <button type="button" aria-current={currentPage === index + 1 ? "page" : undefined} onClick={() => goToPage(index + 1, true)}>
                 <span>{String(index + 1).padStart(2, "0")}</span> {title}
               </button>
             </li>)}</ol>
           </nav>
         </div>
-        <p className={styles.pageIndicator} aria-live="polite" aria-atomic="true"><span>{currentPage} / {PAGE_COUNT}</span><strong>{sampleTaxReportSections[currentPage - 1]}</strong></p>
+        <p className={styles.pageIndicator} aria-live="polite" aria-atomic="true"><span>{currentPage} / {PAGE_COUNT}</span><strong>{sampleReportPages[currentPage - 1].title}</strong></p>
         <div className={styles.viewerActions}>
           <button type="button" className={styles.toolButton} aria-pressed={expanded} onClick={() => setExpanded(value => !value)}>{expanded ? "기본 화면" : "크게 보기"}</button>
           <button type="button" className={styles.toolButton} onClick={() => window.print()}>PDF 저장</button>
@@ -118,9 +97,22 @@ export function SampleReportViewer() {
             const dy = touch.clientY - start.y;
             if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) goToPage(currentPage + (dx < 0 ? 1 : -1));
           }}>
-          <div ref={documentRef} className={styles.document} data-sample-document data-fitted={fit.height > 0 ? "true" : "false"}
-            style={{ "--sample-sheet-height": `${fit.height}px`, transform: `translate(-50%, -50%) scale(${fit.scale})` } as CSSProperties}>
-            <TaxComparisonReport snapshot={snapshot} comparison={comparison} sample />
+          <div className={styles.document} data-sample-document data-sample-image-report data-fitted={scale !== null ? "true" : "false"}
+            style={{ "--sample-sheet-width": `${SHEET_WIDTH}px`, "--sample-sheet-height": `${SHEET_HEIGHT}px`, transform: `translate(-50%, -50%) scale(${scale ?? 1})` } as CSSProperties}>
+            {sampleReportPages.map((page, index) => (
+              <section key={page.image} id={`report-page-${index + 1}`} data-report-page={index + 1}
+                className={styles.imageSheet} aria-labelledby={`sample-page-title-${index + 1}`}>
+                <Image src={page.image} width={page.width} height={page.height}
+                  alt={`${index + 1}장 ${page.title}: ${page.headline}`} className={styles.pageImage}
+                  data-sample-page-image unoptimized loading="eager" />
+                <div className={styles.srOnly}>
+                  <h2 id={`sample-page-title-${index + 1}`}>{page.title}</h2>
+                  <p>샘플 · 가상 사례 · AI 사전진단 · 전문가 검토 전</p>
+                  <p>{page.headline}</p>
+                  <ul>{page.points.map(point => <li key={point}>{point}</li>)}</ul>
+                </div>
+              </section>
+            ))}
           </div>
         </div>
         <button type="button" className={styles.next} aria-label="다음 페이지" disabled={currentPage === PAGE_COUNT} onClick={() => goToPage(currentPage + 1)}>

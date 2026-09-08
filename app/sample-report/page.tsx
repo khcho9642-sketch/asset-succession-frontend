@@ -5,7 +5,7 @@ import styles from "@/components/SampleReport.module.css";
 
 export const metadata: Metadata = {
   title: "7장 샘플 보고서 | 자산승계 360",
-  description: "상속재산 52억원의 가상 사례로 보는 실제 7페이지 보고서. 추정 상속세, 대안별 차액과 계산 근거를 확인하세요."
+  description: "가족 자산 50억원, 채무 5억원의 가상 사례로 보는 7장 샘플 보고서. 가족·자산 현황과 세 가지 자산승계 방향을 살펴보세요."
 };
 
 export default function SampleReportPage() {

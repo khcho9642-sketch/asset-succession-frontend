@@ -1,10 +1,11 @@
 # Personal report format aligned with the approved sample
 
-The public `/sample-report` and personal `/report-preview` routes now share the
-actual `TaxComparisonReport` and `PaperReportLayout` components. The old public
-viewer used seven images with different example values and no calculated tax.
-The public viewer keeps one page at a time and gives the paper the available
-viewport space without a permanent sidebar or duplicate report titles.
+The public `/sample-report` preserves the approved seven original report images in
+`public/media/sample-report/page-01.webp` through `page-07.webp`. The sample viewer
+shows one page at a time, at one uniform size, with large arrows outside the paper.
+It must not silently replace the approved images with a different calculated case.
+Personal `/report-preview` reports continue using confirmed customer facts and
+`TaxComparisonReport` / `PaperReportLayout`; their tax calculations are unchanged.
 
 ## One document layout for generated reports
 
@@ -14,25 +15,28 @@ and the calculated tax report use it, on screen and in print. The document uses
 `data-report-template="paper-seven-v1"` so an export test can detect regressions to
 an unrelated template.
 
-The public sample uses `createSampleTaxReport()` in `lib/sampleTaxReport.ts`: a
-standalone fictional inheritance case with 52억원 estate, 12억원 eligible financial
-assets, a spouse, three adult children, no debt/prior gifts and a 500만원 funeral
-assumption. Usable cash stays unknown. It never reads or writes customer session
-data. Every sample page, including print, is labelled 샘플 · 가상 사례.
+The public sample uses `sampleReportPages` in `lib/sampleReport.ts`, with the
+original fictional family example: 50억원 assets, 5억원 debt and 45억원 net assets.
+Those are illustrative family totals, not a calculated estate or tax base.
+The seven original image files are unchanged; the static audit pins their SHA256
+hashes. Every page has an accessible title, summary and sample/review status.
 
-The sample is selectable HTML displayed one page at a time, fitted to the available
-viewport with no continuous or nested document scrolling. A collapsed contents
-menu, previous/next buttons outside the sheet, arrow/Home/End keys and mobile
-swipes change the page. Expanded view recovers header space without cropping the
-report. All seven pages share one canvas size, measured from their complete content
-after fonts load. Turning pages preserves the paper's width, height, position and
-text scale; the fit is recalculated only when the available viewport or fonts change.
-The previous/next controls use visible SVG arrows outside the paper. Screen audits
-compare all seven pages and a return to the first page in normal, expanded and
-resized viewports, alongside minimum arrow and touch-target dimensions.
-Printing always restores all seven full-size A4 pages, even when page 3 is selected.
-The old WebP files are no longer the sample route's content; personal reports
-continue using confirmed customer data and their own document reading layout.
+The image viewer uses one fixed 1050 × 1485 A4-shaped frame for all seven pages.
+Each image retains its intrinsic dimensions and uses `object-fit: contain`, so
+the small differences in source dimensions do not change the outer frame or crop
+content. Turning pages preserves the frame width, height and position. Fitting
+changes only when the available viewport changes. There is no continuous or
+nested document scrolling, and the PDF contains the same seven original images.
+
+A collapsed contents menu, previous/next SVG buttons outside the sheet,
+arrow/Home/End keys and mobile swipes change the page. Expanded view recovers
+header space. Screen audits compare all seven pages, including a return to page 1,
+in normal, expanded and resized viewports; they also check image loading, containment,
+minimum arrow/touch dimensions and preservation of customer session data.
+Printing reveals all seven 210 × 297 mm image sheets, even when page 3 is selected.
+The print gate checks image bounds and seven physical A4 PDF pages with their
+original image dimensions. Personal reports remain selectable HTML, and their
+existing calculation and text/PDF gates stay separate.
 
 Korean serif glyphs are self-hosted through the pinned
 `@fontsource-variable/noto-serif-kr` package. A CSS fallback name alone previously
