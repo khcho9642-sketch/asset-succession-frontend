@@ -156,6 +156,11 @@ try {
         continue;
       }
 
+      if (route.path === "/") {
+        await page.getByTestId("hero-carousel").evaluate((element) => element.focus({ preventScroll: true }));
+        await page.getByTestId("hero-carousel").press("Home");
+        await page.evaluate(() => window.scrollTo(0, 0));
+      }
       await stableScreenshot(page, {
         path: path.join(outputDir, `${viewport.name}-${route.name}.png`),
         fullPage: true
@@ -187,10 +192,9 @@ try {
           "우리 가족의 3가지 전략부터.",
           "양도·상속·증여·가업승계까지,",
           "AI가 36개 전략 후보를 비교합니다.",
-          "무료 AI 사전진단 시작하기",
+          "무료 AI 진단 시작하기",
           "샘플 보고서 보기",
-          "약 5분 · 결과 즉시 확인",
-          "36개 전략 비교 · 세무전문가·회계사 검토 · 합리적인 비용",
+          "회원가입 없이 · 약 5분 · 결과 즉시 확인",
           "우리 가족 자산승계 진단서",
           "장남 (사업 승계)",
           "장녀 (자산 분산)",
@@ -201,16 +205,17 @@ try {
           "AI 기반 정밀 분석",
           "신속한 실행과 합리적인 비용"
         ];
-        const missingHeroCopy = requiredHeroCopy.filter((text) => !bodyText.includes(text));
+        const normalizedHeroText = bodyText.replace(/\s+/g, " ");
+        const missingHeroCopy = requiredHeroCopy.filter((text) => !normalizedHeroText.includes(text));
         if (missingHeroCopy.length > 0) {
           fail(route.path, viewport.name, `Landing hero/differentiation copy missing: ${missingHeroCopy.join(", ")}`);
         }
-        const carouselState = await page.locator(".paper-carousel").evaluate((element) => {
-          const buttons = [...element.querySelectorAll("button")].map((button) => ({
+        const carouselState = await page.getByTestId("hero-carousel").evaluate((element) => {
+          const buttons = [...element.querySelectorAll('[aria-label="보고서 페이지 선택"] button')].map((button) => ({
             text: button.textContent?.trim(),
             pressed: button.getAttribute("aria-pressed")
           }));
-          const card = element.querySelector(".paper-page-card");
+          const card = element.querySelector('[data-testid="hero-report"]');
           return {
             hasCarousel: Boolean(element),
             hasCard: Boolean(card),
@@ -538,8 +543,8 @@ try {
   }
   await reducedPage.goto(`${baseURL}/`, { waitUntil: "networkidle", timeout: 30_000 });
   const reducedHeroMedia = await reducedPage.evaluate(() => {
-    const carousel = document.querySelector(".paper-carousel");
-    const card = document.querySelector(".paper-page-card");
+    const carousel = document.querySelector('[data-testid="hero-carousel"]');
+    const card = document.querySelector('[data-testid="hero-report"]');
     return {
       carouselPerspective: carousel ? window.getComputedStyle(carousel).perspective : "missing",
       cardTransform: card ? window.getComputedStyle(card).transform : "missing"

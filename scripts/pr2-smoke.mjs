@@ -89,7 +89,7 @@ try {
       if (route === "/") {
         const bodyText = await page.locator("body").innerText();
         assert(bodyText.includes("막막한 자산승계,") && bodyText.includes("우리 가족의 3가지 전략부터."), `${viewport.name} landing hero headline missing.`);
-        assert(bodyText.includes("무료 AI 사전진단 시작하기") && bodyText.includes("샘플 보고서 보기"), `${viewport.name} landing hero CTA missing.`);
+        assert(bodyText.includes("무료 AI 진단 시작하기") && bodyText.includes("샘플 보고서 보기"), `${viewport.name} landing hero CTA missing.`);
         assert(bodyText.includes("우리 가족 자산승계 진단서") && bodyText.includes("분할 증여"), `${viewport.name} landing paper carousel first report missing.`);
         assert(await page.getByRole("button", { name: "2번째 보고서 보기" }).count() === 1, `${viewport.name} landing carousel dot controls missing.`);
       }
