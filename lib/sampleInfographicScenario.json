@@ -1,0 +1,214 @@
+{
+  "version": 2,
+  "lawCheckedOn": "2026-09-08",
+  "input": {
+    "version": 1,
+    "track": "inheritance",
+    "confirmed": true,
+    "confirmedAt": "2026-09-08T00:00:00.000Z",
+    "values": {
+      "estate": "50",
+      "financial": "10",
+      "debt": "5",
+      "financialDebt": "5",
+      "funeral": "0.05",
+      "spouse": "yes",
+      "children": "3",
+      "resident": "yes",
+      "standardCase": "yes",
+      "availableCash": ""
+    }
+  },
+  "cases": [
+    {
+      "id": "inheritance-custom-spouse",
+      "label": "배우자 5억 배분",
+      "taxableWon": 3395000000,
+      "grossTaxWon": 1237500000,
+      "creditWon": 37125000,
+      "nationalTaxWon": 1200375000,
+      "localTaxWon": 0,
+      "totalTaxWon": 1200375000,
+      "lines": [
+        {
+          "label": "상속재산 평가액",
+          "amountWon": 5000000000
+        },
+        {
+          "label": "차감: 공과금·채무",
+          "amountWon": 500000000
+        },
+        {
+          "label": "차감: 장례비 공제",
+          "amountWon": 5000000,
+          "note": "직접 장례비는 500만원 이상 1,000만원 한도로 반영"
+        },
+        {
+          "label": "상속세 과세가액",
+          "amountWon": 4495000000
+        },
+        {
+          "label": "일괄공제",
+          "amountWon": 500000000
+        },
+        {
+          "label": "입력한 배우자 상속액",
+          "amountWon": 500000000
+        },
+        {
+          "label": "배우자 상속공제",
+          "amountWon": 500000000
+        },
+        {
+          "label": "금융재산 상속공제",
+          "amountWon": 100000000
+        },
+        {
+          "label": "상속공제 적용 합계",
+          "amountWon": 1100000000,
+          "note": "상속세 과세가액 한도로 적용"
+        },
+        {
+          "label": "과세표준",
+          "amountWon": 3395000000
+        }
+      ],
+      "assumptions": [
+        "고객이 직접 입력한 배우자 상속액을 기준으로 공제 한도를 적용합니다.",
+        "기한 내 신고와 필요한 배우자 상속재산 분할 요건을 충족하는 것으로 계산합니다."
+      ],
+      "code": "A",
+      "spouseAllocationWon": 500000000
+    },
+    {
+      "id": "inheritance-custom-spouse",
+      "label": "배우자 10억 배분",
+      "taxableWon": 2895000000,
+      "grossTaxWon": 998000000,
+      "creditWon": 29940000,
+      "nationalTaxWon": 968060000,
+      "localTaxWon": 0,
+      "totalTaxWon": 968060000,
+      "lines": [
+        {
+          "label": "상속재산 평가액",
+          "amountWon": 5000000000
+        },
+        {
+          "label": "차감: 공과금·채무",
+          "amountWon": 500000000
+        },
+        {
+          "label": "차감: 장례비 공제",
+          "amountWon": 5000000,
+          "note": "직접 장례비는 500만원 이상 1,000만원 한도로 반영"
+        },
+        {
+          "label": "상속세 과세가액",
+          "amountWon": 4495000000
+        },
+        {
+          "label": "일괄공제",
+          "amountWon": 500000000
+        },
+        {
+          "label": "입력한 배우자 상속액",
+          "amountWon": 1000000000
+        },
+        {
+          "label": "배우자 상속공제",
+          "amountWon": 1000000000
+        },
+        {
+          "label": "금융재산 상속공제",
+          "amountWon": 100000000
+        },
+        {
+          "label": "상속공제 적용 합계",
+          "amountWon": 1600000000,
+          "note": "상속세 과세가액 한도로 적용"
+        },
+        {
+          "label": "과세표준",
+          "amountWon": 2895000000
+        }
+      ],
+      "assumptions": [
+        "고객이 직접 입력한 배우자 상속액을 기준으로 공제 한도를 적용합니다.",
+        "기한 내 신고와 필요한 배우자 상속재산 분할 요건을 충족하는 것으로 계산합니다."
+      ],
+      "code": "B",
+      "spouseAllocationWon": 1000000000
+    },
+    {
+      "id": "inheritance-custom-spouse",
+      "label": "배우자 15억 배분",
+      "taxableWon": 2395000000,
+      "grossTaxWon": 798000000,
+      "creditWon": 23940000,
+      "nationalTaxWon": 774060000,
+      "localTaxWon": 0,
+      "totalTaxWon": 774060000,
+      "lines": [
+        {
+          "label": "상속재산 평가액",
+          "amountWon": 5000000000
+        },
+        {
+          "label": "차감: 공과금·채무",
+          "amountWon": 500000000
+        },
+        {
+          "label": "차감: 장례비 공제",
+          "amountWon": 5000000,
+          "note": "직접 장례비는 500만원 이상 1,000만원 한도로 반영"
+        },
+        {
+          "label": "상속세 과세가액",
+          "amountWon": 4495000000
+        },
+        {
+          "label": "일괄공제",
+          "amountWon": 500000000
+        },
+        {
+          "label": "입력한 배우자 상속액",
+          "amountWon": 1500000000
+        },
+        {
+          "label": "배우자 상속공제",
+          "amountWon": 1500000000
+        },
+        {
+          "label": "금융재산 상속공제",
+          "amountWon": 100000000
+        },
+        {
+          "label": "상속공제 적용 합계",
+          "amountWon": 2100000000,
+          "note": "상속세 과세가액 한도로 적용"
+        },
+        {
+          "label": "과세표준",
+          "amountWon": 2395000000
+        }
+      ],
+      "assumptions": [
+        "고객이 직접 입력한 배우자 상속액을 기준으로 공제 한도를 적용합니다.",
+        "기한 내 신고와 필요한 배우자 상속재산 분할 요건을 충족하는 것으로 계산합니다."
+      ],
+      "code": "C",
+      "spouseAllocationWon": 1500000000
+    }
+  ],
+  "differenceWon": 426315000,
+  "cash": {
+    "depositsWon": 1000000000,
+    "repayDebtWon": 500000000,
+    "funeralWon": 5000000,
+    "livingReserveWon": 500000000,
+    "availableWon": 495000000,
+    "requiredWon": 1274060000,
+    "shortfallWon": 779060000
+  }
+}

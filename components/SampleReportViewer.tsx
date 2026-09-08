@@ -2,11 +2,11 @@
 
 import { useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import Image from "next/image";
-import { sampleReportPages } from "@/lib/sampleReport";
+import { sampleReportPages, sampleReportPdf } from "@/lib/sampleReport";
 import styles from "./SampleReport.module.css";
 
 const PAGE_COUNT = sampleReportPages.length;
-// One A4 canvas for every original image; contain preserves each image's proportions.
+// One A4 canvas for every infographic; contain preserves the image proportions.
 const SHEET_WIDTH = 1050;
 const SHEET_HEIGHT = 1485;
 
@@ -77,7 +77,7 @@ export function SampleReportViewer() {
         <p className={styles.pageIndicator} aria-live="polite" aria-atomic="true"><span>{currentPage} / {PAGE_COUNT}</span><strong>{sampleReportPages[currentPage - 1].title}</strong></p>
         <div className={styles.viewerActions}>
           <button type="button" className={styles.toolButton} aria-pressed={expanded} onClick={() => setExpanded(value => !value)}>{expanded ? "기본 화면" : "크게 보기"}</button>
-          <button type="button" className={styles.toolButton} onClick={() => window.print()}>PDF 저장</button>
+          <a className={styles.toolButton} href={sampleReportPdf} download="자산승계360_7장_샘플보고서.pdf">PDF 저장</a>
         </div>
       </div>
       {contentsOpen && <button type="button" className={styles.contentsBackdrop} aria-label="목차 닫기" onClick={() => { setContentsOpen(false); contentsButtonRef.current?.focus({ preventScroll: true }); }} />}

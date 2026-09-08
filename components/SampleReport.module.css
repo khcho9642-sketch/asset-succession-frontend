@@ -39,6 +39,7 @@
 .pageIndicator > span { color: var(--sample-soft); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .pageIndicator strong { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .viewerActions { display: flex; gap: 4px; }
+.viewerActions a.toolButton { display: inline-flex; align-items: center; text-decoration: none; }
 .contentsControl { position: relative; }
 .contentsPanel { position: absolute; top: calc(100% + 5px); left: 0; z-index: 12; width: 292px; max-width: calc(100vw - 24px); max-height: calc(100dvh - 104px); overflow-y: auto; padding: 16px; border: 1px solid var(--sample-line); border-radius: 4px; background: var(--sample-raised); box-shadow: 0 12px 36px #26221b20; }
 .contentsPanel[hidden] { display: none; }

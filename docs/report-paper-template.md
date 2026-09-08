@@ -1,9 +1,9 @@
 # Personal report format aligned with the approved sample
 
-The public `/sample-report` preserves the approved seven original report images in
-`public/media/sample-report/page-01.webp` through `page-07.webp`. The sample viewer
-shows one page at a time, at one uniform size, with large arrows outside the paper.
-It must not silently replace the approved images with a different calculated case.
+The public `/sample-report` now uses the requested seven-page infographic redesign
+in `public/media/sample-report-v2/`. Its manifest is the single source for preview
+image paths, accessible summaries and the downloadable PDF. The earlier approved
+images in `public/media/sample-report/` remain unchanged and recoverable.
 Personal `/report-preview` reports continue using confirmed customer facts and
 `TaxComparisonReport` / `PaperReportLayout`; their tax calculations are unchanged.
 
@@ -15,43 +15,53 @@ and the calculated tax report use it, on screen and in print. The document uses
 `data-report-template="paper-seven-v1"` so an export test can detect regressions to
 an unrelated template.
 
-The public sample uses `sampleReportPages` in `lib/sampleReport.ts`, with the
-original fictional family example: 50억원 assets, 5억원 debt and 45억원 net assets.
-Those are illustrative family totals, not a calculated estate or tax base.
-The seven original image files are unchanged; the static audit pins their SHA256
-hashes. Every page has an accessible title, summary and sample/review status.
+The public sample imports `public/media/sample-report-v2/manifest.json` through
+`lib/sampleReport.ts`. It is a fictional first-inheritance comparison: one decedent
+owns 50억원 of assets with 5억원 of debt, and a spouse and three adult children
+inherit. Three spouse-allocation cases share the same asset base and confirmed
+sample assumptions. Page 1 shows the A/C estimated taxes and their difference;
+page 3 compares all three cases. The comparison does not claim a reduction in
+combined taxes across later inheritances or transfers.
 
-The image viewer uses one fixed 1050 × 1485 A4-shaped frame for all seven pages.
-Each image retains its intrinsic dimensions and uses `object-fit: contain`, so
-the small differences in source dimensions do not change the outer frame or crop
-content. Turning pages preserves the frame width, height and position. Fitting
-changes only when the available viewport changes. There is no continuous or
-nested document scrolling, and the PDF contains the same seven original images.
+Every page centers on a diagram or large numbers with concise explanation:
 
-A collapsed contents menu, previous/next SVG buttons outside the sheet,
+| Page | Main visual |
+| --- | --- |
+| 01 세금효과 요약 | Three large estimated-tax/effect amounts |
+| 02 가족과 자산 | Family structure and asset composition |
+| 03 세 가지 배분안 | Estimated-tax comparison of three allocations |
+| 04 배우자 배분안 | Flow of estate assets to spouse and children |
+| 05 세금 계산 근거 | Estate, deductions, tax base and estimated tax |
+| 06 생활비와 납부재원 | Cash allocation for tax and living funds |
+| 07 실행 준비 | Preparation, review and execution timeline |
+
+The static audit pins the earlier image hashes to prevent silent deletion or
+replacement, and verifies the new images against their generated manifest hashes.
+Every new page has an accessible title, summary and sample/review status.
+
+The image viewer retains one fixed 1050 × 1485 A4-shaped frame for all seven pages.
+Each 1400 × 1980 image uses `object-fit: contain`; turning pages preserves the
+frame width, height and position. Fitting changes only when the viewport changes.
+There is no continuous or nested document scrolling.
+
+A collapsed contents menu, large previous/next SVG buttons outside the sheet,
 arrow/Home/End keys and mobile swipes change the page. Expanded view recovers
 header space. Screen audits compare all seven pages, including a return to page 1,
-in normal, expanded and resized viewports; they also check image loading, containment,
+in normal, expanded and resized viewports; they also check loading, containment,
 minimum arrow/touch dimensions and preservation of customer session data.
-Printing reveals all seven 210 × 297 mm image sheets, even when page 3 is selected.
-The print gate checks image bounds and seven physical A4 PDF pages with their
-original image dimensions. Personal reports remain selectable HTML, and their
-existing calculation and text/PDF gates stay separate.
+
+`PDF 저장` directly downloads the matching authored seven-page PDF, which preserves
+selectable text and vector diagrams. The download gate verifies exact file bytes,
+seven A4 pages, selectable Korean text and the first-page estimated-tax amounts.
+Browser printing also remains supported: it reveals all seven 210 × 297 mm image
+sheets even when page 3 is selected. Its separate print gate checks image bounds
+and seven physical A4 pages with the expected image dimensions. Personal reports
+remain selectable HTML with their existing calculation and text/PDF gates.
 
 Korean serif glyphs are self-hosted through the pinned
 `@fontsource-variable/noto-serif-kr` package. A CSS fallback name alone previously
 allowed Korean headings to print in a sans-serif system fallback; the new audit
 requires the actual webfont to load before PDF export.
-
-| Page | Purpose |
-| --- | --- |
-| 01 | Core summary and comparison directions |
-| 02 | Confirmed family, assets and calculation conditions |
-| 03 | Options compared on the same basis |
-| 04 | Detailed explanation and evidence |
-| 05 | Other option details and evidence |
-| 06 | Cash, living funds and payment resources |
-| 07 | Preparation, next steps and applicable references |
 
 The tax renderer keeps the complete baseline calculation on page 04 and alternative
 calculations on page 05. Each comparison labels its actual baseline explicitly;
@@ -59,7 +69,7 @@ option letters are not a recommendation ranking.
 
 ## Data and print constraints
 
-- The tax engines and confirmation requirements are unchanged by this layout fix.
+- The tax engines and customer confirmation requirements are unchanged by the sample redesign.
 - A facts-only report remains a facts-only report. Unknown tax values, child ages,
   past gifts and usable cash are not turned into assumed values to fill the design.
 - Every personal page remains editable HTML with selectable PDF text.
@@ -93,3 +103,4 @@ Each report compares alternatives within the selected tax track. It does not pla
 taxes on unrelated asset bases into one cross-tax ranking. Supported calculator scopes
 remain documented in `tax-comparison-implementation.md`; this update changes the handoff,
 not the tax law or engine rules.
+

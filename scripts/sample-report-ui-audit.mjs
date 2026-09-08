@@ -1,22 +1,18 @@
 import assert from "node:assert/strict";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import path from "node:path";
 import { chromium } from "playwright";
 import { seededAssessment } from "./paper-report-audit.mjs";
 
-// CI browser gate for the original approved seven-image sample and its page viewer.
+// CI browser gate for the seven infographic pages and their matching PDF download.
 const baseURL = process.env.BASE_URL ?? "http://127.0.0.1:4173";
 const outputDir = path.resolve(process.env.UI_AUDIT_DIR ?? ".tmp/sample-report-audit");
 const assessmentKey = "as360.precheck.assessment.v1";
 const runFile = promisify(execFile);
-const expected = [
-  ["핵심 요약", 1052, 1494], ["가족·자산 현황", 1052, 1494],
-  ["세 가지 방향 비교", 1052, 1495], ["단계적 증여안", 1052, 1495],
-  ["매각·상속안", 1054, 1492], ["현금·생활재원", 1053, 1493],
-  ["실행 준비", 1052, 1495],
-].map(([title, width, height], index) => ({ title, width, height, src: `/media/sample-report/page-${String(index + 1).padStart(2, "0")}.webp` }));
+const manifest = JSON.parse(await readFile("public/media/sample-report-v2/manifest.json", "utf8"));
+const expected = manifest.pages.map(({ title, width, height, image }) => ({ title, width, height, src: image }));
 const observations = [];
 const errors = [];
 const apiRequests = [];
@@ -34,9 +30,9 @@ async function ready(page) {
 }
 
 async function assertSampleContent(page, label) {
-  assert.equal(await page.locator("[data-sample-image-report]").count(), 1, `${label}: missing original image report`);
+  assert.equal(await page.locator("[data-sample-image-report]").count(), 1, `${label}: missing infographic report`);
   assert.equal(await page.locator('[data-report-mode="tax-comparison"]').count(), 0, `${label}: unrelated computed report replaced the sample images`);
-  assert.equal(await page.locator("img[data-sample-page-image]").count(), 7, `${label}: expected seven original images`);
+  assert.equal(await page.locator("img[data-sample-page-image]").count(), 7, `${label}: expected seven infographics`);
   for (let number = 1; number <= 7; number++) {
     const sheet = page.locator(`[data-report-page="${number}"]`);
     const original = expected[number - 1];
@@ -52,7 +48,10 @@ async function assertSampleContent(page, label) {
     assert.deepEqual(intrinsic, { complete: true, width: original.width, height: original.height, objectFit: "contain" }, `${label}: page ${number} is broken, cropped or distorted`);
   }
   const text = await page.locator("[data-sample-image-report]").textContent();
-  for (const amount of ["50억 원", "5억 원", "45억 원"]) assert(text.includes(amount), `${label}: original family example lost ${amount}`);
+  for (const amount of ["1,200,375,000원", "774,060,000원", "426,315,000원"]) assert(text.includes(amount), `${label}: estimated tax effect lost ${amount}`);
+  const download = page.locator(`a[href="${manifest.pdf}"][download]`);
+  assert.equal(await download.getAttribute("href"), manifest.pdf, `${label}: PDF differs from the infographic report`);
+  assert(await download.getAttribute("download"), `${label}: PDF must download directly`);
 }
 
 async function assertViewerLayout(page, label) {
@@ -97,7 +96,7 @@ async function assertViewerLayout(page, label) {
         const icon = button.querySelector("svg")?.getBoundingClientRect();
         return { label: button.getAttribute("aria-label"), width: box.width, height: box.height, iconWidth: icon?.width ?? 0, iconHeight: icon?.height ?? 0 };
       }),
-      overlappingControls: [...document.querySelectorAll("button")].filter(button => {
+      overlappingControls: [...document.querySelectorAll("button, a")].filter(button => {
         const box = button.getBoundingClientRect();
         if (!box.width || !box.height) return false;
         return visible.some(sheet => {
@@ -117,9 +116,9 @@ async function assertViewerLayout(page, label) {
   assert(stage.left >= -2 && stage.right <= geometry.viewport.width + 2 && stage.top >= -2 && stage.bottom <= geometry.viewport.height + 2, `${label}: stage extends beyond viewport`);
   assert(sheet.left >= stage.left - 2 && sheet.right <= stage.right + 2 && sheet.top >= stage.top - 2 && sheet.bottom <= stage.bottom + 2, `${label}: selected page is clipped by its stage`);
   assert(sheet.scrollWidth <= sheet.clientWidth + 2 && sheet.scrollHeight <= sheet.clientHeight + 2, `${label}: selected page hides overflowing report content`);
-  assert.equal(sheet.image.objectFit, "contain", `${label}: selected original image is cropped or stretched`);
+  assert.equal(sheet.image.objectFit, "contain", `${label}: selected infographic is cropped or stretched`);
   assert(sheet.image.left >= sheet.left - 2 && sheet.image.right <= sheet.right + 2 && sheet.image.top >= sheet.top - 2 && sheet.image.bottom <= sheet.bottom + 2, `${label}: image extends outside the sheet`);
-  assert(sheet.image.contentWidth / sheet.width >= .98 && sheet.image.contentHeight / sheet.height >= .98, `${label}: original image no longer fills its uniform frame`);
+  assert(sheet.image.contentWidth / sheet.width >= .98 && sheet.image.contentHeight / sheet.height >= .98, `${label}: infographic no longer fills its uniform frame`);
   assert(Math.abs(sheet.width / sheet.height - 210 / 297) < .002, `${label}: uniform sheet is not A4-shaped`);
   assert(Math.max(sheet.width / stage.width, sheet.height / stage.height) >= .90, `${label}: selected page leaves unnecessary space instead of fitting its available area`);
   assert.deepEqual(geometry.overlappingControls, [], `${label}: a navigation button covers report content`);
@@ -197,7 +196,7 @@ async function assertSamplePrintBounds(page, outputPath) {
     || scrollWidth > clientWidth + 2 || scrollHeight > clientHeight + 2);
   const result = { status: pages.length === 7 && !failures.length ? "passed" : "failed", pages, failures };
   await writeFile(outputPath, `${JSON.stringify(result, null, 2)}\n`);
-  assert.equal(pages.length, 7, "Print must contain all seven original image sheets");
+  assert.equal(pages.length, 7, "Print must contain all seven infographic sheets");
   assert.deepEqual(failures, [], `Sample print images are clipped, resized or outside A4 bounds; see ${outputPath}`);
   return result;
 }
@@ -222,6 +221,13 @@ def images(stream, resources, depth=0):
             found.extend(images(obj,obj.get('/Resources',resources),depth+1))
     return found
 print(json.dumps({'pages':len(reader.pages),'sizes':[[float(p.mediabox.width),float(p.mediabox.height)] for p in reader.pages],'images':[images(p.get_contents(),p['/Resources']) for p in reader.pages]}))
+`;
+
+const pdfDownloadAudit = `
+import json,sys
+from pypdf import PdfReader
+reader=PdfReader(sys.argv[1])
+print(json.dumps({'pages':len(reader.pages),'sizes':[[float(p.mediabox.width),float(p.mediabox.height)] for p in reader.pages],'texts':[p.extract_text() or '' for p in reader.pages]}))
 `;
 
 const browser = await chromium.launch({ headless: true, channel: process.env.PLAYWRIGHT_CHANNEL || undefined });
@@ -325,14 +331,27 @@ try {
     assert.equal(await page.getByRole("link", { name: "홈으로", exact: true }).getAttribute("href"), "/");
 
     if (width === 1440) {
-      // Exercise the user's print control, then independently inspect its real PDF.
-      await page.evaluate(() => { window.__samplePrintCalls = 0; window.print = () => { window.__samplePrintCalls += 1; }; });
-      const printButton = page.getByRole("button", { name: "PDF 저장", exact: true });
-      await printButton.click();
-      await page.waitForFunction(() => window.__samplePrintCalls === 1);
+      // The public control downloads the authored PDF, with searchable text and vector diagrams.
+      const downloadLink = page.getByRole("link", { name: "PDF 저장", exact: true });
+      const [download] = await Promise.all([page.waitForEvent("download"), downloadLink.click()]);
+      const downloadPath = path.join(outputDir, "sample-report-download.pdf");
+      await download.saveAs(downloadPath);
+      assert.equal(await download.failure(), null, "Sample PDF download failed");
+      assert.deepEqual(await readFile(downloadPath), await readFile(`public${manifest.pdf}`), "Downloaded sample PDF differs from the authored report");
+      const downloadedResult = await runFile("python", ["-c", pdfDownloadAudit, downloadPath], { timeout: 15_000 });
+      const downloaded = JSON.parse(downloadedResult.stdout);
+      assert.equal(downloaded.pages, 7, "Downloaded report must contain seven physical pages");
+      assert(downloaded.sizes.every(([width, height]) => Math.abs(width - 595.28) < 1 && Math.abs(height - 841.89) < 1), "Every downloaded PDF page must be A4");
+      for (const [index, text] of downloaded.texts.entries()) {
+        assert(text.includes("샘플"), `Downloaded PDF page ${index + 1} needs selectable Korean sample text`);
+      }
+      for (const amount of ["12.00", "7.74", "4.26"]) assert(downloaded.texts[0].includes(amount), `Downloaded first page lost tax-effect value ${amount}`);
+      observations.push({ media: "download", pages: downloaded.pages, sizes: downloaded.sizes, pdf: downloadPath, filename: download.suggestedFilename() });
+
+      // Browser printing remains supported and must reveal all seven matching image pages.
       await page.emulateMedia({ media: "print" });
       assert(!await contents.isVisible(), "Contents navigation leaked into the PDF");
-      assert(!await printButton.isVisible(), "Print control leaked into the PDF");
+      assert(!await downloadLink.isVisible(), "Download control leaked into the PDF");
       assert.equal(await page.locator("[data-report-page]:visible").count(), 7, "Printing from page 3 must reveal all seven report pages");
       await assertSampleContent(page, "Sample print report");
       const bounds = await assertSamplePrintBounds(page, path.join(outputDir, "sample-report-print-bounds.json"));
@@ -344,7 +363,7 @@ try {
       assert(physical.sizes.every(([width, height]) => Math.abs(width - 595.28) < 1 && Math.abs(height - 841.89) < 1), "Every sample PDF page must be A4");
       for (const [index, images] of physical.images.entries()) {
         const original = expected[index];
-        assert.equal(images.length, 1, `Physical PDF page ${index + 1} must contain its single original report image`);
+        assert.equal(images.length, 1, `Physical PDF page ${index + 1} must contain its matching infographic`);
         const image = images[0];
         assert.equal(image.width, original.width, `Physical PDF page ${index + 1} changed image resolution`);
         assert.equal(image.height, original.height, `Physical PDF page ${index + 1} changed image resolution`);
@@ -361,7 +380,7 @@ try {
   assert.deepEqual(errors, [], "Sample report produced browser runtime errors");
   assert.deepEqual(apiRequests, [], "Opening a fictional sample unexpectedly invoked an API");
   await writeFile(path.join(outputDir, "sample-report-audit.json"), `${JSON.stringify({ status: "passed", baseURL, expected, observations, errors, apiRequests }, null, 2)}\n`);
-  console.log(`Sample report audit passed: seven original report images and accessible summaries, identical sheet geometry across all seven pages at 390/1440/1920px and in expanded/resized viewports, contained images, visible navigation arrows, touch/keyboard/contents navigation, unchanged customer storage, and seven unclipped A4 image PDF pages. Artifacts: ${outputDir}`);
+  console.log(`Sample report audit passed: seven infographics with accessible tax-effect summaries, identical sheet geometry at 390/1440/1920px and in expanded/resized viewports, contained images, visible arrows, touch/keyboard/contents navigation, unchanged customer storage, matching seven-page vector PDF download and seven unclipped A4 print pages. Artifacts: ${outputDir}`);
 } catch (error) {
   await writeFile(path.join(outputDir, "sample-report-audit.json"), `${JSON.stringify({ status: "failed", baseURL, expected, observations, errors, apiRequests, failure: error.stack || String(error) }, null, 2)}\n`);
   throw error;
