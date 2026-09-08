@@ -103,6 +103,9 @@ async function editField(page, label, text) {
 }
 
 async function confirmReport(page, label) {
+  // These existing cases verify the explicitly chosen facts-only report path.
+  // Calculated reports have their own all-track tax-comparison-ui-audit.
+  await page.locator("[data-tax-enable]").uncheck();
   await page.getByRole("checkbox", { name: confirmation, exact: true }).check();
   await page.getByRole("button", { name: finalButton, exact: true }).click();
   await page.waitForURL("**/report-preview?assessment_id=**");

@@ -9,6 +9,8 @@ import { buildAssessmentMetrics, formatAnswer, readAssessmentFromSession } from 
 import type { AssessmentLoadResult, AssessmentMetrics as Metrics, AssessmentSnapshot } from "@/lib/assessment";
 import { buildScenarioPlan, normalizeAssessmentSnapshot, SUPPORTED_TAX_LAW_REFERENCES } from "@/lib/phase2b";
 import type { ClientFacts, MoneyResult, Scenario, ScenarioPlan } from "@/lib/phase2b";
+import { TaxComparisonReport } from "./TaxComparisonReport";
+import { calculateTaxComparison, validateTaxComparisonInput } from "@/lib/tax-comparison";
 
 const trackLabels = {
   inheritance: "상속",
@@ -77,6 +79,17 @@ export function ReportV2Preview() {
   }
 
   const { snapshot, facts, metrics, plan } = viewModel;
+  if (snapshot.taxComparisonInput) {
+    const validatedInput = validateTaxComparisonInput(snapshot.taxComparisonInput);
+    const comparison = calculateTaxComparison(snapshot.taxComparisonInput);
+    if (!validatedInput?.confirmed) {
+      comparison.status = "needs_info";
+      comparison.baseline = null;
+      comparison.alternatives = [];
+      comparison.missing = ["계산 조건의 최종 확인이 필요합니다. 대화로 돌아가 확인해 주세요."];
+    }
+    return <TaxComparisonReport snapshot={{ ...snapshot, taxComparisonInput: validatedInput ?? undefined }} comparison={comparison} />;
+  }
   const {
     recommended: recommendedScenarios,
     liquidity_support: liquiditySupport

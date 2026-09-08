@@ -50,6 +50,9 @@ jobs:
       - name: Chat intake domain tests
         run: npm run test:chat
 
+      - name: Tax calculation and comparison tests
+        run: npm run test:tax
+
       - name: Production build
         run: npm run build
 
@@ -108,6 +111,12 @@ jobs:
           BASE_URL: http://127.0.0.1:4173
           UI_AUDIT_DIR: artifacts/ui-audit
         run: npm run test:chat-ui
+
+      - name: Audit tax comparison and seven-page reports
+        env:
+          BASE_URL: http://127.0.0.1:4173
+          UI_AUDIT_DIR: artifacts/ui-audit
+        run: npm run test:tax-ui
 
       - name: Run responsive UI audit and capture screenshots
         env:

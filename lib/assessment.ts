@@ -1,5 +1,6 @@
 import { parseKoreanMoneyToEok } from "./phase2b/money";
 import { calculateProgressiveTaxEok } from "./phase2b/tax";
+import type { TaxComparisonInput } from "./tax-comparison/types";
 
 export const ASSESSMENT_STORAGE_KEY = "as360.precheck.assessment.v1";
 export const PRECHECK_DRAFT_STORAGE_KEY = "as360.precheck.draft.v2";
@@ -27,6 +28,7 @@ export type AssessmentSnapshot = {
   created_at: string;
   review_focus: string[];
   answers: Record<string, AssessmentAnswer>;
+  taxComparisonInput?: TaxComparisonInput;
   conversation?: {
     mode?: "chat";
     messages: Array<{ role: "user" | "assistant"; text: string; created_at: string }>;

@@ -15,6 +15,8 @@
     "test:chat": "node scripts/run-chat-domain-tests.mjs",
     "test:chat-api": "node scripts/chat-api-audit.mjs",
     "test:chat-ui": "node scripts/chat-ui-audit.mjs",
+    "test:tax": "node scripts/run-tax-comparison-tests.mjs",
+    "test:tax-ui": "node scripts/tax-comparison-ui-audit.mjs",
     "test:smoke": "node scripts/pr2-smoke.mjs"
   },
   "dependencies": {

@@ -12,6 +12,10 @@ import type { ChatFieldKey, ChatMessage, ChatState } from "@/lib/chat/intake";
 import type { DiagnosisUIMessage } from "@/lib/chat/agent";
 import { extractLocalChatPatches } from "@/lib/chat/local";
 import { buildConfirmedAssessmentSnapshot } from "@/lib/chat/report";
+import { attachConfirmedTaxComparison, createTaxInputFromChat, taxFactsSignature } from "@/lib/chat/tax";
+import { calculateTaxComparison, validateTaxComparisonInput } from "@/lib/tax-comparison";
+import type { TaxComparisonInput } from "@/lib/tax-comparison";
+import { TaxComparisonEditor } from "./TaxComparisonEditor";
 import styles from "./DiagnosisChat.module.css";
 
 const DRAFT_KEY = "as360.chat.draft.v1";
@@ -51,6 +55,9 @@ export function DiagnosisChat() {
   const [summaryOpen, setSummaryOpen] = useState(false);
   const [showAllFields, setShowAllFields] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
+  const [taxEnabled, setTaxEnabled] = useState(true);
+  const [taxInput, setTaxInput] = useState<TaxComparisonInput>(() => createTaxInputFromChat(createChatState()));
+  const [taxSignature, setTaxSignature] = useState("");
   const [reviewError, setReviewError] = useState("");
   const [localNotice, setLocalNotice] = useState("");
   const [cancelled, setCancelled] = useState(false);
@@ -109,6 +116,11 @@ export function DiagnosisChat() {
         if (!restored) throw new Error("invalid-draft");
         commit(restored);
         setMessages(toUiMessages(restored));
+        const restoredTax = validateTaxComparisonInput(draft?.taxInput);
+        const signature = taxFactsSignature(restored);
+        setTaxInput(restoredTax && draft?.taxSignature === signature ? { ...restoredTax, confirmed: false } : createTaxInputFromChat(restored));
+        setTaxSignature(signature);
+        if (typeof draft?.taxEnabled === "boolean") setTaxEnabled(draft.taxEnabled);
         if (typeof draft?.input === "string" && draft.input.length <= 6000) setInput(draft.input);
         if (typeof draft?.reportId === "string" && /^AS360-[A-Za-z0-9-]+$/.test(draft.reportId)) reportId.current = draft.reportId;
       }
@@ -137,13 +149,23 @@ export function DiagnosisChat() {
 
   useEffect(() => {
     if (!hydrated) return;
-    volatileDraft = JSON.stringify({ version: 1, state, input, reportId: reportId.current });
+    volatileDraft = JSON.stringify({ version: 1, state, input, reportId: reportId.current, taxInput, taxEnabled, taxSignature });
     try {
       window.sessionStorage.setItem(DRAFT_KEY, volatileDraft);
     } catch {
       setStorageNotice("이 브라우저에서는 대화를 저장할 수 없어요. 새로고침하면 입력 내용이 사라질 수 있어요.");
     }
-  }, [hydrated, state, input]);
+  }, [hydrated, state, input, taxInput, taxEnabled, taxSignature]);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    const signature = taxFactsSignature(state);
+    if (signature !== taxSignature) {
+      setTaxInput(createTaxInputFromChat(state));
+      setTaxSignature(signature);
+      setConfirmed(false);
+    }
+  }, [hydrated, state, taxSignature]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -253,10 +275,17 @@ export function DiagnosisChat() {
     if (!confirmed || busy || reportOpening || editingIds.size > 0 || input.trim()) return;
     setReportOpening(true);
     try {
-      const snapshot = buildConfirmedAssessmentSnapshot(stateRef.current, { confirmed: true, confirmedAt: new Date().toISOString() });
+      const confirmedAt = new Date().toISOString();
+      let snapshot = buildConfirmedAssessmentSnapshot(stateRef.current, { confirmed: true, confirmedAt });
+      if (taxEnabled) {
+        if (taxSignature !== taxFactsSignature(stateRef.current)) throw new Error("대화가 바뀌었습니다. 새 계산 조건을 확인해 주세요.");
+        const preview = calculateTaxComparison(taxInput);
+        if (preview.status !== "ready") throw new Error(preview.missing.join(" ") || "세액 비교에 필요한 조건을 확인해 주세요.");
+        snapshot = attachConfirmedTaxComparison(snapshot, { ...taxInput, confirmed: true, confirmedAt });
+      }
       const persisted = saveAssessmentForSession(snapshot);
       reportId.current = snapshot.assessment_id;
-      volatileDraft = JSON.stringify({ version: 1, state: stateRef.current, input, reportId: snapshot.assessment_id });
+      volatileDraft = JSON.stringify({ version: 1, state: stateRef.current, input, reportId: snapshot.assessment_id, taxInput, taxEnabled, taxSignature });
       try { window.sessionStorage.setItem(DRAFT_KEY, volatileDraft); } catch { /* In-memory report remains available. */ }
       if (!persisted) setStorageNotice("현재 화면에서는 보고서를 볼 수 있지만 새로고침하면 다시 입력해야 합니다.");
       router.push(`/report-preview?assessment_id=${encodeURIComponent(snapshot.assessment_id)}&source=chat`);
@@ -290,6 +319,9 @@ export function DiagnosisChat() {
     setResetRequested(false);
     setSummaryOpen(false);
     setShowAllFields(false);
+    setTaxEnabled(true);
+    setTaxInput(createTaxInputFromChat(next));
+    setTaxSignature(taxFactsSignature(next));
     clearError();
     inputRef.current?.focus();
   }
@@ -355,13 +387,18 @@ export function DiagnosisChat() {
               <p className={styles.reviewIntro}>아래 내용은 아직 확인 전이에요. 다른 부분은 수정하거나 지워주세요. 모르는 내용은 ‘모름’으로 적어도 괜찮아요.</p>
               <div className={styles.reviewFields}>{CHAT_FIELD_KEYS.filter(key => state.facts[key] || missing.includes(key) || ["topic", "spouse", "children", "debt", "pastGifts", "goal"].includes(key)).map(renderField)}</div>
               <details className={styles.moreFields}><summary>그 밖의 항목 추가</summary><div>{CHAT_FIELD_KEYS.filter(key => !state.facts[key] && !missing.includes(key) && !["topic", "spouse", "children", "debt", "pastGifts", "goal"].includes(key)).map(renderField)}</div></details>
+              <label className={styles.confirmRow}><input type="checkbox" data-tax-enable checked={taxEnabled} onChange={event => { invalidateReport(); setTaxEnabled(event.target.checked); }} /><span>예상 세액 비교 포함</span></label>
+              {taxEnabled ? <TaxComparisonEditor value={taxInput} onChange={next => {
+                invalidateReport();
+                setTaxInput(next.track !== taxInput.track ? createTaxInputFromChat(stateRef.current, next.track) : { ...next, confirmed: false });
+              }} /> : <p className={styles.reportFootnote}>세액 비교를 제외하면 확인한 사실과 검토 후보만 보고서에 표시합니다.</p>}
               {missing.length > 0 && <p className={styles.requiredNotice}>보고서를 준비하려면 {missing.map(key => CHAT_FIELD_LABELS[key]).join(", ")}을 먼저 알려주세요. 자산 금액을 모르면 자산 종류와 ‘금액 모름’을 함께 적어주세요.</p>}
               {editingIds.size > 0 && <p className={styles.requiredNotice} role="status">수정 중인 항목을 저장하거나 취소한 뒤 확인해 주세요.</p>}
               {input.trim() && <p className={styles.requiredNotice} role="status">아직 보내지 않은 이야기가 있어요. 입력창의 내용을 보내거나 지운 뒤 확인해 주세요.</p>}
               <label className={styles.confirmRow}><input type="checkbox" checked={confirmed} onChange={event => setConfirmed(event.target.checked)} disabled={!readyForReview || busy || editingIds.size > 0 || Boolean(input.trim())} /><span>정리된 내용이 제가 전달한 상황과 맞는지 확인했습니다.</span></label>
               <button className={styles.reportButton} disabled={!confirmed || !readyForReview || busy || reportOpening || editingIds.size > 0 || Boolean(input.trim())} onClick={() => void openReport()}>{reportOpening ? "보고서를 준비하고 있어요…" : "확인한 내용으로 보고서 보기"}<ArrowRight size={19} aria-hidden="true" /></button>
               {reviewError && <p className={styles.requiredNotice} role="alert">{reviewError}</p>}
-              <p className={styles.reportFootnote}>입력한 사실을 바탕으로 상담 쟁점과 비교 후보를 정리해요.<br />확정 세액은 필요한 정보가 확인된 후 계산할 수 있어요.</p>
+              <p className={styles.reportFootnote}>확인한 계산 조건으로 예상 세액과 대안별 차이를 계산해요.<br />평가액·공제 요건 또는 가정이 바뀌면 결과도 달라집니다.</p>
             </div>}
 
             {hasNewText && stage === "chat" && <button className={styles.jumpButton} onClick={() => { if (transcriptRef.current) transcriptRef.current.scrollTop = transcriptRef.current.scrollHeight; shouldFollow.current = true; setHasNewText(false); }}><ArrowDown size={16} aria-hidden="true" /> 새 내용 보기</button>}

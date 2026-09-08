@@ -93,7 +93,7 @@ const ASSET_WORDS = {
   otherAssets: /기타\s*자산/g
 } as const;
 
-function parseAssetAmount(key: typeof CHAT_ASSET_KEYS[number], state: ChatState): ChatAmount {
+export function parseAssetAmount(key: typeof CHAT_ASSET_KEYS[number], state: ChatState): ChatAmount {
   const fact = state.facts[key]!;
   const remainder = fact.value.replace(ASSET_WORDS[key], "");
   if (CHAT_ASSET_KEYS.some((otherKey) => otherKey !== key && remainder.match(ASSET_WORDS[otherKey]))) return unresolved(fact.value, "다른 자산 종류의 금액이 함께 있어 중복 합산하지 않습니다.");

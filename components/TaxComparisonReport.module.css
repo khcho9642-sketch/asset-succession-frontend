@@ -1,0 +1,234 @@
+.book {
+  --tax-paper: #f8f4ea;
+  --tax-ink: #26221b;
+  --tax-soft: #6b6152;
+  --tax-brass: #7a6139;
+  --tax-seal: #b23a2a;
+  --tax-line: #d9d0bf;
+  width: 100%;
+  min-width: 0;
+  color: var(--tax-ink);
+  line-height: 1.7;
+}
+.book * { box-sizing: border-box; }
+.book h1, .book h2, .book h3, .book p { margin: 0; }
+.toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center; margin-bottom: 4px; }
+.toolbar p { color: var(--tax-brass); font-size: 14px; }
+.toolbar h1 { font-size: 28px; line-height: 1.45; margin-top: 6px; font-weight: 650; letter-spacing: -.045em; }
+.toolbar > div:last-child { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+.toolbar a { color: var(--tax-ink); font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+.toolbar button { background: var(--tax-seal); margin-top: 0; border-radius: 3px; }
+.toolbar a:focus-visible, .toolbar button:focus-visible { outline: 2px solid #1e5c8a; outline-offset: 3px; }
+.page { position: relative; min-width: 0; padding: 35px 38px 28px; border: 1px solid var(--tax-line); background: var(--tax-paper); box-shadow: 0 4px 15px #34230f06; }
+.pageHeader { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding-bottom: 16px; border-bottom: 1px solid var(--tax-line); color: var(--tax-soft); font-size: 12px; }
+.pageHeader .brand { color: var(--tax-ink); font-size: 20px; font-weight: 600; font-family: "Noto Serif KR", Georgia, serif; letter-spacing: -.04em; }
+.pageHeader b { margin-left: 13px; color: var(--tax-brass); font-weight: 500; white-space: nowrap; }
+.content { min-width: 0; }
+.pageTitle { padding-top: 28px; margin-bottom: 25px; }
+.pageTitle > p { color: var(--tax-brass); font-size: 13px; font-weight: 600; letter-spacing: .055em; }
+.pageTitle h2 { max-width: 760px; margin-top: 8px; font-family: "Noto Serif KR", Georgia, serif; font-size: 30px; font-weight: 600; line-height: 1.5; letter-spacing: -.045em; word-break: keep-all; }
+.pageFooter { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--tax-line); margin-top: 32px; padding-top: 12px; color: var(--tax-soft); font-size: 11px; }
+.reportMeta { display: flex; flex-wrap: wrap; gap: 6px 15px; margin-bottom: 20px; color: var(--tax-soft); font-size: 12px; overflow-wrap: anywhere; }
+.intro { font-size: 21px; font-weight: 600; line-height: 1.6; }
+.scope { margin-top: 13px !important; color: var(--tax-soft); font-size: 15px; line-height: 1.85; overflow-wrap: anywhere; }
+.metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; margin-top: 26px; }
+.metrics > div { min-width: 0; border: 1px solid var(--tax-line); padding: 22px 20px; background: #fdf9f0; }
+.metrics span { display: block; color: var(--tax-soft); font-size: 14px; }
+.metrics strong { display: block; font-size: clamp(22px, 2.8vw, 34px); line-height: 1.4; font-weight: 650; letter-spacing: -.035em; margin-top: 10px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.metrics small { display: block; margin-top: 8px; color: var(--tax-soft); font-size: 12px; }
+.delta { padding: 23px 24px; margin-top: 16px; border-left: 3px solid var(--tax-seal); background: #eee5d6; }
+.delta > span { display: block; font-size: 14px; }
+.delta > strong { display: block; color: var(--tax-seal); font-size: 30px; line-height: 1.4; margin-top: 7px; letter-spacing: -.04em; overflow-wrap: anywhere; }
+.delta > p { margin-top: 12px; color: var(--tax-soft); font-size: 13px; }
+.card { border: 1px solid var(--tax-line); padding: 20px; margin-top: 22px; min-width: 0; }
+.card h3 { margin-bottom: 11px; font-size: 17px; font-weight: 650; letter-spacing: -.025em; }
+.card p { color: var(--tax-soft); font-size: 14px; line-height: 1.85; }
+.accentCard { background: #eee5d6; }
+.bullets { list-style: disc; margin: 0; padding-left: 19px; color: var(--tax-soft); font-size: 14px; line-height: 1.85; }
+.bullets li + li { margin-top: 6px; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 26px; margin-top: 22px; }
+.facts > div { padding: 11px 0; border-bottom: 1px solid var(--tax-line); min-width: 0; }
+.facts dt { color: var(--tax-soft); font-size: 13px; line-height: 1.65; }
+.facts dd { margin: 4px 0 0; font-size: 16px; line-height: 1.7; font-weight: 550; overflow-wrap: anywhere; }
+.caseHeading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 20px; align-items: baseline; margin-bottom: 12px; }
+.caseHeading h3 { min-width: 0; font-size: 20px; line-height: 1.6; letter-spacing: -.03em; font-weight: 650; }
+.caseHeading strong { font-size: 25px; line-height: 1.5; letter-spacing: -.035em; overflow-wrap: anywhere; }
+.caseHeading h3 > span { font-family: Georgia, serif; color: var(--tax-brass); font-weight: 400; margin-right: 5px; }
+.formula { padding: 13px 15px; margin: 15px 0 18px !important; background: #eee7d9; color: var(--tax-soft); font-size: 13px; line-height: 1.8; }
+.calculation { margin: 0; }
+.calculation > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 8px 20px; padding: 10px 0; border-bottom: 1px solid var(--tax-line); }
+.calculation dt { min-width: 0; font-size: 14px; line-height: 1.65; overflow-wrap: anywhere; }
+.calculation dt small { display: block; color: var(--tax-soft); font-size: 12px; line-height: 1.7; margin-top: 3px; }
+.calculation dd { margin: 0; font-size: 16px; line-height: 1.6; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.taxTotals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 17px; margin-top: 18px; background: #eee7d9; }
+.taxTotals span { font-size: 12px; color: var(--tax-soft); }
+.taxTotals b { display: block; font-size: 17px; margin-top: 3px; color: var(--tax-ink); overflow-wrap: anywhere; }
+.roundingNote { margin-top: 9px !important; font-size: 12px; line-height: 1.75; color: var(--tax-soft); }
+.tableWrap { max-width: 100%; margin-top: 23px; overflow-x: auto; }
+.comparisonTable { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 13px; letter-spacing: -.02em; }
+.comparisonTable caption { text-align: left; padding-bottom: 12px; color: var(--tax-soft); font-size: 12px; }
+.comparisonTable th, .comparisonTable td { padding: 13px 10px; border: 1px solid var(--tax-line); vertical-align: top; overflow-wrap: anywhere; }
+.comparisonTable thead th { background: #e9e0d0; font-weight: 650; text-align: left; }
+.comparisonTable th:first-child { width: 23%; }
+.comparisonTable tbody th { color: var(--tax-soft); font-weight: 500; text-align: left; }
+.comparisonTable td { font-variant-numeric: tabular-nums; text-align: right; }
+.comparisonTable .totalRow { background: #eee6d7; font-weight: 700; }
+.comparisonTable .totalRow th { color: var(--tax-ink); font-weight: 650; }
+.differenceRow td { font-weight: 650; }
+.alternatives { display: grid; gap: 25px; }
+.alternative { border: 1px solid var(--tax-line); padding: 20px; }
+.caseDifference { color: var(--tax-soft); font-size: 14px; margin-bottom: 12px !important; }
+.compactCalculation > div { padding: 7px 0; }
+.compactCalculation dt { font-size: 13px; }
+.compactCalculation dd { font-size: 14px; }
+.alternativeSettlement { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px 17px; padding: 13px; margin-top: 14px; background: #eee7d9; }
+.alternativeSettlement dt { font-size: 12px; color: var(--tax-soft); }
+.alternativeSettlement dd { margin: 3px 0 0; font-size: 14px; line-height: 1.55; font-weight: 600; overflow-wrap: anywhere; }
+.alternativeAssumptions { margin-top: 15px; }
+.alternativeAssumptions .bullets { font-size: 13px; }
+.cashHeadline { padding: 18px 20px; background: #eee6d7; }
+.cashHeadline span { display: block; font-size: 13px; color: var(--tax-soft); }
+.cashHeadline strong { display: block; font-size: 24px; margin-top: 6px; line-height: 1.5; overflow-wrap: anywhere; }
+.cashRows { margin-top: 20px; }
+.cashRows > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 20px; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--tax-line); }
+.cashRows h3 { font-size: 15px; font-weight: 600; }
+.cashRows dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; margin: 0; }
+.cashRows dt { font-size: 12px; color: var(--tax-soft); }
+.cashRows dd { margin: 3px 0 0; font-size: 16px; font-weight: 600; overflow-wrap: anywhere; }
+.nextSteps { display: grid; gap: 17px; list-style: none; margin: 0; padding: 0; }
+.nextSteps li { display: grid; grid-template-columns: 35px minmax(0, 1fr); gap: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--tax-line); }
+.nextSteps li > span { font-family: Georgia, serif; font-size: 25px; line-height: 1.4; color: var(--tax-brass); }
+.nextSteps h3 { font-size: 17px; font-weight: 650; margin-bottom: 6px; }
+.nextSteps p { color: var(--tax-soft); font-size: 14px; line-height: 1.8; }
+.referenceHeading { display: flex; flex-wrap: wrap; gap: 10px 18px; justify-content: space-between; align-items: baseline; margin-top: 27px; }
+.referenceHeading h3 { font-size: 17px; font-weight: 650; }
+.referenceHeading p { color: var(--tax-soft); font-size: 12px; }
+.references { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 22px; list-style: none; padding: 0; margin: 14px 0 0; }
+.references li { min-width: 0; }
+.references a { color: var(--tax-ink); font-size: 13px; text-decoration: underline; text-underline-offset: 3px; line-height: 1.7; }
+.references span { display: block; font-size: 11px; color: var(--tax-soft); overflow-wrap: anywhere; line-height: 1.6; margin-top: 3px; }
+.endNote { margin-top: 24px; padding: 17px 19px; background: #eee6d7; }
+.endNote p { color: var(--tax-soft); font-size: 13px; line-height: 1.85; }
+.endNote strong { display: block; font-size: 14px; font-weight: 600; margin-top: 10px; }
+.pending { padding: 21px; margin-top: 22px; background: #eee6d7; border: 1px solid var(--tax-line); }
+.pending h3 { font-size: 17px; font-weight: 650; }
+.pending ul { list-style: disc; padding-left: 20px; margin: 13px 0; color: var(--tax-soft); font-size: 14px; line-height: 1.85; }
+.pending p { color: var(--tax-soft); font-size: 14px; line-height: 1.85; }
+@media screen and (max-width: 640px) {
+  .toolbar h1 { font-size: 23px; }
+  .page { padding: 21px 18px; }
+  .pageHeader { font-size: 10px; gap: 10px; }
+  .pageHeader .brand { font-size: 17px; flex-shrink: 0; }
+  .pageHeader b { display: block; margin: 3px 0 0; text-align: right; }
+  .pageTitle { padding-top: 22px; margin-bottom: 21px; }
+  .pageTitle h2 { font-size: 25px; }
+  .intro { font-size: 19px; }
+  .scope { font-size: 14px; }
+  .metrics { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .metrics > div { padding: 18px; }
+  .metrics strong { font-size: 29px; }
+  .delta { padding: 18px; }
+  .delta > strong { font-size: 26px; }
+  .card { padding: 16px; }
+  .facts { grid-template-columns: minmax(0, 1fr); }
+  .caseHeading strong { font-size: 23px; }
+  .calculation > div { grid-template-columns: minmax(0, 1fr) minmax(85px, auto); gap: 8px 12px; }
+  .calculation dt { font-size: 13px; }
+  .calculation dd { font-size: 14px; }
+  .taxTotals { grid-template-columns: minmax(0, 1fr); gap: 13px; }
+  .taxTotals span { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 7px 12px; }
+  .taxTotals b { font-size: 16px; }
+  .comparisonTable { min-width: 560px; }
+  .alternative { padding: 15px; }
+  .cashHeadline strong { font-size: 22px; }
+  .cashRows > div { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .references { grid-template-columns: minmax(0, 1fr); }
+  .pageFooter { font-size: 10px; gap: 14px; }
+}
+@media print {
+  .book { gap: 0; font-size: 12px; line-height: 1.6; }
+  .toolbar { display: none !important; }
+  .book .page { position: relative; width: 210mm; height: 297mm; margin: 0; padding: 11mm !important; border: 0; box-shadow: none; background: #fff; font-size: 12px; break-after: page; page-break-after: always; overflow: visible; }
+  .book .page:last-child { break-after: auto; page-break-after: auto; }
+  .pageHeader { padding-bottom: 3mm; font-size: 11px; }
+  .pageHeader .brand { font-size: 17px; }
+  .pageTitle { padding-top: 5mm; margin-bottom: 5mm; }
+  .pageTitle > p { font-size: 11px; }
+  .pageTitle h2 { font-size: 24px; line-height: 1.4; margin-top: 2mm; }
+  .pageFooter { margin-top: 5mm; padding-top: 2mm; font-size: 11px; }
+  .reportMeta { margin-bottom: 4mm; font-size: 11px; }
+  .intro { font-size: 18px; }
+  .scope { font-size: 12px; line-height: 1.65; margin-top: 3mm !important; }
+  .metrics { margin-top: 6mm; gap: 4mm; }
+  .metrics > div { padding: 5mm; }
+  .metrics span { font-size: 12px; }
+  .metrics strong { font-size: 27px; margin-top: 3mm; }
+  .metrics small { font-size: 11px; }
+  .delta { padding: 5mm; margin-top: 4mm; }
+  .delta > span { font-size: 12px; }
+  .delta > strong { font-size: 27px; }
+  .delta > p { font-size: 11px; line-height: 1.7; }
+  .card { margin-top: 4mm; padding: 4mm; }
+  .card h3 { margin-bottom: 2mm; font-size: 14px; }
+  .card p, .bullets { font-size: 12px; line-height: 1.65; }
+  .bullets li + li { margin-top: 1.5mm; }
+  .book .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 7mm; margin-top: 4mm; }
+  .facts > div { padding: 2mm 0; }
+  .facts dt { font-size: 11px; line-height: 1.55; }
+  .facts dd { font-size: 12px; line-height: 1.55; margin-top: 1mm; }
+  .caseHeading { margin-bottom: 2mm; gap: 2mm 5mm; }
+  .caseHeading h3 { font-size: 16px; }
+  .caseHeading strong { font-size: 21px; }
+  .formula { font-size: 11px; padding: 3mm; margin: 3mm 0 !important; }
+  .book .calculation { gap: 0; }
+  .calculation > div { padding: 2mm 0; gap: 1mm 5mm; }
+  .calculation dt { font-size: 12px; line-height: 1.5; }
+  .calculation dt small { font-size: 11px; line-height: 1.5; margin-top: .5mm; }
+  .calculation dd { font-size: 13px; line-height: 1.5; }
+  .taxTotals { padding: 3mm 4mm; gap: 3mm; margin-top: 3mm; }
+  .taxTotals span { font-size: 11px; }
+  .taxTotals b { font-size: 14px; }
+  .roundingNote { margin-top: 2mm !important; font-size: 11px; line-height: 1.6; }
+  .tableWrap { overflow: visible; margin-top: 5mm; }
+  .comparisonTable { width: 100%; min-width: 0; font-size: 12px; }
+  .comparisonTable caption { font-size: 11px; padding-bottom: 3mm; }
+  .comparisonTable th, .comparisonTable td { padding: 3mm 2mm; }
+  .alternatives { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4mm; align-items: start; }
+  .alternatives:has(> :only-child) { grid-template-columns: minmax(0, 1fr); }
+  .alternative { padding: 3.5mm; }
+  .caseDifference { font-size: 11px; margin-bottom: 2mm !important; }
+  .compactCalculation > div { padding: 1.2mm 0; }
+  .compactCalculation dt, .compactCalculation dd { font-size: 11.5px; line-height: 1.4; }
+  .compactCalculation dt small { font-size: 11px; line-height: 1.4; margin-top: 0; }
+  .book .alternativeSettlement { gap: 2mm 3mm; padding: 2.5mm; margin-top: 2mm; }
+  .alternativeSettlement dt { font-size: 11px; line-height: 1.45; }
+  .alternativeSettlement dd { font-size: 11.5px; line-height: 1.45; margin-top: .5mm; }
+  .alternativeAssumptions { margin-top: 2mm; }
+  .alternativeAssumptions .bullets { font-size: 11px; line-height: 1.5; }
+  .alternativeAssumptions .bullets li + li { margin-top: 1mm; }
+  .cashHeadline { padding: 4mm; }
+  .cashHeadline span { font-size: 11px; }
+  .cashHeadline strong { font-size: 21px; margin-top: 2mm; }
+  .cashRows { margin-top: 3mm; }
+  .cashRows > div { padding: 3mm 0; gap: 5mm; }
+  .cashRows h3 { font-size: 13px; }
+  .cashRows dt { font-size: 11px; }
+  .cashRows dd { font-size: 13px; }
+  .nextSteps { gap: 3mm; }
+  .nextSteps li { grid-template-columns: 8mm minmax(0, 1fr); gap: 3mm; padding-bottom: 3mm; }
+  .nextSteps li > span { font-size: 21px; }
+  .nextSteps h3 { font-size: 14px; margin-bottom: 1mm; }
+  .nextSteps p { font-size: 12px; line-height: 1.65; }
+  .referenceHeading { margin-top: 5mm; gap: 2mm 4mm; }
+  .referenceHeading h3 { font-size: 14px; }
+  .referenceHeading p { font-size: 11px; }
+  .references { gap: 3mm 5mm; margin-top: 3mm; }
+  .references a { font-size: 11.5px; line-height: 1.55; }
+  .references span { font-size: 11px; line-height: 1.4; margin-top: 1mm; }
+  .endNote { margin-top: 4mm; padding: 3mm 4mm; }
+  .endNote p { font-size: 11.5px; line-height: 1.6; }
+  .endNote strong { font-size: 12px; margin-top: 2mm; }
+  .pending { padding: 4mm; margin-top: 4mm; }
+  .pending h3 { font-size: 14px; }
+  .pending ul, .pending p { font-size: 12px; line-height: 1.65; }
+}
