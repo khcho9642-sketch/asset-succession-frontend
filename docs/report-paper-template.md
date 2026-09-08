@@ -24,7 +24,12 @@ The sample is selectable HTML displayed one page at a time, fitted to the availa
 viewport with no continuous or nested document scrolling. A collapsed contents
 menu, previous/next buttons outside the sheet, arrow/Home/End keys and mobile
 swipes change the page. Expanded view recovers header space without cropping the
-report. Every selected page is measured again on selection, font load and resize.
+report. All seven pages share one canvas size, measured from their complete content
+after fonts load. Turning pages preserves the paper's width, height, position and
+text scale; the fit is recalculated only when the available viewport or fonts change.
+The previous/next controls use visible SVG arrows outside the paper. Screen audits
+compare all seven pages and a return to the first page in normal, expanded and
+resized viewports, alongside minimum arrow and touch-target dimensions.
 Printing always restores all seven full-size A4 pages, even when page 3 is selected.
 The old WebP files are no longer the sample route's content; personal reports
 continue using confirmed customer data and their own document reading layout.

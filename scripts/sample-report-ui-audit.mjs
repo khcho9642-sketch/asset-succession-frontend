@@ -60,6 +60,10 @@ async function assertViewerLayout(page, label) {
       }).map(element => element.tagName.toLowerCase()),
       visible: visible.map(sheet => {
         const box = sheet.getBoundingClientRect();
+        const brand = sheet.querySelector("header > span:first-child");
+        const brandRange = document.createRange();
+        brandRange.selectNodeContents(brand);
+        const brandBox = brandRange.getBoundingClientRect();
         const clippedText = [];
         const walker = document.createTreeWalker(sheet, NodeFilter.SHOW_TEXT);
         while (walker.nextNode()) {
@@ -77,8 +81,14 @@ async function assertViewerLayout(page, label) {
           top: box.top, bottom: box.bottom, width: box.width, height: box.height,
           clientWidth: sheet.clientWidth, scrollWidth: sheet.scrollWidth,
           clientHeight: sheet.clientHeight, scrollHeight: sheet.scrollHeight,
+          brandText: { text: brand.textContent, width: brandBox.width, height: brandBox.height },
           clippedText,
         };
+      }),
+      arrows: [...document.querySelectorAll('button[aria-label="이전 페이지"], button[aria-label="다음 페이지"]')].map(button => {
+        const box = button.getBoundingClientRect();
+        const icon = button.querySelector("svg")?.getBoundingClientRect();
+        return { label: button.getAttribute("aria-label"), width: box.width, height: box.height, iconWidth: icon?.width ?? 0, iconHeight: icon?.height ?? 0 };
       }),
       overlappingControls: [...document.querySelectorAll("button")].filter(button => {
         const box = button.getBoundingClientRect();
@@ -103,7 +113,24 @@ async function assertViewerLayout(page, label) {
   assert.deepEqual(sheet.clippedText, [], `${label}: report text extends outside the selected sheet`);
   assert(Math.max(sheet.width / stage.width, sheet.height / stage.height) >= .90, `${label}: selected page leaves unnecessary space instead of fitting its available area`);
   assert.deepEqual(geometry.overlappingControls, [], `${label}: a navigation button covers report content`);
+  assert.equal(geometry.arrows.length, 2, `${label}: both page navigation arrows must remain available`);
+  for (const arrow of geometry.arrows) {
+    assert(arrow.width >= 52 && arrow.height >= 52, `${label}: ${arrow.label} has a touch target smaller than 52px`);
+    assert(arrow.iconWidth >= 28 && arrow.iconHeight >= 28, `${label}: ${arrow.label} arrow is too small to see`);
+  }
   return { label, ...geometry };
+}
+
+function assertSameSheetGeometry(reference, actual) {
+  const first = reference.visible[0];
+  const selected = actual.visible[0];
+  for (const dimension of ["width", "height", "left", "top"]) {
+    assert(Math.abs(selected[dimension] - first[dimension]) <= 1, `${actual.label}: sheet ${dimension} changed from ${first[dimension]} to ${selected[dimension]} when turning pages`);
+  }
+  assert.equal(selected.brandText.text, first.brandText.text, `${actual.label}: shared text sample changed`);
+  for (const dimension of ["width", "height"]) {
+    assert(Math.abs(selected.brandText[dimension] - first.brandText[dimension]) <= 1, `${actual.label}: rendered text ${dimension} changed when turning pages`);
+  }
 }
 
 async function waitForPage(page, number) {
@@ -127,6 +154,23 @@ async function selectChapter(page, number) {
   await contents.getByRole("button", { name: new RegExp(`^0?${number}\\s`) }).click();
   await waitForPage(page, number);
   assert(!await contents.isVisible(), "Selecting a chapter must close the contents overlay");
+}
+
+async function assertUniformPageSequence(page, label) {
+  await selectChapter(page, 1);
+  const first = await assertViewerLayout(page, `${label} page 1`);
+  observations.push(first);
+  for (let number = 2; number <= 7; number++) {
+    await page.getByRole("button", { name: "다음 페이지", exact: true }).click();
+    await waitForPage(page, number);
+    const selected = await assertViewerLayout(page, `${label} page ${number}`);
+    assertSameSheetGeometry(first, selected);
+    observations.push(selected);
+  }
+  await selectChapter(page, 1);
+  const returned = await assertViewerLayout(page, `${label} return to page 1`);
+  assertSameSheetGeometry(first, returned);
+  observations.push(returned);
 }
 
 const browser = await chromium.launch({ headless: true, channel: process.env.PLAYWRIGHT_CHANNEL || undefined });
@@ -154,7 +198,8 @@ try {
     await assertSampleContent(page, `${width}px direct visit`);
     assert.deepEqual(await storage(page), initialStorage, `${width}px: opening the sample changed assessment storage`);
     await waitForPage(page, 1);
-    observations.push({ ...await assertViewerLayout(page, `${width}px screen`), template });
+    const first = await assertViewerLayout(page, `${width}px screen`);
+    observations.push({ ...first, template });
     assert.equal(await page.locator('[data-nextjs-dialog], .vite-error-overlay').count(), 0, "Framework error overlay is visible");
 
     const contents = page.getByRole("navigation", { name: "보고서 목차", exact: true });
@@ -166,12 +211,17 @@ try {
     for (let number = 2; number <= 7; number++) {
       await next.click();
       await waitForPage(page, number);
-      observations.push(await assertViewerLayout(page, `${width}px page ${number}`));
+      const selected = await assertViewerLayout(page, `${width}px page ${number}`);
+      assertSameSheetGeometry(first, selected);
+      observations.push(selected);
     }
     assert(await next.isDisabled(), "Next button should be disabled at the last page");
     await previous.click();
     await waitForPage(page, 6);
     for (const number of [7, 3, 1]) await selectChapter(page, number);
+    const returned = await assertViewerLayout(page, `${width}px return to page 1`);
+    assertSameSheetGeometry(first, returned);
+    observations.push(returned);
     const viewer = page.locator("[data-sample-viewer]");
     await viewer.focus();
     for (const [key, number] of [["End", 7], ["ArrowLeft", 6], ["Home", 1], ["ArrowRight", 2]]) {
@@ -200,14 +250,21 @@ try {
     assert(expanded.visible[0].width >= normal.visible[0].width - 2 && expanded.visible[0].height >= normal.visible[0].height - 2, "Expanded mode must not shrink the report");
     observations.push(expanded);
     await page.screenshot({ path: path.join(outputDir, `sample-report-${width}-expanded.png`) });
+    await assertUniformPageSequence(page, `${width}px expanded`);
+    await selectChapter(page, 3);
     await page.getByRole("button", { name: "기본 화면", exact: true }).click();
     await waitForPage(page, 3);
     const resized = { width: width === 390 ? 844 : 1024, height: width === 390 ? 390 : 768 };
     await page.setViewportSize(resized);
     await waitForPage(page, 3);
     observations.push(await assertViewerLayout(page, `${width}px resized to ${resized.width}x${resized.height}`));
+    await assertUniformPageSequence(page, `${width}px resized to ${resized.width}x${resized.height}`);
+    await selectChapter(page, 3);
     await page.setViewportSize({ width, height });
     await waitForPage(page, 3);
+    const restored = await assertViewerLayout(page, `${width}px restored viewport`);
+    assertSameSheetGeometry(normal, restored);
+    observations.push(restored);
     // Wheel input must not turn the document into a scrolling report or change the page.
     await page.mouse.move(width / 2, height / 2);
     await page.mouse.wheel(0, 600);
@@ -249,7 +306,7 @@ try {
   assert.deepEqual(errors, [], "Sample report produced browser runtime errors");
   assert.deepEqual(apiRequests, [], "Opening a fictional sample unexpectedly invoked an API");
   await writeFile(path.join(outputDir, "sample-report-audit.json"), `${JSON.stringify({ status: "passed", baseURL, expected, observations, errors, apiRequests }, null, 2)}\n`);
-  console.log(`Sample report audit passed: shared paper template, seven actual report pages, exact tax totals, one-page fitted viewing at 390/1440/1920px, touch/keyboard/contents navigation, expanded mode and viewport resizing, unchanged customer storage, and seven unclipped A4 PDF pages. Artifacts: ${outputDir}`);
+  console.log(`Sample report audit passed: shared paper template, seven actual report pages, exact tax totals, identical sheet geometry and text scale across all seven pages at 390/1440/1920px and in expanded/resized viewports, visible navigation arrows, touch/keyboard/contents navigation, unchanged customer storage, and seven unclipped A4 PDF pages. Artifacts: ${outputDir}`);
 } catch (error) {
   await writeFile(path.join(outputDir, "sample-report-audit.json"), `${JSON.stringify({ status: "failed", baseURL, expected, observations, errors, apiRequests, failure: error.stack || String(error) }, null, 2)}\n`);
   throw error;

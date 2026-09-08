@@ -108,6 +108,15 @@ jobs:
           UI_AUDIT_DIR: artifacts/ui-audit
         run: node scripts/sample-report-ui-audit.mjs
 
+      - name: Upload sample viewer review
+        if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample-viewer-${{ github.sha }}
+          path: artifacts/ui-audit/sample-report-*
+          retention-days: 14
+          if-no-files-found: warn
+
       - name: Audit chat API validation without a provider key
         env:
           BASE_URL: http://127.0.0.1:4173

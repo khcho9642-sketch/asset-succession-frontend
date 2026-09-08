@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { TaxComparisonReport } from "@/components/TaxComparisonReport";
 import { createSampleTaxReport, sampleTaxReportSections } from "@/lib/sampleTaxReport";
 import styles from "./SampleReport.module.css";
@@ -12,7 +12,7 @@ export function SampleReportViewer() {
   const [currentPage, setCurrentPage] = useState(1);
   const [contentsOpen, setContentsOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  const [fit, setFit] = useState({ page: 0, scale: 1 });
+  const [fit, setFit] = useState({ height: 0, scale: 1 });
   const viewerRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const documentRef = useRef<HTMLDivElement>(null);
@@ -21,24 +21,41 @@ export function SampleReportViewer() {
 
   useLayoutEffect(() => {
     const stage = stageRef.current;
-    const sheet = documentRef.current?.querySelector<HTMLElement>(`[data-report-page="${currentPage}"]`);
-    if (!stage || !sheet) return;
+    const report = documentRef.current;
+    const sheets = report?.querySelectorAll<HTMLElement>("[data-report-page]");
+    if (!stage || !report || !sheets?.length) return;
     let disposed = false;
-    function fitPage() {
-      if (disposed || !stage || !sheet || !stage.clientWidth || !stage.clientHeight) return;
-      // Use untransformed dimensions; repeated fitting must not compound the scale.
-      const scale = Math.min(stage.clientWidth / sheet.offsetWidth, stage.clientHeight / sheet.offsetHeight);
+    let sheetWidth = 0;
+    let sheetHeight = 0;
+    function fitBook() {
+      if (disposed || !stage || !sheetWidth || !sheetHeight || !stage.clientWidth || !stage.clientHeight || matchMedia("print").matches) return;
+      const scale = Math.min(stage.clientWidth / sheetWidth, stage.clientHeight / sheetHeight);
       if (!Number.isFinite(scale) || scale <= 0) return;
-      setFit(previous => previous.page === currentPage && Math.abs(previous.scale - scale) < .0001
-        ? previous : { page: currentPage, scale });
+      setFit(previous => previous.height === sheetHeight && Math.abs(previous.scale - scale) < .0001
+        ? previous : { height: sheetHeight, scale });
     }
-    fitPage();
-    const observer = new ResizeObserver(fitPage);
+
+    function measureBook() {
+      if (disposed || !report || !sheets?.length || matchMedia("print").matches) return;
+      // Measure every sheet at its natural height before fixing one common canvas.
+      // Restore the screen state synchronously, before the browser can paint it.
+      report.setAttribute("data-sample-measuring", "true");
+      try {
+        sheetWidth = Math.max(...Array.from(sheets, sheet => sheet.offsetWidth));
+        sheetHeight = Math.max(...Array.from(sheets, sheet => sheet.offsetHeight));
+      } finally {
+        report.removeAttribute("data-sample-measuring");
+      }
+      fitBook();
+    }
+
+    measureBook();
+    const observer = new ResizeObserver(fitBook);
     observer.observe(stage);
-    observer.observe(sheet);
-    void document.fonts.ready.then(fitPage);
-    return () => { disposed = true; observer.disconnect(); };
-  }, [currentPage]);
+    void document.fonts.ready.then(measureBook);
+    document.fonts.addEventListener("loadingdone", measureBook);
+    return () => { disposed = true; observer.disconnect(); document.fonts.removeEventListener("loadingdone", measureBook); };
+  }, [expanded]);
 
   function goToPage(number: number, focusViewer = false) {
     setCurrentPage(Math.min(PAGE_COUNT, Math.max(1, number)));
@@ -86,7 +103,9 @@ export function SampleReportViewer() {
       </div>
       {contentsOpen && <button type="button" className={styles.contentsBackdrop} aria-label="목차 닫기" onClick={() => { setContentsOpen(false); contentsButtonRef.current?.focus({ preventScroll: true }); }} />}
       <div className={styles.readingArea}>
-        <button type="button" className={styles.previous} aria-label="이전 페이지" disabled={currentPage === 1} onClick={() => goToPage(currentPage - 1)}><span aria-hidden="true">‹</span></button>
+        <button type="button" className={styles.previous} aria-label="이전 페이지" disabled={currentPage === 1} onClick={() => goToPage(currentPage - 1)}>
+          <svg data-page-arrow width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><path d="m15 5-7 7 7 7" /></svg>
+        </button>
         <div ref={stageRef} className={styles.stage} data-sample-stage
           onTouchStart={event => { const touch = event.touches[0]; touchStart.current = touch ? { x: touch.clientX, y: touch.clientY } : null; }}
           onTouchCancel={() => { touchStart.current = null; }}
@@ -99,12 +118,14 @@ export function SampleReportViewer() {
             const dy = touch.clientY - start.y;
             if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) goToPage(currentPage + (dx < 0 ? 1 : -1));
           }}>
-          <div ref={documentRef} className={styles.document} data-sample-document data-fitted={fit.page === currentPage ? "true" : "false"}
-            style={{ transform: `translate(-50%, -50%) scale(${fit.scale})` }}>
+          <div ref={documentRef} className={styles.document} data-sample-document data-fitted={fit.height > 0 ? "true" : "false"}
+            style={{ "--sample-sheet-height": `${fit.height}px`, transform: `translate(-50%, -50%) scale(${fit.scale})` } as CSSProperties}>
             <TaxComparisonReport snapshot={snapshot} comparison={comparison} sample />
           </div>
         </div>
-        <button type="button" className={styles.next} aria-label="다음 페이지" disabled={currentPage === PAGE_COUNT} onClick={() => goToPage(currentPage + 1)}><span aria-hidden="true">›</span></button>
+        <button type="button" className={styles.next} aria-label="다음 페이지" disabled={currentPage === PAGE_COUNT} onClick={() => goToPage(currentPage + 1)}>
+          <svg data-page-arrow width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7" /></svg>
+        </button>
       </div>
     </section>
   );

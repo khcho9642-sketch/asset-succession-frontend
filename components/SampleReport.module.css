@@ -50,9 +50,10 @@
 .contentsPanel li button[aria-current="page"] { border-color: var(--sample-line); background: var(--sample-paper); font-weight: 700; }
 .contentsPanel li button:hover { background: var(--sample-paper); }
 .contentsBackdrop { position: absolute; z-index: 8; inset: 44px 0 0; border: 0; background: #26221b0d; }
-.readingArea { display: grid; grid-template-columns: 48px minmax(0, 1fr) 48px; gap: 12px; padding: 8px 16px; flex: 1; min-height: 0; min-width: 0; }
+.readingArea { display: grid; grid-template-columns: 64px minmax(0, 1fr) 64px; gap: 12px; padding: 8px 16px; flex: 1; min-height: 0; min-width: 0; }
 .stage { position: relative; min-width: 0; min-height: 0; overflow: clip; touch-action: pan-y pinch-zoom; }
-.previous, .next { align-self: center; display: grid; place-items: center; width: 48px; height: 56px; padding: 0; border: 1px solid var(--sample-line); border-radius: 4px; background: var(--sample-raised); color: var(--sample-ink); font-size: 34px; line-height: 1; }
+.previous, .next { align-self: center; display: grid; place-items: center; width: 64px; height: 80px; padding: 0; border: 1px solid var(--sample-line); border-radius: 6px; background: var(--sample-raised); color: var(--sample-ink); }
+.previous svg, .next svg { display: block; width: 36px; height: 36px; flex-shrink: 0; }
 .previous:hover:not(:disabled), .next:hover:not(:disabled) { border-color: var(--sample-ink); }
 .previous:disabled, .next:disabled { opacity: .3; cursor: default; }
 .document { position: absolute; top: 50%; left: 50%; width: 940px; min-width: 940px; transform-origin: center center; }
@@ -63,7 +64,7 @@
 @media screen {
   .document :global(.report-book) { display: block; margin: 0; gap: 0; }
   .document :global(.report-book) > div:first-child { display: none; }
-  .viewer .document :global(.report-page) { display: none; }
+  .viewer .document :global(.report-page) { display: none; height: var(--sample-sheet-height); }
   .viewer[data-current-page="1"] .document :global([data-report-page="1"]),
   .viewer[data-current-page="2"] .document :global([data-report-page="2"]),
   .viewer[data-current-page="3"] .document :global([data-report-page="3"]),
@@ -71,6 +72,7 @@
   .viewer[data-current-page="5"] .document :global([data-report-page="5"]),
   .viewer[data-current-page="6"] .document :global([data-report-page="6"]),
   .viewer[data-current-page="7"] .document :global([data-report-page="7"]) { display: flex; }
+  .viewer .document[data-sample-measuring="true"] :global(.report-page) { display: flex; position: absolute; top: 0; left: 0; height: auto; min-height: 0; visibility: hidden; }
 }
 @media (max-width: 640px) {
   .samplePage .header { padding: 4px 12px; gap: 10px; }
@@ -82,9 +84,10 @@
   .toolButton { min-height: 44px; padding: 4px 8px; font-size: .8125rem; }
   .pageIndicator { gap: 6px; font-size: .8125rem; }
   .pageIndicator strong { display: none; }
-  .readingArea { grid-template-columns: 1fr 1fr; grid-template-rows: minmax(0, 1fr) 44px; padding: 6px; gap: 6px; }
+  .readingArea { grid-template-columns: 1fr 1fr; grid-template-rows: minmax(0, 1fr) 52px; padding: 6px; gap: 6px; }
   .stage { grid-column: 1 / -1; grid-row: 1; }
-  .previous, .next { width: 60px; height: 44px; font-size: 29px; grid-row: 2; }
+  .previous, .next { width: 64px; height: 52px; grid-row: 2; }
+  .previous svg, .next svg { width: 32px; height: 32px; }
   .previous { justify-self: end; }
   .next { justify-self: start; }
 }
