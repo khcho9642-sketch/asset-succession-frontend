@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { ordinaryTax, parseAmountWon } from "../lib/tax-comparison/common";
 import { calculateTaxComparison, validateTaxComparisonInput } from "../lib/tax-comparison";
-import { attachConfirmedTaxComparison, createTaxInputFromChat } from "../lib/chat/tax";
+import { attachConfirmedTaxComparison, buildConfirmedTaxAssessmentSnapshot, createTaxInputFromChat } from "../lib/chat/tax";
 import { createChatState, applyChatPatches } from "../lib/chat/intake";
 import { createDemoAssessmentSnapshot } from "../lib/assessment";
 import type { TaxComparisonInput } from "../lib/tax-comparison/types";
@@ -111,4 +111,38 @@ test("explicit chat topics choose new forms without inferring price, heir alloca
     assert.equal(input.values.standardCase, undefined);
     assert.equal(input.values.resident, undefined);
   }
+});
+
+test("total children are not silently treated as adult heirs", () => {
+  const message = { id: "age-source", role: "user" as const, text: "자녀 3명, 성년 자녀 2명", created_at: "2026-09-08T09:00:00Z" };
+  const state = applyChatPatches({ ...createChatState(), messages: [message] }, [{ key: "children", value: "자녀 3명", evidence: "자녀 3명" }], message.id);
+  assert.equal(createTaxInputFromChat(state).values.children, undefined);
+  const updated = applyChatPatches(state, [{ key: "adultChildren", value: "성년 자녀 2명", evidence: "성년 자녀 2명" }], message.id);
+  assert.equal(createTaxInputFromChat(updated).values.children, "2");
+});
+
+test("new business estimates default to inheritance while explicit business gifts stay gifts", () => {
+  const empty = createTaxInputFromChat(createChatState(), "business_succession");
+  assert.equal(empty.values.businessMethod, "inheritance");
+  assert.equal(empty.values.eligibilityConfirmed, undefined);
+  const message = { id: "business-source", role: "user" as const, text: "가업주식 증여", created_at: "2026-09-08T09:00:00Z" };
+  const state = applyChatPatches({ ...createChatState(), messages: [message] }, [{ key: "topic", value: message.text, evidence: message.text }], message.id);
+  assert.equal(createTaxInputFromChat(state).values.businessMethod, "gift");
+});
+
+test("customer and CLI estimate handoff requires a ready confirmed calculation", () => {
+  const now = "2026-09-08T09:00:00Z";
+  const message = { id: "handoff-source", role: "user" as const, text: "본인 명의 예금 3억", created_at: now };
+  const state = applyChatPatches({ ...createChatState(), messages: [message] }, [
+    { key: "owner", value: "본인 명의", evidence: "본인 명의" },
+    { key: "financialAssets", value: "예금 3억", evidence: "예금 3억" },
+  ], message.id);
+  const confirmation = { confirmed: true as const, confirmedAt: now, assessmentId: "AS360-ESTIMATE-GATE" };
+  assert.throws(() => buildConfirmedTaxAssessmentSnapshot(state, gift, confirmation), /확인/);
+  const incomplete = { ...gift, confirmed: true, confirmedAt: now, values: { ...gift.values, recipientCount: "" } };
+  assert.throws(() => buildConfirmedTaxAssessmentSnapshot(state, incomplete, confirmation));
+  const ready = buildConfirmedTaxAssessmentSnapshot(state, { ...gift, confirmed: true, confirmedAt: now }, confirmation);
+  assert.equal(ready.assessment_id, confirmation.assessmentId);
+  assert.equal(calculateTaxComparison(ready.taxComparisonInput!).baseline?.totalTaxWon, 38_800_000);
+  assert.equal(ready.conversation?.raw_inputs[0], message.text);
 });

@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { Building2, CalendarDays, CircleCheck, Coins, FileCheck2, FileSearch, Home, Landmark, Scale, Sprout, Users, Wallet, type LucideIcon } from "lucide-react";
-import { PrintButton } from "@/components/PrintButton";
 import { PaperReportBook, PaperReportCard, PaperReportPage } from "./PaperReportLayout";
+import { ReportTaxSetup } from "./ReportTaxSetup";
 import styles from "./PersonalReport.module.css";
 import { buildAssessmentMetrics, formatAnswer, readAssessmentFromSession } from "@/lib/assessment";
 import type { AssessmentLoadResult, AssessmentSnapshot } from "@/lib/assessment";
@@ -38,6 +38,8 @@ const eligibilityLabels: Record<Scenario["eligibility"]["status"], string> = {
 
 export function ReportV2Preview() {
   const [loadResult, setLoadResult] = useState<AssessmentLoadResult>({ status: "missing" });
+  const [setupExpanded, setSetupExpanded] = useState(false);
+  const [storageNotice, setStorageNotice] = useState("");
 
   useEffect(() => {
     setLoadResult(readAssessmentFromSession());
@@ -72,6 +74,21 @@ export function ReportV2Preview() {
   }
 
   const { snapshot, facts, metrics, plan } = viewModel;
+  function openTaxSetup() {
+    setSetupExpanded(true);
+    requestAnimationFrame(() => document.querySelector("[data-report-tax-setup]")?.scrollIntoView({ behavior: "smooth", block: "start" }));
+  }
+  const taxSetup = <ReportTaxSetup
+    key={`${snapshot.assessment_id}:${snapshot.taxComparisonInput?.confirmedAt ?? "pending"}`}
+    snapshot={snapshot}
+    expanded={setupExpanded}
+    onExpandedChange={setSetupExpanded}
+    onConfirmed={(next, persisted) => {
+      setLoadResult({ status: "ready", snapshot: next, metrics: buildAssessmentMetrics(next) });
+      setStorageNotice(persisted ? "" : "브라우저 저장 공간을 사용할 수 없어 현재 화면에서만 결과가 유지됩니다. 새로고침 전에 PDF를 저장해 주세요.");
+    }}
+    storageNotice={storageNotice}
+  />;
   if (snapshot.taxComparisonInput) {
     const validatedInput = validateTaxComparisonInput(snapshot.taxComparisonInput);
     const comparison = calculateTaxComparison(snapshot.taxComparisonInput);
@@ -79,9 +96,9 @@ export function ReportV2Preview() {
       comparison.status = "needs_info";
       comparison.baseline = null;
       comparison.alternatives = [];
-      comparison.missing = ["계산 조건의 최종 확인이 필요합니다. 대화로 돌아가 확인해 주세요."];
+      comparison.missing = ["계산 조건의 최종 확인이 필요합니다. 위의 계산 조건 수정에서 확인해 주세요."];
     }
-    return <TaxComparisonReport snapshot={{ ...snapshot, taxComparisonInput: validatedInput ?? undefined }} comparison={comparison} />;
+    return <>{taxSetup}<TaxComparisonReport snapshot={{ ...snapshot, taxComparisonInput: validatedInput ?? undefined }} comparison={comparison} onEditConditions={openTaxSetup} /></>;
   }
   const { recommended, liquidity_support: liquiditySupport } = plan.display_scenarios;
   const first = recommended[0];
@@ -97,14 +114,16 @@ export function ReportV2Preview() {
   const unknowns = [...new Set(facts.unknown_items.map(customerReason))];
 
   return (
+    <>
+    {taxSetup}
     <PaperReportBook
       mode={isChatReport ? "chat" : "form"}
-      title="우리 가족 자산승계 사전진단 보고서"
-      subtitle="확인한 가족·자산 정보로 선택의 기준을 정리했습니다."
+      title="우리 가족 자산승계 입력 요약"
+      subtitle="입력 요약 · 세액 계산 전. 계산 조건을 확인하면 추정 세액을 포함한 보고서가 완성됩니다."
       className={styles.personalReport}
-      actions={<>{isChatReport && <Link href="/precheck">대화 내용 수정</Link>}<PrintButton /></>}
+      actions={isChatReport ? <Link href="/precheck">대화 내용 수정</Link> : undefined}
     >
-      <PaperReportPage number={1} label="CORE SUMMARY · 핵심 요약" title="우리 가족의 자산승계, 먼저 비교할 방향을 찾았습니다." subtitle="세금과 생활재원, 가족의 희망을 함께 살펴봅니다.">
+      <PaperReportPage number={1} label="CORE SUMMARY · 입력 요약 · 세액 계산 전" title="우리 가족의 자산승계 입력 요약" subtitle="공제·재산 배분 등 계산 조건을 확인한 뒤 추정 세액을 비교합니다.">
         <div className={styles.goalStrip}>
           <Sprout aria-hidden="true" />
           <div><span>직접 말씀하신 목표</span><strong>{goal === "미입력" ? "가족의 우선순위를 함께 정합니다." : goal}</strong></div>
@@ -233,6 +252,7 @@ export function ReportV2Preview() {
         </div>
       </PaperReportPage>
     </PaperReportBook>
+    </>
   );
 }
 

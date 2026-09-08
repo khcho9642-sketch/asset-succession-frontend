@@ -127,6 +127,13 @@ jobs:
           UI_AUDIT_DIR: artifacts/ui-audit
         run: npm run test:tax-extensions-ui
 
+      - name: Upgrade saved assessment to an estimated tax report
+        if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
+        env:
+          BASE_URL: http://127.0.0.1:4173
+          UI_AUDIT_DIR: artifacts/ui-audit
+        run: node scripts/estimate-report-ui-audit.mjs
+
       - name: Run responsive UI audit and capture screenshots
         if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
         env:

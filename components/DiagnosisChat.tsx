@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useChat } from "@ai-sdk/react";
@@ -11,8 +11,7 @@ import { CHAT_FIELD_KEYS, CHAT_FIELD_LABELS, applyChatPatches, createChatState, 
 import type { ChatFieldKey, ChatMessage, ChatState } from "@/lib/chat/intake";
 import type { DiagnosisUIMessage } from "@/lib/chat/agent";
 import { extractLocalChatPatches } from "@/lib/chat/local";
-import { buildConfirmedAssessmentSnapshot } from "@/lib/chat/report";
-import { attachConfirmedTaxComparison, createTaxInputFromChat, taxFactsSignature } from "@/lib/chat/tax";
+import { buildConfirmedTaxAssessmentSnapshot, createTaxInputFromChat, taxFactsSignature } from "@/lib/chat/tax";
 import { calculateTaxComparison, validateTaxComparisonInput } from "@/lib/tax-comparison";
 import type { TaxComparisonInput } from "@/lib/tax-comparison";
 import { TaxComparisonEditor } from "./TaxComparisonEditor";
@@ -22,14 +21,14 @@ const DRAFT_KEY = "as360.chat.draft.v1";
 // Retain the current tab's draft during client navigation if sessionStorage is blocked.
 let volatileDraft: string | null = null;
 const TOPICS: Record<string, string> = {
-  inheritance: "상속", gift: "증여", capital_gains: "양도", business_succession: "가업승계",
-  "상속": "상속", "증여": "증여", "양도": "양도", "가업승계": "가업승계",
+  inheritance: "상속", gift: "증여", capital_gains: "양도", business_succession: "가업상속", business_inheritance: "가업상속",
+  "상속": "상속", "증여": "증여", "양도": "양도", "가업승계": "가업상속", "가업상속": "가업상속",
 };
 const EXAMPLES: Record<string, string> = {
   "상속": "아버지 명의 건물 25억, 아파트 15억, 예금 10억이 있어요. 배우자 있음, 자녀 셋, 채무 없음, 과거 증여 없음. 노후생활비를 남기고 세금 부담을 줄이고 싶어요.",
   "증여": "제 명의 아파트가 15억, 예금은 3억이에요. 성인 자녀 두 명에게 조금씩 증여하고 싶은데, 제 노후생활비도 남겨두고 싶어요.",
   "양도": "제 명의 아파트 12억, 상가 8억이 있어요. 상가를 팔고 자녀에게 현금을 주는 방법과 부동산을 증여하는 방법을 비교하고 싶어요.",
-  "가업승계": "제가 운영하는 제조업 법인의 지분을 자녀에게 넘기고 싶어요. 회사 주식 가치는 아직 모르고, 성인 자녀 한 명이 함께 일하고 있어요.",
+  "가업상속": "제가 운영하는 제조업 법인의 지분을 자녀에게 넘기고 싶어요. 회사 주식 가치는 아직 모르고, 성인 자녀 한 명이 함께 일하고 있어요.",
 };
 const FIELD_HINTS: Record<ChatFieldKey, string> = {
   topic: "예: 상속과 증여를 함께 비교", timing: "예: 3년 안에 준비 / 이미 상속 발생", owner: "예: 본인 명의 / 아버지 명의", spouse: "예: 배우자 있음 / 없음 / 모름", children: "예: 자녀 2명 / 없음", adultChildren: "예: 성인 자녀 2명", minorChildren: "예: 미성년 자녀 없음", realEstate: "예: 아파트 20억, 상가 10억 / 금액 모름", financialAssets: "예: 예금 3억, 주식 1억", businessAssets: "예: 비상장 주식 10억 / 평가액 모름", otherAssets: "예: 보험 있음 / 기타 자산 없음", debt: "예: 대출 2억 / 채무 없음 / 모름", pastGifts: "예: 3년 전 자녀에게 1억 증여 / 없음", goal: "예: 노후생활비 유지, 납부할 현금 준비", notes: "그 밖에 함께 검토할 상황을 적어주세요",
@@ -55,7 +54,6 @@ export function DiagnosisChat() {
   const [summaryOpen, setSummaryOpen] = useState(false);
   const [showAllFields, setShowAllFields] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
-  const [taxEnabled, setTaxEnabled] = useState(true);
   const [taxInput, setTaxInput] = useState<TaxComparisonInput>(() => createTaxInputFromChat(createChatState()));
   const [taxSignature, setTaxSignature] = useState("");
   const [reviewError, setReviewError] = useState("");
@@ -120,7 +118,6 @@ export function DiagnosisChat() {
         const signature = taxFactsSignature(restored);
         setTaxInput(restoredTax && draft?.taxSignature === signature ? { ...restoredTax, confirmed: false } : createTaxInputFromChat(restored));
         setTaxSignature(signature);
-        if (typeof draft?.taxEnabled === "boolean") setTaxEnabled(draft.taxEnabled);
         if (typeof draft?.input === "string" && draft.input.length <= 6000) setInput(draft.input);
         if (typeof draft?.reportId === "string" && /^AS360-[A-Za-z0-9-]+$/.test(draft.reportId)) reportId.current = draft.reportId;
       }
@@ -149,13 +146,13 @@ export function DiagnosisChat() {
 
   useEffect(() => {
     if (!hydrated) return;
-    volatileDraft = JSON.stringify({ version: 1, state, input, reportId: reportId.current, taxInput, taxEnabled, taxSignature });
+    volatileDraft = JSON.stringify({ version: 1, state, input, reportId: reportId.current, taxInput, taxSignature });
     try {
       window.sessionStorage.setItem(DRAFT_KEY, volatileDraft);
     } catch {
       setStorageNotice("이 브라우저에서는 대화를 저장할 수 없어요. 새로고침하면 입력 내용이 사라질 수 있어요.");
     }
-  }, [hydrated, state, input, taxInput, taxEnabled, taxSignature]);
+  }, [hydrated, state, input, taxInput, taxSignature]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -211,6 +208,8 @@ export function DiagnosisChat() {
   const factsCount = CHAT_FIELD_KEYS.filter(key => state.facts[key]).length;
   const hasMessages = state.messages.some(message => message.role === "user");
   const readyForReview = missing.length === 0;
+  const taxPreview = useMemo(() => calculateTaxComparison(taxInput), [taxInput]);
+  const readyForEstimate = taxPreview.status === "ready" && taxSignature === taxFactsSignature(state);
 
   async function submitMessage() {
     const text = input.trim();
@@ -276,16 +275,11 @@ export function DiagnosisChat() {
     setReportOpening(true);
     try {
       const confirmedAt = new Date().toISOString();
-      let snapshot = buildConfirmedAssessmentSnapshot(stateRef.current, { confirmed: true, confirmedAt });
-      if (taxEnabled) {
-        if (taxSignature !== taxFactsSignature(stateRef.current)) throw new Error("대화가 바뀌었습니다. 새 계산 조건을 확인해 주세요.");
-        const preview = calculateTaxComparison(taxInput);
-        if (preview.status !== "ready") throw new Error(preview.missing.join(" ") || "세액 비교에 필요한 조건을 확인해 주세요.");
-        snapshot = attachConfirmedTaxComparison(snapshot, { ...taxInput, confirmed: true, confirmedAt });
-      }
+      if (taxSignature !== taxFactsSignature(stateRef.current)) throw new Error("대화가 바뀌었습니다. 새 계산 조건을 확인해 주세요.");
+      const snapshot = buildConfirmedTaxAssessmentSnapshot(stateRef.current, { ...taxInput, confirmed: true, confirmedAt }, { confirmed: true, confirmedAt });
       const persisted = saveAssessmentForSession(snapshot);
       reportId.current = snapshot.assessment_id;
-      volatileDraft = JSON.stringify({ version: 1, state: stateRef.current, input, reportId: snapshot.assessment_id, taxInput, taxEnabled, taxSignature });
+      volatileDraft = JSON.stringify({ version: 1, state: stateRef.current, input, reportId: snapshot.assessment_id, taxInput, taxSignature });
       try { window.sessionStorage.setItem(DRAFT_KEY, volatileDraft); } catch { /* In-memory report remains available. */ }
       if (!persisted) setStorageNotice("현재 화면에서는 보고서를 볼 수 있지만 새로고침하면 다시 입력해야 합니다.");
       router.push(`/report-preview?assessment_id=${encodeURIComponent(snapshot.assessment_id)}&source=chat`);
@@ -319,7 +313,6 @@ export function DiagnosisChat() {
     setResetRequested(false);
     setSummaryOpen(false);
     setShowAllFields(false);
-    setTaxEnabled(true);
     setTaxInput(createTaxInputFromChat(next));
     setTaxSignature(taxFactsSignature(next));
     clearError();
@@ -387,16 +380,17 @@ export function DiagnosisChat() {
               <p className={styles.reviewIntro}>아래 내용은 아직 확인 전이에요. 다른 부분은 수정하거나 지워주세요. 모르는 내용은 ‘모름’으로 적어도 괜찮아요.</p>
               <div className={styles.reviewFields}>{CHAT_FIELD_KEYS.filter(key => state.facts[key] || missing.includes(key) || ["topic", "spouse", "children", "debt", "pastGifts", "goal"].includes(key)).map(renderField)}</div>
               <details className={styles.moreFields}><summary>그 밖의 항목 추가</summary><div>{CHAT_FIELD_KEYS.filter(key => !state.facts[key] && !missing.includes(key) && !["topic", "spouse", "children", "debt", "pastGifts", "goal"].includes(key)).map(renderField)}</div></details>
-              <label className={styles.confirmRow}><input type="checkbox" data-tax-enable checked={taxEnabled} onChange={event => { invalidateReport(); setTaxEnabled(event.target.checked); }} /><span>예상 세액 비교 포함</span></label>
-              {taxEnabled ? <TaxComparisonEditor value={taxInput} onChange={next => {
+              <p className={styles.reportFootnote}>보고서에는 선택한 유형의 추정 세액과 대안별 차이가 포함됩니다. 아래 계산 조건을 확인해 주세요.</p>
+              <TaxComparisonEditor value={taxInput} onChange={next => {
                 invalidateReport();
                 setTaxInput(next.track !== taxInput.track ? createTaxInputFromChat(stateRef.current, next.track) : { ...next, confirmed: false });
-              }} /> : <p className={styles.reportFootnote}>세액 비교를 제외하면 확인한 사실과 검토 후보만 보고서에 표시합니다.</p>}
+              }} />
+              {!readyForEstimate && <p className={styles.requiredNotice} data-estimate-required>추정 세액을 계산할 조건이 아직 남아 있어요. 위에서 필요한 항목을 확인하면 보고서를 열 수 있습니다.</p>}
               {missing.length > 0 && <p className={styles.requiredNotice}>보고서를 준비하려면 {missing.map(key => CHAT_FIELD_LABELS[key]).join(", ")}을 먼저 알려주세요. 자산 금액을 모르면 자산 종류와 ‘금액 모름’을 함께 적어주세요.</p>}
               {editingIds.size > 0 && <p className={styles.requiredNotice} role="status">수정 중인 항목을 저장하거나 취소한 뒤 확인해 주세요.</p>}
               {input.trim() && <p className={styles.requiredNotice} role="status">아직 보내지 않은 이야기가 있어요. 입력창의 내용을 보내거나 지운 뒤 확인해 주세요.</p>}
               <label className={styles.confirmRow}><input type="checkbox" checked={confirmed} onChange={event => setConfirmed(event.target.checked)} disabled={!readyForReview || busy || editingIds.size > 0 || Boolean(input.trim())} /><span>정리된 내용이 제가 전달한 상황과 맞는지 확인했습니다.</span></label>
-              <button className={styles.reportButton} disabled={!confirmed || !readyForReview || busy || reportOpening || editingIds.size > 0 || Boolean(input.trim())} onClick={() => void openReport()}>{reportOpening ? "보고서를 준비하고 있어요…" : "확인한 내용으로 보고서 보기"}<ArrowRight size={19} aria-hidden="true" /></button>
+              <button className={styles.reportButton} disabled={!confirmed || !readyForReview || !readyForEstimate || busy || reportOpening || editingIds.size > 0 || Boolean(input.trim())} onClick={() => void openReport()}>{reportOpening ? "보고서를 준비하고 있어요…" : "확인한 내용으로 보고서 보기"}<ArrowRight size={19} aria-hidden="true" /></button>
               {reviewError && <p className={styles.requiredNotice} role="alert">{reviewError}</p>}
               <p className={styles.reportFootnote}>확인한 계산 조건으로 예상 세액과 대안별 차이를 계산해요.<br />평가액·공제 요건 또는 가정이 바뀌면 결과도 달라집니다.</p>
             </div>}

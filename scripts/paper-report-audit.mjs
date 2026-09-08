@@ -85,7 +85,7 @@ const suppliedFacts = [
   ["goal", "희망하는 결과", "상속을 미리 준비하고 싶어요."],
 ];
 const confirmedAt = "2026-09-08T06:36:24.000Z";
-const seededAssessment = {
+export const seededAssessment = {
   assessment_id: "AS360-20260908-PAPER52",
   created_at: confirmedAt,
   review_focus: ["전체 요약 먼저 보기"],

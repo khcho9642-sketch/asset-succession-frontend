@@ -15,6 +15,7 @@ const draftKey = "as360.chat.draft.v1";
 const assessmentKey = "as360.precheck.assessment.v1";
 const confirmation = "정리된 내용이 제가 전달한 상황과 맞는지 확인했습니다.";
 const finalButton = "확인한 내용으로 보고서 보기";
+const reportEditLink = "대화 내용 수정";
 const scenario = "아버지 재산이에요. 건물 25억, 아파트 15억, 예금 10억, 배우자 있음, 자녀 셋, 채무 없음, 과거 증여 없음, 세금 부담을 줄이고 싶어요.";
 const observations = [];
 const errors = [];
@@ -92,6 +93,8 @@ async function openReview(page) {
   if (!await review.isVisible()) await page.getByRole("button", { name: /현재 정리된 내용/ }).click();
   await review.click();
   await page.getByRole("heading", { name: "제가 전한 상황과 맞나요?" }).waitFor();
+  await page.locator("[data-tax-editor]").waitFor();
+  assert.equal(await page.locator("[data-tax-enable]").count(), 0, "Tax estimates must not have an opt-out control");
   assert(await page.getByRole("button", { name: finalButton, exact: true }).isDisabled(), "Report was enabled before explicit confirmation");
 }
 
@@ -102,15 +105,56 @@ async function editField(page, label, text) {
   await page.getByRole("button", { name: "저장", exact: true }).click();
 }
 
-async function confirmReport(page, label) {
-  // These existing cases verify the explicitly chosen facts-only report path.
-  // Calculated reports have their own all-track tax-comparison-ui-audit.
-  await page.locator("[data-tax-enable]").uncheck();
+const taxField = (page, key) => page.locator(`[data-tax-field="${key}"]`);
+
+async function setTaxField(page, key, value) {
+  const control = taxField(page, key);
+  await control.waitFor();
+  if (await control.evaluate(element => element.tagName) === "SELECT") await control.selectOption(value);
+  else if (await control.getAttribute("type") === "checkbox") await control.setChecked(value === "yes");
+  else await control.fill(value);
+}
+
+async function configureSyntheticInheritance(page, { estate = "50", financial = "10" } = {}) {
+  // The narrative deliberately leaves children's ages unknown. These are
+  // separate, explicitly entered calculation assumptions for this synthetic
+  // example, not facts extracted from that narrative or inferred defaults.
+  await setTaxField(page, "track", "inheritance");
+  for (const [key, value] of Object.entries({ estate, financial, debt: "0", financialDebt: "0", funeral: "0.05", spouse: "yes", children: "3", spouseAllocation: "15", resident: "yes", standardCase: "yes", availableCash: "" })) {
+    await setTaxField(page, key, value);
+  }
+  await page.locator('[data-tax-comparison-status="ready"]').waitFor();
+  assert(!await page.getByRole("checkbox", { name: confirmation, exact: true }).isChecked(), "Entering tax conditions must still require customer confirmation");
+  assert(await page.getByRole("button", { name: finalButton, exact: true }).isDisabled(), "Ready tax conditions bypassed customer confirmation");
+}
+
+async function assertIncompleteTaxBlocksReport(page, label) {
+  await page.locator('[data-tax-comparison-status="needs_info"]').waitFor();
+  assert.equal(await page.locator("[data-tax-baseline]").count(), 0, `${label}: missing conditions produced a tax amount`);
+  const checkbox = page.getByRole("checkbox", { name: confirmation, exact: true });
+  if (await checkbox.isEnabled()) await checkbox.check();
+  assert(await page.getByRole("button", { name: finalButton, exact: true }).isDisabled(), `${label}: customer confirmation bypassed incomplete tax conditions`);
+  assert.equal(await snapshot(page), null, `${label}: incomplete tax conditions retained a report snapshot`);
+  assert.equal(await page.locator("[data-report-page]").count(), 0, `${label}: an incomplete estimate rendered report pages`);
+}
+
+async function confirmReport(page, label, calculation = {}) {
+  await configureSyntheticInheritance(page, calculation);
+  const expectedBaseline = (await page.locator("[data-tax-baseline]").innerText()).trim();
+  const expectedAlternative = (await page.locator("[data-tax-alternative]").innerText()).trim();
+  // Independent golden amounts for the original 50억 synthetic estate.
+  if ((calculation.estate ?? "50") === "50") {
+    assert.equal(expectedBaseline, "1,394,375,000원", `${label}: baseline estimate changed`);
+    assert.equal(expectedAlternative, "864,593,330원", `${label}: alternative estimate changed`);
+  }
   await page.getByRole("checkbox", { name: confirmation, exact: true }).check();
   await page.getByRole("button", { name: finalButton, exact: true }).click();
   await page.waitForURL("**/report-preview?assessment_id=**");
   await page.locator('[data-report-template="paper-seven-v1"] [data-report-page="7"]').waitFor();
   assert.equal(await page.locator("[data-report-page]").count(), 7, `${label}: report does not have seven pages`);
+  assert.equal(await page.locator('[data-report-mode="tax-comparison"][data-tax-report-status="ready"]').count(), 1, `${label}: report omitted the required ready estimate`);
+  assert.equal((await page.locator("[data-tax-report-baseline]").innerText()).trim(), expectedBaseline, `${label}: report estimate differs from the confirmed preview`);
+  assert.equal((await page.locator("[data-tax-report-alternative]").innerText()).trim(), expectedAlternative, `${label}: report alternative differs from the confirmed preview`);
   assert.match(new URL(page.url()).searchParams.get("assessment_id") ?? "", /^AS360-\d{8}-[A-Z0-9]+$/);
   const text = await page.locator("body").innerText();
   for (const invented of ["0.5억 산출세액", "0.2억 산출세액", "0.3억 절세 예상", "9.5~12억", "6.3~8.6억", "inheritance-01-current-structure", "900억"]) {
@@ -133,7 +177,7 @@ async function auditConfirmedPdf(page, assessmentId) {
     assert.equal(await page.locator("[data-report-page]").count(), 7);
     const printText = await page.locator("body").innerText();
     assert(printText.includes(assessmentId), "Print report lost the confirmed assessment ID");
-    assert(!printText.includes("대화 내용 수정") && !printText.includes("PDF 저장"), "Print report leaked navigation controls");
+    assert(!printText.includes(reportEditLink) && !printText.includes("PDF 저장"), "Print report leaked navigation controls");
     await assertReportPrintBounds(page, { outputPath: path.join(outputDir, "chat-print-bounds.json"), label: "Confirmed chat report" });
     const pdf = await page.pdf({ path: pdfPath, format: "A4", printBackground: true, preferCSSPageSize: true });
     assert(pdf.byteLength > 20_000, "Confirmed chat PDF is unexpectedly small");
@@ -155,6 +199,11 @@ function assertGroundedSnapshot(value, financial = "10") {
   assert.match(value.answers.assets.facts["소유자 관계"], /아버지/);
   assert.equal(value.answers.review.taxBaseAmounts, undefined, "Unprovided taxable base was invented");
   assert(value.conversation.confirmed_facts.every(fact => fact.confidence === "customer_confirmed" && fact.raw_text.length > 0), "Facts must retain explicit confirmation and original evidence");
+  assert(value.taxComparisonInput?.confirmed, "A confirmed chat report omitted its required tax conditions");
+  assert.equal(value.taxComparisonInput.track, "inheritance");
+  assert.equal(value.taxComparisonInput.values.financial, financial);
+  assert.equal(value.taxComparisonInput.values.availableCash, "", "Unknown available payment cash was inferred from financial assets");
+  assert(Number.isFinite(Date.parse(value.taxComparisonInput.confirmedAt)), "Tax conditions lack a confirmation timestamp");
 }
 
 function sseReply({ messageId = "audit-ai-answer", text, proposals = [] }) {
@@ -210,25 +259,32 @@ try {
     await page.screenshot({ path: path.join(outputDir, `chat-${width}-review.png`), fullPage: true });
     const originalId = await confirmReport(page, `${width}px original report`);
     assertGroundedSnapshot(await snapshot(page));
-    assert((await page.locator("body").innerText()).includes("50억"), "Report omitted the confirmed 50억 asset sum");
+    assert((await page.locator("body").innerText()).includes("5,000,000,000원"), "Report omitted the confirmed 50억 asset sum");
     await page.screenshot({ path: path.join(outputDir, `chat-${width}-report.png`), fullPage: true });
     if (width === 1440) await auditConfirmedPdf(page, originalId);
 
-    await page.getByRole("link", { name: "대화 내용 수정", exact: true }).click();
+    await page.getByRole("link", { name: reportEditLink, exact: true }).click();
     await page.waitForURL(url => url.pathname === "/precheck");
     await page.getByRole("heading", { name: "먼저, 이야기를 들려주세요." }).waitFor();
     await page.getByText("AI 연결 전 · 입력 정리 모드", { exact: true }).waitFor();
     await openReview(page);
+    const estateBeforeEdit = await taxField(page, "estate").inputValue();
+    await page.getByRole("checkbox", { name: confirmation, exact: true }).check();
+    await setTaxField(page, "estate", "");
+    assert(!await page.getByRole("checkbox", { name: confirmation, exact: true }).isChecked(), "Changing tax conditions retained obsolete confirmation");
+    await assertIncompleteTaxBlocksReport(page, `${width}px removed estate value`);
+    await setTaxField(page, "estate", estateBeforeEdit);
+    await page.locator('[data-tax-comparison-status="ready"]').waitFor();
     await page.getByRole("checkbox", { name: confirmation, exact: true }).check();
     await editField(page, "금융자산", "예금 20억");
     await waitFact(page, "financialAssets", "예금 20억");
     assert(!await page.getByRole("checkbox", { name: confirmation, exact: true }).isChecked(), "Editing facts retained obsolete confirmation");
     assert(await page.getByRole("button", { name: finalButton, exact: true }).isDisabled(), "Editing facts did not require reconfirmation");
     assert.equal(await snapshot(page), null, "Editing facts retained the stale assessment");
-    const refreshedId = await confirmReport(page, `${width}px revised report`);
+    const refreshedId = await confirmReport(page, `${width}px revised report`, { estate: "60", financial: "20" });
     assert.notEqual(refreshedId, originalId, "A revised report reused its old assessment ID");
     assertGroundedSnapshot(await snapshot(page), "20");
-    assert((await page.locator("body").innerText()).includes("60억"), "Revised report did not reflect the new 60억 sum");
+    assert((await page.locator("body").innerText()).includes("6,000,000,000원"), "Revised report did not reflect the new 60억 sum");
 
     await openChat(page);
     await page.getByRole("button", { name: "새 진단", exact: true }).click();
@@ -254,7 +310,7 @@ try {
     await send(page, scenario);
     await openReview(page);
     await confirmReport(page, `${storage} storage report`);
-    assert((await page.locator("body").innerText()).includes("50억"), `${storage} storage prevented report handoff`);
+    assert((await page.locator("body").innerText()).includes("5,000,000,000원"), `${storage} storage prevented report handoff`);
     observations.push({ name: "storage recovery and report handoff", storage });
     await context.close();
   }
@@ -265,15 +321,34 @@ try {
   await send(unknownPage, "아버지 재산이에요. 아파트 금액 모름, 금융자산 모름, 채무 모름, 상속세가 걱정돼요.");
   await waitFact(unknownPage, "financialAssets", "금융자산 모름");
   await openReview(unknownPage);
-  await confirmReport(unknownPage, "unknown amounts report");
-  const unknownSnapshot = await snapshot(unknownPage);
-  assert.deepEqual(unknownSnapshot.answers.assets.assetAmounts, { "부동산": "", "금융자산": "" }, "Unknown amounts were replaced with numbers");
-  assert.deepEqual(unknownSnapshot.answers.assets.assetAmountStatus, { "부동산": "unknown", "금융자산": "unknown" });
-  assert.deepEqual(unknownSnapshot.answers.assets.assetAmountWons, {}, "Unknown assets acquired won values");
-  assert.equal(unknownSnapshot.answers.debt.debtAmounts, undefined, "Unknown debt was replaced with zero");
-  assert.match(await unknownPage.locator("body").innerText(), /확인 필요|미입력|미확인|모름/, "Report did not disclose unresolved information");
-  observations.push({ name: "unknown assets and debt remain unresolved in confirmed report" });
+  await assertIncompleteTaxBlocksReport(unknownPage, "unknown assets and debt");
+  for (const key of ["estate", "financial", "debt"]) assert.equal(await taxField(unknownPage, key).inputValue(), "", `Unknown ${key} acquired a numeric value`);
+  const unknownDraft = await draft(unknownPage);
+  assert.match(unknownDraft.state.facts.realEstate.value, /모름/);
+  assert.equal(unknownDraft.state.facts.financialAssets.value, "금융자산 모름");
+  assert.match(unknownDraft.state.facts.debt.value, /모름/);
+  assert.match(await unknownPage.locator("[data-tax-missing]").innerText(), /평가액|금융재산|채무/, "Missing calculation conditions were not shown to the customer");
+  observations.push({ name: "unknown assets and debt stay unresolved and block report creation" });
   await unknownContext.close();
+
+  const previousDraftContext = await newContext(browser);
+  const previousDraftPage = await previousDraftContext.newPage();
+  await openChat(previousDraftPage);
+  await send(previousDraftPage, scenario);
+  await waitFact(previousDraftPage, "financialAssets", "예금 10억");
+  await previousDraftPage.evaluate(key => {
+    const previous = JSON.parse(sessionStorage.getItem(key));
+    previous.taxEnabled = false;
+    sessionStorage.setItem(key, JSON.stringify(previous));
+  }, draftKey);
+  await previousDraftPage.reload({ waitUntil: "networkidle" });
+  await openReview(previousDraftPage);
+  await assertIncompleteTaxBlocksReport(previousDraftPage, "restored taxEnabled:false draft");
+  assert.equal(await previousDraftPage.locator("[data-tax-enable]").count(), 0, "A previous draft restored the removed tax opt-out");
+  await confirmReport(previousDraftPage, "restored draft with explicitly confirmed tax conditions");
+  assertGroundedSnapshot(await snapshot(previousDraftPage));
+  observations.push({ name: "previous taxEnabled:false draft cannot bypass required estimates" });
+  await previousDraftContext.close();
 
   for (const [purpose, label] of [["inheritance", "상속"], ["gift", "증여"], ["capital_gains", "양도"], ["business_succession", "가업승계"]]) {
     const context = await newContext(browser);

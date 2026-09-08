@@ -53,3 +53,22 @@ The repository still does not contain a standalone subscription-CLI report runne
 An external runner must load the same personal report route after creating the
 confirmed assessment. This change does not prove which code a separate local CLI
 used for an earlier export.
+
+## Estimated tax reports are required for new chat handoffs
+
+New chat reports call `buildConfirmedTaxAssessmentSnapshot(state, taxInput, confirmation)`.
+It rejects missing, incomplete or unconfirmed tax input. `buildConfirmedAssessmentSnapshot`
+is only the lower-level facts adapter; calling it alone does not produce an estimated-tax report.
+An external CLI export should use the combined function, then wait for
+`[data-report-mode="tax-comparison"][data-tax-report-status="ready"]` before printing.
+It must not fall back to a facts-only export when calculation prerequisites are missing.
+
+Saved facts-only reports remain available as an explicitly labelled input summary.
+`ReportTaxSetup` can add confirmed calculation conditions without replacing the original
+conversation, asset facts or assessment identity. The regular PDF button is offered
+for a confirmed, ready tax report. New field values require fresh confirmation.
+
+Each report compares alternatives within the selected tax track. It does not place
+taxes on unrelated asset bases into one cross-tax ranking. Supported calculator scopes
+remain documented in `tax-comparison-implementation.md`; this update changes the handoff,
+not the tax law or engine rules.

@@ -10,7 +10,7 @@ import { getScopeStatement, getTaxFields, TAX_TRACK_LABELS } from "@/lib/tax-com
 import type { TaxCase, TaxComparison, TaxField } from "@/lib/tax-comparison/types";
 import styles from "./TaxComparisonReport.module.css";
 
-type Props = { snapshot: AssessmentSnapshot; comparison: TaxComparison };
+type Props = { snapshot: AssessmentSnapshot; comparison: TaxComparison; onEditConditions?: () => void };
 
 function differenceText(baseline: TaxCase, candidate: TaxCase) {
   const difference = baseline.totalTaxWon - candidate.totalTaxWon;
@@ -56,7 +56,7 @@ function Bullets({ items }: { items: string[] }) {
   return <ul className={styles.bullets}>{items.map((item, index) => <li key={`${item}-${index}`}>{item}</li>)}</ul>;
 }
 
-export function TaxComparisonReport({ snapshot, comparison }: Props) {
+export function TaxComparisonReport({ snapshot, comparison, onEditConditions }: Props) {
   const input = snapshot.taxComparisonInput;
   const baseline = comparison.status === "ready" ? comparison.baseline : null;
   const alternatives = comparison.status === "ready" ? comparison.alternatives.slice(0, 2) : [];
@@ -65,6 +65,8 @@ export function TaxComparisonReport({ snapshot, comparison }: Props) {
   const values = input?.values ?? {};
   const fields = getTaxFields(comparison.track, values).filter((field) => !["resident", "standardCase", "availableCash"].includes(field.key));
   const businessInheritance = comparison.track === "business_succession" && values.businessMethod === "inheritance";
+  const trackLabel = comparison.track === "business_succession" ? businessInheritance ? "가업상속" : "가업주식 증여" : TAX_TRACK_LABELS[comparison.track];
+  const taxLabel = comparison.track === "inheritance" ? "상속세" : comparison.track === "gift" ? "증여세" : comparison.track === "capital_gains" ? "양도소득세" : trackLabel;
   const createdOn = /^\d{4}-\d{2}-\d{2}/.test(snapshot.created_at) ? snapshot.created_at.slice(0, 10) : "작성일 확인 필요";
   const cash = comparison.availableCashWon;
   const mainAssetKey = comparison.track === "inheritance" || businessInheritance ? "estate" : comparison.track === "gift" ? "giftAmount" : comparison.track === "capital_gains" ? "salePrice" : "businessValue";
@@ -72,15 +74,15 @@ export function TaxComparisonReport({ snapshot, comparison }: Props) {
   const residentLabel = comparison.track === "gift" ? "수증자 거주자 여부" : comparison.track === "business_succession" ? businessInheritance ? "피상속인 거주자 여부" : "증여자·수증자 거주자 여부" : comparison.track === "capital_gains" ? "양도자 거주자 여부" : "피상속인 거주자 여부";
 
   return (
-    <PaperReportBook className={styles.book} mode="tax-comparison" status={comparison.status} title={`${TAX_TRACK_LABELS[comparison.track]} 예상 세액 비교`} subtitle="우리 가족 자산승계 진단서" actions={<><Link href="/precheck">대화·계산 조건 수정</Link><PrintButton /></>}>
+    <PaperReportBook className={styles.book} mode="tax-comparison" status={comparison.status} title={`${taxLabel} 추정 세액 비교`} subtitle="우리 가족 자산승계 진단서" actions={<>{snapshot.conversation?.mode === "chat" && <Link href="/precheck">대화 내용 수정</Link>}{onEditConditions ? <button type="button" className="px-4 py-3 text-sm font-semibold" data-report-edit-conditions onClick={onEditConditions}>계산 조건 수정</button> : snapshot.conversation?.mode !== "chat" && <Link href="/precheck">대화·계산 조건 수정</Link>}{comparison.status === "ready" && input?.confirmed && <PrintButton />}</>}>
 
-      <Page number={1} title="우리 가족의 자산승계, 먼저 비교할 방향을 살펴봅니다." subtitle="세금과 납부재원, 가족의 선택을 함께 봅니다.">
+      <Page number={1} title={`${taxLabel} 추정 세액을 비교합니다.`} subtitle="확인한 조건으로 계산한 세금과 납부재원을 함께 봅니다.">
         <div className={styles.reportMeta}><span>{createdOn}</span><span>{snapshot.assessment_id}</span><span>{input?.confirmed ? "계산 조건 확인 완료" : "계산 조건 확인 필요"}</span></div>
         <div className={styles.familyQuestion}><span>이번 가족의 비교 주제</span><p className={styles.intro}>{comparison.title}</p></div>
         {baseline ? <>
           <div className={styles.metrics}>
             <div><span>{mainAssetField?.label ?? "비교 대상 재산"}</span><strong>{mainAssetField ? fieldValue(mainAssetField, values[mainAssetKey]) : "미확인"}</strong><small>고객이 확인한 비교 대상 금액</small></div>
-            <div><span>{baseline.label}</span><strong data-tax-report-baseline>{formatWon(baseline.totalTaxWon)}</strong><small>비교 대상 예상 세금 합계</small></div>
+            <div><span>{baseline.label}</span><strong data-tax-report-baseline>{formatWon(baseline.totalTaxWon)}</strong><small>비교 대상 추정 세액 합계</small></div>
             <div><span>{best?.label ?? "비교 대안"}</span><strong data-tax-report-alternative>{best ? formatWon(best.totalTaxWon) : "대안 없음"}</strong><small>계산한 대안 중 세액이 가장 낮은 안</small></div>
           </div>
           <div className={styles.delta} data-tax-report-difference><span>기준안과의 세액 차이</span><strong>{best ? differenceText(baseline, best) : "비교할 대안이 없습니다"}</strong><p>동일한 비교 대상과 입력 조건에서 산정했습니다. 실행 비용을 차감한 순이익을 뜻하지 않습니다.</p></div>
@@ -93,7 +95,7 @@ export function TaxComparisonReport({ snapshot, comparison }: Props) {
       <Page number={2} title="우리 가족의 현재 상황" subtitle="확인한 재산과 가족 조건이 비교의 출발점입니다.">
         <p className={styles.scope}>대화 후 직접 확인한 계산 항목입니다. 알려지지 않은 항목은 미확인으로 남깁니다.</p>
         <dl className={styles.facts}>
-          <div><dt>비교 분야</dt><dd>{TAX_TRACK_LABELS[comparison.track]}</dd></div>
+          <div><dt>비교 분야</dt><dd>{trackLabel}</dd></div>
           <div><dt>{residentLabel}</dt><dd>{values.resident === "yes" ? comparison.track === "business_succession" && !businessInheritance ? "두 사람 모두 국내 거주자" : "국내 거주자" : values.resident === "no" ? comparison.track === "business_succession" && !businessInheritance ? "비거주자 포함" : "비거주자" : "미확인"}</dd></div>
           {fields.map((field) => <div key={field.key}><dt>{field.label}</dt><dd>{fieldValue(field, values[field.key] ?? (field.key === "capitalAsset" ? "commercial" : field.key === "businessMethod" ? "gift" : undefined))}</dd></div>)}
           <div><dt>납부에 사용할 수 있는 현금</dt><dd>{cash === null ? "미확인" : formatWon(cash)}</dd></div>

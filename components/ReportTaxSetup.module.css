@@ -1,0 +1,32 @@
+.setup { max-width: 940px; min-width: 0; margin: 28px auto 0; padding: 22px; border: 1px solid #d2c8b5; background: #f8f4ea; color: #26221b; line-height: 1.75; }
+.setup * { box-sizing: border-box; }
+.heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.heading > div { min-width: 0; }
+.eyebrow { margin: 0 0 6px; color: #7a6139; font-size: 13px; font-weight: 700; }
+.heading h2 { margin: 0; font-size: 20px; font-weight: 650; line-height: 1.55; letter-spacing: -.035em; word-break: keep-all; }
+.heading p:last-child { max-width: 650px; margin: 8px 0 0; color: #6b6152; font-size: 14px; }
+.setup button { flex-shrink: 0; min-height: 46px; padding: 11px 17px; border: 1px solid #b23a2a; border-radius: 3px; background: #b23a2a; color: #fff; font-size: 15px; font-weight: 650; line-height: 1.6; cursor: pointer; }
+.setup button:disabled { border-color: #d2c8b5; background: #e5ded0; color: #6b6152; cursor: not-allowed; }
+.setup button:focus-visible, .setup input:focus-visible, .setup summary:focus-visible { outline: 2px solid #1e5c8a; outline-offset: 4px; }
+.confirmedFacts { margin-top: 22px; padding: 16px; border: 1px solid #d2c8b5; background: #f1ecdf; font-size: 14px; }
+.confirmedFacts summary { cursor: pointer; font-weight: 650; }
+.confirmedFacts dl { margin: 14px 0 0; }
+.confirmedFacts dl > div { display: grid; grid-template-columns: minmax(100px, 1fr) minmax(0, 3fr); gap: 12px; padding: 9px 0; border-top: 1px solid #d2c8b5; }
+.confirmedFacts dt { font-weight: 600; }
+.confirmedFacts dd { min-width: 0; margin: 0; overflow-wrap: anywhere; }
+.confirmedFacts > p { margin: 12px 0 0; color: #6b6152; font-size: 13px; }
+.confirmation { margin-top: 24px; padding-top: 22px; border-top: 1px solid #d2c8b5; }
+.confirmation label { display: flex; align-items: flex-start; gap: 11px; font-size: 15px; cursor: pointer; }
+.confirmation input { flex: 0 0 21px; width: 21px; height: 21px; margin-top: 3px; accent-color: #b23a2a; }
+.confirmation > p { margin: 11px 0 17px; color: #6b6152; font-size: 14px; }
+.confirmation .error { color: #b23a2a; }
+.notice { margin: 14px 0 0; color: #6b6152; font-size: 14px; }
+@media (max-width: 640px) {
+  .setup { margin-top: 20px; padding: 18px; }
+  .heading { align-items: stretch; flex-direction: column; gap: 16px; }
+  .heading h2 { font-size: 19px; }
+  .setup button { width: 100%; }
+  .confirmedFacts { padding: 13px; }
+  .confirmedFacts dl > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+}
+@media print { .setup { display: none !important; } }
