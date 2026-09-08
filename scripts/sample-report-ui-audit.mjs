@@ -11,7 +11,7 @@ const baseURL = process.env.BASE_URL ?? "http://127.0.0.1:4173";
 const outputDir = path.resolve(process.env.UI_AUDIT_DIR ?? ".tmp/sample-report-audit");
 const assessmentKey = "as360.precheck.assessment.v1";
 const runFile = promisify(execFile);
-const manifest = JSON.parse(await readFile("public/media/sample-report-v2/manifest.json", "utf8"));
+const manifest = JSON.parse(await readFile("public/media/sample-report-v3/manifest.json", "utf8"));
 const expected = manifest.pages.map(({ title, width, height, image }) => ({ title, width, height, src: image }));
 const observations = [];
 const errors = [];
@@ -47,8 +47,9 @@ async function assertSampleContent(page, label) {
     const intrinsic = await image.evaluate(image => ({ complete: image.complete, width: image.naturalWidth, height: image.naturalHeight, objectFit: getComputedStyle(image).objectFit }));
     assert.deepEqual(intrinsic, { complete: true, width: original.width, height: original.height, objectFit: "contain" }, `${label}: page ${number} is broken, cropped or distorted`);
   }
-  const text = await page.locator("[data-sample-image-report]").textContent();
-  for (const amount of ["1,200,375,000원", "774,060,000원", "426,315,000원"]) assert(text.includes(amount), `${label}: estimated tax effect lost ${amount}`);
+  const text = await page.locator('[data-report-page="1"]').textContent();
+  for (const amount of ["38,800,000원", "14,550,000원", "24,250,000원"]) assert(text.includes(amount), `${label}: estimated gift-tax effect lost ${amount}`);
+  assert(text.includes("이번 현금 증여세만 비교"), `${label}: the cash-gift example lost its comparison scope`);
   const download = page.locator(`a[href="${manifest.pdf}"][download]`);
   assert.equal(await download.getAttribute("href"), manifest.pdf, `${label}: PDF differs from the infographic report`);
   assert(await download.getAttribute("download"), `${label}: PDF must download directly`);
@@ -331,7 +332,7 @@ try {
     assert.equal(await page.getByRole("link", { name: "홈으로", exact: true }).getAttribute("href"), "/");
 
     if (width === 1440) {
-      // The public control downloads the authored PDF, with searchable text and vector diagrams.
+      // The public control downloads the authored illustrated PDF with searchable text.
       const downloadLink = page.getByRole("link", { name: "PDF 저장", exact: true });
       const [download] = await Promise.all([page.waitForEvent("download"), downloadLink.click()]);
       const downloadPath = path.join(outputDir, "sample-report-download.pdf");
@@ -345,7 +346,8 @@ try {
       for (const [index, text] of downloaded.texts.entries()) {
         assert(text.includes("샘플"), `Downloaded PDF page ${index + 1} needs selectable Korean sample text`);
       }
-      for (const amount of ["12.00", "7.74", "4.26"]) assert(downloaded.texts[0].includes(amount), `Downloaded first page lost tax-effect value ${amount}`);
+      for (const amount of ["3,880", "1,455", "2,425"]) assert(downloaded.texts[0].includes(amount), `Downloaded first page lost gift-tax effect value ${amount}`);
+      assert(downloaded.texts[0].includes("이번 현금 증여세만 비교"), "Downloaded first page lost its limited comparison scope");
       observations.push({ media: "download", pages: downloaded.pages, sizes: downloaded.sizes, pdf: downloadPath, filename: download.suggestedFilename() });
 
       // Browser printing remains supported and must reveal all seven matching image pages.
@@ -380,7 +382,7 @@ try {
   assert.deepEqual(errors, [], "Sample report produced browser runtime errors");
   assert.deepEqual(apiRequests, [], "Opening a fictional sample unexpectedly invoked an API");
   await writeFile(path.join(outputDir, "sample-report-audit.json"), `${JSON.stringify({ status: "passed", baseURL, expected, observations, errors, apiRequests }, null, 2)}\n`);
-  console.log(`Sample report audit passed: seven infographics with accessible tax-effect summaries, identical sheet geometry at 390/1440/1920px and in expanded/resized viewports, contained images, visible arrows, touch/keyboard/contents navigation, unchanged customer storage, matching seven-page vector PDF download and seven unclipped A4 print pages. Artifacts: ${outputDir}`);
+  console.log(`Sample report audit passed: seven illustrated pages with an accessible scoped gift-tax effect summary, identical sheet geometry at 390/1440/1920px and in expanded/resized viewports, contained images, visible arrows, touch/keyboard/contents navigation, unchanged customer storage, matching seven-page illustrated PDF download and seven unclipped A4 print pages. Artifacts: ${outputDir}`);
 } catch (error) {
   await writeFile(path.join(outputDir, "sample-report-audit.json"), `${JSON.stringify({ status: "failed", baseURL, expected, observations, errors, apiRequests, failure: error.stack || String(error) }, null, 2)}\n`);
   throw error;

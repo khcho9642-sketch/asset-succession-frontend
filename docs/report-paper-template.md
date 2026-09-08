@@ -1,9 +1,12 @@
 # Personal report format aligned with the approved sample
 
-The public `/sample-report` now uses the requested seven-page infographic redesign
-in `public/media/sample-report-v2/`. Its manifest is the single source for preview
-image paths, accessible summaries and the downloadable PDF. The earlier approved
-images in `public/media/sample-report/` remain unchanged and recoverable.
+The public `/sample-report` uses seven illustrated report pages in
+`public/media/sample-report-v3/`. Warm paper, sepia gift/building/house illustrations,
+fine rules and the original A/B/C strategy comparison restore the approved visual
+direction. Tax numbers, Korean text and page geometry are typeset deterministically
+over the illustrations. Its manifest is the single source for preview image paths,
+accessible summaries and the downloadable PDF. The earlier approved images in
+`public/media/sample-report/` remain unchanged and recoverable.
 Personal `/report-preview` reports continue using confirmed customer facts and
 `TaxComparisonReport` / `PaperReportLayout`; their tax calculations are unchanged.
 
@@ -15,23 +18,35 @@ and the calculated tax report use it, on screen and in print. The document uses
 `data-report-template="paper-seven-v1"` so an export test can detect regressions to
 an unrelated template.
 
-The public sample imports `public/media/sample-report-v2/manifest.json` through
-`lib/sampleReport.ts`. It is a fictional first-inheritance comparison: one decedent
-owns 50억원 of assets with 5억원 of debt, and a spouse and three adult children
-inherit. Three spouse-allocation cases share the same asset base and confirmed
-sample assumptions. Page 1 shows the A/C estimated taxes and their difference;
-page 3 compares all three cases. The comparison does not claim a reduction in
-combined taxes across later inheritances or transfers.
+The public sample imports `public/media/sample-report-v3/manifest.json` through
+`lib/sampleReport.ts`. The fictional family has combined assets of 50억원 and debt
+of 5억원, giving net assets of 45억원. This is a family overview, not a claim that
+one parent owns every asset or that all 50억원 have been compared for tax purposes.
+
+Page 1 isolates a cash-gift example: out of the family's 10억원 of cash, a parent
+gives 3억원 to one adult resident child or 1억원 each to three adult resident
+children. Estimated gift tax is 38,800,000원 versus 14,550,000원 in total, a
+24,250,000원 difference. Each child has no gifts from lineal ascendants during the
+previous ten years, uses a 50,000,000원 deduction, files on time for the 3% credit,
+and pays their own tax. Marriage/childbirth deductions do not apply. Family debt
+does not reduce this cash gift. The comparison covers this gift tax only, not total
+tax on the family's assets or a later inheritance, and distributing ownership among
+three recipients is not automatically preferable to transferring it to one.
+
+Page 3 restores A: staged gifts, B: sale followed by cash transfer, and C: holding
+assets for inheritance. It compares their goals, tradeoffs and required facts.
+The page-1 cash-gift numbers are not reused as tax estimates for those three
+different strategies. The prior spouse-allocation sample is not the active report.
 
 Every page centers on a diagram or large numbers with concise explanation:
 
 | Page | Main visual |
 | --- | --- |
-| 01 세금효과 요약 | Three large estimated-tax/effect amounts |
+| 01 세금효과 요약 | Cash-gift comparison and three large estimated-tax/effect amounts |
 | 02 가족과 자산 | Family structure and asset composition |
-| 03 세 가지 배분안 | Estimated-tax comparison of three allocations |
-| 04 배우자 배분안 | Flow of estate assets to spouse and children |
-| 05 세금 계산 근거 | Estate, deductions, tax base and estimated tax |
+| 03 세 가지 방향 비교 | Gift, building and house illustrations in three strategy columns |
+| 04 단계적 증여 | Transfer planning with recipients, timing and conditions |
+| 05 매각과 상속 | Sale/cash transfer and holding/inheritance paths |
 | 06 생활비와 납부재원 | Cash allocation for tax and living funds |
 | 07 실행 준비 | Preparation, review and execution timeline |
 
@@ -50,9 +65,10 @@ header space. Screen audits compare all seven pages, including a return to page 
 in normal, expanded and resized viewports; they also check loading, containment,
 minimum arrow/touch dimensions and preservation of customer session data.
 
-`PDF 저장` directly downloads the matching authored seven-page PDF, which preserves
-selectable text and vector diagrams. The download gate verifies exact file bytes,
-seven A4 pages, selectable Korean text and the first-page estimated-tax amounts.
+`PDF 저장` directly downloads the matching authored seven-page illustrated PDF,
+which preserves selectable text. The download gate verifies exact file bytes,
+seven A4 pages, selectable Korean text, the first-page estimated-tax amounts and
+their cash-gift-only scope.
 Browser printing also remains supported: it reveals all seven 210 × 297 mm image
 sheets even when page 3 is selected. Its separate print gate checks image bounds
 and seven physical A4 pages with the expected image dimensions. Personal reports
@@ -103,4 +119,3 @@ Each report compares alternatives within the selected tax track. It does not pla
 taxes on unrelated asset bases into one cross-tax ranking. Supported calculator scopes
 remain documented in `tax-comparison-implementation.md`; this update changes the handoff,
 not the tax law or engine rules.
-

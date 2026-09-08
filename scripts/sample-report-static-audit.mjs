@@ -18,13 +18,13 @@ for (const image of originalImages) {
   assert.equal(createHash("sha256").update(bytes).digest("hex"), image.sha256, `Approved sample image changed: ${image.src}`);
 }
 
-const manifest = JSON.parse(await readFile("public/media/sample-report-v2/manifest.json", "utf8"));
-const titles = ["세금효과 요약", "가족과 자산", "세 가지 배분안", "배우자 배분안", "세금 계산 근거", "생활비와 납부재원", "실행 준비"];
-assert.equal(manifest.version, 2, "Sample must use the redesigned infographic manifest");
+const manifest = JSON.parse(await readFile("public/media/sample-report-v3/manifest.json", "utf8"));
+const titles = ["세금효과 요약", "가족과 자산", "세 가지 방향 비교", "단계적 증여", "매각과 상속", "생활비와 납부재원", "실행 준비"];
+assert.equal(manifest.version, 3, "Sample must use the illustrated seven-page manifest");
 assert.deepEqual(manifest.pages.map(page => page.title), titles, "The requested seven infographic chapters changed");
-assert.equal(manifest.pdf, "/media/sample-report-v2/sample-report.pdf", "Sample download must use the matching vector PDF");
+assert.equal(manifest.pdf, "/media/sample-report-v3/sample-report.pdf", "Sample download must use the matching illustrated PDF");
 for (const [index, page] of manifest.pages.entries()) {
-  assert.equal(page.image, `/media/sample-report-v2/page-${String(index + 1).padStart(2, "0")}.webp`);
+  assert.equal(page.image, `/media/sample-report-v3/page-${String(index + 1).padStart(2, "0")}.webp`);
   assert.equal(page.width, 1400);
   assert.equal(page.height, 1980);
   assert(page.headline && page.points.length >= 2, `Page ${index + 1} needs an accessible summary`);
@@ -61,8 +61,10 @@ function auditMarkup(source, label) {
     assert(section.includes("샘플") && section.includes("전문가 검토 전"), `${label}: page ${page[1]} lost its accessible sample status`);
     assert(markup.includes(`id="report-page-${page[1]}"`), `${label}: page ${page[1]} has no navigation target`);
   }
-  for (const amount of ["1,200,375,000원", "774,060,000원", "426,315,000원"]) assert(markup.includes(amount), `${label}: first-page tax effect summary lost ${amount}`);
-  assert(!markup.includes("1,491,375,000원"), `${label}: unrelated 52억원 calculation leaked into the new sample`);
+  const firstPage = markup.slice(pages[0].index, pages[1].index);
+  for (const amount of ["38,800,000원", "14,550,000원", "24,250,000원"]) assert(firstPage.includes(amount), `${label}: first-page gift-tax effect summary lost ${amount}`);
+  assert(firstPage.includes("이번 현금 증여세만 비교"), `${label}: first-page example must identify its limited comparison scope`);
+  for (const amount of ["1,491,375,000원", "1,200,375,000원", "774,060,000원", "426,315,000원"]) assert(!markup.includes(amount), `${label}: unrelated estate-tax calculation leaked into the illustrated sample`);
   assert(new RegExp(`<a\\b[^>]*href="${manifest.pdf}"[^>]*download=`).test(markup), `${label}: PDF control must download the matching report file`);
   assert(markup.includes("data-sample-viewer") && markup.includes('data-current-page="1"'), `${label}: missing initial one-page viewer state`);
   assert(markup.includes("data-sample-stage"), `${label}: missing fitted report stage`);
@@ -76,4 +78,4 @@ if (process.env.BASE_URL) {
   assert(response.ok, `Sample route returned ${response.status}`);
   auditMarkup(await response.text(), "Served sample");
 }
-console.log("Sample report static audit passed: earlier images preserved, seven new infographic hashes match the manifest, tax-effect summaries prerendered, vector PDF download and homepage entry present.");
+console.log("Sample report static audit passed: earlier images preserved, seven illustrated image hashes match the manifest, scoped gift-tax effect summary prerendered, matching PDF download and homepage entry present.");

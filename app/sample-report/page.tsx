@@ -5,7 +5,7 @@ import styles from "@/components/SampleReport.module.css";
 
 export const metadata: Metadata = {
   title: "7장 샘플 보고서 | 자산승계 360",
-  description: "재산 50억원, 채무 5억원의 가상 상속 사례로 보는 7장 인포그래픽 보고서. 세 가지 재산 배분안의 추정 세금과 차이, 가족·자산 구조, 생활비와 납부재원을 살펴보세요."
+  description: "가족 합산 자산 50억원, 채무 5억원의 가상 사례로 보는 7장 일러스트 보고서. 첫 장의 현금 3억원 증여세 비교부터 증여·매각·상속의 세 가지 방향과 실행 준비까지 살펴보세요."
 };
 
 export default function SampleReportPage() {
