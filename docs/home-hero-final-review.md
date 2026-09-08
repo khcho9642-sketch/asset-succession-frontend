@@ -13,7 +13,7 @@ Approved image commit: `6f4cbbf67f52e24cea2e9f617b4cae972ef8b308`
 - Trust copy: **회원가입 없이 · 약 5분 · 결과 즉시 확인**. Service areas and consultation steps live below the hero rather than repeating value cards inside it.
 - Three stacked report sheets use the supplied report WebP files on desktop. Below 1024px, the same approved content is reflowed as semantic HTML so the family tree, asset allocation, strategy conditions and roadmap remain readable. Whole-page reference images are never rendered as page content or backgrounds.
 - Report 1 retains 장남 (사업 승계), 장녀 (자산 분산), 차남 (생활 안정), and 분할 증여. Report examples are labeled as samples, separate from calculated customer results.
-- Two-second automatic advancement with a 680ms paper-leaf turn. The outgoing text remains on the lifted sheet until it reveals the next report. Dots, Left/Right/Home/End keys, horizontal swipe, hover/focus pause and explicit pause remain supported. Vertical touch scrolling does not change pages. Background tabs and reduced-motion preference pause automatic advancement. Print disables motion.
+- Four-second automatic advancement with a 680ms paper-leaf turn. The outgoing text remains on the lifted sheet until it reveals the next report. Dots, Left/Right/Home/End keys, horizontal swipe, hover/focus pause and explicit pause remain supported. Vertical touch scrolling does not change pages. Background tabs and reduced-motion preference pause automatic advancement. Print disables motion.
 - No additional dependencies, account setup, production deployment or main-branch changes.
 
 ## Verification
@@ -39,7 +39,7 @@ The initial browser check found a 5px overflow from a rotated mobile back sheet.
 
 ![Full homepage desktop](review-assets/home-hero-final/desktop-full.png)
 
-## Two-second paper-turn refinement
+## Paper-turn refinement (initial two-second version)
 
 Re-ran lint, build (including TypeScript validation), and the complete homepage audit after the motion-only change. The broader unit/smoke/UI results above belong to the preceding final-design baseline.
 
@@ -50,6 +50,12 @@ Manually inspected desktop and mobile captures at 170ms and 340ms. These are del
 ![Desktop mid-turn](review-assets/home-hero-final/paper-turn-desktop.png)
 
 ![Mobile mid-turn](review-assets/home-hero-final/paper-turn-mobile.png)
+
+## Four-second reading interval (current)
+
+Changed only the automatic advancement interval from two to four seconds, as requested after comparing the two designs. The 680ms paper turn, report content, layout and all controls are unchanged. Updated the timing regression test, including its reduced-motion observation window, for the longer interval.
+
+Re-ran `npm run lint`, `npm run build` (including TypeScript), and `node scripts/paper-turn-audit.mjs`: all passed. The browser test measured four-second automatic turns at 375, 390, 430, 768 and 1440px and rechecked reverse turns, rapid manual input, mid-turn overflow, reduced motion and static print behavior. Temporary evidence is in `.tmp/paper-turn-four-seconds/`; the motion appearance remains represented by the screenshots above.
 
 ## Scope of evidence
 

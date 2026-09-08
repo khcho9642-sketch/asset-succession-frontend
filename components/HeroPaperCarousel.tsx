@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { HeroReportContent, heroReports } from "./HeroReportContent";
 import styles from "./HomePage.module.css";
 
-const AUTO_ADVANCE_MS = 2000;
+const AUTO_ADVANCE_MS = 4000;
 type PageState = { index: number; outgoing: number | null; direction: "forward" | "back"; sequence: number };
 
 function turnPage(current: PageState, target: number, reducedMotion: boolean): PageState {
@@ -59,7 +59,7 @@ export function HeroPaperCarousel() {
 
   useEffect(() => {
     if (paused) return;
-    // Starts are two seconds apart; completing the leaf animation does not reset this timer.
+    // Starts are four seconds apart; completing the leaf animation does not reset this timer.
     const timer = window.setTimeout(() => {
       setManualChange(false);
       setPageState((current) => turnPage(current, current.index + 1, reducedMotion));

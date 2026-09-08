@@ -23,9 +23,9 @@ try {
         for (const record of records) if (record.attributeName === 'data-active-page') window.turnStarts.push({ time: performance.now(), page: carousel.dataset.activePage });
       }).observe(carousel, { attributes: true });
     });
-    await page.waitForFunction(() => window.turnStarts.length >= 3);
+    await page.waitForFunction(() => window.turnStarts.length >= 3, undefined, { timeout: 18000 });
     const intervals = await page.evaluate(() => window.turnStarts.slice(1).map((item, i) => item.time - window.turnStarts[i].time));
-    for (const interval of intervals) assert(interval >= 1850 && interval <= 2250, 'Autoplay must advance every 2 seconds: ' + interval);
+    for (const interval of intervals) assert(interval >= 3850 && interval <= 4250, 'Autoplay must advance every 4 seconds: ' + interval);
     await carousel.evaluate((el) => el.focus({ preventScroll: true }));
     await page.getByTestId('turning-paper').waitFor({ state: 'detached' });
     await carousel.press('Home');
@@ -74,7 +74,7 @@ try {
     await page.getByRole('link', { name: '자산승계 360 홈' }).focus();
     await page.mouse.move(2, 2);
     const reducedIndex = await carousel.getAttribute('data-active-page');
-    await page.waitForTimeout(2300);
+    await page.waitForTimeout(4300);
     assert.equal(await carousel.getAttribute('data-active-page'), reducedIndex, 'Reduced motion must stop autoplay without manual pause');
     await carousel.press('ArrowRight');
     assert.equal(await page.getByTestId('turning-paper').count(), 0, 'Reduced motion must change pages immediately');
@@ -82,5 +82,5 @@ try {
     await context.close();
   }
   await writeFile(path.join(output, 'audit.json'), JSON.stringify(results, null, 2));
-  console.log('Paper-turn audit passed: 2s cadence, forward/reverse leaf, no mid-turn overflow, rapid input, reduced motion and print at 5 widths.');
+  console.log('Paper-turn audit passed: 4s cadence, forward/reverse leaf, no mid-turn overflow, rapid input, reduced motion and print at 5 widths.');
 } finally { await browser.close(); }
