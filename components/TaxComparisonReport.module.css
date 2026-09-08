@@ -195,6 +195,8 @@
   .comparisonTable th, .comparisonTable td { padding: 3mm 2mm; }
   .book .page[data-report-page="4"] .comparisonTable th,
   .book .page[data-report-page="4"] .comparisonTable td { padding-top: 2mm; padding-bottom: 2mm; }
+  .book .page[data-report-page="4"] .card { padding: 3mm; margin-top: 3mm; }
+  .book .page[data-report-page="4"] .bullets li + li { margin-top: 1mm; }
   .alternatives { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4mm; align-items: start; }
   .alternatives:has(> :only-child) { grid-template-columns: minmax(0, 1fr); }
   .alternative { padding: 3.5mm; }
