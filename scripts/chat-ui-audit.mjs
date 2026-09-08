@@ -8,6 +8,7 @@ import path from "node:path";
 // CI browser regression. All diagnosis requests are intercepted: no provider
 // credentials, billable requests, or real customer data are used by this audit.
 const baseURL = process.env.BASE_URL ?? "http://127.0.0.1:4173";
+const applicationOrigin = new URL(baseURL).origin;
 const outputDir = process.env.UI_AUDIT_DIR ?? "artifacts/ui-audit";
 const draftKey = "as360.chat.draft.v1";
 const assessmentKey = "as360.precheck.assessment.v1";
@@ -22,15 +23,19 @@ await mkdir(outputDir, { recursive: true });
 
 async function newContext(browser, { width = 1440, configured = false, post, storage } = {}) {
   const context = await browser.newContext({ viewport: { width, height: width === 390 ? 844 : 1000 }, reducedMotion: "reduce" });
-  if (storage === "blocked") await context.addInitScript(() => {
+  // addInitScript also runs for the initial opaque about:blank document.
+  // Seed storage only after navigation reaches the application origin.
+  if (storage === "blocked") await context.addInitScript(origin => {
+    if (window.location.origin !== origin) return;
     Object.defineProperty(window, "sessionStorage", { configurable: true, get() { throw new DOMException("Storage is blocked", "SecurityError"); } });
-  });
-  if (storage === "corrupt") await context.addInitScript(key => {
+  }, applicationOrigin);
+  if (storage === "corrupt") await context.addInitScript(({ key, origin }) => {
+    if (window.location.origin !== origin) return;
     if (!sessionStorage.getItem("chat-audit-corrupt-seeded")) {
       sessionStorage.setItem(key, '{"version":1,"state":');
       sessionStorage.setItem("chat-audit-corrupt-seeded", "yes");
     }
-  }, draftKey);
+  }, { key: draftKey, origin: applicationOrigin });
   await context.route("**/api/diagnosis", async route => {
     if (route.request().method() === "GET") return route.fulfill({ json: { configured }, headers: { "cache-control": "no-store" } });
     postCount += 1;
@@ -44,7 +49,10 @@ async function newContext(browser, { width = 1440, configured = false, post, sto
     errors.push("Guided mode unexpectedly requested an AI response.");
     await route.fulfill({ status: 503, json: { error: { code: "AI_NOT_CONFIGURED", message: "Audit: provider is disabled" } } });
   });
-  context.on("page", page => page.on("pageerror", error => errors.push(error.message)));
+  context.on("page", page => page.on("pageerror", error => errors.push({
+    kind: "pageerror", message: error.message, stack: error.stack ?? "", url: page.url(),
+    fixture: { storage: storage ?? "normal", configured, width },
+  })));
   return context;
 }
 
@@ -87,8 +95,7 @@ async function openReview(page) {
 }
 
 async function editField(page, label, text) {
-  // The review panel and desktop summary both expose editors; the first is the
-  // primary review editor. Locators deliberately use accessible labels.
+  // Locators use the primary review editor's accessible labels.
   await page.getByRole("button", { name: `${label} 수정`, exact: true }).first().click();
   await page.getByRole("textbox", { name: `${label} 입력`, exact: true }).fill(text);
   await page.getByRole("button", { name: "저장", exact: true }).click();
@@ -166,6 +173,7 @@ try {
     const page = await context.newPage();
     await openChat(page);
     await assertNoOverflow(page, `${width}px empty chat`);
+    await page.screenshot({ path: path.join(outputDir, `chat-${width}-conversation.png`), fullPage: true });
     assert(await page.getByRole("button", { name: "메시지 보내기", exact: true }).isDisabled(), "Empty send must be disabled");
     await page.locator("#diagnosis-message").fill(" \n ");
     assert(await page.getByRole("button", { name: "메시지 보내기", exact: true }).isDisabled(), "Whitespace send must be disabled");
@@ -331,8 +339,8 @@ try {
   observations.push({ name: "SDK text/tool stream, evidence rejection, busy composer, explicit confirmation", mockRequests });
   await aiContext.close();
 
+  await writeFile(path.join(outputDir, "chat-audit-report.json"), `${JSON.stringify({ status: errors.length ? "failed" : "passed", baseURL, providerInvoked: false, postCount, observations, errors }, null, 2)}\n`);
   assert.deepEqual(errors, [], "Browser errors or unintended provider calls were observed");
-  await writeFile(path.join(outputDir, "chat-audit-report.json"), `${JSON.stringify({ status: "passed", baseURL, providerInvoked: false, postCount, observations }, null, 2)}\n`);
   console.log(`Chat UI audit passed: ${observations.length} flows; all ${postCount} AI requests mocked.`);
 } finally {
   await browser.close();

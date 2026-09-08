@@ -311,7 +311,7 @@ export function DiagnosisChat() {
       {resetRequested && <div className={styles.resetNotice} role="alert"><p>현재 대화를 비우고 새 진단을 시작할까요?</p><div><button onClick={() => setResetRequested(false)}>계속 작성</button><button className={styles.dangerButton} onClick={() => void resetChat()}>새 진단 시작</button></div></div>}
       {storageNotice && <p className={styles.notice} role="status">{storageNotice}</p>}
 
-      <div className={styles.columns}>
+      <div className={`${styles.columns} ${stage === "review" ? styles.reviewColumns : ""}`}>
         <div className={styles.chatColumn}>
           <div className={styles.chatHeading}>
             <div><span className={styles.eyebrow}>무료 사전진단{topic ? ` · ${topic}` : ""}</span><h1>먼저, 이야기를 들려주세요.</h1></div>
@@ -372,7 +372,7 @@ export function DiagnosisChat() {
           </div>
         </div>
 
-        <aside className={styles.summary} aria-label="정리 중인 사실 요약">
+        {stage === "chat" && <aside className={styles.summary} aria-label="정리 중인 사실 요약">
           <button className={styles.summaryToggle} onClick={() => setSummaryOpen(!summaryOpen)} aria-expanded={summaryOpen} aria-controls="diagnosis-summary"><div><span className={styles.eyebrow}>CASE NOTE</span><h2>현재 정리된 내용 <span>{factsCount}</span></h2></div><ChevronDown size={20} className={summaryOpen ? styles.rotate : ""} aria-hidden="true" /></button>
           <div id="diagnosis-summary" className={`${styles.summaryBody} ${summaryOpen ? styles.summaryBodyOpen : ""}`}>
             <div className={styles.summaryStatus}><span className={styles.pendingBadge}>확인 전</span><p>이야기에서 찾은 내용을 모아둘게요.<br />직접 고치거나 항목을 추가할 수 있어요.</p></div>
@@ -383,7 +383,7 @@ export function DiagnosisChat() {
             <button className={styles.reviewButton} onClick={openReview} disabled={busy || !hydrated}><FileText size={17} aria-hidden="true" /> 정리 내용 확인하기 <ArrowRight size={17} aria-hidden="true" /></button>
             <p className={styles.summaryFootnote}>직접 확인한 내용으로만<br />보고서를 준비합니다.</p>
           </div>
-        </aside>
+        </aside>}
       </div>
       <div className={styles.footer}><span>자산승계360 · 우리 가족의 다음을 준비하는 시간</span><Link href={`/precheck/form${topic ? `?purpose=${encodeURIComponent(params.get("purpose") ?? "")}` : ""}`}>기존 문답형으로 입력하기 <ArrowRight size={13} aria-hidden="true" /></Link></div>
     </section>

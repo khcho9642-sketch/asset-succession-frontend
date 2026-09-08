@@ -28,6 +28,7 @@
 .progress > span:nth-child(even) { color: #bfb5a6; }
 .progress .activeStep { color: var(--seal); font-weight: 700; }
 .columns { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 28px; align-items: start; }
+.columns.reviewColumns { grid-template-columns: minmax(0, 1fr); width: min(900px, 100%); margin-inline: auto; }
 .chatColumn { min-width: 0; }
 .chatHeading { display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; margin-bottom: 12px; }
 .eyebrow { display: block; font-size: 13px; line-height: 1.5; font-weight: 600; letter-spacing: .1em; color: var(--brass); }
