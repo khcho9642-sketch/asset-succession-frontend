@@ -124,17 +124,16 @@ try {
   assert(!reportText.includes("0.5억 산출세액") && !reportText.includes("0.2억 산출세액") && !reportText.includes("55억") && !reportText.includes("9.5~12억") && !reportText.includes("6.3~8.6억") && !reportText.includes("inheritance-01-current-structure"), "Report preview still exposes fabricated calculations, fixed sample strategy numbers, or internal candidate IDs.");
 
   await page.goto(`${baseURL}/consultation`, { waitUntil: "networkidle" });
-  await page.getByText(assessmentId).first().waitFor({ timeout: 10_000 });
-  assert((await page.locator("body").innerText()).includes(assessmentId), "Assessment ID missing from consultation page.");
-  await page.getByRole("button", { name: "상담 신청하기" }).click();
-  assert(await page.getByText("상담 대표자를 입력해 주세요.").isVisible(), "Consultation validation alert missing.");
-  await page.getByLabel("상담 대표자").fill("가족 대표");
-  await page.getByLabel("전화번호").fill("000-0000-0000");
-  await page.getByLabel("상담 희망내용").fill("납부재원과 증여 전략을 검토하고 싶습니다.");
-  await page.getByLabel(/개인정보 수집·이용/).check();
-  await page.getByRole("button", { name: "상담 신청하기" }).click();
+  await page.locator(`[data-assessment-id="${assessmentId}"]`).waitFor({ timeout: 10_000 });
+  assert((await page.getByRole("link", { name: "결과 보기", exact: true }).getAttribute("href")).includes(assessmentId), "Assessment result link missing from consultation page.");
+  await page.getByRole("button", { name: "연락처 남기기", exact: true }).click();
+  assert(await page.getByText("전화번호를 입력해 주세요.").isVisible(), "Contact validation alert missing.");
+  await page.getByLabel("전화번호", { exact: true }).fill("000-0000-0000");
+  await page.getByRole("checkbox", { name: /전화번호 이용/ }).check();
+  await page.getByRole("button", { name: "연락처 남기기", exact: true }).click();
   const successText = await page.locator("body").innerText();
-  assert(successText.includes("상담 신청이 접수되었습니다.") && successText.includes("RCV-") && successText.includes(assessmentId), "Consultation success state missing IDs.");
+  assert(successText.includes("연락처 입력을 확인했습니다.") && successText.includes("실제 접수·전송은 되지 않았습니다.") && !successText.includes("RCV-"), "Contact preview must not claim actual receipt.");
+  assert(await page.locator(`[data-assessment-id="${assessmentId}"]`).count() === 1, "Optional assessment handoff was lost.");
   await page.close();
 
   console.log(JSON.stringify({
@@ -151,7 +150,7 @@ try {
       "final free-question stage and '없어요, 분석해 주세요' auto-transition work",
       "required 50억원 conversation reaches result, seven-page report, and consultation",
       "36 internal scenario candidates stay summarized rather than exposed as a list",
-      "consultation required validation and local success state work"
+      "phone-only contact validation, optional assessment handoff and honest non-transmission state work"
     ]
   }, null, 2));
 } finally {

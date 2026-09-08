@@ -134,14 +134,14 @@ try {
     const emptyConsultationPage = await context.newPage();
     await emptyConsultationPage.goto(`${baseURL}/consultation`, { waitUntil: "networkidle", timeout: 30_000 });
     const emptyConsultationText = await emptyConsultationPage.locator("body").innerText();
-    if (!emptyConsultationText.includes("상담 신청 전 사전진단이 필요합니다.") || emptyConsultationText.includes("입력한 내용을 다시 작성할 필요가 없습니다.")) {
-      fail("/consultation", viewport.name, "Consultation without stored assessment does not clearly lock the form and remove the handoff-copy.");
+    if (!emptyConsultationText.includes("연락처만 남겨주세요.") || emptyConsultationText.includes("사전진단 결과가 연결되어 있습니다.")) {
+      fail("/consultation", viewport.name, "Contact-only page must work without an assessment and must not claim a linked result.");
     }
-    if (await emptyConsultationPage.getByRole("button", { name: "상담 신청하기" }).count() > 0) {
-      fail("/consultation", viewport.name, "Consultation without stored assessment still exposes the submit button.");
+    if (await emptyConsultationPage.getByRole("button", { name: "연락처 남기기", exact: true }).count() !== 1 || await emptyConsultationPage.getByRole("textbox").count() !== 1) {
+      fail("/consultation", viewport.name, "Contact-only page must expose exactly one phone field and submit button.");
     }
     await stableScreenshot(emptyConsultationPage, {
-      path: path.join(outputDir, `${viewport.name}-consultation-empty-locked.png`),
+      path: path.join(outputDir, `${viewport.name}-consultation-contact-only.png`),
       fullPage: true
     });
     await emptyConsultationPage.close();
@@ -494,23 +494,20 @@ try {
       }
 
       await flowPage.goto(`${baseURL}/consultation`, { waitUntil: "networkidle", timeout: 30_000 });
-      await flowPage.getByText(assessmentMatch[0]).first().waitFor({ timeout: 10_000 });
-      const consultationText = await flowPage.locator("body").innerText();
-      if (!consultationText.includes(assessmentMatch[0])) {
+      await flowPage.locator(`[data-assessment-id="${assessmentMatch[0]}"]`).waitFor({ timeout: 10_000 });
+      if (!(await flowPage.getByRole("link", { name: "결과 보기", exact: true }).getAttribute("href")).includes(assessmentMatch[0])) {
         fail("/consultation", viewport.name, "Assessment snapshot was not handed off to consultation.");
       }
-      await flowPage.getByRole("button", { name: "상담 신청하기" }).click();
-      if (!await flowPage.getByRole("alert").getByText("상담 대표자를 입력해 주세요.").isVisible()) {
+      await flowPage.getByRole("button", { name: "연락처 남기기", exact: true }).click();
+      if (!await flowPage.getByRole("alert").getByText("전화번호를 입력해 주세요.").isVisible()) {
         fail("/consultation", viewport.name, "Consultation required-field validation did not run.");
       }
-      await flowPage.getByLabel("상담 대표자").fill("가족 대표");
-      await flowPage.getByLabel("전화번호").fill("000-0000-0000");
-      await flowPage.getByLabel("상담 희망내용").fill("상속세 납부재원과 일부 증여를 함께 보고 싶습니다.");
-      await flowPage.getByLabel(/개인정보 수집·이용/).check();
-      await flowPage.getByRole("button", { name: "상담 신청하기" }).click();
+      await flowPage.getByLabel("전화번호", { exact: true }).fill("000-0000-0000");
+      await flowPage.getByRole("checkbox", { name: /전화번호 이용/ }).check();
+      await flowPage.getByRole("button", { name: "연락처 남기기", exact: true }).click();
       const successText = await flowPage.locator("body").innerText();
-      if (!successText.includes("상담 신청이 접수되었습니다.") || !successText.includes("RCV-") || !successText.includes(assessmentMatch[0])) {
-        fail("/consultation", viewport.name, "Consultation local success state did not preserve receipt and assessment IDs.");
+      if (!successText.includes("연락처 입력을 확인했습니다.") || !successText.includes("실제 접수·전송은 되지 않았습니다.") || successText.includes("RCV-") || await flowPage.locator(`[data-assessment-id="${assessmentMatch[0]}"]`).count() !== 1) {
+        fail("/consultation", viewport.name, "Contact preview must preserve optional assessment context without fabricating a receipt.");
       }
       await stableScreenshot(flowPage, {
         path: path.join(outputDir, `${viewport.name}-consultation-success.png`),

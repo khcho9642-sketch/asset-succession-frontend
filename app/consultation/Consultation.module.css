@@ -1,0 +1,62 @@
+.page {
+  --contact-ink: #26221b;
+  --contact-muted: #6b6152;
+  --contact-line: #d4cbbb;
+  --contact-accent: #b23a2a;
+  min-height: 100vh;
+  background: #efeae0;
+  color: var(--contact-ink);
+}
+.content { max-width: 960px; margin: 0 auto; padding: 62px 28px 72px; }
+.intro { margin-bottom: 28px; }
+.eyebrow { margin: 0 0 12px; font-size: 13px; font-weight: 650; color: #7a6139; letter-spacing: .08em; }
+.intro h1 { margin: 0; font-size: clamp(28px, 3vw, 40px); font-weight: 650; letter-spacing: -.055em; line-height: 1.3; }
+.intro > p:last-child { margin: 12px 0 0; font-size: 16px; line-height: 1.7; color: var(--contact-muted); }
+.card { display: grid; grid-template-columns: .95fr 1.05fr; border: 1px solid var(--contact-line); background: #f8f4ea; }
+.professional { padding: 34px 30px; border-right: 1px solid var(--contact-line); }
+.sectionLabel { margin: 0 0 14px; font-size: 13px; color: var(--contact-muted); }
+.professional h2 { margin: 0; font-size: 28px; font-weight: 650; letter-spacing: -.04em; }
+.professional h2 span { font-size: 17px; font-weight: 500; }
+.contacts { display: grid; gap: 3px; margin-top: 20px; font-style: normal; }
+.contacts a { display: flex; align-items: center; gap: 12px; min-height: 44px; width: fit-content; max-width: 100%; color: var(--contact-ink); font-size: 16px; }
+.contacts a span { overflow-wrap: anywhere; }
+.contacts a svg { flex-shrink: 0; color: #7a6139; }
+.contacts .phoneLink { font-size: 23px; font-weight: 600; letter-spacing: -.025em; }
+.contacts a:hover span, .assessmentNote a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.contactHint { margin: 14px 0 0; max-width: 30ch; font-size: 13px; line-height: 1.7; color: var(--contact-muted); }
+.formPanel { padding: 34px 30px; background: #fffdf8; }
+.previewNote { margin: 0 0 20px; color: var(--contact-muted); font-size: 13px; line-height: 1.6; }
+.phoneLabel { display: block; margin-bottom: 9px; font-size: 15px; font-weight: 600; }
+.formPanel input[type="tel"] { width: 100%; min-height: 52px; padding: 12px 14px; border: 1px solid #b4a894; border-radius: 2px; background: #fff; color: var(--contact-ink); font-size: 16px; }
+.formPanel input::placeholder { color: var(--contact-muted); }
+.consent { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 10px 0; margin: 7px 0 12px; cursor: pointer; font-size: 13px; line-height: 1.65; color: var(--contact-muted); }
+.consent input { width: 17px; height: 17px; flex-shrink: 0; accent-color: var(--contact-accent); }
+.submit { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; min-height: 52px; padding: 12px 18px; border: 1px solid var(--contact-accent); border-radius: 2px; background: var(--contact-accent); color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; }
+.submit:hover { background: #963023; border-color: #963023; }
+.page :is(a, button, input):focus-visible { outline: 2px solid var(--contact-accent); outline-offset: 4px; }
+.errors { margin: 0 0 16px; color: #9c3023; font-size: 14px; line-height: 1.6; }
+.errors p { margin: 0; }
+.assessmentNote { margin: 16px 0 0; color: var(--contact-muted); font-size: 13px; line-height: 1.7; }
+.assessmentNote a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; color: var(--contact-ink); text-decoration: underline; text-underline-offset: 3px; }
+.confirmation > svg { color: #28745a; }
+.confirmation h2 { margin: 16px 0 10px; font-size: 22px; line-height: 1.4; }
+.confirmation p { margin: 0; font-size: 14px; line-height: 1.8; color: var(--contact-muted); }
+.secondaryButton { margin-top: 20px; padding: 10px 16px; min-height: 44px; background: transparent; border: 1px solid #b4a894; border-radius: 2px; color: var(--contact-ink); cursor: pointer; }
+@media (max-width: 700px) {
+  .content { padding: 30px 20px 36px; }
+  .intro { margin-bottom: 22px; }
+  .intro > p:last-child { font-size: 14px; }
+  .card { grid-template-columns: 1fr; }
+  .professional { padding: 22px 24px; border-right: 0; border-bottom: 1px solid var(--contact-line); }
+  .sectionLabel { margin-bottom: 10px; }
+  .professional h2 { font-size: 25px; }
+  .contacts { margin-top: 14px; }
+  .contactHint { margin-top: 8px; }
+  .formPanel { padding: 22px 24px; }
+  .previewNote { margin-bottom: 16px; }
+}
+@media print {
+  .page { min-height: auto; background: #fff; }
+  .content { padding-block: 24px; }
+  .formPanel form, .secondaryButton { display: none; }
+}
