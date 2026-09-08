@@ -125,7 +125,7 @@ try {
   const reportText = await page.locator("body").innerText();
   assert(reportText.includes(assessmentId), "Assessment ID missing from report preview.");
   assert(await page.locator("[data-report-page]").count() === 7, "Paper report should render exactly seven pages.");
-  assert(reportText.includes("우리 가족 자산승계 사전진단 보고서") && reportText.includes("50억") && reportText.includes("첫째 대출·둘째 증여 배분"), "Seven-page report content missing selected recommendation flow.");
+  assert(reportText.includes("입력 요약 · 세액 계산 전") && reportText.includes("50억") && reportText.includes("첫째 대출·둘째 증여 배분"), "Seven-page report content missing selected recommendation flow.");
   assert(await page.locator('[data-paper-number]').count() === 7, "Report lost sample-style numbered sections.");
   assert(!reportText.includes("Report V2") && !reportText.includes("36개 시나리오 내부 분석 완료"), "Old report template or analysis overclaim returned.");
   assert(!reportText.includes("0.5억 산출세액") && !reportText.includes("0.2억 산출세액") && !reportText.includes("55억") && !reportText.includes("9.5~12억") && !reportText.includes("6.3~8.6억") && !reportText.includes("inheritance-01-current-structure"), "Report preview still exposes fabricated calculations, fixed sample strategy numbers, or internal candidate IDs.");

@@ -123,7 +123,8 @@ try {
     assert(snapshot.taxComparisonInput?.confirmed, "Estimate conditions were not saved as customer-confirmed");
     assert.equal(snapshot.taxComparisonInput.track, "inheritance");
     assert(Number.isFinite(Date.parse(snapshot.taxComparisonInput.confirmedAt)), "Tax conditions lack their own confirmation time");
-    for (const [key, value] of Object.entries({ estate: "52", financial: "12", debt: "0", financialDebt: "0", spouse: "yes", children: "3", funeral: "0.05", resident: "yes", standardCase: "yes", availableCash: "" })) assert.equal(snapshot.taxComparisonInput.values[key], value, `Confirmed condition ${key} changed during handoff`);
+    for (const [key, value] of Object.entries({ estate: "52", financial: "12", debt: "0", financialDebt: "0", spouse: "yes", children: "3", funeral: "0.05", resident: "yes", standardCase: "yes" })) assert.equal(snapshot.taxComparisonInput.values[key], value, `Confirmed condition ${key} changed during handoff`);
+    assert.equal(snapshot.taxComparisonInput.values.availableCash ?? "", "", "Unknown available cash acquired a confirmed amount during handoff");
     assert.equal((await page.locator("[data-tax-report-baseline]").innerText()).trim(), expected.baseline);
     assert.equal((await page.locator("[data-tax-report-alternative]").innerText()).trim(), expected.alternative);
     assert((await page.locator("[data-tax-report-difference]").innerText()).includes(expected.difference));

@@ -466,7 +466,7 @@ try {
       const pageCount = await flowPage.locator("[data-report-page]").count();
       const requiredReportText = [
         assessmentMatch[0],
-        "우리 가족 자산승계 사전진단 보고서",
+        "입력 요약 · 세액 계산 전",
         "가족 분산·단계적 사전증여",
         "첫째 대출·둘째 증여 배분",
         "배우자 상속공제 고려 재산배분"

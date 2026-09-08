@@ -155,6 +155,7 @@ async function confirmReport(page, label, calculation = {}) {
   assert.equal(await page.locator('[data-report-mode="tax-comparison"][data-tax-report-status="ready"]').count(), 1, `${label}: report omitted the required ready estimate`);
   assert.equal((await page.locator("[data-tax-report-baseline]").innerText()).trim(), expectedBaseline, `${label}: report estimate differs from the confirmed preview`);
   assert.equal((await page.locator("[data-tax-report-alternative]").innerText()).trim(), expectedAlternative, `${label}: report alternative differs from the confirmed preview`);
+  assert.equal(await page.locator('[data-tax-cash-status="unknown"]').count(), 1, `${label}: unknown payment cash became an amount`);
   assert.match(new URL(page.url()).searchParams.get("assessment_id") ?? "", /^AS360-\d{8}-[A-Z0-9]+$/);
   const text = await page.locator("body").innerText();
   for (const invented of ["0.5억 산출세액", "0.2억 산출세액", "0.3억 절세 예상", "9.5~12억", "6.3~8.6억", "inheritance-01-current-structure", "900억"]) {
@@ -202,7 +203,7 @@ function assertGroundedSnapshot(value, financial = "10") {
   assert(value.taxComparisonInput?.confirmed, "A confirmed chat report omitted its required tax conditions");
   assert.equal(value.taxComparisonInput.track, "inheritance");
   assert.equal(value.taxComparisonInput.values.financial, financial);
-  assert.equal(value.taxComparisonInput.values.availableCash, "", "Unknown available payment cash was inferred from financial assets");
+  assert.equal(value.taxComparisonInput.values.availableCash ?? "", "", "Unknown available payment cash was inferred from financial assets");
   assert(Number.isFinite(Date.parse(value.taxComparisonInput.confirmedAt)), "Tax conditions lack a confirmation timestamp");
 }
 
