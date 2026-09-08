@@ -562,14 +562,17 @@ textarea {
   .report-confirmed-facts .report-fact-row {
     grid-template-columns: 34mm minmax(0, 1fr);
     gap: 3mm;
+  }
+
+  .report-page .report-fact-row {
     padding-top: 2mm;
   }
 
-  .report-confirmed-facts > dl {
+  .report-page dl {
     gap: 2mm;
   }
 
-  .report-confirmed-facts .report-fact-row dd {
+  .report-page .report-fact-row dd {
     line-height: 1.5;
   }
 
