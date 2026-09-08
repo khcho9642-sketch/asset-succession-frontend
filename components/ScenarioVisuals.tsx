@@ -87,7 +87,7 @@ export function AssetCompositionChart({ facts, compact = false }: Readonly<{ fac
   );
 }
 
-export function RecommendationComparisonChart({ plan, compact = false }: Readonly<{ plan: ScenarioPlan; compact?: boolean }>) {
+export function RecommendationComparisonChart({ plan, compact = false, recommendationLabel = "AI 추천" }: Readonly<{ plan: ScenarioPlan; compact?: boolean; recommendationLabel?: string }>) {
   const rows = [
     {
       label: "현재 상태 기준안",
@@ -96,7 +96,7 @@ export function RecommendationComparisonChart({ plan, compact = false }: Readonl
       risk: plan.baseline.calculation_result.status
     },
     ...plan.display_scenarios.recommended.map((scenario, index) => ({
-      label: `AI 추천 ${index + 1} · ${scenario.name}`,
+      label: `${recommendationLabel} ${index + 1} · ${scenario.name}`,
       tax: scenario.calculation_result.total_tax,
       cash: scenario.calculation_result.immediate_cash_required,
       risk: scenario.calculation_result.status
@@ -105,7 +105,7 @@ export function RecommendationComparisonChart({ plan, compact = false }: Readonl
   const maxValue = Math.max(1, ...rows.flatMap((row) => [row.tax.value_eok ?? 0, row.cash.value_eok ?? 0]));
 
   return (
-    <ChartCard title="기준안과 추천안 비교" helper="세금·즉시현금은 같은 계산 결과 객체에서 읽습니다." compact={compact}>
+    <ChartCard title={recommendationLabel === "검토 후보" ? "기준안과 검토 후보 비교" : "기준안과 추천안 비교"} helper="세금·즉시현금은 같은 계산 결과 객체에서 읽습니다." compact={compact}>
       <div className="grid gap-3">
         {rows.map((row, index) => (
           <div key={row.label} className="grid gap-1">
@@ -148,15 +148,15 @@ export function LiquidityFundingChart({ plan, compact = false }: Readonly<{ plan
   );
 }
 
-export function ExecutionTimelineChart({ scenarios, liquiditySupport, compact = false }: Readonly<{ scenarios: Scenario[]; liquiditySupport?: Scenario | null; compact?: boolean }>) {
+export function ExecutionTimelineChart({ scenarios, liquiditySupport, compact = false, candidateMode = false }: Readonly<{ scenarios: Scenario[]; liquiditySupport?: Scenario | null; compact?: boolean; candidateMode?: boolean }>) {
   const timeline = [...scenarios, ...(liquiditySupport ? [liquiditySupport] : [])]
     .flatMap((scenario) => scenario.timeline.slice(0, 3).map((event) => ({ scenario: scenario.name, event })))
     .slice(0, compact ? 6 : 8);
 
   return (
-    <ChartCard title="증여·대출·상속 실행 타임라인" helper="추천된 시나리오의 실행 이벤트만 순서대로 표시합니다." compact={compact}>
+    <ChartCard title={candidateMode ? "검토 후보별 실행 순서" : "증여·대출·상속 실행 타임라인"} helper={candidateMode ? "검토 후보에 연결된 실행 단계를 순서대로 표시합니다." : "추천된 시나리오의 실행 이벤트만 순서대로 표시합니다."} compact={compact}>
       {timeline.length === 0 ? (
-        <p className="text-sm text-[var(--muted)]">추천 실행 단계는 추가 확인 후 생성합니다.</p>
+        <p className="text-sm text-[var(--muted)]">{candidateMode ? "후보별" : "추천"} 실행 단계는 추가 확인 후 생성합니다.</p>
       ) : (
         <ol className="grid gap-2">
           {timeline.map((item, index) => (

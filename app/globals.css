@@ -546,7 +546,7 @@ textarea {
     width: 210mm;
     height: 297mm;
     margin: 0;
-    overflow: hidden;
+    overflow: visible;
     padding: 11mm !important;
     break-after: page;
     page-break-after: always;
@@ -556,6 +556,39 @@ textarea {
   .report-page:last-child {
     break-after: auto;
     page-break-after: auto;
+  }
+
+  /* Page bounds are asserted before PDF export; excess content must never be clipped. */
+  .report-confirmed-facts .report-fact-row {
+    grid-template-columns: 34mm minmax(0, 1fr);
+    gap: 3mm;
+    padding-top: 2mm;
+  }
+
+  .report-confirmed-facts > dl {
+    gap: 2mm;
+  }
+
+  .report-confirmed-facts .report-fact-row dd {
+    line-height: 1.5;
+  }
+
+  .report-roadmap .report-chart ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3mm 5mm;
+  }
+
+  .report-roadmap .motion-timeline-item {
+    grid-template-columns: 7mm minmax(0, 1fr);
+    gap: 2mm;
+  }
+
+  .report-page[data-report-page="7"] .mt-7 {
+    margin-top: 5mm;
+  }
+
+  .report-next-step {
+    padding: 4mm !important;
   }
 
   .report-page article,
@@ -602,6 +635,10 @@ textarea {
   .report-chart span,
   .report-chart li {
     color: #18212b;
+  }
+
+  .report-roadmap .motion-timeline-item > span:first-child {
+    color: #fff;
   }
 }
 

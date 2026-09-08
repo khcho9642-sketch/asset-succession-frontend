@@ -34,6 +34,13 @@ const statusLabels = {
   not_applicable: "해당 없음"
 } as const;
 
+const eligibilityLabels: Record<Scenario["eligibility"]["status"], string> = {
+  eligible: "기본 조건 해당",
+  conditional: "조건부 검토",
+  needs_info: "추가 확인 필요",
+  excluded: "검토 제외"
+};
+
 export function ReportV2Preview() {
   const [loadResult, setLoadResult] = useState<AssessmentLoadResult>({ status: "missing" });
 
@@ -77,9 +84,11 @@ export function ReportV2Preview() {
   const primaryAlternative = recommendedScenarios.find((scenario) => scenario.calculation_result.status === "calculable") ?? recommendedScenarios[0];
   const firstTwoRecommendations = recommendedScenarios.slice(0, 2);
   const thirdRecommendation = recommendedScenarios[2] ?? null;
+  const isChatReport = snapshot.conversation?.mode === "chat";
+  const recommendationLabel = isChatReport ? "검토 후보" : "AI 추천";
 
   return (
-    <article className="report-book mt-8">
+    <article className="report-book mt-8" data-report-mode={isChatReport ? "chat" : "form"}>
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4 print:hidden">
         <div>
           <p className="text-sm font-semibold text-[var(--gold)]">무료 보고서 미리보기</p>
@@ -114,21 +123,20 @@ export function ReportV2Preview() {
           <Card title="우선 검토 방향">
             <ol className="grid gap-2">
               {recommendedScenarios.map((scenario, index) => (
-                <li key={scenario.scenario_id}>{index + 1}. {scenario.name} · {statusLabels[scenario.calculation_result.status]} · {scenario.eligibility.status}</li>
+                <li key={scenario.scenario_id}>{index + 1}. {scenario.name} · {statusLabels[scenario.calculation_result.status]} · {eligibilityLabels[scenario.eligibility.status]}</li>
               ))}
             </ol>
             <p className="mt-3 border-l-2 border-[var(--gold)] pl-3 text-xs leading-5">
-              {plan.internal_analysis.disclosure_label}. 보고서에는 추천된 결과만 표시합니다.
+              {plan.internal_analysis.disclosure_label}. {isChatReport ? "입력 조건에 따라 규칙으로 선별한 검토 후보입니다." : "보고서에는 추천된 결과만 표시합니다."}
             </p>
           </Card>
         </section>
       </ReportPage>
 
       <ReportPage pageNumber={2} title="확인된 가족·자산 현황" eyebrow="Report V2 2/7">
-        <TwoColumnFacts metrics={metrics} snapshot={snapshot} />
+        {isChatReport ? <ConfirmedChatFacts snapshot={snapshot} /> : <TwoColumnFacts metrics={metrics} snapshot={snapshot} />}
         <p className="mt-5 border-l-2 border-[var(--gold)] bg-[var(--ivory)] p-4 text-sm leading-6 text-[var(--muted)]">
-          채무 상태: {facts.debt_status === "none" ? "채무 없음" : facts.debts.length > 0 ? "채무 금액 직접 입력" : "채무 확인 필요"} ·
-          과거 증여: {facts.past_gifts.length > 0 ? "최근 10년 증여 있음" : "직접 입력 없음"} ·
+          {!isChatReport && <>채무 상태: {facts.debt_status === "none" ? "채무 없음" : facts.debts.length > 0 ? "채무 금액 직접 입력" : "채무 확인 필요"} · 과거 증여: {facts.past_gifts.length > 0 ? "최근 10년 증여 있음" : "직접 입력 없음"} · </>}
           자산별 소유자와 지분은 상담 전 증빙으로 확인합니다.
         </p>
         <div className="mt-5">
@@ -187,8 +195,8 @@ export function ReportV2Preview() {
         </TableCard>
       </ReportPage>
 
-      <ReportPage pageNumber={4} title="기준안과 AI 추천 3개 비교" eyebrow="Report V2 4/7">
-        <RecommendationComparisonChart plan={plan} compact />
+      <ReportPage pageNumber={4} title={isChatReport ? "기준안과 검토 후보 비교" : "기준안과 AI 추천 3개 비교"} eyebrow="Report V2 4/7">
+        <RecommendationComparisonChart plan={plan} compact recommendationLabel={recommendationLabel} />
         <table className="report-table w-full border-collapse text-left">
           <thead>
             <tr>
@@ -209,7 +217,7 @@ export function ReportV2Preview() {
             </tr>
             {recommendedScenarios.map((scenario, index) => (
               <tr key={scenario.scenario_id}>
-                <td>AI 추천 {index + 1} · {scenario.name}</td>
+                <td>{recommendationLabel} {index + 1} · {scenario.name}</td>
                 <td>{moneyDisplay(scenario.calculation_result.total_tax)}</td>
                 <td>{moneyDisplay(scenario.calculation_result.liquidity_gap)}</td>
                 <td>{scenario.timeline.length}단계</td>
@@ -219,21 +227,21 @@ export function ReportV2Preview() {
           </tbody>
         </table>
         <p className="mt-5 border-l-2 border-[var(--gold)] bg-[var(--ivory)] p-4 text-sm leading-6 text-[var(--muted)]">
-          기준안과 추천안은 같은 입력 스냅샷과 같은 기준일에서만 비교합니다. {plan.internal_analysis.disclosure_label}.
+          기준안과 {isChatReport ? "검토 후보는" : "추천안은"} 같은 입력 스냅샷과 같은 기준일에서만 비교합니다. {plan.internal_analysis.disclosure_label}.
         </p>
       </ReportPage>
 
-      <ReportPage pageNumber={5} title="추천안 1·2 상세" eyebrow="Report V2 5/7">
+      <ReportPage pageNumber={5} title={isChatReport ? "검토 후보 1·2 상세" : "추천안 1·2 상세"} eyebrow="Report V2 5/7">
         <div className="grid gap-4">
           {firstTwoRecommendations.map((scenario, index) => (
-            <ScenarioDetailCard key={scenario.scenario_id} scenario={scenario} title={`AI 추천 ${index + 1}`} facts={facts} />
+            <ScenarioDetailCard key={scenario.scenario_id} scenario={scenario} title={`${recommendationLabel} ${index + 1}`} facts={facts} />
           ))}
         </div>
       </ReportPage>
 
-      <ReportPage pageNumber={6} title="추천안 3과 납세재원 보완안" eyebrow="Report V2 6/7">
+      <ReportPage pageNumber={6} title={isChatReport ? "검토 후보 3과 납세재원 보완안" : "추천안 3과 납세재원 보완안"} eyebrow="Report V2 6/7">
         <div className="grid gap-4">
-          {thirdRecommendation ? <ScenarioDetailCard scenario={thirdRecommendation} title="AI 추천 3" facts={facts} /> : <Card title="AI 추천 3"><p>현재 입력만으로는 세 번째 추천안을 억지로 만들지 않습니다.</p></Card>}
+          {thirdRecommendation ? <ScenarioDetailCard scenario={thirdRecommendation} title={`${recommendationLabel} 3`} facts={facts} /> : <Card title={`${recommendationLabel} 3`}><p>현재 입력만으로는 세 번째 {isChatReport ? "검토 후보를" : "추천안을"} 만들기 어렵습니다.</p></Card>}
           {liquiditySupport ? (
             <ScenarioDetailCard scenario={liquiditySupport} title="납세재원 보완안" facts={facts} note="보험·연부연납·현금흐름은 절세안이 아니라 세금 납부 가능성을 높이는 보완안으로 분리합니다." />
           ) : null}
@@ -241,7 +249,7 @@ export function ReportV2Preview() {
       </ReportPage>
 
       <ReportPage pageNumber={7} title="실행 로드맵·주의사항·공식 근거" eyebrow="Report V2 7/7">
-        <ExecutionTimelineChart scenarios={recommendedScenarios} liquiditySupport={liquiditySupport} compact />
+        <div className="report-roadmap"><ExecutionTimelineChart scenarios={recommendedScenarios} liquiditySupport={liquiditySupport} compact candidateMode={isChatReport} /></div>
         <section className="grid gap-5 md:grid-cols-2">
           <Card title="회의에서 정할 것">
             <ol className="grid gap-2">
@@ -271,7 +279,7 @@ export function ReportV2Preview() {
           </ul>
           <p className="mt-4 text-sm leading-6 text-[var(--muted)]">기준일: {plan.context.valuation_date} · 법령/규칙 버전: {plan.context.law_version}</p>
         </section>
-        <section className="mt-7 border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
+        <section className="report-next-step mt-7 border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
           <h3 className="text-2xl font-semibold tracking-[-0.04em]">다음 단계</h3>
           <p className="mt-3 text-sm leading-7 text-white/68">
             이 PDF를 가족에게 공유해 같은 전제와 질문을 맞춘 뒤, 실제 세법 계산엔진과 전문가 검토에서 숫자를 확정합니다.
@@ -336,6 +344,22 @@ function TwoColumnFacts({ metrics, snapshot }: Readonly<{ metrics: Metrics; snap
   );
 }
 
+function ConfirmedChatFacts({ snapshot }: Readonly<{ snapshot: AssessmentSnapshot }>) {
+  const confirmed = snapshot.conversation?.confirmed_facts ?? [];
+  const present = new Set(confirmed.map(fact => fact.id));
+  return (
+    <section className="report-confirmed-facts border border-[var(--border)] p-5">
+      <h3 className="text-lg font-semibold tracking-[-0.04em]">직접 확인한 내용</h3>
+      <p className="mt-2 text-sm leading-6 text-[var(--muted)]">전달하신 사실을 항목별로 한 번씩 정리했습니다. 모르는 금액과 조건은 그대로 남겨두었습니다.</p>
+      <dl className="mt-4 grid gap-3 text-sm">
+        {confirmed.map(fact => <Row key={fact.id} label={fact.label} value={fact.value} />)}
+        {!present.has("debt") && <Row label="채무" value="미확인" />}
+        {!present.has("pastGifts") && <Row label="과거 증여" value="미확인" />}
+      </dl>
+    </section>
+  );
+}
+
 function ReportPage({ pageNumber, eyebrow, title, children }: Readonly<{ pageNumber: number; eyebrow: string; title: string; children: ReactNode }>) {
   return (
     <section className="report-page border border-[var(--border)] bg-white p-7 md:p-10 print:border-0" data-report-page={pageNumber}>
@@ -346,7 +370,7 @@ function ReportPage({ pageNumber, eyebrow, title, children }: Readonly<{ pageNum
         </div>
         <span className="text-sm font-semibold text-[var(--muted)]">{pageNumber}/7</span>
       </div>
-      <div className="mt-6 text-sm leading-6 text-[var(--text)]">{children}</div>
+      <div className="report-page-content mt-6 text-sm leading-6 text-[var(--text)]" data-report-content>{children}</div>
     </section>
   );
 }
@@ -381,9 +405,9 @@ function TableCard({ title, children, className = "" }: Readonly<{ title: string
 
 function Row({ label, value }: Readonly<{ label: string; value: string }>) {
   return (
-    <div className="grid gap-1 border-t border-[var(--border)] pt-3 md:grid-cols-[7rem_1fr]">
+    <div className="report-fact-row grid gap-1 border-t border-[var(--border)] pt-3 md:grid-cols-[7rem_1fr]">
       <dt className="text-[var(--muted)]">{label}</dt>
-      <dd className="font-semibold leading-6 text-[var(--text)]">{value}</dd>
+      <dd className="whitespace-pre-line break-words font-semibold leading-6 text-[var(--text)]">{value}</dd>
     </div>
   );
 }

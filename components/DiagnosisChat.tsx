@@ -171,6 +171,10 @@ export function DiagnosisChat() {
   useEffect(() => {
     const transcript = transcriptRef.current;
     if (!transcript || stage !== "chat") return;
+    if (!messages.some(message => message.role === "user")) {
+      transcript.scrollTop = 0;
+      return;
+    }
     if (shouldFollow.current) transcript.scrollTop = transcript.scrollHeight;
     else setHasNewText(true);
   }, [messages, localNotice, stage]);

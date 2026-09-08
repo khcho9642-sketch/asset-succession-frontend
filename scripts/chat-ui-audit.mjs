@@ -4,6 +4,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import path from "node:path";
+import { assertReportPrintBounds } from "./report-print-bounds.mjs";
 
 // CI browser regression. All diagnosis requests are intercepted: no provider
 // credentials, billable requests, or real customer data are used by this audit.
@@ -130,6 +131,7 @@ async function auditConfirmedPdf(page, assessmentId) {
     const printText = await page.locator("body").innerText();
     assert(printText.includes(assessmentId), "Print report lost the confirmed assessment ID");
     assert(!printText.includes("대화 내용 수정") && !printText.includes("PDF 저장"), "Print report leaked navigation controls");
+    await assertReportPrintBounds(page, { outputPath: path.join(outputDir, "chat-print-bounds.json"), label: "Confirmed chat report" });
     const pdf = await page.pdf({ path: pdfPath, format: "A4", printBackground: true, preferCSSPageSize: true });
     assert(pdf.byteLength > 20_000, "Confirmed chat PDF is unexpectedly small");
     const { stdout } = await runFile("python", ["-c", "import json,sys; from pypdf import PdfReader; r=PdfReader(sys.argv[1]); print(json.dumps({'pages':len(r.pages),'sizes':[[float(p.mediabox.width),float(p.mediabox.height)] for p in r.pages]}))", pdfPath], { timeout: 15_000 });
@@ -173,6 +175,7 @@ try {
     const page = await context.newPage();
     await openChat(page);
     await assertNoOverflow(page, `${width}px empty chat`);
+    assert.equal(await page.getByRole("log", { name: "대화 내용", exact: true }).evaluate(element => element.scrollTop), 0, `${width}px empty transcript must start at the welcome title`);
     await page.screenshot({ path: path.join(outputDir, `chat-${width}-conversation.png`), fullPage: true });
     assert(await page.getByRole("button", { name: "메시지 보내기", exact: true }).isDisabled(), "Empty send must be disabled");
     await page.locator("#diagnosis-message").fill(" \n ");

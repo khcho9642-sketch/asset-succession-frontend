@@ -2,6 +2,7 @@ import { chromium } from "playwright";
 import { mkdir, stat, writeFile } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import path from "node:path";
+import { assertReportPrintBounds } from "./report-print-bounds.mjs";
 
 const baseURL = process.env.BASE_URL ?? "http://127.0.0.1:4173";
 const outputDir = process.env.PDF_AUDIT_DIR ?? "docs/review-assets/pr-2";
@@ -177,6 +178,8 @@ try {
     throw new Error(`Print DOM leaked empty/stale text: ${leakedEmptyState.join(", ")}`);
   }
 
+  await page.evaluate(async () => { await document.fonts.ready; });
+  await assertReportPrintBounds(page, { outputPath: path.join(outputDir, "legacy-print-bounds.json"), label: "Legacy confirmed report" });
   const pdf = await page.pdf({
     format: "A4",
     printBackground: true,
