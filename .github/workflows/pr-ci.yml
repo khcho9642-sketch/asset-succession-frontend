@@ -83,6 +83,7 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Start production preview server
+        id: preview
         run: |
           mkdir -p artifacts/ui-audit
           npm start -- --hostname 127.0.0.1 --port 4173 > /tmp/ui-server.log 2>&1 &
@@ -113,35 +114,41 @@ jobs:
         run: npm run test:chat-ui
 
       - name: Audit tax comparison and seven-page reports
+        if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
         env:
           BASE_URL: http://127.0.0.1:4173
           UI_AUDIT_DIR: artifacts/ui-audit
         run: npm run test:tax-ui
 
       - name: Audit housing and business inheritance reports
+        if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
         env:
           BASE_URL: http://127.0.0.1:4173
           UI_AUDIT_DIR: artifacts/ui-audit
         run: npm run test:tax-extensions-ui
 
       - name: Run responsive UI audit and capture screenshots
+        if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
         env:
           BASE_URL: http://127.0.0.1:4173
           UI_AUDIT_DIR: artifacts/ui-audit
         run: node scripts/ui-audit.mjs
 
       - name: Run end-to-end smoke audit
+        if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
         env:
           PR2_BASE_URL: http://127.0.0.1:4173
         run: npm run test:smoke
 
       - name: Run real A4 PDF audit
+        if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
         env:
           BASE_URL: http://127.0.0.1:4173
           PDF_AUDIT_DIR: artifacts/ui-audit
         run: node scripts/pdf-audit.mjs
 
       - name: Verify approved paper report format with the 52-eok conversation
+        if: ${{ !cancelled() && steps.preview.outcome == 'success' }}
         env:
           BASE_URL: http://127.0.0.1:4173
           UI_AUDIT_DIR: artifacts/ui-audit

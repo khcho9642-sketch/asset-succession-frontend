@@ -94,7 +94,7 @@ export function ReportV2Preview() {
   const financialAmount = financialAssets.length > 0 && financialAssets.every((asset) => asset.current_value_eok !== null)
     ? financialAssets.reduce((sum, asset) => sum + (asset.current_value_eok ?? 0), 0) : null;
   const hasTax = [plan.baseline, ...recommended].some((item) => item.calculation_result.total_tax.value_eok !== null);
-  const unknowns = [...new Set(plan.unknown_items.map(customerReason))];
+  const unknowns = [...new Set(facts.unknown_items.map(customerReason))];
 
   return (
     <PaperReportBook
