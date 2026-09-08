@@ -97,12 +97,12 @@ jobs:
           cat /tmp/ui-server.log
           exit 1
 
-      - name: Audit prerendered sample report and served assets
+      - name: Audit prerendered seven-page sample tax report
         env:
           BASE_URL: http://127.0.0.1:4173
         run: node scripts/sample-report-static-audit.mjs
 
-      - name: Audit viewport-fit sample report navigation
+      - name: Audit sample paper report scrolling and seven-page A4 PDF
         env:
           BASE_URL: http://127.0.0.1:4173
           UI_AUDIT_DIR: artifacts/ui-audit

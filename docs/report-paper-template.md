@@ -1,9 +1,9 @@
 # Personal report format aligned with the approved sample
 
-The public `/sample-report` viewer contains seven approved reference images. The
-personal `/report-preview` route previously rendered a separate navy-and-gold
-`Report V2` layout. Passing the old PDF checks proved pagination and some content,
-but did not prove that the output matched the sample's design.
+The public `/sample-report` and personal `/report-preview` routes now share the
+actual `TaxComparisonReport` and `PaperReportLayout` components. The old public
+viewer used seven images with different example values and no calculated tax.
+Shrinking those images to the viewport also made their text difficult to read.
 
 ## One document layout for generated reports
 
@@ -13,9 +13,16 @@ and the calculated tax report use it, on screen and in print. The document uses
 `data-report-template="paper-seven-v1"` so an export test can detect regressions to
 an unrelated template.
 
-The approved sample images remain the visual reference. Their example family,
-50억원 asset values and illustrations are not substituted for customer data.
-Dynamic diagrams, cards and text must use the confirmed assessment instead.
+The public sample uses `createSampleTaxReport()` in `lib/sampleTaxReport.ts`: a
+standalone fictional inheritance case with 52억원 estate, 12억원 eligible financial
+assets, a spouse, three adult children, no debt/prior gifts and a 500만원 funeral
+assumption. Usable cash stays unknown. It never reads or writes customer session
+data. Every sample page, including print, is labelled 샘플 · 가상 사례.
+
+The sample is selectable HTML with normal document scrolling, desktop contents
+links and a mobile page selector. Printing always includes all seven A4 pages,
+regardless of the currently selected section. The old WebP files are no longer
+the sample route's content; personal reports continue using confirmed customer data.
 
 Korean serif glyphs are self-hosted through the pinned
 `@fontsource-variable/noto-serif-kr` package. A CSS fallback name alone previously
