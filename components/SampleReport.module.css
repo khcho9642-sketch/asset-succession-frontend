@@ -40,7 +40,7 @@
 .pageIndicator strong { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .viewerActions { display: flex; gap: 4px; }
 .contentsControl { position: relative; }
-.contentsPanel { position: absolute; top: calc(100% + 5px); left: 0; z-index: 12; width: 292px; max-width: calc(100vw - 24px); padding: 16px; border: 1px solid var(--sample-line); border-radius: 4px; background: var(--sample-raised); box-shadow: 0 12px 36px #26221b20; }
+.contentsPanel { position: absolute; top: calc(100% + 5px); left: 0; z-index: 12; width: 292px; max-width: calc(100vw - 24px); max-height: calc(100dvh - 104px); overflow-y: auto; padding: 16px; border: 1px solid var(--sample-line); border-radius: 4px; background: var(--sample-raised); box-shadow: 0 12px 36px #26221b20; }
 .contentsPanel[hidden] { display: none; }
 .contentsPanel > p { display: flex; justify-content: space-between; margin: 0 0 8px; padding: 0 8px 10px; border-bottom: 1px solid var(--sample-line); font-weight: 600; }
 .contentsPanel > p > span { font-size: .875rem; color: var(--sample-soft); font-weight: 400; }
@@ -63,7 +63,7 @@
 @media screen {
   .document :global(.report-book) { display: block; margin: 0; gap: 0; }
   .document :global(.report-book) > div:first-child { display: none; }
-  .document :global(.report-page) { display: none; }
+  .viewer .document :global(.report-page) { display: none; }
   .viewer[data-current-page="1"] .document :global([data-report-page="1"]),
   .viewer[data-current-page="2"] .document :global([data-report-page="2"]),
   .viewer[data-current-page="3"] .document :global([data-report-page="3"]),

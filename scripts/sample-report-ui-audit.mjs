@@ -182,8 +182,12 @@ try {
       // Dispatch touch input through the actual viewer boundary (no direct state mutation).
       const stage = page.locator("[data-sample-stage]");
       for (const [startX, endX, number] of [[300, 70, 3], [70, 300, 2]]) {
-        await stage.dispatchEvent("touchstart", { touches: [{ clientX: startX, clientY: 400 }], changedTouches: [{ clientX: startX, clientY: 400 }] });
-        await stage.dispatchEvent("touchend", { touches: [], changedTouches: [{ clientX: endX, clientY: 400 }] });
+        await stage.evaluate((element, { startX, endX }) => {
+          const start = new Touch({ identifier: 1, target: element, clientX: startX, clientY: 400 });
+          element.dispatchEvent(new TouchEvent("touchstart", { bubbles: true, cancelable: true, touches: [start], targetTouches: [start], changedTouches: [start] }));
+          const end = new Touch({ identifier: 1, target: element, clientX: endX, clientY: 400 });
+          element.dispatchEvent(new TouchEvent("touchend", { bubbles: true, cancelable: true, touches: [], targetTouches: [], changedTouches: [end] }));
+        }, { startX, endX });
         await waitForPage(page, number);
       }
     }
