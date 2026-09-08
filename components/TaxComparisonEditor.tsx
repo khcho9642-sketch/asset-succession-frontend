@@ -93,7 +93,7 @@ export function TaxComparisonEditor({ value, onChange }: Props) {
               <div><span>{bestAlternative?.label ?? "비교 대안"}</span><strong data-tax-alternative>{bestAlternative ? formatWon(bestAlternative.totalTaxWon) : "대안 없음"}</strong></div>
               <div className={styles.delta}><span>{difference === null ? "세액 차이" : difference > 0 ? "세액 감소" : difference < 0 ? "세액 증가" : "세액 차이"}</span><strong data-tax-difference>{difference === null ? "비교 대기" : formatWon(Math.abs(difference))}</strong></div>
             </div>
-            <p className={styles.scopeNote}>{comparison.scope}</p>
+            <p className={styles.scopeNote}>{comparison.scope} 법령 확인일: {comparison.lawCheckedOn}.</p>
             <p className={styles.hint}>위 차이는 비교 대상 세금의 차이입니다. 제외된 비용을 반영한 최종 이익이나 확정 납부세액은 아닙니다.</p>
           </>
         ) : (
