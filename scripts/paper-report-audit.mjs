@@ -48,6 +48,10 @@ export async function assertPaperTemplate(page, label = "Generated report") {
     };
   }));
   assert.equal(appearance.length, 7, `${label}: expected seven paper sections`);
+  if (await page.evaluate(() => matchMedia("print").matches)) {
+    const firstTop = await book.locator('[data-report-page="1"]').evaluate(sheet => sheet.getBoundingClientRect().top + scrollY);
+    assert(Math.abs(firstTop) <= 2, `${label}: screen navigation pushes the first PDF page down by ${firstTop}px`);
+  }
   for (const [index, sheet] of appearance.entries()) {
     assert.equal(sheet.page, String(index + 1), `${label}: page order changed`);
     assert.equal(sheet.section, sections[index], `${label}: page ${index + 1} no longer has the agreed role`);
