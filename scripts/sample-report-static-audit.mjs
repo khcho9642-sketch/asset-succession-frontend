@@ -9,8 +9,10 @@ const prerender = JSON.parse(await readFile('.next/prerender-manifest.json', 'ut
 assert(prerender.routes['/sample-report'], 'Sample report must remain prerendered');
 assert(prerender.routes['/'], 'Homepage must remain prerendered');
 assert(html.includes('7장 샘플 보고서'));
-assert(html.includes('큰 글씨 요약'));
-assert(html.includes('2배 확대'));
+assert(!html.includes('큰 글씨 요약'));
+assert(!html.includes('2배 확대'));
+assert(html.includes('aria-label="이전 페이지"'));
+assert(html.includes('aria-label="다음 페이지"'));
 assert(html.includes('샘플 · 가상 사례'));
 assert(html.includes('전문가 검토 전'));
 assert(home.includes('href="/sample-report"'));
@@ -30,6 +32,8 @@ for (let i = 1; i <= 7; i++) {
 }
 const viewer = await readFile('components/SampleReportViewer.tsx', 'utf8');
 assert(!/sessionStorage|localStorage|readAssessmentFromSession|setInterval|setTimeout/.test(viewer));
-assert(viewer.includes('scrollIntoView'));
+assert(!/scrollIntoView|scrollTo|setZoomed|setView/.test(viewer));
+assert(viewer.includes('onTouchEnd'));
+assert(viewer.includes('onKeyDown'));
 assert(viewer.includes('다시 불러오기'));
-console.log(`Sample report static audit passed: 7 public images${process.env.BASE_URL ? ' with matching served bytes' : ''}, prerendered routes, page selector, reading controls, homepage link, disclaimers, no assessment storage or autoplay. Browser interaction/layout not tested by this script.`);
+console.log(`Sample report static audit passed: 7 public images${process.env.BASE_URL ? ' with matching served bytes' : ''}, prerendered routes, page selector, in-document controls, homepage link, disclaimers, no assessment storage or autoplay. Browser interaction/layout not tested by this script.`);

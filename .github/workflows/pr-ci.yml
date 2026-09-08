@@ -102,6 +102,12 @@ jobs:
           BASE_URL: http://127.0.0.1:4173
         run: node scripts/sample-report-static-audit.mjs
 
+      - name: Audit viewport-fit sample report navigation
+        env:
+          BASE_URL: http://127.0.0.1:4173
+          UI_AUDIT_DIR: artifacts/ui-audit
+        run: node scripts/sample-report-ui-audit.mjs
+
       - name: Audit chat API validation without a provider key
         env:
           BASE_URL: http://127.0.0.1:4173
