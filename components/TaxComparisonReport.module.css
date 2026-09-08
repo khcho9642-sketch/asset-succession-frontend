@@ -183,9 +183,10 @@
   .comparisonTable { width: 100%; min-width: 0; font-size: 12px; }
   .comparisonTable caption { font-size: 11px; padding-bottom: 3mm; }
   .comparisonTable th, .comparisonTable td { padding: 3mm 2mm; }
+  .book .page[data-report-page="3"] .tableWrap { margin-top: 3mm; }
   .book .page[data-report-page="3"] .comparisonTable th,
-  .book .page[data-report-page="3"] .comparisonTable td { padding-top: 2mm; padding-bottom: 2mm; }
-  .book .page[data-report-page="3"] .card { padding: 3mm; margin-top: 3mm; }
+  .book .page[data-report-page="3"] .comparisonTable td { padding-top: 1.4mm; padding-bottom: 1.4mm; }
+  .book .page[data-report-page="3"] .card { padding: 2.5mm 3mm; margin-top: 3mm; }
   .book .page[data-report-page="3"] .bullets li + li { margin-top: 1mm; }
   .alternatives { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4mm; align-items: start; }
   .alternatives:has(> :only-child) { grid-template-columns: minmax(0, 1fr); }
