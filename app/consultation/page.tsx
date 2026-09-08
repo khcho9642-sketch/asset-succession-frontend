@@ -4,8 +4,9 @@ import Link from "next/link";
 import { ArrowRight, Check, Mail, Phone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
-import { PublicLightNav } from "@/components/PublicLightNav";
+import { PublicNav } from "@/components/PublicNav";
 import { readAssessmentFromSession } from "@/lib/assessment";
+import homeStyles from "@/components/HomePage.module.css";
 import styles from "./Consultation.module.css";
 
 export default function ConsultationPage() {
@@ -55,8 +56,8 @@ export default function ConsultationPage() {
   }
 
   return (
-    <main className={styles.page}>
-      <PublicLightNav />
+    <main className={`${homeStyles.paperTheme} ${styles.page}`}>
+      <PublicNav />
       <section className={styles.content} aria-labelledby="contact-title">
         <header className={styles.intro}>
           <p className={styles.eyebrow}>자산승계 상담</p>
