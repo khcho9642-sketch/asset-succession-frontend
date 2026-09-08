@@ -118,6 +118,12 @@ jobs:
           UI_AUDIT_DIR: artifacts/ui-audit
         run: npm run test:tax-ui
 
+      - name: Audit housing and business inheritance reports
+        env:
+          BASE_URL: http://127.0.0.1:4173
+          UI_AUDIT_DIR: artifacts/ui-audit
+        run: npm run test:tax-extensions-ui
+
       - name: Run responsive UI audit and capture screenshots
         env:
           BASE_URL: http://127.0.0.1:4173

@@ -42,7 +42,7 @@ export type TaxComparison = {
 export type TaxField = {
   key: string;
   label: string;
-  type: "money" | "integer" | "select";
+  type: "money" | "integer" | "select" | "date";
   hint?: string;
   options?: Array<{ value: string; label: string }>;
   optional?: boolean;

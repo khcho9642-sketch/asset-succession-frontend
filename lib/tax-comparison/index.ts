@@ -1,7 +1,9 @@
 import { baseComparison, parseAmountWon } from "./common";
-import { getTaxFields } from "./config";
+import { getAllowedTaxKeys } from "./config";
 import { compareInheritance, compareGift } from "./inheritance-gift";
 import { compareCapitalGains, compareBusinessGift } from "./capital-business";
+import { compareHousing } from "./housing";
+import { compareBusinessInheritance } from "./business-inheritance";
 import type { TaxComparisonInput, TaxTrack } from "./types";
 export { formatWon } from "./common";
 export type { TaxComparisonInput, TaxComparison, TaxTrack, TaxCase } from "./types";
@@ -13,7 +15,7 @@ export function validateTaxComparisonInput(raw: unknown): TaxComparisonInput | n
   const input = raw as Record<string, unknown>;
   if (input.version !== 1 || !TRACKS.includes(input.track as TaxTrack) || typeof input.confirmed !== "boolean") return null;
   if (!input.values || typeof input.values !== "object" || Array.isArray(input.values)) return null;
-  const keys = new Set([...getTaxFields(input.track as TaxTrack).map(field => field.key), "standardCase"]);
+  const keys = new Set(getAllowedTaxKeys(input.track as TaxTrack));
   const values: Record<string, string> = {};
   const entries = Object.entries(input.values);
   if (entries.length > 40) return null;
@@ -21,6 +23,8 @@ export function validateTaxComparisonInput(raw: unknown): TaxComparisonInput | n
     if (!keys.has(key) || typeof value !== "string" || value.length > 100) return null;
     values[key] = value;
   }
+  if (values.capitalAsset !== undefined && !["commercial", "home"].includes(values.capitalAsset)) return null;
+  if (values.businessMethod !== undefined && !["gift", "inheritance"].includes(values.businessMethod)) return null;
   if (input.confirmed && (typeof input.confirmedAt !== "string" || !Number.isFinite(Date.parse(input.confirmedAt)))) return null;
   return { version: 1, track: input.track as TaxTrack, values, confirmed: input.confirmed,
     ...(typeof input.confirmedAt === "string" ? { confirmedAt: input.confirmedAt } : {}) };
@@ -35,7 +39,11 @@ export function calculateTaxComparison(raw: TaxComparisonInput) {
     return invalid;
   }
   const calculators = { inheritance: compareInheritance, gift: compareGift, capital_gains: compareCapitalGains, business_succession: compareBusinessGift };
-  const result = calculators[input.track](input);
+  const result = input.track === "capital_gains" && input.values.capitalAsset === "home"
+    ? compareHousing(input)
+    : input.track === "business_succession" && input.values.businessMethod === "inheritance"
+      ? compareBusinessInheritance(input)
+      : calculators[input.track](input);
   const rawCash = input.values.availableCash;
   if (rawCash?.trim()) {
     const cash = parseAmountWon(rawCash);

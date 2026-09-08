@@ -13,7 +13,11 @@ export function createTaxInputFromChat(state: ChatState, preferredTrack?: TaxTra
   const topic = state.facts.topic?.value ?? "";
   const track = preferredTrack ?? (/가업|회사.*승계/.test(topic) ? "business_succession" : /양도|매각/.test(topic) ? "capital_gains" : /증여/.test(topic) && !/상속/.test(topic) ? "gift" : "inheritance");
   const values: Record<string, string> = {};
-  if (track === "inheritance") {
+  const businessInheritance = track === "business_succession" && /가업\s*상속|회사.*상속/.test(topic);
+  if (businessInheritance) values.businessMethod = "inheritance";
+  // A named home sale can select a form, but does not establish its sale price or exemption.
+  if (track === "capital_gains" && /주택|아파트/.test(topic) && !/상가|토지/.test(topic)) values.capitalAsset = "home";
+  if (track === "inheritance" || businessInheritance) {
     // This is a visible modelling assumption, not an extracted claim about actual funeral spending.
     values.funeral = "0.05";
     const amounts = CHAT_ASSET_KEYS.filter(key => state.facts[key]).map(key => ({ key, parsed: parseAssetAmount(key, state) }));
@@ -42,7 +46,7 @@ export function createTaxInputFromChat(state: ChatState, preferredTrack?: TaxTra
     if (count) values.children = count;
     else if (korean) values.children = String(counts[korean]);
   }
-  if (track === "business_succession" && state.facts.businessAssets) {
+  if (track === "business_succession" && !businessInheritance && state.facts.businessAssets) {
     const amount = parseAssetAmount("businessAssets", state);
     if (amount.status === "confirmed") values.businessValue = wonToInput(amount.value_won);
   }

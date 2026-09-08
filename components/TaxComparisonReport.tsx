@@ -19,7 +19,8 @@ function differenceText(baseline: TaxCase, candidate: TaxCase) {
 function fieldValue(field: TaxField, value: string | undefined) {
   if (value === undefined || value.trim() === "") return "미확인";
   if (field.type === "select") return field.options?.find((option) => option.value === value)?.label ?? "선택값 확인 필요";
-  if (field.type === "integer") return value;
+  if (field.type === "date") return /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : `${value} · 날짜 확인 필요`;
+  if (field.type === "integer") return field.key === "businessEligiblePercent" ? `${value}%` : value;
   // Display only: tax arithmetic and rounding live in the shared calculation engine.
   if (/^\d+(?:\.\d{1,8})?$/.test(value.trim())) {
     const [whole, decimal = ""] = value.trim().split(".");
@@ -71,11 +72,12 @@ export function TaxComparisonReport({ snapshot, comparison }: Props) {
   const alternatives = comparison.status === "ready" ? comparison.alternatives.slice(0, 2) : [];
   const best = alternatives.reduce<TaxCase | null>((selected, candidate) => !selected || candidate.totalTaxWon < selected.totalTaxWon ? candidate : selected, null);
   const cases = baseline ? [baseline, ...alternatives] : [];
-  const fields = getTaxFields(comparison.track).filter((field) => !["resident", "standardCase", "availableCash"].includes(field.key));
   const values = input?.values ?? {};
+  const fields = getTaxFields(comparison.track, values).filter((field) => !["resident", "standardCase", "availableCash"].includes(field.key));
+  const businessInheritance = comparison.track === "business_succession" && values.businessMethod === "inheritance";
   const createdOn = /^\d{4}-\d{2}-\d{2}/.test(snapshot.created_at) ? snapshot.created_at.slice(0, 10) : "작성일 확인 필요";
   const cash = comparison.availableCashWon;
-  const residentLabel = comparison.track === "gift" ? "수증자 거주자 여부" : comparison.track === "business_succession" ? "증여자·수증자 거주자 여부" : comparison.track === "capital_gains" ? "양도자 거주자 여부" : "피상속인 거주자 여부";
+  const residentLabel = comparison.track === "gift" ? "수증자 거주자 여부" : comparison.track === "business_succession" ? businessInheritance ? "피상속인 거주자 여부" : "증여자·수증자 거주자 여부" : comparison.track === "capital_gains" ? "양도자 거주자 여부" : "피상속인 거주자 여부";
 
   return (
     <article className={`report-book ${styles.book}`} data-report-mode="tax-comparison" data-tax-report-status={comparison.status}>
@@ -102,12 +104,12 @@ export function TaxComparisonReport({ snapshot, comparison }: Props) {
         <p className={styles.scope}>대화 후 직접 확인한 계산 항목입니다. 알려지지 않은 항목은 미확인으로 남깁니다.</p>
         <dl className={styles.facts}>
           <div><dt>비교 분야</dt><dd>{TAX_TRACK_LABELS[comparison.track]}</dd></div>
-          <div><dt>{residentLabel}</dt><dd>{values.resident === "yes" ? comparison.track === "business_succession" ? "두 사람 모두 국내 거주자" : "국내 거주자" : values.resident === "no" ? comparison.track === "business_succession" ? "비거주자 포함" : "비거주자" : "미확인"}</dd></div>
-          {fields.map((field) => <div key={field.key}><dt>{field.label}</dt><dd>{fieldValue(field, values[field.key])}</dd></div>)}
+          <div><dt>{residentLabel}</dt><dd>{values.resident === "yes" ? comparison.track === "business_succession" && !businessInheritance ? "두 사람 모두 국내 거주자" : "국내 거주자" : values.resident === "no" ? comparison.track === "business_succession" && !businessInheritance ? "비거주자 포함" : "비거주자" : "미확인"}</dd></div>
+          {fields.map((field) => <div key={field.key}><dt>{field.label}</dt><dd>{fieldValue(field, values[field.key] ?? (field.key === "capitalAsset" ? "commercial" : field.key === "businessMethod" ? "gift" : undefined))}</dd></div>)}
           <div><dt>납부에 사용할 수 있는 현금</dt><dd>{cash === null ? "미확인" : formatWon(cash)}</dd></div>
           <div><dt>계산 적용 조건 확인</dt><dd>{values.standardCase === "yes" ? "해당 조건을 확인했습니다" : "미확인"}</dd></div>
         </dl>
-        <Card title="고객이 확인한 계산 범위"><p>{getScopeStatement(comparison.track)}</p></Card>
+        <Card title="고객이 확인한 계산 범위"><p>{getScopeStatement(comparison.track, values)}</p></Card>
       </Page>
 
       <Page number={3} title="기준안의 예상 세액 계산" subtitle="계산 과정과 근거">

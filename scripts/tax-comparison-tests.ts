@@ -6,6 +6,7 @@ import { attachConfirmedTaxComparison, createTaxInputFromChat } from "../lib/cha
 import { createChatState, applyChatPatches } from "../lib/chat/intake";
 import { createDemoAssessmentSnapshot } from "../lib/assessment";
 import type { TaxComparisonInput } from "../lib/tax-comparison/types";
+import { getAllowedTaxKeys, getTaxFields } from "../lib/tax-comparison/config";
 
 const gift: TaxComparisonInput = { version: 1, track: "gift", confirmed: false, values: { giftAmount: "3", recipientCount: "3", recipientType: "adult_child", resident: "yes", standardCase: "yes" } };
 
@@ -74,4 +75,40 @@ test("prefill uses grounded chat assets, no assumed residency, old gifts, or pay
   assert.equal(empty.values.financial, undefined);
   assert.equal(empty.values.debt, undefined);
   assert.equal(empty.values.funeral, "0.05", "visible statutory minimum modelling assumption only");
+});
+
+test("new subtype schemas accept conditional inputs and reject unknown subtype fallbacks", () => {
+  for (const [track, values] of [
+    ["capital_gains", { capitalAsset: "home", acquisitionDate: "2020-01-01", saleDate: "2026-09-08", houseCount: "2", singleHomeSpecial: "yes", regulatedAtSale: "yes", transitionCase: "yes", permitRequired: "yes" }],
+    ["business_succession", { businessMethod: "inheritance", spouse: "yes", businessPropertyType: "sole", companySize: "medium" }],
+  ] as const) {
+    const raw = { version: 1, track, confirmed: false, values };
+    assert.ok(validateTaxComparisonInput(raw));
+    for (const field of getTaxFields(track, values)) assert.ok(getAllowedTaxKeys(track).includes(field.key), field.key);
+  }
+  for (const [track, values] of [
+    ["capital_gains", { capitalAsset: "unknown" }],
+    ["business_succession", { businessMethod: "unknown" }],
+    ["gift", { capitalAsset: "home" }],
+  ]) assert.equal(validateTaxComparisonInput({ version: 1, track, values, confirmed: false }), null);
+});
+
+test("explicit chat topics choose new forms without inferring price, heir allocation or eligibility", () => {
+  const source = { id: "tax-topic", role: "user" as const, text: "주택 양도, 가업상속", created_at: "2026-09-08T09:00:00Z" };
+  for (const topic of ["주택 양도", "가업상속"]) {
+    const state = applyChatPatches({ ...createChatState(), messages: [source] }, [{ key: "topic", value: topic, evidence: topic }], source.id);
+    const input = createTaxInputFromChat(state);
+    if (topic === "주택 양도") {
+      assert.equal(input.values.capitalAsset, "home");
+      assert.equal(input.values.salePrice, undefined);
+      assert.equal(input.values.singleHomeSpecial, undefined);
+    } else {
+      assert.equal(input.values.businessMethod, "inheritance");
+      assert.equal(input.values.inheritedBusinessValue, undefined);
+      assert.equal(input.values.businessValue, undefined);
+      assert.equal(input.values.eligibilityConfirmed, undefined);
+    }
+    assert.equal(input.values.standardCase, undefined);
+    assert.equal(input.values.resident, undefined);
+  }
 });
