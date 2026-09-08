@@ -37,7 +37,7 @@ export default function LandingPage() {
             </p>
             <div className={styles.heroActions}>
               <Link href="/precheck" className={styles.primaryButton}>무료 AI 진단 시작하기 <ArrowRight aria-hidden="true" size={20} /></Link>
-              <Link href="/precheck/result?demo=1" className={styles.secondaryButton}>샘플 보고서 보기</Link>
+              <Link href="/sample-report" className={styles.secondaryButton}>샘플 보고서 보기</Link>
             </div>
             <p className={styles.trustNote}><Clock3 aria-hidden="true" size={17} /> 회원가입 없이 · 약 5분 · 결과 즉시 확인</p>
           </div>

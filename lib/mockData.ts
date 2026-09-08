@@ -322,7 +322,7 @@ export const timelineEvents = [
 export const publicNav = [
   { href: "/", label: "서비스 소개" },
   { href: "/precheck", label: "무료 진단" },
-  { href: "/precheck/result?demo=1", label: "샘플 보고서" },
+  { href: "/sample-report", label: "샘플 보고서" },
   { href: "/consultation", label: "상담 신청" }
 ];
 
