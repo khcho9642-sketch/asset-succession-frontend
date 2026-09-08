@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import path from 'node:path';
 
 const baseURL = process.env.BASE_URL ?? 'http://127.0.0.1:4173';
-const output = '.tmp/consultation-contact';
+const output = process.env.CONTACT_AUDIT_DIR ?? '.tmp/consultation-contact';
 const testPhone = '000-0000-0000'; // Synthetic; never call or send.
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
@@ -40,6 +40,35 @@ try {
     await page.getByText('전화번호를 입력해 주세요.', { exact: true }).waitFor();
     assert.equal(await page.locator(':focus').getAttribute('id'), 'contact-phone');
     const phone = page.getByLabel('전화번호', { exact: true });
+    // Only synthetic numbers are used for typing, paste/autofill and mid-number editing.
+    await phone.pressSequentially('01000000000');
+    assert.equal(await phone.inputValue(), '010-0000-0000', 'Typing must insert hyphens');
+    if (width === 390 || width === 1440) await page.screenshot({ path: path.join(output, width + '-formatted-phone.png'), fullPage: true });
+    for (const [raw, expected] of [
+      ['01000000000', '010-0000-0000'], ['010 0000 0000', '010-0000-0000'],
+      ['010-0000-0000', '010-0000-0000'], ['020000000', '02-000-0000'],
+      ['0200000000', '02-0000-0000'], ['0310000000', '031-000-0000'],
+      ['+82 10 0000 0000', '+82 10 0000 0000']
+    ]) {
+      await phone.fill(raw);
+      assert.equal(await phone.inputValue(), expected, 'Paste/autofill formatting: ' + raw);
+    }
+    await phone.fill('01000000000');
+    await phone.evaluate((input) => input.setSelectionRange(5, 6));
+    await phone.press('9');
+    assert.equal(await phone.inputValue(), '010-0900-0000');
+    assert.equal(await phone.evaluate((input) => input.selectionStart), 6, 'Middle edit must preserve caret');
+    await phone.fill('01000000000');
+    await phone.evaluate((input) => input.setSelectionRange(4, 4));
+    await phone.press('Backspace');
+    assert.equal((await phone.inputValue()).replace(/\D/g, '').length, 10, 'Backspace at a hyphen must delete a digit');
+    await phone.fill('01000000000');
+    await phone.evaluate((input) => input.setSelectionRange(3, 3));
+    await phone.press('Delete');
+    assert.equal((await phone.inputValue()).replace(/\D/g, '').length, 10, 'Delete at a hyphen must delete a digit');
+    await phone.fill('01000000000');
+    for (let i = 0; i < 11; i++) await phone.press('Backspace');
+    assert.equal(await phone.inputValue(), '', 'Deleting the whole number must not trap the caret');
     for (const invalid of ['abc', '---', '123', '+', '-01012345678', '1234567890123456']) {
       await phone.fill(invalid);
       await submit.click();
@@ -87,5 +116,5 @@ try {
   assert(await blocked.getByRole('button', { name: '연락처 남기기', exact: true }).isEnabled());
   await blocked.close();
   await writeFile(path.join(output, 'audit.json'), JSON.stringify(results, null, 2));
-  console.log('Contact audit passed: five viewports, single phone field, validation/focus, optional/mismatched assessment, blocked storage, no transmission or persistence.');
+  console.log('Contact audit passed: five viewports, automatic phone hyphens, caret/deletion, single field, validation/focus, optional/mismatched assessment, blocked storage, no transmission or persistence.');
 } finally { await browser.close(); }

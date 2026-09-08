@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { ArrowRight, Check, Mail, Phone } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { PublicLightNav } from "@/components/PublicLightNav";
 import { readAssessmentFromSession } from "@/lib/assessment";
+import { contactPhoneCaret, formatContactPhone } from "@/lib/contactPhone";
 import styles from "./Consultation.module.css";
 
 export default function ConsultationPage() {
@@ -16,6 +17,7 @@ export default function ConsultationPage() {
   const [assessmentId, setAssessmentId] = useState("");
   const [assessmentMismatch, setAssessmentMismatch] = useState(false);
   const phoneRef = useRef<HTMLInputElement>(null);
+  const pendingPhoneCaret = useRef<number | null>(null);
   const consentRef = useRef<HTMLInputElement>(null);
   const confirmationRef = useRef<HTMLHeadingElement>(null);
 
@@ -33,6 +35,13 @@ export default function ConsultationPage() {
   useEffect(() => {
     if (submitted) confirmationRef.current?.focus();
   }, [submitted]);
+
+  useLayoutEffect(() => {
+    // Restore before the next input/paste event, not in a delayed animation frame.
+    const caret = pendingPhoneCaret.current;
+    pendingPhoneCaret.current = null;
+    if (caret !== null && phoneRef.current === document.activeElement) phoneRef.current?.setSelectionRange(caret, caret);
+  });
 
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -94,7 +103,23 @@ export default function ConsultationPage() {
                 <input id="contact-phone" ref={phoneRef} type="tel" inputMode="tel" autoComplete="tel"
                   maxLength={25} required placeholder="연락 가능한 전화번호" value={phone}
                   aria-invalid={Boolean(errors.phone)} aria-describedby={"contact-preview-note" + (errors.phone ? " contact-phone-error" : "")}
-                  onChange={(event) => { setPhone(event.target.value); setErrors((previous) => ({ ...previous, phone: undefined })); }} />
+                  onChange={(event) => {
+                    const input = event.currentTarget;
+                    const raw = input.value;
+                    const formatted = formatContactPhone(raw);
+                    const caret = contactPhoneCaret(raw, input.selectionStart ?? raw.length, formatted);
+                    pendingPhoneCaret.current = raw !== formatted ? caret : null;
+                    setPhone(formatted);
+                    setErrors((previous) => ({ ...previous, phone: undefined }));
+                  }}
+                  onKeyDown={(event) => {
+                    const input = event.currentTarget;
+                    const start = input.selectionStart;
+                    if (start === null || start !== input.selectionEnd) return;
+                    // Skip an inserted separator, then let the browser delete the adjacent digit.
+                    if (event.key === "Backspace" && start > 0 && input.value[start - 1] === "-") input.setSelectionRange(start - 1, start - 1);
+                    if (event.key === "Delete" && input.value[start] === "-") input.setSelectionRange(start + 1, start + 1);
+                  }} />
                 <label className={styles.consent}>
                   <input ref={consentRef} type="checkbox" required checked={consent}
                     aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? "contact-consent-error" : undefined}

@@ -50,4 +50,17 @@
 
 ![모바일 입력 확인](review-assets/consultation-contact/mobile-confirmation.png)
 
-Production 배포, main 직접 푸시 및 병합은 하지 않습니다. 웹사이트 배포 결과와 접근 제한은 최종 작업 보고에서 별도로 확인합니다.
+## 전화번호 자동 하이픈 및 검토 링크 공개
+
+- 전화번호를 입력하거나 붙여넣으면 국내 번호에 하이픈을 자동 적용합니다. 합성 예시: `01000000000` → `010-0000-0000`. `02`와 지역번호 형식도 처리하고, 국제번호는 임의로 바꾸지 않습니다.
+- 중간 숫자 선택·수정 시 커서를 유지하고, 하이픈 경계의 Backspace/Delete 및 전체 삭제를 지원합니다. 잘못된 문자나 과도하게 긴 입력을 잘라서 유효한 번호로 만들지 않고 기존 검증으로 안내합니다.
+- 연속 붙여넣기에서 지연된 커서 이동이 다음 입력을 방해하던 문제를 발견해, 렌더 직후 동기적으로 커서를 복원하도록 수정했습니다.
+- 이 변경 후 lint, build 및 5개 화면 크기의 연락처 검사를 다시 실행했습니다. 자동 구분자, 연속 입력, 중간 수정, 삭제, 검증, 미전송·미저장을 확인했습니다.
+- 사용자가 **Vercel 검토 링크 제한 해제**를 명시적으로 승인하여, `frontend-prototype` 프로젝트의 Vercel Authentication을 해제했습니다. 프로젝트 설정 `ssoProtection`은 `all_except_custom_domains`에서 `null`로 바뀌었습니다. 이 프로젝트의 기존·향후 기본 배포 URL에 적용되는 접근 설정 변경이며, 특정 페이지에만 한정된 변경은 아닙니다.
+- 기존 상담 Preview를 쿠키·인증 헤더 없이 요청하여 HTTP 200, 실제 상담 제목 표시, Vercel 로그인 페이지 미표시를 확인했습니다. GitHub 저장소는 `private: true`를 유지합니다.
+
+![모바일 자동 하이픈 및 동의 검증](review-assets/consultation-contact/mobile-phone-format.png)
+
+![PC 자동 하이픈 및 동의 검증](review-assets/consultation-contact/desktop-phone-format.png)
+
+Production 배포, main 직접 푸시 및 병합은 하지 않습니다. 최신 Preview URL은 최종 작업 보고에서 별도로 확인합니다. 연락처의 실제 접수 서버는 여전히 연결하지 않았습니다.
