@@ -3,7 +3,7 @@
 2026-09-08 추가 구현: 실제 예상 세액 비교가 연결되었다. 현재 계산 범위·공제·검증은 [세액 비교 구현 문서](tax-comparison-implementation.md)를 우선 확인한다.
 
 기준 소스: `codex/home-hero-paper-carousel`의 `c58ad35e93643a187b55dd38c699e2a45b307b38`.
-작업 브랜치: `codex/inheritance-chat-report`. 기존 메인 화면을 유지한다. `/sample-report`는 실제 세액 보고서와 같은 7페이지 HTML 양식의 독립된 가상 사례를 표시한다.
+작업 브랜치: `codex/inheritance-chat-report`. 기존 메인 화면을 유지한다. `/sample-report`는 실제 세액 보고서와 같은 7페이지 HTML 양식의 독립된 가상 사례를 표시한다. 샘플은 스크롤 없이 한 장씩 화면에 맞춰 크게 보여주며 접이식 목차·이전/다음·키보드·스와이프로 넘긴다. PDF 저장 시에는 선택한 장과 관계없이 7장을 모두 출력한다.
 
 ## 사용 흐름
 

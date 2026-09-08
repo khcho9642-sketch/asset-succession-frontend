@@ -29,7 +29,9 @@ function auditMarkup(source, label) {
   }
   assert(markup.includes('data-tax-cash-status="unknown"'), `${label}: unknown payment cash was inferred`);
   assert(!/<img\b[^>]*(?:src|srcset)="[^"]*\/media\/sample-report\//i.test(markup), `${label}: obsolete raster report is still displayed`);
-  assert(markup.includes('aria-label="보고서 목차"'), `${label}: missing report contents navigation`);
+  assert(markup.includes("data-sample-viewer") && markup.includes('data-current-page="1"'), `${label}: missing initial one-page viewer state`);
+  assert(markup.includes("data-sample-stage"), `${label}: missing fitted report stage`);
+  for (const control of ["목차", "이전 페이지", "다음 페이지", "크게 보기", "PDF 저장"]) assert(markup.includes(control), `${label}: missing ${control} control`);
   for (const href of ["/", "/precheck"]) assert(markup.includes(`href="${href}"`), `${label}: missing ${href} link`);
 }
 

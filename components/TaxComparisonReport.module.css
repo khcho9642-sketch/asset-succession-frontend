@@ -114,35 +114,40 @@
 .optionCards p { font-size: 14px; margin-top: 8px; overflow-wrap: anywhere; }
 .tableLetter { display: block; font-family: var(--report-serif); font-size: 36px; color: var(--tax-seal); line-height: 1.1; margin-bottom: 6px; font-weight: 500; }
 .comparisonTable thead small { display: block; color: var(--tax-soft); font-size: 11px; margin-bottom: 4px; font-weight: 400; }
+
+@media screen {
+  /* The paged sample keeps a fixed desktop canvas, including on narrow screens. */
+  .book[data-report-sample="true"] .metrics strong { font-size: 28px; }
+}
 @media screen and (max-width: 640px) {
-  .familyQuestion { padding: 17px; }
-  .familyQuestion .intro { font-size: 20px; }
-  .optionHeading { display: block; }
-  .optionHeading > span { display: block; margin-top: 5px; }
-  .optionCards { grid-template-columns: minmax(0, 1fr); }
-  .optionCards > section { padding: 14px 16px; }
-  .optionLetter { font-size: 34px; }
-  .intro { font-size: 19px; }
-  .scope { font-size: 14px; }
-  .metrics { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  .metrics > div { padding: 18px; }
-  .metrics strong { font-size: 29px; }
-  .delta { padding: 18px; }
-  .delta > strong { font-size: 26px; }
-  .card { padding: 16px; }
-  .facts { grid-template-columns: minmax(0, 1fr); }
-  .caseHeading strong { font-size: 23px; }
-  .calculation > div { grid-template-columns: minmax(0, 1fr) minmax(85px, auto); gap: 8px 12px; }
-  .calculation dt { font-size: 13px; }
-  .calculation dd { font-size: 14px; }
-  .taxTotals { grid-template-columns: minmax(0, 1fr); gap: 13px; }
-  .taxTotals span { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 7px 12px; }
-  .taxTotals b { font-size: 16px; }
-  .comparisonTable { min-width: 560px; }
-  .alternative { padding: 15px; }
-  .cashHeadline strong { font-size: 22px; }
-  .cashRows > div { grid-template-columns: minmax(0, 1fr); gap: 10px; }
-  .references { grid-template-columns: minmax(0, 1fr); }
+  :where(.book:not([data-report-sample="true"])) .familyQuestion { padding: 17px; }
+  :where(.book:not([data-report-sample="true"])) .familyQuestion .intro { font-size: 20px; }
+  :where(.book:not([data-report-sample="true"])) .optionHeading { display: block; }
+  :where(.book:not([data-report-sample="true"])) .optionHeading > span { display: block; margin-top: 5px; }
+  :where(.book:not([data-report-sample="true"])) .optionCards { grid-template-columns: minmax(0, 1fr); }
+  :where(.book:not([data-report-sample="true"])) .optionCards > section { padding: 14px 16px; }
+  :where(.book:not([data-report-sample="true"])) .optionLetter { font-size: 34px; }
+  :where(.book:not([data-report-sample="true"])) .intro { font-size: 19px; }
+  :where(.book:not([data-report-sample="true"])) .scope { font-size: 14px; }
+  :where(.book:not([data-report-sample="true"])) .metrics { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  :where(.book:not([data-report-sample="true"])) .metrics > div { padding: 18px; }
+  :where(.book:not([data-report-sample="true"])) .metrics strong { font-size: 29px; }
+  :where(.book:not([data-report-sample="true"])) .delta { padding: 18px; }
+  :where(.book:not([data-report-sample="true"])) .delta > strong { font-size: 26px; }
+  :where(.book:not([data-report-sample="true"])) .card { padding: 16px; }
+  :where(.book:not([data-report-sample="true"])) .facts { grid-template-columns: minmax(0, 1fr); }
+  :where(.book:not([data-report-sample="true"])) .caseHeading strong { font-size: 23px; }
+  :where(.book:not([data-report-sample="true"])) .calculation > div { grid-template-columns: minmax(0, 1fr) minmax(85px, auto); gap: 8px 12px; }
+  :where(.book:not([data-report-sample="true"])) .calculation dt { font-size: 13px; }
+  :where(.book:not([data-report-sample="true"])) .calculation dd { font-size: 14px; }
+  :where(.book:not([data-report-sample="true"])) .taxTotals { grid-template-columns: minmax(0, 1fr); gap: 13px; }
+  :where(.book:not([data-report-sample="true"])) .taxTotals span { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 7px 12px; }
+  :where(.book:not([data-report-sample="true"])) .taxTotals b { font-size: 16px; }
+  :where(.book:not([data-report-sample="true"])) .comparisonTable { min-width: 560px; }
+  :where(.book:not([data-report-sample="true"])) .alternative { padding: 15px; }
+  :where(.book:not([data-report-sample="true"])) .cashHeadline strong { font-size: 22px; }
+  :where(.book:not([data-report-sample="true"])) .cashRows > div { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  :where(.book:not([data-report-sample="true"])) .references { grid-template-columns: minmax(0, 1fr); }
 }
 @media print {
   .book { gap: 0; font-size: 12px; line-height: 1.6; }
@@ -244,4 +249,17 @@
   .book .page[data-report-page="4"] .card { padding: 3mm; margin-top: 3mm; }
   .book .page[data-report-page="4"] .bullets li + li { margin-top: 1mm; }
 
+}
+
+@media screen {
+  .book[data-report-sample="true"] .reportMeta { margin-bottom: 12px; }
+  .book[data-report-sample="true"] .familyQuestion { padding: 14px 18px; }
+  .book[data-report-sample="true"] .metrics { margin-top: 16px; gap: 12px; }
+  .book[data-report-sample="true"] .metrics > div { padding: 14px; }
+  .book[data-report-sample="true"] .delta { padding: 16px 18px; }
+  .book[data-report-sample="true"] .optionHeading { margin: 16px 0 10px; }
+  .book[data-report-sample="true"] .card { margin-top: 14px; padding: 14px; }
+  .book[data-report-sample="true"] .calculation > div { padding: 6px 0; }
+  .book[data-report-sample="true"] .comparisonTable th,
+  .book[data-report-sample="true"] .comparisonTable td { padding: 9px 8px; }
 }

@@ -89,25 +89,25 @@
 .card > h3 { margin: 0 0 13px; padding-bottom: 10px; border-bottom: 1px solid var(--report-line); color: var(--report-ink); font-family: var(--report-serif); font-size: 20px; font-weight: 650; line-height: 1.55; }
 
 @media (max-width: 640px) {
-  .book { gap: 20px; margin-top: 20px; }
-  .toolbar { gap: 14px; }
-  .toolbarHeading h1 { font-size: 24px; }
-  .toolbarHeading > p { font-size: 12px; }
-  .actions { width: 100%; gap: 12px; }
-  .book .page { min-height: 0; padding: 20px 18px 18px; }
-  .pageHeader { gap: 8px; padding-bottom: 10px; }
-  .brand { font-size: 18px; }
-  .documentLabel { max-width: 115px; font-size: 10px; line-height: 1.5; }
-  .heading { margin: 18px 0 20px; }
-  .sectionLabel { gap: 16px; margin-bottom: 15px; }
-  .sectionNumber { font-size: 52px; }
-  .sectionLabel > p { padding: 3px 0 3px 16px; font-size: 16px; line-height: 1.5; }
-  .heading h2, .page[data-report-page="1"] .heading h2 { font-size: 27px; line-height: 1.5; }
-  .heading .subtitle { margin-top: 10px; font-size: 14px; line-height: 1.75; }
-  .card { padding: 16px; margin-top: 15px; }
-  .card > h3 { font-size: 18px; }
-  .pageFooter { margin-top: 22px; gap: 10px; font-size: 10px; }
-  .pageCount { font-size: 12px; }
+  .book:where(:not([data-report-sample="true"])) { gap: 20px; margin-top: 20px; }
+  :where(.book:not([data-report-sample="true"])) .toolbar { gap: 14px; }
+  :where(.book:not([data-report-sample="true"])) .toolbarHeading h1 { font-size: 24px; }
+  :where(.book:not([data-report-sample="true"])) .toolbarHeading > p { font-size: 12px; }
+  :where(.book:not([data-report-sample="true"])) .actions { width: 100%; gap: 12px; }
+  .book:where(:not([data-report-sample="true"])) .page { min-height: 0; padding: 20px 18px 18px; }
+  :where(.book:not([data-report-sample="true"])) .pageHeader { gap: 8px; padding-bottom: 10px; }
+  :where(.book:not([data-report-sample="true"])) .brand { font-size: 18px; }
+  :where(.book:not([data-report-sample="true"])) .documentLabel { max-width: 115px; font-size: 10px; line-height: 1.5; }
+  :where(.book:not([data-report-sample="true"])) .heading { margin: 18px 0 20px; }
+  :where(.book:not([data-report-sample="true"])) .sectionLabel { gap: 16px; margin-bottom: 15px; }
+  :where(.book:not([data-report-sample="true"])) .sectionNumber { font-size: 52px; }
+  :where(.book:not([data-report-sample="true"])) .sectionLabel > p { padding: 3px 0 3px 16px; font-size: 16px; line-height: 1.5; }
+  :where(.book:not([data-report-sample="true"])) .heading h2, :where(.book:not([data-report-sample="true"])) .page[data-report-page="1"] .heading h2 { font-size: 27px; line-height: 1.5; }
+  :where(.book:not([data-report-sample="true"])) .heading .subtitle { margin-top: 10px; font-size: 14px; line-height: 1.75; }
+  :where(.book:not([data-report-sample="true"])) .card { padding: 16px; margin-top: 15px; }
+  :where(.book:not([data-report-sample="true"])) .card > h3 { font-size: 18px; }
+  :where(.book:not([data-report-sample="true"])) .pageFooter { margin-top: 22px; gap: 10px; font-size: 10px; }
+  :where(.book:not([data-report-sample="true"])) .pageCount { font-size: 12px; }
 }
 
 @media print {
@@ -147,4 +147,18 @@
   .pageCount { font-size: 11px; }
   .card { margin-top: 3mm; padding: 3.5mm; }
   .card > h3 { margin-bottom: 2mm; padding-bottom: 2mm; font-size: 15px; }
+}
+
+/* The sample is fitted as one complete sheet; retain room for its actual text. */
+@media screen {
+  .book[data-report-sample="true"] .page { min-height: 0; padding: 22px 30px 18px; }
+  .book[data-report-sample="true"] .pageHeader { padding-bottom: 8px; }
+  .book[data-report-sample="true"] .brand { font-size: 20px; }
+  .book[data-report-sample="true"] .heading { margin: 12px 0 16px; }
+  .book[data-report-sample="true"] .sectionLabel { gap: 16px; margin-bottom: 10px; }
+  .book[data-report-sample="true"] .sectionNumber { font-size: 42px; }
+  .book[data-report-sample="true"] .sectionLabel > p { padding-left: 16px; font-size: 18px; }
+  .book[data-report-sample="true"] .heading h2 { font-size: 30px; }
+  .book[data-report-sample="true"] .heading .subtitle { margin-top: 7px; font-size: 14px; line-height: 1.6; }
+  .book[data-report-sample="true"] .pageFooter { margin-top: 16px; padding-top: 8px; }
 }

@@ -3,7 +3,8 @@
 The public `/sample-report` and personal `/report-preview` routes now share the
 actual `TaxComparisonReport` and `PaperReportLayout` components. The old public
 viewer used seven images with different example values and no calculated tax.
-Shrinking those images to the viewport also made their text difficult to read.
+The public viewer keeps one page at a time and gives the paper the available
+viewport space without a permanent sidebar or duplicate report titles.
 
 ## One document layout for generated reports
 
@@ -19,10 +20,14 @@ assets, a spouse, three adult children, no debt/prior gifts and a 500만원 fune
 assumption. Usable cash stays unknown. It never reads or writes customer session
 data. Every sample page, including print, is labelled 샘플 · 가상 사례.
 
-The sample is selectable HTML with normal document scrolling, desktop contents
-links and a mobile page selector. Printing always includes all seven A4 pages,
-regardless of the currently selected section. The old WebP files are no longer
-the sample route's content; personal reports continue using confirmed customer data.
+The sample is selectable HTML displayed one page at a time, fitted to the available
+viewport with no continuous or nested document scrolling. A collapsed contents
+menu, previous/next buttons outside the sheet, arrow/Home/End keys and mobile
+swipes change the page. Expanded view recovers header space without cropping the
+report. Every selected page is measured again on selection, font load and resize.
+Printing always restores all seven full-size A4 pages, even when page 3 is selected.
+The old WebP files are no longer the sample route's content; personal reports
+continue using confirmed customer data and their own document reading layout.
 
 Korean serif glyphs are self-hosted through the pinned
 `@fontsource-variable/noto-serif-kr` package. A CSS fallback name alone previously

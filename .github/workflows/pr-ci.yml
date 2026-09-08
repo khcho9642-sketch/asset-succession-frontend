@@ -102,7 +102,7 @@ jobs:
           BASE_URL: http://127.0.0.1:4173
         run: node scripts/sample-report-static-audit.mjs
 
-      - name: Audit sample paper report scrolling and seven-page A4 PDF
+      - name: Audit fitted sample page navigation and seven-page A4 PDF
         env:
           BASE_URL: http://127.0.0.1:4173
           UI_AUDIT_DIR: artifacts/ui-audit
