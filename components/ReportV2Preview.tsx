@@ -85,7 +85,10 @@ export function ReportV2Preview() {
           <p className="text-sm font-semibold text-[var(--gold)]">무료 보고서 미리보기</p>
           <h1 className="mt-2 text-3xl font-semibold tracking-[-0.05em] text-[var(--navy-950)]">우리 가족 자산승계 사전진단 보고서</h1>
         </div>
-        <PrintButton />
+        <div className="flex flex-wrap items-center gap-4">
+          {snapshot.conversation?.mode === "chat" && <Link href="/precheck" className="inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4">대화 내용 수정</Link>}
+          <PrintButton />
+        </div>
       </div>
 
       <ReportPage pageNumber={1} title="핵심 요약" eyebrow="Report V2 1/7">

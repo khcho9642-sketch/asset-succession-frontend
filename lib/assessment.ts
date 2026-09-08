@@ -28,6 +28,7 @@ export type AssessmentSnapshot = {
   review_focus: string[];
   answers: Record<string, AssessmentAnswer>;
   conversation?: {
+    mode?: "chat";
     messages: Array<{ role: "user" | "assistant"; text: string; created_at: string }>;
     confirmed_facts: Array<{ id: string; label: string; value: string; raw_text: string; confidence: string }>;
     pending_candidates?: Array<{ id: string; label: string; value: string; raw_text: string; confidence: string }>;
@@ -248,7 +249,32 @@ function formatWonAsEok(valueWon: number) {
 }
 
 function debtChoiceNeedsAmount(choice: string) {
-  return choice === "담보대출 있음" || choice === "임대보증금 있음";
+  return choice === "담보대출 있음" || choice === "임대보증금 있음" || choice === "기타채무 있음";
+}
+
+// Memory exists only in this browser runtime, never in a server-side customer store.
+let currentMemoryAssessment: AssessmentSnapshot | null = null;
+
+export function saveAssessmentForSession(snapshot: AssessmentSnapshot): boolean {
+  if (typeof window === "undefined") return false;
+  currentMemoryAssessment = snapshot;
+  try {
+    window.sessionStorage.setItem(ASSESSMENT_STORAGE_KEY, JSON.stringify(snapshot));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function clearAssessmentForSession(assessmentId: string): void {
+  if (typeof window === "undefined") return;
+  if (currentMemoryAssessment?.assessment_id === assessmentId) currentMemoryAssessment = null;
+  try {
+    const raw = window.sessionStorage.getItem(ASSESSMENT_STORAGE_KEY);
+    if (raw && JSON.parse(raw)?.assessment_id === assessmentId) window.sessionStorage.removeItem(ASSESSMENT_STORAGE_KEY);
+  } catch {
+    // Do not remove an unrelated or unreadable stored assessment.
+  }
 }
 
 export function readAssessmentFromSession(search = ""): AssessmentLoadResult {
@@ -258,15 +284,17 @@ export function readAssessmentFromSession(search = ""): AssessmentLoadResult {
   const requestedId = params.get("assessment_id");
   if (params.get("demo") === "1") {
     const snapshot = createDemoAssessmentSnapshot();
-    window.sessionStorage.setItem(ASSESSMENT_STORAGE_KEY, JSON.stringify(snapshot));
+    saveAssessmentForSession(snapshot);
     return { status: "ready", snapshot, metrics: buildAssessmentMetrics(snapshot) };
   }
 
-  const raw = window.sessionStorage.getItem(ASSESSMENT_STORAGE_KEY);
-  if (!raw) return { status: "missing" };
-
   try {
-    const snapshot = JSON.parse(raw) as AssessmentSnapshot;
+    let raw: string | null = null;
+    try { raw = window.sessionStorage.getItem(ASSESSMENT_STORAGE_KEY); } catch { /* Memory-only handoff. */ }
+    const snapshot = requestedId && currentMemoryAssessment?.assessment_id === requestedId
+      ? currentMemoryAssessment
+      : raw ? JSON.parse(raw) as AssessmentSnapshot : currentMemoryAssessment;
+    if (!snapshot || !snapshot.assessment_id || !snapshot.answers || !Array.isArray(snapshot.review_focus)) return { status: "missing" };
     if (requestedId && snapshot.assessment_id !== requestedId) {
       return { status: "mismatch", requestedId, snapshotId: snapshot.assessment_id };
     }

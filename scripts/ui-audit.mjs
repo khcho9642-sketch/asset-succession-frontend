@@ -8,7 +8,8 @@ const outputDir = process.env.UI_AUDIT_DIR ?? "artifacts/ui-audit";
 const routes = [
   { name: "landing", path: "/", area: "public" },
   { name: "precheck", path: "/precheck", area: "public" },
-  { name: "precheck-query-bypass", path: "/precheck?step=3", area: "public" },
+  { name: "precheck-form", path: "/precheck/form", area: "public" },
+  { name: "precheck-query-bypass", path: "/precheck/form?step=3", area: "public" },
   { name: "result-empty", path: "/precheck/result", area: "public" },
   { name: "result-demo", path: "/precheck/result?demo=1", area: "public" },
   { name: "expert-overview", path: "/expert/overview", area: "expert" },
@@ -45,7 +46,7 @@ async function stableScreenshot(page, options) {
 }
 
 async function completeHybridPrecheck(page) {
-  await page.goto(`${baseURL}/precheck`, { waitUntil: "networkidle", timeout: 30_000 });
+  await page.goto(`${baseURL}/precheck/form`, { waitUntil: "networkidle", timeout: 30_000 });
   await page.evaluate(() => window.sessionStorage.clear());
   await page.reload({ waitUntil: "networkidle" });
   await page.getByRole("textbox", { name: "직접 입력" }).fill(requiredFiftyEokConversation());
@@ -234,7 +235,19 @@ try {
         }
       }
 
-      if (route.path === "/precheck" || route.path.startsWith("/precheck?")) {
+      if (route.path === "/precheck") {
+        if (!await page.getByRole("heading", { name: "먼저, 이야기를 들려주세요." }).isVisible() || !await page.locator("#diagnosis-message").isVisible()) {
+          fail(route.path, viewport.name, "Chat-first diagnosis heading or composer is missing.");
+        }
+        if (!await page.getByRole("button", { name: "메시지 보내기", exact: true }).isDisabled()) {
+          fail(route.path, viewport.name, "Empty chat send is enabled.");
+        }
+        if (normalizePath(await page.getByRole("link", { name: "기존 문답형으로 입력하기" }).getAttribute("href")) !== "/precheck/form") {
+          fail(route.path, viewport.name, "Legacy form entry is missing from chat.");
+        }
+      }
+
+      if (route.path === "/precheck/form" || route.path.startsWith("/precheck/form?")) {
         if (!bodyText.includes("어떤 준비를 고민하고 계신가요?")) {
           fail(route.path, viewport.name, "Precheck should start from the #9 planning-purpose question.");
         }
@@ -525,7 +538,7 @@ try {
     reducedMotion: "reduce"
   });
   const reducedPage = await reducedContext.newPage();
-  await reducedPage.goto(`${baseURL}/precheck`, { waitUntil: "networkidle", timeout: 30_000 });
+  await reducedPage.goto(`${baseURL}/precheck/form`, { waitUntil: "networkidle", timeout: 30_000 });
   const reducedMotion = await reducedPage.locator(".motion-choice-enter").first().evaluate((element) => {
     const styles = window.getComputedStyle(element);
     return {

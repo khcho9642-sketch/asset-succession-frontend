@@ -48,10 +48,10 @@ export function normalizeAssessmentSnapshot(snapshot: AssessmentSnapshot): Clien
     .map((choice, index) => mapAsset(choice, assetsAnswer, index));
 
   const debts: Debt[] = (debtAnswer?.choices ?? [])
-    .filter((choice) => choice === "담보대출 있음" || choice === "임대보증금 있음")
+    .filter((choice) => choice === "담보대출 있음" || choice === "임대보증금 있음" || choice === "기타채무 있음")
     .map((choice, index) => ({
       debt_id: `assessment-debt-${index + 1}`,
-      type: choice === "담보대출 있음" ? "secured_loan" : "lease_deposit",
+      type: choice === "담보대출 있음" ? "secured_loan" : choice === "임대보증금 있음" ? "lease_deposit" : "other",
       amount_eok: parseEokAmount(debtAnswer?.debtAmounts?.[choice]),
       amount_won: amountWonFromAnswer(debtAnswer?.debtAmounts?.[choice], debtAnswer?.debtAmountWons?.[choice]),
       confirmation_status: parseEokAmount(debtAnswer?.debtAmounts?.[choice]) === null ? "amount_missing" : "confirmed"
@@ -134,7 +134,9 @@ export function normalizeAssessmentSnapshot(snapshot: AssessmentSnapshot): Clien
     time_horizon: "unknown",
     confirmed_tax_bases,
     unknown_items,
-    source_trace: [{ source: "button", confirmation_status: "confirmed" }]
+    source_trace: snapshot.conversation?.mode === "chat"
+      ? snapshot.conversation.confirmed_facts.map((fact) => ({ source: "confirmed_extraction" as const, raw_text: fact.raw_text, confirmation_status: "confirmed" as const }))
+      : [{ source: "button", confirmation_status: "confirmed" }]
   };
 }
 

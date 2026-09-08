@@ -2,19 +2,29 @@
   "name": "asset-succession-frontend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "next dev",
+    "start": "next start",
     "lint": "eslint app components lib --ext .ts,.tsx",
     "build": "next build",
     "typecheck": "tsc --noEmit",
     "test:phase2b": "node scripts/run-phase2b-unit-tests.mjs",
+    "test:chat": "node scripts/run-chat-domain-tests.mjs",
+    "test:chat-api": "node scripts/chat-api-audit.mjs",
+    "test:chat-ui": "node scripts/chat-ui-audit.mjs",
     "test:smoke": "node scripts/pr2-smoke.mjs"
   },
   "dependencies": {
+    "@ai-sdk/react": "^4.0.96",
+    "ai": "^7.0.93",
     "lucide-react": "^1.41.0",
     "next": "16.3.4",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "zod": "^4.5.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",

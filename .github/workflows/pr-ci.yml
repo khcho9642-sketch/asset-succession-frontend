@@ -4,11 +4,14 @@ on:
   pull_request:
     branches:
       - main
+      - codex/home-hero-paper-carousel
   push:
     branches:
       - codex/issue-1-premium-redesign
       - codex/issue-3-post-merge-hardening
       - codex/issue-7-phase-2b-engine-foundation
+      - codex/home-hero-paper-carousel
+      - codex/inheritance-chat-report
 
 permissions:
   contents: read
@@ -29,7 +32,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
@@ -43,6 +46,9 @@ jobs:
 
       - name: Phase 2B unit tests
         run: npm run test:phase2b
+
+      - name: Chat intake domain tests
+        run: npm run test:chat
 
       - name: Production build
         run: npm run build
@@ -58,13 +64,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install application dependencies
         run: npm ci
 
-      - name: Build static export
+      - name: Build production application
         run: npm run build
 
       - name: Install Playwright Chromium
@@ -73,10 +79,10 @@ jobs:
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Start static preview server
+      - name: Start production preview server
         run: |
           mkdir -p artifacts/ui-audit
-          npx serve@14.2.6 out -l 4173 > /tmp/ui-server.log 2>&1 &
+          npm start -- --hostname 127.0.0.1 --port 4173 > /tmp/ui-server.log 2>&1 &
           echo $! > /tmp/ui-server.pid
           for attempt in {1..30}; do
             if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
@@ -86,6 +92,22 @@ jobs:
           done
           cat /tmp/ui-server.log
           exit 1
+
+      - name: Audit prerendered sample report and served assets
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/sample-report-static-audit.mjs
+
+      - name: Audit chat API validation without a provider key
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: npm run test:chat-api
+
+      - name: Audit guided chat and mocked AI report flows
+        env:
+          BASE_URL: http://127.0.0.1:4173
+          UI_AUDIT_DIR: artifacts/ui-audit
+        run: npm run test:chat-ui
 
       - name: Run responsive UI audit and capture screenshots
         env:
@@ -104,9 +126,9 @@ jobs:
           PDF_AUDIT_DIR: artifacts/ui-audit
         run: node scripts/pdf-audit.mjs
 
-      - name: Collect static server log
+      - name: Collect application server log
         if: always()
-        run: cp /tmp/ui-server.log artifacts/ui-audit/static-server.log || true
+        run: cp /tmp/ui-server.log artifacts/ui-audit/application-server.log || true
 
       - name: Upload UI audit screenshots and report
         if: always()

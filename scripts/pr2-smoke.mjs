@@ -1,14 +1,14 @@
 import { chromium } from "playwright";
 
 const baseURL = process.env.PR2_BASE_URL ?? "http://127.0.0.1:4173";
-const routes = ["/", "/precheck", "/precheck/result", "/precheck/result?demo=1", "/consultation", "/expert/overview", "/expert/workspace", "/report-preview", "/phase-2b"];
+const routes = ["/", "/precheck", "/precheck/form", "/precheck/result", "/precheck/result?demo=1", "/consultation", "/expert/overview", "/expert/workspace", "/report-preview", "/phase-2b"];
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
 async function completeHybridPrecheck(page) {
-  await page.goto(`${baseURL}/precheck`, { waitUntil: "networkidle" });
+  await page.goto(`${baseURL}/precheck/form`, { waitUntil: "networkidle" });
   await page.evaluate(() => window.sessionStorage.clear());
   await page.reload({ waitUntil: "networkidle" });
   await page.getByRole("textbox", { name: "직접 입력" }).fill(requiredFiftyEokConversation());
@@ -86,6 +86,12 @@ try {
       const minimumTextLength = route === "/report-preview" ? 100 : 200;
       assert(layout.textLength > minimumTextLength, `${viewport.name} route did not render enough content: ${route}`);
       assert(layout.scrollWidth <= layout.width + 2, `${viewport.name} horizontal overflow on ${route}: ${layout.scrollWidth} > ${layout.width}`);
+      if (route === "/precheck") {
+        assert(await page.getByRole("heading", { name: "먼저, 이야기를 들려주세요." }).isVisible(), `${viewport.name} chat-first diagnosis heading missing.`);
+        assert(await page.locator("#diagnosis-message").isVisible(), `${viewport.name} chat composer missing.`);
+        assert(await page.getByRole("button", { name: "메시지 보내기", exact: true }).isDisabled(), `${viewport.name} empty chat send is enabled.`);
+        assert((await page.getByRole("link", { name: "기존 문답형으로 입력하기" }).getAttribute("href")) === "/precheck/form", `${viewport.name} legacy form entry is missing.`);
+      }
       if (route === "/") {
         const bodyText = await page.locator("body").innerText();
         assert(bodyText.includes("막막한 자산승계,") && bodyText.includes("우리 가족의 3가지 전략부터."), `${viewport.name} landing hero headline missing.`);
@@ -98,7 +104,7 @@ try {
   }
 
   const page = await browser.newPage({ viewport: { width: 1440, height: 1200 } });
-  await page.goto(`${baseURL}/precheck?step=5`, { waitUntil: "networkidle" });
+  await page.goto(`${baseURL}/precheck/form?step=5`, { waitUntil: "networkidle" });
   assert(await page.getByText("어떤 준비를 고민하고 계신가요?").first().isVisible(), "Query step bypass was not blocked.");
 
   await completeHybridPrecheck(page);
