@@ -351,7 +351,7 @@ try {
   observations.push({ name: "previous taxEnabled:false draft cannot bypass required estimates" });
   await previousDraftContext.close();
 
-  for (const [purpose, label] of [["inheritance", "상속"], ["gift", "증여"], ["capital_gains", "양도"], ["business_succession", "가업승계"]]) {
+  for (const [purpose, label] of [["inheritance", "상속"], ["gift", "증여"], ["capital_gains", "양도"], ["business_succession", "가업상속"]]) {
     const context = await newContext(browser);
     const page = await context.newPage();
     await openChat(page, { purpose });
