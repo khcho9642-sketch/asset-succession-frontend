@@ -12,13 +12,21 @@ export function SampleReportViewer() {
 
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined") return;
-    const observer = new IntersectionObserver(entries => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) setCurrentPage(Number((entry.target as HTMLElement).dataset.reportPage));
-      }
-    }, { rootMargin: "-12% 0px -72% 0px", threshold: 0 });
-    reportRef.current?.querySelectorAll("[data-report-page]").forEach(page => observer.observe(page));
-    return () => observer.disconnect();
+    let observer: IntersectionObserver | undefined;
+    const observePages = () => {
+      observer?.disconnect();
+      // Use height-based pixels so wide, short viewports retain an observation band.
+      const height = window.innerHeight;
+      observer = new IntersectionObserver(entries => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setCurrentPage(Number((entry.target as HTMLElement).dataset.reportPage));
+        }
+      }, { rootMargin: `-${Math.round(height * .12)}px 0px -${Math.round(height * .72)}px 0px`, threshold: 0 });
+      reportRef.current?.querySelectorAll("[data-report-page]").forEach(page => observer?.observe(page));
+    };
+    observePages();
+    window.addEventListener("resize", observePages);
+    return () => { observer?.disconnect(); window.removeEventListener("resize", observePages); };
   }, []);
 
   function selectPage(number: number) {
@@ -34,7 +42,7 @@ export function SampleReportViewer() {
       <nav className={styles.pageList} aria-label="보고서 목차">
         <p>보고서 목차 <span>7페이지</span></p>
         <ol>{sampleTaxReportSections.map((title, index) => (
-          <li key={title}><a href={`#report-page-${index + 1}`} aria-current={currentPage === index + 1 ? "location" : undefined}>
+          <li key={title}><a href={`#report-page-${index + 1}`} onClick={() => setCurrentPage(index + 1)} aria-current={currentPage === index + 1 ? "location" : undefined}>
             <span>{String(index + 1).padStart(2, "0")}</span>{title}
           </a></li>
         ))}</ol>
