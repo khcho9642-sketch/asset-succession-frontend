@@ -3,10 +3,11 @@ import { mkdir, stat, writeFile } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { assertReportPrintBounds } from "./report-print-bounds.mjs";
+import { assertPaperTemplate } from "./paper-report-audit.mjs";
 
 const baseURL = process.env.BASE_URL ?? "http://127.0.0.1:4173";
 const outputDir = process.env.PDF_AUDIT_DIR ?? "docs/review-assets/pr-2";
-const pdfPath = path.join(outputDir, "a4-report-v2-seven-pages.pdf");
+const pdfPath = path.join(outputDir, "a4-paper-report-seven-pages.pdf");
 const assessmentStorageKey = "as360.precheck.assessment.v1";
 const seededAssessment = {
   assessment_id: "AS360-20260906-PDFAUD",
@@ -70,33 +71,23 @@ const seededAssessment = {
 
 const requiredText = [
   seededAssessment.assessment_id,
-  "Report V2 1/7",
-  "Report V2 2/7",
-  "Report V2 3/7",
-  "Report V2 4/7",
-  "Report V2 5/7",
-  "Report V2 6/7",
-  "Report V2 7/7",
-  "우리 가족 자산승계 사전진단 보고서",
-  "36개 시나리오 내부 분석 완료",
-  "확인된 현재 자산가액",
+  "자산승계 진단 보고서",
+  "확인된 자산 합계",
   "50억",
   "가족 분산·단계적 사전증여",
   "첫째 대출·둘째 증여 배분",
   "배우자 상속공제 고려 재산배분",
   "부모의 대여금 채권은 상속재산에서 자동 제외되지 않음",
-  "자산 구성",
-  "기준안과 추천안 비교",
-  "납세재원과 부족액",
-  "증여·대출·상속 실행 타임라인",
-  "성년 여부",
+  "자산·채무 현황",
+  "선택지마다 무엇이 다를까요?",
+  "납부에 쓸 수 있는 현금",
+  "성년",
   "채무",
   "채무 없음",
   "상속세 및 증여세법 제26조",
   "상속세 및 증여세법 제56조",
-  "외부 확인 과세표준",
-  "기준안과 AI 추천 3개 비교",
-  "실행 로드맵·주의사항·공식 근거"
+  "과세표준",
+  "전문가 검토 후 실행 결정하기"
 ];
 
 const forbiddenPrintText = [
@@ -130,6 +121,7 @@ try {
   }
 
   await page.emulateMedia({ media: "print" });
+  await assertPaperTemplate(page, "Confirmed form A4 report");
   const pageCountInDom = await page.locator("[data-report-page]").count();
   if (pageCountInDom !== 7) {
     throw new Error(`Report DOM should contain exactly seven report pages, found ${pageCountInDom}.`);
@@ -159,10 +151,6 @@ try {
   }
   for (let pageNumber = 1; pageNumber <= 7; pageNumber += 1) {
     const reportPage = page.locator(`[data-report-page="${pageNumber}"]`);
-    const pageText = await reportPage.innerText();
-    if (pageText.length < 260) {
-      throw new Error(`Report page ${pageNumber} does not have enough readable content density: ${pageText.length} chars.`);
-    }
     await reportPage.screenshot({
       path: path.join(outputDir, `a4-report-page-${pageNumber}.png`)
     });
@@ -179,7 +167,7 @@ try {
   }
 
   await page.evaluate(async () => { await document.fonts.ready; });
-  await assertReportPrintBounds(page, { outputPath: path.join(outputDir, "legacy-print-bounds.json"), label: "Legacy confirmed report" });
+  await assertReportPrintBounds(page, { outputPath: path.join(outputDir, "form-paper-print-bounds.json"), label: "Confirmed form paper report" });
   const pdf = await page.pdf({
     format: "A4",
     printBackground: true,

@@ -1,0 +1,225 @@
+.personalReport { font-size: 15px; }
+.personalReport p { margin: 0; }
+.personalReport h3, .personalReport h4 { color: var(--report-ink); }
+.personalReport svg { flex-shrink: 0; color: var(--report-brass); stroke-width: 1.35; }
+.twoColumns, .threeColumns, .detailColumns { display: grid; gap: 16px; min-width: 0; }
+.twoColumns, .detailColumns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.threeColumns { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.goalStrip { display: flex; align-items: center; gap: 23px; margin-bottom: 18px; padding: 23px; background: var(--report-panel); }
+.goalStrip > svg { width: 50px; height: 50px; }
+.goalStrip span { display: block; color: var(--report-soft); font-size: 13px; }
+.goalStrip strong { display: block; margin-top: 4px; font-family: var(--report-serif); font-size: 24px; font-weight: 650; line-height: 1.55; }
+.metric { display: grid; grid-template-columns: 34px minmax(0, 1fr); align-items: center; gap: 10px; min-width: 0; padding: 18px; border: 1px solid var(--report-line); background: rgba(255, 255, 255, .2); }
+.metric > svg { width: 30px; height: 30px; }
+.metric p { font-size: 14px; line-height: 1.55; }
+.metric strong { display: block; margin-top: 8px; color: var(--report-seal); font-family: var(--report-serif); font-size: 30px; line-height: 1.35; overflow-wrap: anywhere; }
+.metric small { grid-column: 1 / -1; padding-top: 9px; border-top: 1px solid var(--report-line); color: var(--report-soft); font-size: 12px; line-height: 1.5; }
+.sectionTitle { margin: 24px 0 16px; border-left: 4px solid var(--report-seal); padding-left: 16px; font-family: var(--report-serif); font-size: 24px; font-weight: 700; line-height: 1.5; }
+.iconNote { display: flex; align-items: flex-start; gap: 12px; min-width: 0; padding: 14px 0; }
+.iconNote > svg { width: 29px; height: 29px; margin-top: 3px; }
+.iconNote > div { min-width: 0; }
+.iconNote h4 { margin: 0 0 5px; font-size: 16px; font-weight: 650; line-height: 1.6; }
+.iconNote > div > div { color: var(--report-soft); font-size: 14px; line-height: 1.8; }
+.directionGroup { background: var(--report-panel); }
+.directionSummary { min-width: 0; padding: 14px; border: 1px solid var(--report-line); background: var(--report-paper); }
+.directionSummary > span { float: left; margin-right: 10px; color: var(--report-seal); font-family: var(--report-serif); font-size: 32px; line-height: 1.25; }
+.directionSummary h4 { margin: 0 0 12px; font-family: var(--report-serif); font-size: 18px; font-weight: 650; line-height: 1.5; }
+.directionSummary p { clear: both; color: var(--report-soft); font-size: 13px; line-height: 1.8; }
+.actionStrip { display: flex; align-items: center; gap: 14px; margin-top: 18px; padding: 14px 18px; border: 1px solid var(--report-brass); background: var(--report-panel); font-size: 14px; }
+.actionStrip > svg { width: 28px; height: 28px; }
+.actionStrip strong { margin-right: 7px; color: var(--report-seal); }
+.personalReport .meta { margin-top: 14px; color: var(--report-soft); font-size: 12px; overflow-wrap: anywhere; }
+.personalReport .smallNote { margin-top: 12px; color: var(--report-soft); font-size: 12px; line-height: 1.75; }
+.confirmedFacts { margin-top: 0; }
+.confirmedFacts dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 20px; margin: 0; }
+.factRow { min-width: 0; border-top: 1px solid var(--report-line); padding: 10px 0; }
+.factRow dt { color: var(--report-soft); font-size: 12px; line-height: 1.6; }
+.factRow dd { margin: 3px 0 0; color: var(--report-ink); font-size: 14px; font-weight: 550; line-height: 1.7; white-space: pre-line; overflow-wrap: anywhere; }
+.assetRows { display: grid; }
+.assetRows > div { display: grid; grid-template-columns: 26px minmax(0, 1fr) minmax(80px, auto); align-items: center; gap: 13px; padding: 10px 0; border-bottom: 1px solid var(--report-line); font-size: 15px; }
+.assetRows svg { width: 25px; height: 25px; }
+.assetRows strong { text-align: right; font-weight: 600; }
+.totalLine { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; margin-top: 15px; color: var(--report-seal); font-family: var(--report-serif); font-size: 22px; font-weight: 650; }
+.checkGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px 18px; margin: 14px 0 0; padding: 0; list-style: none; }
+.checkGrid li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; line-height: 1.65; }
+.checkGrid svg { width: 17px; height: 17px; margin-top: 2px; }
+.comparisonDirection { min-width: 0; padding: 18px; border: 1px solid var(--report-line); }
+.letter { display: block; color: var(--report-seal); font-family: var(--report-serif); font-size: 64px; font-weight: 550; line-height: 1.1; }
+.comparisonDirection > .letter { text-align: center; }
+.personalReport .badge { color: var(--report-brass); font-size: 12px; line-height: 1.6; }
+.comparisonDirection > .badge { margin: 7px 0; text-align: center; }
+.comparisonDirection h3 { margin: 10px 0 15px; padding-bottom: 13px; border-bottom: 1px solid var(--report-brass); font-family: var(--report-serif); font-size: 22px; font-weight: 650; line-height: 1.5; text-align: center; }
+.comparisonDirection .heroIcon { display: block; width: 100px; height: 100px; margin: 18px auto; padding: 15px; border-radius: 50%; background: var(--report-panel); }
+.comparisonDirection .iconNote { border-top: 1px solid var(--report-line); }
+.comparisonDirection .iconNote > svg { width: 24px; height: 24px; }
+.comparisonDirection .iconNote h4 { font-size: 15px; }
+.comparisonDirection .iconNote > div > div { font-size: 13px; line-height: 1.7; }
+.notice { margin-top: 20px; padding: 18px 22px; border: 1px solid var(--report-line); border-left: 4px solid var(--report-seal); background: var(--report-panel); }
+.notice h3 { margin: 0 0 10px; color: var(--report-seal); font-family: var(--report-serif); font-size: 24px; font-weight: 650; line-height: 1.5; }
+.notice > p { color: var(--report-soft); font-size: 14px; line-height: 1.75; }
+.question { display: flex; align-items: flex-start; gap: 12px; padding: 10px; }
+.question > span { display: grid; flex-shrink: 0; place-items: center; width: 30px; height: 30px; background: var(--report-brass); color: var(--report-paper); border-radius: 50%; font-family: var(--report-serif); }
+.question p { font-family: var(--report-serif); font-size: 18px; line-height: 1.7; }
+.scenarioDetail { margin-top: 16px; padding: 22px; border: 1px solid var(--report-brass); }
+.scenarioDetail:first-child { margin-top: 0; }
+.scenarioHeading { display: flex; align-items: flex-start; gap: 22px; margin-bottom: 17px; padding-bottom: 17px; border-bottom: 1px solid var(--report-line); }
+.scenarioHeading h3, .baselineCard h3 { margin: 4px 0 8px; font-family: var(--report-serif); font-size: 25px; font-weight: 650; line-height: 1.45; }
+.scenarioHeading > div > p:last-child, .baselineCard > div > p { color: var(--report-soft); font-size: 14px; line-height: 1.7; }
+.scenarioDetail h4 { margin: 0 0 10px; font-family: var(--report-serif); font-size: 19px; font-weight: 650; line-height: 1.6; }
+.list { display: grid; gap: 7px; margin: 0; padding-left: 17px; color: var(--report-soft); font-size: 14px; line-height: 1.75; }
+.list li { padding-left: 2px; }
+.timeline { display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; padding-top: 13px; border-top: 1px solid var(--report-line); color: var(--report-soft); font-size: 13px; line-height: 1.75; }
+.timeline > svg { width: 23px; height: 23px; }
+.timeline strong { display: block; color: var(--report-ink); }
+.knownMoneyGroup { display: flex; flex-wrap: wrap; gap: 0 24px; }
+.personalReport .knownMoney { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--report-line); font-size: 13px; }
+.knownMoney > span { display: block; color: var(--report-soft); }
+.knownMoney > strong { display: block; color: var(--report-seal); font-size: 18px; font-weight: 650; }
+.baselineCard { display: flex; gap: 20px; margin-top: 18px; padding: 20px; border: 1px solid var(--report-line); background: var(--report-panel); }
+.compactDetail { padding: 17px; }
+.compactDetail .scenarioHeading { margin-bottom: 12px; padding-bottom: 12px; }
+.compactDetail .scenarioHeading h3 { font-size: 20px; }
+.compactDetail .list { font-size: 12px; gap: 5px; line-height: 1.7; }
+.compactDetail h4 { font-size: 16px; margin-bottom: 6px; }
+.compactDetail .timeline { margin-top: 10px; padding-top: 9px; font-size: 12px; }
+.fundingIntro { display: flex; align-items: center; gap: 25px; margin-bottom: 23px; padding: 27px; background: var(--report-panel); }
+.fundingIntro > svg { width: 65px; height: 65px; }
+.fundingIntro p { color: var(--report-soft); font-family: var(--report-serif); font-size: 19px; line-height: 1.9; }
+.fundingIntro strong { color: var(--report-ink); font-weight: 650; }
+.executionSteps { display: grid; gap: 13px; margin: 0; padding: 0; list-style: none; }
+.executionSteps > li { display: flex; align-items: center; gap: 22px; padding: 19px 23px; border: 1px solid var(--report-brass); }
+.executionSteps > li > span { padding-right: 18px; border-right: 1px solid var(--report-brass); color: var(--report-brass); font-family: var(--report-serif); font-size: 32px; line-height: 1.3; }
+.executionSteps > li > div { flex: 1; min-width: 0; }
+.executionSteps h3 { margin: 0 0 5px; font-family: var(--report-serif); font-size: 23px; font-weight: 650; line-height: 1.45; }
+.executionSteps p { color: var(--report-soft); font-size: 14px; }
+.executionSteps > li > svg { width: 37px; height: 37px; }
+.references ul { display: grid; gap: 5px; margin: 0 0 9px; padding-left: 16px; }
+.references li, .references p { color: var(--report-soft); font-size: 12px; line-height: 1.8; }
+.references a { color: var(--report-ink); text-decoration: underline; text-underline-offset: 3px; }
+.closing { margin-top: 18px; padding: 22px; border: 1px solid var(--report-seal); text-align: center; background: var(--report-panel); }
+.closing h3 { margin: 0 0 16px; color: var(--report-seal); font-family: var(--report-serif); font-size: 24px; font-weight: 650; line-height: 1.5; }
+.closing > a { display: inline-flex; padding: 8px 20px; border: 1px solid var(--report-seal); color: var(--report-seal); font-size: 14px; font-weight: 600; }
+.closing > p { margin-top: 12px; color: var(--report-soft); font-size: 11px; overflow-wrap: anywhere; }
+
+@media (max-width: 640px) {
+  .twoColumns, .threeColumns, .detailColumns, .confirmedFacts dl, .checkGrid { grid-template-columns: 1fr; gap: 12px; }
+  .goalStrip { gap: 15px; padding: 16px; }
+  .goalStrip > svg { width: 34px; height: 34px; }
+  .goalStrip strong { font-size: 20px; }
+  .metric { grid-template-columns: 35px minmax(0, 1fr); padding: 16px; }
+  .metric strong { font-size: 29px; }
+  .sectionTitle { margin: 22px 0 12px; font-size: 21px; }
+  .personalReport .smallNote { font-size: 12px; }
+  .confirmedFacts dl { gap: 0; }
+  .factRow { padding: 9px 0; }
+  .factRow dd { font-size: 14px; }
+  .assetRows > div { gap: 8px; font-size: 14px; }
+  .totalLine { font-size: 19px; }
+  .comparisonDirection { padding: 18px; }
+  .comparisonDirection .heroIcon { width: 80px; height: 80px; }
+  .comparisonDirection h3 { font-size: 23px; }
+  .comparisonDirection .iconNote > div > div { font-size: 14px; }
+  .notice { padding: 16px; }
+  .notice h3 { font-size: 21px; }
+  .question { padding: 5px 0; }
+  .scenarioDetail { padding: 17px; }
+  .scenarioHeading { gap: 14px; }
+  .scenarioHeading h3, .baselineCard h3 { font-size: 21px; }
+  .letter { font-size: 49px; }
+  .baselineCard { gap: 14px; padding: 16px; }
+  .compactDetail .list { font-size: 13px; }
+  .fundingIntro { gap: 15px; padding: 18px; }
+  .fundingIntro > svg { width: 40px; height: 40px; }
+  .fundingIntro p { font-size: 16px; }
+  .executionSteps > li { gap: 13px; padding: 16px 13px; }
+  .executionSteps > li > span { padding-right: 10px; font-size: 25px; }
+  .executionSteps h3 { font-size: 20px; }
+  .executionSteps > li > svg { display: none; }
+  .closing { padding: 18px; }
+  .closing h3 { font-size: 21px; }
+}
+
+@media print {
+  .personalReport { font-size: 12px; }
+  .twoColumns, .detailColumns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3mm; }
+  .threeColumns { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3mm; }
+  .goalStrip { gap: 4mm; margin-bottom: 3mm; padding: 4mm; }
+  .goalStrip > svg { width: 34px; height: 34px; }
+  .goalStrip span { font-size: 11px; }
+  .goalStrip strong { font-size: 19px; line-height: 1.5; }
+  .metric { grid-template-columns: 23px minmax(0, 1fr); gap: 2mm; padding: 3mm; }
+  .metric > svg { width: 23px; height: 23px; }
+  .metric p { font-size: 11px; line-height: 1.5; }
+  .metric strong { margin-top: 1.5mm; font-size: 23px; }
+  .metric small { padding-top: 1.5mm; font-size: 11px; }
+  .sectionTitle { margin: 4mm 0 2mm; padding-left: 3mm; font-size: 18px; }
+  .iconNote { gap: 2.5mm; padding: 2.5mm 0; }
+  .iconNote > svg { width: 23px; height: 23px; }
+  .iconNote h4 { margin-bottom: 1mm; font-size: 12px; line-height: 1.55; }
+  .iconNote > div > div { font-size: 11px; line-height: 1.65; }
+  .directionSummary { padding: 3mm; }
+  .directionSummary > span { font-size: 27px; margin-right: 2mm; }
+  .directionSummary h4 { margin-bottom: 2mm; font-size: 15px; line-height: 1.45; }
+  .directionSummary p { font-size: 11px; line-height: 1.6; }
+  .actionStrip { gap: 3mm; margin-top: 3mm; padding: 3mm; font-size: 12px; }
+  .actionStrip > svg { width: 23px; height: 23px; }
+  .personalReport .meta, .personalReport .smallNote { margin-top: 2mm; font-size: 11px; line-height: 1.6; }
+  .confirmedFacts dl { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 4mm; }
+  .factRow { padding: 1.5mm 0; }
+  .factRow dt { font-size: 11px; line-height: 1.4; }
+  .factRow dd { margin-top: .5mm; font-size: 11px; line-height: 1.5; }
+  .assetRows > div { grid-template-columns: 21px minmax(0, 1fr) minmax(75px, auto); gap: 2.5mm; padding: 1.5mm 0; font-size: 12px; }
+  .assetRows svg { width: 21px; height: 21px; }
+  .totalLine { margin-top: 2mm; font-size: 17px; }
+  .checkGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1mm 3mm; margin-top: 2mm; }
+  .checkGrid li { gap: 1.5mm; font-size: 11px; line-height: 1.5; }
+  .checkGrid svg { width: 13px; height: 13px; margin-top: 1px; }
+  .comparisonDirection { padding: 3mm; }
+  .letter { font-size: 47px; }
+  .personalReport .badge { font-size: 11px; line-height: 1.4; }
+  .comparisonDirection > .badge { margin: 1.5mm 0; }
+  .comparisonDirection h3 { margin: 2mm 0; padding-bottom: 2mm; font-size: 17px; line-height: 1.45; }
+  .comparisonDirection .heroIcon { width: 68px; height: 68px; margin: 3mm auto; padding: 10px; }
+  .comparisonDirection .iconNote > svg { width: 20px; height: 20px; }
+  .comparisonDirection .iconNote h4 { font-size: 12px; }
+  .comparisonDirection .iconNote > div > div { font-size: 11px; line-height: 1.6; }
+  .notice { margin-top: 3mm; padding: 3mm 4mm; }
+  .notice h3 { margin-bottom: 2mm; font-size: 18px; }
+  .notice > p { font-size: 11px; line-height: 1.6; }
+  .question { gap: 2mm; padding: 2mm; }
+  .question > span { width: 24px; height: 24px; font-size: 12px; }
+  .question p { font-size: 14px; line-height: 1.6; }
+  .scenarioDetail { margin-top: 3mm; padding: 3.5mm; }
+  .scenarioHeading { gap: 4mm; margin-bottom: 2.5mm; padding-bottom: 2.5mm; }
+  .scenarioHeading h3, .baselineCard h3 { margin: 1mm 0 1.5mm; font-size: 20px; line-height: 1.4; }
+  .scenarioHeading > div > p:last-child, .baselineCard > div > p { font-size: 11px; line-height: 1.6; }
+  .scenarioDetail h4 { margin-bottom: 1.5mm; font-size: 15px; }
+  .list { gap: 1mm; padding-left: 3.5mm; font-size: 11px; line-height: 1.6; }
+  .timeline { gap: 2mm; margin-top: 2.5mm; padding-top: 2mm; font-size: 11px; line-height: 1.55; }
+  .timeline > svg { width: 19px; height: 19px; }
+  .knownMoneyGroup { gap: 0 4mm; }
+  .personalReport .knownMoney { margin-top: 2mm; padding-top: 1.5mm; font-size: 11px; }
+  .knownMoney > strong { font-size: 15px; }
+  .baselineCard { gap: 4mm; margin-top: 3mm; padding: 3mm; }
+  .compactDetail { padding: 3mm; }
+  .compactDetail .scenarioHeading { margin-bottom: 2mm; padding-bottom: 2mm; }
+  .compactDetail .scenarioHeading h3 { font-size: 17px; }
+  .compactDetail .list { gap: 1mm; font-size: 11px; line-height: 1.5; }
+  .compactDetail h4 { font-size: 13px; margin-bottom: 1mm; }
+  .compactDetail .timeline { margin-top: 2mm; padding-top: 2mm; font-size: 11px; }
+  .fundingIntro { gap: 4mm; margin-bottom: 3mm; padding: 4mm; }
+  .fundingIntro > svg { width: 45px; height: 45px; }
+  .fundingIntro p { font-size: 16px; line-height: 1.75; }
+  .executionSteps { gap: 2.5mm; }
+  .executionSteps > li { gap: 4mm; padding: 3mm 4mm; }
+  .executionSteps > li > span { padding-right: 3mm; font-size: 27px; }
+  .executionSteps h3 { margin-bottom: 1mm; font-size: 19px; }
+  .executionSteps p { font-size: 11px; }
+  .executionSteps > li > svg { display: block; width: 28px; height: 28px; }
+  .references ul { gap: 1mm; margin-bottom: 1.5mm; }
+  .references li, .references p { font-size: 11px; line-height: 1.55; }
+  .closing { margin-top: 3mm; padding: 3mm; }
+  .closing h3 { margin-bottom: 2mm; font-size: 19px; }
+  .closing > a { padding: 1.5mm 4mm; font-size: 12px; }
+  .closing > p { margin-top: 2mm; font-size: 11px; }
+}

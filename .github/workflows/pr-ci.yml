@@ -141,6 +141,12 @@ jobs:
           PDF_AUDIT_DIR: artifacts/ui-audit
         run: node scripts/pdf-audit.mjs
 
+      - name: Verify approved paper report format with the 52-eok conversation
+        env:
+          BASE_URL: http://127.0.0.1:4173
+          UI_AUDIT_DIR: artifacts/ui-audit
+        run: node scripts/paper-report-audit.mjs
+
       - name: Collect application server log
         if: always()
         run: cp /tmp/ui-server.log artifacts/ui-audit/application-server.log || true

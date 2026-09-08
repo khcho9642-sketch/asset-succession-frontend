@@ -461,25 +461,22 @@ try {
       });
 
       await flowPage.goto(`${baseURL}/report-preview?assessment_id=${encodeURIComponent(assessmentMatch[0])}`, { waitUntil: "networkidle", timeout: 30_000 });
-      await flowPage.getByText("Report V2 7/7").waitFor({ timeout: 10_000 });
+      await flowPage.locator('[data-report-template="paper-seven-v1"] [data-report-page="7"]').waitFor({ timeout: 10_000 });
       const reportText = await flowPage.locator("body").innerText();
       const pageCount = await flowPage.locator("[data-report-page]").count();
       const requiredReportText = [
         assessmentMatch[0],
-        "Report V2 7/7",
         "우리 가족 자산승계 사전진단 보고서",
-        "36개 시나리오 내부 분석 완료",
         "가족 분산·단계적 사전증여",
         "첫째 대출·둘째 증여 배분",
-        "배우자 상속공제 고려 재산배분",
-        "자산 구성",
-        "기준안과 추천안 비교",
-        "납세재원과 부족액",
-        "증여·대출·상속 실행 타임라인"
+        "배우자 상속공제 고려 재산배분"
       ];
       const missingReportText = requiredReportText.filter((text) => !reportText.includes(text));
       if (pageCount !== 7 || missingReportText.length > 0) {
-        fail("/report-preview", viewport.name, `Report V2 did not render exactly seven personal pages or required content. pages=${pageCount}, missing=${missingReportText.join(", ")}`);
+        fail("/report-preview", viewport.name, `Paper report did not render exactly seven personal pages or required content. pages=${pageCount}, missing=${missingReportText.join(", ")}`);
+      }
+      if (await flowPage.locator('[data-paper-number]').count() !== 7 || reportText.includes("Report V2")) {
+        fail("/report-preview", viewport.name, "Report must use the approved paper template on every page.");
       }
       if (reportText.includes("0.5억 산출세액") || reportText.includes("0.2억 산출세액")) {
         fail("/report-preview", viewport.name, "Report preview fabricated calculated tax values without a confirmed taxable base.");

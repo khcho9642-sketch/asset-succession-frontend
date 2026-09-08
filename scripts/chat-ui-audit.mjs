@@ -109,7 +109,7 @@ async function confirmReport(page, label) {
   await page.getByRole("checkbox", { name: confirmation, exact: true }).check();
   await page.getByRole("button", { name: finalButton, exact: true }).click();
   await page.waitForURL("**/report-preview?assessment_id=**");
-  await page.getByText("Report V2 7/7", { exact: true }).waitFor();
+  await page.locator('[data-report-template="paper-seven-v1"] [data-report-page="7"]').waitFor();
   assert.equal(await page.locator("[data-report-page]").count(), 7, `${label}: report does not have seven pages`);
   assert.match(new URL(page.url()).searchParams.get("assessment_id") ?? "", /^AS360-\d{8}-[A-Z0-9]+$/);
   const text = await page.locator("body").innerText();

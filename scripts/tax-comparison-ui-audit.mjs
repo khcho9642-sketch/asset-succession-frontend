@@ -5,6 +5,7 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import path from "node:path";
 import { assertReportPrintBounds } from "./report-print-bounds.mjs";
+import { assertPaperTemplate } from "./paper-report-audit.mjs";
 
 // Synthetic customer examples only. Real model requests are disabled; this audit
 // verifies the deterministic calculator and the actual chat-to-report handoff.
@@ -147,6 +148,7 @@ async function openConfirmedReport(page, fixture) {
   await page.waitForURL("**/report-preview?assessment_id=**");
   await page.locator('[data-report-page="7"]').waitFor();
   assert.equal(await page.locator("[data-report-page]").count(), 7, `${fixture.track}: seven report sheets required`);
+  await assertPaperTemplate(page, `${fixture.track} calculated report`);
   const snapshot = await getSnapshot(page);
   assert(snapshot?.taxComparisonInput?.confirmed, `${fixture.track}: report lacks confirmed tax conditions`);
   assert.equal(snapshot.taxComparisonInput.track, fixture.track);
@@ -168,6 +170,7 @@ async function auditPdf(page, fixture, snapshot) {
   await page.emulateMedia({ media: "print" });
   try {
     await page.evaluate(async () => { await document.fonts.ready; });
+    await assertPaperTemplate(page, `${fixture.track} calculated print report`);
     await assertReportPrintBounds(page, { outputPath: path.join(outputDir, `tax-${fixture.track}-print-bounds.json`), label: `${fixture.label} seven-page calculated report` });
     const body = await page.locator("body").innerText();
     assert(body.includes(snapshot.assessment_id), "Print report lost the customer confirmation identity");

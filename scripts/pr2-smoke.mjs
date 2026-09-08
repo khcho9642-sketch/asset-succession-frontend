@@ -121,12 +121,13 @@ try {
   assert(!resultText.includes("0.5억 산출세액") && !resultText.includes("0.3억 절세 예상") && !resultText.includes("9.5~12억") && !resultText.includes("부모 잔여재산\n55억") && !resultText.includes("inheritance-01-current-structure"), "Result page still exposes fabricated calculations, fixed sample strategy numbers, or internal candidate IDs.");
 
   await page.goto(`${baseURL}/report-preview?assessment_id=${encodeURIComponent(assessmentId)}`, { waitUntil: "networkidle" });
-  await page.getByText("Report V2 7/7").waitFor({ timeout: 10_000 });
+  await page.locator('[data-report-template="paper-seven-v1"] [data-report-page="7"]').waitFor({ timeout: 10_000 });
   const reportText = await page.locator("body").innerText();
   assert(reportText.includes(assessmentId), "Assessment ID missing from report preview.");
-  assert(await page.locator("[data-report-page]").count() === 7, "Report V2 should render exactly seven pages.");
-  assert(reportText.includes("Report V2 7/7") && reportText.includes("우리 가족 자산승계 사전진단 보고서") && reportText.includes("36개 시나리오 내부 분석 완료") && reportText.includes("50억") && reportText.includes("첫째 대출·둘째 증여 배분"), "Seven-page report content missing selected recommendation flow.");
-  assert(reportText.includes("자산 구성") && reportText.includes("기준안과 추천안 비교") && reportText.includes("납세재원과 부족액") && reportText.includes("증여·대출·상속 실행 타임라인"), "Seven-page report is missing required visual sections.");
+  assert(await page.locator("[data-report-page]").count() === 7, "Paper report should render exactly seven pages.");
+  assert(reportText.includes("우리 가족 자산승계 사전진단 보고서") && reportText.includes("50억") && reportText.includes("첫째 대출·둘째 증여 배분"), "Seven-page report content missing selected recommendation flow.");
+  assert.equal(await page.locator('[data-paper-number]').count(), 7, "Report lost sample-style numbered sections.");
+  assert(!reportText.includes("Report V2") && !reportText.includes("36개 시나리오 내부 분석 완료"), "Old report template or analysis overclaim returned.");
   assert(!reportText.includes("0.5억 산출세액") && !reportText.includes("0.2억 산출세액") && !reportText.includes("55억") && !reportText.includes("9.5~12억") && !reportText.includes("6.3~8.6억") && !reportText.includes("inheritance-01-current-structure"), "Report preview still exposes fabricated calculations, fixed sample strategy numbers, or internal candidate IDs.");
 
   await page.goto(`${baseURL}/consultation`, { waitUntil: "networkidle" });

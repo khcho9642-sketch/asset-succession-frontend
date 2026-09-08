@@ -3,12 +3,14 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
+import { Building2, CalendarDays, CircleCheck, Coins, FileCheck2, FileSearch, Home, Landmark, Scale, Sprout, Users, Wallet, type LucideIcon } from "lucide-react";
 import { PrintButton } from "@/components/PrintButton";
-import { AssetCompositionChart, ExecutionTimelineChart, LiquidityFundingChart, RecommendationComparisonChart } from "@/components/ScenarioVisuals";
+import { PaperReportBook, PaperReportCard, PaperReportPage } from "./PaperReportLayout";
+import styles from "./PersonalReport.module.css";
 import { buildAssessmentMetrics, formatAnswer, readAssessmentFromSession } from "@/lib/assessment";
-import type { AssessmentLoadResult, AssessmentMetrics as Metrics, AssessmentSnapshot } from "@/lib/assessment";
+import type { AssessmentLoadResult, AssessmentSnapshot } from "@/lib/assessment";
 import { buildScenarioPlan, normalizeAssessmentSnapshot, SUPPORTED_TAX_LAW_REFERENCES } from "@/lib/phase2b";
-import type { ClientFacts, MoneyResult, Scenario, ScenarioPlan } from "@/lib/phase2b";
+import type { ClientFacts, MoneyResult, Scenario } from "@/lib/phase2b";
 import { TaxComparisonReport } from "./TaxComparisonReport";
 import { calculateTaxComparison, validateTaxComparisonInput } from "@/lib/tax-comparison";
 
@@ -25,15 +27,6 @@ const assetLabels = {
   business_interest: "법인지분",
   insurance: "보험",
   other: "기타"
-} as const;
-
-const statusLabels = {
-  calculable: "계산 가능",
-  needs_info: "추가정보 필요",
-  needs_engine: "정밀계산 필요",
-  needs_expert_review: "전문가 검토",
-  incomparable: "비교 불가",
-  not_applicable: "해당 없음"
 } as const;
 
 const eligibilityLabels: Record<Scenario["eligibility"]["status"], string> = {
@@ -62,16 +55,16 @@ export function ReportV2Preview() {
   }, [loadResult]);
 
   if (loadResult.status === "loading") {
-    return <section className="border border-[var(--border)] bg-white p-8 text-sm text-[var(--muted)]">보고서를 구성하는 중입니다.</section>;
+    return <section className="border border-[#d2c8b5] bg-[#f8f4ea] p-8 text-sm text-[#6b6152]">보고서를 구성하는 중입니다.</section>;
   }
 
   if (loadResult.status !== "ready" || !viewModel) {
     return (
-      <section className="border border-[var(--border)] bg-white p-8 empty-assessment-card">
-        <p className="text-sm font-semibold text-[var(--gold)]">사전진단 입력값 없음</p>
-        <h1 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-[var(--navy-950)]">먼저 무료 사전진단을 완료해 주세요.</h1>
-        <p className="mt-3 text-sm leading-7 text-[var(--muted)]">보고서는 같은 브라우저 세션의 확정 스냅샷이 있을 때만 개인화됩니다.</p>
-        <Link href="/precheck" className="mt-6 inline-flex bg-[var(--navy-950)] px-6 py-4 text-sm font-semibold text-white print:hidden">
+      <section className="border border-[#d2c8b5] bg-[#f8f4ea] p-8 empty-assessment-card">
+        <p className="text-sm font-semibold text-[#7a6139]">사전진단 입력값 없음</p>
+        <h1 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-[#26221b]">먼저 무료 사전진단을 완료해 주세요.</h1>
+        <p className="mt-3 text-sm leading-7 text-[#6b6152]">대화에서 확인한 가족과 자산 정보를 바탕으로 보고서를 준비합니다.</p>
+        <Link href="/precheck" className="mt-6 inline-flex bg-[#b23a2a] px-6 py-4 text-sm font-semibold text-white print:hidden">
           사전진단 시작하기
         </Link>
       </section>
@@ -90,347 +83,261 @@ export function ReportV2Preview() {
     }
     return <TaxComparisonReport snapshot={{ ...snapshot, taxComparisonInput: validatedInput ?? undefined }} comparison={comparison} />;
   }
-  const {
-    recommended: recommendedScenarios,
-    liquidity_support: liquiditySupport
-  } = plan.display_scenarios;
-  const primaryAlternative = recommendedScenarios.find((scenario) => scenario.calculation_result.status === "calculable") ?? recommendedScenarios[0];
-  const firstTwoRecommendations = recommendedScenarios.slice(0, 2);
-  const thirdRecommendation = recommendedScenarios[2] ?? null;
+  const { recommended, liquidity_support: liquiditySupport } = plan.display_scenarios;
+  const first = recommended[0];
+  const second = recommended[1];
+  const remaining = recommended.slice(2);
   const isChatReport = snapshot.conversation?.mode === "chat";
-  const recommendationLabel = isChatReport ? "검토 후보" : "AI 추천";
+  const goal = snapshot.conversation?.confirmed_facts.find((fact) => fact.id === "goal")?.value ?? metrics.goalSummary;
+  const availableCash = facts.available_tax_payment_cash_eok;
+  const financialAssets = facts.assets.filter((asset) => asset.type === "financial");
+  const financialAmount = financialAssets.length > 0 && financialAssets.every((asset) => asset.current_value_eok !== null)
+    ? financialAssets.reduce((sum, asset) => sum + (asset.current_value_eok ?? 0), 0) : null;
+  const hasTax = [plan.baseline, ...recommended].some((item) => item.calculation_result.total_tax.value_eok !== null);
+  const unknowns = [...new Set(plan.unknown_items.map(customerReason))];
 
   return (
-    <article className="report-book mt-8" data-report-mode={isChatReport ? "chat" : "form"}>
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-4 print:hidden">
-        <div>
-          <p className="text-sm font-semibold text-[var(--gold)]">무료 보고서 미리보기</p>
-          <h1 className="mt-2 text-3xl font-semibold tracking-[-0.05em] text-[var(--navy-950)]">우리 가족 자산승계 사전진단 보고서</h1>
+    <PaperReportBook
+      mode={isChatReport ? "chat" : "form"}
+      title="우리 가족 자산승계 사전진단 보고서"
+      subtitle="확인한 가족·자산 정보로 선택의 기준을 정리했습니다."
+      className={styles.personalReport}
+      actions={<>{isChatReport && <Link href="/precheck">대화 내용 수정</Link>}<PrintButton /></>}
+    >
+      <PaperReportPage number={1} label="CORE SUMMARY · 핵심 요약" title="우리 가족의 자산승계, 먼저 비교할 방향을 찾았습니다." subtitle="세금과 생활재원, 가족의 희망을 함께 살펴봅니다.">
+        <div className={styles.goalStrip}>
+          <Sprout aria-hidden="true" />
+          <div><span>직접 말씀하신 목표</span><strong>{goal === "미입력" ? "가족의 우선순위를 함께 정합니다." : goal}</strong></div>
         </div>
-        <div className="flex flex-wrap items-center gap-4">
-          {snapshot.conversation?.mode === "chat" && <Link href="/precheck" className="inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4">대화 내용 수정</Link>}
-          <PrintButton />
+        <div className={styles.threeColumns}>
+          <Metric icon={Building2} label="확인된 자산 합계" value={metrics.totalAssets} note="직접 확정한 자산 금액" />
+          <Metric icon={Coins} label="확인된 채무" value={metrics.estimatedDebt} note={facts.debt_status === "none" ? "채무 없음으로 확인" : "금액이 확인된 채무 기준"} />
+          <Metric icon={Scale} label="자산에서 채무를 뺀 금액" value={metrics.netAssets} note="개인별 과세표준과는 다릅니다" />
         </div>
-      </div>
+        <SectionTitle>이번 진단에서 먼저 살펴볼 것</SectionTitle>
+        <div className={styles.twoColumns}>
+          <IconNote icon={Wallet} title="자산과 쓸 수 있는 현금을 구분합니다">금융자산 {financialAmount === null ? "금액 확인 필요" : amount(financialAmount)}. 생활비로 남겨둘 돈과 실제 납부에 쓸 수 있는 돈을 따로 확인합니다.</IconNote>
+          <IconNote icon={Users} title="가족의 목표를 배분 기준으로 만듭니다">누구에게 어떤 자산을 이전할지, 계속 보유할 자산과 소유권·관리권을 함께 정합니다.</IconNote>
+        </div>
+        <PaperReportCard title="비교할 방향 · 추천 순위 아님" className={styles.directionGroup}>
+          <div className={styles.threeColumns}>
+            <DirectionSummary letter="A" scenario={first} />
+            <DirectionSummary letter="B" scenario={second} />
+            <div className={styles.directionSummary}><span>C</span><h4>{plan.baseline.name}</h4><p>현재 보유 구조를 기준으로 비교합니다.</p></div>
+          </div>
+          {remaining.length > 0 && <p className={styles.smallNote}>함께 검토할 후보: {remaining.map((item) => item.name).join(" · ")}</p>}
+        </PaperReportCard>
+        <div className={styles.actionStrip}><FileCheck2 aria-hidden="true" /><p><strong>우선 확인</strong> 자산별 소유자·지분, 과거 증여 이력, 필요한 생활재원</p></div>
+        <p className={styles.meta}>검토 분야: {facts.planning_tracks.map((track) => trackLabels[track]).join(" · ")} · 기준일: {plan.context.valuation_date}<br />진단 ID: {snapshot.assessment_id}</p>
+      </PaperReportPage>
 
-      <ReportPage pageNumber={1} title="핵심 요약" eyebrow="Report V2 1/7">
-        <Header snapshot={snapshot} plan={plan} />
-        <div className="mt-7 grid gap-4 md:grid-cols-3">
-          <MetricCard label="확인된 현재 자산가액" value={metrics.totalAssets} helper="직접 확정한 자산 금액 합계" highlight />
-          <MetricCard label="기준안 산출세액" value={moneyDisplay(plan.baseline.calculation_result.total_tax)} helper="확인 과세표준 기반 세율표 계산" />
-          <MetricCard label="납부재원 부족액" value={moneyDisplay(plan.baseline.calculation_result.liquidity_gap)} helper="필요현금과 금융자산 비교" />
+      <PaperReportPage number={2} label="FAMILY & ASSETS · 분석의 출발점" title="우리 가족의 현재 상황" subtitle="확인된 사실과 아직 필요한 정보를 나누어 봅니다.">
+        <ConfirmedFacts snapshot={snapshot} />
+        <PaperReportCard title="자산·채무 현황">
+          <AssetRows facts={facts} snapshot={snapshot} />
+          <div className={styles.totalLine}><span>총자산 {metrics.totalAssets}</span><strong>순자산 {metrics.netAssets}</strong></div>
+        </PaperReportCard>
+        <PaperReportCard title="추가 확인 정보" className={styles.denseCard}>
+          <p className={styles.smallNote}>미확인 항목을 임의로 채우지 않았습니다. 자녀 수가 확인되어도 성년·미성년 구분은 별도로 확인합니다.</p>
+          <ul className={styles.checkGrid}>{unknowns.map((item) => <li key={item}><CircleCheck aria-hidden="true" />{item}</li>)}</ul>
+        </PaperReportCard>
+        <p className={styles.smallNote}>가족 합산 자산을 한 사람의 과세대상 재산으로 보지 않습니다. 자산별 소유자와 지분은 증빙으로 확인합니다.</p>
+      </PaperReportPage>
+
+      <PaperReportPage number={3} label="COMPARISON · 선택지 비교" title="선택지마다 무엇이 다를까요?" subtitle="한 가지 답을 단정하지 않고, 같은 조건에서 선택의 기준을 비교합니다.">
+        <div className={styles.threeColumns}>
+          <ComparisonDirection letter="A" scenario={first} />
+          <ComparisonDirection letter="B" scenario={second} />
+          <section className={styles.comparisonDirection}>
+            <span className={styles.letter}>C</span><p className={styles.badge}>현재 구조 기준안</p><h3>{plan.baseline.name}</h3>
+            <Home className={styles.heroIcon} aria-hidden="true" />
+            <IconNote icon={FileSearch} title="검토 초점">{plan.baseline.description}</IconNote>
+            <IconNote icon={Users} title="함께 생각할 점">재산 배분, 보유 중 관리 부담과 납부재원</IconNote>
+            <IconNote icon={FileCheck2} title="준비할 정보">자산별 소유관계 · 가족 협의 · 평가 기준일</IconNote>
+            <KnownMoney result={plan.baseline.calculation_result.total_tax} label="기준안 산출세액" />
+          </section>
         </div>
-        <div className="mt-4 grid gap-4 md:grid-cols-3">
-          <MetricCard label="조건부 미래가액" value="가정 미입력" helper="물가·평가상승률 입력 전에는 현재가액과 분리" />
-          <MetricCard label="우선 대안 산출세액" value={primaryAlternative ? moneyDisplay(primaryAlternative.calculation_result.total_tax) : "대안 없음"} helper={primaryAlternative?.name ?? "분기 결과 없음"} />
-          <MetricCard label="절세액·비용효과" value={primaryAlternative ? moneyDisplay(primaryAlternative.comparison.expected_tax_savings) : "비교 불가"} helper="동일 과세표준 기준일 때만 산정" />
+        <div className={styles.notice}>
+          <h3>{hasTax ? "계산된 금액의 적용 범위" : "예상 세금은 조건 확인 후 비교합니다"}</h3>
+          <p>{hasTax ? "별도로 확인한 과세표준에 세율을 적용한 산출세액입니다. 과세표준 산정과 공제·가산·신고세액공제, 지방세·취득세·양도세는 이 계산에 포함되지 않았습니다." : "현재 확인한 자산 합계만으로 세액을 확정하지 않습니다. 소유자·과거 증여·공제 조건과 이전 방식을 확인한 뒤 세금과 비용을 비교합니다."}</p>
+          <p className={styles.smallNote}>비교 기준일·대상 자산·가족구성이 같아야 금액 차이를 비교할 수 있습니다.</p>
         </div>
-        <section className="mt-7 grid gap-4 md:grid-cols-[0.95fr_1.05fr]">
-          <Card title="핵심 발견">
-            <ul className="grid gap-2">
-              <li>확인된 자산가액과 과세표준은 서로 다른 입력으로 관리됩니다.</li>
-              <li>{metrics.confidenceNote}</li>
-              <li>작성자와 실제 소유자·지분이 확인되기 전에는 가족별 이전금액을 만들지 않습니다.</li>
-            </ul>
-          </Card>
-          <Card title="우선 검토 방향">
-            <ol className="grid gap-2">
-              {recommendedScenarios.map((scenario, index) => (
-                <li key={scenario.scenario_id}>{index + 1}. {scenario.name} · {statusLabels[scenario.calculation_result.status]} · {eligibilityLabels[scenario.eligibility.status]}</li>
-              ))}
-            </ol>
-            <p className="mt-3 border-l-2 border-[var(--gold)] pl-3 text-xs leading-5">
-              {plan.internal_analysis.disclosure_label}. {isChatReport ? "입력 조건에 따라 규칙으로 선별한 검토 후보입니다." : "보고서에는 추천된 결과만 표시합니다."}
-            </p>
-          </Card>
+        <SectionTitle>우리 가족에게 중요한 질문</SectionTitle>
+        <div className={styles.threeColumns}>
+          <Question number="1">생활비를 얼마나 남겨둘까요?</Question><Question number="2">어떤 자산을 계속 보유할까요?</Question><Question number="3">가족이 동의할 배분은 무엇일까요?</Question>
+        </div>
+        <p className={styles.smallNote}>36개 전략 후보 중 입력 조건에 맞는 검토 방향을 정리했습니다. 세액을 모두 계산하거나 절세 순위를 확정한 결과는 아닙니다.</p>
+      </PaperReportPage>
+
+      <PaperReportPage number={4} label="OPTION A · 대안 A 자세히 보기" title="첫 번째 대안을 자세히 살펴봅니다" subtitle={first?.name ?? "현재 정보로 대안을 확정하지 않았습니다."}>
+        {first ? <ScenarioDetail scenario={first} expanded /> : <MissingDirection />}
+        <PaperReportCard title="대상 자산과 가족의 생활재원">
+          <div className={styles.twoColumns}>
+            <IconNote icon={Building2} title="확인한 자산">{metrics.assetSummary}</IconNote>
+            <IconNote icon={Wallet} title="남겨둘 생활비">가족의 생활비·예비자금과 이전 금액은 별도로 합의합니다. 확인하지 않은 배분액은 제시하지 않았습니다.</IconNote>
+          </div>
+        </PaperReportCard>
+        <div className={styles.actionStrip}><CircleCheck aria-hidden="true" /><p><strong>지금 할 일</strong> {first?.required_information[0] ?? "가족의 목표와 자산별 소유관계를 확인해 주세요."}</p></div>
+      </PaperReportPage>
+
+      <PaperReportPage number={5} label="OTHER OPTIONS · 다른 선택지 살펴보기" title="다른 선택지도 함께 비교합니다" subtitle="대안 B와 현재 구조 기준안의 차이를 살펴봅니다.">
+        {second ? <ScenarioDetail scenario={second} letter="B" /> : <MissingDirection />}
+        <section className={styles.baselineCard}>
+          <span className={styles.letter}>C</span><div><p className={styles.badge}>현재 구조 기준안</p><h3>{plan.baseline.name}</h3><p>{plan.baseline.description}</p><KnownMoney result={plan.baseline.calculation_result.total_tax} label="기준안 산출세액" /><p className={styles.smallNote}>먼저 확인: 자산별 소유관계 · 재산 배분 · 납부재원 · 가족의 합의</p></div>
         </section>
-      </ReportPage>
+        {remaining.map((scenario) => <ScenarioDetail key={scenario.scenario_id} scenario={scenario} compact />)}
+        <div className={styles.actionStrip}><Sprout aria-hidden="true" /><p>계속 보유할 자산과 이전할 자산을 먼저 구분해 보세요.</p></div>
+      </PaperReportPage>
 
-      <ReportPage pageNumber={2} title="확인된 가족·자산 현황" eyebrow="Report V2 2/7">
-        {isChatReport ? <ConfirmedChatFacts snapshot={snapshot} /> : <TwoColumnFacts metrics={metrics} snapshot={snapshot} />}
-        <p className="mt-5 border-l-2 border-[var(--gold)] bg-[var(--ivory)] p-4 text-sm leading-6 text-[var(--muted)]">
-          {!isChatReport && <>채무 상태: {facts.debt_status === "none" ? "채무 없음" : facts.debts.length > 0 ? "채무 금액 직접 입력" : "채무 확인 필요"} · 과거 증여: {facts.past_gifts.length > 0 ? "최근 10년 증여 있음" : "직접 입력 없음"} · </>}
-          자산별 소유자와 지분은 상담 전 증빙으로 확인합니다.
-        </p>
-        <div className="mt-5">
-          <AssetCompositionChart facts={facts} compact />
+      <PaperReportPage number={6} label="LIVING FUNDS · 남겨둘 자산과 필요한 현금" title="재산이 많아도, 쓸 수 있는 돈은 따로 봅니다" subtitle="생활재원과 실행자금을 구분해 준비합니다.">
+        <div className={styles.fundingIntro}><Home aria-hidden="true" /><p>지켜야 할 오늘의 생활과 준비해야 할 내일의 계획을 함께 생각합니다.<br /><strong>총자산이 곧 납부 가능한 현금은 아닙니다.</strong></p></div>
+        <div className={styles.threeColumns}>
+          <Metric icon={Coins} label="확인된 금융자산" value={financialAmount === null ? "확인 필요" : amount(financialAmount)} note="예금·투자자산 등의 입력 합계" />
+          <Metric icon={Home} label="남겨둘 생활재원" value="목표 확인" note="생활비·예비자금 별도 합의" />
+          <Metric icon={Wallet} label="납부에 쓸 수 있는 현금" value={availableCash == null ? "확인 필요" : amount(availableCash)} note="직접 확인한 사용 가능 금액" />
         </div>
-      </ReportPage>
-
-      <ReportPage pageNumber={3} title="현 상태 기준 상속세와 납세재원" eyebrow="Report V2 3/7">
-        <section className="grid gap-5 md:grid-cols-3">
-          <MetricCard label="현재 상태 기준안" value={plan.baseline.name} helper={plan.baseline.description} />
-          <MetricCard label="기준안 세액" value={moneyDisplay(plan.baseline.calculation_result.total_tax)} helper="확인 과세표준이 있을 때만 산출세액 표시" highlight />
-          <MetricCard label="납부재원" value={moneyDisplay(plan.baseline.calculation_result.liquidity_gap)} helper="확인된 금융자산과 필요현금 비교" />
-        </section>
-        <div className="mt-5">
-          <LiquidityFundingChart plan={plan} compact />
+        <PaperReportCard title="자금 계획에서 따로 볼 항목">
+          <div className={styles.twoColumns}>
+            <IconNote icon={Coins} title="필요한 현금">세금 · 거래·실행 비용 · 채무 상환<KnownMoney result={plan.baseline.calculation_result.immediate_cash_required} label="기준안 계산 금액" /></IconNote>
+            <IconNote icon={FileCheck2} title="사용 가능한 현금">소유자 · 인출 가능 여부 · 생활비·예비자금<br />금융자산 전체를 사용 가능 현금으로 가정하지 않습니다.</IconNote>
+          </div>
+          {plan.baseline.calculation_result.liquidity_gap.value_eok !== null && <p className={styles.smallNote}>금융자산 합계와의 단순 비교: {plan.baseline.calculation_result.liquidity_gap.label}. 실제 사용 가능한 현금 기준 부족액과는 다릅니다.</p>}
+        </PaperReportCard>
+        <div className={styles.notice}><h3>자금 부족액은 필요한 현금과 함께 판단합니다.</h3><p>세액 외 비용과 생활재원, 인출 가능 금액까지 확인한 뒤 자금 마련 순서를 정합니다.</p></div>
+        {liquiditySupport && <ScenarioDetail scenario={liquiditySupport} compact funding />}
+        <div className={styles.threeColumns}>
+          <IconNote icon={Users} title="부모 생활재원">목표 확인</IconNote><IconNote icon={Scale} title="가족별 이전 금액">배분 미정</IconNote><IconNote icon={FileCheck2} title="소유권·관리권">별도 합의</IconNote>
         </div>
-        <table className="report-table w-full border-collapse text-left">
-          <thead>
-            <tr>
-              <th>사실</th>
-              <th>의미</th>
-              <th>필요자료</th>
-              <th>계산 포함</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>자산가액</td>
-              <td>검토 규모와 재원 후보 파악</td>
-              <td>평가액 근거, 지분율</td>
-              <td>합계만 포함</td>
-            </tr>
-            <tr>
-              <td>과세표준</td>
-              <td>산출세액 계산 가능 여부 결정</td>
-              <td>외부 확인 과세표준</td>
-              <td>{facts.confirmed_tax_bases?.length ? "세율표 계산 포함" : "미포함"}</td>
-            </tr>
-            <tr>
-              <td>채무·보증금</td>
-              <td>부담부증여·순자산 검토</td>
-              <td>금융기관·임대차 증빙</td>
-              <td>직접 금액만 포함</td>
-            </tr>
-            <tr>
-              <td>가족관계</td>
-              <td>공제·의사결정자 구분</td>
-              <td>배우자·자녀 성년 여부</td>
-              <td>공제 계산 제외</td>
-            </tr>
-          </tbody>
-        </table>
-        <TableCard title="추가 확인 필요정보" className="mt-7">
-          {plan.unknown_items.slice(0, 3).map((item) => <Row key={item} label="확인 필요" value={item} />)}
-          {plan.unknown_items.length > 3 ? <Row label="추가" value={`외 ${plan.unknown_items.length - 3}건은 상담 전 확인`} /> : null}
-        </TableCard>
-      </ReportPage>
+      </PaperReportPage>
 
-      <ReportPage pageNumber={4} title={isChatReport ? "기준안과 검토 후보 비교" : "기준안과 AI 추천 3개 비교"} eyebrow="Report V2 4/7">
-        <RecommendationComparisonChart plan={plan} compact recommendationLabel={recommendationLabel} />
-        <table className="report-table w-full border-collapse text-left">
-          <thead>
-            <tr>
-              <th>구분</th>
-              <th>세금</th>
-              <th>현금</th>
-              <th>기간</th>
-              <th>위험</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{plan.baseline.name}</td>
-              <td>{moneyDisplay(plan.baseline.calculation_result.total_tax)}</td>
-              <td>{moneyDisplay(plan.baseline.calculation_result.liquidity_gap)}</td>
-              <td>상속 발생시점</td>
-              <td>{plan.baseline.calculation_result.status === "calculable" ? "과세표준 확인" : "기준정보 확인 필요"}</td>
-            </tr>
-            {recommendedScenarios.map((scenario, index) => (
-              <tr key={scenario.scenario_id}>
-                <td>{recommendationLabel} {index + 1} · {scenario.name}</td>
-                <td>{moneyDisplay(scenario.calculation_result.total_tax)}</td>
-                <td>{moneyDisplay(scenario.calculation_result.liquidity_gap)}</td>
-                <td>{scenario.timeline.length}단계</td>
-                <td>{scenario.required_information.slice(0, 2).join(" · ") || statusLabels[scenario.calculation_status]}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <p className="mt-5 border-l-2 border-[var(--gold)] bg-[var(--ivory)] p-4 text-sm leading-6 text-[var(--muted)]">
-          기준안과 {isChatReport ? "검토 후보는" : "추천안은"} 같은 입력 스냅샷과 같은 기준일에서만 비교합니다. {plan.internal_analysis.disclosure_label}.
-        </p>
-      </ReportPage>
-
-      <ReportPage pageNumber={5} title={isChatReport ? "검토 후보 1·2 상세" : "추천안 1·2 상세"} eyebrow="Report V2 5/7">
-        <div className="grid gap-4">
-          {firstTwoRecommendations.map((scenario, index) => (
-            <ScenarioDetailCard key={scenario.scenario_id} scenario={scenario} title={`${recommendationLabel} ${index + 1}`} facts={facts} />
-          ))}
+      <PaperReportPage number={7} label="NEXT STEPS · 다음 행동" title="이제, 가족의 계획으로 구체화합니다" subtitle="확인할 자료와 결정할 일을 작게 나누어 시작하세요.">
+        <ol className={styles.executionSteps}>
+          <ExecutionStep number="01" icon={Users} title="가족과 우선순위 맞추기">생활비 · 형평 · 자산 보유 의사를 정리합니다.</ExecutionStep>
+          <ExecutionStep number="02" icon={FileSearch} title="자산과 과거 내역 확인하기">소유자·지분, 과거 증여와 채무를 확인합니다.</ExecutionStep>
+          <ExecutionStep number="03" icon={Scale} title="같은 조건으로 대안 비교하기">같은 기준일로 세금 · 비용 · 필요한 현금을 산정합니다.</ExecutionStep>
+          <ExecutionStep number="04" icon={FileCheck2} title="전문가 검토 후 실행 결정하기">적용 조건과 위험을 확인하고 실행 순서를 정합니다.</ExecutionStep>
+        </ol>
+        <div className={styles.twoColumns}>
+          <PaperReportCard title="상담 전에 준비할 것"><List items={["자산별 현재가액 근거와 소유관계", "취득가액·보유기간·필요경비", "채무·임대차·보험계약 정보", "과거 증여 금액과 일자"]} /></PaperReportCard>
+          <PaperReportCard title="가족과 결정할 것"><List items={["생활비·통제권·자녀별 형평의 우선순위", "매각 가능한 자산과 계속 보유할 자산", "가족별 희망사항과 자료 확인 담당자", "비교할 기준일과 실행 가능 시기"]} /></PaperReportCard>
         </div>
-      </ReportPage>
-
-      <ReportPage pageNumber={6} title={isChatReport ? "검토 후보 3과 납세재원 보완안" : "추천안 3과 납세재원 보완안"} eyebrow="Report V2 6/7">
-        <div className="grid gap-4">
-          {thirdRecommendation ? <ScenarioDetailCard scenario={thirdRecommendation} title={`${recommendationLabel} 3`} facts={facts} /> : <Card title={`${recommendationLabel} 3`}><p>현재 입력만으로는 세 번째 {isChatReport ? "검토 후보를" : "추천안을"} 만들기 어렵습니다.</p></Card>}
-          {liquiditySupport ? (
-            <ScenarioDetailCard scenario={liquiditySupport} title="납세재원 보완안" facts={facts} note="보험·연부연납·현금흐름은 절세안이 아니라 세금 납부 가능성을 높이는 보완안으로 분리합니다." />
-          ) : null}
+        <PaperReportCard title="공식 근거와 적용 범위" className={styles.references}>
+          <ul>{SUPPORTED_TAX_LAW_REFERENCES.map((reference) => <li key={reference.label}><a href={reference.url}>{reference.label}</a> · {reference.note}</li>)}</ul>
+          <p>위 근거는 확인 과세표준에 적용하는 상속·증여 산출세액 세율입니다. 개인별 공제와 적용 요건은 별도로 검토합니다.</p>
+          <p>기준일: {plan.context.valuation_date} · 법령 기준: {plan.context.law_version}</p>
+        </PaperReportCard>
+        <div className={styles.closing}>
+          <h3>충분히 이해하고, 가족에게 맞는 방향을 선택하세요.</h3>
+          <Link href={`/consultation?assessment_id=${encodeURIComponent(snapshot.assessment_id)}`}>이 보고서로 전문가 상담하기</Link>
+          <p>상담 연결 ID: {snapshot.assessment_id}</p>
         </div>
-      </ReportPage>
-
-      <ReportPage pageNumber={7} title="실행 로드맵·주의사항·공식 근거" eyebrow="Report V2 7/7">
-        <div className="report-roadmap"><ExecutionTimelineChart scenarios={recommendedScenarios} liquiditySupport={liquiditySupport} compact candidateMode={isChatReport} /></div>
-        <section className="grid gap-5 md:grid-cols-2">
-          <Card title="회의에서 정할 것">
-            <ol className="grid gap-2">
-              <li>1. 세금 최소화, 부모 통제권, 자녀별 형평 중 우선순위</li>
-              <li>2. 매각 가능한 자산과 계속 보유할 자산</li>
-              <li>3. 최근 10년 증여와 채무승계 증빙 확인 담당자</li>
-              <li>4. 정밀 계산에 넣을 기준일과 자료 범위</li>
-            </ol>
-          </Card>
-          <Card title="상담 전 준비자료">
-            <ol className="grid gap-2">
-              <li>1. 자산별 현재가액 근거</li>
-              <li>2. 취득가액·보유기간·필요경비</li>
-              <li>3. 채무·임대차·보험계약 정보</li>
-              <li>4. 과거 증여 금액과 일자</li>
-            </ol>
-          </Card>
-        </section>
-        <section className="mt-7 border border-[var(--border)] p-5">
-          <h3 className="text-lg font-semibold tracking-[-0.04em]">공식 근거</h3>
-          <ul className="mt-4 grid gap-3 text-sm leading-6 text-[var(--muted)]">
-            {SUPPORTED_TAX_LAW_REFERENCES.map((reference) => (
-              <li key={reference.label}>
-                <span className="font-semibold text-[var(--text)]">{reference.label}</span> · {reference.note}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4 text-sm leading-6 text-[var(--muted)]">기준일: {plan.context.valuation_date} · 법령/규칙 버전: {plan.context.law_version}</p>
-        </section>
-        <section className="report-next-step mt-7 border border-[var(--border)] bg-[var(--navy-950)] p-6 text-white">
-          <h3 className="text-2xl font-semibold tracking-[-0.04em]">다음 단계</h3>
-          <p className="mt-3 text-sm leading-7 text-white/68">
-            이 PDF를 가족에게 공유해 같은 전제와 질문을 맞춘 뒤, 실제 세법 계산엔진과 전문가 검토에서 숫자를 확정합니다.
-          </p>
-          <p className="mt-4 text-xs text-white/48">상담 연결 ID: {snapshot.assessment_id}</p>
-        </section>
-      </ReportPage>
-    </article>
+      </PaperReportPage>
+    </PaperReportBook>
   );
 }
 
-function Header({ snapshot, plan }: Readonly<{ snapshot: AssessmentSnapshot; plan: ScenarioPlan }>) {
-  return (
-    <section className="border border-[var(--border)] bg-[var(--ivory)] p-5">
-      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--gold)]">Asset Succession 360</p>
-      <h2 className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-[var(--navy-950)]">우리 가족 자산승계 사전진단 보고서</h2>
-      <dl className="mt-5 grid gap-3 text-sm md:grid-cols-3">
-        <Row label="진단 ID" value={snapshot.assessment_id} />
-        <Row label="작성일" value={new Date(snapshot.created_at).toLocaleDateString("ko-KR")} />
-        <Row label="검토 트랙" value={plan.facts.planning_tracks.map((track) => trackLabels[track]).join(" · ")} />
-      </dl>
-    </section>
-  );
+function ConfirmedFacts({ snapshot }: { snapshot: AssessmentSnapshot }) {
+  const confirmed = snapshot.conversation?.confirmed_facts;
+  const rows = snapshot.conversation?.mode === "chat" && confirmed
+    ? confirmed.map((fact) => ({ id: fact.id, label: fact.label, value: fact.value }))
+    : Object.entries(snapshot.answers).map(([id, answer]) => ({ id, label: answer.label, value: formatAnswer(answer) }));
+  const present = new Set(rows.map((row) => row.id));
+  return <PaperReportCard title="직접 확인한 내용" className={`report-confirmed-facts ${styles.confirmedFacts}`}>
+    <dl>{rows.map((row) => <FactRow key={row.id} label={row.label} value={row.value} />)}
+      {!present.has("debt") && <FactRow label="채무" value="미확인" />}
+      {snapshot.conversation?.mode === "chat" && !present.has("pastGifts") && <FactRow label="과거 증여" value="미확인" />}
+    </dl>
+  </PaperReportCard>;
 }
 
-function ScenarioDetailCard({ scenario, title, facts, note }: Readonly<{ scenario: Scenario; title: string; facts: ClientFacts; note?: string }>) {
-  return (
-    <article className="border border-[var(--border)] bg-[var(--ivory)] p-5">
-      <div className="flex items-center justify-between gap-3">
-        <p className="text-sm font-semibold text-[var(--gold)]">{title}</p>
-        <span className="text-xs text-[var(--muted)]">{statusLabels[scenario.calculation_result.status]}</span>
-      </div>
-      <h3 className="mt-2 text-xl font-semibold tracking-[-0.04em]">{scenario.name}</h3>
-      <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{scenario.rationale.join(" ")}</p>
-      <dl className="mt-4 grid gap-2 text-sm">
-        <Row label="트랙" value={trackLabels[scenario.track]} />
-        <Row label="당사자" value={scenario.track === "business_succession" ? "주주·후계자·회사" : "부모·배우자·자녀"} />
-        <Row label="대상자산" value={facts.assets.map((asset) => assetLabels[asset.type]).join(" · ") || "확인 필요"} />
-        <Row label="예상 세액" value={moneyDisplay(scenario.calculation_result.total_tax)} />
-        <Row label="필요 현금" value={moneyDisplay(scenario.calculation_result.liquidity_gap)} />
-        <Row label="선행확인" value={scenario.required_information.slice(0, 5).join(" · ")} />
-      </dl>
-      {note ? <p className="mt-4 border-l-2 border-[var(--gold)] pl-3 text-sm leading-6 text-[var(--muted)]">{note}</p> : null}
-    </article>
-  );
+function AssetRows({ facts, snapshot }: { facts: ClientFacts; snapshot: AssessmentSnapshot }) {
+  const labels = snapshot.answers.assets?.choices.filter((choice) => choice !== "해당 없음" && choice !== "잘 모르겠음") ?? [];
+  return <div className={styles.assetRows}>
+    {facts.assets.map((asset, index) => {
+      const Icon = asset.type === "financial" ? Coins : asset.type === "business_interest" ? Landmark : asset.type === "real_estate" ? Building2 : FileCheck2;
+      return <div key={asset.asset_id}><Icon aria-hidden="true" /><span>{labels[index] ?? assetLabels[asset.type]}</span><strong>{asset.current_value_eok === null ? snapshot.answers.assets?.assetAmountRanges?.[labels[index]]?.label ?? "금액 확인 필요" : amount(asset.current_value_eok)}</strong></div>;
+    })}
+    <div><FileCheck2 aria-hidden="true" /><span>채무</span><strong>{facts.debt_status === "none" ? "없음" : facts.debts.length > 0 && facts.debts.every((debt) => debt.amount_eok !== null) ? amount(facts.debts.reduce((sum, debt) => sum + (debt.amount_eok ?? 0), 0)) : "확인 필요"}</strong></div>
+  </div>;
 }
 
-function TwoColumnFacts({ metrics, snapshot }: Readonly<{ metrics: Metrics; snapshot: AssessmentSnapshot }>) {
-  return (
-    <section className="grid gap-5 md:grid-cols-2">
-      <TableCard title="입력 요약">
-        <Row label="가족" value={metrics.familySummary} />
-        <Row label="자산" value={metrics.assetSummary} />
-        <Row label="목표" value={metrics.goalSummary} />
-      </TableCard>
-      <TableCard title="최종 확인 답변">
-        {Object.entries(snapshot.answers).slice(0, 6).map(([key, answer]) => (
-          <Row key={key} label={answer.label} value={formatAnswer(answer)} />
-        ))}
-      </TableCard>
-    </section>
-  );
+function DirectionSummary({ letter, scenario }: { letter: string; scenario?: Scenario }) {
+  return <div className={styles.directionSummary}><span>{letter}</span><h4>{scenario?.name ?? "조건 확인 후 검토"}</h4><p>{scenario?.description ?? "정보가 더 모이면 가족에게 맞는 방향을 살펴봅니다."}</p></div>;
 }
 
-function ConfirmedChatFacts({ snapshot }: Readonly<{ snapshot: AssessmentSnapshot }>) {
-  const confirmed = snapshot.conversation?.confirmed_facts ?? [];
-  const present = new Set(confirmed.map(fact => fact.id));
-  return (
-    <section className="report-confirmed-facts border border-[var(--border)] p-5">
-      <h3 className="text-lg font-semibold tracking-[-0.04em]">직접 확인한 내용</h3>
-      <p className="mt-2 text-sm leading-6 text-[var(--muted)]">전달하신 사실을 항목별로 한 번씩 정리했습니다. 모르는 금액과 조건은 그대로 남겨두었습니다.</p>
-      <dl className="mt-4 grid gap-3 text-sm">
-        {confirmed.map(fact => <Row key={fact.id} label={fact.label} value={fact.value} />)}
-        {!present.has("debt") && <Row label="채무" value="미확인" />}
-        {!present.has("pastGifts") && <Row label="과거 증여" value="미확인" />}
-      </dl>
-    </section>
-  );
+function ComparisonDirection({ letter, scenario }: { letter: string; scenario?: Scenario }) {
+  if (!scenario) return <section className={styles.comparisonDirection}><span className={styles.letter}>{letter}</span><h3>조건 확인 후 검토</h3><MissingDirection /></section>;
+  return <section className={styles.comparisonDirection}>
+    <span className={styles.letter}>{letter}</span><p className={styles.badge}>{eligibilityLabels[scenario.eligibility.status]}</p><h3>{scenario.name}</h3>
+    {letter === "A" ? <Sprout className={styles.heroIcon} aria-hidden="true" /> : <Building2 className={styles.heroIcon} aria-hidden="true" />}
+    <IconNote icon={FileSearch} title="검토 초점">{scenario.description}</IconNote>
+    <IconNote icon={Users} title="함께 생각할 점">{scenario.rationale[0] ?? "가족의 목표와 실행 조건을 확인합니다."}</IconNote>
+    <IconNote icon={FileCheck2} title="준비할 정보">{scenario.required_information.slice(0, 2).join(" · ") || "자산과 소유관계 확인"}</IconNote>
+    <KnownMoney result={scenario.calculation_result.total_tax} label="산출세액" />
+    <KnownMoney result={scenario.comparison.expected_tax_savings} label="기준안과 세액 차이" />
+  </section>;
 }
 
-function ReportPage({ pageNumber, eyebrow, title, children }: Readonly<{ pageNumber: number; eyebrow: string; title: string; children: ReactNode }>) {
-  return (
-    <section className="report-page border border-[var(--border)] bg-white p-7 md:p-10 print:border-0" data-report-page={pageNumber}>
-      <div className="flex items-start justify-between gap-4 border-b border-[var(--border)] pb-4">
-        <div>
-          <p className="text-sm font-semibold text-[var(--gold)]">{eyebrow}</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-[-0.05em] text-[var(--navy-950)]">{title}</h2>
-        </div>
-        <span className="text-sm font-semibold text-[var(--muted)]">{pageNumber}/7</span>
-      </div>
-      <div className="report-page-content mt-6 text-sm leading-6 text-[var(--text)]" data-report-content>{children}</div>
-    </section>
-  );
-}
-
-function MetricCard({ label, value, helper, highlight = false }: Readonly<{ label: string; value: string; helper: string; highlight?: boolean }>) {
-  return (
-    <article className={`border border-[var(--border)] p-5 ${highlight ? "bg-[var(--navy-950)] text-white" : "bg-white"}`}>
-      <p className={highlight ? "text-white/58" : "text-[var(--muted)]"}>{label}</p>
-      <strong className={`mt-3 block text-3xl tracking-[-0.06em] ${highlight ? "text-white" : "text-[var(--navy-950)]"}`}>{value}</strong>
-      <p className={`mt-3 text-xs leading-5 ${highlight ? "text-white/55" : "text-[var(--muted)]"}`}>{helper}</p>
-    </article>
-  );
-}
-
-function Card({ title, children }: Readonly<{ title: string; children: ReactNode }>) {
-  return (
-    <article className="border border-[var(--border)] p-5">
-      <h3 className="text-lg font-semibold tracking-[-0.04em] text-[var(--navy-950)]">{title}</h3>
-      <div className="mt-3 text-sm leading-6 text-[var(--muted)]">{children}</div>
-    </article>
-  );
-}
-
-function TableCard({ title, children, className = "" }: Readonly<{ title: string; children: ReactNode; className?: string }>) {
-  return (
-    <section className={`border border-[var(--border)] p-5 ${className}`}>
-      <h3 className="text-lg font-semibold tracking-[-0.04em] text-[var(--navy-950)]">{title}</h3>
-      <dl className="mt-4 grid gap-3 text-sm">{children}</dl>
-    </section>
-  );
-}
-
-function Row({ label, value }: Readonly<{ label: string; value: string }>) {
-  return (
-    <div className="report-fact-row grid gap-1 border-t border-[var(--border)] pt-3 md:grid-cols-[7rem_1fr]">
-      <dt className="text-[var(--muted)]">{label}</dt>
-      <dd className="whitespace-pre-line break-words font-semibold leading-6 text-[var(--text)]">{value}</dd>
+function ScenarioDetail({ scenario, letter, expanded = false, compact = false, funding = false }: { scenario: Scenario; letter?: string; expanded?: boolean; compact?: boolean; funding?: boolean }) {
+  const reasons = [...new Set([...scenario.rationale, ...scenario.eligibility.reasons].map(customerReason))];
+  return <section className={`${styles.scenarioDetail}${compact ? ` ${styles.compactDetail}` : ""}`}>
+    <div className={styles.scenarioHeading}>{letter && <span className={styles.letter}>{letter}</span>}<div><p className={styles.badge}>{funding ? "납세재원 보완안" : eligibilityLabels[scenario.eligibility.status]}</p><h3>{scenario.name}</h3><p>{scenario.description}</p></div></div>
+    <div className={expanded ? styles.twoColumns : styles.detailColumns}>
+      <div><h4>왜 비교하나요?</h4><List items={reasons} /></div>
+      <div><h4>결정 전에 확인할 항목</h4><List items={scenario.required_information} /></div>
     </div>
-  );
+    <div className={styles.timeline}><CalendarDays aria-hidden="true" /><p><strong>검토 순서</strong> {scenario.timeline.join(" → ")}</p></div>
+    <div className={styles.knownMoneyGroup}>
+      <KnownMoney result={scenario.calculation_result.total_tax} label="산출세액" />
+      <KnownMoney result={scenario.calculation_result.immediate_cash_required} label="계산된 필요 현금" />
+      <KnownMoney result={scenario.comparison.expected_tax_savings} label="기준안과 세액 차이" />
+    </div>
+    {scenario.comparison.comparison_status === "incomparable" && <p className={styles.smallNote}>{scenario.comparison.comparison_reasons.map(customerReason).join(" ")}</p>}
+    {funding && <p className={styles.smallNote}>보험·연부연납·현금흐름은 세액 절감과 별개로 납부 가능성을 검토하는 방법입니다. 가입·적용 가능 여부와 비용을 먼저 확인합니다.</p>}
+  </section>;
 }
 
-function moneyDisplay(result: MoneyResult | undefined) {
-  if (!result) return "비교 불가";
-  if (result.value_eok !== null) return result.label;
-  if (result.status === "incomparable") return "비교 불가";
-  if (result.status === "needs_info") return "추가 확인 필요";
-  if (result.status === "not_applicable") return "해당 없음";
-  if (result.status === "needs_expert_review") return "전문가 검토";
-  return "지원 범위 밖";
+function FactRow({ label, value }: { label: string; value: string }) {
+  return <div className={`report-fact-row ${styles.factRow}`}><dt>{label}</dt><dd>{value}</dd></div>;
+}
+
+function Metric({ icon: Icon, label, value, note }: { icon: LucideIcon; label: string; value: string; note: string }) {
+  return <div className={styles.metric}><Icon aria-hidden="true" /><div><p>{label}</p><strong>{value}</strong></div><small>{note}</small></div>;
+}
+
+function IconNote({ icon: Icon, title, children }: { icon: LucideIcon; title: string; children: ReactNode }) {
+  return <div className={styles.iconNote}><Icon aria-hidden="true" /><div><h4>{title}</h4><div>{children}</div></div></div>;
+}
+
+function KnownMoney({ result, label }: { result: MoneyResult; label: string }) {
+  if (result.value_eok === null) return null;
+  return <p className={styles.knownMoney}><span>{label}</span><strong>{result.label}</strong></p>;
+}
+
+function SectionTitle({ children }: { children: ReactNode }) {
+  return <h3 className={styles.sectionTitle}>{children}</h3>;
+}
+
+function Question({ number, children }: { number: string; children: ReactNode }) {
+  return <div className={styles.question}><span>{number}</span><p>{children}</p></div>;
+}
+
+function List({ items }: { items: string[] }) {
+  return <ul className={styles.list}>{items.map((item, index) => <li key={`${index}-${item}`}>{customerReason(item)}</li>)}</ul>;
+}
+
+function ExecutionStep({ number, icon: Icon, title, children }: { number: string; icon: LucideIcon; title: string; children: ReactNode }) {
+  return <li><span>{number}</span><div><h3>{title}</h3><p>{children}</p></div><Icon aria-hidden="true" /></li>;
+}
+
+function MissingDirection() {
+  return <p className={styles.smallNote}>현재 확인한 정보로는 이 대안을 정하지 않았습니다. 자산별 소유관계와 가족의 목표를 더 확인합니다.</p>;
+}
+
+function customerReason(reason: string) {
+  return reason.replaceAll("계산엔진 결과", "세액 계산 결과").replaceAll("외부 확인 과세표준", "공제와 과거 증여를 반영한 과세표준 확인");
+}
+
+function amount(value: number) {
+  return `${value.toLocaleString("ko-KR", { maximumFractionDigits: 8 })}억원`;
 }

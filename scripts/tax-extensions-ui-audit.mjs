@@ -5,6 +5,7 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import path from "node:path";
 import { assertReportPrintBounds } from "./report-print-bounds.mjs";
+import { assertPaperTemplate } from "./paper-report-audit.mjs";
 
 // Synthetic families only. No provider is enabled: these journeys exercise the
 // actual chat, conditional inputs, confirmation snapshot, calculator and PDF.
@@ -201,6 +202,7 @@ async function confirmReport(page, fixture) {
   await page.waitForURL("**/report-preview?assessment_id=**");
   await page.locator('[data-report-page="7"]').waitFor();
   assert.equal(await page.locator("[data-report-page]").count(), 7, "Exactly seven report sheets required");
+  await assertPaperTemplate(page, `${fixture.id} calculated report`);
   const saved = await snapshot(page);
   const input = saved?.taxComparisonInput;
   assert(input?.confirmed && Number.isFinite(Date.parse(input.confirmedAt)), "Report lacks dated customer confirmation");
@@ -228,6 +230,7 @@ async function auditPdf(page, fixture, saved) {
   await page.emulateMedia({ media: "print" });
   try {
     await page.evaluate(async () => { await document.fonts.ready; });
+    await assertPaperTemplate(page, `${fixture.id} calculated print report`);
     await assertReportPrintBounds(page, { outputPath: path.join(outputDir, `${stem}-print-bounds.json`), label: `${fixture.id} calculated report` });
     const fonts = await page.locator('[data-report-page="2"] dt, [data-report-page="2"] dd').evaluateAll(nodes => nodes.map(node => parseFloat(getComputedStyle(node).fontSize)));
     assert(fonts.length > 0 && fonts.every(size => size >= 11), `${fixture.id}: dense inputs shrank below 11px`);

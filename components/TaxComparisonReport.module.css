@@ -11,37 +11,22 @@
   line-height: 1.7;
 }
 .book * { box-sizing: border-box; }
-.book h1, .book h2, .book h3, .book p { margin: 0; }
-.toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center; margin-bottom: 4px; }
-.toolbar p { color: var(--tax-brass); font-size: 14px; }
-.toolbar h1 { font-size: 28px; line-height: 1.45; margin-top: 6px; font-weight: 650; letter-spacing: -.045em; }
-.toolbar > div:last-child { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
-.toolbar a { color: var(--tax-ink); font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
-.toolbar button { background: var(--tax-seal); margin-top: 0; border-radius: 3px; }
-.toolbar a:focus-visible, .toolbar button:focus-visible { outline: 2px solid #1e5c8a; outline-offset: 3px; }
-.page { position: relative; min-width: 0; padding: 35px 38px 28px; border: 1px solid var(--tax-line); background: var(--tax-paper); box-shadow: 0 4px 15px #34230f06; }
-.pageHeader { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding-bottom: 16px; border-bottom: 1px solid var(--tax-line); color: var(--tax-soft); font-size: 12px; }
-.pageHeader .brand { color: var(--tax-ink); font-size: 20px; font-weight: 600; font-family: "Noto Serif KR", Georgia, serif; letter-spacing: -.04em; }
-.pageHeader b { margin-left: 13px; color: var(--tax-brass); font-weight: 500; white-space: nowrap; }
-.content { min-width: 0; }
-.pageTitle { padding-top: 28px; margin-bottom: 25px; }
-.pageTitle > p { color: var(--tax-brass); font-size: 13px; font-weight: 600; letter-spacing: .055em; }
-.pageTitle h2 { max-width: 760px; margin-top: 8px; font-family: "Noto Serif KR", Georgia, serif; font-size: 30px; font-weight: 600; line-height: 1.5; letter-spacing: -.045em; word-break: keep-all; }
-.pageFooter { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--tax-line); margin-top: 32px; padding-top: 12px; color: var(--tax-soft); font-size: 11px; }
+.book h3, .book p { margin: 0; }
+.page { min-width: 0; }
 .reportMeta { display: flex; flex-wrap: wrap; gap: 6px 15px; margin-bottom: 20px; color: var(--tax-soft); font-size: 12px; overflow-wrap: anywhere; }
 .intro { font-size: 21px; font-weight: 600; line-height: 1.6; }
 .scope { margin-top: 13px !important; color: var(--tax-soft); font-size: 15px; line-height: 1.85; overflow-wrap: anywhere; }
-.metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; margin-top: 26px; }
-.metrics > div { min-width: 0; border: 1px solid var(--tax-line); padding: 22px 20px; background: #fdf9f0; }
+.metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; margin-top: 26px; }
+.metrics > div { min-width: 0; border: 1px solid var(--tax-line); padding: 18px 16px; background: #f1ecdf; }
 .metrics span { display: block; color: var(--tax-soft); font-size: 14px; }
-.metrics strong { display: block; font-size: clamp(22px, 2.8vw, 34px); line-height: 1.4; font-weight: 650; letter-spacing: -.035em; margin-top: 10px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.metrics strong { color: var(--tax-seal); font-family: var(--report-serif); display: block; font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; font-weight: 650; letter-spacing: -.035em; margin-top: 10px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .metrics small { display: block; margin-top: 8px; color: var(--tax-soft); font-size: 12px; }
 .delta { padding: 23px 24px; margin-top: 16px; border-left: 3px solid var(--tax-seal); background: #eee5d6; }
 .delta > span { display: block; font-size: 14px; }
-.delta > strong { display: block; color: var(--tax-seal); font-size: 30px; line-height: 1.4; margin-top: 7px; letter-spacing: -.04em; overflow-wrap: anywhere; }
+.delta > strong { font-family: var(--report-serif); display: block; color: var(--tax-seal); font-size: 30px; line-height: 1.4; margin-top: 7px; letter-spacing: -.04em; overflow-wrap: anywhere; }
 .delta > p { margin-top: 12px; color: var(--tax-soft); font-size: 13px; }
-.card { border: 1px solid var(--tax-line); padding: 20px; margin-top: 22px; min-width: 0; }
-.card h3 { margin-bottom: 11px; font-size: 17px; font-weight: 650; letter-spacing: -.025em; }
+.card { border: 1px solid var(--tax-line); padding: 18px; margin-top: 20px; min-width: 0; }
+.card h3 { font-family: var(--report-serif); margin-bottom: 11px; padding-bottom: 9px; border-bottom: 1px solid var(--tax-line); font-size: 19px; font-weight: 650; letter-spacing: -.025em; }
 .card p { color: var(--tax-soft); font-size: 14px; line-height: 1.85; }
 .accentCard { background: #eee5d6; }
 .bullets { list-style: disc; margin: 0; padding-left: 19px; color: var(--tax-soft); font-size: 14px; line-height: 1.85; }
@@ -51,9 +36,9 @@
 .facts dt { color: var(--tax-soft); font-size: 13px; line-height: 1.65; }
 .facts dd { margin: 4px 0 0; font-size: 16px; line-height: 1.7; font-weight: 550; overflow-wrap: anywhere; }
 .caseHeading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 20px; align-items: baseline; margin-bottom: 12px; }
-.caseHeading h3 { min-width: 0; font-size: 20px; line-height: 1.6; letter-spacing: -.03em; font-weight: 650; }
+.caseHeading h3 { font-family: var(--report-serif); min-width: 0; font-size: 20px; line-height: 1.6; letter-spacing: -.03em; font-weight: 650; }
 .caseHeading strong { font-size: 25px; line-height: 1.5; letter-spacing: -.035em; overflow-wrap: anywhere; }
-.caseHeading h3 > span { font-family: Georgia, serif; color: var(--tax-brass); font-weight: 400; margin-right: 5px; }
+.caseHeading h3 > span { font-family: var(--report-serif); color: var(--tax-seal); font-weight: 400; margin-right: 5px; }
 .formula { padding: 13px 15px; margin: 15px 0 18px !important; background: #eee7d9; color: var(--tax-soft); font-size: 13px; line-height: 1.8; }
 .calculation { margin: 0; }
 .calculation > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 8px 20px; padding: 10px 0; border-bottom: 1px solid var(--tax-line); }
@@ -68,7 +53,7 @@
 .comparisonTable { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 13px; letter-spacing: -.02em; }
 .comparisonTable caption { text-align: left; padding-bottom: 12px; color: var(--tax-soft); font-size: 12px; }
 .comparisonTable th, .comparisonTable td { padding: 13px 10px; border: 1px solid var(--tax-line); vertical-align: top; overflow-wrap: anywhere; }
-.comparisonTable thead th { background: #e9e0d0; font-weight: 650; text-align: left; }
+.comparisonTable thead th { background: #f0eadd; font-weight: 650; text-align: left; }
 .comparisonTable th:first-child { width: 23%; }
 .comparisonTable tbody th { color: var(--tax-soft); font-weight: 500; text-align: left; }
 .comparisonTable td { font-variant-numeric: tabular-nums; text-align: right; }
@@ -96,9 +81,9 @@
 .cashRows dt { font-size: 12px; color: var(--tax-soft); }
 .cashRows dd { margin: 3px 0 0; font-size: 16px; font-weight: 600; overflow-wrap: anywhere; }
 .nextSteps { display: grid; gap: 17px; list-style: none; margin: 0; padding: 0; }
-.nextSteps li { display: grid; grid-template-columns: 35px minmax(0, 1fr); gap: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--tax-line); }
-.nextSteps li > span { font-family: Georgia, serif; font-size: 25px; line-height: 1.4; color: var(--tax-brass); }
-.nextSteps h3 { font-size: 17px; font-weight: 650; margin-bottom: 6px; }
+.nextSteps li { display: grid; grid-template-columns: 45px minmax(0, 1fr); gap: 18px; padding: 18px; border: 1px solid var(--tax-line); background: #f5f0e5; }
+.nextSteps li > span { font-family: var(--report-serif); font-size: 34px; line-height: 1.4; color: var(--tax-brass); }
+.nextSteps h3 { font-family: var(--report-serif); font-size: 19px; font-weight: 650; margin-bottom: 6px; }
 .nextSteps p { color: var(--tax-soft); font-size: 14px; line-height: 1.8; }
 .referenceHeading { display: flex; flex-wrap: wrap; gap: 10px 18px; justify-content: space-between; align-items: baseline; margin-top: 27px; }
 .referenceHeading h3 { font-size: 17px; font-weight: 650; }
@@ -114,14 +99,29 @@
 .pending h3 { font-size: 17px; font-weight: 650; }
 .pending ul { list-style: disc; padding-left: 20px; margin: 13px 0; color: var(--tax-soft); font-size: 14px; line-height: 1.85; }
 .pending p { color: var(--tax-soft); font-size: 14px; line-height: 1.85; }
+.familyQuestion { padding: 20px 22px; border-left: 2px solid var(--tax-brass); background: #eee8da; }
+.familyQuestion > span { display: block; color: var(--tax-soft); font-size: 13px; margin-bottom: 7px; }
+.familyQuestion .intro { font-family: var(--report-serif); font-size: 23px; font-weight: 600; line-height: 1.65; }
+.optionHeading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 23px 0 12px; }
+.optionHeading h3 { font-family: var(--report-serif); font-size: 19px; }
+.optionHeading > span { color: var(--tax-soft); font-size: 12px; }
+.optionCards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.optionCards > section { display: flex; align-items: flex-start; gap: 13px; padding: 16px 14px; min-width: 0; border: 1px solid var(--tax-line); background: #f5f0e5; }
+.optionCards > section:only-child { grid-column: 1 / -1; }
+.optionLetter { flex-shrink: 0; color: var(--tax-seal); font-family: var(--report-serif); font-size: 38px; line-height: 1.15; }
+.optionCards small { display: block; font-size: 11px; color: var(--tax-soft); }
+.optionCards h3 { font-family: var(--report-serif); font-size: 17px; line-height: 1.6; margin-top: 3px; overflow-wrap: anywhere; }
+.optionCards p { font-size: 14px; margin-top: 8px; overflow-wrap: anywhere; }
+.tableLetter { display: block; font-family: var(--report-serif); font-size: 36px; color: var(--tax-seal); line-height: 1.1; margin-bottom: 6px; font-weight: 500; }
+.comparisonTable thead small { display: block; color: var(--tax-soft); font-size: 11px; margin-bottom: 4px; font-weight: 400; }
 @media screen and (max-width: 640px) {
-  .toolbar h1 { font-size: 23px; }
-  .page { padding: 21px 18px; }
-  .pageHeader { font-size: 10px; gap: 10px; }
-  .pageHeader .brand { font-size: 17px; flex-shrink: 0; }
-  .pageHeader b { display: block; margin: 3px 0 0; text-align: right; }
-  .pageTitle { padding-top: 22px; margin-bottom: 21px; }
-  .pageTitle h2 { font-size: 25px; }
+  .familyQuestion { padding: 17px; }
+  .familyQuestion .intro { font-size: 20px; }
+  .optionHeading { display: block; }
+  .optionHeading > span { display: block; margin-top: 5px; }
+  .optionCards { grid-template-columns: minmax(0, 1fr); }
+  .optionCards > section { padding: 14px 16px; }
+  .optionLetter { font-size: 34px; }
   .intro { font-size: 19px; }
   .scope { font-size: 14px; }
   .metrics { grid-template-columns: minmax(0, 1fr); gap: 12px; }
@@ -143,33 +143,23 @@
   .cashHeadline strong { font-size: 22px; }
   .cashRows > div { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .references { grid-template-columns: minmax(0, 1fr); }
-  .pageFooter { font-size: 10px; gap: 14px; }
 }
 @media print {
   .book { gap: 0; font-size: 12px; line-height: 1.6; }
-  .toolbar { display: none !important; }
-  .book .page { position: relative; width: 210mm; height: 297mm; margin: 0; padding: 11mm !important; border: 0; box-shadow: none; background: #fff; font-size: 12px; break-after: page; page-break-after: always; overflow: visible; }
-  .book .page:last-child { break-after: auto; page-break-after: auto; }
-  .pageHeader { padding-bottom: 3mm; font-size: 11px; }
-  .pageHeader .brand { font-size: 17px; }
-  .pageTitle { padding-top: 5mm; margin-bottom: 5mm; }
-  .pageTitle > p { font-size: 11px; }
-  .pageTitle h2 { font-size: 24px; line-height: 1.4; margin-top: 2mm; }
-  .pageFooter { margin-top: 5mm; padding-top: 2mm; font-size: 11px; }
   .reportMeta { margin-bottom: 4mm; font-size: 11px; }
   .intro { font-size: 18px; }
   .scope { font-size: 12px; line-height: 1.65; margin-top: 3mm !important; }
-  .metrics { margin-top: 6mm; gap: 4mm; }
-  .metrics > div { padding: 5mm; }
+  .metrics { margin-top: 3mm; gap: 3mm; }
+  .metrics > div { padding: 3mm; }
   .metrics span { font-size: 12px; }
-  .metrics strong { font-size: 27px; margin-top: 3mm; }
+  .metrics strong { font-size: 21px; margin-top: 2mm; }
   .metrics small { font-size: 11px; }
-  .delta { padding: 5mm; margin-top: 4mm; }
+  .delta { padding: 3mm 4mm; margin-top: 3mm; }
   .delta > span { font-size: 12px; }
-  .delta > strong { font-size: 27px; }
+  .delta > strong { font-size: 24px; }
   .delta > p { font-size: 11px; line-height: 1.7; }
   .card { margin-top: 4mm; padding: 4mm; }
-  .card h3 { margin-bottom: 2mm; font-size: 14px; }
+  .card h3 { margin-bottom: 2mm; padding-bottom: 1.5mm; font-size: 15px; }
   .card p, .bullets { font-size: 12px; line-height: 1.65; }
   .bullets li + li { margin-top: 1.5mm; }
   .book .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 7mm; margin-top: 4mm; }
@@ -193,10 +183,10 @@
   .comparisonTable { width: 100%; min-width: 0; font-size: 12px; }
   .comparisonTable caption { font-size: 11px; padding-bottom: 3mm; }
   .comparisonTable th, .comparisonTable td { padding: 3mm 2mm; }
-  .book .page[data-report-page="4"] .comparisonTable th,
-  .book .page[data-report-page="4"] .comparisonTable td { padding-top: 2mm; padding-bottom: 2mm; }
-  .book .page[data-report-page="4"] .card { padding: 3mm; margin-top: 3mm; }
-  .book .page[data-report-page="4"] .bullets li + li { margin-top: 1mm; }
+  .book .page[data-report-page="3"] .comparisonTable th,
+  .book .page[data-report-page="3"] .comparisonTable td { padding-top: 2mm; padding-bottom: 2mm; }
+  .book .page[data-report-page="3"] .card { padding: 3mm; margin-top: 3mm; }
+  .book .page[data-report-page="3"] .bullets li + li { margin-top: 1mm; }
   .alternatives { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4mm; align-items: start; }
   .alternatives:has(> :only-child) { grid-template-columns: minmax(0, 1fr); }
   .alternative { padding: 3.5mm; }
@@ -219,7 +209,7 @@
   .cashRows dt { font-size: 11px; }
   .cashRows dd { font-size: 13px; }
   .nextSteps { gap: 3mm; }
-  .nextSteps li { grid-template-columns: 8mm minmax(0, 1fr); gap: 3mm; padding-bottom: 3mm; }
+  .nextSteps li { grid-template-columns: 10mm minmax(0, 1fr); gap: 3mm; padding: 3mm; }
   .nextSteps li > span { font-size: 21px; }
   .nextSteps h3 { font-size: 14px; margin-bottom: 1mm; }
   .nextSteps p { font-size: 12px; line-height: 1.65; }
@@ -235,4 +225,22 @@
   .pending { padding: 4mm; margin-top: 4mm; }
   .pending h3 { font-size: 14px; }
   .pending ul, .pending p { font-size: 12px; line-height: 1.65; }
+  .familyQuestion { padding: 3mm 4mm; }
+  .familyQuestion > span { font-size: 11px; margin-bottom: 1mm; }
+  .familyQuestion .intro { font-size: 18px; line-height: 1.55; }
+  .optionHeading { margin: 4mm 0 2mm; }
+  .optionHeading h3 { font-size: 15px; }
+  .optionHeading > span { font-size: 11px; }
+  .optionCards { gap: 3mm; }
+  .optionCards > section { padding: 3mm; gap: 2mm; }
+  .optionLetter { font-size: 27px; }
+  .optionCards small { font-size: 10.5px; }
+  .optionCards h3 { font-size: 13px; line-height: 1.5; margin-top: 1mm; }
+  .optionCards p { font-size: 11.5px; margin-top: 2mm; }
+  .tableLetter { font-size: 25px; margin-bottom: 1mm; }
+  .comparisonTable thead small { font-size: 10.5px; margin-bottom: 1mm; }
+  .book .page[data-report-page="4"] .calculation > div { padding: 1.4mm 0; }
+  .book .page[data-report-page="4"] .card { padding: 3mm; margin-top: 3mm; }
+  .book .page[data-report-page="4"] .bullets li + li { margin-top: 1mm; }
+
 }
