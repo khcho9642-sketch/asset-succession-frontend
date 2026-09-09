@@ -74,9 +74,15 @@ export const proposeFactsInputSchema = z.object({
 }).strict();
 
 export function getDiagnosisConfiguration() {
+  // Activation follows an account check: Free credit tier, auto top-up off,
+  // and an eligible model. This switch does not verify billing by itself.
+  if (process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED !== "true") return null;
   const apiKey = process.env.AI_GATEWAY_API_KEY?.trim();
+  // On Vercel the SDK also resolves a fresh token from request context.
+  // Credentials are authenticated by the Gateway when the request is made.
+  const hasOidc = process.env.VERCEL === "1" || Boolean(process.env.VERCEL_OIDC_TOKEN?.trim());
   const model = process.env.AI_DIAGNOSIS_MODEL?.trim();
-  if (!apiKey || !model || model.length > 160 || !/^[a-z0-9][a-z0-9._-]*\/[a-zA-Z0-9][a-zA-Z0-9._:-]*$/.test(model)) {
+  if ((!apiKey && !hasOidc) || !model || model.length > 160 || !/^[a-z0-9][a-z0-9._-]*\/[a-zA-Z0-9][a-zA-Z0-9._:-]*$/.test(model)) {
     return null;
   }
   return { apiKey, model };

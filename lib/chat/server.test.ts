@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { GET, POST } from "../../app/api/diagnosis/route";
 import { acceptFactProposals } from "./agent";
-import { assertSameOrigin, DIAGNOSIS_LIMITS, diagnosisRequestSchema, proposeFactsInputSchema } from "./server";
+import { assertSameOrigin, DIAGNOSIS_LIMITS, diagnosisRequestSchema, getDiagnosisConfiguration, proposeFactsInputSchema } from "./server";
 
 function request(body: unknown, extraHeaders: Record<string, string> = {}) {
   return new Request("https://example.test/api/diagnosis", {
@@ -71,9 +71,21 @@ test("same-origin uses validated HTTP Host when Next canonicalizes its URL", asy
 test("capability and route failures are honest, bounded, and never reveal configuration", async () => {
   const previousKey = process.env.AI_GATEWAY_API_KEY;
   const previousModel = process.env.AI_DIAGNOSIS_MODEL;
+  const previousEnabled = process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
+  const previousOidc = process.env.VERCEL_OIDC_TOKEN;
+  const previousVercel = process.env.VERCEL;
+  const originalFetch = globalThis.fetch;
+  let fetchCalls = 0;
+  globalThis.fetch = async () => {
+    fetchCalls += 1;
+    throw new Error("These route checks must never call a provider");
+  };
   try {
     delete process.env.AI_GATEWAY_API_KEY;
     delete process.env.AI_DIAGNOSIS_MODEL;
+    delete process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
+    delete process.env.VERCEL_OIDC_TOKEN;
+    delete process.env.VERCEL;
     assert.deepEqual(await GET().json(), { configured: false });
     const unconfigured = await POST(request(validBody));
     assert.equal(unconfigured.status, 503);
@@ -82,16 +94,48 @@ test("capability and route failures are honest, bounded, and never reveal config
 
     process.env.AI_GATEWAY_API_KEY = "unit-test-secret-never-use-network";
     process.env.AI_DIAGNOSIS_MODEL = "test/validation-only";
+    // Existing credentials cannot silently activate an unverified free trial.
+    for (const flag of [undefined, "false", "1", "TRUE"]) {
+      if (flag === undefined) delete process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
+      else process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED = flag;
+      assert.equal(getDiagnosisConfiguration(), null);
+      assert.deepEqual(await GET().json(), { configured: false });
+      assert.equal((await POST(request(validBody))).status, 503);
+    }
+    process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED = "true";
     assert.deepEqual(await GET().json(), { configured: true });
     const invalid = await POST(request({ messages: [] }));
     assert.equal(invalid.status, 400);
     assert.equal((await invalid.text()).includes(process.env.AI_GATEWAY_API_KEY), false);
     assert.equal((await POST(request(validBody, { "content-type": "text/plain" }))).status, 415);
     assert.equal((await POST(request({ payload: "가".repeat(DIAGNOSIS_LIMITS.bodyBytes) }))).status, 413);
+
+    delete process.env.AI_GATEWAY_API_KEY;
+    assert.equal(getDiagnosisConfiguration(), null);
+    process.env.VERCEL_OIDC_TOKEN = "unit-test-oidc-never-use-network";
+    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: undefined, model: "test/validation-only" });
+    const capability = await GET().text();
+    assert.deepEqual(JSON.parse(capability), { configured: true });
+    assert.equal(capability.includes(process.env.VERCEL_OIDC_TOKEN), false);
+    delete process.env.VERCEL_OIDC_TOKEN;
+    process.env.VERCEL = "1";
+    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: undefined, model: "test/validation-only" });
+    for (const model of ["", "https://elsewhere.test/model", "provider/one,provider/two", "provider/" + "a".repeat(161)]) {
+      process.env.AI_DIAGNOSIS_MODEL = model;
+      assert.equal(getDiagnosisConfiguration(), null);
+    }
+    assert.equal(fetchCalls, 0);
   } finally {
+    globalThis.fetch = originalFetch;
     if (previousKey === undefined) delete process.env.AI_GATEWAY_API_KEY;
     else process.env.AI_GATEWAY_API_KEY = previousKey;
     if (previousModel === undefined) delete process.env.AI_DIAGNOSIS_MODEL;
     else process.env.AI_DIAGNOSIS_MODEL = previousModel;
+    if (previousEnabled === undefined) delete process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
+    else process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED = previousEnabled;
+    if (previousOidc === undefined) delete process.env.VERCEL_OIDC_TOKEN;
+    else process.env.VERCEL_OIDC_TOKEN = previousOidc;
+    if (previousVercel === undefined) delete process.env.VERCEL;
+    else process.env.VERCEL = previousVercel;
   }
 });

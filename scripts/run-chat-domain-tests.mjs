@@ -8,6 +8,7 @@ const outDir = path.join(root, ".tmp", "chat-domain-tests");
 const files = [
   "lib/assessment.ts", "lib/chat/intake.ts", "lib/chat/report.ts", "lib/chat/local.ts",
   "lib/chat/server.ts", "lib/chat/agent.ts", "lib/chat/prompt.ts", "lib/chat/server.test.ts", "app/api/diagnosis/route.ts",
+  "lib/chat/guide.ts", "lib/chat/guide.test.ts",
   "lib/phase2b/types.ts", "lib/phase2b/calculation.ts", "lib/phase2b/money.ts",
   "lib/phase2b/tax.ts", "lib/phase2b/conversation.ts", "lib/phase2b/normalize.ts",
   "lib/phase2b/fixtures.ts", "lib/phase2b/engine.ts", "scripts/chat-domain-tests.ts"
@@ -32,5 +33,6 @@ for (const file of files) {
   await mkdir(path.dirname(target), { recursive: true });
   await writeFile(target, output.outputText, "utf8");
 }
-const result = spawnSync(process.execPath, ["--test", path.join(outDir, "scripts", "chat-domain-tests.js"), path.join(outDir, "lib", "chat", "server.test.js")], { cwd: outDir, stdio: "inherit" });
+await writeFile(path.join(outDir, "CHAT_GUIDE.md"), await readFile(path.join(root, "CHAT_GUIDE.md")));
+const result = spawnSync(process.execPath, ["--test", path.join(outDir, "scripts", "chat-domain-tests.js"), path.join(outDir, "lib", "chat", "server.test.js"), path.join(outDir, "lib", "chat", "guide.test.js")], { cwd: outDir, stdio: "inherit" });
 process.exit(result.status ?? 1);

@@ -21,10 +21,11 @@ export function createDiagnosisAgent({
   model,
   messages,
   facts,
-}: { apiKey: string; model: string; messages: DiagnosisRequest["messages"]; facts: ChatState["facts"] }) {
+}: { apiKey?: string; model: string; messages: DiagnosisRequest["messages"]; facts: ChatState["facts"] }) {
   const latest = messages[messages.length - 1];
   const latestMessage = { id: latest.id, text: latest.parts[0].text };
-  const gateway = createGateway({ apiKey });
+  // Without a static key the SDK resolves Vercel OIDC on the server.
+  const gateway = createGateway(apiKey ? { apiKey } : {});
   return new ToolLoopAgent({
     model: gateway(model),
     instructions: buildDiagnosisPrompt(facts),

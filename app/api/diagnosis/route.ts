@@ -1,5 +1,6 @@
 import { createAgentUIStreamResponse } from "ai";
 import { createDiagnosisAgent } from "../../../lib/chat/agent";
+import { loadChatGuideRuntime } from "../../../lib/chat/guide";
 import { assertSameOrigin, diagnosisRequestSchema, DiagnosisRequestError, getDiagnosisConfiguration, readDiagnosisBody } from "../../../lib/chat/server";
 
 export const runtime = "nodejs";
@@ -13,7 +14,13 @@ function failure(status: number, code: string, message: string) {
 }
 
 export function GET() {
-  return Response.json({ configured: Boolean(getDiagnosisConfiguration()) }, { headers });
+  try {
+    // No inference or billing request here. A missing deployed guide also
+    // keeps the UI in local-input mode instead of advertising a working chat.
+    return Response.json({ configured: Boolean(getDiagnosisConfiguration() && loadChatGuideRuntime()) }, { headers });
+  } catch {
+    return Response.json({ configured: false }, { headers });
+  }
 }
 
 export async function POST(request: Request) {
