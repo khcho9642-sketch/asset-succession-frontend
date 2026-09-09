@@ -1,6 +1,7 @@
-import { createAgentUIStream, createUIMessageStreamResponse, type UIMessageChunk } from "ai";
-import { createDiagnosisAgent } from "./agent";
+import { createUIMessageStreamResponse, NoObjectGeneratedError, type ModelMessage, type UIMessageChunk } from "ai";
+import { acceptFactProposals, createDiagnosisAgent, diagnosisTurnSchema } from "./agent";
 import { diagnosisReplySchema } from "./choices";
+import type { ChatPatch } from "./intake";
 import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
 
 type DiagnosisResponseOptions = DiagnosisRequest & {
@@ -17,6 +18,23 @@ const MAX_BUFFER_BYTES = 256 * 1024;
 const MAX_BUFFER_CHUNKS = 4_096;
 
 class RejectedAttemptError extends Error {}
+
+function completedTurnChunks(proposals: ChatPatch[], reply: { message: string; choices: string[] }): UIMessageChunk[] {
+  const id = globalThis.crypto.randomUUID();
+  const toolCallId = `facts-${id}`;
+  const textId = `reply-${id}`;
+  return [
+    { type: "start", messageId: `diagnosis-${id}` },
+    { type: "start-step" },
+    { type: "tool-input-available", toolCallId, toolName: "proposeFacts", input: { facts: proposals } },
+    { type: "tool-output-available", toolCallId, output: { proposals } },
+    { type: "text-start", id: textId },
+    { type: "text-delta", id: textId, delta: JSON.stringify(reply) },
+    { type: "text-end", id: textId },
+    { type: "finish-step" },
+    { type: "finish", finishReason: "stop" },
+  ];
+}
 
 function canUseBackup(error: unknown) {
   if (error instanceof RejectedAttemptError) return false;
@@ -44,7 +62,6 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
   const signal = AbortSignal.any([cancelled, deadline.signal]);
   const timeoutMs = Math.max(1, Math.min(options.attemptTimeoutMs ?? ATTEMPT_TIMEOUT_MS, ATTEMPT_TIMEOUT_MS));
   const timer = setTimeout(() => deadline.abort(new DOMException("AI attempt timed out", "TimeoutError")), timeoutMs);
-  let reader: ReadableStreamDefaultReader<UIMessageChunk> | undefined;
   let stopWaiting: () => void = () => undefined;
   const aborted = new Promise<never>((_, reject) => {
     const onAbort = () => reject(signal.reason);
@@ -55,62 +72,40 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
 
   const collect = async () => {
     signal.throwIfAborted();
-    let providerError: unknown;
-    const source = await createAgentUIStream({
-      // Each attempt starts from the original conversation and confirmed facts.
-      // Never replay another model's tool outputs or thought signatures.
-      agent: createDiagnosisAgent({ apiKey: options.apiKey, model, messages: options.messages, facts: options.facts }),
-      uiMessages: options.messages.filter((message) => message.parts[0].text.trim()),
-      abortSignal: signal,
-      sendReasoning: false,
-      onError: (error) => {
-        providerError = error;
-        return "AI response failed";
-      },
-    });
-    reader = source.getReader();
-    const chunks: UIMessageChunk[] = [];
-    let bytes = 0;
-    let text = "";
-    let finished = false;
-    const factCalls = new Set<string>();
-    const factOutputs = new Set<string>();
+    const modelMessages: ModelMessage[] = [];
+    for (const message of options.messages) {
+      const text = message.parts[0].text;
+      if (!text.trim()) continue;
+      modelMessages.push(message.role === "user"
+        ? { role: "user", content: text }
+        : { role: "assistant", content: text });
+    }
     try {
-      while (true) {
-        signal.throwIfAborted();
-        const { value: chunk, done } = await reader.read();
-        if (done) break;
-        if (chunk.type === "error") throw providerError ?? new Error("AI stream failed");
-        if (chunk.type === "abort") throw signal.reason ?? new Error("AI stream interrupted");
-        if (chunk.type === "tool-input-error" || chunk.type === "tool-output-error") {
-          throw new Error("AI fact proposal failed");
-        }
-        if (chunk.type === "finish") {
-          if (chunk.finishReason === "content-filter") throw new RejectedAttemptError("AI response filtered");
-          finished = chunk.finishReason === "stop";
-        }
-        if (chunk.type === "text-delta") text += chunk.delta;
-        if (chunk.type === "tool-input-available" && chunk.toolName === "proposeFacts") factCalls.add(chunk.toolCallId);
-        if (chunk.type === "tool-output-available") factOutputs.add(chunk.toolCallId);
-        bytes += Buffer.byteLength(JSON.stringify(chunk), "utf8");
-        if (bytes > MAX_BUFFER_BYTES || chunks.length >= MAX_BUFFER_CHUNKS) {
-          throw new RejectedAttemptError("AI response exceeded buffer limit");
-        }
-        chunks.push(chunk);
-      }
+      const result = await createDiagnosisAgent({
+        apiKey: options.apiKey,
+        model,
+        messages: options.messages,
+        facts: options.facts,
+      }).generate({ messages: modelMessages, abortSignal: signal });
       signal.throwIfAborted();
-      if (providerError) throw providerError;
-      // The legacy client parser also accepts plain text; new AI turns must
-      // instead contain the complete validated message + choices contract.
-      if (!finished || factCalls.size !== 1 || factOutputs.size !== 1
-        || !factOutputs.has([...factCalls][0])
-        || !diagnosisReplySchema.safeParse(JSON.parse(text)).success) {
-        throw new Error("AI response incomplete");
+      if (result.finalStep.finishReason === "content-filter") {
+        throw new RejectedAttemptError("AI response filtered");
+      }
+      const turn = diagnosisTurnSchema.parse(result.output);
+      const latest = options.messages[options.messages.length - 1];
+      const proposals = acceptFactProposals(turn.facts, { id: latest.id, text: latest.parts[0].text });
+      const reply = diagnosisReplySchema.parse({ message: turn.message, choices: turn.choices });
+      const chunks = completedTurnChunks(proposals, reply);
+      const bytes = chunks.reduce((total, chunk) => total + Buffer.byteLength(JSON.stringify(chunk), "utf8"), 0);
+      if (bytes > MAX_BUFFER_BYTES || chunks.length > MAX_BUFFER_CHUNKS) {
+        throw new RejectedAttemptError("AI response exceeded buffer limit");
       }
       return chunks;
-    } finally {
-      void reader.cancel().catch(() => undefined);
-      reader.releaseLock();
+    } catch (error) {
+      if (NoObjectGeneratedError.isInstance(error) && error.finishReason === "content-filter") {
+        throw new RejectedAttemptError("AI response filtered");
+      }
+      throw error;
     }
   };
 
@@ -121,7 +116,6 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
     clearTimeout(timer);
     stopWaiting();
     deadline.abort();
-    void reader?.cancel().catch(() => undefined);
   }
 }
 

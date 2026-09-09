@@ -210,7 +210,6 @@ function sseReply({ messageId = "audit-ai-answer", text, proposals = [] }) {
     { type: "start", messageId }, { type: "start-step" },
     { type: "tool-input-available", toolCallId: `${messageId}-tool`, toolName: "proposeFacts", input: { facts: proposals } },
     { type: "tool-output-available", toolCallId: `${messageId}-tool`, output: { proposals } },
-    { type: "finish-step" }, { type: "start-step" },
     { type: "text-start", id: `${messageId}-text` },
     { type: "text-delta", id: `${messageId}-text`, delta: text },
     { type: "text-end", id: `${messageId}-text` },
@@ -361,12 +360,28 @@ try {
     await context.close();
   }
 
+  const fastPathContext = await newContext(browser, { configured: true });
+  const fastPathPage = await fastPathContext.newPage();
+  const requestsBeforeFastPath = postCount;
+  await openChat(fastPathPage, { configured: true });
+  await fastPathPage.getByRole("button", { name: "상속", exact: true }).click();
+  await fastPathPage.getByText("상속은 현재 어느 단계인가요?", { exact: true }).waitFor();
+  await fastPathPage.getByRole("button", { name: "미리 준비 중이에요", exact: true }).click();
+  await fastPathPage.getByText("누구의 재산을 준비하고 계세요?", { exact: true }).waitFor();
+  await fastPathPage.getByRole("button", { name: "아버지", exact: true }).click();
+  await fastPathPage.getByText("어떤 재산이 있나요?", { exact: true }).waitFor();
+  await waitFact(fastPathPage, "owner", "아버지");
+  assert.equal(postCount, requestsBeforeFastPath, "Common guided choices made a slow AI request");
+  observations.push({ name: "configured inheritance choices answer locally without AI latency" });
+  await fastPathContext.close();
+
   let releaseStream;
   const streamReady = new Promise(resolve => { releaseStream = resolve; });
   let markRequested;
   const requestStarted = new Promise(resolve => { markRequested = resolve; });
   let mockRequests = 0;
-  const aiReply = "내년 봄 준비 일정도 원문대로 정리했어요. 가족과 자산 내용을 확인해 주세요.";
+  const aiReplyMessage = "부동산별 취득 시기를 알고 계세요?";
+  const aiReply = JSON.stringify({ message: aiReplyMessage, choices: ["알고 있어요", "잘 모르겠어요"] });
   const aiContext = await newContext(browser, { configured: true, post: async route => {
     mockRequests += 1;
     markRequested();
@@ -406,7 +421,8 @@ try {
   assert.equal(mockRequests, 1, "Busy composer submitted a duplicate request");
   assert.equal(await snapshot(aiPage), null, "An in-flight AI response created a report");
   releaseStream();
-  await aiPage.getByText(aiReply, { exact: true }).waitFor();
+  await aiPage.getByText(aiReplyMessage, { exact: true }).waitFor();
+  await aiPage.getByRole("button", { name: "알고 있어요", exact: true }).waitFor();
   await waitFact(aiPage, "timing", "내년 봄");
   await waitFact(aiPage, "financialAssets", "예금 10억");
   assert.equal(mockRequests, 1, "A tool result caused an unnecessary second API request");

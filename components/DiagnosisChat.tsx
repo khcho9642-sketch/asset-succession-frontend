@@ -12,6 +12,7 @@ import type { ChatFieldKey, ChatMessage, ChatState } from "@/lib/chat/intake";
 import type { DiagnosisUIMessage } from "@/lib/chat/agent";
 import { extractLocalChatPatches, getLocalChatReply } from "@/lib/chat/local";
 import { getAssistantReply } from "@/lib/chat/choices";
+import { getGuidedChatTurn } from "@/lib/chat/guided";
 import { getChatErrorNotice, isIncompleteChatResponse } from "@/lib/chat/response";
 import { buildConfirmedTaxAssessmentSnapshot, createTaxInputFromChat, taxFactsSignature } from "@/lib/chat/tax";
 import { calculateTaxComparison, validateTaxComparisonInput } from "@/lib/tax-comparison";
@@ -219,7 +220,10 @@ export function DiagnosisChat() {
 
   async function submitMessage(quickReply?: string) {
     const text = quickReply ?? input.trim();
-    if (!text || busy || sending.current || !hydrated || configured === null || reportOpening) return;
+    const submittedText = quickReply === undefined && topic && !stateRef.current.messages.some(message => message.role === "user")
+      ? `검토 주제: ${topic}\n\n${text}` : text;
+    const guided = getGuidedChatTurn(stateRef.current, submittedText);
+    if (!text || busy || sending.current || !hydrated || (configured === null && !guided) || reportOpening) return;
     sending.current = true;
     invalidateReport();
     clearError();
@@ -228,14 +232,18 @@ export function DiagnosisChat() {
     setStage("chat");
     if (quickReply === undefined) setInput("");
     shouldFollow.current = true;
-    const submittedText = quickReply === undefined && topic && !stateRef.current.messages.some(message => message.role === "user")
-      ? `검토 주제: ${topic}\n\n${text}` : text;
     const message: ChatMessage = { id: makeId(), role: "user", text: submittedText, created_at: new Date().toISOString() };
     let next: ChatState = { ...stateRef.current, messages: [...stateRef.current.messages, message] };
-    if (!configured) next = applyChatPatches(next, extractLocalChatPatches(submittedText, next), message.id);
+    if (guided) next = applyChatPatches(next, guided.patches, message.id);
+    else if (!configured) next = applyChatPatches(next, extractLocalChatPatches(submittedText, next), message.id);
     commit(next);
     try {
-      if (configured) {
+      if (guided) {
+        next = { ...next, messages: [...next.messages, { id: makeId(), role: "assistant", text: JSON.stringify(guided.reply), created_at: new Date().toISOString() }] };
+        commit(next);
+        setMessages(toUiMessages(next));
+        setLocalNotice("");
+      } else if (configured) {
         setLocalNotice("");
         await sendMessage({ id: message.id, role: "user", parts: [{ type: "text", text: submittedText }] }, { body: { facts: next.facts } });
       } else {
@@ -361,7 +369,7 @@ export function DiagnosisChat() {
               <div className={styles.welcome}>
                 <p className={styles.welcomeTitle}>안녕하세요. 재산과 관련된 세금에 관해 무엇이 궁금하세요?</p>
                 {!hasMessages && <div className={styles.topicButtons} role="group" aria-label="상담 주제 선택">
-                  {START_TOPICS.map(label => <button key={label} type="button" className={styles.topicButton} onClick={() => void submitMessage(label)} disabled={!hydrated || configured === null || busy || reportOpening}>{label}</button>)}
+                  {START_TOPICS.map(label => <button key={label} type="button" className={styles.topicButton} onClick={() => void submitMessage(label)} disabled={!hydrated || busy || reportOpening}>{label}</button>)}
                 </div>}
               </div>
 
@@ -377,7 +385,7 @@ export function DiagnosisChat() {
                   <div className={styles.messageText}>{visibleText}</div>
                   {showChoices && <div className={styles.replyActions}>
                     <div className={styles.replyChoices} role="group" aria-label="답변 선택">
-                      {reply.choices.map(choice => <button key={choice} type="button" className={styles.replyChoice} disabled={!hydrated || configured === null || reportOpening} onClick={() => void submitMessage(choice)}>{choice}</button>)}
+                      {reply.choices.map(choice => <button key={choice} type="button" className={styles.replyChoice} disabled={!hydrated || (configured === null && !getGuidedChatTurn(stateRef.current, choice)) || reportOpening} onClick={() => void submitMessage(choice)}>{choice}</button>)}
                     </div>
                     <button type="button" className={styles.writeReply} disabled={!hydrated || reportOpening} onClick={() => inputRef.current?.focus()}>직접 입력하기</button>
                   </div>}

@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import test, { type TestContext } from "node:test";
-import type { UIMessageChunk } from "ai";
-import { diagnosisReplySchema, type DiagnosisReply } from "./choices";
+import { Chat } from "@ai-sdk/react";
+import type { UIMessage, UIMessageChunk } from "ai";
+import { getAssistantReply, type DiagnosisReply } from "./choices";
 import { createDiagnosisResponse } from "./fallback";
 import type { ChatPatch } from "./intake";
 import {
@@ -21,7 +22,7 @@ const messages: DiagnosisRequest["messages"] = [{
 const primaryProposals: ChatPatch[] = [{ key: "topic", value: "증여", evidence: "증여" }];
 const backupProposals: ChatPatch[] = [{ key: "realEstate", value: "제 아파트", evidence: "제 아파트" }];
 const reply: DiagnosisReply = {
-  message: "아드님께 아파트를 주려고 하시는군요. 아드님은 성인이신가요?",
+  message: "아드님은 성인이신가요?",
   choices: ["성인", "미성년자", "잘 모르겠어요"],
 };
 
@@ -30,70 +31,43 @@ type GoogleRequestBody = {
     maxOutputTokens: number;
     thinkingConfig: { thinkingLevel: string };
     responseMimeType?: string;
-    responseSchema?: { properties: Record<string, unknown> };
+    responseSchema?: { required?: string[]; properties: Record<string, unknown> };
     responseJsonSchema?: unknown;
   };
+  toolConfig?: unknown;
   tools?: Array<{ functionDeclarations?: Array<{ name: string }> }>;
   systemInstruction?: { parts: Array<{ text: string }> };
-  contents: Array<{
-    role: string;
-    parts: Array<{
-      text?: string;
-      thoughtSignature?: string;
-      functionCall?: { id?: string; name: string };
-      functionResponse?: { id?: string; name: string; response: unknown };
-    }>;
-  }>;
+  contents: Array<{ role: string; parts: Array<{ text?: string }> }>;
 };
 
 type RequestLog = { model: string; body: GoogleRequestBody; signal: AbortSignal };
 type Step = {
   model: string;
-  stage: "facts" | "reply";
   respond: (request: Request) => Response | Promise<Response>;
 };
 type ResponseOptions = Partial<Pick<Parameters<typeof createDiagnosisResponse>[0], "abortSignal" | "attemptTimeoutMs" | "headers" | "messages" | "facts">>;
 
-function googleSse(chunks: unknown[]): Response {
-  return new Response(chunks.map((chunk) => `data: ${JSON.stringify(chunk)}\n\n`).join(""), {
-    headers: { "Content-Type": "text/event-stream" },
+function googleResponse(text: string, finishReason = "STOP"): Response {
+  return Response.json({
+    candidates: [{ content: { role: "model", parts: [{ text }] }, finishReason }],
+    usageMetadata: { promptTokenCount: 20, candidatesTokenCount: 15, totalTokenCount: 35 },
   });
 }
 
-function googleText(text: string, finishReason?: string) {
-  return { candidates: [{ content: { role: "model", parts: [{ text }] }, ...(finishReason ? { finishReason } : {}) }] };
-}
-
-function facts(model: string, proposals = backupProposals, id = "backup-proposal"): Step {
+function turn(model: string, proposals = backupProposals, expected = reply): Step {
   return {
     model,
-    stage: "facts",
-    respond: () => googleSse([{
-      candidates: [{
-        content: { role: "model", parts: [{
-          functionCall: { id, name: "proposeFacts", args: { facts: proposals } },
-          thoughtSignature: Buffer.from(`synthetic-signature-${id}`).toString("base64"),
-        }] },
-        finishReason: "STOP",
-      }],
-      usageMetadata: { promptTokenCount: 20, candidatesTokenCount: 15, totalTokenCount: 35 },
-    }]),
+    respond: () => googleResponse(JSON.stringify({ facts: proposals, ...expected })),
   };
 }
 
-function answer(model: string, expected = reply): Step {
-  const text = JSON.stringify(expected);
-  return {
-    model,
-    stage: "reply",
-    respond: () => googleSse([googleText(text.slice(0, 30)), googleText(text.slice(30), "STOP")]),
-  };
+function raw(model: string, text: string, finishReason = "STOP"): Step {
+  return { model, respond: () => googleResponse(text, finishReason) };
 }
 
-function failure(model: string, status: number, stage: Step["stage"] = "facts"): Step {
+function failure(model: string, status: number): Step {
   return {
     model,
-    stage,
     respond: () => Response.json({ error: {
       code: status,
       status: status === 429 ? "RESOURCE_EXHAUSTED" : "SYNTHETIC_FAILURE",
@@ -112,22 +86,19 @@ function installGoogleMock(t: TestContext, steps: Step[]): RequestLog[] {
     const step = steps[requests.length];
     requests.push({ model, body, signal: request.signal });
     assert.ok(step, "Unexpected retry or extra inference call");
-    assert.equal(request.url, `https://generativelanguage.googleapis.com/v1beta/models/${step.model}:streamGenerateContent?alt=sse`);
+    assert.equal(request.url, `https://generativelanguage.googleapis.com/v1beta/models/${step.model}:generateContent`);
     assert.equal(request.method, "POST");
     assert.equal(request.headers.get("x-goog-api-key"), SYNTHETIC_KEY);
     assert.equal(body.generationConfig.maxOutputTokens, 3_000);
     assert.equal(body.generationConfig.thinkingConfig.thinkingLevel, "low");
-    if (step.stage === "facts") {
-      assert.equal(body.generationConfig.responseMimeType, undefined);
-      assert.equal(body.generationConfig.responseSchema, undefined);
-      assert.equal(body.generationConfig.responseJsonSchema, undefined);
-      assert.ok(body.tools?.some((tool) => tool.functionDeclarations?.some((fn) => fn.name === "proposeFacts")));
-    } else {
-      assert.equal(body.generationConfig.responseMimeType, "application/json");
-      assert.ok(body.generationConfig.responseSchema?.properties.message);
-      assert.ok(body.generationConfig.responseSchema?.properties.choices);
-      assert.ok(!body.tools?.length, "Final JSON request must not include tools");
-    }
+    assert.equal(body.generationConfig.responseMimeType, "application/json");
+    assert.deepEqual(body.generationConfig.responseSchema?.required, ["facts", "message", "choices"]);
+    assert.ok(body.generationConfig.responseSchema?.properties.facts);
+    assert.ok(body.generationConfig.responseSchema?.properties.message);
+    assert.ok(body.generationConfig.responseSchema?.properties.choices);
+    assert.equal(body.generationConfig.responseJsonSchema, undefined);
+    assert.ok(!body.tools?.length, "Unified structured request must not expose tools to the model");
+    assert.equal(body.toolConfig, undefined);
     return step.respond(request);
   });
   return requests;
@@ -139,6 +110,7 @@ function response(options: ResponseOptions = {}) {
 
 async function readChunks(result: Response): Promise<UIMessageChunk[]> {
   const body = await result.text();
+  assert.equal(body.match(/data: \[DONE\]/g)?.length, 1);
   return body.split("\n").flatMap((line) => {
     if (!line.startsWith("data: ") || line === "data: [DONE]") return [];
     return [JSON.parse(line.slice(6)) as UIMessageChunk];
@@ -146,15 +118,32 @@ async function readChunks(result: Response): Promise<UIMessageChunk[]> {
 }
 
 function assertWinningReply(chunks: UIMessageChunk[], proposals: ChatPatch[], expected = reply) {
-  assert.equal(chunks.some((chunk) => chunk.type === "error"), false);
-  const raw = chunks.flatMap((chunk) => chunk.type === "text-delta" ? [chunk.delta] : []).join("");
-  // Legacy plain text is intentionally not accepted as a successful AI reply.
-  assert.deepEqual(diagnosisReplySchema.parse(JSON.parse(raw)), expected);
-  const outputs = chunks.filter((chunk) => chunk.type === "tool-output-available");
-  assert.equal(outputs.length, 1);
-  assert.deepEqual(outputs[0].output, { proposals });
-  assert.equal(chunks.filter((chunk) => chunk.type === "finish").length, 1);
-  assert.ok(chunks.some((chunk) => chunk.type === "finish" && chunk.finishReason === "stop"));
+  assert.deepEqual(chunks.map((chunk) => chunk.type), [
+    "start", "start-step", "tool-input-available", "tool-output-available",
+    "text-start", "text-delta", "text-end", "finish-step", "finish",
+  ]);
+  const start = chunks[0];
+  const input = chunks[2];
+  const output = chunks[3];
+  const textStart = chunks[4];
+  const textDelta = chunks[5];
+  const textEnd = chunks[6];
+  const finish = chunks[8];
+  assert.ok(start.type === "start" && start.messageId?.startsWith("diagnosis-"));
+  assert.ok(input.type === "tool-input-available");
+  assert.equal(input.toolName, "proposeFacts");
+  assert.deepEqual(input.input, { facts: proposals });
+  assert.ok(output.type === "tool-output-available");
+  assert.equal(output.toolCallId, input.toolCallId);
+  assert.deepEqual(output.output, { proposals });
+  assert.ok(textStart.type === "text-start");
+  assert.ok(textDelta.type === "text-delta");
+  assert.ok(textEnd.type === "text-end");
+  assert.equal(textDelta.id, textStart.id);
+  assert.equal(textEnd.id, textStart.id);
+  assert.equal(textDelta.delta, JSON.stringify(expected));
+  assert.deepEqual(getAssistantReply(textDelta.delta), expected);
+  assert.ok(finish.type === "finish" && finish.finishReason === "stop");
   assert.equal(JSON.stringify(chunks).includes("synthetic-private-provider-detail"), false);
 }
 
@@ -175,7 +164,6 @@ function deferred() {
 function pendingRequest(started: ReturnType<typeof deferred>, aborted: ReturnType<typeof deferred>): Step {
   return {
     model: PRIMARY,
-    stage: "facts",
     respond: (request) => new Promise<Response>((_resolve, reject) => {
       const abort = () => {
         aborted.resolve();
@@ -188,45 +176,71 @@ function pendingRequest(started: ReturnType<typeof deferred>, aborted: ReturnTyp
   };
 }
 
-test("fallback returns immediate SSE and a successful primary uses exactly two direct calls", async (t) => {
-  const requests = installGoogleMock(t, [facts(PRIMARY, primaryProposals, "primary-proposal"), answer(PRIMARY)]);
+test("fallback returns immediate SSE and one structured primary call with canonical UI chunks", async (t) => {
+  const requests = installGoogleMock(t, [turn(PRIMARY, primaryProposals)]);
   const result = response({ headers: { "x-synthetic-header": "preserved" } });
   assert.ok(result instanceof Response);
   assert.match(result.headers.get("content-type") ?? "", /text\/event-stream/);
+  assert.equal(result.headers.get("x-vercel-ai-ui-message-stream"), "v1");
   assert.equal(result.headers.get("x-synthetic-header"), "preserved");
   const chunks = await readChunks(result);
-  assert.deepEqual(requests.map((request) => request.model), [PRIMARY, PRIMARY]);
+  assert.deepEqual(requests.map((request) => request.model), [PRIMARY]);
   assertWinningReply(chunks, primaryProposals);
+});
+
+test("canonical chunks become the typed fact part and visible reply consumed by the real Chat client", async (t) => {
+  installGoogleMock(t, [turn(PRIMARY, primaryProposals)]);
+  const chunks = await readChunks(response());
+  const chat = new Chat<UIMessage>({
+    transport: {
+      sendMessages: async () => new ReadableStream<UIMessageChunk>({
+        start(controller) {
+          for (const chunk of chunks) controller.enqueue(chunk);
+          controller.close();
+        },
+      }),
+      reconnectToStream: async () => null,
+    },
+  });
+  await chat.sendMessage({ text: messages[0].parts[0].text });
+  const assistant = chat.messages.at(-1);
+  assert.equal(assistant?.role, "assistant");
+  const toolPart = assistant?.parts.find((part) => part.type === "tool-proposeFacts");
+  assert.ok(toolPart?.type === "tool-proposeFacts" && toolPart.state === "output-available");
+  assert.deepEqual(toolPart.input, { facts: primaryProposals });
+  assert.deepEqual(toolPart.output, { proposals: primaryProposals });
+  const visible = assistant?.parts.filter((part) => part.type === "text").map((part) => part.text).join("") ?? "";
+  assert.deepEqual(getAssistantReply(visible), reply);
+  assert.equal(chat.status, "ready");
+  assert.equal(chat.error, undefined);
+});
+
+test("server grounding removes invented and duplicate facts without a second model call", async (t) => {
+  const modelFacts: ChatPatch[] = [
+    ...primaryProposals,
+    { key: "topic", value: "아파트", evidence: "아파트" },
+    { key: "debt", value: "대출 2억", evidence: "대출 2억" },
+  ];
+  const requests = installGoogleMock(t, [turn(PRIMARY, modelFacts)]);
+  const chunks = await readChunks(response());
+  assert.equal(requests.length, 1);
+  assertWinningReply(chunks, primaryProposals);
+  assert.equal(JSON.stringify(chunks).includes("대출 2억"), false);
 });
 
 test("retryable primary HTTP failures switch once to the free Google backup", async (t) => {
   for (const status of [503, 429]) {
-    await t.test(`HTTP ${status} recovers in three calls`, async (subtest) => {
-      const requests = installGoogleMock(subtest, [failure(PRIMARY, status), facts(BACKUP), answer(BACKUP)]);
+    await t.test(`HTTP ${status} recovers in two calls`, async (subtest) => {
+      const requests = installGoogleMock(subtest, [failure(PRIMARY, status), turn(BACKUP)]);
       const chunks = await readChunks(response());
-      assert.deepEqual(requests.map((request) => request.model), [PRIMARY, BACKUP, BACKUP]);
-      assert.deepEqual(requests[1].body.contents, requests[0].body.contents);
+      assert.deepEqual(requests.map((request) => request.model), [PRIMARY, BACKUP]);
+      assert.deepEqual(requests[1].body, requests[0].body);
       assertWinningReply(chunks, backupProposals);
     });
   }
 });
 
-test("a failed primary after signed tool execution is discarded before a clean four-call backup", async (t) => {
-  const requests = installGoogleMock(t, [
-    facts(PRIMARY, primaryProposals, "failed-primary-proposal"), failure(PRIMARY, 503, "reply"),
-    facts(BACKUP), answer(BACKUP),
-  ]);
-  const chunks = await readChunks(response());
-  assert.deepEqual(requests.map((request) => request.model), [PRIMARY, PRIMARY, BACKUP, BACKUP]);
-  const primaryTool = requests[1].body.contents.flatMap((content) => content.parts).find((part) => part.functionCall);
-  assert.equal(primaryTool?.thoughtSignature, Buffer.from("synthetic-signature-failed-primary-proposal").toString("base64"));
-  assert.deepEqual(requests[2].body.contents, requests[0].body.contents);
-  assert.equal(JSON.stringify(requests[2].body.contents).includes("failed-primary-proposal"), false);
-  assert.equal(JSON.stringify(chunks).includes("failed-primary-proposal"), false);
-  assertWinningReply(chunks, backupProposals);
-});
-
-test("backup preserves prior questions, short user answers and existing facts across multiple turns", async (t) => {
+test("backup preserves prior questions, short user answers and existing facts across turns", async (t) => {
   const history: DiagnosisRequest["messages"] = [
     { id: "synthetic-earlier-user", role: "user", parts: [{ type: "text", text: "제 부산 아파트를 증여하려고 해요." }] },
     { id: "synthetic-earlier-assistant", role: "assistant", parts: [{ type: "text", text: "누구에게 증여하시나요?" }] },
@@ -239,10 +253,10 @@ test("backup preserves prior questions, short user answers and existing facts ac
     realEstate: { value: "제 부산 아파트", evidence: "제 부산 아파트", messageId: "synthetic-earlier-user" },
   };
   const proposals: ChatPatch[] = [{ key: "adultChildren", value: "성인 아들 1명", evidence: "성인 아들 1명" }];
-  const expected = { message: "성인 아드님께 증여를 준비하고 계시는군요. 언제쯤 진행하실 계획인가요?", choices: ["올해 안", "내년 이후", "아직 미정"] };
-  const requests = installGoogleMock(t, [failure(PRIMARY, 503), facts(BACKUP, proposals), answer(BACKUP, expected)]);
+  const expected = { message: "언제쯤 진행하실 계획인가요?", choices: ["올해 안", "내년 이후", "아직 미정"] };
+  const requests = installGoogleMock(t, [failure(PRIMARY, 503), turn(BACKUP, proposals, expected)]);
   const chunks = await readChunks(response({ messages: history, facts: existingFacts }));
-  assert.deepEqual(requests.map((request) => request.model), [PRIMARY, BACKUP, BACKUP]);
+  assert.deepEqual(requests.map((request) => request.model), [PRIMARY, BACKUP]);
   assert.deepEqual(requests[1].body, requests[0].body);
   assert.deepEqual(requests[1].body.contents.map((content) => ({ role: content.role, text: content.parts.map((part) => part.text).join("") })),
     history.map((message) => ({ role: message.role === "assistant" ? "model" : "user", text: message.parts[0].text })));
@@ -252,70 +266,21 @@ test("backup preserves prior questions, short user answers and existing facts ac
   assertWinningReply(chunks, proposals, expected);
 });
 
-test("a JSON answer without its required fact proposal causes one clean backup", async (t) => {
-  const requests = installGoogleMock(t, [
-    { model: PRIMARY, stage: "facts", respond: answer(PRIMARY).respond }, facts(BACKUP), answer(BACKUP),
-  ]);
-  const chunks = await readChunks(response());
-  assert.deepEqual(requests.map((request) => request.model), [PRIMARY, BACKUP, BACKUP]);
-  assertWinningReply(chunks, backupProposals);
-});
-
-test("repeated fact tool calls invalidate the primary even when its final JSON is valid", async (t) => {
-  const repeatedFacts: Step = {
-    model: PRIMARY,
-    stage: "facts",
-    respond: () => googleSse([{
-      candidates: [{
-        content: { role: "model", parts: ["duplicate-primary-one", "duplicate-primary-two"].map((id) => ({
-          functionCall: { id, name: "proposeFacts", args: { facts: primaryProposals } },
-          thoughtSignature: Buffer.from(`synthetic-signature-${id}`).toString("base64"),
-        })) },
-        finishReason: "STOP",
-      }],
-    }]),
-  };
-  const requests = installGoogleMock(t, [repeatedFacts, answer(PRIMARY), facts(BACKUP), answer(BACKUP)]);
-  const chunks = await readChunks(response());
-  assert.deepEqual(requests.map((request) => request.model), [PRIMARY, PRIMARY, BACKUP, BACKUP]);
-  assert.equal(JSON.stringify(chunks).includes("duplicate-primary"), false);
-  assertWinningReply(chunks, backupProposals);
-});
-
-test("partial, malformed and invalid-schema primary replies never leak into the winning response", async (t) => {
+test("malformed and strict-schema-invalid primary output never leaks before a clean backup", async (t) => {
   const discarded = "synthetic-discarded-primary-text";
-  const invalidReplies: Array<{ name: string; respond: Step["respond"] }> = [
-    { name: "incomplete JSON", respond: () => googleSse([googleText(`{\"message\":\"${discarded}`, "STOP")]) },
-    { name: "schema-invalid JSON", respond: () => googleSse([googleText(JSON.stringify({ message: discarded, choices: 12 }), "STOP")]) },
-    { name: "plain text", respond: () => googleSse([googleText(discarded, "STOP")]) },
-    {
-      name: "partial JSON followed by stream failure",
-      respond: () => {
-        let sent = false;
-        return new Response(new ReadableStream<Uint8Array>({
-          pull(controller) {
-            if (sent) {
-              controller.error(Object.assign(new Error("synthetic-private-provider-detail"), { statusCode: 503 }));
-              return;
-            }
-            sent = true;
-            controller.enqueue(new TextEncoder().encode(`data: ${JSON.stringify(googleText(`{\"message\":\"${discarded}`))}\n\n`));
-          },
-        }), { headers: { "Content-Type": "text/event-stream" } });
-      },
-    },
+  const invalid = [
+    `{"facts":[],"message":"${discarded}`,
+    JSON.stringify({ message: discarded, choices: [] }),
+    JSON.stringify({ facts: [], message: discarded, choices: 12 }),
+    JSON.stringify({ facts: [], message: discarded, choices: [], hidden: "not-allowed" }),
+    discarded,
   ];
-  for (const scenario of invalidReplies) {
-    await t.test(scenario.name, async (subtest) => {
-      const requests = installGoogleMock(subtest, [
-        facts(PRIMARY, primaryProposals, "failed-primary-proposal"),
-        { model: PRIMARY, stage: "reply", respond: scenario.respond },
-        facts(BACKUP), answer(BACKUP),
-      ]);
+  for (const text of invalid) {
+    await t.test(text.slice(0, 30), async (subtest) => {
+      const requests = installGoogleMock(subtest, [raw(PRIMARY, text), turn(BACKUP)]);
       const chunks = await readChunks(response());
-      assert.deepEqual(requests.map((request) => request.model), [PRIMARY, PRIMARY, BACKUP, BACKUP]);
+      assert.deepEqual(requests.map((request) => request.model), [PRIMARY, BACKUP]);
       assert.equal(JSON.stringify(chunks).includes(discarded), false);
-      assert.equal(JSON.stringify(chunks).includes("failed-primary-proposal"), false);
       assertWinningReply(chunks, backupProposals);
     });
   }
@@ -346,10 +311,10 @@ test("a failed backup ends the request without a third attempt or provider-detai
 test("an injected short attempt timeout aborts the primary and permits one backup", { timeout: 3_000 }, async (t) => {
   const started = deferred();
   const aborted = deferred();
-  const requests = installGoogleMock(t, [pendingRequest(started, aborted), facts(BACKUP), answer(BACKUP)]);
+  const requests = installGoogleMock(t, [pendingRequest(started, aborted), turn(BACKUP)]);
   const chunks = await readChunks(response({ attemptTimeoutMs: 40 }));
   await aborted.promise;
-  assert.deepEqual(requests.map((request) => request.model), [PRIMARY, BACKUP, BACKUP]);
+  assert.deepEqual(requests.map((request) => request.model), [PRIMARY, BACKUP]);
   assert.equal(requests[0].signal.aborted, true);
   assertWinningReply(chunks, backupProposals);
 });
