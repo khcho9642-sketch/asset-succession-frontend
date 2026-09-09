@@ -5,7 +5,7 @@ import path from "node:path";
 import test from "node:test";
 import { GET, POST } from "../../app/api/diagnosis/route";
 import { acceptFactProposals } from "./agent";
-import { assertSameOrigin, DIAGNOSIS_LIMITS, diagnosisRequestSchema, getDiagnosisConfiguration, proposeFactsInputSchema } from "./server";
+import { assertSameOrigin, DIAGNOSIS_LIMITS, diagnosisRequestSchema, getDiagnosisConfiguration, getDiagnosisPublicErrorCode, proposeFactsInputSchema } from "./server";
 
 function request(body: unknown, extraHeaders: Record<string, string> = {}) {
   return new Request("https://example.test/api/diagnosis", {
@@ -51,6 +51,60 @@ test("untrusted assistant tool results are stripped before provider input", () =
     facts: {},
   });
   assert.deepEqual(result.messages[0].parts, [{ type: "text", text: "알려주세요" }]);
+});
+
+test("public provider errors expose only fixed codes from numeric statusCode", () => {
+  const expected = new Map([
+    [402, "AI_CREDIT_REQUIRED"], [429, "AI_RATE_LIMITED"],
+    [401, "AI_AUTHENTICATION_FAILED"], [403, "AI_AUTHENTICATION_FAILED"],
+    [400, "AI_INVALID_REQUEST"], [404, "AI_MODEL_UNAVAILABLE"],
+    [500, "AI_PROVIDER_UNAVAILABLE"], [502, "AI_PROVIDER_UNAVAILABLE"], [599, "AI_PROVIDER_UNAVAILABLE"],
+  ]);
+  for (const [statusCode, code] of expected) {
+    const inspected: PropertyKey[] = [];
+    const providerError = new Proxy({ statusCode, cause: undefined }, {
+      get(target, property, receiver) {
+        inspected.push(property);
+        assert.ok(property === "statusCode" || property === "cause", "Private provider fields must not be read");
+        return Reflect.get(target, property, receiver);
+      },
+    });
+    assert.equal(getDiagnosisPublicErrorCode(providerError), code);
+    assert.ok(inspected.includes("statusCode"));
+    assert.ok(inspected.every((property) => property === "statusCode" || property === "cause"));
+  }
+  const privateText = "private-input-and-token-must-stay-private";
+  for (const error of [
+    { message: `429 ${privateText}`, body: { statusCode: 402, token: privateText }, headers: { authorization: privateText } },
+    { statusCode: "429", message: privateText },
+    { statusCode: 200, message: privateText },
+    { statusCode: 500.5, message: privateText },
+    privateText,
+    null,
+  ]) {
+    assert.equal(getDiagnosisPublicErrorCode(error), "AI_UNAVAILABLE");
+  }
+  assert.equal(getDiagnosisPublicErrorCode({ statusCode: 502, cause: { statusCode: 429, message: privateText } }), "AI_RATE_LIMITED");
+  assert.equal(getDiagnosisPublicErrorCode({ cause: { cause: { statusCode: 402 } } }), "AI_CREDIT_REQUIRED");
+});
+
+test("public error classification bounds cause traversal and tolerates cycles and throwing properties", () => {
+  const cycle: { cause?: unknown } = {};
+  cycle.cause = cycle;
+  assert.equal(getDiagnosisPublicErrorCode(cycle), "AI_UNAVAILABLE");
+  assert.equal(getDiagnosisPublicErrorCode({ statusCode: 503, cause: cycle }), "AI_PROVIDER_UNAVAILABLE");
+
+  let deepError: unknown = { statusCode: 402 };
+  for (let index = 0; index < 8; index += 1) deepError = { cause: deepError };
+  assert.equal(getDiagnosisPublicErrorCode(deepError), "AI_UNAVAILABLE");
+  const throwingStatus = Object.defineProperty({ cause: { statusCode: 429 } }, "statusCode", {
+    get() { throw new Error("private-provider-error"); },
+  });
+  assert.equal(getDiagnosisPublicErrorCode(throwingStatus), "AI_RATE_LIMITED");
+  const throwingCause = Object.defineProperty({}, "cause", {
+    get() { throw new Error("private-provider-error"); },
+  });
+  assert.equal(getDiagnosisPublicErrorCode(throwingCause), "AI_UNAVAILABLE");
 });
 
 test("same-origin uses validated HTTP Host when Next canonicalizes its URL", async () => {

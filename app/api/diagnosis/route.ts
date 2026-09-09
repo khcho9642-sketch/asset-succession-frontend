@@ -1,7 +1,7 @@
 import { createAgentUIStreamResponse } from "ai";
 import { createDiagnosisAgent } from "../../../lib/chat/agent";
 import { loadChatGuideRuntime } from "../../../lib/chat/guide";
-import { assertSameOrigin, diagnosisRequestSchema, DiagnosisRequestError, getDiagnosisConfiguration, getDiagnosisConfigurationStatus, readDiagnosisBody } from "../../../lib/chat/server";
+import { assertSameOrigin, diagnosisRequestSchema, DiagnosisRequestError, getDiagnosisConfiguration, getDiagnosisConfigurationStatus, getDiagnosisPublicErrorCode, readDiagnosisBody } from "../../../lib/chat/server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -44,10 +44,10 @@ export async function POST(request: Request) {
       timeout: { totalMs: 45_000, firstChunkMs: 25_000, chunkMs: 15_000 },
       sendReasoning: false,
       headers,
-      onError: () => "AI 응답을 완료하지 못했습니다. 잠시 후 다시 시도하거나 직접 입력으로 계속해 주세요.",
+      onError: (error) => `[${getDiagnosisPublicErrorCode(error)}] AI 응답을 완료하지 못했습니다. 잠시 후 다시 시도하거나 직접 입력으로 계속해 주세요.`,
     });
   } catch (error) {
     if (error instanceof DiagnosisRequestError) return failure(error.status, error.code, error.message);
-    return failure(502, "AI_UNAVAILABLE", "AI 연결에 문제가 생겼습니다. 잠시 후 다시 시도하거나 직접 입력으로 계속해 주세요.");
+    return failure(502, getDiagnosisPublicErrorCode(error), "AI 연결에 문제가 생겼습니다. 잠시 후 다시 시도하거나 직접 입력으로 계속해 주세요.");
   }
 }

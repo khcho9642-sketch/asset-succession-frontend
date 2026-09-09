@@ -115,6 +115,46 @@ export function getDiagnosisConfiguration() {
   return evaluateDiagnosisConfiguration().configuration;
 }
 
+type DiagnosisPublicErrorCode =
+  | "AI_CREDIT_REQUIRED"
+  | "AI_RATE_LIMITED"
+  | "AI_AUTHENTICATION_FAILED"
+  | "AI_INVALID_REQUEST"
+  | "AI_MODEL_UNAVAILABLE"
+  | "AI_PROVIDER_UNAVAILABLE"
+  | "AI_UNAVAILABLE";
+
+/** Inspect numeric HTTP status only; provider messages and payloads stay private. */
+export function getDiagnosisPublicErrorCode(error: unknown): DiagnosisPublicErrorCode {
+  const seen = new Set<object>();
+  let current = error;
+  let fallback: DiagnosisPublicErrorCode = "AI_UNAVAILABLE";
+  const readField = (value: object, field: "statusCode" | "cause"): unknown => {
+    try { return (value as Record<string, unknown>)[field]; }
+    catch { return undefined; }
+  };
+  for (let depth = 0; depth < 8; depth += 1) {
+    if (!current || typeof current !== "object" || seen.has(current)) break;
+    seen.add(current);
+    const statusCode = readField(current, "statusCode");
+    switch (statusCode) {
+      case 402: return "AI_CREDIT_REQUIRED";
+      case 429: return "AI_RATE_LIMITED";
+      case 401:
+      case 403: return "AI_AUTHENTICATION_FAILED";
+      case 400: return "AI_INVALID_REQUEST";
+      case 404: return "AI_MODEL_UNAVAILABLE";
+      default:
+        // A gateway 5xx can wrap an actionable credit or rate-limit cause.
+        if (typeof statusCode === "number" && Number.isInteger(statusCode) && statusCode >= 500 && statusCode <= 599) {
+          fallback = "AI_PROVIDER_UNAVAILABLE";
+        }
+    }
+    current = readField(current, "cause");
+  }
+  return fallback;
+}
+
 export class DiagnosisRequestError extends Error {
   constructor(public readonly status: number, public readonly code: string, message: string) {
     super(message);
