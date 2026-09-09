@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
-import { ArrowDown, ArrowLeft, ArrowRight, Check, ChevronDown, FileText, MessageCircle, Pencil, Plus, RotateCcw, Send, ShieldCheck, Square, Trash2, X } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, Check, ChevronDown, FileText, Pencil, Plus, RotateCcw, Send, ShieldCheck, Square, Trash2, X } from "lucide-react";
 import { clearAssessmentForSession, saveAssessmentForSession } from "@/lib/assessment";
 import { CHAT_FIELD_KEYS, CHAT_FIELD_LABELS, applyChatPatches, createChatState, getMissingRequiredFields, getNextQuestion, validateChatState } from "@/lib/chat/intake";
 import type { ChatFieldKey, ChatMessage, ChatState } from "@/lib/chat/intake";
@@ -24,12 +24,7 @@ const TOPICS: Record<string, string> = {
   inheritance: "상속", gift: "증여", capital_gains: "양도", business_succession: "가업상속", business_inheritance: "가업상속",
   "상속": "상속", "증여": "증여", "양도": "양도", "가업승계": "가업상속", "가업상속": "가업상속",
 };
-const EXAMPLES: Record<string, string> = {
-  "상속": "아버지 명의 건물 25억, 아파트 15억, 예금 10억이 있어요. 배우자 있음, 자녀 셋, 채무 없음, 과거 증여 없음. 노후생활비를 남기고 세금 부담을 줄이고 싶어요.",
-  "증여": "제 명의 아파트가 15억, 예금은 3억이에요. 성인 자녀 두 명에게 조금씩 증여하고 싶은데, 제 노후생활비도 남겨두고 싶어요.",
-  "양도": "제 명의 아파트 12억, 상가 8억이 있어요. 상가를 팔고 자녀에게 현금을 주는 방법과 부동산을 증여하는 방법을 비교하고 싶어요.",
-  "가업상속": "제가 운영하는 제조업 법인의 지분을 자녀에게 넘기고 싶어요. 회사 주식 가치는 아직 모르고, 성인 자녀 한 명이 함께 일하고 있어요.",
-};
+const START_TOPICS = ["상속", "증여", "양도", "가업상속"] as const;
 const FIELD_HINTS: Record<ChatFieldKey, string> = {
   topic: "예: 상속과 증여를 함께 비교", timing: "예: 3년 안에 준비 / 이미 상속 발생", owner: "예: 본인 명의 / 아버지 명의", spouse: "예: 배우자 있음 / 없음 / 모름", children: "예: 자녀 2명 / 없음", adultChildren: "예: 성인 자녀 2명", minorChildren: "예: 미성년 자녀 없음", realEstate: "예: 아파트 20억, 상가 10억 / 금액 모름", financialAssets: "예: 예금 3억, 주식 1억", businessAssets: "예: 비상장 주식 10억 / 평가액 모름", otherAssets: "예: 보험 있음 / 기타 자산 없음", debt: "예: 대출 2억 / 채무 없음 / 모름", pastGifts: "예: 3년 전 자녀에게 1억 증여 / 없음", goal: "예: 노후생활비 유지, 납부할 현금 준비", notes: "그 밖에 함께 검토할 상황을 적어주세요",
 };
@@ -206,22 +201,24 @@ export function DiagnosisChat() {
 
   const missing = getMissingRequiredFields(state);
   const factsCount = CHAT_FIELD_KEYS.filter(key => state.facts[key]).length;
-  const hasMessages = state.messages.some(message => message.role === "user");
+  const firstUserMessage = state.messages.find(message => message.role === "user");
+  const hasMessages = Boolean(firstUserMessage);
+  const displayTopic = TOPICS[firstUserMessage?.text ?? ""] ?? topic;
   const readyForReview = missing.length === 0;
   const taxPreview = useMemo(() => calculateTaxComparison(taxInput), [taxInput]);
   const readyForEstimate = taxPreview.status === "ready" && taxSignature === taxFactsSignature(state);
 
-  async function submitMessage() {
-    const text = input.trim();
-    if (!text || busy || sending.current || !hydrated || configured === null) return;
+  async function submitMessage(quickTopic?: (typeof START_TOPICS)[number]) {
+    const text = quickTopic ?? input.trim();
+    if (!text || busy || sending.current || !hydrated || configured === null || reportOpening) return;
     sending.current = true;
     invalidateReport();
     clearError();
     setCancelled(false);
     setStage("chat");
-    setInput("");
+    if (!quickTopic) setInput("");
     shouldFollow.current = true;
-    const submittedText = topic && !stateRef.current.messages.some(message => message.role === "user")
+    const submittedText = !quickTopic && topic && !stateRef.current.messages.some(message => message.role === "user")
       ? `검토 주제: ${topic}\n\n${text}` : text;
     const message: ChatMessage = { id: makeId(), role: "user", text: submittedText, created_at: new Date().toISOString() };
     let next: ChatState = { ...stateRef.current, messages: [...stateRef.current.messages, message] };
@@ -319,12 +316,6 @@ export function DiagnosisChat() {
     inputRef.current?.focus();
   }
 
-  function insertExample() {
-    invalidateReport();
-    setInput(EXAMPLES[topic || "상속"]);
-    inputRef.current?.focus();
-  }
-
   const renderField = (key: ChatFieldKey) => (
     <FactEditor key={`${stage}-${key}`} fieldKey={key} fact={state.facts[key]} disabled={busy} onSave={editFact} onRemove={removeFact} onEditingChange={updateEditing} />
   );
@@ -343,7 +334,7 @@ export function DiagnosisChat() {
       <div className={`${styles.columns} ${stage === "review" ? styles.reviewColumns : ""}`}>
         <div className={styles.chatColumn}>
           <div className={styles.chatHeading}>
-            <div><span className={styles.eyebrow}>무료 사전진단{topic ? ` · ${topic}` : ""}</span><h1>먼저, 이야기를 들려주세요.</h1></div>
+            <div><span className={styles.eyebrow}>무료 사전진단{displayTopic ? ` · ${displayTopic}` : ""}</span><h1>먼저, 이야기를 들려주세요.</h1></div>
             <span className={styles.privateBadge}><ShieldCheck size={15} aria-hidden="true" /> 이름·연락처 없이</span>
           </div>
           <div className={`${styles.connection} ${configured ? styles.connected : ""}`} role="status">
@@ -352,12 +343,12 @@ export function DiagnosisChat() {
           </div>
 
           <div className={styles.chatSurface}>
-            {stage === "chat" ? <div ref={transcriptRef} className={styles.transcript} role="log" aria-label="대화 내용" aria-live="polite" aria-relevant="additions text" onScroll={event => { const node = event.currentTarget; shouldFollow.current = node.scrollHeight - node.scrollTop - node.clientHeight < 100; if (shouldFollow.current) setHasNewText(false); }}>
+            {stage === "chat" ? <div ref={transcriptRef} className={`${styles.transcript} ${!hasMessages ? styles.openingTranscript : ""}`} role="log" aria-label="대화 내용" aria-live="polite" aria-relevant="additions text" onScroll={event => { const node = event.currentTarget; shouldFollow.current = node.scrollHeight - node.scrollTop - node.clientHeight < 100; if (shouldFollow.current) setHasNewText(false); }}>
               <div className={styles.welcome}>
-                <span className={styles.seal} aria-hidden="true">承</span>
-                <p className={styles.welcomeTitle}>어떤 상황인지<br className={styles.mobileBreak} /> 편하게 말씀해주세요.</p>
-                <p className={styles.welcomeBody}>누구의 자산인지, 어떤 고민이 있는지부터요.<br />정확한 금액을 몰라도 괜찮아요.</p>
-                {!hasMessages && <><button className={styles.exampleButton} onClick={insertExample} disabled={!hydrated}><MessageCircle size={16} aria-hidden="true" /> 어떻게 쓰면 되나요? 예시 넣기 <ArrowRight size={15} aria-hidden="true" /></button><p className={styles.exampleCaption}>가상의 예시예요. 내 상황에 맞게 고친 뒤 보내주세요.</p></>}
+                <p className={styles.welcomeTitle}>안녕하세요. 재산과 관련된 세금에 관해 무엇이 궁금하세요?</p>
+                {!hasMessages && <div className={styles.topicButtons} role="group" aria-label="상담 주제 선택">
+                  {START_TOPICS.map(label => <button key={label} type="button" className={styles.topicButton} onClick={() => void submitMessage(label)} disabled={!hydrated || configured === null || busy || reportOpening}>{label}</button>)}
+                </div>}
               </div>
 
               {messages.map(message => {
@@ -397,7 +388,7 @@ export function DiagnosisChat() {
 
             {hasNewText && stage === "chat" && <button className={styles.jumpButton} onClick={() => { if (transcriptRef.current) transcriptRef.current.scrollTop = transcriptRef.current.scrollHeight; shouldFollow.current = true; setHasNewText(false); }}><ArrowDown size={16} aria-hidden="true" /> 새 내용 보기</button>}
             <form className={styles.composerArea} onSubmit={event => { event.preventDefault(); void submitMessage(); }}>
-              <label htmlFor="diagnosis-message" className={styles.composerLabel}>{stage === "review" ? "더할 이야기가 있으면 이어서 말씀해주세요" : "편하게 적어주세요"}</label>
+              <label htmlFor="diagnosis-message" className={styles.composerLabel}>{stage === "review" ? "더할 이야기가 있으면 이어서 말씀해주세요" : hasMessages ? "편하게 적어주세요" : "또는 채팅으로 말씀해 주세요"}</label>
               <div className={styles.composer}>
                 <textarea id="diagnosis-message" ref={inputRef} value={input} rows={2} maxLength={6000} disabled={!hydrated || reportOpening} placeholder={hasMessages ? "빠진 내용이나 바꾸고 싶은 내용을 적어주세요…" : "예: 부모님 집을 미리 증여받는 게 좋을지 고민이에요…"} onChange={event => { invalidateReport(); setInput(event.target.value); }} onCompositionStart={() => { composing.current = true; }} onCompositionEnd={() => { composing.current = false; }} onKeyDown={event => { if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && !composing.current && event.keyCode !== 229) { event.preventDefault(); void submitMessage(); } }} />
                 {busy ? <button className={styles.sendButton} type="button" aria-label="응답 중지" onClick={() => { void stop(); setCancelled(true); }}><Square size={20} aria-hidden="true" /></button> : <button className={styles.sendButton} type="submit" disabled={!input.trim() || !hydrated || configured === null || reportOpening} aria-label="메시지 보내기"><Send size={21} aria-hidden="true" /></button>}

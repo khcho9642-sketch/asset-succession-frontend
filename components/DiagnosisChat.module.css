@@ -39,7 +39,13 @@
 .connected .statusDot { background: var(--ink); }
 .chatSurface { position: relative; background: var(--sheet); border: 1px solid var(--line); box-shadow: 0 6px 20px #45351c04; }
 .transcript { height: clamp(360px, 51dvh, 640px); min-height: 360px; overflow-y: auto; overscroll-behavior-y: contain; padding: 31px 30px 28px; scrollbar-color: #cfc4b4 transparent; scrollbar-width: thin; }
+.transcript.openingTranscript { height: auto; min-height: 0; overflow: visible; }
 .welcome { padding-bottom: 31px; }
+.openingTranscript .welcome { padding-bottom: 0; }
+.topicButtons { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 24px; }
+.topicButton { min-height: 56px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 5px; background: #eee7d980; color: var(--ink); font-size: 18px; font-weight: 600; white-space: nowrap; }
+.topicButton:hover:not(:disabled) { border-color: var(--seal); background: #ebe0d2; color: var(--seal); }
+.openingTranscript .localExplanation { margin-top: 20px; }
 .seal { display: inline-flex; width: 30px; height: 32px; align-items: center; justify-content: center; border: 1px solid var(--seal); color: var(--seal); font-family: serif; font-size: 20px; line-height: 1; transform: rotate(-3deg); margin-bottom: 19px; }
 .welcomeTitle { color: var(--ink); font-family: "Noto Serif KR", "Nanum Myeongjo", Georgia, serif; font-size: 27px; line-height: 1.55; letter-spacing: -.035em; word-break: keep-all; }
 .mobileBreak { display: none; }
@@ -167,7 +173,8 @@
   .transcript { height: clamp(250px, calc(100dvh - 515px), 440px); min-height: 250px; padding: 25px 20px 24px; }
   .welcome { padding-bottom: 24px; }
   .seal { width: 28px; height: 30px; margin-bottom: 17px; }
-  .welcomeTitle { font-size: 27px; line-height: 1.55; }
+  .welcomeTitle { font-size: 23px; line-height: 1.55; }
+  .topicButtons { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 20px; }
   .mobileBreak { display: block; }
   .welcomeBody { font-size: 18px; line-height: 1.85; margin-top: 15px !important; }
   .exampleButton { gap: 7px; font-size: 14px; padding: 11px 10px; min-height: 44px; margin-top: 21px; }
@@ -238,7 +245,7 @@
   .progress { gap: 8px; font-size: 13px; }
   .chatHeading h1 { font-size: 24px; }
   .transcript, .reviewPanel { padding-left: 16px; padding-right: 16px; }
-  .welcomeTitle { font-size: 25px; }
+  .welcomeTitle { font-size: 22px; }
   .exampleButton { font-size: 13px; gap: 5px; }
 }
 @media (prefers-reduced-motion: reduce) { .workspace *, .workspace *::before, .workspace *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
