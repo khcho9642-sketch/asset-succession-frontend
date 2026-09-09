@@ -393,7 +393,7 @@ export function DiagnosisChat() {
                 <textarea id="diagnosis-message" ref={inputRef} value={input} rows={2} maxLength={6000} disabled={!hydrated || reportOpening} placeholder={hasMessages ? "빠진 내용이나 바꾸고 싶은 내용을 적어주세요…" : "예: 부모님 집을 미리 증여받는 게 좋을지 고민이에요…"} onChange={event => { invalidateReport(); setInput(event.target.value); }} onCompositionStart={() => { composing.current = true; }} onCompositionEnd={() => { composing.current = false; }} onKeyDown={event => { if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && !composing.current && event.keyCode !== 229) { event.preventDefault(); void submitMessage(); } }} />
                 {busy ? <button className={styles.sendButton} type="button" aria-label="응답 중지" onClick={() => { void stop(); setCancelled(true); }}><Square size={20} aria-hidden="true" /></button> : <button className={styles.sendButton} type="submit" disabled={!input.trim() || !hydrated || configured === null || reportOpening} aria-label="메시지 보내기"><Send size={21} aria-hidden="true" /></button>}
               </div>
-              <div className={styles.composerMeta}><p>이름, 연락처, 주민등록번호는 적지 마세요.</p><span>Enter 전송 · Shift+Enter 줄바꿈</span></div>
+              <div className={styles.composerMeta}><span>Enter 전송 · Shift+Enter 줄바꿈</span></div>
             </form>
           </div>
         </div>
@@ -406,7 +406,6 @@ export function DiagnosisChat() {
             <button className={styles.addFieldButton} onClick={() => setShowAllFields(!showAllFields)}>{showAllFields ? <X size={16} aria-hidden="true" /> : <Plus size={16} aria-hidden="true" />}{showAllFields ? "추가 항목 닫기" : "직접 항목 추가"}</button>
             {showAllFields && <div className={styles.additionalFields}>{CHAT_FIELD_KEYS.filter(key => !state.facts[key]).map(renderField)}</div>}
             {hasMessages && missing.length > 0 && <p className={styles.missingSummary}>조금 더 알려주세요: {missing.map(key => CHAT_FIELD_LABELS[key]).join(", ")}</p>}
-            <button className={styles.reviewButton} onClick={openReview} disabled={busy || !hydrated}><FileText size={17} aria-hidden="true" /> 정리 내용 확인하기 <ArrowRight size={17} aria-hidden="true" /></button>
             <p className={styles.summaryFootnote}>직접 확인한 내용으로만<br />보고서를 준비합니다.</p>
           </div>
         </aside>}
