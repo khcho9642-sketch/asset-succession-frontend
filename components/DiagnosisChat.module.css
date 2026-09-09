@@ -76,7 +76,7 @@
 .composer { display: flex; align-items: flex-end; gap: 12px; padding: 10px 10px 10px 16px; background: #fffdf8; border: 1px solid #cfc3af; box-shadow: 0 2px 5px #58402205; border-radius: 5px; }
 .composer:focus-within { border-color: var(--brass); box-shadow: 0 0 0 2px #7a613912; }
 .composer textarea { display: block; width: 100%; min-width: 0; min-height: 56px; max-height: 180px; padding: 8px 0; font-size: 17px; line-height: 1.65; resize: none; background: transparent; color: var(--ink); border: 0; }
-.composer textarea::placeholder { color: var(--soft); }
+.composer textarea::placeholder { color: #938b80; font-weight: 400; opacity: 1; }
 .sendButton { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; flex: 0 0 56px; border-radius: 4px; background: var(--seal); color: #fff9ed; }
 .sendButton:hover { background: #972f22; }
 .composerMeta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 15px; margin-top: 9px; color: var(--soft); font-size: 13px; }
