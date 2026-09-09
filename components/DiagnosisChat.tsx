@@ -117,7 +117,7 @@ export function DiagnosisChat() {
         setMessages(toUiMessages(restored));
         const lastMessage = restored.messages.at(-1);
         setIncompleteResponse(Boolean(lastMessage && (draft?.responseFailed === true
-          || lastMessage.role === "user" || !getAssistantReply(lastMessage.text))));
+          || (lastMessage.role === "assistant" && !getAssistantReply(lastMessage.text)))));
         const restoredTax = validateTaxComparisonInput(draft?.taxInput);
         const signature = taxFactsSignature(restored);
         setTaxInput(restoredTax && draft?.taxSignature === signature ? { ...restoredTax, confirmed: false } : createTaxInputFromChat(restored));
