@@ -7,7 +7,8 @@
 - 가이드 RUNTIME 구간을 서버 프롬프트에 연결했다. 지침이 없거나 마커가 잘못되면 AI 요청을 시작하지 않는다.
 - `AI_DIAGNOSIS_FREE_TRIAL_ENABLED`가 정확히 `true`일 때만 AI 연결 설정을 사용할 수 있다. 기본값은 비활성이다.
 - 정적 Gateway 키가 없으면 AI SDK의 Vercel OIDC 인증을 사용할 수 있다. 인증 정보는 서버에만 둔다.
-- 계정 무료 티어와 자동 충전 상태는 아직 확인하지 못했다. Vercel 프로젝트 조회가 `403 Forbidden`으로 거부됐다. 환경변수·결제 설정은 변경하지 않았고 실제 추론 요청도 보내지 않았다.
+- 2026-09-09 운영자가 카드 등록과 Preview 환경변수 저장을 완료했다고 알렸다. 무료 잔액 `Free` 및 자동 충전 꺼짐을 조건으로 설정을 안내했다. 관리 연결의 프로젝트 조회는 `403 Forbidden`, 팀 목록은 빈 배열이어서 계정 화면을 직접 확인하거나 환경변수를 대신 저장하지는 못했다.
+- 저장된 설정을 반영하는 새 Preview 배포에서 실제 AI 응답을 확인한다. 카드 등록이나 환경변수 저장만으로 응답 검증이 끝났다고 판단하지 않는다.
 - 아래 활성화 스위치는 운영자가 확인 후 켜는 장치다. 무료 잔액이나 결제 상태를 자동 검증하는 기능이 아니다.
 
 ## 활성화 전에 확인
@@ -32,6 +33,15 @@
 | `AI_DIAGNOSIS_FREE_TRIAL_ENABLED` | 모든 계정 확인을 마친 뒤 `true`; 중단 시 `false` |
 | `VERCEL_OIDC_TOKEN` | Vercel이 제공하는 서버 인증. 수동으로 문서·Git·브라우저 코드에 복사하지 않는다. |
 | `AI_GATEWAY_API_KEY` | OIDC 시험에서는 미설정. 이미 존재하면 SDK가 이 키를 우선 사용하므로 해당 키의 팀과 결제 조건을 별도로 확인한다. |
+
+2026-09-09 시험 설정:
+
+```env
+AI_DIAGNOSIS_MODEL=google/gemini-2.5-flash-lite
+AI_DIAGNOSIS_FREE_TRIAL_ENABLED=true
+```
+
+적용 범위는 Preview의 `codex/chat-opening-topics` 브랜치다. 모델은 같은 날 [Vercel Free Tier 모델 목록](https://vercel.com/ai-gateway/models?freeTier=true)의 `availableToFreeTier: true` 및 `tool-use`를 확인해 선택했다. 무료 크레딧을 사용하는 모델이며 무제한·영구 무료 모델이라는 뜻은 아니다. 이후 다른 모델로 바꿀 때는 무료 대상 여부를 다시 확인한다.
 
 서버 설정 후 새 Preview 배포에 적용되었는지 확인한다. `GET /api/diagnosis`의 `configured: true`는 가이드와 설정이 준비되었다는 뜻이며, 모델 응답·무료 잔액·대화 품질을 검증했다는 뜻은 아니다.
 
