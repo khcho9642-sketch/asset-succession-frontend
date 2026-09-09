@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import path from "node:path";
 import test from "node:test";
 import { GET, POST } from "../../app/api/diagnosis/route";
 import { acceptFactProposals } from "./agent";
@@ -68,7 +71,7 @@ test("same-origin uses validated HTTP Host when Next canonicalizes its URL", asy
   }
 });
 
-test("capability and route failures are honest, bounded, and never reveal configuration", async () => {
+test("capability and route failures are honest, bounded, and never reveal configuration", async (context) => {
   const previousKey = process.env.AI_GATEWAY_API_KEY;
   const previousModel = process.env.AI_DIAGNOSIS_MODEL;
   const previousEnabled = process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
@@ -86,7 +89,7 @@ test("capability and route failures are honest, bounded, and never reveal config
     delete process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
     delete process.env.VERCEL_OIDC_TOKEN;
     delete process.env.VERCEL;
-    assert.deepEqual(await GET().json(), { configured: false });
+    assert.deepEqual(await GET().json(), { configured: false, issues: ["FREE_TRIAL_NOT_ENABLED", "MODEL_MISSING", "AUTHENTICATION_MISSING"] });
     const unconfigured = await POST(request(validBody));
     assert.equal(unconfigured.status, 503);
     assert.equal((await unconfigured.json()).error.code, "AI_NOT_CONFIGURED");
@@ -95,15 +98,18 @@ test("capability and route failures are honest, bounded, and never reveal config
     process.env.AI_GATEWAY_API_KEY = "unit-test-secret-never-use-network";
     process.env.AI_DIAGNOSIS_MODEL = "test/validation-only";
     // Existing credentials cannot silently activate an unverified free trial.
-    for (const flag of [undefined, "false", "1", "TRUE"]) {
+    for (const flag of [undefined, "false", "FALSE", "1", "TRUE", " true false "]) {
       if (flag === undefined) delete process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
       else process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED = flag;
       assert.equal(getDiagnosisConfiguration(), null);
-      assert.deepEqual(await GET().json(), { configured: false });
+      assert.deepEqual(await GET().json(), { configured: false, issues: ["FREE_TRIAL_NOT_ENABLED"] });
       assert.equal((await POST(request(validBody))).status, 503);
     }
-    process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED = "true";
-    assert.deepEqual(await GET().json(), { configured: true });
+    process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED = " true\n";
+    const keyCapability = await GET().text();
+    assert.deepEqual(JSON.parse(keyCapability), { configured: true, issues: [] });
+    assert.equal(keyCapability.includes(process.env.AI_GATEWAY_API_KEY), false);
+    assert.equal(keyCapability.includes(process.env.AI_DIAGNOSIS_MODEL), false);
     const invalid = await POST(request({ messages: [] }));
     assert.equal(invalid.status, 400);
     assert.equal((await invalid.text()).includes(process.env.AI_GATEWAY_API_KEY), false);
@@ -112,17 +118,33 @@ test("capability and route failures are honest, bounded, and never reveal config
 
     delete process.env.AI_GATEWAY_API_KEY;
     assert.equal(getDiagnosisConfiguration(), null);
+    assert.deepEqual(await GET().json(), { configured: false, issues: ["AUTHENTICATION_MISSING"] });
     process.env.VERCEL_OIDC_TOKEN = "unit-test-oidc-never-use-network";
     assert.deepEqual(getDiagnosisConfiguration(), { apiKey: undefined, model: "test/validation-only" });
     const capability = await GET().text();
-    assert.deepEqual(JSON.parse(capability), { configured: true });
+    assert.deepEqual(JSON.parse(capability), { configured: true, issues: [] });
     assert.equal(capability.includes(process.env.VERCEL_OIDC_TOKEN), false);
     delete process.env.VERCEL_OIDC_TOKEN;
     process.env.VERCEL = "1";
     assert.deepEqual(getDiagnosisConfiguration(), { apiKey: undefined, model: "test/validation-only" });
-    for (const model of ["", "https://elsewhere.test/model", "provider/one,provider/two", "provider/" + "a".repeat(161)]) {
-      process.env.AI_DIAGNOSIS_MODEL = model;
+    for (const model of [undefined, "", "  ", "https://elsewhere.test/model", "provider/one,provider/two", "provider/" + "a".repeat(161)]) {
+      if (model === undefined) delete process.env.AI_DIAGNOSIS_MODEL;
+      else process.env.AI_DIAGNOSIS_MODEL = model;
       assert.equal(getDiagnosisConfiguration(), null);
+      assert.deepEqual(await GET().json(), { configured: false, issues: [model?.trim() ? "MODEL_INVALID" : "MODEL_MISSING"] });
+    }
+
+    process.env.AI_DIAGNOSIS_MODEL = "test/validation-only";
+    const missingGuideRoot = mkdtempSync(path.join(tmpdir(), "diagnosis-missing-guide-"));
+    const cwdMock = context.mock.method(process, "cwd", () => missingGuideRoot);
+    try {
+      const missingGuideCapability = await GET().text();
+      assert.deepEqual(JSON.parse(missingGuideCapability), { configured: false, issues: ["CHAT_GUIDE_UNAVAILABLE"] });
+      assert.equal(missingGuideCapability.includes(missingGuideRoot), false);
+      assert.equal((await POST(request(validBody))).status, 502);
+    } finally {
+      cwdMock.mock.restore();
+      rmSync(missingGuideRoot, { recursive: true, force: true });
     }
     assert.equal(fetchCalls, 0);
   } finally {

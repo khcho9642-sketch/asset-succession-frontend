@@ -73,19 +73,36 @@ export const proposeFactsInputSchema = z.object({
   facts: z.array(factProposalSchema).max(DIAGNOSIS_LIMITS.proposals),
 }).strict();
 
-export function getDiagnosisConfiguration() {
+type DiagnosisConfigurationIssue =
+  | "FREE_TRIAL_NOT_ENABLED"
+  | "MODEL_MISSING"
+  | "MODEL_INVALID"
+  | "AUTHENTICATION_MISSING";
+
+function evaluateDiagnosisConfiguration() {
+  const issues: DiagnosisConfigurationIssue[] = [];
   // Activation follows an account check: Free credit tier, auto top-up off,
   // and an eligible model. This switch does not verify billing by itself.
-  if (process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED !== "true") return null;
+  if (process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED?.trim() !== "true") issues.push("FREE_TRIAL_NOT_ENABLED");
   const apiKey = process.env.AI_GATEWAY_API_KEY?.trim();
   // On Vercel the SDK also resolves a fresh token from request context.
   // Credentials are authenticated by the Gateway when the request is made.
   const hasOidc = process.env.VERCEL === "1" || Boolean(process.env.VERCEL_OIDC_TOKEN?.trim());
   const model = process.env.AI_DIAGNOSIS_MODEL?.trim();
-  if ((!apiKey && !hasOidc) || !model || model.length > 160 || !/^[a-z0-9][a-z0-9._-]*\/[a-zA-Z0-9][a-zA-Z0-9._:-]*$/.test(model)) {
-    return null;
-  }
-  return { apiKey, model };
+  if (!model) issues.push("MODEL_MISSING");
+  else if (model.length > 160 || !/^[a-z0-9][a-z0-9._-]*\/[a-zA-Z0-9][a-zA-Z0-9._:-]*$/.test(model)) issues.push("MODEL_INVALID");
+  if (!apiKey && !hasOidc) issues.push("AUTHENTICATION_MISSING");
+  return { configuration: issues.length === 0 && model ? { apiKey, model } : null, issues };
+}
+
+/** Public readiness details contain codes only, never environment values. */
+export function getDiagnosisConfigurationStatus() {
+  const { configuration, issues } = evaluateDiagnosisConfiguration();
+  return { configured: Boolean(configuration), issues };
+}
+
+export function getDiagnosisConfiguration() {
+  return evaluateDiagnosisConfiguration().configuration;
 }
 
 export class DiagnosisRequestError extends Error {
