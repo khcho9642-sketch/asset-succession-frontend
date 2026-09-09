@@ -40,8 +40,11 @@ export function createDiagnosisAgent({
         execute: async ({ facts: proposals }) => ({ proposals: acceptFactProposals(proposals, latestMessage) }),
       }),
     },
+    // Forced function selection can repeat the same Gemini call until the
+    // response ends without text. The guide requests one facts call; allow
+    // automatic selection, then disable tools for the response step.
     prepareStep: ({ stepNumber }) => stepNumber === 0
-      ? { toolChoice: { type: "tool", toolName: "proposeFacts" } }
+      ? { toolChoice: "auto" }
       : { toolChoice: "none" },
     // The installed SDK forwards prepareCall's options to streamText. Override
     // its default console.error handler so provider errors never log intake data.
