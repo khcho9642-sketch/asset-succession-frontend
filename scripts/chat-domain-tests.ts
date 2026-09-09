@@ -40,6 +40,19 @@ function snapshot(state: ChatState) {
   return buildConfirmedAssessmentSnapshot(state, { confirmed: true, confirmedAt: DATE, assessmentId: "CHAT-TEST" });
 }
 
+test("restored choice history stays usable while reports contain only visible dialogue and user facts", () => {
+  const state = withFacts({ owner: "아버지 재산", realEstate: "아파트 12억" });
+  const encoded = JSON.stringify({ message: "증여와도 비교하고 싶으세요?", choices: ["증여와 비교", "상속만 검토"] });
+  state.messages.push({ id: "choices", role: "assistant", text: encoded, created_at: DATE });
+  const restored = validateChatState(JSON.parse(JSON.stringify(state)));
+  assert.ok(restored);
+  assert.equal(restored.messages.at(-1)?.text, encoded);
+  const result = snapshot(restored);
+  assert.equal(result.conversation?.messages.at(-1)?.text, "증여와도 비교하고 싶으세요?");
+  assert.equal(result.conversation?.raw_inputs.includes(encoded), false);
+  assert.equal(result.conversation?.confirmed_facts.some(fact => fact.value.includes("증여와 비교")), false);
+});
+
 test("compound assets preserve every amount: 25 + 15 + 10 = 50", () => {
   const parsed = parseChatAmount("건물 25억, 아파트 15억, 예금 10억");
   assert.equal(parsed.status, "confirmed");

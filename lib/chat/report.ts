@@ -1,6 +1,7 @@
 import { createAssessmentId, type AssessmentAnswer, type AssessmentSnapshot } from "../assessment";
 import { parseKoreanMoneyRangeToEok, parseKoreanMoneyToEok } from "../phase2b/money";
 import { CHAT_ASSET_KEYS, CHAT_FIELD_KEYS, CHAT_FIELD_LABELS, getMissingRequiredFields, validateChatState, type ChatFieldKey, type ChatState } from "./intake";
+import { getAssistantReply } from "./choices";
 
 export type ChatAmount =
   | { status: "confirmed"; value_eok: number; value_won: number; label: string }
@@ -198,7 +199,10 @@ export function buildConfirmedAssessmentSnapshot(
     answers: { purpose, family, assets, debt, goal, review },
     conversation: {
       mode: "chat",
-      messages: validated.messages.map(({ role, text, created_at }) => ({ role, text, created_at })),
+      messages: validated.messages.flatMap(({ role, text, created_at }) => {
+        const visibleText = role === "assistant" ? getAssistantReply(text)?.message : text;
+        return visibleText ? [{ role, text: visibleText, created_at }] : [];
+      }),
       confirmed_facts: CHAT_FIELD_KEYS.flatMap((key) => facts[key] ? [{ id: key, label: CHAT_FIELD_LABELS[key], value: facts[key]!.value, raw_text: (facts[key]!.sources ?? [facts[key]!]).map((source) => `[${source.messageId}] ${source.evidence}`).join("\n"), confidence: "customer_confirmed" }] : []),
       pending_candidates: [],
       raw_inputs: validated.messages.filter((message) => message.role === "user").map((message) => message.text),
