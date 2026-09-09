@@ -151,6 +151,7 @@
   .columns { grid-template-columns: minmax(0, 1fr) 270px; gap: 20px; }
   .privateBadge { display: none; }
   .transcript { padding: 26px 23px; }
+  .topicButtons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .summaryBody { padding-left: 18px; padding-right: 18px; }
   .summaryToggle { padding-left: 18px; padding-right: 18px; }
   .composerMeta > span { display: none; }
