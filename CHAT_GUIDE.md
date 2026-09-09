@@ -1,6 +1,6 @@
 # 자산승계 360 — CHAT_GUIDE
 
-버전: 1.2
+버전: 1.3
 작성일: 2026-09-09  
 상태: 서버 AI 지침 로더 연결본. 실제 모델 연결과 응답 품질 검증은 별도다.
 
@@ -354,8 +354,9 @@
 `lib/chat/prompt.ts`는 `lib/chat/guide.ts`를 통해 이 파일의 RUNTIME 구간을 서버에서 읽어 AI 지침으로 사용한다. 기존 프롬프트의 대화 정책은 이 구간으로 대체하며, 필드 의미와 비신뢰 초안의 경계는 코드에서 덧붙인다. 로더 연결은 실제 AI 접속·대화 품질·모든 상태 보존 기능의 검증 완료를 뜻하지 않는다.
 
 - 실제 AI 연결 여부는 서버 설정과 연결 상태로 확인한다.
-- 무료 시험 연결에는 활성화 설정, 유효한 모델, Gateway 인증 경로가 필요하다. 일반 배포는 `AI_DIAGNOSIS_FREE_TRIAL_ENABLED=true`와 `AI_DIAGNOSIS_MODEL`을 사용한다. 사용자가 무료 시험을 승인한 `codex/chat-opening-topics`의 Vercel Preview에서는 해당 환경변수가 아예 없을 때만 활성화와 `openai/gpt-5.4-mini`를 기본값으로 사용한다. 명시한 비활성 값·빈 값·잘못된 값은 기본값으로 덮어쓰지 않는다. 인증은 서버의 `AI_GATEWAY_API_KEY` 또는 Vercel OIDC를 사용하며 키·토큰을 문서나 브라우저 코드에 넣지 않는다.
-- 활성화 스위치가 꺼져 있거나 설정·가이드가 준비되지 않았으면 ‘AI 연결 전 · 입력 정리 모드’를 사용한다. 설정 준비는 실제 인증 성공·무료 잔액·대화 품질 검증을 뜻하지 않는다. 무료 티어와 자동 충전 확인 및 OIDC 설정 조건은 [무료 채팅 시험 안내](docs/vercel-free-chat-trial.md)를 따른다.
+- 2026-09-09 사용자 요청으로 Google Gemini Developer API 무료 티어에 직접 연결하도록 바꿨다. 서버의 `GOOGLE_GENERATIVE_AI_API_KEY`를 사용하며 `GEMINI_API_KEY`도 보조 이름으로 지원한다. Vercel Gateway 키·OIDC·이전 `AI_DIAGNOSIS_MODEL`은 사용하지 않는다. 키·토큰은 문서·Git·브라우저 코드에 넣지 않는다.
+- 일반 배포는 `AI_DIAGNOSIS_FREE_TRIAL_ENABLED=true`와 `GOOGLE_DIAGNOSIS_MODEL=gemini-3.8-flash`를 명시한다. 승인된 `codex/chat-opening-topics`의 Vercel Preview에서만 해당 변수가 아예 없을 때 두 값을 기본값으로 사용한다. 명시한 비활성·빈 값·잘못된 모델 값은 덮어쓰지 않는다. 확인한 무료 모델 한 개만 사용하고 실패 시 다른 모델이나 Gateway로 전환하지 않는다.
+- 활성화 스위치가 꺼져 있거나 키·모델·가이드가 준비되지 않았으면 ‘AI 연결 전 · 입력 정리 모드’를 사용한다. 설정 준비는 실제 인증 성공·Google 프로젝트 무료 티어·응답 품질 검증을 뜻하지 않는다. 무료 프로젝트 키와 설정 조건은 [구글 무료 채팅 시험 안내](docs/google-free-chat-trial.md)를 따른다.
 - 입력 정리 모드는 `lib/chat/local.ts`의 제한된 규칙으로 소유자·자산 질문과 선택지를 제공한다. 이 MD를 저장한 것만으로 자연대화 예시가 구현되었다고 보고하지 않는다.
 - AI는 기존 사실 제안과 고객 응답의 두 단계 안에서 답변 문장과 선택지를 함께 생성한다. 선택지 생성만을 위한 추가 AI 호출은 하지 않는다. 최종 응답은 `message`와 `choices` 구조로 검증하며, 화면은 원본 JSON을 표시하지 않는다.
 - 현재 답할 차례의 선택지만 활성화한다. 전송·응답 중지·오류 뒤에 이전 선택지를 새 질문의 답변으로 재사용하지 않는다. 선택지 클릭은 입력 중인 글을 지우지 않는다.

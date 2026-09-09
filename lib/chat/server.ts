@@ -83,30 +83,32 @@ type DiagnosisConfigurationIssue =
   | "FREE_TRIAL_NOT_ENABLED"
   | "MODEL_MISSING"
   | "MODEL_INVALID"
-  | "AUTHENTICATION_MISSING";
+  | "GOOGLE_API_KEY_MISSING";
+
+// Standard input/output are free only when the key belongs to a Google
+// Free Tier project (official pricing checked 2026-09-09).
+export const DEFAULT_GOOGLE_DIAGNOSIS_MODEL = "gemini-3.8-flash";
 
 function evaluateDiagnosisConfiguration() {
   const issues: DiagnosisConfigurationIssue[] = [];
-  // The user approved this branch's free-credit trial and completed account
-  // setup. Its saved settings did not reach Preview, so only this exact
-  // deployment scope gets defaults. Explicit values always override them.
+  // The user switched this approved Preview trial to Google's own free API.
+  // Defaults stay scoped to this branch; explicit settings still take priority.
   const approvedTrialPreview = process.env.VERCEL_ENV === "preview"
     && process.env.VERCEL_GIT_COMMIT_REF === "codex/chat-opening-topics";
   const trialEnabled = process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED
     ?? (approvedTrialPreview ? "true" : undefined);
-  // Activation follows an account check: Free credit tier, auto top-up off,
-  // and an eligible model. This switch does not verify billing by itself.
+  // This switch cannot inspect the Google project's billing tier. Use a key
+  // from a Free Tier project; never enable Cloud Billing for this trial.
   if (trialEnabled?.trim() !== "true") issues.push("FREE_TRIAL_NOT_ENABLED");
-  const apiKey = process.env.AI_GATEWAY_API_KEY?.trim();
-  // On Vercel the SDK also resolves a fresh token from request context.
-  // Credentials are authenticated by the Gateway when the request is made.
-  const hasOidc = process.env.VERCEL === "1" || Boolean(process.env.VERCEL_OIDC_TOKEN?.trim());
-  const model = (process.env.AI_DIAGNOSIS_MODEL
-    ?? (approvedTrialPreview ? "openai/gpt-5.4-mini" : undefined))?.trim();
+  const apiKey = (process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? process.env.GEMINI_API_KEY)?.trim();
+  // Provider-specific settings keep old Gateway keys/models from silently
+  // selecting a different service or its billing path after the migration.
+  const model = (process.env.GOOGLE_DIAGNOSIS_MODEL
+    ?? (approvedTrialPreview ? DEFAULT_GOOGLE_DIAGNOSIS_MODEL : undefined))?.trim();
   if (!model) issues.push("MODEL_MISSING");
-  else if (model.length > 160 || !/^[a-z0-9][a-z0-9._-]*\/[a-zA-Z0-9][a-zA-Z0-9._:-]*$/.test(model)) issues.push("MODEL_INVALID");
-  if (!apiKey && !hasOidc) issues.push("AUTHENTICATION_MISSING");
-  return { configuration: issues.length === 0 && model ? { apiKey, model } : null, issues };
+  else if (model !== DEFAULT_GOOGLE_DIAGNOSIS_MODEL) issues.push("MODEL_INVALID");
+  if (!apiKey) issues.push("GOOGLE_API_KEY_MISSING");
+  return { configuration: issues.length === 0 && model && apiKey ? { apiKey, model } : null, issues };
 }
 
 /** Public readiness details contain codes only, never environment values. */

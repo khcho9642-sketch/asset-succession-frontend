@@ -1,5 +1,7 @@
 # Vercel 무료 크레딧으로 채팅 시험
 
+> 이전 연결의 시험 기록이다. 2026-09-09 사용자 요청으로 Google Gemini Developer API 직접 연결로 전환했다. 현재 설정은 [구글 무료 채팅 시험 안내](google-free-chat-trial.md)를 따른다. 아래 Gateway 모델·키·OIDC는 현재 채팅 코드에서 사용하지 않는다.
+
 목표는 `CHAT_GUIDE.md`에 따른 가상 상담을 Vercel AI Gateway의 무료 크레딧으로만 시험하는 것이다. 크레딧 구매, 자동 충전, BYOK, 유료 모델로의 전환은 이 작업의 범위에 없다.
 
 ## 현재 상태

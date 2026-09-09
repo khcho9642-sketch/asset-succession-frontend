@@ -5,7 +5,7 @@ import path from "node:path";
 import test from "node:test";
 import { GET, POST } from "../../app/api/diagnosis/route";
 import { acceptFactProposals } from "./agent";
-import { assertSameOrigin, DIAGNOSIS_LIMITS, diagnosisRequestSchema, getDiagnosisConfiguration, getDiagnosisPublicErrorCode, proposeFactsInputSchema } from "./server";
+import { assertSameOrigin, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DIAGNOSIS_LIMITS, diagnosisRequestSchema, getDiagnosisConfiguration, getDiagnosisPublicErrorCode, proposeFactsInputSchema } from "./server";
 
 function request(body: unknown, extraHeaders: Record<string, string> = {}) {
   return new Request("https://example.test/api/diagnosis", {
@@ -138,74 +138,134 @@ test("same-origin uses validated HTTP Host when Next canonicalizes its URL", asy
   }
 });
 
-test("capability and route failures are honest, bounded, and never reveal configuration", async (context) => {
-  const previousKey = process.env.AI_GATEWAY_API_KEY;
-  const previousModel = process.env.AI_DIAGNOSIS_MODEL;
-  const previousEnabled = process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
-  const previousOidc = process.env.VERCEL_OIDC_TOKEN;
-  const previousVercel = process.env.VERCEL;
-  const previousVercelEnvironment = process.env.VERCEL_ENV;
-  const previousVercelBranch = process.env.VERCEL_GIT_COMMIT_REF;
-  const originalFetch = globalThis.fetch;
+const diagnosisEnvironmentKeys = [
+  "GOOGLE_GENERATIVE_AI_API_KEY", "GEMINI_API_KEY", "GOOGLE_DIAGNOSIS_MODEL",
+  "AI_DIAGNOSIS_FREE_TRIAL_ENABLED", "AI_GATEWAY_API_KEY", "AI_DIAGNOSIS_MODEL",
+  "VERCEL_OIDC_TOKEN", "VERCEL", "VERCEL_ENV", "VERCEL_GIT_COMMIT_REF",
+] as const;
+
+function setDiagnosisEnvironment(values: Record<string, string>) {
+  for (const key of diagnosisEnvironmentKeys) delete process.env[key];
+  for (const [key, value] of Object.entries(values)) process.env[key] = value;
+}
+
+function saveDiagnosisEnvironment() {
+  const previous = new Map(diagnosisEnvironmentKeys.map((key) => [key, process.env[key]]));
+  return () => {
+    for (const [key, value] of previous) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  };
+}
+
+test("Google capability and route failures are honest, bounded, and never reveal configuration", async (context) => {
+  const restoreEnvironment = saveDiagnosisEnvironment();
+  const googleKey = "unit-test-google-secret-never-use-network";
+  const aliasKey = "unit-test-alias-secret-never-use-network";
+  const explicitConfiguration = {
+    GOOGLE_GENERATIVE_AI_API_KEY: googleKey,
+    GOOGLE_DIAGNOSIS_MODEL: DEFAULT_GOOGLE_DIAGNOSIS_MODEL,
+    AI_DIAGNOSIS_FREE_TRIAL_ENABLED: "true",
+  };
   let fetchCalls = 0;
-  globalThis.fetch = async () => {
+  const fetchMock = context.mock.method(globalThis, "fetch", async () => {
     fetchCalls += 1;
     throw new Error("These route checks must never call a provider");
-  };
+  });
   try {
-    delete process.env.AI_GATEWAY_API_KEY;
-    delete process.env.AI_DIAGNOSIS_MODEL;
-    delete process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
-    delete process.env.VERCEL_OIDC_TOKEN;
-    delete process.env.VERCEL;
-    delete process.env.VERCEL_ENV;
-    delete process.env.VERCEL_GIT_COMMIT_REF;
-    assert.deepEqual(await GET().json(), { configured: false, issues: ["FREE_TRIAL_NOT_ENABLED", "MODEL_MISSING", "AUTHENTICATION_MISSING"] });
+    setDiagnosisEnvironment({});
+    assert.deepEqual(await GET().json(), {
+      configured: false,
+      issues: ["FREE_TRIAL_NOT_ENABLED", "MODEL_MISSING", "GOOGLE_API_KEY_MISSING"],
+    });
     const unconfigured = await POST(request(validBody));
     assert.equal(unconfigured.status, 503);
     assert.equal((await unconfigured.json()).error.code, "AI_NOT_CONFIGURED");
     assert.equal((await POST(request(validBody, { origin: "https://elsewhere.test" }))).status, 403);
 
-    process.env.AI_GATEWAY_API_KEY = "unit-test-secret-never-use-network";
-    process.env.AI_DIAGNOSIS_MODEL = "test/validation-only";
-    // Existing credentials cannot silently activate an unverified free trial.
+    // A saved Google key cannot enable a trial outside the approved Preview branch.
     for (const flag of [undefined, "false", "FALSE", "1", "TRUE", " true false "]) {
+      setDiagnosisEnvironment(explicitConfiguration);
       if (flag === undefined) delete process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
       else process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED = flag;
       assert.equal(getDiagnosisConfiguration(), null);
       assert.deepEqual(await GET().json(), { configured: false, issues: ["FREE_TRIAL_NOT_ENABLED"] });
       assert.equal((await POST(request(validBody))).status, 503);
     }
-    process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED = " true\n";
+
+    setDiagnosisEnvironment({
+      ...explicitConfiguration,
+      GOOGLE_GENERATIVE_AI_API_KEY: `  ${googleKey}  `,
+      GOOGLE_DIAGNOSIS_MODEL: ` ${DEFAULT_GOOGLE_DIAGNOSIS_MODEL} `,
+      AI_DIAGNOSIS_FREE_TRIAL_ENABLED: " true\n",
+      AI_GATEWAY_API_KEY: "ignored-gateway-secret",
+      AI_DIAGNOSIS_MODEL: "ignored/legacy-model",
+    });
+    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: googleKey, model: DEFAULT_GOOGLE_DIAGNOSIS_MODEL });
     const keyCapability = await GET().text();
     assert.deepEqual(JSON.parse(keyCapability), { configured: true, issues: [] });
-    assert.equal(keyCapability.includes(process.env.AI_GATEWAY_API_KEY), false);
-    assert.equal(keyCapability.includes(process.env.AI_DIAGNOSIS_MODEL), false);
+    for (const secret of [googleKey, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, "ignored-gateway-secret", "ignored/legacy-model"]) {
+      assert.equal(keyCapability.includes(secret), false);
+    }
     const invalid = await POST(request({ messages: [] }));
     assert.equal(invalid.status, 400);
-    assert.equal((await invalid.text()).includes(process.env.AI_GATEWAY_API_KEY), false);
+    assert.equal((await invalid.text()).includes(googleKey), false);
     assert.equal((await POST(request(validBody, { "content-type": "text/plain" }))).status, 415);
     assert.equal((await POST(request({ payload: "가".repeat(DIAGNOSIS_LIMITS.bodyBytes) }))).status, 413);
 
-    delete process.env.AI_GATEWAY_API_KEY;
-    assert.equal(getDiagnosisConfiguration(), null);
-    assert.deepEqual(await GET().json(), { configured: false, issues: ["AUTHENTICATION_MISSING"] });
-    process.env.VERCEL_OIDC_TOKEN = "unit-test-oidc-never-use-network";
-    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: undefined, model: "test/validation-only" });
-    const capability = await GET().text();
-    assert.deepEqual(JSON.parse(capability), { configured: true, issues: [] });
-    assert.equal(capability.includes(process.env.VERCEL_OIDC_TOKEN), false);
-    delete process.env.VERCEL_OIDC_TOKEN;
-    process.env.VERCEL = "1";
-    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: undefined, model: "test/validation-only" });
-    for (const model of [undefined, "", "  ", "https://elsewhere.test/model", "provider/one,provider/two", "provider/" + "a".repeat(161)]) {
-      if (model === undefined) delete process.env.AI_DIAGNOSIS_MODEL;
-      else process.env.AI_DIAGNOSIS_MODEL = model;
+    // The direct Google provider accepts its alias, with explicit primary values taking precedence.
+    setDiagnosisEnvironment({ ...explicitConfiguration, GEMINI_API_KEY: ` ${aliasKey} ` });
+    delete process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: aliasKey, model: DEFAULT_GOOGLE_DIAGNOSIS_MODEL });
+    assert.deepEqual(await GET().json(), { configured: true, issues: [] });
+    process.env.GOOGLE_GENERATIVE_AI_API_KEY = googleKey;
+    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: googleKey, model: DEFAULT_GOOGLE_DIAGNOSIS_MODEL });
+    for (const emptyKey of ["", " ", "\n\t"]) {
+      process.env.GOOGLE_GENERATIVE_AI_API_KEY = emptyKey;
       assert.equal(getDiagnosisConfiguration(), null);
-      assert.deepEqual(await GET().json(), { configured: false, issues: [model?.trim() ? "MODEL_INVALID" : "MODEL_MISSING"] });
+      assert.deepEqual(await GET().json(), { configured: false, issues: ["GOOGLE_API_KEY_MISSING"] });
+      assert.equal((await POST(request(validBody))).status, 503);
+    }
+    delete process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+    for (const alias of [undefined, "", "  "]) {
+      if (alias === undefined) delete process.env.GEMINI_API_KEY;
+      else process.env.GEMINI_API_KEY = alias;
+      assert.equal(getDiagnosisConfiguration(), null);
+      assert.deepEqual(await GET().json(), { configured: false, issues: ["GOOGLE_API_KEY_MISSING"] });
     }
 
-    process.env.AI_DIAGNOSIS_MODEL = "test/validation-only";
+    // Gateway credentials and Vercel's request identity cannot activate Google's direct API.
+    const gatewayIdentities: Record<string, string>[] = [
+      { AI_GATEWAY_API_KEY: "unit-test-gateway-secret" },
+      { VERCEL_OIDC_TOKEN: "unit-test-oidc-secret" },
+      { VERCEL: "1" },
+      { AI_GATEWAY_API_KEY: "unit-test-gateway-secret", VERCEL_OIDC_TOKEN: "unit-test-oidc-secret", VERCEL: "1" },
+    ];
+    for (const identity of gatewayIdentities) {
+      setDiagnosisEnvironment({
+        GOOGLE_DIAGNOSIS_MODEL: DEFAULT_GOOGLE_DIAGNOSIS_MODEL,
+        AI_DIAGNOSIS_FREE_TRIAL_ENABLED: "true",
+        ...identity,
+      });
+      assert.equal(getDiagnosisConfiguration(), null);
+      assert.deepEqual(await GET().json(), { configured: false, issues: ["GOOGLE_API_KEY_MISSING"] });
+      assert.equal((await POST(request(validBody))).status, 503);
+    }
+
+    for (const model of [undefined, "", "  ", "openai/gpt-5.4-mini", "google/gemini-3.8-flash", "gemini-other", "https://elsewhere.test/model", "a".repeat(200)]) {
+      setDiagnosisEnvironment(explicitConfiguration);
+      if (model === undefined) delete process.env.GOOGLE_DIAGNOSIS_MODEL;
+      else process.env.GOOGLE_DIAGNOSIS_MODEL = model;
+      assert.equal(getDiagnosisConfiguration(), null);
+      assert.deepEqual(await GET().json(), { configured: false, issues: [model?.trim() ? "MODEL_INVALID" : "MODEL_MISSING"] });
+      assert.equal((await POST(request(validBody))).status, 503);
+    }
+    setDiagnosisEnvironment({ ...explicitConfiguration, AI_DIAGNOSIS_MODEL: DEFAULT_GOOGLE_DIAGNOSIS_MODEL });
+    delete process.env.GOOGLE_DIAGNOSIS_MODEL;
+    assert.deepEqual(await GET().json(), { configured: false, issues: ["MODEL_MISSING"] });
+
+    setDiagnosisEnvironment(explicitConfiguration);
     const missingGuideRoot = mkdtempSync(path.join(tmpdir(), "diagnosis-missing-guide-"));
     const cwdMock = context.mock.method(process, "cwd", () => missingGuideRoot);
     try {
@@ -219,83 +279,76 @@ test("capability and route failures are honest, bounded, and never reveal config
     }
     assert.equal(fetchCalls, 0);
   } finally {
-    globalThis.fetch = originalFetch;
-    if (previousKey === undefined) delete process.env.AI_GATEWAY_API_KEY;
-    else process.env.AI_GATEWAY_API_KEY = previousKey;
-    if (previousModel === undefined) delete process.env.AI_DIAGNOSIS_MODEL;
-    else process.env.AI_DIAGNOSIS_MODEL = previousModel;
-    if (previousEnabled === undefined) delete process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
-    else process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED = previousEnabled;
-    if (previousOidc === undefined) delete process.env.VERCEL_OIDC_TOKEN;
-    else process.env.VERCEL_OIDC_TOKEN = previousOidc;
-    if (previousVercel === undefined) delete process.env.VERCEL;
-    else process.env.VERCEL = previousVercel;
-    if (previousVercelEnvironment === undefined) delete process.env.VERCEL_ENV;
-    else process.env.VERCEL_ENV = previousVercelEnvironment;
-    if (previousVercelBranch === undefined) delete process.env.VERCEL_GIT_COMMIT_REF;
-    else process.env.VERCEL_GIT_COMMIT_REF = previousVercelBranch;
+    fetchMock.mock.restore();
+    restoreEnvironment();
   }
 });
 
-test("approved trial defaults stay inside the exact Preview branch and explicit settings override them", async (context) => {
-  const keys = ["AI_GATEWAY_API_KEY", "AI_DIAGNOSIS_MODEL", "AI_DIAGNOSIS_FREE_TRIAL_ENABLED", "VERCEL_OIDC_TOKEN", "VERCEL", "VERCEL_ENV", "VERCEL_GIT_COMMIT_REF"];
-  const previous = new Map(keys.map((key) => [key, process.env[key]]));
-  const approvedPreview = { VERCEL: "1", VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "codex/chat-opening-topics" };
+test("Google trial defaults stay inside the exact Preview branch and explicit settings override them", async (context) => {
+  const restoreEnvironment = saveDiagnosisEnvironment();
+  const googleKey = "unit-test-preview-google-secret";
+  const approvedPreview = { VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "codex/chat-opening-topics" };
   let fetchCalls = 0;
-  context.mock.method(globalThis, "fetch", async () => {
+  const fetchMock = context.mock.method(globalThis, "fetch", async () => {
     fetchCalls += 1;
     throw new Error("Readiness tests must never call a provider");
   });
-  const setEnvironment = (values: Record<string, string>) => {
-    for (const key of keys) delete process.env[key];
-    for (const [key, value] of Object.entries(values)) process.env[key] = value;
-  };
   try {
+    assert.equal(DEFAULT_GOOGLE_DIAGNOSIS_MODEL, "gemini-3.8-flash");
     const nonTrialEnvironments: Record<string, string>[] = [
       {},
       { VERCEL_OIDC_TOKEN: "unit-test-local-oidc" },
       { ...approvedPreview, VERCEL_ENV: "production" },
       { ...approvedPreview, VERCEL_GIT_COMMIT_REF: "codex/unrelated-preview" },
+      { ...approvedPreview, VERCEL_GIT_COMMIT_REF: "codex/chat-opening-topics-extra" },
       { ...approvedPreview, VERCEL_GIT_COMMIT_REF: "" },
       { ...approvedPreview, VERCEL_ENV: "" },
+      { VERCEL_GIT_COMMIT_REF: approvedPreview.VERCEL_GIT_COMMIT_REF },
+      { VERCEL_ENV: approvedPreview.VERCEL_ENV },
     ];
     for (const environment of nonTrialEnvironments) {
-      setEnvironment(environment);
+      setDiagnosisEnvironment({ ...environment, GOOGLE_GENERATIVE_AI_API_KEY: googleKey });
       assert.equal(getDiagnosisConfiguration(), null);
-      const readiness = await GET().json();
-      assert.equal(readiness.configured, false);
-      assert.ok(readiness.issues.includes("FREE_TRIAL_NOT_ENABLED"));
-      assert.ok(readiness.issues.includes("MODEL_MISSING"));
+      assert.deepEqual(await GET().json(), { configured: false, issues: ["FREE_TRIAL_NOT_ENABLED", "MODEL_MISSING"] });
       assert.equal((await POST(request(validBody))).status, 503);
     }
 
-    setEnvironment(approvedPreview);
-    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: undefined, model: "openai/gpt-5.4-mini" });
+    // Preview defaults only choose a model and enable the trial; a Google key is still mandatory.
+    setDiagnosisEnvironment({ ...approvedPreview, VERCEL: "1", VERCEL_OIDC_TOKEN: "unit-test-preview-oidc", AI_GATEWAY_API_KEY: "unit-test-preview-gateway" });
+    assert.equal(getDiagnosisConfiguration(), null);
+    assert.deepEqual(await GET().json(), { configured: false, issues: ["GOOGLE_API_KEY_MISSING"] });
+    assert.equal((await POST(request(validBody))).status, 503);
+    setDiagnosisEnvironment({ ...approvedPreview, GOOGLE_GENERATIVE_AI_API_KEY: googleKey });
+    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: googleKey, model: DEFAULT_GOOGLE_DIAGNOSIS_MODEL });
     assert.deepEqual(await GET().json(), { configured: true, issues: [] });
 
-    // Preview defaults never create credentials or bypass authentication.
-    delete process.env.VERCEL;
-    assert.deepEqual(await GET().json(), { configured: false, issues: ["AUTHENTICATION_MISSING"] });
-
     for (const flag of ["false", " false ", "", "FALSE", "1", "TRUE"]) {
-      setEnvironment({ ...approvedPreview, AI_DIAGNOSIS_FREE_TRIAL_ENABLED: flag });
+      setDiagnosisEnvironment({ ...approvedPreview, GOOGLE_GENERATIVE_AI_API_KEY: googleKey, AI_DIAGNOSIS_FREE_TRIAL_ENABLED: flag });
       assert.equal(getDiagnosisConfiguration(), null);
       assert.deepEqual(await GET().json(), { configured: false, issues: ["FREE_TRIAL_NOT_ENABLED"] });
       assert.equal((await POST(request(validBody))).status, 503);
     }
-    for (const model of ["", "  ", "https://elsewhere.test/model", "provider/one,provider/two"]) {
-      setEnvironment({ ...approvedPreview, AI_DIAGNOSIS_MODEL: model });
+    for (const model of ["", "  ", "https://elsewhere.test/model", "google/gemini-3.8-flash", "openai/gpt-5.4-mini"]) {
+      setDiagnosisEnvironment({ ...approvedPreview, GOOGLE_GENERATIVE_AI_API_KEY: googleKey, GOOGLE_DIAGNOSIS_MODEL: model });
       assert.equal(getDiagnosisConfiguration(), null);
       assert.deepEqual(await GET().json(), { configured: false, issues: [model.trim() ? "MODEL_INVALID" : "MODEL_MISSING"] });
       assert.equal((await POST(request(validBody))).status, 503);
     }
-    setEnvironment({ ...approvedPreview, AI_DIAGNOSIS_MODEL: "test/explicit", AI_DIAGNOSIS_FREE_TRIAL_ENABLED: " true " });
-    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: undefined, model: "test/explicit" });
+    // The old Gateway model setting has no effect, including when it is explicitly empty.
+    for (const legacyModel of ["", "openai/gpt-5.4-mini", "test/explicit"]) {
+      setDiagnosisEnvironment({ ...approvedPreview, GOOGLE_GENERATIVE_AI_API_KEY: googleKey, AI_DIAGNOSIS_MODEL: legacyModel });
+      assert.deepEqual(getDiagnosisConfiguration(), { apiKey: googleKey, model: DEFAULT_GOOGLE_DIAGNOSIS_MODEL });
+      assert.deepEqual(await GET().json(), { configured: true, issues: [] });
+    }
+    setDiagnosisEnvironment({
+      GOOGLE_GENERATIVE_AI_API_KEY: googleKey,
+      GOOGLE_DIAGNOSIS_MODEL: DEFAULT_GOOGLE_DIAGNOSIS_MODEL,
+      AI_DIAGNOSIS_FREE_TRIAL_ENABLED: " true ",
+    });
+    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: googleKey, model: DEFAULT_GOOGLE_DIAGNOSIS_MODEL });
     assert.equal(fetchCalls, 0);
   } finally {
-    for (const [key, value] of previous) {
-      if (value === undefined) delete process.env[key];
-      else process.env[key] = value;
-    }
+    fetchMock.mock.restore();
+    restoreEnvironment();
   }
 });
