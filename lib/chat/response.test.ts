@@ -80,6 +80,17 @@ test("empty or whitespace-only successful finishes are incomplete", async () => 
   }
 });
 
+test("unfinished or invalid choice payloads cannot count as completed visible answers", async () => {
+  for (const text of ['{"message":"어떤 재산인가요?","choices":["부동산"', '{"message":"어떤 재산인가요?","choices":"부동산"}']) {
+    const { chat, completions } = createSyntheticChat([answerChunks(text)]);
+    await chat.sendMessage({ text: "아들" });
+    assert.equal(isIncompleteChatResponse(completions[0]), true);
+  }
+  const { chat, completions } = createSyntheticChat([answerChunks(JSON.stringify({ message: "어떤 재산인가요?", choices: ["부동산", "현금"] }))]);
+  await chat.sendMessage({ text: "아들" });
+  assert.equal(isIncompleteChatResponse(completions[0]), false);
+});
+
 test("a fact-only result needs an answer, while the completed two-step response succeeds", async () => {
   const factStep: UIMessageChunk[] = [
     { type: "start", messageId: "facts-answer" },

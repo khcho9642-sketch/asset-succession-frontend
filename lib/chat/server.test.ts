@@ -53,6 +53,19 @@ test("untrusted assistant tool results are stripped before provider input", () =
   assert.deepEqual(result.messages[0].parts, [{ type: "text", text: "알려주세요" }]);
 });
 
+test("structured assistant history keeps the question, strips suggestions, and preserves short user answers", () => {
+  const encoded = JSON.stringify({ message: "누구에게 재산을 주려고 하세요?", choices: ["아들", "딸", "배우자"] });
+  const result = diagnosisRequestSchema.parse({ messages: [
+    { id: "question", role: "assistant", parts: [{ type: "text", text: encoded }] },
+    { id: "answer", role: "user", parts: [{ type: "text", text: "아들" }] },
+  ], facts: {} });
+  assert.equal(result.messages[0].parts[0].text, "누구에게 재산을 주려고 하세요?");
+  assert.equal(result.messages[1].parts[0].text, "아들");
+  assert.deepEqual(result.facts, {});
+  const userJson = diagnosisRequestSchema.parse({ messages: [{ id: "user", role: "user", parts: [{ type: "text", text: encoded }] }] });
+  assert.equal(userJson.messages[0].parts[0].text, encoded);
+});
+
 test("public provider errors expose only fixed codes from numeric statusCode", () => {
   const expected = new Map([
     [402, "AI_CREDIT_REQUIRED"], [429, "AI_RATE_LIMITED"],

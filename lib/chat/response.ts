@@ -1,4 +1,5 @@
 import type { ChatOnFinishCallback, UIMessage } from "ai";
+import { getAssistantReply } from "./choices";
 
 type ChatFinish = Parameters<ChatOnFinishCallback<UIMessage>>[0];
 
@@ -27,5 +28,5 @@ export function isIncompleteChatResponse({ message, isAbort, isDisconnect, isErr
   // The explicit stop action already has its own cancellation notice.
   if (isAbort) return false;
   return isError || isDisconnect || finishReason === "error"
-    || !message.parts.some((part) => part.type === "text" && part.text.trim().length > 0);
+    || !getAssistantReply(message.parts.filter((part) => part.type === "text").map((part) => part.text).join(""));
 }

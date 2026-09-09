@@ -7,10 +7,11 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { ArrowDown, ArrowLeft, ArrowRight, Check, ChevronDown, FileText, Pencil, Plus, RotateCcw, Send, ShieldCheck, Square, Trash2, X } from "lucide-react";
 import { clearAssessmentForSession, saveAssessmentForSession } from "@/lib/assessment";
-import { CHAT_FIELD_KEYS, CHAT_FIELD_LABELS, applyChatPatches, createChatState, getMissingRequiredFields, getNextQuestion, validateChatState } from "@/lib/chat/intake";
+import { CHAT_FIELD_KEYS, CHAT_FIELD_LABELS, applyChatPatches, createChatState, getMissingRequiredFields, validateChatState } from "@/lib/chat/intake";
 import type { ChatFieldKey, ChatMessage, ChatState } from "@/lib/chat/intake";
 import type { DiagnosisUIMessage } from "@/lib/chat/agent";
-import { extractLocalChatPatches } from "@/lib/chat/local";
+import { extractLocalChatPatches, getLocalChatReply } from "@/lib/chat/local";
+import { getAssistantReply } from "@/lib/chat/choices";
 import { getChatErrorNotice, isIncompleteChatResponse } from "@/lib/chat/response";
 import { buildConfirmedTaxAssessmentSnapshot, createTaxInputFromChat, taxFactsSignature } from "@/lib/chat/tax";
 import { calculateTaxComparison, validateTaxComparisonInput } from "@/lib/tax-comparison";
@@ -114,6 +115,9 @@ export function DiagnosisChat() {
         if (!restored) throw new Error("invalid-draft");
         commit(restored);
         setMessages(toUiMessages(restored));
+        const lastMessage = restored.messages.at(-1);
+        setIncompleteResponse(Boolean(lastMessage && (draft?.responseFailed === true
+          || lastMessage.role === "user" || !getAssistantReply(lastMessage.text))));
         const restoredTax = validateTaxComparisonInput(draft?.taxInput);
         const signature = taxFactsSignature(restored);
         setTaxInput(restoredTax && draft?.taxSignature === signature ? { ...restoredTax, confirmed: false } : createTaxInputFromChat(restored));
@@ -146,13 +150,13 @@ export function DiagnosisChat() {
 
   useEffect(() => {
     if (!hydrated) return;
-    volatileDraft = JSON.stringify({ version: 1, state, input, reportId: reportId.current, taxInput, taxSignature });
+    volatileDraft = JSON.stringify({ version: 1, state, input, reportId: reportId.current, taxInput, taxSignature, responseFailed: incompleteResponse || cancelled || Boolean(error) || busy });
     try {
       window.sessionStorage.setItem(DRAFT_KEY, volatileDraft);
     } catch {
       setStorageNotice("이 브라우저에서는 대화를 저장할 수 없어요. 새로고침하면 입력 내용이 사라질 수 있어요.");
     }
-  }, [hydrated, state, input, taxInput, taxSignature]);
+  }, [hydrated, state, input, taxInput, taxSignature, incompleteResponse, cancelled, error, busy]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -196,7 +200,7 @@ export function DiagnosisChat() {
     }
     if (shouldFollow.current) transcript.scrollTop = transcript.scrollHeight;
     else setHasNewText(true);
-  }, [messages, localNotice, stage]);
+  }, [messages, localNotice, stage, busy]);
 
   useEffect(() => {
     if (!inputRef.current) return;
@@ -213,8 +217,8 @@ export function DiagnosisChat() {
   const taxPreview = useMemo(() => calculateTaxComparison(taxInput), [taxInput]);
   const readyForEstimate = taxPreview.status === "ready" && taxSignature === taxFactsSignature(state);
 
-  async function submitMessage(quickTopic?: (typeof START_TOPICS)[number]) {
-    const text = quickTopic ?? input.trim();
+  async function submitMessage(quickReply?: string) {
+    const text = quickReply ?? input.trim();
     if (!text || busy || sending.current || !hydrated || configured === null || reportOpening) return;
     sending.current = true;
     invalidateReport();
@@ -222,9 +226,9 @@ export function DiagnosisChat() {
     setCancelled(false);
     setIncompleteResponse(false);
     setStage("chat");
-    if (!quickTopic) setInput("");
+    if (quickReply === undefined) setInput("");
     shouldFollow.current = true;
-    const submittedText = !quickTopic && topic && !stateRef.current.messages.some(message => message.role === "user")
+    const submittedText = quickReply === undefined && topic && !stateRef.current.messages.some(message => message.role === "user")
       ? `검토 주제: ${topic}\n\n${text}` : text;
     const message: ChatMessage = { id: makeId(), role: "user", text: submittedText, created_at: new Date().toISOString() };
     let next: ChatState = { ...stateRef.current, messages: [...stateRef.current.messages, message] };
@@ -235,10 +239,12 @@ export function DiagnosisChat() {
         setLocalNotice("");
         await sendMessage({ id: message.id, role: "user", parts: [{ type: "text", text: submittedText }] }, { body: { facts: next.facts } });
       } else {
+        // Save the local question too so its choices and context survive reload.
+        const reply = getLocalChatReply(next);
+        next = { ...next, messages: [...next.messages, { id: makeId(), role: "assistant", text: JSON.stringify(reply), created_at: new Date().toISOString() }] };
+        commit(next);
         setMessages(toUiMessages(next));
-        setLocalNotice(getMissingRequiredFields(next).length > 0
-          ? getNextQuestion(next)
-          : "찾은 내용을 입력 요약에 정리했어요. 빠지거나 다른 내용은 직접 고친 뒤 보고서를 열 수 있어요.");
+        setLocalNotice("");
       }
     } catch { /* useChat exposes request errors in its error state. */ }
     finally { sending.current = false; }
@@ -361,10 +367,20 @@ export function DiagnosisChat() {
 
               {messages.map(message => {
                 const text = message.parts.filter(part => part.type === "text").map(part => part.text).join("");
-                if (!text) return null;
+                const reply = message.role === "assistant" ? getAssistantReply(text) : null;
+                const visibleText = message.role === "assistant" ? reply?.message : text;
+                if (!visibleText) return null;
+                const showChoices = reply && reply.choices.length > 0 && message.id === messages.at(-1)?.id
+                  && !busy && !error && !incompleteResponse && !cancelled;
                 return <article className={message.role === "user" ? styles.userMessage : styles.assistantMessage} key={message.id}>
-                  <p className={styles.speaker}>{message.role === "user" ? "내가 전한 이야기" : "자산승계360 AI"}</p>
-                  <div className={styles.messageText}>{text}</div>
+                  <p className={styles.speaker}>{message.role === "user" ? "내가 전한 이야기" : configured === false ? "입력 안내" : "자산승계360 AI"}</p>
+                  <div className={styles.messageText}>{visibleText}</div>
+                  {showChoices && <div className={styles.replyActions}>
+                    <div className={styles.replyChoices} role="group" aria-label="답변 선택">
+                      {reply.choices.map(choice => <button key={choice} type="button" className={styles.replyChoice} disabled={!hydrated || configured === null || reportOpening} onClick={() => void submitMessage(choice)}>{choice}</button>)}
+                    </div>
+                    <button type="button" className={styles.writeReply} disabled={!hydrated || reportOpening} onClick={() => inputRef.current?.focus()}>직접 입력하기</button>
+                  </div>}
                 </article>;
               })}
               {configured === false && !hasMessages && <p className={styles.localExplanation}>{connectionError ? "AI 연결을 확인하지 못했어요. " : ""}지금은 입력 내용을 기본 규칙으로 정리해요. 요약을 직접 고쳐 보고서를 볼 수 있어요.</p>}
@@ -396,7 +412,7 @@ export function DiagnosisChat() {
 
             {hasNewText && stage === "chat" && <button className={styles.jumpButton} onClick={() => { if (transcriptRef.current) transcriptRef.current.scrollTop = transcriptRef.current.scrollHeight; shouldFollow.current = true; setHasNewText(false); }}><ArrowDown size={16} aria-hidden="true" /> 새 내용 보기</button>}
             <form className={styles.composerArea} onSubmit={event => { event.preventDefault(); void submitMessage(); }}>
-              <label htmlFor="diagnosis-message" className={styles.composerLabel}>{stage === "review" ? "더할 이야기가 있으면 이어서 말씀해주세요" : hasMessages ? "편하게 적어주세요" : "또는 채팅으로 말씀해 주세요"}</label>
+              <label htmlFor="diagnosis-message" className={styles.composerLabel}>{stage === "review" ? "더할 이야기가 있으면 이어서 말씀해주세요" : hasMessages ? "선택하거나 편하게 적어주세요" : "또는 채팅으로 말씀해 주세요"}</label>
               <div className={styles.composer}>
                 <textarea id="diagnosis-message" ref={inputRef} value={input} rows={2} maxLength={6000} disabled={!hydrated || reportOpening} placeholder={hasMessages ? "빠진 내용이나 바꾸고 싶은 내용을 적어주세요…" : "예: 부모님 집을 미리 증여받는 게 좋을지 고민이에요…"} onChange={event => { invalidateReport(); setInput(event.target.value); }} onCompositionStart={() => { composing.current = true; }} onCompositionEnd={() => { composing.current = false; }} onKeyDown={event => { if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && !composing.current && event.keyCode !== 229) { event.preventDefault(); void submitMessage(); } }} />
                 {busy ? <button className={styles.sendButton} type="button" aria-label="응답 중지" onClick={() => { void stop(); setCancelled(true); }}><Square size={20} aria-hidden="true" /></button> : <button className={styles.sendButton} type="submit" disabled={!input.trim() || !hydrated || configured === null || reportOpening} aria-label="메시지 보내기"><Send size={21} aria-hidden="true" /></button>}

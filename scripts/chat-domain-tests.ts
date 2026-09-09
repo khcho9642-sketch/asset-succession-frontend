@@ -2,12 +2,27 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { buildAssessmentMetrics } from "../lib/assessment";
 import { applyChatPatches, createChatState, getMissingRequiredFields, validateChatState, type ChatFieldKey, type ChatPatch, type ChatState } from "../lib/chat/intake";
-import { extractLocalChatPatches } from "../lib/chat/local";
+import { extractLocalChatPatches, getLocalChatReply } from "../lib/chat/local";
 import { buildConfirmedAssessmentSnapshot, parseChatAmount } from "../lib/chat/report";
 import { buildScenarioPlan } from "../lib/phase2b/engine";
 import { normalizeAssessmentSnapshot } from "../lib/phase2b/normalize";
 
 const DATE = "2026-09-08T12:00:00.000Z";
+
+test("local mode continues from owner choices to asset choices without selecting facts in advance", () => {
+  let state = createChatState();
+  const ownerQuestion = getLocalChatReply(state);
+  assert.ok(ownerQuestion.choices.includes("아버지"));
+  assert.deepEqual(state.facts, {});
+  state = add(state, "아버지", extractLocalChatPatches("아버지", state));
+  const assetQuestion = getLocalChatReply(state);
+  assert.ok(assetQuestion.choices.includes("부동산"));
+  assert.equal(state.facts.realEstate, undefined);
+  state = add(state, "부동산", extractLocalChatPatches("부동산", state));
+  assert.equal(state.facts.owner?.value, "아버지");
+  assert.equal(state.facts.realEstate?.value, "부동산");
+  assert.deepEqual(getLocalChatReply(state).choices, []);
+});
 
 function add(state: ChatState, text: string, patches: ChatPatch[] = []) {
   const id = `message-${state.messages.length + 1}`;

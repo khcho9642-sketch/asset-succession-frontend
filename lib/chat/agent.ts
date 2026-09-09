@@ -1,4 +1,5 @@
-import { createGateway, isStepCount, ToolLoopAgent, tool, type InferAgentUIMessage } from "ai";
+import { createGateway, isStepCount, Output, ToolLoopAgent, tool, type InferAgentUIMessage } from "ai";
+import { diagnosisReplySchema } from "./choices";
 import { applyChatPatches, createChatState, type ChatPatch, type ChatState } from "./intake";
 import { buildDiagnosisPrompt } from "./prompt";
 import { proposeFactsInputSchema, type DiagnosisRequest } from "./server";
@@ -24,7 +25,14 @@ export function createDiagnosisAgent({
 }: { apiKey?: string; model: string; messages: DiagnosisRequest["messages"]; facts: ChatState["facts"] }) {
   const latest = messages[messages.length - 1];
   const latestMessage = { id: latest.id, text: latest.parts[0].text };
-  const instructions = buildDiagnosisPrompt(facts);
+  const instructions = `${buildDiagnosisPrompt(facts)}
+
+고객용 응답의 전달 형식:
+최종 응답은 제공된 JSON 스키마에 맞춰 message와 choices로 작성합니다.
+message는 고객에게 보여 줄 답변과 다음 질문, choices는 그 질문 아래 표시할 짧은 답변 버튼입니다.
+선택지 문구는 클릭하면 그대로 고객 메시지로 전송됩니다. 질문에 대한 선택지는 CHAT_GUIDE의 기준으로 매번 구성합니다.
+직접 입력하기는 화면에서 항상 제공하므로 choices에 중복해서 넣지 않습니다.
+도구 호출 단계에는 고객용 JSON이나 설명을 함께 출력하지 않습니다.`;
   // Execution protocol only: dialogue policy remains in CHAT_GUIDE.md.
   const factStepInstructions = `${instructions}
 
@@ -39,6 +47,7 @@ export function createDiagnosisAgent({
   return new ToolLoopAgent({
     model: gateway(model),
     instructions,
+    output: Output.object({ schema: diagnosisReplySchema }),
     maxOutputTokens: 3_000,
     // Keep the trial's reasoning and response work within its existing budget.
     providerOptions: model === "openai/gpt-5.4-mini"

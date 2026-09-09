@@ -1,4 +1,23 @@
 import type { ChatFieldKey, ChatPatch, ChatState } from "./intake";
+import { getMissingRequiredFields } from "./intake";
+import type { DiagnosisReply } from "./choices";
+
+/** The non-AI fallback also offers answers to one question at a time. */
+export function getLocalChatReply(state: ChatState): DiagnosisReply {
+  const missing = getMissingRequiredFields(state);
+  if (missing.includes("owner")) return {
+    message: "말씀하신 재산은 누구 소유인가요?",
+    choices: ["본인", "아버지", "어머니", "부모님", "배우자"],
+  };
+  if (missing.includes("realEstate")) return {
+    message: "어떤 재산을 검토하고 싶으세요? 여러 종류면 직접 함께 적어주셔도 돼요.",
+    choices: ["부동산", "예금·현금", "주식", "회사 지분", "기타 자산"],
+  };
+  return {
+    message: "찾은 내용을 입력 요약에 정리했어요. 빠지거나 다른 내용은 직접 고친 뒤 보고서를 열 수 있어요.",
+    choices: [],
+  };
+}
 
 // Explicitly labelled guided mode. This parser never impersonates an LLM.
 // Keep raw spans so the same evidence validator can check local and AI proposals.

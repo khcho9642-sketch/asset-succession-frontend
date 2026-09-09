@@ -58,6 +58,12 @@
 .assistantMessage { margin-right: auto; padding: 7px 0 6px; }
 .speaker { margin-bottom: 6px !important; color: var(--brass); font-size: 13px; font-weight: 600; }
 .messageText { font-size: 17px; white-space: pre-wrap; line-height: 1.85; }
+.replyActions { margin-top: 16px; }
+.replyChoices { display: flex; flex-wrap: wrap; gap: 8px; }
+.replyChoice { min-height: 46px; max-width: 100%; padding: 10px 15px; border: 1px solid #c9bca6; border-radius: 5px; background: #f3eee4; color: var(--ink); font-size: 16px; font-weight: 400; line-height: 1.55; text-align: left; overflow-wrap: anywhere; }
+.replyChoice:hover:not(:disabled) { background: #ebe0d2; border-color: var(--brass); }
+.replyChoice:focus-visible, .writeReply:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+.writeReply { display: block; min-height: 44px; padding: 10px 2px; color: var(--soft); font-size: 14px; font-weight: 400; text-decoration: underline; text-underline-offset: 4px; }
 .localExplanation { padding-top: 19px; border-top: 1px solid var(--line); color: var(--soft); font-size: 14px; line-height: 1.8; }
 .localGuidance { margin-top: 18px; padding: 14px 17px; border-left: 2px solid #a28a60; background: #eee8dd; font-size: 15px; line-height: 1.85; }
 .localGuidance > span { display: block; margin-bottom: 4px; color: var(--brass); font-size: 13px; font-weight: 700; }

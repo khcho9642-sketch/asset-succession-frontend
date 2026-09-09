@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { CHAT_FIELD_KEYS, type ChatState } from "./intake";
+import { getAssistantReply } from "./choices";
 
 export const DIAGNOSIS_LIMITS = {
   bodyBytes: 128 * 1024,
@@ -36,7 +37,10 @@ const uiMessageSchema = z.object({
     ctx.addIssue({ code: "custom", message: "Invalid message length" });
     return z.NEVER;
   }
-  return { id: message.id, role: message.role, parts: [{ type: "text" as const, text }] };
+  // Past buttons are suggestions, never customer facts or trusted tool output.
+  // Keep the visible question as context for short replies such as "아들".
+  const historyText = message.role === "assistant" ? getAssistantReply(text)?.message ?? "" : text;
+  return { id: message.id, role: message.role, parts: [{ type: "text" as const, text: historyText }] };
 });
 
 const factSchema = z.object({
