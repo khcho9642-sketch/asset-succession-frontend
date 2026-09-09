@@ -11,6 +11,7 @@ import { CHAT_FIELD_KEYS, CHAT_FIELD_LABELS, applyChatPatches, createChatState, 
 import type { ChatFieldKey, ChatMessage, ChatState } from "@/lib/chat/intake";
 import type { DiagnosisUIMessage } from "@/lib/chat/agent";
 import { extractLocalChatPatches } from "@/lib/chat/local";
+import { isIncompleteChatResponse } from "@/lib/chat/response";
 import { buildConfirmedTaxAssessmentSnapshot, createTaxInputFromChat, taxFactsSignature } from "@/lib/chat/tax";
 import { calculateTaxComparison, validateTaxComparisonInput } from "@/lib/tax-comparison";
 import type { TaxComparisonInput } from "@/lib/tax-comparison";
@@ -54,6 +55,7 @@ export function DiagnosisChat() {
   const [reviewError, setReviewError] = useState("");
   const [localNotice, setLocalNotice] = useState("");
   const [cancelled, setCancelled] = useState(false);
+  const [incompleteResponse, setIncompleteResponse] = useState(false);
   const [resetRequested, setResetRequested] = useState(false);
   const [reportOpening, setReportOpening] = useState(false);
   const [editingIds, setEditingIds] = useState<Set<string>>(() => new Set());
@@ -68,7 +70,10 @@ export function DiagnosisChat() {
   const shouldFollow = useRef(true);
   const [hasNewText, setHasNewText] = useState(false);
   const transport = useRef(new DefaultChatTransport<DiagnosisUIMessage>({ api: "/api/diagnosis" }));
-  const { messages, setMessages, sendMessage, regenerate, status, error, clearError, stop } = useChat<DiagnosisUIMessage>({ transport: transport.current });
+  const { messages, setMessages, sendMessage, regenerate, status, error, clearError, stop } = useChat<DiagnosisUIMessage>({
+    transport: transport.current,
+    onFinish: (completion) => setIncompleteResponse(isIncompleteChatResponse(completion)),
+  });
   const busy = status === "submitted" || status === "streaming";
 
   const commit = useCallback((next: ChatState) => {
@@ -215,6 +220,7 @@ export function DiagnosisChat() {
     invalidateReport();
     clearError();
     setCancelled(false);
+    setIncompleteResponse(false);
     setStage("chat");
     if (!quickTopic) setInput("");
     shouldFollow.current = true;
@@ -290,6 +296,7 @@ export function DiagnosisChat() {
     if (busy || sending.current || !configured) return;
     sending.current = true;
     setCancelled(false);
+    setIncompleteResponse(false);
     clearError();
     try { await regenerate({ body: { facts: stateRef.current.facts } }); }
     catch { /* The retry error is shown by useChat. */ }
@@ -307,6 +314,7 @@ export function DiagnosisChat() {
     setStage("chat");
     setLocalNotice("");
     setCancelled(false);
+    setIncompleteResponse(false);
     setResetRequested(false);
     setSummaryOpen(false);
     setShowAllFields(false);
@@ -362,7 +370,7 @@ export function DiagnosisChat() {
               {configured === false && !hasMessages && <p className={styles.localExplanation}>{connectionError ? "AI 연결을 확인하지 못했어요. " : ""}지금은 입력 내용을 기본 규칙으로 정리해요. 요약을 직접 고쳐 보고서를 볼 수 있어요.</p>}
               {localNotice && <div className={styles.localGuidance} role="status"><span>입력 안내</span><p>{localNotice}</p></div>}
               {busy && <div className={styles.thinking} role="status"><span aria-hidden="true" />{status === "submitted" ? "이야기를 읽고 있어요…" : "답변을 작성하고 있어요…"}<button onClick={() => { void stop(); setCancelled(true); }}>응답 중지</button></div>}
-              {(error || cancelled) && <div className={styles.errorNotice} role="alert"><p>{cancelled ? "응답을 중지했어요. 입력 내용은 그대로 남아 있어요." : "답변을 가져오지 못했어요. 입력한 내용은 남아 있으니 다시 시도하거나 요약을 직접 확인해 주세요."}</p><div>{configured && <button disabled={busy} onClick={() => void retryResponse()}><RotateCcw size={15} aria-hidden="true" /> 다시 시도</button>}<button onClick={openReview}>요약 직접 확인</button></div></div>}
+              {(error || incompleteResponse || cancelled) && <div className={styles.errorNotice} role="alert"><p>{cancelled ? "응답을 중지했어요. 입력 내용은 그대로 남아 있어요." : "답변을 가져오지 못했어요. 입력한 내용은 남아 있으니 다시 시도하거나 요약을 직접 확인해 주세요."}</p><div>{configured && <button disabled={busy} onClick={() => void retryResponse()}><RotateCcw size={15} aria-hidden="true" /> 다시 시도</button>}<button onClick={openReview}>요약 직접 확인</button></div></div>}
               {readyForReview && hasMessages && !busy && <button className={styles.inlineReview} onClick={openReview}><FileText size={18} aria-hidden="true" /><span>이제 정리한 내용을 확인해 볼까요?</span><ArrowRight size={18} aria-hidden="true" /></button>}
             </div> : <div className={styles.reviewPanel}>
               <button className={styles.backToChat} onClick={() => setStage("chat")}><ArrowLeft size={16} aria-hidden="true" /> 대화로 돌아가기</button>
