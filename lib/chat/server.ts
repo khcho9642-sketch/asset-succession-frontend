@@ -65,8 +65,10 @@ export type DiagnosisFacts = ChatState["facts"];
 
 export const factProposalSchema = z.object({
   key: z.enum(CHAT_FIELD_KEYS),
-  value: z.string().min(1).max(DIAGNOSIS_LIMITS.proposalValueLength),
-  evidence: z.string().min(1).max(DIAGNOSIS_LIMITS.evidenceLength),
+  value: z.string().min(1).max(DIAGNOSIS_LIMITS.proposalValueLength)
+    .describe("최신 사용자 메시지에서 그대로 연속 발췌한 값입니다. evidence 안에 그대로 포함되어야 하며 의역·요약·단위 변환을 하지 않습니다."),
+  evidence: z.string().min(1).max(DIAGNOSIS_LIMITS.evidenceLength)
+    .describe("값을 뒷받침하는 최신 사용자 메시지의 연속된 원문입니다. 공백과 표현을 바꾸거나 단위를 변환하지 않습니다."),
 }).strict();
 
 export const proposeFactsInputSchema = z.object({
@@ -96,7 +98,7 @@ function evaluateDiagnosisConfiguration() {
   // Credentials are authenticated by the Gateway when the request is made.
   const hasOidc = process.env.VERCEL === "1" || Boolean(process.env.VERCEL_OIDC_TOKEN?.trim());
   const model = (process.env.AI_DIAGNOSIS_MODEL
-    ?? (approvedTrialPreview ? "google/gemini-2.5-flash-lite" : undefined))?.trim();
+    ?? (approvedTrialPreview ? "openai/gpt-4o-mini" : undefined))?.trim();
   if (!model) issues.push("MODEL_MISSING");
   else if (model.length > 160 || !/^[a-z0-9][a-z0-9._-]*\/[a-zA-Z0-9][a-zA-Z0-9._:-]*$/.test(model)) issues.push("MODEL_INVALID");
   if (!apiKey && !hasOidc) issues.push("AUTHENTICATION_MISSING");

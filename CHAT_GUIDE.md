@@ -323,7 +323,7 @@
 `lib/chat/prompt.ts`는 `lib/chat/guide.ts`를 통해 이 파일의 RUNTIME 구간을 서버에서 읽어 AI 지침으로 사용한다. 기존 프롬프트의 대화 정책은 이 구간으로 대체하며, 필드 의미와 비신뢰 초안의 경계는 코드에서 덧붙인다. 로더 연결은 실제 AI 접속·대화 품질·모든 상태 보존 기능의 검증 완료를 뜻하지 않는다.
 
 - 실제 AI 연결 여부는 서버 설정과 연결 상태로 확인한다.
-- 무료 시험 연결에는 활성화 설정, 유효한 모델, Gateway 인증 경로가 필요하다. 일반 배포는 `AI_DIAGNOSIS_FREE_TRIAL_ENABLED=true`와 `AI_DIAGNOSIS_MODEL`을 사용한다. 사용자가 무료 시험을 승인한 `codex/chat-opening-topics`의 Vercel Preview에서는 해당 환경변수가 아예 없을 때만 활성화와 `google/gemini-2.5-flash-lite`를 기본값으로 사용한다. 명시한 비활성 값·빈 값·잘못된 값은 기본값으로 덮어쓰지 않는다. 인증은 서버의 `AI_GATEWAY_API_KEY` 또는 Vercel OIDC를 사용하며 키·토큰을 문서나 브라우저 코드에 넣지 않는다.
+- 무료 시험 연결에는 활성화 설정, 유효한 모델, Gateway 인증 경로가 필요하다. 일반 배포는 `AI_DIAGNOSIS_FREE_TRIAL_ENABLED=true`와 `AI_DIAGNOSIS_MODEL`을 사용한다. 사용자가 무료 시험을 승인한 `codex/chat-opening-topics`의 Vercel Preview에서는 해당 환경변수가 아예 없을 때만 활성화와 `openai/gpt-4o-mini`를 기본값으로 사용한다. 명시한 비활성 값·빈 값·잘못된 값은 기본값으로 덮어쓰지 않는다. 인증은 서버의 `AI_GATEWAY_API_KEY` 또는 Vercel OIDC를 사용하며 키·토큰을 문서나 브라우저 코드에 넣지 않는다.
 - 활성화 스위치가 꺼져 있거나 설정·가이드가 준비되지 않았으면 ‘AI 연결 전 · 입력 정리 모드’를 사용한다. 설정 준비는 실제 인증 성공·무료 잔액·대화 품질 검증을 뜻하지 않는다. 무료 티어와 자동 충전 확인 및 OIDC 설정 조건은 [무료 채팅 시험 안내](docs/vercel-free-chat-trial.md)를 따른다.
 - 입력 정리 모드는 `lib/chat/local.ts`와 `getNextQuestion`의 제한된 규칙을 사용한다. 이 MD를 저장한 것만으로 자연대화 예시가 구현되었다고 보고하지 않는다.
 - 실제 모델의 말투·질문 품질은 연결 후 대화로 검증한다. 모델이나 유료 플랜 선택은 이 문서에서 결정하지 않는다.

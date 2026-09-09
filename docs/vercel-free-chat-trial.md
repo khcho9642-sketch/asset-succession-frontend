@@ -37,11 +37,15 @@
 2026-09-09 시험 설정:
 
 ```env
-AI_DIAGNOSIS_MODEL=google/gemini-2.5-flash-lite
+AI_DIAGNOSIS_MODEL=openai/gpt-4o-mini
 AI_DIAGNOSIS_FREE_TRIAL_ENABLED=true
 ```
 
 적용 범위는 Preview의 `codex/chat-opening-topics` 브랜치다. 모델은 같은 날 [Vercel Free Tier 모델 목록](https://vercel.com/ai-gateway/models?freeTier=true)의 `availableToFreeTier: true` 및 `tool-use`를 확인해 선택했다. 무료 크레딧을 사용하는 모델이며 무제한·영구 무료 모델이라는 뜻은 아니다. 이후 다른 모델로 바꿀 때는 무료 대상 여부를 다시 확인한다.
+
+최초 `google/gemini-2.5-flash-lite` 시험에서는 상속 응답과 사실 카드가 생성됐으나, 다른 가상 사례에서 동일 도구의 반복 호출, 도구 결과 없는 오류 종료, 답변만 생성되고 사실 카드가 빠지는 문제가 관찰됐다. 이 앱의 사실 제안·답변 흐름을 다시 시험하기 위해 단일 모델 설정을 `openai/gpt-4o-mini`로 수동 변경했다. 요청 실패 시 다른 모델을 호출하는 자동 전환은 없다. 새 모델의 실제 응답과 카드 생성은 배포 후 가상 사례로 다시 확인한다.
+
+모델 환경변수가 명시되어 있으면 그 값이 계속 우선한다. 기존 Gemini 값이 배포에 전달되는 경우에는 그 값을 수정해야 하며, 기본값 변경으로 덮어쓰지 않는다.
 
 서버 설정 후 새 Preview 배포에 적용되었는지 확인한다. `GET /api/diagnosis`의 `configured: true`는 가이드와 설정이 준비되었다는 뜻이며, 모델 응답·무료 잔액·대화 품질을 검증했다는 뜻은 아니다.
 
@@ -54,7 +58,7 @@ AI_DIAGNOSIS_FREE_TRIAL_ENABLED=true
 승인된 무료 시험을 진행하기 위해 코드의 비밀이 아닌 설정에 한정된 기본값을 둔다.
 
 - `VERCEL_ENV=preview`와 `VERCEL_GIT_COMMIT_REF=codex/chat-opening-topics`가 모두 정확히 일치해야 한다.
-- 위 조건에서 활성화 변수가 아예 없으면 `true`, 모델 변수가 아예 없으면 `google/gemini-2.5-flash-lite`를 적용한다.
+- 위 조건에서 활성화 변수가 아예 없으면 `true`, 모델 변수가 아예 없으면 `openai/gpt-4o-mini`를 적용한다.
 - 명시한 `false`, 빈 값, 잘못된 모델 값은 기본값으로 덮어쓰지 않는다. 중단할 때는 해당 Preview 환경의 활성화 변수를 `false`로 설정하고 다시 배포한다. 코드의 시험 기본값도 제거할 수 있다.
 - 다른 Preview 브랜치, Production, 로컬에서는 이 기본값을 사용하지 않는다. 배포 환경이나 Git 브랜치 정보가 없을 때도 일반 설정을 요구한다.
 - Vercel 계정의 결제·권한·크레딧·인증 설정은 변경하지 않는다. SDK 재시도나 다른 모델로의 자동 전환도 추가하지 않는다.

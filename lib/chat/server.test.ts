@@ -203,7 +203,7 @@ test("approved trial defaults stay inside the exact Preview branch and explicit 
     }
 
     setEnvironment(approvedPreview);
-    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: undefined, model: "google/gemini-2.5-flash-lite" });
+    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: undefined, model: "openai/gpt-4o-mini" });
     assert.deepEqual(await GET().json(), { configured: true, issues: [] });
 
     // Preview defaults never create credentials or bypass authentication.
