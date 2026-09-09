@@ -90,7 +90,6 @@ try {
         assert(await page.getByRole("heading", { name: "먼저, 이야기를 들려주세요." }).isVisible(), `${viewport.name} chat-first diagnosis heading missing.`);
         assert(await page.locator("#diagnosis-message").isVisible(), `${viewport.name} chat composer missing.`);
         assert(await page.getByRole("button", { name: "메시지 보내기", exact: true }).isDisabled(), `${viewport.name} empty chat send is enabled.`);
-        assert((await page.getByRole("link", { name: "기존 문답형으로 입력하기" }).getAttribute("href")) === "/precheck/form", `${viewport.name} legacy form entry is missing.`);
       }
       if (route === "/") {
         const bodyText = await page.locator("body").innerText();

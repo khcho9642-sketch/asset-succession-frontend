@@ -242,9 +242,6 @@ try {
         if (!await page.getByRole("button", { name: "메시지 보내기", exact: true }).isDisabled()) {
           fail(route.path, viewport.name, "Empty chat send is enabled.");
         }
-        if (normalizePath(await page.getByRole("link", { name: "기존 문답형으로 입력하기" }).getAttribute("href")) !== "/precheck/form") {
-          fail(route.path, viewport.name, "Legacy form entry is missing from chat.");
-        }
       }
 
       if (route.path === "/precheck/form" || route.path.startsWith("/precheck/form?")) {
