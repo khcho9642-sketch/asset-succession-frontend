@@ -81,14 +81,22 @@ type DiagnosisConfigurationIssue =
 
 function evaluateDiagnosisConfiguration() {
   const issues: DiagnosisConfigurationIssue[] = [];
+  // The user approved this branch's free-credit trial and completed account
+  // setup. Its saved settings did not reach Preview, so only this exact
+  // deployment scope gets defaults. Explicit values always override them.
+  const approvedTrialPreview = process.env.VERCEL_ENV === "preview"
+    && process.env.VERCEL_GIT_COMMIT_REF === "codex/chat-opening-topics";
+  const trialEnabled = process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED
+    ?? (approvedTrialPreview ? "true" : undefined);
   // Activation follows an account check: Free credit tier, auto top-up off,
   // and an eligible model. This switch does not verify billing by itself.
-  if (process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED?.trim() !== "true") issues.push("FREE_TRIAL_NOT_ENABLED");
+  if (trialEnabled?.trim() !== "true") issues.push("FREE_TRIAL_NOT_ENABLED");
   const apiKey = process.env.AI_GATEWAY_API_KEY?.trim();
   // On Vercel the SDK also resolves a fresh token from request context.
   // Credentials are authenticated by the Gateway when the request is made.
   const hasOidc = process.env.VERCEL === "1" || Boolean(process.env.VERCEL_OIDC_TOKEN?.trim());
-  const model = process.env.AI_DIAGNOSIS_MODEL?.trim();
+  const model = (process.env.AI_DIAGNOSIS_MODEL
+    ?? (approvedTrialPreview ? "google/gemini-2.5-flash-lite" : undefined))?.trim();
   if (!model) issues.push("MODEL_MISSING");
   else if (model.length > 160 || !/^[a-z0-9][a-z0-9._-]*\/[a-zA-Z0-9][a-zA-Z0-9._:-]*$/.test(model)) issues.push("MODEL_INVALID");
   if (!apiKey && !hasOidc) issues.push("AUTHENTICATION_MISSING");

@@ -10,7 +10,9 @@ const valid = { messages: [user("audit-user")], facts: {} };
 const capability = await fetch(endpoint, { signal: AbortSignal.timeout(10_000) });
 assert.equal(capability.status, 200);
 assert.match(capability.headers.get("cache-control") ?? "", /no-store/);
-assert.deepEqual(await capability.json(), { configured: false }, "Run the API audit on a server without AI configuration; no provider requests are allowed.");
+const readiness = await capability.json();
+assert.equal(readiness.configured, false, "Run the API audit on a server without AI configuration; no provider requests are allowed.");
+assert(readiness.issues?.some((issue) => ["FREE_TRIAL_NOT_ENABLED", "MODEL_MISSING", "MODEL_INVALID", "AUTHENTICATION_MISSING"].includes(issue)), "A missing guide alone is not a safe no-provider audit setup.");
 
 const observations = [];
 async function check(name, { body = valid, headers = {}, raw = false } = {}, status = 400, code = "INVALID_REQUEST") {
@@ -57,3 +59,4 @@ await check("oversize body bytes", { body: " ".repeat(128 * 1024 + 1), raw: true
 await check("valid request without configured provider", {}, 503, "AI_NOT_CONFIGURED");
 
 console.log(JSON.stringify({ status: "passed", baseURL, providerInvoked: false, observations }, null, 2));
+

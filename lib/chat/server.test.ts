@@ -77,6 +77,8 @@ test("capability and route failures are honest, bounded, and never reveal config
   const previousEnabled = process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
   const previousOidc = process.env.VERCEL_OIDC_TOKEN;
   const previousVercel = process.env.VERCEL;
+  const previousVercelEnvironment = process.env.VERCEL_ENV;
+  const previousVercelBranch = process.env.VERCEL_GIT_COMMIT_REF;
   const originalFetch = globalThis.fetch;
   let fetchCalls = 0;
   globalThis.fetch = async () => {
@@ -89,6 +91,8 @@ test("capability and route failures are honest, bounded, and never reveal config
     delete process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
     delete process.env.VERCEL_OIDC_TOKEN;
     delete process.env.VERCEL;
+    delete process.env.VERCEL_ENV;
+    delete process.env.VERCEL_GIT_COMMIT_REF;
     assert.deepEqual(await GET().json(), { configured: false, issues: ["FREE_TRIAL_NOT_ENABLED", "MODEL_MISSING", "AUTHENTICATION_MISSING"] });
     const unconfigured = await POST(request(validBody));
     assert.equal(unconfigured.status, 503);
@@ -159,5 +163,72 @@ test("capability and route failures are honest, bounded, and never reveal config
     else process.env.VERCEL_OIDC_TOKEN = previousOidc;
     if (previousVercel === undefined) delete process.env.VERCEL;
     else process.env.VERCEL = previousVercel;
+    if (previousVercelEnvironment === undefined) delete process.env.VERCEL_ENV;
+    else process.env.VERCEL_ENV = previousVercelEnvironment;
+    if (previousVercelBranch === undefined) delete process.env.VERCEL_GIT_COMMIT_REF;
+    else process.env.VERCEL_GIT_COMMIT_REF = previousVercelBranch;
+  }
+});
+
+test("approved trial defaults stay inside the exact Preview branch and explicit settings override them", async (context) => {
+  const keys = ["AI_GATEWAY_API_KEY", "AI_DIAGNOSIS_MODEL", "AI_DIAGNOSIS_FREE_TRIAL_ENABLED", "VERCEL_OIDC_TOKEN", "VERCEL", "VERCEL_ENV", "VERCEL_GIT_COMMIT_REF"];
+  const previous = new Map(keys.map((key) => [key, process.env[key]]));
+  const approvedPreview = { VERCEL: "1", VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "codex/chat-opening-topics" };
+  let fetchCalls = 0;
+  context.mock.method(globalThis, "fetch", async () => {
+    fetchCalls += 1;
+    throw new Error("Readiness tests must never call a provider");
+  });
+  const setEnvironment = (values: Record<string, string>) => {
+    for (const key of keys) delete process.env[key];
+    for (const [key, value] of Object.entries(values)) process.env[key] = value;
+  };
+  try {
+    const nonTrialEnvironments: Record<string, string>[] = [
+      {},
+      { VERCEL_OIDC_TOKEN: "unit-test-local-oidc" },
+      { ...approvedPreview, VERCEL_ENV: "production" },
+      { ...approvedPreview, VERCEL_GIT_COMMIT_REF: "codex/unrelated-preview" },
+      { ...approvedPreview, VERCEL_GIT_COMMIT_REF: "" },
+      { ...approvedPreview, VERCEL_ENV: "" },
+    ];
+    for (const environment of nonTrialEnvironments) {
+      setEnvironment(environment);
+      assert.equal(getDiagnosisConfiguration(), null);
+      const readiness = await GET().json();
+      assert.equal(readiness.configured, false);
+      assert.ok(readiness.issues.includes("FREE_TRIAL_NOT_ENABLED"));
+      assert.ok(readiness.issues.includes("MODEL_MISSING"));
+      assert.equal((await POST(request(validBody))).status, 503);
+    }
+
+    setEnvironment(approvedPreview);
+    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: undefined, model: "google/gemini-2.5-flash-lite" });
+    assert.deepEqual(await GET().json(), { configured: true, issues: [] });
+
+    // Preview defaults never create credentials or bypass authentication.
+    delete process.env.VERCEL;
+    assert.deepEqual(await GET().json(), { configured: false, issues: ["AUTHENTICATION_MISSING"] });
+
+    for (const flag of ["false", " false ", "", "FALSE", "1", "TRUE"]) {
+      setEnvironment({ ...approvedPreview, AI_DIAGNOSIS_FREE_TRIAL_ENABLED: flag });
+      assert.equal(getDiagnosisConfiguration(), null);
+      assert.deepEqual(await GET().json(), { configured: false, issues: ["FREE_TRIAL_NOT_ENABLED"] });
+      assert.equal((await POST(request(validBody))).status, 503);
+    }
+    for (const model of ["", "  ", "https://elsewhere.test/model", "provider/one,provider/two"]) {
+      setEnvironment({ ...approvedPreview, AI_DIAGNOSIS_MODEL: model });
+      assert.equal(getDiagnosisConfiguration(), null);
+      assert.deepEqual(await GET().json(), { configured: false, issues: [model.trim() ? "MODEL_INVALID" : "MODEL_MISSING"] });
+      assert.equal((await POST(request(validBody))).status, 503);
+    }
+    setEnvironment({ ...approvedPreview, AI_DIAGNOSIS_MODEL: "test/explicit", AI_DIAGNOSIS_FREE_TRIAL_ENABLED: " true " });
+    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: undefined, model: "test/explicit" });
+    assert.equal(fetchCalls, 0);
+  } finally {
+    for (const [key, value] of previous) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
   }
 });
