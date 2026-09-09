@@ -76,8 +76,7 @@ async function setField(page, key, value) {
 async function openReview(page) {
   const heading = page.getByRole("heading", { name: "제가 전한 상황과 맞나요?", exact: true });
   if (await heading.isVisible()) return;
-  const button = page.getByRole("button", { name: "정리 내용 확인하기", exact: true });
-  if (!await button.isVisible()) await page.getByRole("button", { name: /현재 정리된 내용/ }).click();
+  const button = page.getByRole("button", { name: "이제 정리한 내용을 확인해 볼까요?", exact: true });
   await button.click();
   await heading.waitFor();
 }

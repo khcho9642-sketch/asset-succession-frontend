@@ -89,8 +89,7 @@ async function send(page, text) {
 }
 
 async function openReview(page) {
-  const review = page.getByRole("button", { name: "정리 내용 확인하기", exact: true });
-  if (!await review.isVisible()) await page.getByRole("button", { name: /현재 정리된 내용/ }).click();
+  const review = page.getByRole("button", { name: "이제 정리한 내용을 확인해 볼까요?", exact: true });
   await review.click();
   await page.getByRole("heading", { name: "제가 전한 상황과 맞나요?" }).waitFor();
   await page.locator("[data-tax-editor]").waitFor();
