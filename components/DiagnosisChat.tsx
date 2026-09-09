@@ -410,7 +410,6 @@ export function DiagnosisChat() {
           </div>
         </aside>}
       </div>
-      <div className={styles.footer}><span>자산승계360 · 우리 가족의 다음을 준비하는 시간</span><Link href={`/precheck/form${topic ? `?purpose=${encodeURIComponent(params.get("purpose") ?? "")}` : ""}`}>기존 문답형으로 입력하기 <ArrowRight size={13} aria-hidden="true" /></Link></div>
     </section>
   );
 }

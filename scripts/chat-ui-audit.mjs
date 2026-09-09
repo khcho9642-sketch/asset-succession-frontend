@@ -63,7 +63,6 @@ async function openChat(page, { purpose = "", configured = false } = {}) {
   assert(response?.ok(), "Chat route did not return HTTP success");
   await page.getByRole("heading", { name: "먼저, 이야기를 들려주세요." }).waitFor();
   await page.getByText(configured ? "AI와 대화 중" : "AI 연결 전 · 입력 정리 모드", { exact: true }).waitFor();
-  assert(await page.getByRole("link", { name: "기존 문답형으로 입력하기" }).isVisible(), "Legacy form entry is missing");
 }
 
 async function assertNoOverflow(page, label) {
