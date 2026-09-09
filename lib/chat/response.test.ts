@@ -1,8 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { Chat } from "@ai-sdk/react";
+import { DefaultChatTransport } from "ai";
 import type { ChatOnFinishCallback, UIMessage, UIMessageChunk } from "ai";
-import { isIncompleteChatResponse } from "./response";
+import { getChatErrorNotice, isIncompleteChatResponse } from "./response";
 
 type ChatFinish = Parameters<ChatOnFinishCallback<UIMessage>>[0];
 
@@ -103,4 +104,50 @@ test("partial text cannot hide an error finish and explicit cancellation retains
   await chat.sendMessage({ text: "양도" });
   assert.equal(isIncompleteChatResponse(completions[0]), true);
   assert.equal(isIncompleteChatResponse({ ...completions[0], isAbort: true }), false);
+});
+
+test("SSE rate-limit errors show a fixed notice without provider text", async () => {
+  const { chat, completions } = createSyntheticChat([[
+    { type: "start", messageId: "rate-limited" },
+    { type: "error", errorText: "[AI_RATE_LIMITED] private-provider-token-and-input" },
+  ]]);
+  await chat.sendMessage({ text: "아들" });
+  assert.equal(chat.status, "error");
+  assert.equal(isIncompleteChatResponse(completions[0]), true);
+  assert.equal(getChatErrorNotice(chat.error), "AI 요청 한도에 도달했어요. 잠시 후 다시 시도해 주세요. 입력한 내용은 그대로 남아 있어요.");
+});
+
+test("HTTP JSON error codes are recognized through the real transport with a local response", async () => {
+  let localResponses = 0;
+  const chat = new Chat<UIMessage>({
+    transport: new DefaultChatTransport({
+      api: "https://example.test/api/diagnosis",
+      fetch: async () => {
+        localResponses += 1;
+        return Response.json({ error: { code: "AI_RATE_LIMITED", message: "private-provider-token-and-input" } }, { status: 429 });
+      },
+    }),
+  });
+  await chat.sendMessage({ text: "아들" });
+  assert.equal(localResponses, 1);
+  assert.equal(chat.status, "error");
+  assert.equal(getChatErrorNotice(chat.error), "AI 요청 한도에 도달했어요. 잠시 후 다시 시도해 주세요. 입력한 내용은 그대로 남아 있어요.");
+});
+
+test("unknown or embedded codes and raw provider content never become notices", () => {
+  const generic = getChatErrorNotice(undefined);
+  for (const message of [
+    "private-provider-token-and-input 429",
+    "private-provider-token-and-input [AI_RATE_LIMITED]",
+    "[AI_RATE_LIMITED_EXTRA] private-provider-token-and-input",
+    "[AI_RATE_LIMITED]suffix-without-boundary",
+    "[AI_CREDIT_REQUIRED] private-provider-token-and-input",
+    JSON.stringify({ error: { message: "[AI_RATE_LIMITED] private-provider-token-and-input" } }),
+    JSON.stringify({ code: "AI_RATE_LIMITED", message: "private-provider-token-and-input" }),
+    JSON.stringify({ error: { code: "UNRECOGNIZED", message: "private-provider-token-and-input" } }),
+    "[AI_RATE_LIMITED] " + "x".repeat(8_192),
+  ]) {
+    assert.equal(getChatErrorNotice(new Error(message)), generic);
+  }
+  assert.equal(generic.includes("private-provider-token-and-input"), false);
 });
