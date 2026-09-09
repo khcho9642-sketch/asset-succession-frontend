@@ -88,6 +88,7 @@ type DiagnosisConfigurationIssue =
 // Standard input/output are free only when the key belongs to a Google
 // Free Tier project (official pricing checked 2026-09-09).
 export const DEFAULT_GOOGLE_DIAGNOSIS_MODEL = "gemini-3.8-flash";
+export const BACKUP_GOOGLE_DIAGNOSIS_MODEL = "gemini-3.5-flash-lite";
 
 function evaluateDiagnosisConfiguration() {
   const issues: DiagnosisConfigurationIssue[] = [];

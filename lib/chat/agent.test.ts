@@ -19,11 +19,11 @@ type GoogleRequestBody = {
   generationConfig: {
     maxOutputTokens: number;
     thinkingConfig: { thinkingLevel: string };
-    responseMimeType: string;
-    responseSchema: { properties: Record<string, unknown> };
+    responseMimeType?: string;
+    responseSchema?: { properties: Record<string, unknown> };
   };
-  toolConfig: { functionCallingConfig: { mode: string } };
-  tools: Array<{ functionDeclarations?: Array<{ name: string }> }>;
+  toolConfig?: { functionCallingConfig: { mode: string } };
+  tools?: Array<{ functionDeclarations?: Array<{ name: string }> }>;
   contents: Array<{
     role: string;
     parts: Array<{
@@ -99,13 +99,16 @@ test("Google SDK preserves quoted facts, thinking signature and choice reply acr
   for (const request of requests) {
     assert.equal(request.generationConfig.maxOutputTokens, 3_000);
     assert.equal(request.generationConfig.thinkingConfig.thinkingLevel, "low");
-    assert.equal(request.generationConfig.responseMimeType, "application/json");
-    assert.ok(request.generationConfig.responseSchema.properties.message);
-    assert.ok(request.generationConfig.responseSchema.properties.choices);
   }
-  assert.ok(requests[0].tools.some((tool) => tool.functionDeclarations?.some((declaration) => declaration.name === "proposeFacts")));
-  assert.equal(requests[0].toolConfig.functionCallingConfig.mode, "AUTO");
-  assert.equal(requests[1].toolConfig.functionCallingConfig.mode, "NONE");
+  assert.equal(requests[0].generationConfig.responseMimeType, undefined);
+  assert.equal(requests[0].generationConfig.responseSchema, undefined);
+  assert.ok(requests[0].tools?.some((tool) => tool.functionDeclarations?.some((declaration) => declaration.name === "proposeFacts")));
+  assert.equal(requests[0].toolConfig?.functionCallingConfig.mode, "AUTO");
+  assert.equal(requests[1].generationConfig.responseMimeType, "application/json");
+  assert.ok(requests[1].generationConfig.responseSchema?.properties.message);
+  assert.ok(requests[1].generationConfig.responseSchema?.properties.choices);
+  assert.equal(requests[1].tools, undefined);
+  assert.equal(requests[1].toolConfig, undefined);
   const replayedParts = requests[1].contents.flatMap((content) => content.parts);
   assert.equal(replayedParts.find((part) => part.functionCall?.name === "proposeFacts")?.thoughtSignature, signature);
   assert.deepEqual(replayedParts.find((part) => part.functionResponse?.name === "proposeFacts")?.functionResponse?.response.content, { proposals: accepted });
@@ -118,7 +121,7 @@ test("Google SDK preserves quoted facts, thinking signature and choice reply acr
   assert.ok(chunks.some((chunk) => chunk.type === "finish" && chunk.finishReason === "stop"));
 });
 
-test("Google SDK authentication and quota failures never retry or fall back to another provider", async (t) => {
+test("An individual Google agent attempt never retries authentication or quota failures", async (t) => {
   for (const status of [403, 429]) {
     await t.test(`HTTP ${status} makes one direct request`, async (subtest) => {
       let calls = 0;

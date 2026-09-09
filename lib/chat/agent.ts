@@ -1,4 +1,4 @@
-import { isStepCount, Output, ToolLoopAgent, tool, type InferAgentUIMessage } from "ai";
+import { isStepCount, Output, ToolLoopAgent, tool, wrapLanguageModel, type InferAgentUIMessage } from "ai";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { diagnosisReplySchema } from "./choices";
 import { applyChatPatches, createChatState, type ChatPatch, type ChatState } from "./intake";
@@ -43,10 +43,16 @@ message는 고객에게 보여 줄 답변과 다음 질문, choices는 그 질�
 여러 키의 제안을 한 호출의 facts 배열 하나에 담고, 같은 키를 중복 제출하거나 도구를 여러 번 호출하지 않습니다.
 메시지에 없는 사실이나 키는 채우지 않습니다. 관련 사실이 전혀 없는 경우에만 빈 facts 배열을 제출합니다.
 도구 결과를 받은 뒤 다음 단계에서 고객용 답변을 작성합니다.`;
-  // Google Developer API directly; no Gateway/OIDC or provider fallback.
+  // Each attempt uses Google Developer API directly; fallback is orchestrated separately.
   const google = createGoogleGenerativeAI({ apiKey });
+  const replyModel = google(model);
+  // Extraction uses function calling; only the final response needs JSON output.
+  const extractionModel = wrapLanguageModel({
+    model: replyModel,
+    middleware: { transformParams: async ({ params }) => ({ ...params, responseFormat: undefined }) },
+  });
   return new ToolLoopAgent({
-    model: google(model),
+    model: replyModel,
     instructions,
     output: Output.object({ schema: diagnosisReplySchema }),
     maxOutputTokens: 3_000,
@@ -66,8 +72,8 @@ message는 고객에게 보여 줄 답변과 다음 질문, choices는 그 질�
     // response ends without text. Use automatic selection with a distinct
     // extraction step, then restore the guide for the tool-free response.
     prepareStep: ({ stepNumber }) => stepNumber === 0
-      ? { toolChoice: "auto", instructions: factStepInstructions }
-      : { toolChoice: "none", instructions },
+      ? { model: extractionModel, toolChoice: "auto", instructions: factStepInstructions }
+      : { model: replyModel, toolChoice: "none", activeTools: [], instructions },
     // The installed SDK forwards prepareCall's options to streamText. Override
     // its default console.error handler so provider errors never log intake data.
     prepareCall: (options) => ({ ...options, onError: () => undefined }),

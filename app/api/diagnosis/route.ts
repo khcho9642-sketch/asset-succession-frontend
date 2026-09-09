@@ -1,5 +1,4 @@
-import { createAgentUIStreamResponse } from "ai";
-import { createDiagnosisAgent } from "../../../lib/chat/agent";
+import { createDiagnosisResponse } from "../../../lib/chat/fallback";
 import { loadChatGuideRuntime } from "../../../lib/chat/guide";
 import { assertSameOrigin, diagnosisRequestSchema, DiagnosisRequestError, getDiagnosisConfiguration, getDiagnosisConfigurationStatus, getDiagnosisPublicErrorCode, readDiagnosisBody } from "../../../lib/chat/server";
 
@@ -36,15 +35,16 @@ export async function POST(request: Request) {
     if (!configuration) {
       return failure(503, "AI_NOT_CONFIGURED", "현재 AI 대화가 연결되어 있지 않습니다. 직접 입력으로 상담 준비를 계속할 수 있습니다.");
     }
+    // Validate deployment prerequisites before opening the asynchronous stream.
+    // A missing guide is a setup failure, not a reason to call a backup model.
+    loadChatGuideRuntime();
     const { messages, facts } = parsed.data;
-    return await createAgentUIStreamResponse({
-      agent: createDiagnosisAgent({ ...configuration, messages, facts }),
-      uiMessages: messages.filter((message) => message.parts[0].text.trim()),
+    return createDiagnosisResponse({
+      ...configuration,
+      messages,
+      facts,
       abortSignal: request.signal,
-      timeout: { totalMs: 45_000, firstChunkMs: 25_000, chunkMs: 15_000 },
-      sendReasoning: false,
       headers,
-      onError: (error) => `[${getDiagnosisPublicErrorCode(error)}] AI 응답을 완료하지 못했습니다. 잠시 후 다시 시도하거나 직접 입력으로 계속해 주세요.`,
     });
   } catch (error) {
     if (error instanceof DiagnosisRequestError) return failure(error.status, error.code, error.message);
