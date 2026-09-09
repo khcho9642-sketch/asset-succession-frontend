@@ -98,7 +98,7 @@ function evaluateDiagnosisConfiguration() {
   // Credentials are authenticated by the Gateway when the request is made.
   const hasOidc = process.env.VERCEL === "1" || Boolean(process.env.VERCEL_OIDC_TOKEN?.trim());
   const model = (process.env.AI_DIAGNOSIS_MODEL
-    ?? (approvedTrialPreview ? "openai/gpt-4o-mini" : undefined))?.trim();
+    ?? (approvedTrialPreview ? "openai/gpt-5.4-mini" : undefined))?.trim();
   if (!model) issues.push("MODEL_MISSING");
   else if (model.length > 160 || !/^[a-z0-9][a-z0-9._-]*\/[a-zA-Z0-9][a-zA-Z0-9._:-]*$/.test(model)) issues.push("MODEL_INVALID");
   if (!apiKey && !hasOidc) issues.push("AUTHENTICATION_MISSING");

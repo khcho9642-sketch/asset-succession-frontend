@@ -40,6 +40,10 @@ export function createDiagnosisAgent({
     model: gateway(model),
     instructions,
     maxOutputTokens: 3_000,
+    // Keep the trial's reasoning and response work within its existing budget.
+    providerOptions: model === "openai/gpt-5.4-mini"
+      ? { openai: { reasoningEffort: "low" } }
+      : undefined,
     maxRetries: 0,
     stopWhen: isStepCount(2),
     telemetry: { isEnabled: false, recordInputs: false, recordOutputs: false },
