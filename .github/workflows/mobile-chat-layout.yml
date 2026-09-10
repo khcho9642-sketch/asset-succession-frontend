@@ -4,9 +4,10 @@ on:
   push:
     branches: [codex/chat-opening-topics]
     paths:
-      - scripts/apply-mobile-chat-layout.py
-      - scripts/mobile-diagnosis-ui-audit.py
+      - components/DiagnosisChat.tsx
+      - components/DiagnosisChat.module.css
       - components/useDiagnosisViewport.ts
+      - scripts/mobile-diagnosis-ui-audit.py
       - .github/workflows/mobile-chat-layout.yml
 
 permissions:
@@ -18,59 +19,78 @@ concurrency:
 
 jobs:
   verify-mobile-chat:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 12
-    permissions:
-      contents: write
+    timeout-minutes: 8
     env:
-      NEXT_TELEMETRY_DISABLED: '1'
       PYTHONUNBUFFERED: '1'
+      MOBILE_CHAT_BASE_URL: https://frontend-prototype-git-codex-chat-0328a9-khcho98-6477s-projects.vercel.app
+      MOBILE_CHAT_PROOF_DIR: .tmp/mobile-chat-live-proof
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.sha }}
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install dependencies
+      - name: Prepare browser
         run: |
-          npm ci --no-audit --no-fund
           python -m pip install --disable-pip-version-check playwright
           python -m playwright install --with-deps chromium
-      - name: Apply the exact scoped patch
-        run: python scripts/apply-mobile-chat-layout.py
-      - name: Lint and build
+      - name: Wait for the mobile layout deployment
         run: |
-          npx eslint components/DiagnosisChat.tsx components/useDiagnosisViewport.ts
-          npm run build
-      - name: Start local production build
-        run: |
-          mkdir -p .tmp/mobile-chat-proof
-          npm run start > .tmp/mobile-chat-proof/server.log 2>&1 &
-          for i in $(seq 1 40); do curl -fsS http://127.0.0.1:3000/precheck > /dev/null && break; sleep 2; done
-      - name: Verify full mobile chat and keyboard viewport changes
+          python - <<'PY'
+          import os,time,urllib.request
+          base=os.environ['MOBILE_CHAT_BASE_URL']
+          deadline=time.monotonic()+180
+          while True:
+              try:
+                  req=urllib.request.Request(base+'/precheck',headers={'Cache-Control':'no-cache'})
+                  with urllib.request.urlopen(req,timeout=20) as response:
+                      html=response.read().decode()
+                  if 'data-chat-layout="mobile-fit-v1"' in html: break
+              except Exception as error: print(type(error).__name__, str(error)[:160])
+              if time.monotonic()>deadline: raise RuntimeError('Updated preview not yet readable')
+              time.sleep(10)
+          PY
+      - name: Verify deployed layout with synthetic conversations and keyboard viewport changes
         run: python scripts/mobile-diagnosis-ui-audit.py
-      - name: Commit only the verified chat component and scoped stylesheet
+      - name: Check unclipped buttons and capture ordinary visitor sessions
         run: |
-          git fetch origin codex/chat-opening-topics
-          test "$(git rev-parse FETCH_HEAD)" = "${{ github.sha }}"
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add components/DiagnosisChat.tsx components/DiagnosisChat.module.css
-          if ! git diff --cached --quiet; then
-            git commit -m 'fix: fit mobile diagnosis and composer inside visible viewport'
-            git push origin HEAD:codex/chat-opening-topics
-          fi
-      - name: Save test screenshots and verification
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright,expect
+          out=Path(os.environ['MOBILE_CHAT_PROOF_DIR'])
+          checks=[]
+          with sync_playwright() as p:
+              browser=p.chromium.launch()
+              for width,height in [(320,568),(360,672),(375,667)]:
+                  context=browser.new_context(viewport={'width':width,'height':height},is_mobile=True,has_touch=True,device_scale_factor=1)
+                  page=context.new_page()
+                  response=page.goto(os.environ['MOBILE_CHAT_BASE_URL']+'/precheck',wait_until='networkidle')
+                  assert response and response.status==200
+                  expect(page.locator('[data-chat-layout="mobile-fit-v1"]')).to_be_visible()
+                  page.wait_for_timeout(200)
+                  log=page.get_by_role('log',name='대화 내용').bounding_box()
+                  for name in ['상속','증여','양도','가업상속']:
+                      button=page.get_by_role('button',name=name,exact=True)
+                      box=button.bounding_box()
+                      assert box['y'] >= log['y'] and box['y']+box['height'] <= log['y']+log['height']+1, (name,box,log)
+                      assert button.evaluate('(e)=>{const r=e.getBoundingClientRect();return e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2));}'), name+' obscured'
+                  for element in [page.locator('#diagnosis-message'),page.get_by_role('button',name='메시지 보내기',exact=True)]:
+                      box=element.bounding_box()
+                      assert box['y']+box['height']<=height
+                      assert element.evaluate('(e)=>{const r=e.getBoundingClientRect();return e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2));}'), 'Composer obscured'
+                  assert page.locator('vercel-live-feedback,vercel-toolbar,[data-vercel-toolbar]').count()==0
+                  page.screenshot(path=str(out/f'deployed-opening-{width}.png'))
+                  checks.append({'width':width,'height':height,'buttons_inside_scroll_area':True,'composer_unobscured':True,'toolbar_absent':True,'api_mocked':False})
+                  context.close()
+              browser.close()
+          (out/'live-layout-verification.json').write_text(json.dumps(checks,ensure_ascii=False,indent=2))
+          PY
+      - name: Save deployed screenshots and verification
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: mobile-chat-layout-proof
-          path: .tmp/mobile-chat-proof/
+          name: mobile-chat-live-proof
+          path: .tmp/mobile-chat-live-proof/
           include-hidden-files: true
           retention-days: 7
