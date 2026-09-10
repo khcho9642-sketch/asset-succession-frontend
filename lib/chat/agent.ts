@@ -10,7 +10,11 @@ export const diagnosisTurnSchema = proposeFactsInputSchema.extend({
   // New model responses must state the interaction mode. The standalone
   // reply parser still accepts older saved conversations without this field.
   selectionMode: diagnosisSelectionModeSchema,
-}).strict();
+}).strict().superRefine((value, context) => {
+  if (value.inputMode === "assetAmounts" && (value.selectionMode !== "multiple" || value.choices.length === 0)) {
+    context.addIssue({ code: "custom", path: ["inputMode"], message: "assetAmounts requires multiple non-empty choices" });
+  }
+});
 
 export function acceptFactProposals(facts: ChatPatch[], latestMessage: { id: string; text: string }): ChatPatch[] {
   const state = createChatState();

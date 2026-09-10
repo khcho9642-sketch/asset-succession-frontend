@@ -24,6 +24,8 @@ test("structured replies require strict complete content and trim labels", () =>
     { message: "알려주세요.", choices: [{ label: "아들", value: "다른 값" }] },
     { message: "알려주세요.", choices: ["아들"], selectionMode: "many" },
     { message: "알려주세요.", choices: ["아들"], inputMode: "money" },
+    { message: "알려주세요.", choices: ["부동산"], selectionMode: "single", inputMode: "assetAmounts" },
+    { message: "알려주세요.", choices: [], selectionMode: "multiple", inputMode: "assetAmounts" },
     { message: "알려주세요.", choices: ["아들"], hiddenValue: "다른 값" },
     { message: "알려주세요." },
     { choices: [] },

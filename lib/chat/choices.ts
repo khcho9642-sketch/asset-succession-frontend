@@ -31,6 +31,7 @@ export function getAssistantReply(raw: string): DiagnosisReply | null {
     try {
       const parsed = diagnosisReplySchema.safeParse(JSON.parse(text));
       if (!parsed.success) return null;
+      if (parsed.data.inputMode === "assetAmounts" && (parsed.data.selectionMode !== "multiple" || parsed.data.choices.length === 0)) return null;
       return { ...parsed.data, choices: [...new Set(parsed.data.choices)] };
     } catch {
       return null;

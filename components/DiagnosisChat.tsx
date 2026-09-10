@@ -474,7 +474,7 @@ function ReplyChoices({
   const [amounts, setAmounts] = useState<Record<string, string>>({});
   const [unknownAmounts, setUnknownAmounts] = useState<string[]>([]);
   const multiple = reply.selectionMode === "multiple";
-  const assetAmounts = reply.inputMode === "assetAmounts";
+  const assetAmounts = multiple && reply.inputMode === "assetAmounts";
   const orderedSelection = reply.choices.filter(choice => selected.includes(choice));
   const amountsComplete = orderedSelection.length > 0 && orderedSelection.every(choice => unknownAmounts.includes(choice) || VALID_EOK_AMOUNT.test(amounts[choice] ?? ""));
   const answer = assetAmounts
@@ -489,11 +489,20 @@ function ReplyChoices({
   const unknownCount = orderedSelection.filter(choice => unknownAmounts.includes(choice)).length;
 
   function toggle(choice: string) {
-    setSelected(previous => {
-      if (previous.includes(choice)) return previous.filter(value => value !== choice);
-      if (EXCLUSIVE_MULTI_CHOICE.test(choice)) return [choice];
-      return [...previous.filter(value => !EXCLUSIVE_MULTI_CHOICE.test(value)), choice];
-    });
+    if (selected.includes(choice)) {
+      setSelected(previous => previous.filter(value => value !== choice));
+      if (assetAmounts) {
+        setAmounts(previous => {
+          const next = { ...previous };
+          delete next[choice];
+          return next;
+        });
+        setUnknownAmounts(previous => previous.filter(value => value !== choice));
+      }
+      return;
+    }
+    if (EXCLUSIVE_MULTI_CHOICE.test(choice)) setSelected([choice]);
+    else setSelected(previous => [...previous.filter(value => !EXCLUSIVE_MULTI_CHOICE.test(value)), choice]);
   }
 
   function changeAmount(choice: string, raw: string) {
