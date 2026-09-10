@@ -31,8 +31,6 @@ def read(path: str) -> bytes:
         return response.read()
 
 
-# Let the preview deployment catch up with this commit, rather than inspecting
-# the old white or report-specific header and calling it the new version.
 deadline = time.monotonic() + 240
 while True:
     try:
@@ -43,10 +41,12 @@ while True:
     if time.monotonic() > deadline:
         raise RuntimeError("The shared header was not available on every preview route within 240 seconds")
     time.sleep(10)
+print("Shared header found on all seven preview routes", flush=True)
 
 assert len(manifest["pages"]) == 7
 for item in manifest["pages"]:
     assert hashlib.sha256(read(item["image"])).hexdigest() == item["sha256"], item["image"]
+print("All seven report image hashes match the unchanged manifest", flush=True)
 
 METRICS = """header => {
   const rect = element => {
@@ -77,16 +77,21 @@ with sync_playwright() as p:
         assert response and response.status == 200, path
         expect(page.locator("[data-public-header]")).to_have_count(1)
         page.evaluate("document.fonts.ready")
-        page.locator("[data-public-header]").evaluate("async h => { await Promise.all(Array.from(h.querySelectorAll('img')).map(i => i.decode())); }")
+        # Desktop and mobile variants are both in the DOM. A hidden lazy image
+        # need not load or decode until its breakpoint makes it visible.
+        page.wait_for_function("Array.from(document.querySelectorAll('[data-public-header] img')).filter(i => i.getBoundingClientRect().width > 0).every(i => i.complete && i.naturalWidth > 0)", timeout=15000)
         page.mouse.move(0, 0)
 
     for width in [1440, 1024, 768, 375, 320]:
         page.set_viewport_size({"width": width, "height": 1000 if width >= 768 else 812})
         reference = None
         for path in ROUTES:
+            print(f"Checking {width}px {path}", flush=True)
             visit(path)
             header = page.locator("[data-public-header]")
             metrics = header.evaluate(METRICS)
+            slug = path.strip("/").replace("/", "-") or "home"
+            shot = header.screenshot(path=str(OUT / f"header-{slug}-{width}.png"), animations="disabled")
             if reference is None:
                 reference = metrics
             assert metrics == reference, json.dumps({"route":path,"width":width,"expected":reference,"actual":metrics}, ensure_ascii=False)
@@ -102,13 +107,12 @@ with sync_playwright() as p:
             assert kakao[0]["rect"]["x"] < expert["rect"]["x"], "Kakao must stay to the left of expert consultation"
             if width >= 1024:
                 assert [link["label"] for link in metrics["links"]][1:5] == ["양도", "상속", "증여", "가업승계"]
-            slug = path.strip("/").replace("/", "-") or "home"
-            shot = header.screenshot(path=str(OUT / f"header-{slug}-{width}.png"), animations="disabled")
             records.append({"route":path,"width":width,"metrics":metrics,"header_image_sha256":hashlib.sha256(shot).hexdigest()})
+            (OUT / "progress.json").write_text(json.dumps(records, ensure_ascii=False, indent=2), encoding="utf-8")
             if path in ["/", "/precheck", "/sample-report"] and width in [1440, 375]:
                 page.screenshot(path=str(OUT / f"page-{slug}-{width}.png"), animations="disabled")
 
-    # The report viewer keeps its own second-row controls and fixed A4 canvas.
+    print("All 35 header comparisons passed; checking report controls", flush=True)
     page.set_viewport_size({"width":1440,"height":1000})
     visit("/sample-report")
     viewer = page.locator("[data-sample-viewer]")
@@ -132,11 +136,9 @@ with sync_playwright() as p:
     page.get_by_role("button", name="기본 화면", exact=True).click()
     expect(viewer).to_have_attribute("data-expanded", "false")
 
-    # Mobile menu must paint above the report toolbar and remain keyboard usable.
     page.set_viewport_size({"width":375,"height":812})
     visit("/sample-report")
-    toggle = page.get_by_role("button", name="메뉴 열기", exact=True)
-    toggle.click()
+    page.get_by_role("button", name="메뉴 열기", exact=True).click()
     menu = page.locator("#mobile-diagnosis-menu")
     expect(menu).to_be_visible()
     assert menu.get_by_role("link", name="양도", exact=True).evaluate("e => { const r=e.getBoundingClientRect(); return e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)); }")
