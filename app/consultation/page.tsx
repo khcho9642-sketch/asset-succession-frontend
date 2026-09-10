@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Check, Mail, Phone } from "lucide-react";
+import { ArrowRight, Check, Mail, MessageCircle, Phone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { PublicNav } from "@/components/PublicNav";
 import { readAssessmentFromSession } from "@/lib/assessment";
+import { KAKAO_OPEN_CHAT_URL } from "@/lib/contactLinks";
 import homeStyles from "@/components/HomePage.module.css";
 import styles from "./Consultation.module.css";
 
@@ -70,6 +71,10 @@ export default function ConsultationPage() {
             <p className={styles.sectionLabel}>직접 문의</p>
             <h2 id="professional-name">조경호 <span>회계사</span></h2>
             <address className={styles.contacts}>
+              <a href={KAKAO_OPEN_CHAT_URL} target="_blank" rel="noopener noreferrer"
+                aria-label="카카오톡 상담 (새 창)">
+                <MessageCircle size={19} aria-hidden="true" /><span>카카오톡 상담</span>
+              </a>
               <a href="tel:01089309642" className={styles.phoneLink}>
                 <Phone size={19} aria-hidden="true" /><span>010-8930-9642</span>
               </a>
@@ -77,7 +82,7 @@ export default function ConsultationPage() {
                 <Mail size={19} aria-hidden="true" /><span>khcho@hangilac.co.kr</span>
               </a>
             </address>
-            <p className={styles.contactHint}>전화 또는 이메일로 바로 문의하셔도 됩니다.</p>
+            <p className={styles.contactHint}>카카오톡, 전화 또는 이메일로 바로 문의하셔도 됩니다.</p>
           </section>
 
           <section className={styles.formPanel} aria-label="연락처 남기기" data-assessment-id={assessmentId || undefined}>
@@ -85,7 +90,7 @@ export default function ConsultationPage() {
               <div className={styles.confirmation} role="status">
                 <Check size={26} aria-hidden="true" />
                 <h2 ref={confirmationRef} tabIndex={-1}>연락처 입력을 확인했습니다.</h2>
-                <p>미리보기이므로 실제 접수·전송은 되지 않았습니다. 문의는 회계사님 전화 또는 이메일을 이용해 주세요.</p>
+                <p>미리보기이므로 실제 접수·전송은 되지 않았습니다. 문의는 카카오톡, 회계사님 전화 또는 이메일을 이용해 주세요.</p>
                 <button type="button" className={styles.secondaryButton} onClick={() => { setSubmitted(false); setErrors({}); }}>다시 입력하기</button>
               </div>
             ) : (
