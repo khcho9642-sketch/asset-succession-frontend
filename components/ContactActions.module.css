@@ -1,0 +1,41 @@
+.desktopActions {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+}
+
+.kakaoLink {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 12px;
+  transition: opacity 150ms ease;
+}
+
+.kakaoLink:hover { opacity: .86; }
+.kakaoLink:focus-visible { outline: 2px solid var(--paper-seal, #b23a2a); outline-offset: 3px; }
+.kakaoImage { display: block; width: 160px; height: auto; }
+.kakaoIcon { display: block; width: 40px; height: 40px; }
+.mobileActions { flex-shrink: 0; }
+
+@media (min-width: 1024px) {
+  .desktopActions { display: flex; }
+}
+
+@media (max-width: 479px) {
+  .headerWithContacts { column-gap: 8px; }
+  .mobileActions { gap: 4px; }
+}
+
+@media (max-width: 359px) {
+  .headerWithContacts { width: calc(100% - 24px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kakaoLink { transition: none; }
+}
