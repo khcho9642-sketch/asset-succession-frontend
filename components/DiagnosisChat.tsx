@@ -20,6 +20,7 @@ import { calculateTaxComparison, validateTaxComparisonInput } from "@/lib/tax-co
 import type { TaxComparisonInput } from "@/lib/tax-comparison";
 import { TaxComparisonEditor } from "./TaxComparisonEditor";
 import styles from "./DiagnosisChat.module.css";
+import { useDiagnosisViewport } from "./useDiagnosisViewport";
 
 const DRAFT_KEY = "as360.chat.draft.v1";
 // Retain the current tab's draft during client navigation if sessionStorage is blocked.
@@ -69,6 +70,7 @@ export function DiagnosisChat() {
   const processedTools = useRef(new Set<string>());
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const transcriptRef = useRef<HTMLDivElement>(null);
+  const workspaceRef = useDiagnosisViewport(stage, input, inputRef, transcriptRef);
   const reviewRef = useRef<HTMLHeadingElement>(null);
   const shouldFollow = useRef(true);
   const [hasNewText, setHasNewText] = useState(false);
@@ -204,11 +206,7 @@ export function DiagnosisChat() {
     else setHasNewText(true);
   }, [messages, localNotice, stage, busy]);
 
-  useEffect(() => {
-    if (!inputRef.current) return;
-    inputRef.current.style.height = "auto";
-    inputRef.current.style.height = `${Math.min(inputRef.current.scrollHeight, 180)}px`;
-  }, [input]);
+  // Composer sizing is handled with mobile viewport changes in useDiagnosisViewport.
 
   const missing = getMissingRequiredFields(state);
   const factsCount = CHAT_FIELD_KEYS.filter(key => state.facts[key]).length;
@@ -351,7 +349,8 @@ export function DiagnosisChat() {
   );
 
   return (
-    <section className={styles.workspace} aria-label="자산승계 사전진단 대화">
+    <section ref={workspaceRef} className={styles.workspace} aria-label="자산승계 사전진단 대화"
+      data-chat-layout="mobile-fit-v1" data-chat-stage={stage} data-chat-opening={!hasMessages} data-summary-open={summaryOpen}>
       <div className={styles.topline}>
         <Link href="/" className={styles.backLink}><ArrowLeft size={15} aria-hidden="true" /> 처음으로</Link>
         <div className={styles.progress} aria-label="진행 단계"><span className={stage === "chat" ? styles.activeStep : ""}>01 대화</span><span aria-hidden="true">/</span><span className={stage === "review" ? styles.activeStep : ""}>02 내용 확인</span><span aria-hidden="true">/</span><span>03 보고서</span></div>
@@ -439,7 +438,7 @@ export function DiagnosisChat() {
             <form className={styles.composerArea} onSubmit={event => { event.preventDefault(); void submitMessage(); }}>
               <label htmlFor="diagnosis-message" className={styles.composerLabel}>{stage === "review" ? "더할 이야기가 있으면 이어서 말씀해주세요" : hasMessages ? "선택하거나 편하게 적어주세요" : "또는 채팅으로 말씀해 주세요"}</label>
               <div className={styles.composer}>
-                <textarea id="diagnosis-message" ref={inputRef} value={input} rows={2} maxLength={6000} disabled={!hydrated || reportOpening} placeholder={hasMessages ? "빠진 내용이나 바꾸고 싶은 내용을 적어주세요…" : "예: 부모님 집을 미리 증여받는 게 좋을지 고민이에요…"} onChange={event => { invalidateReport(); setInput(event.target.value); }} onCompositionStart={() => { composing.current = true; }} onCompositionEnd={() => { composing.current = false; }} onKeyDown={event => { if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && !composing.current && event.keyCode !== 229) { event.preventDefault(); void submitMessage(); } }} />
+                <textarea id="diagnosis-message" ref={inputRef} value={input} rows={2} maxLength={6000} disabled={!hydrated || reportOpening} placeholder={hasMessages ? "답변을 적어주세요…" : "궁금한 점을 적어주세요…"} onChange={event => { invalidateReport(); setInput(event.target.value); }} onCompositionStart={() => { composing.current = true; }} onCompositionEnd={() => { composing.current = false; }} onKeyDown={event => { if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && !composing.current && event.keyCode !== 229) { event.preventDefault(); void submitMessage(); } }} />
                 {busy ? <button className={styles.sendButton} type="button" aria-label="응답 중지" onClick={() => { void stop(); setCancelled(true); }}><Square size={20} aria-hidden="true" /></button> : <button className={styles.sendButton} type="submit" disabled={!input.trim() || !hydrated || configured === null || reportOpening} aria-label="메시지 보내기"><Send size={21} aria-hidden="true" /></button>}
               </div>
               <div className={styles.composerMeta}><span>Enter 전송 · Shift+Enter 줄바꿈</span></div>
