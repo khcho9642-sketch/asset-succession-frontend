@@ -1,0 +1,76 @@
+name: Mobile diagnosis layout
+
+on:
+  push:
+    branches: [codex/chat-opening-topics]
+    paths:
+      - scripts/apply-mobile-chat-layout.py
+      - scripts/mobile-diagnosis-ui-audit.py
+      - components/useDiagnosisViewport.ts
+      - .github/workflows/mobile-chat-layout.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mobile-chat-layout-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify-mobile-chat:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          npm ci --no-audit --no-fund
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install --with-deps chromium
+      - name: Apply the exact scoped patch
+        run: python scripts/apply-mobile-chat-layout.py
+      - name: Lint and build
+        run: |
+          npx eslint components/DiagnosisChat.tsx components/useDiagnosisViewport.ts
+          npm run build
+      - name: Start local production build
+        run: |
+          mkdir -p .tmp/mobile-chat-proof
+          npm run start > .tmp/mobile-chat-proof/server.log 2>&1 &
+          for i in $(seq 1 40); do curl -fsS http://127.0.0.1:3000/precheck > /dev/null && break; sleep 2; done
+      - name: Verify full mobile chat and keyboard viewport changes
+        run: python scripts/mobile-diagnosis-ui-audit.py
+      - name: Commit only the verified chat component and scoped stylesheet
+        run: |
+          git fetch origin codex/chat-opening-topics
+          test "$(git rev-parse FETCH_HEAD)" = "${{ github.sha }}"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add components/DiagnosisChat.tsx components/DiagnosisChat.module.css
+          if ! git diff --cached --quiet; then
+            git commit -m 'fix: fit mobile diagnosis and composer inside visible viewport'
+            git push origin HEAD:codex/chat-opening-topics
+          fi
+      - name: Save test screenshots and verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-chat-layout-proof
+          path: .tmp/mobile-chat-proof/
+          include-hidden-files: true
+          retention-days: 7
