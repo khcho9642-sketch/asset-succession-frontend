@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { KAKAO_OPEN_CHAT_URL } from "@/lib/contactLinks";
 import styles from "./HomePage.module.css";
 
 const diagnosisLinks = [
@@ -42,9 +43,11 @@ export function PublicNav() {
         <nav className={styles.desktopNav} aria-label="진단 유형">
           {diagnosisLinks.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
         </nav>
-        <Link href="/consultation" className={styles.desktopConsultation}>전문가 상담</Link>
+        <a href={KAKAO_OPEN_CHAT_URL} target="_blank" rel="noopener noreferrer"
+          aria-label="카카오톡 상담 (새 창)" className={styles.desktopConsultation}>카카오톡 상담</a>
         <div className={styles.mobileNavActions}>
-          <Link href="/consultation">상담</Link>
+          <a href={KAKAO_OPEN_CHAT_URL} target="_blank" rel="noopener noreferrer"
+            aria-label="카카오톡 상담 (새 창)">카톡 상담</a>
           <button ref={menuButtonRef} type="button" aria-controls="mobile-diagnosis-menu"
             aria-expanded={isMenuOpen} aria-label={isMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
             onClick={() => setIsMenuOpen((open) => !open)}>
@@ -54,7 +57,8 @@ export function PublicNav() {
       </div>
       <nav id="mobile-diagnosis-menu" hidden={!isMenuOpen} className={styles.mobileMenu} aria-label="모바일 진단 유형">
         {diagnosisLinks.map((item) => <Link href={item.href} key={item.href} onClick={() => setIsMenuOpen(false)}>{item.label}</Link>)}
-        <Link href="/consultation" onClick={() => setIsMenuOpen(false)}>전문가 상담</Link>
+        <a href={KAKAO_OPEN_CHAT_URL} target="_blank" rel="noopener noreferrer"
+          aria-label="카카오톡 상담 (새 창)" onClick={() => setIsMenuOpen(false)}>카카오톡 상담</a>
       </nav>
     </header>
   );
