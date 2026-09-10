@@ -1,7 +1,7 @@
 {
-  "version": 4,
+  "version": 5,
   "lawCheckedOn": "2026-09-08",
-  "pdf": "/media/sample-report-v3/sample-report.pdf",
+  "pdf": "/media/sample-report-v3/sample-report-layout-v5.pdf",
   "scenario": "가족 합산 자산 50억원·채무 5억원의 가상 가족. 첫 장은 상속재산 52억원의 배우자 상속분에 따른 상속세 차이를 별도로 비교.",
   "pages": [
     {
@@ -12,10 +12,10 @@
         "배우자의 실제 상속분과 공제 적용 여부 등 계산 조건에 따라 결과는 달라집니다.",
         "첫 장은 별도 상속세 비교 예시이며 전문가 검토 전 추정 세액입니다."
       ],
-      "image": "/media/sample-report-v3/page-01.webp",
+      "image": "/media/sample-report-v3/page-01-layout-v5.webp",
       "width": 1400,
       "height": 1980,
-      "sha256": "e33a2c6fc17a0a0ad1c85a282ca9c14c19a999038c398bad2bb5804007f9b33b"
+      "sha256": "d4b02c726692b724b177d7937a04974ed5286df2e96ab2a54a0159c4f4ccbfa5"
     },
     {
       "title": "가족과 자산",
