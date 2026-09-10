@@ -11,7 +11,7 @@ import { CHAT_FIELD_KEYS, CHAT_FIELD_LABELS, applyChatPatches, createChatState, 
 import type { ChatFieldKey, ChatMessage, ChatState } from "@/lib/chat/intake";
 import type { DiagnosisUIMessage } from "@/lib/chat/agent";
 import { extractLocalChatPatches, getLocalChatReply } from "@/lib/chat/local";
-import { getAssistantReply } from "@/lib/chat/choices";
+import { getAssistantReply, SAFE_REVIEW_MESSAGE } from "@/lib/chat/choices";
 import type { DiagnosisReply } from "@/lib/chat/choices";
 import { getGuidedChatTurn } from "@/lib/chat/guided";
 import { getChatErrorNotice, isIncompleteChatResponse } from "@/lib/chat/response";
@@ -218,6 +218,13 @@ export function DiagnosisChat() {
   const readyForReview = missing.length === 0;
   const taxPreview = useMemo(() => calculateTaxComparison(taxInput), [taxInput]);
   const readyForEstimate = taxPreview.status === "ready" && taxSignature === taxFactsSignature(state);
+  const latestAssistantReply = useMemo(() => {
+    const latest = [...messages].reverse().find(message => message.role === "assistant");
+    if (!latest) return null;
+    const text = latest.parts.filter(part => part.type === "text").map(part => part.text).join("");
+    return getAssistantReply(text);
+  }, [messages]);
+  const showSampleReport = latestAssistantReply?.message === SAFE_REVIEW_MESSAGE;
 
   async function submitMessage(quickReply?: string) {
     const text = quickReply ?? input.trim();
@@ -403,7 +410,8 @@ export function DiagnosisChat() {
               {localNotice && <div className={styles.localGuidance} role="status"><span>입력 안내</span><p>{localNotice}</p></div>}
               {busy && <div className={styles.thinking} role="status"><span aria-hidden="true" />{status === "submitted" ? "이야기를 읽고 있어요…" : "답변을 작성하고 있어요…"}<button onClick={() => { void stop(); setCancelled(true); }}>응답 중지</button></div>}
               {(error || incompleteResponse || cancelled) && <div className={styles.errorNotice} role="alert"><p>{cancelled ? "응답을 중지했어요. 입력 내용은 그대로 남아 있어요." : getChatErrorNotice(error)}</p><div>{configured && <button disabled={busy} onClick={() => void retryResponse()}><RotateCcw size={15} aria-hidden="true" /> 다시 시도</button>}<button onClick={openReview}>요약 직접 확인</button></div></div>}
-              {readyForReview && hasMessages && !busy && <button className={styles.inlineReview} onClick={openReview}><FileText size={18} aria-hidden="true" /><span>이제 정리한 내용을 확인해 볼까요?</span><ArrowRight size={18} aria-hidden="true" /></button>}
+              {showSampleReport && !busy && <Link href="/sample-report" className={styles.sampleReportLink}><FileText size={19} aria-hidden="true" /><span><strong>7장 샘플 보고서 보기</strong><small>가상 사례 보고서 · 바로 열기</small></span><ArrowRight size={19} aria-hidden="true" /></Link>}
+              {readyForReview && hasMessages && !busy && <button className={styles.inlineReview} onClick={openReview}><FileText size={18} aria-hidden="true" /><span>내 상황에 맞춘 보고서 준비하기</span><ArrowRight size={18} aria-hidden="true" /></button>}
             </div> : <div className={styles.reviewPanel}>
               <button className={styles.backToChat} onClick={() => setStage("chat")}><ArrowLeft size={16} aria-hidden="true" /> 대화로 돌아가기</button>
               <p className={styles.eyebrow}>보고서 작성 전 · 마지막 확인</p>
@@ -422,6 +430,7 @@ export function DiagnosisChat() {
               {input.trim() && <p className={styles.requiredNotice} role="status">아직 보내지 않은 이야기가 있어요. 입력창의 내용을 보내거나 지운 뒤 확인해 주세요.</p>}
               <label className={styles.confirmRow}><input type="checkbox" checked={confirmed} onChange={event => setConfirmed(event.target.checked)} disabled={!readyForReview || busy || editingIds.size > 0 || Boolean(input.trim())} /><span>정리된 내용이 제가 전달한 상황과 맞는지 확인했습니다.</span></label>
               <button className={styles.reportButton} disabled={!confirmed || !readyForReview || !readyForEstimate || busy || reportOpening || editingIds.size > 0 || Boolean(input.trim())} onClick={() => void openReport()}>{reportOpening ? "보고서를 준비하고 있어요…" : "확인한 내용으로 보고서 보기"}<ArrowRight size={19} aria-hidden="true" /></button>
+              <Link href="/sample-report" className={`${styles.sampleReportLink} ${styles.reviewSampleLink}`}><FileText size={19} aria-hidden="true" /><span><strong>7장 샘플 보고서 먼저 보기</strong><small>입력 완료 전에도 바로 볼 수 있어요</small></span><ArrowRight size={19} aria-hidden="true" /></Link>
               {reviewError && <p className={styles.requiredNotice} role="alert">{reviewError}</p>}
               <p className={styles.reportFootnote}>확인한 계산 조건으로 예상 세액과 대안별 차이를 계산해요.<br />평가액·공제 요건 또는 가정이 바뀌면 결과도 달라집니다.</p>
             </div>}

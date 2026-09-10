@@ -408,7 +408,8 @@ try {
   await fastPathPage.getByRole("button", { name: "상속세를 먼저 보고 싶어요", exact: true }).click();
   await fastPathPage.getByRole("button", { name: "생전 증여도 함께 보고 싶어요", exact: true }).click();
   await fastPathPage.getByRole("button", { name: "선택 완료 (2)", exact: true }).click();
-  await fastPathPage.getByText("기본 내용을 정리했어요. 아래에서 내용을 확인한 뒤 계산 조건을 직접 확인해 주세요.", { exact: true }).waitFor();
+  await fastPathPage.getByText("기본 내용을 정리했어요. 7장 샘플 보고서는 바로 볼 수 있고, 내 상황에 맞춘 보고서는 계산 조건을 확인한 뒤 만들 수 있어요.", { exact: true }).waitFor();
+  await fastPathPage.getByRole("link", { name: /7장 샘플 보고서 보기/ }).waitFor();
   const fastPathText = await fastPathPage.locator("body").innerText();
   assert(!fastPathText.includes("확인이 완료되었습니다"), "A guided flow exposed an untrusted completion claim");
   assert(!fastPathText.includes("결과 화면으로 연결"), "A guided flow exposed an untrusted result handoff");

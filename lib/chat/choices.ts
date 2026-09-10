@@ -15,7 +15,7 @@ export const diagnosisReplySchema = z.object({
 
 export type DiagnosisReply = z.infer<typeof diagnosisReplySchema>;
 
-export const SAFE_REVIEW_MESSAGE = "기본 내용을 정리했어요. 아래에서 내용을 확인한 뒤 계산 조건을 직접 확인해 주세요.";
+export const SAFE_REVIEW_MESSAGE = "기본 내용을 정리했어요. 7장 샘플 보고서는 바로 볼 수 있고, 내 상황에 맞춘 보고서는 계산 조건을 확인한 뒤 만들 수 있어요.";
 const APP_OWNED_COMPLETION_PATTERN = /(?:확인|계산|입력|준비|검토)(?:이|가|은|는|을|를)?[^.!?\n]{0,18}(?:완료(?:됐(?:습니다|어요)?|되었(?:습니다|어요)?|했습니다|합니다|입니다|예요)|끝났(?:습니다|어요)?|마쳤(?:습니다|어요)?)/;
 const APP_OWNED_NAVIGATION_PATTERN = /(?:결과|보고서)(?:\s*(?:화면|페이지))?(?:으?로|을|를)?\s*(?:연결|이동|넘어가|보내|안내|보여|열어|만들어|준비)(?:해)?\s*(?:드릴게요|드리겠습니다|하겠습니다|할게요|합니다|됩니다)/;
 

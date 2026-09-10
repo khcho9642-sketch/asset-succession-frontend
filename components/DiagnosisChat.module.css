@@ -96,6 +96,16 @@
 .inlineReview span { flex: 1; }
 .inlineReview svg { flex-shrink: 0; }
 .inlineReview:hover { background: #e7dcc8; }
+.sampleReportLink { display: flex; width: 100%; align-items: center; gap: 12px; margin-top: 25px; padding: 16px 17px; border: 1px solid var(--seal); background: var(--seal); color: #fff7ea; text-align: left; }
+.sampleReportLink > span { flex: 1; }
+.sampleReportLink strong { display: block; font-size: 15px; font-weight: 650; }
+.sampleReportLink small { display: block; margin-top: 3px; color: #f2d8cf; font-size: 12px; font-weight: 400; }
+.sampleReportLink svg { flex-shrink: 0; }
+.sampleReportLink:hover { background: #963222; }
+.sampleReportLink + .inlineReview { margin-top: 10px; }
+.reviewSampleLink { margin-top: 12px; background: transparent; color: var(--seal); }
+.reviewSampleLink small { color: var(--soft); }
+.reviewSampleLink:hover { background: #f1e5d7; }
 .errorNotice { padding: 16px; margin-top: 19px; background: #f4e7da; border: 1px solid #dec3ad; color: #795239; font-size: 14px; }
 .errorNotice > div { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 8px; }
 .errorNotice button { display: inline-flex; align-items: center; gap: 6px; text-decoration: underline; text-underline-offset: 4px; padding: 5px 0; }
@@ -225,6 +235,9 @@
   .thinking, .errorNotice { font-size: 15px; }
   .thinking button { min-height: 44px; font-size: 14px; }
   .inlineReview { font-size: 15px; padding: 15px 13px; gap: 9px; }
+  .sampleReportLink { padding: 15px 13px; gap: 9px; }
+  .sampleReportLink strong { font-size: 16px; }
+  .sampleReportLink small { font-size: 13px; }
   .composerArea { padding: 14px 12px 12px; }
   .composerLabel { font-size: 14px; margin-bottom: 8px; }
   .composer { padding: 8px 8px 8px 12px; gap: 6px; }

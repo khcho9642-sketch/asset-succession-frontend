@@ -53,7 +53,7 @@ test("inheritance button path answers three common choices without an AI request
   assert.equal(eighth.reply.message, "상속과 관련해 무엇을 먼저 보고 싶으세요?");
   assert.equal(eighth.state.facts.pastGifts?.value, "확인이 필요해요");
   const ninth = advance(eighth.state, "상속세를 먼저 보고 싶어요, 생전 증여도 함께 보고 싶어요");
-  assert.equal(ninth.reply.message, "기본 내용을 정리했어요. 아래에서 내용을 확인한 뒤 계산 조건을 직접 확인해 주세요.");
+  assert.equal(ninth.reply.message, "기본 내용을 정리했어요. 7장 샘플 보고서는 바로 볼 수 있고, 내 상황에 맞춘 보고서는 계산 조건을 확인한 뒤 만들 수 있어요.");
   assert.equal(ninth.reply.choices.length, 0);
   assert.equal(ninth.state.facts.goal?.value, "상속세를 먼저 보고 싶어요, 생전 증여도 함께 보고 싶어요");
 });
@@ -87,7 +87,7 @@ test("gift, sale and business openings are concise and contextual", () => {
   assert.equal(giftPast.reply.message, "증여와 관련해 무엇을 먼저 보고 싶으세요?");
   assert.equal(giftPast.state.facts.pastGifts?.value, "없어요");
   const giftGoal = advance(giftPast.state, "증여세를 먼저 보고 싶어요, 여러 명에게 나누는 경우");
-  assert.equal(giftGoal.reply.message, "기본 내용을 정리했어요. 아래에서 내용을 확인한 뒤 계산 조건을 직접 확인해 주세요.");
+  assert.equal(giftGoal.reply.message, "기본 내용을 정리했어요. 7장 샘플 보고서는 바로 볼 수 있고, 내 상황에 맞춘 보고서는 계산 조건을 확인한 뒤 만들 수 있어요.");
   assert.equal(giftGoal.state.facts.goal?.value, "증여세를 먼저 보고 싶어요, 여러 명에게 나누는 경우");
   const sale = advance(advance(createChatState(), "양도").state, "아파트·주택");
   assert.equal(sale.reply.message, "매각은 어느 단계인가요?");
