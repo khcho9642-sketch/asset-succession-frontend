@@ -1,0 +1,55 @@
+name: Sample cover layout adjustment
+
+on:
+  push:
+    branches: [codex/chat-opening-topics]
+    paths:
+      - scripts/fix-sample-cover-layout.py
+      - .github/workflows/sample-cover-layout.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sample-cover-layout-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render-cover:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install rendering dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends fonts-nanum fonts-dejavu-core
+          python -m pip install --disable-pip-version-check Pillow reportlab pypdf PyMuPDF
+      - name: Retypeset first page and verify remaining pages
+        run: python scripts/fix-sample-cover-layout.py
+      - name: Save before/after proof and verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample-cover-layout-proof
+          path: .tmp/sample-cover-layout/
+          include-hidden-files: true
+          retention-days: 7
+      - name: Commit only the versioned cover, PDF and shared manifest
+        run: |
+          git fetch origin codex/chat-opening-topics
+          test "$(git rev-parse FETCH_HEAD)" = "${{ github.sha }}"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/media/sample-report-v3/page-01-layout-v5.webp public/media/sample-report-v3/sample-report-layout-v5.pdf public/media/sample-report-v3/manifest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'fix: replace only sample cover with page-two typography'
+          git push origin HEAD:codex/chat-opening-topics
