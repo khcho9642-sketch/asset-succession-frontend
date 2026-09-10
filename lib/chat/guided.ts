@@ -10,6 +10,12 @@ const inheritanceStage: DiagnosisReply = {
 const inheritanceOwnerChoices = ["아버지", "어머니", "부모님 두 분", "배우자"];
 const assetChoices = ["부동산", "예금·현금", "주식", "회사 지분", "기타 자산"];
 const saleAssetChoices = ["아파트·주택", "상가·건물", "토지", "주식", "그 밖의 재산"];
+const inheritanceAssetQuestion = "어떤 재산이 있나요?";
+const giftAssetQuestion = "어떤 재산을 주려고 하세요?";
+const assetAmountFollowup = "선택한 재산의 금액을 함께 적어주세요.";
+const legacyGiftAmountQuestion = "증여할 재산의 대략적인 금액을 알고 계세요?";
+
+type AssetAmountEntry = { choice: string; detail: string };
 
 const openingTurns: Record<string, DiagnosisReply> = {
   상속: inheritanceStage,
@@ -53,6 +59,46 @@ function assetPatches(text: string, selected: string[]): ChatPatch[] {
   });
 }
 
+function assetAmountQuestion(message: string, choices = assetChoices): DiagnosisReply {
+  return { message, choices, selectionMode: "multiple", inputMode: "assetAmounts" };
+}
+
+function assetAmountEntries(text: string, choices: string[]): AssetAmountEntry[] | null {
+  const lines = text.split(/\r?\n/).map(value => value.trim()).filter(Boolean);
+  if (lines.shift() !== "재산 전체:") return null;
+  const entries = new Map<string, AssetAmountEntry>();
+  for (const line of lines) {
+    const choice = choices.find(value => line.startsWith(`${value}: `));
+    if (!choice || entries.has(choice)) return null;
+    const detail = line.slice(choice.length + 2).trim();
+    if (detail !== "금액 모름" && !/^(?:[1-9]\d*(?:\.\d{1,2})?|0\.\d{1,2})억 원$/.test(detail)) return null;
+    entries.set(choice, { choice, detail });
+  }
+  if (entries.size === 0) return null;
+  return choices.flatMap(choice => entries.has(choice) ? [entries.get(choice)!] : []);
+}
+
+function assetAmountPatches(text: string, entries: AssetAmountEntry[]): ChatPatch[] {
+  const groups: Array<[ChatPatch["key"], string[]]> = [
+    ["realEstate", entries.filter(({ choice }) => choice === "부동산").map(({ choice, detail }) => `${choice}: ${detail}`)],
+    ["financialAssets", entries.filter(({ choice }) => ["예금·현금", "주식"].includes(choice)).map(({ choice, detail }) => `${choice}: ${detail}`)],
+    ["businessAssets", entries.filter(({ choice }) => choice === "회사 지분").map(({ choice, detail }) => `${choice}: ${detail}`)],
+    ["otherAssets", entries.filter(({ choice }) => choice === "기타 자산").map(({ choice, detail }) => `${choice}: ${detail}`)],
+  ];
+  return groups.flatMap(([key, values]) => {
+    if (values.length === 0) return [];
+    const value = values.join("\n");
+    return text.includes(value) ? [patch(key, value)] : [];
+  });
+}
+
+function nextAfterAssetAmounts(topic: string | undefined): DiagnosisReply {
+  if (topic === "증여") {
+    return { message: "증여는 언제쯤 하실 예정인가요?", choices: ["올해 안에", "1~3년 안에", "아직 정하지 않았어요"] };
+  }
+  return { message: "재산 소유자의 배우자가 계신가요?", choices: ["배우자가 있어요", "배우자가 없어요", "잘 모르겠어요"] };
+}
+
 /**
  * Common button paths are deterministic and need no provider round trip.
  * Free text and any unrecognized branch continue through the AI route.
@@ -81,7 +127,7 @@ export function getGuidedChatTurn(state: ChatState, rawText: string): GuidedChat
   if (previousQuestion === "누구의 재산을 준비하고 계세요?" || previousQuestion === "누구의 상속인가요?") {
     if (!inheritanceOwnerChoices.includes(text)) return null;
     return {
-      reply: { message: "어떤 재산이 있나요?", choices: assetChoices, selectionMode: "multiple" },
+      reply: assetAmountQuestion(inheritanceAssetQuestion),
       patches: [patch("owner", text)],
     };
   }
@@ -89,27 +135,44 @@ export function getGuidedChatTurn(state: ChatState, rawText: string): GuidedChat
   if (previousQuestion === "누구에게 주려고 하세요?") {
     if (!openingTurns.증여.choices.includes(text)) return null;
     return {
-      reply: { message: "어떤 재산을 주려고 하세요?", choices: assetChoices, selectionMode: "multiple" },
+      reply: assetAmountQuestion(giftAssetQuestion),
       patches: [],
     };
   }
 
-  if (previousQuestion === "어떤 재산이 있나요?") {
+  if (previousQuestion === inheritanceAssetQuestion || previousQuestion === giftAssetQuestion) {
+    const entries = assetAmountEntries(text, assetChoices);
+    if (entries) {
+      return {
+        reply: nextAfterAssetAmounts(previousQuestion === giftAssetQuestion ? "증여" : "상속"),
+        patches: assetAmountPatches(text, entries),
+      };
+    }
+
+    // Older saved conversations used a choice-only asset question. Keep those
+    // drafts moving forward, but ask all selected amounts together next.
     const selected = selectedChoices(text, assetChoices);
     if (!selected) return null;
     return {
-      reply: { message: "재산 소유자의 배우자가 계신가요?", choices: ["배우자가 있어요", "배우자가 없어요", "잘 모르겠어요"] },
+      reply: assetAmountQuestion(assetAmountFollowup, selected),
       patches: assetPatches(text, selected),
     };
   }
 
-  if (previousQuestion === "어떤 재산을 주려고 하세요?") {
-    const selected = selectedChoices(text, assetChoices);
-    if (!selected) return null;
+  if (previousQuestion === assetAmountFollowup) {
+    const entries = assetAmountEntries(text, assetChoices);
+    if (!entries) return null;
     return {
-      reply: { message: "증여할 재산의 대략적인 금액을 알고 계세요?", choices: ["금액을 알고 있어요", "일부만 알고 있어요", "확인이 필요해요"] },
-      patches: assetPatches(text, selected),
+      reply: nextAfterAssetAmounts(state.facts.topic?.value),
+      patches: assetAmountPatches(text, entries),
     };
+  }
+
+  if (previousQuestion === legacyGiftAmountQuestion) {
+    const previousAssetAnswer = [...state.messages].reverse().find(message => message.role === "user")?.text ?? "";
+    const selected = selectedChoices(previousAssetAnswer, assetChoices);
+    if (!selected || !["금액을 알고 있어요", "일부만 알고 있어요", "확인이 필요해요"].includes(text)) return null;
+    return { reply: assetAmountQuestion(assetAmountFollowup, selected), patches: [] };
   }
 
   if (previousQuestion === "어떤 재산을 팔려고 하세요?") {

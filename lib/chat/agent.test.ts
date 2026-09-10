@@ -69,6 +69,7 @@ test("Google SDK returns facts, message and choices in exactly one strict struct
   assert.ok(request.generationConfig.responseSchema?.properties.message);
   assert.ok(request.generationConfig.responseSchema?.properties.choices);
   assert.ok(request.generationConfig.responseSchema?.properties.selectionMode);
+  assert.ok(request.generationConfig.responseSchema?.properties.inputMode);
   assert.ok(!request.tools?.length, "The one-call request must not expose tools");
   assert.equal(request.toolConfig, undefined);
 });

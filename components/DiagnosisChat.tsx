@@ -455,6 +455,7 @@ export function DiagnosisChat() {
 }
 
 const EXCLUSIVE_MULTI_CHOICE = /^(?:해당 없음|없어요|없습니다|잘 모르겠어요|모르겠어요|아직 정하지 않았어요|확인이 필요해요)$/;
+const VALID_EOK_AMOUNT = /^(?:[1-9]\d*(?:\.\d{1,2})?|0\.\d{1,2})$/;
 
 function ReplyChoices({
   reply,
@@ -470,9 +471,22 @@ function ReplyChoices({
   onWrite: (value: string) => void;
 }) {
   const [selected, setSelected] = useState<string[]>([]);
+  const [amounts, setAmounts] = useState<Record<string, string>>({});
+  const [unknownAmounts, setUnknownAmounts] = useState<string[]>([]);
   const multiple = reply.selectionMode === "multiple";
+  const assetAmounts = reply.inputMode === "assetAmounts";
   const orderedSelection = reply.choices.filter(choice => selected.includes(choice));
-  const answer = orderedSelection.join(", ");
+  const amountsComplete = orderedSelection.length > 0 && orderedSelection.every(choice => unknownAmounts.includes(choice) || VALID_EOK_AMOUNT.test(amounts[choice] ?? ""));
+  const answer = assetAmounts
+    ? amountsComplete
+      ? ["재산 전체:", ...orderedSelection.map(choice => `${choice}: ${unknownAmounts.includes(choice) ? "금액 모름" : `${amounts[choice]}억 원`}`)].join("\n")
+      : ""
+    : orderedSelection.join(", ");
+  const knownTotal = orderedSelection.reduce((sum, choice) => {
+    if (unknownAmounts.includes(choice) || !VALID_EOK_AMOUNT.test(amounts[choice] ?? "")) return sum;
+    return sum + Number(amounts[choice]);
+  }, 0);
+  const unknownCount = orderedSelection.filter(choice => unknownAmounts.includes(choice)).length;
 
   function toggle(choice: string) {
     setSelected(previous => {
@@ -482,27 +496,69 @@ function ReplyChoices({
     });
   }
 
+  function changeAmount(choice: string, raw: string) {
+    const value = raw.replace(/,/g, "").replace(/[^\d.]/g, "");
+    if (value && !/^\d{0,9}(?:\.\d{0,2})?$/.test(value)) return;
+    setAmounts(previous => ({ ...previous, [choice]: value }));
+    setUnknownAmounts(previous => previous.filter(value => value !== choice));
+    if (value) setSelected(previous => previous.includes(choice) ? previous : [...previous, choice]);
+  }
+
+  function toggleUnknownAmount(choice: string) {
+    setSelected(previous => previous.includes(choice) ? previous : [...previous, choice]);
+    setUnknownAmounts(previous => previous.includes(choice) ? previous.filter(value => value !== choice) : [...previous, choice]);
+  }
+
+  const selectionStatus = assetAmounts
+    ? orderedSelection.length === 0
+      ? "재산을 선택해 주세요"
+      : !amountsComplete
+        ? "선택한 재산의 금액을 입력하거나 ‘모름’을 선택해 주세요"
+        : `${orderedSelection.length}개 · 확인된 금액 합계 ${Number(knownTotal.toFixed(2))}억 원${unknownCount ? ` · 금액 모름 ${unknownCount}개` : ""}`
+    : orderedSelection.length > 0 ? `${orderedSelection.length}개 선택됨` : "선택해 주세요";
+
   return <div className={styles.replyActions}>
-    {multiple && <p className={styles.multipleHint}>여러 개 선택할 수 있어요.</p>}
-    <div className={styles.replyChoices} role="group" aria-label={multiple ? "답변 복수 선택" : "답변 선택"}>
+    {multiple && <p className={styles.multipleHint}>{assetAmounts ? "재산을 고르고 금액을 함께 적어주세요. 대략적인 금액도 괜찮아요." : "여러 개 선택할 수 있어요."}</p>}
+    {assetAmounts ? <div className={styles.amountChoices} role="group" aria-label="재산 종류와 금액 입력">
       {reply.choices.map(choice => {
         const active = selected.includes(choice);
-        return <button
-          key={choice}
-          type="button"
-          className={`${styles.replyChoice} ${active ? styles.replyChoiceSelected : ""}`}
-          disabled={disabled || (!multiple && isSubmitDisabled(choice))}
-          aria-pressed={multiple ? active : undefined}
-          onClick={() => multiple ? toggle(choice) : onSubmit(choice)}
-        >
+        const unknown = unknownAmounts.includes(choice);
+        return <div key={choice} className={`${styles.amountChoiceRow} ${active ? styles.amountChoiceRowSelected : ""}`}>
+          <button type="button" className={styles.amountAssetToggle} disabled={disabled} aria-pressed={active} onClick={() => toggle(choice)}>
+            <span className={styles.choiceCheck} aria-hidden="true">{active && <Check size={14} />}</span>
+            <span>{choice}</span>
+          </button>
+          <label className={styles.amountInputWrap}>
+            <span className={styles.srOnly}>{choice} 금액</span>
+            <input
+              type="text"
+              inputMode="decimal"
+              autoComplete="off"
+              maxLength={12}
+              aria-label={`${choice} 금액, 억 원 단위`}
+              placeholder="금액"
+              value={amounts[choice] ?? ""}
+              disabled={disabled || unknown}
+              onFocus={() => setSelected(previous => previous.includes(choice) ? previous : [...previous, choice])}
+              onChange={event => changeAmount(choice, event.target.value)}
+            />
+            <span>억 원</span>
+          </label>
+          <button type="button" className={`${styles.unknownAmount} ${unknown ? styles.unknownAmountSelected : ""}`} disabled={disabled} aria-pressed={unknown} onClick={() => toggleUnknownAmount(choice)}>금액 모름</button>
+        </div>;
+      })}
+    </div> : <div className={styles.replyChoices} role="group" aria-label={multiple ? "답변 복수 선택" : "답변 선택"}>
+      {reply.choices.map(choice => {
+        const active = selected.includes(choice);
+        return <button key={choice} type="button" className={`${styles.replyChoice} ${active ? styles.replyChoiceSelected : ""}`} disabled={disabled || (!multiple && isSubmitDisabled(choice))} aria-pressed={multiple ? active : undefined} onClick={() => multiple ? toggle(choice) : onSubmit(choice)}>
           {multiple && <span className={styles.choiceCheck} aria-hidden="true">{active && <Check size={14} />}</span>}
           <span>{choice}</span>
         </button>;
       })}
-    </div>
+    </div>}
     {multiple && <div className={styles.multipleActions}>
-      <span className={styles.selectionCount} aria-live="polite">{orderedSelection.length > 0 ? `${orderedSelection.length}개 선택됨` : "선택해 주세요"}</span>
-      <button type="button" className={styles.confirmChoices} disabled={!answer || isSubmitDisabled(answer)} onClick={() => onSubmit(answer)}>선택 완료{orderedSelection.length > 0 ? ` (${orderedSelection.length})` : ""}</button>
+      <span className={styles.selectionCount} aria-live="polite">{selectionStatus}</span>
+      <button type="button" className={styles.confirmChoices} disabled={!answer || isSubmitDisabled(answer)} onClick={() => onSubmit(answer)}>{assetAmounts ? "입력 완료" : "선택 완료"}{orderedSelection.length > 0 ? ` (${orderedSelection.length})` : ""}</button>
     </div>}
     <button type="button" className={styles.writeReply} disabled={disabled} onClick={() => onWrite(answer)}>직접 입력하기</button>
   </div>;

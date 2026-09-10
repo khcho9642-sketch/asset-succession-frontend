@@ -93,8 +93,9 @@ export function applyChatPatches(state: ChatState, patches: unknown, messageId: 
     const next: ChatFactSource = { value: source.value.trim(), evidence: source.evidence.trim(), messageId };
     const previous = facts[patch.key];
     const isAsset = CHAT_ASSET_KEYS.some((key) => key === patch.key);
-    const correction = /정정|수정|정확히는|아니라|아니고|잘못|변경|고칠|바꿀|대신|다시\s*입력/i.test(latest.text);
-    const completeReplacement = latest.text.startsWith(`정정: ${CHAT_FIELD_LABELS[patch.key]} — `) || /(?:전체|전부|합계|총액)(?:를|는|은|가|이)?\s*(?:정정|수정|변경|다시|[:：]|\d)|(?:정정|수정|변경)[^\n]*(?:전체|전부|합계|총액)/.test(latest.text);
+    const structuredAssetReplacement = /^재산\s*전체\s*:/m.test(latest.text);
+    const correction = structuredAssetReplacement || /정정|수정|정확히는|아니라|아니고|잘못|변경|고칠|바꿀|대신|다시\s*입력/i.test(latest.text);
+    const completeReplacement = structuredAssetReplacement || latest.text.startsWith(`정정: ${CHAT_FIELD_LABELS[patch.key]} — `) || /(?:전체|전부|합계|총액)(?:를|는|은|가|이)?\s*(?:정정|수정|변경|다시|[:：]|\d)|(?:정정|수정|변경)[^\n]*(?:전체|전부|합계|총액)/.test(latest.text);
     const previousMoneyCount = previous ? [...previous.value.matchAll(/\d+(?:\.\d+)?\s*억(?:원)?(?:\s*\d+(?:\.\d+)?\s*(?:천\s*만|만)(?:원)?)?|\d+(?:\.\d+)?\s*(?:천\s*만|만)(?:원)?/g)].length : 0;
     const previousItemCount = previous ? [...previous.value.matchAll(/아파트|상가|토지|주택|빌딩|오피스텔|건물|예금|적금|주식|펀드|채권|현금/g)].length : 0;
     const partialCorrection = correction && !completeReplacement && (previousMoneyCount > 1 || previousItemCount > 1 || (previous?.sources?.length ?? 0) > 1 || /[2-9]\d*\s*(?:채|개|건)/.test(previous?.value ?? ""));

@@ -98,6 +98,7 @@ function installGoogleMock(t: TestContext, steps: Step[]): RequestLog[] {
     assert.ok(body.generationConfig.responseSchema?.properties.message);
     assert.ok(body.generationConfig.responseSchema?.properties.choices);
     assert.ok(body.generationConfig.responseSchema?.properties.selectionMode);
+    assert.ok(body.generationConfig.responseSchema?.properties.inputMode);
     assert.equal(body.generationConfig.responseJsonSchema, undefined);
     assert.ok(!body.tools?.length, "Unified structured request must not expose tools to the model");
     assert.equal(body.toolConfig, undefined);

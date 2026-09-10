@@ -383,12 +383,19 @@ try {
   assert.equal(await cashChoice.getAttribute("aria-pressed"), "true", "Second asset was not kept selected");
   assert.equal((await draft(fastPathPage)).state.messages.filter(message => message.role === "user").length, userTurnsBeforeAssets,
     "A multi-select choice was submitted before confirmation");
-  await fastPathPage.getByRole("button", { name: "선택 완료 (2)", exact: true }).click();
+  const amountComplete = fastPathPage.getByRole("button", { name: "입력 완료 (2)", exact: true });
+  assert.equal(await amountComplete.isDisabled(), true, "Asset amounts could be skipped after selecting asset types");
+  await fastPathPage.getByLabel("부동산 금액, 억 원 단위").fill("25");
+  await fastPathPage.getByLabel("예금·현금 금액, 억 원 단위").fill("10");
+  await fastPathPage.getByText("2개 · 확인된 금액 합계 35억 원", { exact: true }).waitFor();
+  assert.equal((await draft(fastPathPage)).state.messages.filter(message => message.role === "user").length, userTurnsBeforeAssets,
+    "Editing the combined amount form submitted a partial answer");
+  await amountComplete.click();
   await fastPathPage.getByText("재산 소유자의 배우자가 계신가요?", { exact: true }).waitFor();
   assert.equal(await fastPathPage.getByRole("button", { name: "배우자가 있어요", exact: true }).getAttribute("aria-pressed"), null,
     "Multi-select state leaked into the next single-choice question");
-  await waitFact(fastPathPage, "realEstate", "부동산");
-  await waitFact(fastPathPage, "financialAssets", "예금·현금");
+  await waitFact(fastPathPage, "realEstate", "부동산: 25억 원");
+  await waitFact(fastPathPage, "financialAssets", "예금·현금: 10억 원");
   assert.equal(postCount, requestsBeforeFastPath, "Common guided choices made a slow AI request");
   observations.push({ name: "configured inheritance choices support confirmed multi-select without AI latency" });
   await fastPathContext.close();

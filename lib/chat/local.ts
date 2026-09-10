@@ -10,9 +10,10 @@ export function getLocalChatReply(state: ChatState): DiagnosisReply {
     choices: ["본인", "아버지", "어머니", "부모님", "배우자"],
   };
   if (missing.includes("realEstate")) return {
-    message: "어떤 재산을 검토하고 싶으세요?",
+    message: "어떤 재산을 검토하고 싶으세요? 종류와 금액을 함께 적어주세요.",
     choices: ["부동산", "예금·현금", "주식", "회사 지분", "기타 자산"],
     selectionMode: "multiple",
+    inputMode: "assetAmounts",
   };
   return {
     message: "찾은 내용을 입력 요약에 정리했어요. 빠지거나 다른 내용은 직접 고친 뒤 보고서를 열 수 있어요.",

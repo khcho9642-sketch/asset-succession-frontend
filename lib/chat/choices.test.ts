@@ -8,8 +8,8 @@ test("structured replies require strict complete content and trim labels", () =>
   assert.deepEqual(getAssistantReply('{"message":"  누구에게 주려고 하세요?  ","choices":[" 아들 ","딸"]}'), {
     message: "누구에게 주려고 하세요?", choices: ["아들", "딸"],
   });
-  assert.deepEqual(getAssistantReply('{"message":"어떤 재산이 있나요?","choices":["부동산","주식"],"selectionMode":"multiple"}'), {
-    message: "어떤 재산이 있나요?", choices: ["부동산", "주식"], selectionMode: "multiple",
+  assert.deepEqual(getAssistantReply('{"message":"어떤 재산이 있나요?","choices":["부동산","주식"],"selectionMode":"multiple","inputMode":"assetAmounts"}'), {
+    message: "어떤 재산이 있나요?", choices: ["부동산", "주식"], selectionMode: "multiple", inputMode: "assetAmounts",
   });
   for (const choices of [[], ["아직 미정이에요"]]) {
     assert.equal(diagnosisReplySchema.safeParse({ message: "편하게 말씀해 주세요.", choices }).success, true);
@@ -23,6 +23,7 @@ test("structured replies require strict complete content and trim labels", () =>
     { message: "알려주세요.", choices: ["1", "2", "3", "4", "5", "6"] },
     { message: "알려주세요.", choices: [{ label: "아들", value: "다른 값" }] },
     { message: "알려주세요.", choices: ["아들"], selectionMode: "many" },
+    { message: "알려주세요.", choices: ["아들"], inputMode: "money" },
     { message: "알려주세요.", choices: ["아들"], hiddenValue: "다른 값" },
     { message: "알려주세요." },
     { choices: [] },

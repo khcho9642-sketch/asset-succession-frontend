@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const diagnosisSelectionModeSchema = z.enum(["single", "multiple"]);
+export const diagnosisInputModeSchema = z.enum(["assetAmounts"]);
 
 export const diagnosisReplySchema = z.object({
   message: z.string().trim().min(1).max(4_000),
@@ -8,6 +9,8 @@ export const diagnosisReplySchema = z.object({
   // Older saved conversations do not have this field, so keep it optional.
   // New guided/model replies set it when more than one answer may be true.
   selectionMode: diagnosisSelectionModeSchema.optional(),
+  // Structured entry is opt-in so older saved replies remain valid.
+  inputMode: diagnosisInputModeSchema.optional(),
 }).strict();
 
 export type DiagnosisReply = z.infer<typeof diagnosisReplySchema>;
