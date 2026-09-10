@@ -98,7 +98,7 @@ export function ScenarioPlanPanel({ compact = false }: Readonly<{ compact?: bool
           <p className="text-xs font-semibold text-[var(--gold)]">노출 정책</p>
           <h3 className="mt-3 text-xl font-semibold tracking-[-0.04em] text-[var(--navy-950)]">추천된 결과만 보여드립니다.</h3>
           <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-            {plan.internal_analysis.disclosure_label}. 이 화면은 기준안, 추천안, 추가 검토안, 납세재원 보완안만 간결하게 표시합니다.
+            36개 후보 라이브러리 중 현재 입력으로 {plan.internal_analysis.disclosure_label}. 이 화면은 기준안, 추천안, 추가 검토안, 납세재원 보완안만 간결하게 표시합니다.
           </p>
         </article>
       </div>

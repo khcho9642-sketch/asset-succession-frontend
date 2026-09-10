@@ -113,7 +113,8 @@ try {
   const assessmentId = resultText.match(/AS360-\d{8}-[A-Z0-9]+/)?.[0];
   assert(assessmentId, "Assessment ID missing from result page.");
   assert(resultText.includes("개인화 시나리오 플랜"), "ScenarioPlan panel missing from result page.");
-  assert(resultText.includes("36개 시나리오 내부 분석 완료"), "Result page is missing the internal-analysis summary disclosure.");
+  assert(resultText.includes("36개 후보 라이브러리"), "Result page is missing the candidate-library disclosure.");
+  assert(resultText.includes("검토 가능한 전략 후보"), "Result page is missing the input-linked scenario status.");
   assert(resultText.includes("부동산: 20억") && resultText.includes("금융자산: 30억"), "Assessment answers missing from result page.");
   assert(resultText.includes("50억") && resultText.includes("가족 분산·단계적 사전증여") && resultText.includes("첫째 대출·둘째 증여 배분") && resultText.includes("배우자 상속공제 고려 재산배분"), "Result page is missing the required selected recommendations.");
   assert(resultText.includes("자산 구성") && resultText.includes("기준안과 추천안 비교") && resultText.includes("납세재원과 부족액") && resultText.includes("증여·대출·상속 실행 타임라인"), "Result page is missing required visual sections.");

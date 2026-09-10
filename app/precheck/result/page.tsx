@@ -28,8 +28,8 @@ export default function ResultPage() {
                 <strong className="mt-3 block text-3xl tracking-[-0.06em] text-[var(--navy-950)]">최대 3개</strong>
               </article>
               <article className="motion-result-stage border border-[var(--border)] bg-white p-5" style={{ animationDelay: "300ms" }}>
-                <p className="text-sm text-[var(--muted)]">36개 후보 분석</p>
-                <strong className="mt-3 block text-3xl tracking-[-0.06em] text-[var(--navy-950)]">완료</strong>
+                <p className="text-sm text-[var(--muted)]">36개 후보 라이브러리</p>
+                <strong className="mt-3 block text-3xl tracking-[-0.06em] text-[var(--navy-950)]">입력 후 선별</strong>
               </article>
             </div>
           </div>

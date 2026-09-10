@@ -376,7 +376,8 @@ try {
       if (route.path === "/phase-2b") {
         const requiredEngineLabels = [
           "PHASE 2B ENGINE FOUNDATION",
-          "36개 시나리오 내부 분석 완료",
+          "후보 라이브러리",
+          "검토 가능한 전략 후보",
           "사용자 노출 결과",
           "상속",
           "증여",
@@ -430,7 +431,8 @@ try {
     const assessmentMatch = resultText.match(/AS360-\d{8}-[A-Z0-9]+/);
     const requiredResultText = [
       "개인화 시나리오 플랜",
-      "36개 시나리오 내부 분석 완료",
+      "36개 후보 라이브러리",
+      "검토 가능한 전략 후보",
       "입력 총자산",
       "50억",
       "가족 분산·단계적 사전증여",

@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      - codex/chat-opening-topics
       - codex/home-hero-paper-carousel
   push:
     branches:
@@ -12,6 +13,7 @@ on:
       - codex/issue-7-phase-2b-engine-foundation
       - codex/home-hero-paper-carousel
       - codex/inheritance-chat-report
+      - codex/phase1-hardening
 
 permissions:
   contents: read

@@ -234,7 +234,8 @@ test("generic debt uses the other-debt category and gifts keep their original re
   assert.equal(facts.debts[0].type, "other");
   assert.equal(facts.debts[0].amount_eok, 3);
   assert.equal(facts.debt_status, "has_debt");
-  assert.equal(facts.past_gifts.length, 0);
+  assert.equal(facts.past_gifts.length, 1);
+  assert.equal(facts.past_gifts[0].recipient, "spouse");
   assert.equal(result.answers.debt.facts?.["과거 증여 상세"], "과거 배우자에게 2억 증여");
   const secured = normalizeAssessmentSnapshot(snapshot(withFacts({ owner: "본인 재산", financialAssets: "예금 10억", debt: "담보대출 3억" })));
   assert.equal(secured.debts[0].amount_eok, 3);
@@ -242,6 +243,52 @@ test("generic debt uses the other-debt category and gifts keep their original re
   const loan = snapshot(withFacts({ owner: "본인 재산", realEstate: "건물 25억, 아파트 15억", financialAssets: "예금 10억", debt: "대출 5억" }));
   assert.equal(buildAssessmentMetrics(loan).estimatedDebt, "5억");
   assert.equal(buildAssessmentMetrics(loan).netAssets, "45억");
+});
+
+test("separate debt turns retain provenance, sum only current items, and restore into tax drafts", () => {
+  let state = withFacts({ owner: "본인 재산", realEstate: "아파트 25억", financialAssets: "예금 10억" });
+  state = add(state, "은행 대출 2억원", [{ key: "debt", value: "은행 대출 2억원", evidence: "은행 대출 2억원" }]);
+  state = add(state, "임대보증금 3억원도 있어요", [{ key: "debt", value: "임대보증금 3억원", evidence: "임대보증금 3억원도 있어요" }]);
+  assert.equal(state.facts.debt?.value, "은행 대출 2억원\n임대보증금 3억원");
+  assert.equal(state.facts.debt?.sources?.length, 2);
+  assert.ok(validateChatState(state));
+
+  let result = snapshot(state);
+  assert.equal(result.answers.debt.debtAmounts?.["기타채무 있음"], "2");
+  assert.equal(result.answers.debt.debtAmounts?.["임대보증금 있음"], "3");
+  assert.equal(buildAssessmentMetrics(result).estimatedDebt, "5억");
+  assert.equal(normalizeAssessmentSnapshot(result).debts.reduce((sum, debt) => sum + (debt.amount_eok ?? 0), 0), 5);
+
+  state = add(state, "은행 대출은 1억5천만원으로 정정", [{ key: "debt", value: "은행 대출은 1억5천만원", evidence: "은행 대출은 1억5천만원으로 정정" }]);
+  assert.equal(state.facts.debt?.value, "은행 대출은 1억5천만원\n임대보증금 3억원");
+  result = snapshot(state);
+  assert.equal(result.answers.debt.debtAmounts?.["기타채무 있음"], "1.5");
+  assert.equal(result.answers.debt.debtAmounts?.["임대보증금 있음"], "3");
+  assert.equal(buildAssessmentMetrics(result).estimatedDebt, "4.5억");
+  assert.equal(buildAssessmentMetrics(result).netAssets, "30.5억");
+  assert.equal(normalizeAssessmentSnapshot(result).debts.reduce((sum, debt) => sum + (debt.amount_eok ?? 0), 0), 4.5);
+
+});
+
+test("past gift turns preserve separate recipient, date, amount, and evidence", () => {
+  let state = withFacts({ owner: "본인 재산", realEstate: "아파트 25억" });
+  state = add(state, "2020년 첫째에게 1억원 증여", [{ key: "pastGifts", value: "2020년 첫째에게 1억원 증여", evidence: "2020년 첫째에게 1억원 증여" }]);
+  state = add(state, "2023년 둘째에게 5천만원도 증여", [{ key: "pastGifts", value: "2023년 둘째에게 5천만원도 증여", evidence: "2023년 둘째에게 5천만원도 증여" }]);
+  state = add(state, "2023년 둘째에게 5천만원도 증여", [{ key: "pastGifts", value: "2023년 둘째에게 5천만원도 증여", evidence: "2023년 둘째에게 5천만원도 증여" }]);
+
+  assert.equal(state.facts.pastGifts?.value, "2020년 첫째에게 1억원 증여\n2023년 둘째에게 5천만원도 증여");
+  assert.equal(state.facts.pastGifts?.sources?.length, 2);
+  assert.ok(validateChatState(state));
+
+  const result = snapshot(state);
+  assert.equal(result.answers.debt.facts?.["과거 증여 항목 1"], "2020년 첫째에게 1억원 증여");
+  assert.equal(result.answers.debt.facts?.["과거 증여 항목 2"], "2023년 둘째에게 5천만원도 증여");
+  const gifts = normalizeAssessmentSnapshot(result).past_gifts;
+  assert.equal(gifts.length, 2);
+  assert.deepEqual(gifts.map((gift) => gift.gift_date), ["2020년", "2023년"]);
+  assert.deepEqual(gifts.map((gift) => gift.amount_eok), [1, 0.5]);
+  assert.ok(result.conversation?.confirmed_facts.find((fact) => fact.id === "pastGifts")?.raw_text.includes("[message-3] 2020년 첫째에게 1억원 증여"));
+  assert.ok(result.conversation?.confirmed_facts.find((fact) => fact.id === "pastGifts")?.raw_text.includes("[message-4] 2023년 둘째에게 5천만원도 증여"));
 });
 
 test("chat values never fabricate a tax base, savings, or scenario-specific customer numbers", () => {

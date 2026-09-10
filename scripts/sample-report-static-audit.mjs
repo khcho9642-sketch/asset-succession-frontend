@@ -20,11 +20,12 @@ for (const image of originalImages) {
 
 const manifest = JSON.parse(await readFile("public/media/sample-report-v3/manifest.json", "utf8"));
 const titles = ["세금효과 요약", "가족과 자산", "세 가지 방향 비교", "단계적 증여", "매각과 상속", "생활비와 납부재원", "실행 준비"];
-assert.equal(manifest.version, 3, "Sample must use the illustrated seven-page manifest");
+assert.equal(manifest.version, 5, "Sample must use the approved v5 illustrated seven-page manifest");
 assert.deepEqual(manifest.pages.map(page => page.title), titles, "The requested seven infographic chapters changed");
-assert.equal(manifest.pdf, "/media/sample-report-v3/sample-report.pdf", "Sample download must use the matching illustrated PDF");
+assert.equal(manifest.pdf, "/media/sample-report-v3/sample-report-layout-v5.pdf", "Sample download must use the matching illustrated PDF");
 for (const [index, page] of manifest.pages.entries()) {
-  assert.equal(page.image, `/media/sample-report-v3/page-${String(index + 1).padStart(2, "0")}.webp`);
+  const expectedImage = index === 0 ? "/media/sample-report-v3/page-01-layout-v5.webp" : `/media/sample-report-v3/page-${String(index + 1).padStart(2, "0")}.webp`;
+  assert.equal(page.image, expectedImage);
   assert.equal(page.width, 1400);
   assert.equal(page.height, 1980);
   assert(page.headline && page.points.length >= 2, `Page ${index + 1} needs an accessible summary`);
@@ -62,14 +63,17 @@ function auditMarkup(source, label) {
     assert(markup.includes(`id="report-page-${page[1]}"`), `${label}: page ${page[1]} has no navigation target`);
   }
   const firstPage = markup.slice(pages[0].index, pages[1].index);
-  for (const amount of ["38,800,000원", "14,550,000원", "24,250,000원"]) assert(firstPage.includes(amount), `${label}: first-page gift-tax effect summary lost ${amount}`);
-  assert(firstPage.includes("이번 현금 증여세만 비교"), `${label}: first-page example must identify its limited comparison scope`);
+  for (const phrase of ["상속재산 52억원", "14.91억원", "9.16억원", "5.75억원"]) assert(firstPage.includes(phrase), `${label}: first-page v5 inheritance summary lost ${phrase}`);
+  assert(firstPage.includes("첫 장은 별도 상속세 비교 예시"), `${label}: first-page example must identify its limited comparison scope`);
+  const fourthPage = markup.slice(pages[3].index, pages[4].index);
+  for (const amount of ["4,850,000원", "14,550,000원"]) assert(fourthPage.includes(amount), `${label}: fourth-page gift-tax example lost ${amount}`);
   for (const amount of ["1,491,375,000원", "1,200,375,000원", "774,060,000원", "426,315,000원"]) assert(!markup.includes(amount), `${label}: unrelated estate-tax calculation leaked into the illustrated sample`);
   assert(new RegExp(`<a\\b[^>]*href="${manifest.pdf}"[^>]*download=`).test(markup), `${label}: PDF control must download the matching report file`);
   assert(markup.includes("data-sample-viewer") && markup.includes('data-current-page="1"'), `${label}: missing initial one-page viewer state`);
   assert(markup.includes("data-sample-stage"), `${label}: missing fitted report stage`);
   for (const control of ["목차", "이전 페이지", "다음 페이지", "크게 보기", "PDF 저장"]) assert(markup.includes(control), `${label}: missing ${control} control`);
-  for (const href of ["/", "/precheck"]) assert(markup.includes(`href="${href}"`), `${label}: missing ${href} link`);
+  assert(markup.includes('href="/"'), `${label}: missing / link`);
+  assert(markup.includes('href="/precheck?purpose=inheritance"'), `${label}: missing inheritance precheck link`);
 }
 
 auditMarkup(html, "Prerendered sample");

@@ -247,7 +247,9 @@ export type ScenarioPlan = {
 export type ScenarioInternalAnalysis = {
   candidate_library_count: number;
   evaluated_candidate_count: number;
-  analysis_status: "completed";
+  reviewable_candidate_count: number;
+  needs_information_count: number;
+  analysis_status: "candidate_library" | "partially_evaluated";
   user_visible_disclosure: "summary_only";
   disclosure_label: string;
   hidden_candidate_lists: true;

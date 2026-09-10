@@ -5,6 +5,24 @@ import type { TaxComparisonInput, TaxTrack } from "../tax-comparison/types";
 import { CHAT_ASSET_KEYS, type ChatState } from "./intake";
 import { buildConfirmedAssessmentSnapshot, parseAssetAmount, parseChatAmount } from "./report";
 
+const DEBT_WORDS = /담보\s*대출|은행\s*대출|금융\s*대출|임대\s*보증금|전세\s*보증금|보증금|채무|대출|빚/g;
+
+function confirmedDebtWon(state: ChatState): number | null {
+  const fact = state.facts.debt;
+  if (!fact) return null;
+  const sources = fact.sources ?? [fact];
+  const parsed = sources
+    .filter((source) => /담보\s*대출|은행|금융|임대\s*보증금|전세\s*보증금|보증금|채무|대출|빚/.test(source.value))
+    .map((source) => parseChatAmount(source.value.replace(DEBT_WORDS, "")));
+  if (parsed.length === 0) {
+    const single = parseChatAmount(fact.value.replace(DEBT_WORDS, ""));
+    return single.status === "confirmed" ? single.value_won : null;
+  }
+  if (parsed.some((item) => item.status !== "confirmed")) return null;
+  const total = parsed.reduce((sum, item) => sum + (item.status === "confirmed" ? item.value_won : 0), 0);
+  return Number.isSafeInteger(total) ? total : null;
+}
+
 export function taxFactsSignature(state: ChatState): string {
   return JSON.stringify(state.facts);
 }
@@ -31,10 +49,10 @@ export function createTaxInputFromChat(state: ChatState, preferredTrack?: TaxTra
     if (financial?.status === "confirmed") values.financial = wonToInput(financial.value_won);
     const rawDebt = state.facts.debt?.value;
     if (rawDebt) {
-      const parsed = parseChatAmount(rawDebt.replace(/담보\s*대출|금융\s*채무|채무|대출|빚/g, "").trim());
-      if (parsed.status === "confirmed") {
-        values.debt = wonToInput(parsed.value_won);
-        if (parsed.value_won === 0) values.financialDebt = "0";
+      const debtWon = confirmedDebtWon(state);
+      if (debtWon !== null) {
+        values.debt = wonToInput(debtWon);
+        if (debtWon === 0) values.financialDebt = "0";
       }
     }
     const spouse = state.facts.spouse?.value?.replace(/^(?:소유자의?\s*)?배우자(?:은|는|이|가)?\s*/, "").trim() ?? "";

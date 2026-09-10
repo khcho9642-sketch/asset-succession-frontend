@@ -279,8 +279,11 @@ describe("Phase 2B scenario engine", () => {
     const plan = buildScenarioPlan(phase2bFixtures.caseAInheritance);
     assert.equal(getInternalScenarioCandidateLibraryCount(), 36);
     assert.equal(plan.internal_analysis.candidate_library_count, 36);
-    assert.equal(plan.internal_analysis.evaluated_candidate_count, 36);
-    assert.equal(plan.internal_analysis.disclosure_label, "36개 시나리오 내부 분석 완료");
+    assert.equal(plan.internal_analysis.evaluated_candidate_count, plan.scenarios.length);
+    assert.equal(plan.internal_analysis.reviewable_candidate_count, plan.scenarios.filter((scenario) => scenario.eligibility.status !== "needs_info" && scenario.eligibility.status !== "excluded").length);
+    assert.equal(plan.internal_analysis.needs_information_count, plan.scenarios.filter((scenario) => scenario.eligibility.status === "needs_info" || scenario.calculation_status === "needs_info").length);
+    assert.match(plan.internal_analysis.disclosure_label, /검토 가능한 전략 후보/);
+    assert.doesNotMatch(plan.internal_analysis.disclosure_label, /36개.*완료/);
     assert.equal(plan.internal_analysis.user_visible_disclosure, "summary_only");
     assert.equal(plan.internal_analysis.hidden_candidate_lists, true);
     assert.equal(plan.display_scenarios.baseline.baseline_id, plan.baseline.baseline_id);

@@ -32,7 +32,7 @@ export function buildScenarioPlan(facts: ClientFacts, context: CalculationContex
     .filter((definition) => enrichedFacts.planning_tracks.includes(definition.track) || definition.alwaysConsider)
     .map((definition) => buildScenario(definition, enrichedFacts, baseline));
   const recommendations = rankRecommendations(scenarios);
-  const internalAnalysis = buildInternalAnalysis();
+  const internalAnalysis = buildInternalAnalysis(scenarios);
   const displayScenarios = buildScenarioDisplayPlan(baseline, scenarios, recommendations);
 
   return {
@@ -150,14 +150,19 @@ function internalScenarioCandidateLibrary(): InternalScenarioCandidate[] {
   ];
 }
 
-function buildInternalAnalysis(): ScenarioInternalAnalysis {
+function buildInternalAnalysis(scenarios: Scenario[]): ScenarioInternalAnalysis {
   const candidateCount = internalScenarioCandidateLibrary().length;
+  const evaluatedCount = scenarios.length;
+  const reviewableCount = scenarios.filter((scenario) => scenario.eligibility.status !== "needs_info" && scenario.eligibility.status !== "excluded").length;
+  const needsInformationCount = scenarios.filter((scenario) => scenario.eligibility.status === "needs_info" || scenario.calculation_status === "needs_info").length;
   return {
     candidate_library_count: candidateCount,
-    evaluated_candidate_count: candidateCount,
-    analysis_status: "completed",
+    evaluated_candidate_count: evaluatedCount,
+    reviewable_candidate_count: reviewableCount,
+    needs_information_count: needsInformationCount,
+    analysis_status: needsInformationCount > 0 ? "partially_evaluated" : "candidate_library",
     user_visible_disclosure: "summary_only",
-    disclosure_label: `${candidateCount}개 시나리오 내부 분석 완료`,
+    disclosure_label: `${reviewableCount}개 검토 가능한 전략 후보 · ${needsInformationCount}개 추가 정보 확인 필요`,
     hidden_candidate_lists: true
   };
 }

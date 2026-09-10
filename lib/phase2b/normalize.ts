@@ -1,6 +1,6 @@
 import type { AssessmentSnapshot } from "../assessment";
 import { eokAmountToWon, parseEokAmount, parseNonnegativeEokAmount } from "../assessment";
-import type { Asset, ClientFacts, Debt, Goal, PlanningTrack } from "./types";
+import type { Asset, ClientFacts, Debt, Goal, PastGift, PlanningTrack } from "./types";
 
 const trackByChoice: Record<string, PlanningTrack[]> = {
   "상속": ["inheritance"],
@@ -103,9 +103,7 @@ export function normalizeAssessmentSnapshot(snapshot: AssessmentSnapshot): Clien
     assets,
     debts,
     debt_status: debtStatus,
-    past_gifts: debtAnswer?.choices.includes("최근 10년 증여 있음")
-      ? [{ gift_id: "assessment-past-gift-1", recipient: "adult_child", amount_eok: parseEokAmount(factValue("과거 증여 상세", snapshot)), gift_date: pastGiftDate(factValue("과거 증여 상세", snapshot)), confirmation_status: parseEokAmount(factValue("과거 증여 상세", snapshot)) === null ? "amount_missing" : "confirmed" }]
-      : [],
+    past_gifts: buildPastGifts(snapshot),
     insurance: assetsAnswer?.choices.includes("보험") || goalAnswer?.choices.includes("상속세 납부재원 준비")
       ? [{ policy_id: "assessment-insurance-1", premium_capacity: "unknown" }]
       : [],
@@ -276,8 +274,43 @@ function inferDebtStatus(debtAnswer: AssessmentSnapshot["answers"][string] | und
   return "unknown" as const;
 }
 
+function buildPastGifts(snapshot: AssessmentSnapshot): PastGift[] {
+  const debtAnswer = snapshot.answers.debt;
+  if (!debtAnswer?.choices.includes("최근 10년 증여 있음")) return [];
+  const entries = Object.entries(debtAnswer.facts ?? {})
+    .filter(([label]) => /^과거 증여 항목 \d+$/.test(label))
+    .sort(([a], [b]) => Number(a.match(/\d+/)?.[0] ?? 0) - Number(b.match(/\d+/)?.[0] ?? 0))
+    .map(([, value]) => value)
+    .filter(Boolean);
+  const values = entries.length > 0 ? entries : [factValue("과거 증여 상세", snapshot)].filter((value): value is string => Boolean(value));
+  return values.map((value, index) => {
+    const amount = parsePastGiftAmount(value);
+    return {
+      gift_id: `assessment-past-gift-${index + 1}`,
+      recipient: pastGiftRecipient(value),
+      amount_eok: amount,
+      gift_date: pastGiftDate(value),
+      confirmation_status: amount === null ? "amount_missing" as const : "confirmed" as const
+    };
+  });
+}
+
+function parsePastGiftAmount(value: string) {
+  const money = value.match(/\d+(?:\.\d+)?\s*억(?:원)?(?:\s*\d+(?:\.\d+)?\s*(?:천\s*만|만)(?:원)?)?|\d+(?:\.\d+)?\s*(?:천\s*만|만)(?:원)?/)?.[0];
+  return parseEokAmount(money);
+}
+
+function pastGiftRecipient(value: string): PastGift["recipient"] {
+  if (/배우자/.test(value)) return "spouse";
+  if (/미성년/.test(value)) return "minor_child";
+  if (/첫째|둘째|셋째|자녀|아들|딸/.test(value)) return "adult_child";
+  return "unknown";
+}
+
 function pastGiftDate(value?: string) {
   if (!value) return null;
+  const absoluteYear = value.match(/((?:19|20)\d{2})\s*년/);
+  if (absoluteYear) return `${absoluteYear[1]}년`;
   const match = value.match(/(\d+)\s*년\s*전/);
   return match ? `${match[1]}년 전` : null;
 }

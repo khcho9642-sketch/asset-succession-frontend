@@ -47,9 +47,11 @@ async function assertSampleContent(page, label) {
     const intrinsic = await image.evaluate(image => ({ complete: image.complete, width: image.naturalWidth, height: image.naturalHeight, objectFit: getComputedStyle(image).objectFit }));
     assert.deepEqual(intrinsic, { complete: true, width: original.width, height: original.height, objectFit: "contain" }, `${label}: page ${number} is broken, cropped or distorted`);
   }
-  const text = await page.locator('[data-report-page="1"]').textContent();
-  for (const amount of ["38,800,000원", "14,550,000원", "24,250,000원"]) assert(text.includes(amount), `${label}: estimated gift-tax effect lost ${amount}`);
-  assert(text.includes("이번 현금 증여세만 비교"), `${label}: the cash-gift example lost its comparison scope`);
+  const firstPageText = await page.locator('[data-report-page="1"]').textContent();
+  for (const phrase of ["상속재산 52억원", "14.91억원", "9.16억원", "5.75억원"]) assert(firstPageText.includes(phrase), `${label}: first-page v5 inheritance summary lost ${phrase}`);
+  assert(firstPageText.includes("첫 장은 별도 상속세 비교 예시"), `${label}: the first-page example lost its comparison scope`);
+  const fourthPageText = await page.locator('[data-report-page="4"]').textContent();
+  for (const amount of ["4,850,000원", "14,550,000원"]) assert(fourthPageText.includes(amount), `${label}: fourth-page gift-tax example lost ${amount}`);
   const download = page.locator(`a[href="${manifest.pdf}"][download]`);
   assert.equal(await download.getAttribute("href"), manifest.pdf, `${label}: PDF differs from the infographic report`);
   assert(await download.getAttribute("download"), `${label}: PDF must download directly`);
@@ -98,6 +100,7 @@ async function assertViewerLayout(page, label) {
         return { label: button.getAttribute("aria-label"), width: box.width, height: box.height, iconWidth: icon?.width ?? 0, iconHeight: icon?.height ?? 0 };
       }),
       overlappingControls: [...document.querySelectorAll("button, a")].filter(button => {
+        if (button.closest("[data-public-header]")) return false;
         const box = button.getBoundingClientRect();
         if (!box.width || !box.height) return false;
         return visible.some(sheet => {
@@ -328,8 +331,8 @@ try {
     await waitForPage(page, 3);
     observations.push(await assertViewerLayout(page, `${width}px after wheel input`));
     assert.deepEqual(await storage(page), initialStorage, `${width}px: sample navigation changed assessment storage`);
-    assert.equal(await page.getByRole("link", { name: "무료 AI 진단", exact: true }).getAttribute("href"), "/precheck");
-    assert.equal(await page.getByRole("link", { name: "홈으로", exact: true }).getAttribute("href"), "/");
+    assert.equal(await page.locator('a[href="/precheck?purpose=inheritance"]').first().getAttribute("href"), "/precheck?purpose=inheritance");
+    assert.equal(await page.getByRole("link", { name: "자산승계 360 홈", exact: true }).getAttribute("href"), "/");
 
     if (width === 1440) {
       // The public control downloads the authored illustrated PDF with searchable text.
@@ -346,8 +349,7 @@ try {
       for (const [index, text] of downloaded.texts.entries()) {
         assert(text.includes("샘플"), `Downloaded PDF page ${index + 1} needs selectable Korean sample text`);
       }
-      for (const amount of ["3,880", "1,455", "2,425"]) assert(downloaded.texts[0].includes(amount), `Downloaded first page lost gift-tax effect value ${amount}`);
-      assert(downloaded.texts[0].includes("이번 현금 증여세만 비교"), "Downloaded first page lost its limited comparison scope");
+      for (const amount of ["14.91", "9.16", "5.75"]) assert(downloaded.texts[0].includes(amount), `Downloaded first page lost inheritance effect value ${amount}`);
       observations.push({ media: "download", pages: downloaded.pages, sizes: downloaded.sizes, pdf: downloadPath, filename: download.suggestedFilename() });
 
       // Browser printing remains supported and must reveal all seven matching image pages.

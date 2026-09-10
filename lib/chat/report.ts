@@ -93,6 +93,7 @@ const ASSET_WORDS = {
   businessAssets: /법인\s*지분|비상장\s*주식|회사\s*지분|사업\s*자산/g,
   otherAssets: /기타\s*자산/g
 } as const;
+const DEBT_WORDS = /담보\s*대출|은행\s*대출|금융\s*대출|임대\s*보증금|전세\s*보증금|보증금|대출|채무|빚/g;
 
 export function parseAssetAmount(key: typeof CHAT_ASSET_KEYS[number], state: ChatState): ChatAmount {
   const fact = state.facts[key]!;
@@ -104,6 +105,78 @@ export function parseAssetAmount(key: typeof CHAT_ASSET_KEYS[number], state: Cha
   });
   if (isPartialCorrection) return unresolved(fact.value, "여러 자산 중 일부의 정정입니다. 이 자산 종류의 전체 내역을 정보 확인에서 수정해 주세요.");
   return parseChatAmount(fact.value);
+}
+
+function debtChoiceFor(raw: string) {
+  if (/임대\s*보증금|전세\s*보증금|보증금/.test(raw)) return "임대보증금 있음";
+  if (/담보\s*대출/.test(raw)) return "담보대출 있음";
+  if (/은행|금융|대출|채무|빚/.test(raw)) return "기타채무 있음";
+  return null;
+}
+
+function addDebtAmount(answer: AssessmentAnswer, choice: string, parsed: Extract<ChatAmount, { status: "confirmed" }>) {
+  if (!answer.choices.includes(choice)) answer.choices.push(choice);
+  if (parsed.value_won <= 0) return;
+  const previousWon = answer.debtAmountWons?.[choice] ?? 0;
+  const nextWon = previousWon + parsed.value_won;
+  answer.debtAmounts = { ...(answer.debtAmounts ?? {}), [choice]: String(nextWon / 100_000_000) };
+  answer.debtAmountWons = { ...(answer.debtAmountWons ?? {}), [choice]: nextWon };
+}
+
+function populateDebtAnswer(answer: AssessmentAnswer, state: ChatState) {
+  const debtFact = state.facts.debt;
+  if (!debtFact) return;
+  const debtRaw = debtFact.value;
+  answer.detail = debtRaw;
+  answer.facts!["채무 원문"] = debtRaw;
+  if (explicitNone(debtRaw)) {
+    answer.choices.push("해당 없음");
+    answer.facts!["채무 여부"] = "없음";
+    return;
+  }
+
+  answer.facts!["채무 여부"] = "확인 필요";
+  const debtSources = debtFact.sources ?? [debtFact];
+  let matchedDebtCount = 0;
+  let confirmedDebtCount = 0;
+  debtSources.forEach((source, index) => {
+    const raw = source.value;
+    const choice = debtChoiceFor(raw);
+    if (!choice) return;
+    matchedDebtCount += 1;
+    answer.facts![`채무 항목 ${index + 1}`] = raw;
+    const parsed = parseChatAmount(raw.replace(DEBT_WORDS, ""));
+    if (parsed.status === "confirmed") {
+      confirmedDebtCount += 1;
+      addDebtAmount(answer, choice, parsed);
+    }
+  });
+
+  if (matchedDebtCount === 0) {
+    const choice = debtChoiceFor(debtRaw);
+    if (choice) {
+      const parsed = parseChatAmount(debtRaw.replace(DEBT_WORDS, ""));
+      if (!answer.choices.includes(choice)) answer.choices.push(choice);
+      if (parsed.status === "confirmed") {
+        confirmedDebtCount += 1;
+        addDebtAmount(answer, choice, parsed);
+      }
+    }
+  }
+  if (confirmedDebtCount > 0) answer.facts!["채무 여부"] = "있음";
+}
+
+function populatePastGiftsAnswer(answer: AssessmentAnswer, state: ChatState) {
+  const giftFact = state.facts.pastGifts;
+  if (!giftFact) return;
+  const giftRaw = giftFact.value;
+  answer.facts!["과거 증여 상세"] = giftRaw;
+  if (explicitNone(giftRaw)) return;
+  if (!answer.choices.includes("최근 10년 증여 있음")) answer.choices.push("최근 10년 증여 있음");
+  const giftSources = giftFact.sources ?? [giftFact];
+  giftSources.forEach((source, index) => {
+    answer.facts![`과거 증여 항목 ${index + 1}`] = source.value;
+  });
 }
 
 /** Call only from the customer's explicit final confirmation action, never from an AI reply. */
@@ -164,28 +237,9 @@ export function buildConfirmedAssessmentSnapshot(
       assets.assetAmounts![label] = "";
     }
   }
-  const debt: AssessmentAnswer = { label: "채무·과거 증여", choices: [], facts: {}, detail: raw("debt") ?? "채무 미확인" };
-  const debtRaw = raw("debt");
-  if (debtRaw) {
-    debt.facts!["채무 원문"] = debtRaw;
-    if (explicitNone(debtRaw)) {
-      debt.choices.push("해당 없음");
-      debt.facts!["채무 여부"] = "없음";
-    } else {
-      debt.facts!["채무 여부"] = "확인 필요";
-      const debtKinds = [/담보\s*대출/.test(debtRaw) ? "담보대출 있음" : null, /임대\s*보증금|전세\s*보증금/.test(debtRaw) ? "임대보증금 있음" : null].filter((value): value is string => value !== null);
-      if (debtKinds.length === 0 && /대출|채무|빚/.test(debtRaw)) debtKinds.push("기타채무 있음");
-      if (debtKinds.length === 1) {
-        const parsed = parseChatAmount(debtRaw.replace(/담보\s*대출|임대\s*보증금|전세\s*보증금|대출|채무|빚/g, ""));
-        debt.choices.push(debtKinds[0]);
-        if (parsed.status === "confirmed" && parsed.value_won > 0) {
-          debt.debtAmounts = { [debtKinds[0]]: String(parsed.value_eok) };
-          debt.debtAmountWons = { [debtKinds[0]]: parsed.value_won };
-        }
-      }
-    }
-  }
-  if (raw("pastGifts")) debt.facts!["과거 증여 상세"] = raw("pastGifts")!;
+  const debt: AssessmentAnswer = { label: "채무·과거 증여", choices: [], facts: {}, detail: "채무 미확인" };
+  populateDebtAnswer(debt, validated);
+  populatePastGiftsAnswer(debt, validated);
   const goal: AssessmentAnswer = { label: "승계 목표", choices: [], detail: raw("goal") ?? "미입력" };
   const goalRaw = raw("goal") ?? "";
   for (const [pattern, label] of [[/절세|세금.*(?:줄|절감)|세부담.*줄/, "세금 부담 절감"], [/노후|생활비/, "노후생활비 유지"], [/미리.*(?:증여|이전)|생전\s*증여/, "일부를 미리 이전"], [/통제|현재.*유지/, "현재 구조 유지"]] as const) {

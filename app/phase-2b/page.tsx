@@ -77,8 +77,12 @@ export default function Phase2BPage() {
                 <dd className="font-semibold">{plan.unknown_items.length}건</dd>
               </div>
               <div className="flex justify-between gap-3 border-b border-[var(--border)] pb-2">
-                <dt className="text-[var(--muted)]">AI 내부 분석</dt>
-                <dd className="font-semibold">{plan.internal_analysis.candidate_library_count}개 완료</dd>
+                <dt className="text-[var(--muted)]">후보 라이브러리</dt>
+                <dd className="font-semibold">{plan.internal_analysis.candidate_library_count}개 보유</dd>
+              </div>
+              <div className="flex justify-between gap-3 border-b border-[var(--border)] pb-2">
+                <dt className="text-[var(--muted)]">현재 입력 검토</dt>
+                <dd className="font-semibold">{plan.internal_analysis.reviewable_candidate_count}개 후보</dd>
               </div>
             </dl>
           </article>

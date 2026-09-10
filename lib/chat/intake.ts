@@ -23,6 +23,7 @@ export const CHAT_STORAGE_KEY = "as360.chat.intake.v1";
 const MAX_MESSAGES = 160;
 const MAX_MESSAGE_LENGTH = 12_000;
 const MAX_FACT_LENGTH = 4_000;
+const APPENDABLE_FACT_KEYS = [...CHAT_ASSET_KEYS, "debt", "pastGifts"] as const;
 
 export function createChatState(): ChatState {
   return { version: 1, messages: [], facts: {} };
@@ -43,6 +44,73 @@ function compact(text: string) {
 
 function isFieldKey(value: unknown): value is ChatFieldKey {
   return typeof value === "string" && CHAT_FIELD_KEYS.includes(value as ChatFieldKey);
+}
+
+function compactComparable(text: string) {
+  return compact(text).replace(/[.!?。！？,，;；:：·ㆍ\-—–~\s]/g, "");
+}
+
+function factItemIdentity(key: ChatFieldKey, text: string): string {
+  if (key === "debt") {
+    const kind = /임대\s*보증금|전세\s*보증금|보증금/.test(text)
+      ? "lease_deposit"
+      : /담보\s*대출/.test(text)
+        ? "secured_loan"
+        : /은행|금융|대출|채무|빚/.test(text)
+          ? "loan"
+          : "debt_unknown";
+    const lender = /은행/.test(text) ? "bank" : "";
+    return `${kind}:${lender}`;
+  }
+  if (key === "pastGifts") {
+    const recipient = text.match(/첫째|둘째|셋째|배우자|아들|딸|자녀|손자|손녀/)?.[0] ?? "recipient_unknown";
+    const year = text.match(/(?:19|20)\d{2}\s*년/)?.[0]?.replace(/\s+/g, "") ?? "date_unknown";
+    return `gift:${recipient}:${year}`;
+  }
+  return "";
+}
+
+function shouldAppendFactKey(key: ChatFieldKey): boolean {
+  return APPENDABLE_FACT_KEYS.some((item) => item === key);
+}
+
+function mergeFactSources(key: ChatFieldKey, previous: ChatFact, next: ChatFactSource, messageText: string): ChatFact {
+  const sources = previous.sources ?? [{ value: previous.value, evidence: previous.evidence, messageId: previous.messageId }];
+  if (sources.some((item) => item.messageId === next.messageId && compact(item.evidence) === compact(next.evidence))) return previous;
+  if (sources.some((item) => compactComparable(item.value) === compactComparable(next.value))) return previous;
+
+  const structuredAssetReplacement = /^재산\s*전체\s*:/m.test(messageText);
+  const correction = structuredAssetReplacement || /정정|수정|정확히는|아니라|아니고|잘못|변경|고칠|바꿀|대신|다시\s*입력/i.test(messageText);
+  const deletion = /삭제|제외|빼(?:고|주세요)|없애/.test(messageText);
+  const completeReplacement = structuredAssetReplacement || messageText.startsWith(`정정: ${CHAT_FIELD_LABELS[key]} — `) || /(?:전체|전부|합계|총액)(?:를|는|은|가|이)?\s*(?:정정|수정|변경|다시|[:：]|\d)|(?:정정|수정|변경)[^\n]*(?:전체|전부|합계|총액)/.test(messageText);
+
+  if (completeReplacement) return next;
+
+  const identity = factItemIdentity(key, `${next.value} ${next.evidence}`);
+  const matchIndex = identity
+    ? sources.findIndex((source) => factItemIdentity(key, `${source.value} ${source.evidence}`) === identity)
+    : -1;
+
+  if ((correction || deletion) && matchIndex >= 0) {
+    const merged = deletion
+      ? sources.filter((_, index) => index !== matchIndex)
+      : sources.map((source, index) => index === matchIndex ? next : source);
+    if (merged.length === 0) return next;
+    if (merged.length === 1) return merged[0];
+    const combined = merged.map((item) => item.value).join("\n");
+    return combined.length <= MAX_FACT_LENGTH ? { ...merged[merged.length - 1], value: combined, sources: merged } : previous;
+  }
+
+  if (correction && key !== "debt" && key !== "pastGifts") {
+    const previousMoneyCount = [...previous.value.matchAll(/\d+(?:\.\d+)?\s*억(?:원)?(?:\s*\d+(?:\.\d+)?\s*(?:천\s*만|만)(?:원)?)?|\d+(?:\.\d+)?\s*(?:천\s*만|만)(?:원)?/g)].length;
+    const previousItemCount = [...previous.value.matchAll(/아파트|상가|토지|주택|빌딩|오피스텔|건물|예금|적금|주식|펀드|채권|현금/g)].length;
+    const partialCorrection = previousMoneyCount > 1 || previousItemCount > 1 || sources.length > 1 || /[2-9]\d*\s*(?:채|개|건)/.test(previous.value);
+    if (!partialCorrection) return next;
+  }
+
+  const merged = [...sources, next];
+  const combined = merged.map((item) => item.value).join("\n");
+  return combined.length <= MAX_FACT_LENGTH && merged.length <= 24 ? { ...next, value: combined, sources: merged } : previous;
 }
 
 /** Both evidence and value remain quotations; model-authored paraphrases cannot become facts. */
@@ -92,20 +160,8 @@ export function applyChatPatches(state: ChatState, patches: unknown, messageId: 
     seen.add(patch.key);
     const next: ChatFactSource = { value: source.value.trim(), evidence: source.evidence.trim(), messageId };
     const previous = facts[patch.key];
-    const isAsset = CHAT_ASSET_KEYS.some((key) => key === patch.key);
-    const structuredAssetReplacement = /^재산\s*전체\s*:/m.test(latest.text);
-    const correction = structuredAssetReplacement || /정정|수정|정확히는|아니라|아니고|잘못|변경|고칠|바꿀|대신|다시\s*입력/i.test(latest.text);
-    const completeReplacement = structuredAssetReplacement || latest.text.startsWith(`정정: ${CHAT_FIELD_LABELS[patch.key]} — `) || /(?:전체|전부|합계|총액)(?:를|는|은|가|이)?\s*(?:정정|수정|변경|다시|[:：]|\d)|(?:정정|수정|변경)[^\n]*(?:전체|전부|합계|총액)/.test(latest.text);
-    const previousMoneyCount = previous ? [...previous.value.matchAll(/\d+(?:\.\d+)?\s*억(?:원)?(?:\s*\d+(?:\.\d+)?\s*(?:천\s*만|만)(?:원)?)?|\d+(?:\.\d+)?\s*(?:천\s*만|만)(?:원)?/g)].length : 0;
-    const previousItemCount = previous ? [...previous.value.matchAll(/아파트|상가|토지|주택|빌딩|오피스텔|건물|예금|적금|주식|펀드|채권|현금/g)].length : 0;
-    const partialCorrection = correction && !completeReplacement && (previousMoneyCount > 1 || previousItemCount > 1 || (previous?.sources?.length ?? 0) > 1 || /[2-9]\d*\s*(?:채|개|건)/.test(previous?.value ?? ""));
-    if (isAsset && previous && (!correction || partialCorrection) && compact(previous.value) !== compact(next.value)) {
-      const sources = previous.sources ?? [{ value: previous.value, evidence: previous.evidence, messageId: previous.messageId }];
-      if (sources.some((item) => compact(item.value) === compact(next.value))) continue;
-      const merged = [...sources, next];
-      const combined = merged.map((item) => item.value).join("\n");
-      // Keep old and new excerpts visible; ambiguity is resolved in review, never by dropping an item.
-      if (combined.length <= MAX_FACT_LENGTH && merged.length <= 24) facts[patch.key] = { ...next, value: combined, sources: merged };
+    if (previous && shouldAppendFactKey(patch.key)) {
+      facts[patch.key] = mergeFactSources(patch.key, previous, next, latest.text);
     } else {
       facts[patch.key] = next;
     }
