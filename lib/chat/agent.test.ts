@@ -42,6 +42,7 @@ test("Google SDK returns facts, message and choices in exactly one strict struct
     facts,
     message: "아드님은 성인이신가요?",
     choices: ["성인", "미성년자", "잘 모르겠어요"],
+    selectionMode: "single" as const,
   };
   const requests: GoogleRequestBody[] = [];
 
@@ -67,6 +68,7 @@ test("Google SDK returns facts, message and choices in exactly one strict struct
   assert.ok(request.generationConfig.responseSchema?.properties.facts);
   assert.ok(request.generationConfig.responseSchema?.properties.message);
   assert.ok(request.generationConfig.responseSchema?.properties.choices);
+  assert.ok(request.generationConfig.responseSchema?.properties.selectionMode);
   assert.ok(!request.tools?.length, "The one-call request must not expose tools");
   assert.equal(request.toolConfig, undefined);
 });

@@ -1,8 +1,13 @@
 import { z } from "zod";
 
+export const diagnosisSelectionModeSchema = z.enum(["single", "multiple"]);
+
 export const diagnosisReplySchema = z.object({
   message: z.string().trim().min(1).max(4_000),
   choices: z.array(z.string().trim().min(1).max(60)).max(5),
+  // Older saved conversations do not have this field, so keep it optional.
+  // New guided/model replies set it when more than one answer may be true.
+  selectionMode: diagnosisSelectionModeSchema.optional(),
 }).strict();
 
 export type DiagnosisReply = z.infer<typeof diagnosisReplySchema>;
@@ -23,7 +28,7 @@ export function getAssistantReply(raw: string): DiagnosisReply | null {
     try {
       const parsed = diagnosisReplySchema.safeParse(JSON.parse(text));
       if (!parsed.success) return null;
-      return { message: parsed.data.message, choices: [...new Set(parsed.data.choices)] };
+      return { ...parsed.data, choices: [...new Set(parsed.data.choices)] };
     } catch {
       return null;
     }

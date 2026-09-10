@@ -59,10 +59,18 @@
 .speaker { margin-bottom: 6px !important; color: var(--brass); font-size: 13px; font-weight: 600; }
 .messageText { font-size: 17px; white-space: pre-wrap; line-height: 1.85; }
 .replyActions { margin-top: 16px; }
+.multipleHint { margin-bottom: 9px !important; color: var(--soft); font-size: 13px; }
 .replyChoices { display: flex; flex-wrap: wrap; gap: 8px; }
-.replyChoice { min-height: 46px; max-width: 100%; padding: 10px 15px; border: 1px solid #c9bca6; border-radius: 5px; background: #f3eee4; color: var(--ink); font-size: 16px; font-weight: 400; line-height: 1.55; text-align: left; overflow-wrap: anywhere; }
+.replyChoice { display: inline-flex; min-height: 46px; max-width: 100%; align-items: center; gap: 8px; padding: 10px 15px; border: 1px solid #c9bca6; border-radius: 5px; background: #f3eee4; color: var(--ink); font-size: 16px; font-weight: 400; line-height: 1.55; text-align: left; overflow-wrap: anywhere; }
 .replyChoice:hover:not(:disabled) { background: #ebe0d2; border-color: var(--brass); }
-.replyChoice:focus-visible, .writeReply:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+.replyChoiceSelected { border-color: var(--brass); background: #e7dcc8; box-shadow: inset 0 0 0 1px var(--brass); }
+.choiceCheck { display: inline-flex; width: 18px; height: 18px; flex: 0 0 18px; align-items: center; justify-content: center; border: 1px solid #aa987b; border-radius: 3px; background: #fffaf0; color: #fffaf0; }
+.replyChoiceSelected .choiceCheck { border-color: var(--brass); background: var(--brass); }
+.multipleActions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; }
+.selectionCount { color: var(--soft); font-size: 13px; }
+.confirmChoices { min-height: 44px; padding: 9px 16px; border-radius: 4px; background: var(--ink); color: var(--sheet); font-size: 14px; font-weight: 600; }
+.confirmChoices:hover:not(:disabled) { background: var(--brass); }
+.replyChoice:focus-visible, .writeReply:focus-visible, .confirmChoices:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
 .writeReply { display: block; min-height: 44px; padding: 10px 2px; color: var(--soft); font-size: 14px; font-weight: 400; text-decoration: underline; text-underline-offset: 4px; }
 .localExplanation { padding-top: 19px; border-top: 1px solid var(--line); color: var(--soft); font-size: 14px; line-height: 1.8; }
 .localGuidance { margin-top: 18px; padding: 14px 17px; border-left: 2px solid #a28a60; background: #eee8dd; font-size: 15px; line-height: 1.85; }
@@ -189,6 +197,9 @@
   .userMessage { padding: 15px 16px; }
   .speaker { font-size: 13px; margin-bottom: 8px !important; }
   .messageText { font-size: 18px; line-height: 1.85; }
+  .multipleHint, .selectionCount { font-size: 14px; }
+  .multipleActions { align-items: stretch; flex-direction: column; gap: 7px; }
+  .confirmChoices { width: 100%; font-size: 15px; }
   .localExplanation { font-size: 14px; line-height: 1.9; }
   .localGuidance { font-size: 18px; padding: 12px 14px; }
   .localGuidance > span { font-size: 13px; }

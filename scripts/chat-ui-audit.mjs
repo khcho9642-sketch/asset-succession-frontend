@@ -371,8 +371,26 @@ try {
   await fastPathPage.getByRole("button", { name: "아버지", exact: true }).click();
   await fastPathPage.getByText("어떤 재산이 있나요?", { exact: true }).waitFor();
   await waitFact(fastPathPage, "owner", "아버지");
+  const userTurnsBeforeAssets = (await draft(fastPathPage)).state.messages.filter(message => message.role === "user").length;
+  const realEstateChoice = fastPathPage.getByRole("button", { name: "부동산", exact: true });
+  const cashChoice = fastPathPage.getByRole("button", { name: "예금·현금", exact: true });
+  await realEstateChoice.click();
+  await realEstateChoice.click();
+  assert.equal(await realEstateChoice.getAttribute("aria-pressed"), "false", "A selected asset could not be removed");
+  await realEstateChoice.click();
+  await cashChoice.click();
+  assert.equal(await realEstateChoice.getAttribute("aria-pressed"), "true", "First asset was not kept selected");
+  assert.equal(await cashChoice.getAttribute("aria-pressed"), "true", "Second asset was not kept selected");
+  assert.equal((await draft(fastPathPage)).state.messages.filter(message => message.role === "user").length, userTurnsBeforeAssets,
+    "A multi-select choice was submitted before confirmation");
+  await fastPathPage.getByRole("button", { name: "선택 완료 (2)", exact: true }).click();
+  await fastPathPage.getByText("재산 소유자의 배우자가 계신가요?", { exact: true }).waitFor();
+  assert.equal(await fastPathPage.getByRole("button", { name: "배우자가 있어요", exact: true }).getAttribute("aria-pressed"), null,
+    "Multi-select state leaked into the next single-choice question");
+  await waitFact(fastPathPage, "realEstate", "부동산");
+  await waitFact(fastPathPage, "financialAssets", "예금·현금");
   assert.equal(postCount, requestsBeforeFastPath, "Common guided choices made a slow AI request");
-  observations.push({ name: "configured inheritance choices answer locally without AI latency" });
+  observations.push({ name: "configured inheritance choices support confirmed multi-select without AI latency" });
   await fastPathContext.close();
 
   let releaseStream;
@@ -381,7 +399,7 @@ try {
   const requestStarted = new Promise(resolve => { markRequested = resolve; });
   let mockRequests = 0;
   const aiReplyMessage = "부동산별 취득 시기를 알고 계세요?";
-  const aiReply = JSON.stringify({ message: aiReplyMessage, choices: ["알고 있어요", "잘 모르겠어요"] });
+  const aiReply = JSON.stringify({ message: aiReplyMessage, choices: ["알고 있어요", "잘 모르겠어요"], selectionMode: "single" });
   const aiContext = await newContext(browser, { configured: true, post: async route => {
     mockRequests += 1;
     markRequested();

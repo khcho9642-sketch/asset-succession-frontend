@@ -19,7 +19,7 @@ const MAX_BUFFER_CHUNKS = 4_096;
 
 class RejectedAttemptError extends Error {}
 
-function completedTurnChunks(proposals: ChatPatch[], reply: { message: string; choices: string[] }): UIMessageChunk[] {
+function completedTurnChunks(proposals: ChatPatch[], reply: { message: string; choices: string[]; selectionMode?: "single" | "multiple" }): UIMessageChunk[] {
   const id = globalThis.crypto.randomUUID();
   const toolCallId = `facts-${id}`;
   const textId = `reply-${id}`;
@@ -94,7 +94,7 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
       const turn = diagnosisTurnSchema.parse(result.output);
       const latest = options.messages[options.messages.length - 1];
       const proposals = acceptFactProposals(turn.facts, { id: latest.id, text: latest.parts[0].text });
-      const reply = diagnosisReplySchema.parse({ message: turn.message, choices: turn.choices });
+      const reply = diagnosisReplySchema.parse({ message: turn.message, choices: turn.choices, selectionMode: turn.selectionMode });
       const chunks = completedTurnChunks(proposals, reply);
       const bytes = chunks.reduce((total, chunk) => total + Buffer.byteLength(JSON.stringify(chunk), "utf8"), 0);
       if (bytes > MAX_BUFFER_BYTES || chunks.length > MAX_BUFFER_CHUNKS) {

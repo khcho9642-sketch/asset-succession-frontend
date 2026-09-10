@@ -29,6 +29,11 @@ test("inheritance button path answers three common choices without an AI request
   assert.equal(second.reply.message, "누구의 재산을 준비하고 계세요?");
   const third = advance(second.state, "아버지");
   assert.equal(third.reply.message, "어떤 재산이 있나요?");
+  assert.equal(third.reply.selectionMode, "multiple");
+  const fourth = advance(third.state, "부동산, 예금·현금, 주식");
+  assert.equal(fourth.reply.message, "재산 소유자의 배우자가 계신가요?");
+  assert.equal(fourth.state.facts.realEstate?.value, "부동산");
+  assert.equal(fourth.state.facts.financialAssets?.value, "예금·현금, 주식");
   assert.equal(third.state.facts.topic?.value, "상속");
   assert.equal(third.state.facts.timing?.value, "미리 준비 중이에요");
   assert.equal(third.state.facts.owner?.value, "아버지");
@@ -47,6 +52,11 @@ test("gift, sale and business openings are concise and contextual", () => {
 
   const gift = advance(advance(createChatState(), "증여").state, "아들");
   assert.equal(gift.reply.message, "어떤 재산을 주려고 하세요?");
+  assert.equal(gift.reply.selectionMode, "multiple");
+  const giftAssets = advance(gift.state, "예금·현금, 회사 지분");
+  assert.equal(giftAssets.reply.message, "증여할 재산의 대략적인 금액을 알고 계세요?");
+  assert.equal(giftAssets.state.facts.financialAssets?.value, "예금·현금");
+  assert.equal(giftAssets.state.facts.businessAssets?.value, "회사 지분");
   const sale = advance(advance(createChatState(), "양도").state, "아파트·주택");
   assert.equal(sale.reply.message, "매각은 어느 단계인가요?");
   assert.equal(sale.state.facts.realEstate?.value, "아파트·주택");

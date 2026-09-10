@@ -24,6 +24,7 @@ const backupProposals: ChatPatch[] = [{ key: "realEstate", value: "제 아파트
 const reply: DiagnosisReply = {
   message: "아드님은 성인이신가요?",
   choices: ["성인", "미성년자", "잘 모르겠어요"],
+  selectionMode: "single",
 };
 
 type GoogleRequestBody = {
@@ -92,10 +93,11 @@ function installGoogleMock(t: TestContext, steps: Step[]): RequestLog[] {
     assert.equal(body.generationConfig.maxOutputTokens, 3_000);
     assert.equal(body.generationConfig.thinkingConfig.thinkingLevel, "low");
     assert.equal(body.generationConfig.responseMimeType, "application/json");
-    assert.deepEqual(body.generationConfig.responseSchema?.required, ["facts", "message", "choices"]);
+    assert.deepEqual(body.generationConfig.responseSchema?.required, ["facts", "message", "choices", "selectionMode"]);
     assert.ok(body.generationConfig.responseSchema?.properties.facts);
     assert.ok(body.generationConfig.responseSchema?.properties.message);
     assert.ok(body.generationConfig.responseSchema?.properties.choices);
+    assert.ok(body.generationConfig.responseSchema?.properties.selectionMode);
     assert.equal(body.generationConfig.responseJsonSchema, undefined);
     assert.ok(!body.tools?.length, "Unified structured request must not expose tools to the model");
     assert.equal(body.toolConfig, undefined);
@@ -253,7 +255,7 @@ test("backup preserves prior questions, short user answers and existing facts ac
     realEstate: { value: "제 부산 아파트", evidence: "제 부산 아파트", messageId: "synthetic-earlier-user" },
   };
   const proposals: ChatPatch[] = [{ key: "adultChildren", value: "성인 아들 1명", evidence: "성인 아들 1명" }];
-  const expected = { message: "언제쯤 진행하실 계획인가요?", choices: ["올해 안", "내년 이후", "아직 미정"] };
+  const expected = { message: "언제쯤 진행하실 계획인가요?", choices: ["올해 안", "내년 이후", "아직 미정"], selectionMode: "single" as const };
   const requests = installGoogleMock(t, [failure(PRIMARY, 503), turn(BACKUP, proposals, expected)]);
   const chunks = await readChunks(response({ messages: history, facts: existingFacts }));
   assert.deepEqual(requests.map((request) => request.model), [PRIMARY, BACKUP]);

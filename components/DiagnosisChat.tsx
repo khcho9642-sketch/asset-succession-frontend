@@ -12,6 +12,7 @@ import type { ChatFieldKey, ChatMessage, ChatState } from "@/lib/chat/intake";
 import type { DiagnosisUIMessage } from "@/lib/chat/agent";
 import { extractLocalChatPatches, getLocalChatReply } from "@/lib/chat/local";
 import { getAssistantReply } from "@/lib/chat/choices";
+import type { DiagnosisReply } from "@/lib/chat/choices";
 import { getGuidedChatTurn } from "@/lib/chat/guided";
 import { getChatErrorNotice, isIncompleteChatResponse } from "@/lib/chat/response";
 import { buildConfirmedTaxAssessmentSnapshot, createTaxInputFromChat, taxFactsSignature } from "@/lib/chat/tax";
@@ -383,12 +384,19 @@ export function DiagnosisChat() {
                 return <article className={message.role === "user" ? styles.userMessage : styles.assistantMessage} key={message.id}>
                   <p className={styles.speaker}>{message.role === "user" ? "내가 전한 이야기" : configured === false ? "입력 안내" : "자산승계360 AI"}</p>
                   <div className={styles.messageText}>{visibleText}</div>
-                  {showChoices && <div className={styles.replyActions}>
-                    <div className={styles.replyChoices} role="group" aria-label="답변 선택">
-                      {reply.choices.map(choice => <button key={choice} type="button" className={styles.replyChoice} disabled={!hydrated || (configured === null && !getGuidedChatTurn(stateRef.current, choice)) || reportOpening} onClick={() => void submitMessage(choice)}>{choice}</button>)}
-                    </div>
-                    <button type="button" className={styles.writeReply} disabled={!hydrated || reportOpening} onClick={() => inputRef.current?.focus()}>직접 입력하기</button>
-                  </div>}
+                  {showChoices && <ReplyChoices
+                    reply={reply}
+                    disabled={!hydrated || reportOpening}
+                    isSubmitDisabled={value => !hydrated || reportOpening || (configured === null && !getGuidedChatTurn(stateRef.current, value))}
+                    onSubmit={value => void submitMessage(value)}
+                    onWrite={value => {
+                      if (value && !input.trim()) {
+                        invalidateReport();
+                        setInput(value);
+                      }
+                      inputRef.current?.focus();
+                    }}
+                  />}
                 </article>;
               })}
               {configured === false && !hasMessages && <p className={styles.localExplanation}>{connectionError ? "AI 연결을 확인하지 못했어요. " : ""}지금은 입력 내용을 기본 규칙으로 정리해요. 요약을 직접 고쳐 보고서를 볼 수 있어요.</p>}
@@ -444,6 +452,60 @@ export function DiagnosisChat() {
       </div>
     </section>
   );
+}
+
+const EXCLUSIVE_MULTI_CHOICE = /^(?:해당 없음|없어요|없습니다|잘 모르겠어요|모르겠어요|아직 정하지 않았어요|확인이 필요해요)$/;
+
+function ReplyChoices({
+  reply,
+  disabled,
+  isSubmitDisabled,
+  onSubmit,
+  onWrite,
+}: {
+  reply: DiagnosisReply;
+  disabled: boolean;
+  isSubmitDisabled: (value: string) => boolean;
+  onSubmit: (value: string) => void;
+  onWrite: (value: string) => void;
+}) {
+  const [selected, setSelected] = useState<string[]>([]);
+  const multiple = reply.selectionMode === "multiple";
+  const orderedSelection = reply.choices.filter(choice => selected.includes(choice));
+  const answer = orderedSelection.join(", ");
+
+  function toggle(choice: string) {
+    setSelected(previous => {
+      if (previous.includes(choice)) return previous.filter(value => value !== choice);
+      if (EXCLUSIVE_MULTI_CHOICE.test(choice)) return [choice];
+      return [...previous.filter(value => !EXCLUSIVE_MULTI_CHOICE.test(value)), choice];
+    });
+  }
+
+  return <div className={styles.replyActions}>
+    {multiple && <p className={styles.multipleHint}>여러 개 선택할 수 있어요.</p>}
+    <div className={styles.replyChoices} role="group" aria-label={multiple ? "답변 복수 선택" : "답변 선택"}>
+      {reply.choices.map(choice => {
+        const active = selected.includes(choice);
+        return <button
+          key={choice}
+          type="button"
+          className={`${styles.replyChoice} ${active ? styles.replyChoiceSelected : ""}`}
+          disabled={disabled || (!multiple && isSubmitDisabled(choice))}
+          aria-pressed={multiple ? active : undefined}
+          onClick={() => multiple ? toggle(choice) : onSubmit(choice)}
+        >
+          {multiple && <span className={styles.choiceCheck} aria-hidden="true">{active && <Check size={14} />}</span>}
+          <span>{choice}</span>
+        </button>;
+      })}
+    </div>
+    {multiple && <div className={styles.multipleActions}>
+      <span className={styles.selectionCount} aria-live="polite">{orderedSelection.length > 0 ? `${orderedSelection.length}개 선택됨` : "선택해 주세요"}</span>
+      <button type="button" className={styles.confirmChoices} disabled={!answer || isSubmitDisabled(answer)} onClick={() => onSubmit(answer)}>선택 완료{orderedSelection.length > 0 ? ` (${orderedSelection.length})` : ""}</button>
+    </div>}
+    <button type="button" className={styles.writeReply} disabled={disabled} onClick={() => onWrite(answer)}>직접 입력하기</button>
+  </div>;
 }
 
 function FactEditor({ fieldKey, fact, disabled, onSave, onRemove, onEditingChange }: { fieldKey: ChatFieldKey; fact: ChatState["facts"][ChatFieldKey]; disabled: boolean; onSave: (key: ChatFieldKey, value: string) => void; onRemove: (key: ChatFieldKey) => void; onEditingChange: (id: string, editing: boolean) => void }) {

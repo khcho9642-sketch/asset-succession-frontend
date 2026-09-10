@@ -1,11 +1,16 @@
 import { isStepCount, Output, ToolLoopAgent, tool, type InferAgentUIMessage } from "ai";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
-import { diagnosisReplySchema } from "./choices";
+import { diagnosisReplySchema, diagnosisSelectionModeSchema } from "./choices";
 import { applyChatPatches, createChatState, type ChatPatch, type ChatState } from "./intake";
 import { buildDiagnosisPrompt } from "./prompt";
 import { proposeFactsInputSchema, type DiagnosisRequest } from "./server";
 
-export const diagnosisTurnSchema = proposeFactsInputSchema.extend(diagnosisReplySchema.shape).strict();
+export const diagnosisTurnSchema = proposeFactsInputSchema.extend({
+  ...diagnosisReplySchema.shape,
+  // New model responses must state the interaction mode. The standalone
+  // reply parser still accepts older saved conversations without this field.
+  selectionMode: diagnosisSelectionModeSchema,
+}).strict();
 
 export function acceptFactProposals(facts: ChatPatch[], latestMessage: { id: string; text: string }): ChatPatch[] {
   const state = createChatState();
@@ -36,6 +41,7 @@ facts에는 최신 사용자 메시지에 명시된 관련 사실을 모두 담�
 여러 키의 사실은 facts 배열 하나에 담고, 같은 키를 중복하거나 메시지에 없는 사실을 만들지 않습니다.
 value와 evidence는 최신 사용자 메시지의 연속된 원문이어야 합니다. 관련 사실이 전혀 없을 때만 빈 배열을 사용합니다.
 message는 고객에게 보여 줄 답변과 다음 질문, choices는 그 질문 아래 표시할 짧은 답변 버튼입니다.
+selectionMode는 하나만 답할 수 있으면 single, 재산·채무·목표처럼 여러 답이 동시에 맞을 수 있으면 multiple입니다.
 선택지 문구는 클릭하면 그대로 고객 메시지로 전송됩니다. 질문에 대한 선택지는 CHAT_GUIDE의 기준으로 매번 구성합니다.
 직접 입력하기는 화면에서 항상 제공하므로 choices에 중복해서 넣지 않습니다.`;
   // Each attempt uses Google Developer API directly; fallback is orchestrated separately.
