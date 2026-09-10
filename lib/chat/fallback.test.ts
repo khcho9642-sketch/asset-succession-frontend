@@ -231,6 +231,35 @@ test("server grounding removes invented and duplicate facts without a second mod
   assert.equal(JSON.stringify(chunks).includes("대출 2억"), false);
 });
 
+test("a model cannot declare calculation complete or claim a result-screen handoff", async (t) => {
+  const history: DiagnosisRequest["messages"] = [{
+    id: "synthetic-spouse-answer",
+    role: "user",
+    parts: [{ type: "text", text: "배우자가 있어요" }],
+  }];
+  const existingFacts: DiagnosisRequest["facts"] = {
+    topic: { value: "상속과 증여 비교", evidence: "상속과 증여 비교", messageId: "synthetic-topic" },
+    owner: { value: "아버지", evidence: "아버지", messageId: "synthetic-owner" },
+    realEstate: { value: "부동산: 25억 원", evidence: "부동산: 25억 원", messageId: "synthetic-assets" },
+  };
+  const spouseProposal: ChatPatch[] = [{ key: "spouse", value: "배우자가 있어요", evidence: "배우자가 있어요" }];
+  const unsafeReply: DiagnosisReply = {
+    message: "상속과 증여 비교 계산을 위한 확인이 완료되었습니다. 결과 화면으로 연결해 드릴게요.",
+    choices: [],
+    selectionMode: "single",
+  };
+  const safeReply: DiagnosisReply = {
+    message: "상속인인 성년 자녀는 몇 명인가요?",
+    choices: ["1명이에요", "2명이에요", "3명이에요", "4명 이상이에요", "잘 모르겠어요"],
+  };
+  const requests = installGoogleMock(t, [turn(PRIMARY, spouseProposal, unsafeReply)]);
+  const chunks = await readChunks(response({ messages: history, facts: existingFacts }));
+  assert.equal(requests.length, 1, "A semantic guard must not spend a second model request");
+  assertWinningReply(chunks, spouseProposal, safeReply);
+  assert.equal(JSON.stringify(chunks).includes("확인이 완료되었습니다"), false);
+  assert.equal(JSON.stringify(chunks).includes("결과 화면으로 연결"), false);
+});
+
 test("retryable primary HTTP failures switch once to the free Google backup", async (t) => {
   for (const status of [503, 429]) {
     await t.test(`HTTP ${status} recovers in two calls`, async (subtest) => {

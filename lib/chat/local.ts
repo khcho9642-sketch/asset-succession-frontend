@@ -1,6 +1,53 @@
 import type { ChatFieldKey, ChatPatch, ChatState } from "./intake";
 import { getMissingRequiredFields } from "./intake";
-import type { DiagnosisReply } from "./choices";
+import { SAFE_REVIEW_MESSAGE, type DiagnosisReply } from "./choices";
+
+const inheritanceSpouseQuestion: DiagnosisReply = {
+  message: "재산 소유자의 배우자가 계신가요?",
+  choices: ["배우자가 있어요", "배우자가 없어요", "잘 모르겠어요"],
+};
+const inheritanceAdultChildrenQuestion: DiagnosisReply = {
+  message: "상속인인 성년 자녀는 몇 명인가요?",
+  choices: ["1명이에요", "2명이에요", "3명이에요", "4명 이상이에요", "잘 모르겠어요"],
+};
+const inheritanceDebtQuestion: DiagnosisReply = {
+  message: "공과금이나 채무가 있나요?",
+  choices: ["없어요", "금융 대출이 있어요", "임대보증금이 있어요", "기타 채무가 있어요", "확인이 필요해요"],
+  selectionMode: "multiple",
+};
+const inheritancePastGiftsQuestion: DiagnosisReply = {
+  message: "최근 10년 안에 미리 증여한 재산이 있나요?",
+  choices: ["있어요", "없어요", "확인이 필요해요"],
+};
+const inheritanceGoalQuestion: DiagnosisReply = {
+  message: "상속과 관련해 무엇을 먼저 보고 싶으세요?",
+  choices: ["상속세를 먼저 보고 싶어요", "생전 증여도 함께 보고 싶어요", "납부할 현금도 보고 싶어요", "아직 정하지 않았어요"],
+  selectionMode: "multiple",
+};
+const giftOwnerQuestion: DiagnosisReply = {
+  message: "증여할 재산은 누구 소유인가요?",
+  choices: ["본인", "아버지", "어머니", "부모님 두 분", "배우자"],
+};
+const giftPastGiftsQuestion: DiagnosisReply = {
+  message: "최근 10년 안에 같은 분에게 증여한 적이 있나요?",
+  choices: ["있어요", "없어요", "확인이 필요해요"],
+};
+const giftGoalQuestion: DiagnosisReply = {
+  message: "증여와 관련해 무엇을 먼저 보고 싶으세요?",
+  choices: ["증여세를 먼저 보고 싶어요", "여러 명에게 나누는 경우", "상속과 함께 보고 싶어요", "아직 정하지 않았어요"],
+  selectionMode: "multiple",
+};
+
+export const LOCAL_CHAT_QUESTIONS = {
+  inheritanceSpouseQuestion,
+  inheritanceAdultChildrenQuestion,
+  inheritanceDebtQuestion,
+  inheritancePastGiftsQuestion,
+  inheritanceGoalQuestion,
+  giftOwnerQuestion,
+  giftPastGiftsQuestion,
+  giftGoalQuestion,
+} as const;
 
 /** The non-AI fallback also offers answers to one question at a time. */
 export function getLocalChatReply(state: ChatState): DiagnosisReply {
@@ -15,8 +62,44 @@ export function getLocalChatReply(state: ChatState): DiagnosisReply {
     selectionMode: "multiple",
     inputMode: "assetAmounts",
   };
+
+  const topic = state.facts.topic?.value ?? "";
+  if (/가업|회사\s*승계/.test(topic)) {
+    if (!state.facts.timing) return {
+      message: "승계는 어떻게 준비하고 계세요?",
+      choices: ["생전에 지분을 넘길 예정이에요", "상속을 미리 준비 중이에요", "이미 상속이 발생했어요", "아직 정하지 않았어요"],
+    };
+    if (!state.facts.goal) return {
+      message: "가업승계에서 가장 먼저 보고 싶은 것은 무엇인가요?",
+      choices: ["세금 부담", "경영권 유지", "후계자 승계", "아직 정하지 않았어요"],
+      selectionMode: "multiple",
+    };
+  } else if (/상속/.test(topic)) {
+    if (!state.facts.spouse) return inheritanceSpouseQuestion;
+    if (!state.facts.adultChildren) return inheritanceAdultChildrenQuestion;
+    if (!state.facts.debt) return inheritanceDebtQuestion;
+    if (!state.facts.pastGifts) return inheritancePastGiftsQuestion;
+    if (!state.facts.goal) return inheritanceGoalQuestion;
+  } else if (/증여/.test(topic)) {
+    if (!state.facts.timing) return {
+      message: "증여는 언제쯤 하실 예정인가요?",
+      choices: ["올해 안에", "1~3년 안에", "아직 정하지 않았어요"],
+    };
+    if (!state.facts.pastGifts) return giftPastGiftsQuestion;
+    if (!state.facts.goal) return giftGoalQuestion;
+  } else if (/양도|매각/.test(topic)) {
+    if (!state.facts.timing) return {
+      message: "매각은 어느 단계인가요?",
+      choices: ["팔 예정이에요", "이미 팔았어요", "아직 정하지 않았어요"],
+    };
+    if (!state.facts.goal) return {
+      message: "양도에서 가장 먼저 확인하고 싶은 것은 무엇인가요?",
+      choices: ["예상 양도세", "지금과 나중의 차이", "매각 후 남는 금액", "아직 정하지 않았어요"],
+      selectionMode: "multiple",
+    };
+  }
   return {
-    message: "찾은 내용을 입력 요약에 정리했어요. 빠지거나 다른 내용은 직접 고친 뒤 보고서를 열 수 있어요.",
+    message: SAFE_REVIEW_MESSAGE,
     choices: [],
   };
 }

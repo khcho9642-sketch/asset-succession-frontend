@@ -1,5 +1,6 @@
-import { getAssistantReply, type DiagnosisReply } from "./choices";
+import { getAssistantReply, SAFE_REVIEW_MESSAGE, type DiagnosisReply } from "./choices";
 import type { ChatPatch, ChatState } from "./intake";
+import { LOCAL_CHAT_QUESTIONS } from "./local";
 
 export type GuidedChatTurn = { reply: DiagnosisReply; patches: ChatPatch[] };
 
@@ -96,7 +97,7 @@ function nextAfterAssetAmounts(topic: string | undefined): DiagnosisReply {
   if (topic === "증여") {
     return { message: "증여는 언제쯤 하실 예정인가요?", choices: ["올해 안에", "1~3년 안에", "아직 정하지 않았어요"] };
   }
-  return { message: "재산 소유자의 배우자가 계신가요?", choices: ["배우자가 있어요", "배우자가 없어요", "잘 모르겠어요"] };
+  return LOCAL_CHAT_QUESTIONS.inheritanceSpouseQuestion;
 }
 
 /**
@@ -165,6 +166,76 @@ export function getGuidedChatTurn(state: ChatState, rawText: string): GuidedChat
     return {
       reply: nextAfterAssetAmounts(state.facts.topic?.value),
       patches: assetAmountPatches(text, entries),
+    };
+  }
+
+  if (previousQuestion === LOCAL_CHAT_QUESTIONS.inheritanceSpouseQuestion.message) {
+    if (!LOCAL_CHAT_QUESTIONS.inheritanceSpouseQuestion.choices.includes(text)) return null;
+    return {
+      reply: LOCAL_CHAT_QUESTIONS.inheritanceAdultChildrenQuestion,
+      patches: [patch("spouse", text)],
+    };
+  }
+
+  if (previousQuestion === LOCAL_CHAT_QUESTIONS.inheritanceAdultChildrenQuestion.message) {
+    if (!LOCAL_CHAT_QUESTIONS.inheritanceAdultChildrenQuestion.choices.includes(text)) return null;
+    return {
+      reply: LOCAL_CHAT_QUESTIONS.inheritanceDebtQuestion,
+      patches: [patch("adultChildren", text)],
+    };
+  }
+
+  if (previousQuestion === LOCAL_CHAT_QUESTIONS.inheritanceDebtQuestion.message) {
+    const selected = selectedChoices(text, LOCAL_CHAT_QUESTIONS.inheritanceDebtQuestion.choices);
+    if (!selected) return null;
+    return {
+      reply: LOCAL_CHAT_QUESTIONS.inheritancePastGiftsQuestion,
+      patches: [patch("debt", text)],
+    };
+  }
+
+  if (previousQuestion === LOCAL_CHAT_QUESTIONS.inheritancePastGiftsQuestion.message) {
+    if (!LOCAL_CHAT_QUESTIONS.inheritancePastGiftsQuestion.choices.includes(text)) return null;
+    return {
+      reply: LOCAL_CHAT_QUESTIONS.inheritanceGoalQuestion,
+      patches: [patch("pastGifts", text)],
+    };
+  }
+
+  if (previousQuestion === "증여는 언제쯤 하실 예정인가요?") {
+    if (!["올해 안에", "1~3년 안에", "아직 정하지 않았어요"].includes(text)) return null;
+    return {
+      reply: LOCAL_CHAT_QUESTIONS.giftOwnerQuestion,
+      patches: [patch("timing", text)],
+    };
+  }
+
+  if (previousQuestion === LOCAL_CHAT_QUESTIONS.giftOwnerQuestion.message) {
+    if (!LOCAL_CHAT_QUESTIONS.giftOwnerQuestion.choices.includes(text)) return null;
+    return {
+      reply: LOCAL_CHAT_QUESTIONS.giftPastGiftsQuestion,
+      patches: [patch("owner", text)],
+    };
+  }
+
+  if (previousQuestion === LOCAL_CHAT_QUESTIONS.giftPastGiftsQuestion.message) {
+    if (!LOCAL_CHAT_QUESTIONS.giftPastGiftsQuestion.choices.includes(text)) return null;
+    return {
+      reply: LOCAL_CHAT_QUESTIONS.giftGoalQuestion,
+      patches: [patch("pastGifts", text)],
+    };
+  }
+
+  if (previousQuestion === LOCAL_CHAT_QUESTIONS.inheritanceGoalQuestion.message
+    || previousQuestion === LOCAL_CHAT_QUESTIONS.giftGoalQuestion.message) {
+    const goalQuestion = previousQuestion === LOCAL_CHAT_QUESTIONS.inheritanceGoalQuestion.message
+      ? LOCAL_CHAT_QUESTIONS.inheritanceGoalQuestion
+      : LOCAL_CHAT_QUESTIONS.giftGoalQuestion;
+    const selected = selectedChoices(text, goalQuestion.choices);
+    if (!selected) return null;
+    return {
+      reply: { message: SAFE_REVIEW_MESSAGE, choices: [] },
+      patches: [patch("goal", text)],
     };
   }
 

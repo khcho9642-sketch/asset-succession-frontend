@@ -396,8 +396,24 @@ try {
     "Multi-select state leaked into the next single-choice question");
   await waitFact(fastPathPage, "realEstate", "부동산: 25억 원");
   await waitFact(fastPathPage, "financialAssets", "예금·현금: 10억 원");
+  await fastPathPage.getByRole("button", { name: "배우자가 있어요", exact: true }).click();
+  await fastPathPage.getByText("상속인인 성년 자녀는 몇 명인가요?", { exact: true }).waitFor();
+  await fastPathPage.getByRole("button", { name: "2명이에요", exact: true }).click();
+  await fastPathPage.getByText("공과금이나 채무가 있나요?", { exact: true }).waitFor();
+  await fastPathPage.getByRole("button", { name: "없어요", exact: true }).click();
+  await fastPathPage.getByRole("button", { name: "선택 완료 (1)", exact: true }).click();
+  await fastPathPage.getByText("최근 10년 안에 미리 증여한 재산이 있나요?", { exact: true }).waitFor();
+  await fastPathPage.getByRole("button", { name: "확인이 필요해요", exact: true }).click();
+  await fastPathPage.getByText("상속과 관련해 무엇을 먼저 보고 싶으세요?", { exact: true }).waitFor();
+  await fastPathPage.getByRole("button", { name: "상속세를 먼저 보고 싶어요", exact: true }).click();
+  await fastPathPage.getByRole("button", { name: "생전 증여도 함께 보고 싶어요", exact: true }).click();
+  await fastPathPage.getByRole("button", { name: "선택 완료 (2)", exact: true }).click();
+  await fastPathPage.getByText("기본 내용을 정리했어요. 아래에서 내용을 확인한 뒤 계산 조건을 직접 확인해 주세요.", { exact: true }).waitFor();
+  const fastPathText = await fastPathPage.locator("body").innerText();
+  assert(!fastPathText.includes("확인이 완료되었습니다"), "A guided flow exposed an untrusted completion claim");
+  assert(!fastPathText.includes("결과 화면으로 연결"), "A guided flow exposed an untrusted result handoff");
   assert.equal(postCount, requestsBeforeFastPath, "Common guided choices made a slow AI request");
-  observations.push({ name: "configured inheritance choices support confirmed multi-select without AI latency" });
+  observations.push({ name: "configured inheritance choices continue to review without AI latency or a false result handoff" });
   await fastPathContext.close();
 
   let releaseStream;

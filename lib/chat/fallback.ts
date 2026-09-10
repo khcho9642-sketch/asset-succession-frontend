@@ -1,7 +1,8 @@
 import { createUIMessageStreamResponse, NoObjectGeneratedError, type ModelMessage, type UIMessageChunk } from "ai";
 import { acceptFactProposals, createDiagnosisAgent, diagnosisTurnSchema } from "./agent";
-import { diagnosisReplySchema } from "./choices";
-import type { ChatPatch } from "./intake";
+import { diagnosisReplySchema, hasAppOwnedHandoffClaim } from "./choices";
+import { applyChatPatches, type ChatPatch, type ChatState } from "./intake";
+import { getLocalChatReply } from "./local";
 import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
 
 type DiagnosisResponseOptions = DiagnosisRequest & {
@@ -18,6 +19,18 @@ const MAX_BUFFER_BYTES = 256 * 1024;
 const MAX_BUFFER_CHUNKS = 4_096;
 
 class RejectedAttemptError extends Error {}
+
+function stateAfterProposals(options: DiagnosisResponseOptions, proposals: ChatPatch[]): ChatState {
+  const messages = options.messages.map((message, index) => ({
+    id: message.id,
+    role: message.role,
+    text: message.parts[0].text,
+    created_at: new Date(index * 1_000).toISOString(),
+  }));
+  const state: ChatState = { version: 1, messages, facts: { ...options.facts } };
+  const latest = messages.at(-1);
+  return latest ? applyChatPatches(state, proposals, latest.id) : state;
+}
 
 function completedTurnChunks(proposals: ChatPatch[], reply: { message: string; choices: string[]; selectionMode?: "single" | "multiple"; inputMode?: "assetAmounts" }): UIMessageChunk[] {
   const id = globalThis.crypto.randomUUID();
@@ -94,7 +107,10 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
       const turn = diagnosisTurnSchema.parse(result.output);
       const latest = options.messages[options.messages.length - 1];
       const proposals = acceptFactProposals(turn.facts, { id: latest.id, text: latest.parts[0].text });
-      const reply = diagnosisReplySchema.parse({ message: turn.message, choices: turn.choices, selectionMode: turn.selectionMode, inputMode: turn.inputMode });
+      const modelReply = diagnosisReplySchema.parse({ message: turn.message, choices: turn.choices, selectionMode: turn.selectionMode, inputMode: turn.inputMode });
+      const reply = hasAppOwnedHandoffClaim(modelReply.message)
+        ? getLocalChatReply(stateAfterProposals(options, proposals))
+        : modelReply;
       const chunks = completedTurnChunks(proposals, reply);
       const bytes = chunks.reduce((total, chunk) => total + Buffer.byteLength(JSON.stringify(chunk), "utf8"), 0);
       if (bytes > MAX_BUFFER_BYTES || chunks.length > MAX_BUFFER_CHUNKS) {
