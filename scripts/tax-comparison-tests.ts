@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { ordinaryTax, parseAmountWon } from "../lib/tax-comparison/common";
 import { calculateTaxComparison, validateTaxComparisonInput } from "../lib/tax-comparison";
-import { attachConfirmedTaxComparison, buildConfirmedTaxAssessmentSnapshot, createTaxInputFromChat } from "../lib/chat/tax";
+import { attachConfirmedTaxComparison, buildConfirmedTaxAssessmentSnapshot, createTaxInputFromChat, taxFactsSignature } from "../lib/chat/tax";
 import { createChatState, applyChatPatches } from "../lib/chat/intake";
 import { createDemoAssessmentSnapshot } from "../lib/assessment";
 import type { TaxComparisonInput } from "../lib/tax-comparison/types";
@@ -75,6 +75,34 @@ test("prefill uses grounded chat assets, no assumed residency, old gifts, or pay
   assert.equal(empty.values.financial, undefined);
   assert.equal(empty.values.debt, undefined);
   assert.equal(empty.values.funeral, "0.05", "visible statutory minimum modelling assumption only");
+});
+
+test("prefill excludes ambiguous debt corrections and drops deleted last debt", () => {
+  const now = "2026-09-08T09:00:00Z";
+  let counter = 0;
+  const add = (state: ReturnType<typeof createChatState>, text: string, patches: Parameters<typeof applyChatPatches>[1]) => {
+    const id = `debt-${++counter}`;
+    return applyChatPatches({ ...state, messages: [...state.messages, { id, role: "user" as const, text, created_at: now }] }, patches, id);
+  };
+  let state = createChatState();
+  state = add(state, "본인 재산", [{ key: "owner", value: "본인 재산", evidence: "본인 재산" }]);
+  state = add(state, "아파트 25억", [{ key: "realEstate", value: "아파트 25억", evidence: "아파트 25억" }]);
+  state = add(state, "국민은행 대출 2억원", [{ key: "debt", value: "국민은행 대출 2억원", evidence: "국민은행 대출 2억원" }]);
+  state = add(state, "신한은행 대출 3억원도 있어요", [{ key: "debt", value: "신한은행 대출 3억원", evidence: "신한은행 대출 3억원도 있어요" }]);
+  state = add(state, "은행 대출은 1억5천만원으로 정정", [{ key: "debt", value: "은행 대출은 1억5천만원", evidence: "은행 대출은 1억5천만원으로 정정" }]);
+  assert.equal(createTaxInputFromChat(state).values.debt, undefined);
+
+  state = add(state, "국민은행 대출은 1억5천만원으로 정정", [{ key: "debt", value: "국민은행 대출은 1억5천만원", evidence: "국민은행 대출은 1억5천만원으로 정정" }]);
+  assert.equal(createTaxInputFromChat(state).values.debt, "4.5");
+
+  state = createChatState();
+  state = add(state, "본인 재산", [{ key: "owner", value: "본인 재산", evidence: "본인 재산" }]);
+  state = add(state, "아파트 25억", [{ key: "realEstate", value: "아파트 25억", evidence: "아파트 25억" }]);
+  state = add(state, "은행 대출 1.5억원", [{ key: "debt", value: "은행 대출 1.5억원", evidence: "은행 대출 1.5억원" }]);
+  const signature = taxFactsSignature(state);
+  state = add(state, "은행 대출 1.5억원 삭제", [{ key: "debt", value: "은행 대출 1.5억원", evidence: "은행 대출 1.5억원 삭제" }]);
+  assert.notEqual(taxFactsSignature(state), signature);
+  assert.equal(createTaxInputFromChat(state).values.debt, undefined);
 });
 
 test("new subtype schemas accept conditional inputs and reject unknown subtype fallbacks", () => {

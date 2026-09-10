@@ -128,4 +128,63 @@ Observed locally:
 - Physical mobile device testing was not performed.
 - Real AI-provider behavior was not tested by design; mock/local responses were used to avoid customer data, keys, billing, or external model calls.
 
-This hardening pass does not mean the whole service is complete; it only closes the three requested Phase 1 issues above.
+## PR #13 Independent Review Follow-Up
+
+Date: 2026-09-11
+
+Review attachment status:
+
+- `PR13_INDEPENDENT_REVIEW.md` and separate reproduction code were not found in the repository or the parent workspace by filename search.
+- The six counterexample themes described in the follow-up request were reproduced directly in regression tests before changing the source.
+
+Before-fix reproduction on PR #13 commit `7211173b013429e8f1487b0aa3df024f7bb45590` plus the new regression assertions:
+
+- Basic 4 preservation cases still passed.
+- Failing counterexamples reproduced:
+  - an ambiguous "은행 대출은 1억5천만원으로 정정" changed the first bank-loan item instead of requiring target confirmation;
+  - `1.5억원` and `15억원` compared as the same value because duplicate normalization removed decimal points;
+  - a same-year past-gift correction without a recipient was stored as a current fact instead of a pending confirmation;
+  - `전체 채무:` replacement could be skipped when the retained amount matched a previous item;
+  - deletion of the final debt item could leave the delete command as the current debt fact;
+  - correction/deletion/replacement intent could be lost when the value looked equal to an existing item.
+
+Follow-up fix:
+
+- Added current-source and pending-source helpers in chat intake state.
+- Kept same-message/evidence replay protection, but stopped using decimal-stripping value comparison as a blanket rule for debt/gift operations.
+- Added bank-name and ordinal matching for debt correction targets.
+- Kept same-year gift correction target matching by recipient and year; ambiguous same-year corrections become pending confirmation, not current facts.
+- On unambiguous correction or deletion, pending confirmations for that fact key are cleared by the new specific user statement.
+- When deleting the final active item, the current fact key is removed instead of storing the deletion command as current data.
+- Confirmed assessment snapshots now put active facts in `conversation.confirmed_facts` and unresolved corrections/deletions in `conversation.pending_candidates`.
+- Debt summaries, normalized debts, and tax input seeding withhold debt amounts while a pending debt correction exists.
+
+After-fix local verification against the modified source:
+
+- `npm run lint`: passed.
+- `npm run typecheck`: passed.
+- `npm run test:phase2b`: passed, 28 tests.
+- `npm run test:chat`: passed, 90 tests.
+- `npm run test:tax`: passed, 84 tests.
+- `npm run build`: passed.
+- Production server: `npm start -- --hostname 127.0.0.1 --port 4173`.
+- `npm run test:chat-api`: passed against `http://127.0.0.1:4173`; provider was not invoked.
+- `npm run test:chat-ui`: passed, 13 flows, AI requests mocked.
+- `npm run test:tax-ui`: passed, 13 flows across 4 tax tracks at 390px and 1440px, 4 seven-page PDFs.
+- `npm run test:tax-extensions-ui`: passed, 16 checks for housing and business inheritance at 390px and 1440px, 4 seven-page PDFs.
+- `node scripts/sample-report-static-audit.mjs`: passed.
+- `node scripts/sample-report-ui-audit.mjs`: passed.
+- `node scripts/estimate-report-ui-audit.mjs`: passed, personal report upgrade flow verified without provider calls.
+- `node scripts/ui-audit.mjs`: passed for 10 routes plus hybrid flow across 2 viewports.
+- `node scripts/pdf-audit.mjs`: passed.
+- `node scripts/paper-report-audit.mjs`: passed.
+- `npm run test:smoke`: first parallel run failed once on `/precheck` mobile content while multiple browser audits were running; immediate standalone rerun against the same server passed all 10 routes and required flows.
+
+Local/browser/preview/model/device split:
+
+- Local and browser automation were verified against the local production server built from the modified source.
+- CI and Preview checks must be read again after pushing the follow-up commit.
+- No real AI model call was made.
+- No physical device test was performed.
+
+This hardening pass does not mean the whole service is complete; it only closes the requested Phase 1 issues and the PR #13 follow-up counterexamples above.

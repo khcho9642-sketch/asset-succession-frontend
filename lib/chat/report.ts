@@ -1,6 +1,6 @@
 import { createAssessmentId, type AssessmentAnswer, type AssessmentSnapshot } from "../assessment";
 import { parseKoreanMoneyRangeToEok, parseKoreanMoneyToEok } from "../phase2b/money";
-import { CHAT_ASSET_KEYS, CHAT_FIELD_KEYS, CHAT_FIELD_LABELS, getMissingRequiredFields, validateChatState, type ChatFieldKey, type ChatState } from "./intake";
+import { CHAT_ASSET_KEYS, CHAT_FIELD_KEYS, CHAT_FIELD_LABELS, getCurrentFactSources, getMissingRequiredFields, getPendingFactSources, validateChatState, type ChatFieldKey, type ChatState } from "./intake";
 import { getAssistantReply } from "./choices";
 
 export type ChatAmount =
@@ -136,7 +136,8 @@ function populateDebtAnswer(answer: AssessmentAnswer, state: ChatState) {
   }
 
   answer.facts!["채무 여부"] = "확인 필요";
-  const debtSources = debtFact.sources ?? [debtFact];
+  const pendingDebtSources = getPendingFactSources(debtFact);
+  const debtSources = getCurrentFactSources(debtFact);
   let matchedDebtCount = 0;
   let confirmedDebtCount = 0;
   debtSources.forEach((source, index) => {
@@ -145,12 +146,18 @@ function populateDebtAnswer(answer: AssessmentAnswer, state: ChatState) {
     if (!choice) return;
     matchedDebtCount += 1;
     answer.facts![`채무 항목 ${index + 1}`] = raw;
-    const parsed = parseChatAmount(raw.replace(DEBT_WORDS, ""));
-    if (parsed.status === "confirmed") {
-      confirmedDebtCount += 1;
-      addDebtAmount(answer, choice, parsed);
+    if (pendingDebtSources.length === 0) {
+      const parsed = parseChatAmount(raw.replace(DEBT_WORDS, ""));
+      if (parsed.status === "confirmed") {
+        confirmedDebtCount += 1;
+        addDebtAmount(answer, choice, parsed);
+      }
     }
   });
+  if (pendingDebtSources.length > 0) {
+    answer.facts!["채무 정정 확인 필요"] = pendingDebtSources.map((source) => source.value).join("\n");
+    return;
+  }
 
   if (matchedDebtCount === 0) {
     const choice = debtChoiceFor(debtRaw);
@@ -173,7 +180,9 @@ function populatePastGiftsAnswer(answer: AssessmentAnswer, state: ChatState) {
   answer.facts!["과거 증여 상세"] = giftRaw;
   if (explicitNone(giftRaw)) return;
   if (!answer.choices.includes("최근 10년 증여 있음")) answer.choices.push("최근 10년 증여 있음");
-  const giftSources = giftFact.sources ?? [giftFact];
+  const pendingGiftSources = getPendingFactSources(giftFact);
+  if (pendingGiftSources.length > 0) answer.facts!["과거 증여 확인 필요"] = pendingGiftSources.map((source) => source.value).join("\n");
+  const giftSources = getCurrentFactSources(giftFact);
   giftSources.forEach((source, index) => {
     answer.facts![`과거 증여 항목 ${index + 1}`] = source.value;
   });
@@ -257,8 +266,8 @@ export function buildConfirmedAssessmentSnapshot(
         const visibleText = role === "assistant" ? getAssistantReply(text)?.message : text;
         return visibleText ? [{ role, text: visibleText, created_at }] : [];
       }),
-      confirmed_facts: CHAT_FIELD_KEYS.flatMap((key) => facts[key] ? [{ id: key, label: CHAT_FIELD_LABELS[key], value: facts[key]!.value, raw_text: (facts[key]!.sources ?? [facts[key]!]).map((source) => `[${source.messageId}] ${source.evidence}`).join("\n"), confidence: "customer_confirmed" }] : []),
-      pending_candidates: [],
+      confirmed_facts: CHAT_FIELD_KEYS.flatMap((key) => facts[key] ? [{ id: key, label: CHAT_FIELD_LABELS[key], value: facts[key]!.value, raw_text: getCurrentFactSources(facts[key]!).map((source) => `[${source.messageId}] ${source.evidence}`).join("\n"), confidence: "customer_confirmed" }] : []),
+      pending_candidates: CHAT_FIELD_KEYS.flatMap((key) => facts[key] ? getPendingFactSources(facts[key]!).map((source) => ({ id: key, label: CHAT_FIELD_LABELS[key], value: source.value, raw_text: `[${source.messageId}] ${source.evidence}`, confidence: "needs_confirmation" })) : []),
       raw_inputs: validated.messages.filter((message) => message.role === "user").map((message) => message.text),
       current_question_key: "review"
     }

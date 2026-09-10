@@ -270,6 +270,49 @@ test("separate debt turns retain provenance, sum only current items, and restore
 
 });
 
+test("debt corrections require a specific target when multiple bank loans exist", () => {
+  let state = withFacts({ owner: "본인 재산", realEstate: "아파트 25억", financialAssets: "예금 10억" });
+  state = add(state, "국민은행 대출 2억원", [{ key: "debt", value: "국민은행 대출 2억원", evidence: "국민은행 대출 2억원" }]);
+  state = add(state, "신한은행 대출 3억원도 있어요", [{ key: "debt", value: "신한은행 대출 3억원", evidence: "신한은행 대출 3억원도 있어요" }]);
+  state = add(state, "은행 대출은 1억5천만원으로 정정", [{ key: "debt", value: "은행 대출은 1억5천만원", evidence: "은행 대출은 1억5천만원으로 정정" }]);
+
+  assert.equal(state.facts.debt?.value, "국민은행 대출 2억원\n신한은행 대출 3억원");
+  assert.equal(state.facts.debt?.sources?.length, 3);
+  assert.ok(validateChatState(state));
+  const result = snapshot(state);
+  assert.equal(result.answers.debt.facts?.["채무 정정 확인 필요"], "은행 대출은 1억5천만원");
+  assert.equal(result.answers.debt.debtAmounts, undefined);
+  assert.equal(buildAssessmentMetrics(result).estimatedDebt, "채무 금액 미입력");
+  assert.equal(normalizeAssessmentSnapshot(result).debts.every((debt) => debt.confirmation_status === "amount_missing"), true);
+  assert.equal(result.conversation?.pending_candidates?.length, 1);
+
+  state = add(state, "국민은행 대출은 1억5천만원으로 정정", [{ key: "debt", value: "국민은행 대출은 1억5천만원", evidence: "국민은행 대출은 1억5천만원으로 정정" }]);
+  assert.equal(state.facts.debt?.value, "국민은행 대출은 1억5천만원\n신한은행 대출 3억원");
+  const corrected = snapshot(state);
+  assert.equal(corrected.answers.debt.debtAmounts?.["기타채무 있음"], "4.5");
+  assert.equal(buildAssessmentMetrics(corrected).estimatedDebt, "4.5억");
+});
+
+test("debt duplicate comparison keeps decimal precision and explicit replacement or deletion", () => {
+  let state = withFacts({ owner: "본인 재산", realEstate: "아파트 25억" });
+  state = add(state, "은행 대출 1.5억원", [{ key: "debt", value: "은행 대출 1.5억원", evidence: "은행 대출 1.5억원" }]);
+  state = add(state, "은행 대출 15억원도 있어요", [{ key: "debt", value: "은행 대출 15억원", evidence: "은행 대출 15억원도 있어요" }]);
+  assert.equal(state.facts.debt?.value, "은행 대출 1.5억원\n은행 대출 15억원");
+  assert.equal(buildAssessmentMetrics(snapshot(state)).estimatedDebt, "16.5억");
+
+  state = add(state, "전체 채무: 은행 대출 1.5억원", [{ key: "debt", value: "은행 대출 1.5억원", evidence: "전체 채무: 은행 대출 1.5억원" }]);
+  assert.equal(state.facts.debt?.value, "은행 대출 1.5억원");
+  assert.equal(buildAssessmentMetrics(snapshot(state)).estimatedDebt, "1.5억");
+
+  const signatureBeforeDelete = JSON.stringify(state.facts);
+  state = add(state, "은행 대출 1.5억원 삭제", [{ key: "debt", value: "은행 대출 1.5억원", evidence: "은행 대출 1.5억원 삭제" }]);
+  assert.notEqual(JSON.stringify(state.facts), signatureBeforeDelete);
+  assert.equal(state.facts.debt, undefined);
+  const result = snapshot(state);
+  assert.equal(result.answers.debt.facts?.["채무 원문"], undefined);
+  assert.equal(result.conversation?.confirmed_facts.some((fact) => fact.id === "debt"), false);
+});
+
 test("past gift turns preserve separate recipient, date, amount, and evidence", () => {
   let state = withFacts({ owner: "본인 재산", realEstate: "아파트 25억" });
   state = add(state, "2020년 첫째에게 1억원 증여", [{ key: "pastGifts", value: "2020년 첫째에게 1억원 증여", evidence: "2020년 첫째에게 1억원 증여" }]);
@@ -289,6 +332,27 @@ test("past gift turns preserve separate recipient, date, amount, and evidence", 
   assert.deepEqual(gifts.map((gift) => gift.amount_eok), [1, 0.5]);
   assert.ok(result.conversation?.confirmed_facts.find((fact) => fact.id === "pastGifts")?.raw_text.includes("[message-3] 2020년 첫째에게 1억원 증여"));
   assert.ok(result.conversation?.confirmed_facts.find((fact) => fact.id === "pastGifts")?.raw_text.includes("[message-4] 2023년 둘째에게 5천만원도 증여"));
+});
+
+test("past gift corrections require recipient specificity for same-year gifts", () => {
+  let state = withFacts({ owner: "본인 재산", realEstate: "아파트 25억" });
+  state = add(state, "2023년 첫째에게 1억원 증여", [{ key: "pastGifts", value: "2023년 첫째에게 1억원 증여", evidence: "2023년 첫째에게 1억원 증여" }]);
+  state = add(state, "2023년 둘째에게 5천만원도 증여", [{ key: "pastGifts", value: "2023년 둘째에게 5천만원", evidence: "2023년 둘째에게 5천만원도 증여" }]);
+  state = add(state, "2023년 증여는 7천만원으로 정정", [{ key: "pastGifts", value: "2023년 증여는 7천만원", evidence: "2023년 증여는 7천만원으로 정정" }]);
+
+  assert.equal(state.facts.pastGifts?.value, "2023년 첫째에게 1억원 증여\n2023년 둘째에게 5천만원");
+  assert.equal(state.facts.pastGifts?.sources?.length, 3);
+  assert.ok(validateChatState(state));
+  let result = snapshot(state);
+  assert.equal(result.answers.debt.facts?.["과거 증여 확인 필요"], "2023년 증여는 7천만원");
+  assert.equal(result.conversation?.pending_candidates?.length, 1);
+  assert.deepEqual(normalizeAssessmentSnapshot(result).past_gifts.map((gift) => gift.amount_eok), [1, 0.5]);
+
+  state = add(state, "2023년 둘째 증여는 7천만원으로 정정", [{ key: "pastGifts", value: "2023년 둘째 증여는 7천만원", evidence: "2023년 둘째 증여는 7천만원으로 정정" }]);
+  assert.equal(state.facts.pastGifts?.value, "2023년 첫째에게 1억원 증여\n2023년 둘째 증여는 7천만원");
+  result = snapshot(state);
+  assert.equal(result.conversation?.pending_candidates?.length, 0);
+  assert.deepEqual(normalizeAssessmentSnapshot(result).past_gifts.map((gift) => gift.amount_eok), [1, 0.7]);
 });
 
 test("chat values never fabricate a tax base, savings, or scenario-specific customer numbers", () => {

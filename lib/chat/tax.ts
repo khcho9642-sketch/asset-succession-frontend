@@ -2,7 +2,7 @@ import type { AssessmentSnapshot } from "../assessment";
 import { calculateTaxComparison, validateTaxComparisonInput } from "../tax-comparison";
 import { wonToInput } from "../tax-comparison/common";
 import type { TaxComparisonInput, TaxTrack } from "../tax-comparison/types";
-import { CHAT_ASSET_KEYS, type ChatState } from "./intake";
+import { CHAT_ASSET_KEYS, getCurrentFactSources, getPendingFactSources, type ChatState } from "./intake";
 import { buildConfirmedAssessmentSnapshot, parseAssetAmount, parseChatAmount } from "./report";
 
 const DEBT_WORDS = /담보\s*대출|은행\s*대출|금융\s*대출|임대\s*보증금|전세\s*보증금|보증금|채무|대출|빚/g;
@@ -10,7 +10,8 @@ const DEBT_WORDS = /담보\s*대출|은행\s*대출|금융\s*대출|임대\s*보
 function confirmedDebtWon(state: ChatState): number | null {
   const fact = state.facts.debt;
   if (!fact) return null;
-  const sources = fact.sources ?? [fact];
+  if (getPendingFactSources(fact).length > 0) return null;
+  const sources = getCurrentFactSources(fact);
   const parsed = sources
     .filter((source) => /담보\s*대출|은행|금융|임대\s*보증금|전세\s*보증금|보증금|채무|대출|빚/.test(source.value))
     .map((source) => parseChatAmount(source.value.replace(DEBT_WORDS, "")));
