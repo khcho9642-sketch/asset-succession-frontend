@@ -5,8 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { KAKAO_OPEN_CHAT_URL } from "@/lib/contactLinks";
-import styles from "./HomePage.module.css";
-import contactStyles from "./ContactActions.module.css";
+import styles from "./PublicNav.module.css";
 
 const diagnosisLinks = [
   { href: "/precheck?purpose=capital-gains", label: "양도" },
@@ -18,10 +17,10 @@ const diagnosisLinks = [
 function KakaoConsultationLink({ compact = false }: { compact?: boolean }) {
   return (
     <a href={KAKAO_OPEN_CHAT_URL} target="_blank" rel="noopener noreferrer"
-      aria-label="카카오 상담 (새 창)" title="카카오 상담" className={contactStyles.kakaoLink}>
+      aria-label="카카오 상담 (새 창)" title="카카오 상담" className={styles.kakaoLink}>
       <Image src={compact ? "/images/kakao-consultation-icon.svg" : "/images/kakao-consultation.svg"}
         width={compact ? 40 : 160} height={compact ? 40 : 42} alt="" aria-hidden="true" unoptimized
-        className={compact ? contactStyles.kakaoIcon : contactStyles.kakaoImage} />
+        className={compact ? styles.kakaoIcon : styles.kakaoImage} />
     </a>
   );
 }
@@ -41,7 +40,7 @@ export function PublicNav() {
   }, [isMenuOpen]);
 
   return (
-    <header ref={headerRef} className={styles.header}
+    <header ref={headerRef} className={styles.header} role="banner" data-public-header
       onKeyDown={(event) => {
         if (event.key === "Escape" && isMenuOpen) {
           setIsMenuOpen(false);
@@ -49,18 +48,18 @@ export function PublicNav() {
         }
       }}
       onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setIsMenuOpen(false); }}>
-      <div className={`${styles.headerInner} ${contactStyles.headerWithContacts}`}>
-        <Link href="/" className={styles.brand} aria-label="자산승계 360 홈">
+      <div className={styles.headerInner} data-public-header-inner>
+        <Link href="/" className={styles.brand} aria-label="자산승계 360 홈" data-public-brand>
           <span>자산승계 <em>360</em></span><small>오늘의 준비가 내일의 가족을 지킵니다.</small>
         </Link>
         <nav className={styles.desktopNav} aria-label="진단 유형">
           {diagnosisLinks.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
         </nav>
-        <div className={contactStyles.desktopActions}>
+        <div className={styles.desktopActions} data-public-desktop-actions>
           <KakaoConsultationLink />
           <Link href="/consultation" className={styles.desktopConsultation}>전문가 상담</Link>
         </div>
-        <div className={`${styles.mobileNavActions} ${contactStyles.mobileActions}`}>
+        <div className={styles.mobileNavActions}>
           <KakaoConsultationLink compact />
           <Link href="/consultation">상담</Link>
           <button ref={menuButtonRef} type="button" aria-controls="mobile-diagnosis-menu"
