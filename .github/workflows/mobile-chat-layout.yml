@@ -34,21 +34,24 @@ jobs:
         run: |
           python -m pip install --disable-pip-version-check playwright
           python -m playwright install --with-deps chromium
-      - name: Wait for the mobile layout deployment
+      - name: Wait for the hydrated mobile layout deployment
         run: |
           python - <<'PY'
-          import os,time,urllib.request
-          base=os.environ['MOBILE_CHAT_BASE_URL']
-          deadline=time.monotonic()+180
-          while True:
-              try:
-                  req=urllib.request.Request(base+'/precheck',headers={'Cache-Control':'no-cache'})
-                  with urllib.request.urlopen(req,timeout=20) as response:
-                      html=response.read().decode()
-                  if 'data-chat-layout="mobile-fit-v1"' in html: break
-              except Exception as error: print(type(error).__name__, str(error)[:160])
-              if time.monotonic()>deadline: raise RuntimeError('Updated preview not yet readable')
-              time.sleep(10)
+          import os
+          from playwright.sync_api import sync_playwright,TimeoutError as PlaywrightTimeout
+          with sync_playwright() as p:
+              browser=p.chromium.launch()
+              page=browser.new_page(viewport={'width':360,'height':672})
+              for attempt in range(18):
+                  page.goto(os.environ['MOBILE_CHAT_BASE_URL']+'/precheck',wait_until='domcontentloaded')
+                  try:
+                      page.locator('[data-chat-layout="mobile-fit-v1"]').wait_for(state='visible',timeout=5000)
+                      break
+                  except PlaywrightTimeout:
+                      print('Waiting for updated client UI',attempt+1)
+                      page.wait_for_timeout(5000)
+              else: raise RuntimeError('Updated preview not yet readable')
+              browser.close()
           PY
       - name: Verify deployed layout with synthetic conversations and keyboard viewport changes
         run: python scripts/mobile-diagnosis-ui-audit.py
