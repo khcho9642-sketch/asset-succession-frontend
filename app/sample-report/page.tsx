@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { PublicNav } from "@/components/PublicNav";
 import { SampleReportViewer } from "@/components/SampleReportViewer";
 import styles from "@/components/SampleReport.module.css";
 
@@ -12,15 +12,9 @@ export default function SampleReportPage() {
   return (
     <div className={`${styles.page} ${styles.samplePage}`}>
       <a href="#sample-report-content" className={styles.skipLink}>보고서로 건너뛰기</a>
-      <header className={styles.header}>
-        <Link href="/" className={styles.brand} aria-label="자산승계 360 홈">자산승계 360</Link>
-        <h1 className={styles.sampleTitle}>7장 샘플 보고서</h1>
-        <nav className={styles.headerLinks} aria-label="샘플 보고서 메뉴">
-          <Link href="/precheck" className={styles.primaryLink}>무료 AI 진단</Link>
-          <Link href="/" className={styles.backLink}>홈으로</Link>
-        </nav>
-      </header>
-      <main id="sample-report-content" className={styles.main}>
+      <PublicNav />
+      <main id="sample-report-content" className={styles.main} aria-labelledby="sample-report-title">
+        <h1 id="sample-report-title" className={styles.srOnly}>7장 샘플 보고서</h1>
         <SampleReportViewer />
       </main>
     </div>
