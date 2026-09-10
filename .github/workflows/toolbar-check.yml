@@ -1,0 +1,109 @@
+name: Verify toolbar is disabled
+
+on:
+  push:
+    branches: [codex/chat-opening-topics]
+    paths:
+      - vercel.json
+      - .github/workflows/toolbar-check.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: toolbar-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify-toolbar-disabled:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare browser
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install --with-deps chromium
+      - name: Verify ordinary visitor sessions without toolbar bypass headers
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python - <<'PY'
+          import json, os, time, urllib.request
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+
+          base = 'https://frontend-prototype-git-codex-chat-0328a9-khcho98-6477s-projects.vercel.app'
+          output = Path('.tmp/toolbar-check')
+          output.mkdir(parents=True, exist_ok=True)
+          routes = ['/', '/precheck', '/sample-report', '/consultation']
+
+          class Scripts(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.toolbar_sources = []
+              def handle_starttag(self, tag, attrs):
+                  if tag == 'script':
+                      src = dict(attrs).get('src', '')
+                      if 'vercel.live' in src or '/_next-live/feedback/' in src:
+                          self.toolbar_sources.append(src)
+
+          # No x-vercel-skip-toolbar header, cookie, CSS or request interception.
+          deadline = time.monotonic() + 180
+          while True:
+              request = urllib.request.Request(base + '/?toolbar_check=' + os.environ['GITHUB_SHA'], headers={'Cache-Control': 'no-cache'})
+              try:
+                  with urllib.request.urlopen(request, timeout=25) as response:
+                      assert response.status == 200
+                      html = response.read().decode('utf-8')
+                  parser = Scripts()
+                  parser.feed(html)
+                  if not parser.toolbar_sources and '자산승계' in html:
+                      break
+                  print('Waiting for deployment with toolbar disabled:', parser.toolbar_sources)
+              except Exception as error:
+                  print('Waiting for deployment:', type(error).__name__, str(error)[:180])
+              if time.monotonic() >= deadline:
+                  (output / 'failure.json').write_text(json.dumps({'reason': 'Toolbar injection still present or deployment unavailable'}, indent=2))
+                  raise RuntimeError('Toolbar disable configuration not verified within 180 seconds')
+              time.sleep(10)
+
+          checks = []
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              for width, height in [(375, 812), (1440, 1000)]:
+                  for route in routes:
+                      context = browser.new_context(viewport={'width': width, 'height': height}, device_scale_factor=1)
+                      page = context.new_page()
+                      toolbar_requests = []
+                      page.on('request', lambda request: toolbar_requests.append(request.url) if 'vercel.live' in request.url else None)
+                      response = page.goto(base + route, wait_until='networkidle', timeout=45000)
+                      assert response and response.status == 200, f'HTTP failure: {route}'
+                      page.wait_for_timeout(3000)
+                      sources = page.locator('script[src]').evaluate_all('(items) => items.map(item => item.src).filter(src => src.includes("vercel.live") || src.includes("/_next-live/feedback/"))')
+                      hosts = page.locator('vercel-live-feedback, vercel-toolbar, [data-vercel-toolbar], iframe[src*="vercel.live"]').count()
+                      name = route.strip('/').replace('/', '-') or 'home'
+                      page.screenshot(path=str(output / f'{name}-{width}.png'))
+                      assert page.locator('header').first.is_visible(), f'Header missing: {route}'
+                      assert not sources, f'Toolbar script present: {sources}'
+                      assert hosts == 0, f'Toolbar host present: {route}'
+                      assert not toolbar_requests, f'Toolbar network requests present: {toolbar_requests}'
+                      checks.append({'route': route, 'width': width, 'http_status': response.status, 'toolbar_script_count': len(sources), 'toolbar_host_count': hosts, 'toolbar_request_count': len(toolbar_requests)})
+                      context.close()
+              browser.close()
+          proof = {'base_url': base, 'commit': os.environ['GITHUB_SHA'], 'no_bypass_headers': True, 'no_css_hiding': True, 'checks': checks}
+          (output / 'verification.json').write_text(json.dumps(proof, ensure_ascii=False, indent=2), encoding='utf-8')
+          print(json.dumps(proof, ensure_ascii=False, indent=2))
+          PY
+      - name: Save verification and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: toolbar-disabled-proof
+          path: .tmp/toolbar-check/
+          include-hidden-files: true
+          retention-days: 7
