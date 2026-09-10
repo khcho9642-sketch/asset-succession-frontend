@@ -183,7 +183,8 @@ After-fix local verification against the modified source:
 Local/browser/preview/model/device split:
 
 - Local and browser automation were verified against the local production server built from the modified source.
-- CI and Preview checks must be read again after pushing the follow-up commit.
+- CI after the PR #13 follow-up push was verified with `gh pr view 13`: `validate` passed in both observed PR/push runs, `ui-audit` passed in both observed PR/push runs, Vercel passed, and Vercel Preview Comments passed.
+- Preview deployment check passed at `https://vercel.com/khcho98-6477s-projects/frontend-prototype/3Scr26NZ2nuzNoq9xEV5ZZCCtGAs`; it was not manually re-audited in-browser.
 - No real AI model call was made.
 - No physical device test was performed.
 
