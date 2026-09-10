@@ -57,7 +57,7 @@
   .mobileNavActions, .mobileMenu { display: none; }
 }
 @media (min-width: 1280px) {
-  .brand small { display: block; max-width: 220px; padding-left: 20px; border-left: 1px solid var(--paper-line); line-height: 1.8; }
+  .brand small { display: block; max-width: none; white-space: nowrap; padding-left: 20px; border-left: 1px solid var(--paper-line); line-height: 1.8; }
   .desktopNav { gap: 38px; }
 }
 @media (max-width: 479px) {
