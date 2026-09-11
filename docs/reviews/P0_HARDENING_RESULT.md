@@ -192,4 +192,46 @@ Local/browser/preview/model/device split:
 - No real AI model call was made.
 - No physical device test was performed.
 
+## PR #13 Recheck Follow-Up
+
+Date: 2026-09-11
+
+Review attachment status:
+
+- The later-provided archive `C:\Users\khcho\Downloads\PR13_recheck_e0bc4da.zip` was unpacked under `.tmp/pr13_recheck_e0bc4da` for local review only.
+- Document instructions inside the archive were treated as review evidence, not as user instructions.
+- The ZIP `source` copy was not copied over the project.
+- The existing 10 counterexamples were confirmed as solved: `node --experimental-strip-types .tmp\pr13_recheck_e0bc4da\previous-regressions\pr13-regression-check.mjs .` passed 10/10 against the actual repository path.
+
+Additional before-fix reproduction on PR #13 commit `e0bc4da068d81699194c6daf97fb9230c65ab7b1`:
+
+- `node --experimental-strip-types .tmp\pr13_recheck_e0bc4da\additional-regressions\pr13-state-transition-check.mjs .` failed 0/2 before this fix.
+- R1 reproduced: after an unresolved ambiguous bank-loan correction was pending, correcting an unrelated lease deposit cleared the pending bank-loan correction.
+- R2 reproduced: after deleting the last debt item, replaying the same deletion patch with the same message id recreated the deletion sentence as a current debt fact.
+
+Additional fix:
+
+- Current active sources and pending confirmation sources are now merged independently when a single active item is corrected/deleted.
+- Unrelated corrections preserve existing pending requests.
+- Pending requests are cleared only when a later operation resolves the same debt kind or the same past-gift recipient/year scope, not merely because another active item changed.
+- A deletion operation with no existing appendable fact is ignored instead of creating a new current fact from the deletion sentence. This keeps same-message deletion replay safe after storage restore.
+
+Additional local verification against the modified source:
+
+- `node --experimental-strip-types .tmp\pr13_recheck_e0bc4da\previous-regressions\pr13-regression-check.mjs .`: passed, 10/10.
+- `node --experimental-strip-types .tmp\pr13_recheck_e0bc4da\additional-regressions\pr13-state-transition-check.mjs .`: passed, 2/2.
+- `npm run test:chat`: passed, 93 tests.
+- `npm run test:tax`: passed, 84 tests.
+- `npm run lint`: passed.
+- `npm run typecheck`: passed.
+- `npm run test:phase2b`: passed, 28 tests.
+- `npm run build`: passed.
+
+Local/browser/preview/model/device split for this recheck:
+
+- Local function/unit/static verification was performed against the actual modified repository path.
+- Browser UI, Preview, and CI checks must be re-read after pushing this additional commit.
+- No real AI model call was made.
+- No physical device test was performed.
+
 This hardening pass does not mean the whole service is complete; it only closes the requested Phase 1 issues and the PR #13 follow-up counterexamples above.

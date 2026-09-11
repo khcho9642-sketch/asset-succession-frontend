@@ -82,6 +82,20 @@ function shouldAppendFactKey(key: ChatFieldKey): boolean {
   return APPENDABLE_FACT_KEYS.some((item) => item === key);
 }
 
+function isCorrectionOperation(messageText: string): boolean {
+  const structuredAssetReplacement = /^재산\s*전체\s*:/m.test(messageText);
+  return structuredAssetReplacement || /정정|수정|정확히는|아니라|아니고|잘못|변경|고칠|바꿀|대신|다시\s*입력/i.test(messageText);
+}
+
+function isDeletionOperation(messageText: string): boolean {
+  return /삭제|제외|빼(?:고|주세요)|없애/.test(messageText);
+}
+
+function isCompleteReplacementOperation(key: ChatFieldKey, messageText: string): boolean {
+  const structuredAssetReplacement = /^재산\s*전체\s*:/m.test(messageText);
+  return structuredAssetReplacement || messageText.startsWith(`정정: ${CHAT_FIELD_LABELS[key]} — `) || /(?:전체|전부|합계|총액)(?:를|는|은|가|이)?\s*(?:정정|수정|변경|다시|[:：]|\d)|전체\s*(?:채무|과거\s*증여|재산|부동산|금융자산|법인지분|기타\s*자산)\s*[:：]|(?:정정|수정|변경)[^\n]*(?:전체|전부|합계|총액)/.test(messageText);
+}
+
 export function getCurrentFactSources(fact: ChatFact): ChatFactSource[] {
   return (fact.sources ?? [fact]).filter((source) => source.status !== "needs_confirmation");
 }
@@ -99,14 +113,27 @@ function buildFactFromSources(sources: ChatFactSource[]): ChatFact | null {
   return sources.length === 1 ? { ...current[0] } : { ...last, value: combined, sources };
 }
 
+function pendingResolvedBy(key: ChatFieldKey, pending: ChatFactSource, next: ChatFactSource): boolean {
+  const pendingIdentity = factItemIdentity(key, `${pending.value} ${pending.evidence}`);
+  const nextIdentity = factItemIdentity(key, `${next.value} ${next.evidence}`);
+  if (!pendingIdentity || !nextIdentity) return false;
+  if (key === "debt") return pendingIdentity.split(":")[0] === nextIdentity.split(":")[0];
+  if (key === "pastGifts") {
+    const pendingParts = pendingIdentity.split(":");
+    const nextParts = nextIdentity.split(":");
+    const sameRecipient = pendingParts[1] === nextParts[1] || pendingParts[1] === "recipient_unknown";
+    return sameRecipient && pendingParts[2] === nextParts[2];
+  }
+  return false;
+}
+
 function mergeFactSources(key: ChatFieldKey, previous: ChatFact, next: ChatFactSource, messageText: string): ChatFact | null {
   const sources = previous.sources ?? [{ value: previous.value, evidence: previous.evidence, messageId: previous.messageId }];
   if (sources.some((item) => item.messageId === next.messageId && compact(item.evidence) === compact(next.evidence))) return previous;
 
-  const structuredAssetReplacement = /^재산\s*전체\s*:/m.test(messageText);
-  const correction = structuredAssetReplacement || /정정|수정|정확히는|아니라|아니고|잘못|변경|고칠|바꿀|대신|다시\s*입력/i.test(messageText);
-  const deletion = /삭제|제외|빼(?:고|주세요)|없애/.test(messageText);
-  const completeReplacement = structuredAssetReplacement || messageText.startsWith(`정정: ${CHAT_FIELD_LABELS[key]} — `) || /(?:전체|전부|합계|총액)(?:를|는|은|가|이)?\s*(?:정정|수정|변경|다시|[:：]|\d)|전체\s*(?:채무|과거\s*증여|재산|부동산|금융자산|법인지분|기타\s*자산)\s*[:：]|(?:정정|수정|변경)[^\n]*(?:전체|전부|합계|총액)/.test(messageText);
+  const correction = isCorrectionOperation(messageText);
+  const deletion = isDeletionOperation(messageText);
+  const completeReplacement = isCompleteReplacementOperation(key, messageText);
 
   if (completeReplacement) return next;
 
@@ -117,15 +144,17 @@ function mergeFactSources(key: ChatFieldKey, previous: ChatFact, next: ChatFactS
     : [];
   if ((correction || deletion) && matchingCurrentIndexes.length === 1) {
     const matchIndex = matchingCurrentIndexes[0];
-    const merged = deletion
+    const nextCurrentSources = deletion
       ? currentSources.filter((_, index) => index !== matchIndex)
       : currentSources.map((source, index) => index === matchIndex ? next : source);
+    const retainedPending = getPendingFactSources(previous).filter((source) => !pendingResolvedBy(key, source, next));
+    const merged = [...nextCurrentSources, ...retainedPending];
     return buildFactFromSources(merged);
   }
 
   if ((correction || deletion) && (key === "debt" || key === "pastGifts") && currentSources.length > 0) {
     if (matchingCurrentIndexes.length !== 1) {
-      const merged = [...sources.filter((source) => source.status !== "needs_confirmation"), { ...next, status: "needs_confirmation" as const }];
+      const merged = [...sources, { ...next, status: "needs_confirmation" as const }];
       return buildFactFromSources(merged) ?? previous;
     }
   }
@@ -200,6 +229,8 @@ export function applyChatPatches(state: ChatState, patches: unknown, messageId: 
       const merged = mergeFactSources(patch.key, previous, next, latest.text);
       if (merged) facts[patch.key] = merged;
       else delete facts[patch.key];
+    } else if (shouldAppendFactKey(patch.key) && isDeletionOperation(latest.text)) {
+      continue;
     } else {
       facts[patch.key] = next;
     }

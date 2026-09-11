@@ -92,8 +92,12 @@ test("prefill excludes ambiguous debt corrections and drops deleted last debt", 
   state = add(state, "은행 대출은 1억5천만원으로 정정", [{ key: "debt", value: "은행 대출은 1억5천만원", evidence: "은행 대출은 1억5천만원으로 정정" }]);
   assert.equal(createTaxInputFromChat(state).values.debt, undefined);
 
+  state = add(state, "임대보증금 4억원", [{ key: "debt", value: "임대보증금 4억원", evidence: "임대보증금 4억원" }]);
+  state = add(state, "임대보증금 5억원으로 정정", [{ key: "debt", value: "임대보증금 5억원으로 정정", evidence: "임대보증금 5억원으로 정정" }]);
+  assert.equal(createTaxInputFromChat(state).values.debt, undefined, "unrelated lease-deposit correction must not clear pending bank-loan correction");
+
   state = add(state, "국민은행 대출은 1억5천만원으로 정정", [{ key: "debt", value: "국민은행 대출은 1억5천만원", evidence: "국민은행 대출은 1억5천만원으로 정정" }]);
-  assert.equal(createTaxInputFromChat(state).values.debt, "4.5");
+  assert.equal(createTaxInputFromChat(state).values.debt, "9.5");
 
   state = createChatState();
   state = add(state, "본인 재산", [{ key: "owner", value: "본인 재산", evidence: "본인 재산" }]);

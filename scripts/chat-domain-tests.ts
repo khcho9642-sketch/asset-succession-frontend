@@ -293,6 +293,26 @@ test("debt corrections require a specific target when multiple bank loans exist"
   assert.equal(buildAssessmentMetrics(corrected).estimatedDebt, "4.5억");
 });
 
+test("unrelated corrections preserve pending debt confirmation requests", () => {
+  let state = withFacts({ owner: "본인 재산", realEstate: "아파트 25억", financialAssets: "예금 10억" });
+  state = add(state, "국민은행 대출 2억원", [{ key: "debt", value: "국민은행 대출 2억원", evidence: "국민은행 대출 2억원" }]);
+  state = add(state, "신한은행 대출 3억원", [{ key: "debt", value: "신한은행 대출 3억원", evidence: "신한은행 대출 3억원" }]);
+  state = add(state, "임대보증금 4억원", [{ key: "debt", value: "임대보증금 4억원", evidence: "임대보증금 4억원" }]);
+  state = add(state, "은행 대출 1억원으로 정정", [{ key: "debt", value: "은행 대출 1억원으로 정정", evidence: "은행 대출 1억원으로 정정" }]);
+  assert.equal(state.facts.debt?.value, "국민은행 대출 2억원\n신한은행 대출 3억원\n임대보증금 4억원");
+  assert.equal(snapshot(state).conversation?.pending_candidates?.[0]?.value, "은행 대출 1억원으로 정정");
+
+  state = add(state, "임대보증금 5억원으로 정정", [{ key: "debt", value: "임대보증금 5억원으로 정정", evidence: "임대보증금 5억원으로 정정" }]);
+  assert.equal(state.facts.debt?.value, "국민은행 대출 2억원\n신한은행 대출 3억원\n임대보증금 5억원으로 정정");
+  assert.ok(validateChatState(JSON.parse(JSON.stringify(state))));
+  const result = snapshot(state);
+  assert.equal(result.answers.debt.facts?.["채무 정정 확인 필요"], "은행 대출 1억원으로 정정");
+  assert.equal(result.answers.debt.debtAmounts, undefined);
+  assert.equal(buildAssessmentMetrics(result).estimatedDebt, "채무 금액 미입력");
+  assert.equal(normalizeAssessmentSnapshot(result).debts.every((debt) => debt.confirmation_status === "amount_missing"), true);
+  assert.equal(result.conversation?.pending_candidates?.[0]?.value, "은행 대출 1억원으로 정정");
+});
+
 test("debt duplicate comparison keeps decimal precision and explicit replacement or deletion", () => {
   let state = withFacts({ owner: "본인 재산", realEstate: "아파트 25억" });
   state = add(state, "은행 대출 1.5억원", [{ key: "debt", value: "은행 대출 1.5억원", evidence: "은행 대출 1.5억원" }]);
@@ -309,6 +329,25 @@ test("debt duplicate comparison keeps decimal precision and explicit replacement
   assert.notEqual(JSON.stringify(state.facts), signatureBeforeDelete);
   assert.equal(state.facts.debt, undefined);
   const result = snapshot(state);
+  assert.equal(result.answers.debt.facts?.["채무 원문"], undefined);
+  assert.equal(result.conversation?.confirmed_facts.some((fact) => fact.id === "debt"), false);
+});
+
+test("replaying a final deletion after restore does not recreate the debt fact", () => {
+  let state = withFacts({ owner: "본인 재산", realEstate: "아파트 25억" });
+  state = add(state, "은행 대출 2억원", [{ key: "debt", value: "은행 대출 2억원", evidence: "은행 대출 2억원" }]);
+  const id = `message-${state.messages.length + 1}`;
+  state = {
+    ...state,
+    messages: [...state.messages, { id, role: "user", text: "은행 대출 2억원 삭제", created_at: DATE }]
+  };
+  state = applyChatPatches(state, [{ key: "debt", value: "은행 대출 2억원 삭제", evidence: "은행 대출 2억원 삭제" }], id);
+  assert.equal(state.facts.debt, undefined);
+  const restored = validateChatState(JSON.parse(JSON.stringify(state)));
+  assert.ok(restored);
+  const replayed = applyChatPatches(restored, [{ key: "debt", value: "은행 대출 2억원 삭제", evidence: "은행 대출 2억원 삭제" }], id);
+  assert.equal(replayed.facts.debt, undefined);
+  const result = snapshot(replayed);
   assert.equal(result.answers.debt.facts?.["채무 원문"], undefined);
   assert.equal(result.conversation?.confirmed_facts.some((fact) => fact.id === "debt"), false);
 });
