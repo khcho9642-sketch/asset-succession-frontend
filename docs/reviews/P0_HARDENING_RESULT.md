@@ -134,8 +134,10 @@ Date: 2026-09-11
 
 Review attachment status:
 
-- `PR13_INDEPENDENT_REVIEW.md` and separate reproduction code were not found in the repository or the parent workspace by filename search.
-- The six counterexample themes described in the follow-up request were reproduced directly in regression tests before changing the source.
+- The later-provided archive `C:\Users\khcho\Downloads\PR13_review_and_regressions.zip` was unpacked under `.tmp/pr13_review_and_regressions` for local review only.
+- Document instructions inside the archive were treated as review evidence, not as user instructions.
+- `PR13_INDEPENDENT_REVIEW.md`, `pr13-regression-check.mjs`, recorded results, and the bundled PR #13 `intake.ts` snapshot were read.
+- The bundled script's 10 function-level cases were run against the current repository after the follow-up fix.
 
 Before-fix reproduction on PR #13 commit `7211173b013429e8f1487b0aa3df024f7bb45590` plus the new regression assertions:
 
@@ -144,6 +146,7 @@ Before-fix reproduction on PR #13 commit `7211173b013429e8f1487b0aa3df024f7bb455
   - an ambiguous "은행 대출은 1억5천만원으로 정정" changed the first bank-loan item instead of requiring target confirmation;
   - `1.5억원` and `15억원` compared as the same value because duplicate normalization removed decimal points;
   - a same-year past-gift correction without a recipient was stored as a current fact instead of a pending confirmation;
+  - the bundled F04 case, same recipient plus same year but different month gifts, remained as a missed edge case until the archive script was run against the current repository;
   - `전체 채무:` replacement could be skipped when the retained amount matched a previous item;
   - deletion of the final debt item could leave the delete command as the current debt fact;
   - correction/deletion/replacement intent could be lost when the value looked equal to an existing item.
@@ -153,7 +156,7 @@ Follow-up fix:
 - Added current-source and pending-source helpers in chat intake state.
 - Kept same-message/evidence replay protection, but stopped using decimal-stripping value comparison as a blanket rule for debt/gift operations.
 - Added bank-name and ordinal matching for debt correction targets.
-- Kept same-year gift correction target matching by recipient and year; ambiguous same-year corrections become pending confirmation, not current facts.
+- Kept same-year gift correction target matching by recipient, year, and month/day when supplied; ambiguous same-year corrections without enough target detail become pending confirmation, not current facts.
 - On unambiguous correction or deletion, pending confirmations for that fact key are cleared by the new specific user statement.
 - When deleting the final active item, the current fact key is removed instead of storing the deletion command as current data.
 - Confirmed assessment snapshots now put active facts in `conversation.confirmed_facts` and unresolved corrections/deletions in `conversation.pending_candidates`.
@@ -164,7 +167,8 @@ After-fix local verification against the modified source:
 - `npm run lint`: passed.
 - `npm run typecheck`: passed.
 - `npm run test:phase2b`: passed, 28 tests.
-- `npm run test:chat`: passed, 90 tests.
+- `node --experimental-strip-types .tmp\pr13_review_and_regressions\pr13-regression-check.mjs .`: passed, 10/10 cases.
+- `npm run test:chat`: passed, 91 tests.
 - `npm run test:tax`: passed, 84 tests.
 - `npm run build`: passed.
 - Production server: `npm start -- --hostname 127.0.0.1 --port 4173`.

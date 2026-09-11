@@ -71,7 +71,9 @@ function factItemIdentity(key: ChatFieldKey, text: string): string {
   if (key === "pastGifts") {
     const recipient = text.match(/첫째|둘째|셋째|배우자|아들|딸|자녀|손자|손녀/)?.[0] ?? "recipient_unknown";
     const year = text.match(/(?:19|20)\d{2}\s*년/)?.[0]?.replace(/\s+/g, "") ?? "date_unknown";
-    return `gift:${recipient}:${year}`;
+    const month = text.match(/(?:1[0-2]|0?[1-9])\s*월/)?.[0]?.replace(/\s+/g, "").replace(/^0/, "") ?? "";
+    const day = text.match(/(?:[12]\d|3[01]|0?[1-9])\s*일/)?.[0]?.replace(/\s+/g, "").replace(/^0/, "") ?? "";
+    return `gift:${recipient}:${year}:${month}:${day}`;
   }
   return "";
 }

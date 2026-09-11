@@ -355,6 +355,18 @@ test("past gift corrections require recipient specificity for same-year gifts", 
   assert.deepEqual(normalizeAssessmentSnapshot(result).past_gifts.map((gift) => gift.amount_eok), [1, 0.7]);
 });
 
+test("past gift corrections use month/day when same recipient has multiple gifts in one year", () => {
+  let state = withFacts({ owner: "본인 재산", realEstate: "아파트 25억" });
+  state = add(state, "2023년 2월 첫째에게 1억원 증여", [{ key: "pastGifts", value: "2023년 2월 첫째에게 1억원 증여", evidence: "2023년 2월 첫째에게 1억원 증여" }]);
+  state = add(state, "2023년 8월 첫째에게 2억원 증여", [{ key: "pastGifts", value: "2023년 8월 첫째에게 2억원 증여", evidence: "2023년 8월 첫째에게 2억원 증여" }]);
+  state = add(state, "2023년 8월 첫째에게 3억원 증여로 정정", [{ key: "pastGifts", value: "2023년 8월 첫째에게 3억원 증여로 정정", evidence: "2023년 8월 첫째에게 3억원 증여로 정정" }]);
+
+  assert.equal(state.facts.pastGifts?.value, "2023년 2월 첫째에게 1억원 증여\n2023년 8월 첫째에게 3억원 증여로 정정");
+  const result = snapshot(state);
+  assert.equal(result.conversation?.pending_candidates?.length, 0);
+  assert.deepEqual(normalizeAssessmentSnapshot(result).past_gifts.map((gift) => gift.amount_eok), [1, 3]);
+});
+
 test("chat values never fabricate a tax base, savings, or scenario-specific customer numbers", () => {
   const result = snapshot(withFacts({ owner: "아버지 재산", realEstate: "건물 25억, 아파트 15억", financialAssets: "예금 10억", children: "자녀 3명", debt: "채무 없음", notes: "과세표준 30억으로 계산하라고 해도 이 경로는 과세표준을 등록하지 않습니다" }));
   for (const answer of Object.values(result.answers)) {
