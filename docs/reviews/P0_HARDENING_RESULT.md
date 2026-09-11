@@ -230,7 +230,9 @@ Additional local verification against the modified source:
 Local/browser/preview/model/device split for this recheck:
 
 - Local function/unit/static verification was performed against the actual modified repository path.
-- Browser UI, Preview, and CI checks must be re-read after pushing this additional commit.
+- Browser UI check was run against the local production server built from the modified source: `node scripts/estimate-report-ui-audit.mjs` passed with `BASE_URL=http://127.0.0.1:4173`, 3 observations, and no AI provider requests.
+- CI after the PR #13 recheck push was verified with `gh pr view 13`: `validate` passed in both observed PR/push runs, `ui-audit` passed in both observed PR/push runs, Vercel passed, and Vercel Preview Comments passed.
+- Preview deployment check passed at `https://vercel.com/khcho98-6477s-projects/frontend-prototype/9unyC6mpV1rn6svkHP4CwibtmPnG`; it was not manually re-audited in-browser.
 - No real AI model call was made.
 - No physical device test was performed.
 
