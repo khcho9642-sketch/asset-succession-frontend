@@ -1,0 +1,132 @@
+{
+  "status": "passed",
+  "baseURL": "http://127.0.0.1:4187",
+  "providerInvoked": false,
+  "observations": [
+    {
+      "name": "missing origin",
+      "status": 403,
+      "code": "ORIGIN_NOT_ALLOWED"
+    },
+    {
+      "name": "foreign origin",
+      "status": 403,
+      "code": "ORIGIN_NOT_ALLOWED"
+    },
+    {
+      "name": "cross-site fetch",
+      "status": 403,
+      "code": "ORIGIN_NOT_ALLOWED"
+    },
+    {
+      "name": "wrong content type",
+      "status": 415,
+      "code": "JSON_REQUIRED"
+    },
+    {
+      "name": "malformed JSON",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "invalid UTF-8",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "empty body",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "null body",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "missing messages",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "empty messages",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "empty user text",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "untrusted system role",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "untrusted developer role",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "untrusted tool role",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "assistant cannot be latest turn",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "duplicate message IDs",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "wrong part type",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "untrusted fact key",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "oversize individual turn",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "too many turns",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "oversize conversation text",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    },
+    {
+      "name": "oversize body bytes",
+      "status": 413,
+      "code": "REQUEST_TOO_LARGE"
+    },
+    {
+      "name": "valid request without configured provider",
+      "status": 503,
+      "code": "AI_NOT_CONFIGURED"
+    },
+    {
+      "name": "pending-only facts permit the next conversation turn",
+      "status": 503,
+      "code": "AI_NOT_CONFIGURED"
+    },
+    {
+      "name": "pending request cannot masquerade as a current fact",
+      "status": 400,
+      "code": "INVALID_REQUEST"
+    }
+  ]
+}

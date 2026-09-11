@@ -77,6 +77,7 @@ export function createTaxInputFromChat(state: ChatState, preferredTrack?: TaxTra
 }
 
 export function attachConfirmedTaxComparison(snapshot: AssessmentSnapshot, raw: TaxComparisonInput): AssessmentSnapshot {
+  if (snapshot.conversation?.pending_candidates?.length) throw new Error("확인 대기 요청의 대상을 확인하거나 요청을 취소한 뒤 보고서를 열어 주세요.");
   const input = validateTaxComparisonInput(raw);
   if (!input?.confirmed) throw new Error("계산 조건을 확인한 뒤 보고서를 열어 주세요.");
   const result = calculateTaxComparison(input);

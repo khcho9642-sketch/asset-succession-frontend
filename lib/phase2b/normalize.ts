@@ -284,7 +284,7 @@ function buildPastGifts(snapshot: AssessmentSnapshot): PastGift[] {
     .filter(Boolean);
   const values = entries.length > 0 ? entries : [factValue("과거 증여 상세", snapshot)].filter((value): value is string => Boolean(value));
   return values.map((value, index) => {
-    const amount = parsePastGiftAmount(value);
+    const amount = debtAnswer.facts?.["과거 증여 확인 필요"] ? null : parsePastGiftAmount(value);
     return {
       gift_id: `assessment-past-gift-${index + 1}`,
       recipient: pastGiftRecipient(value),

@@ -129,14 +129,14 @@ function populateDebtAnswer(answer: AssessmentAnswer, state: ChatState) {
   const debtRaw = debtFact.value;
   answer.detail = debtRaw;
   answer.facts!["채무 원문"] = debtRaw;
-  if (explicitNone(debtRaw)) {
+  const pendingDebtSources = getPendingFactSources(debtFact);
+  if (pendingDebtSources.length === 0 && explicitNone(debtRaw)) {
     answer.choices.push("해당 없음");
     answer.facts!["채무 여부"] = "없음";
     return;
   }
 
   answer.facts!["채무 여부"] = "확인 필요";
-  const pendingDebtSources = getPendingFactSources(debtFact);
   const debtSources = getCurrentFactSources(debtFact);
   let matchedDebtCount = 0;
   let confirmedDebtCount = 0;
@@ -178,10 +178,10 @@ function populatePastGiftsAnswer(answer: AssessmentAnswer, state: ChatState) {
   if (!giftFact) return;
   const giftRaw = giftFact.value;
   answer.facts!["과거 증여 상세"] = giftRaw;
-  if (explicitNone(giftRaw)) return;
-  if (!answer.choices.includes("최근 10년 증여 있음")) answer.choices.push("최근 10년 증여 있음");
   const pendingGiftSources = getPendingFactSources(giftFact);
   if (pendingGiftSources.length > 0) answer.facts!["과거 증여 확인 필요"] = pendingGiftSources.map((source) => source.value).join("\n");
+  if (explicitNone(giftRaw) || !giftRaw) return;
+  if (!answer.choices.includes("최근 10년 증여 있음")) answer.choices.push("최근 10년 증여 있음");
   const giftSources = getCurrentFactSources(giftFact);
   giftSources.forEach((source, index) => {
     answer.facts![`과거 증여 항목 ${index + 1}`] = source.value;
@@ -266,8 +266,8 @@ export function buildConfirmedAssessmentSnapshot(
         const visibleText = role === "assistant" ? getAssistantReply(text)?.message : text;
         return visibleText ? [{ role, text: visibleText, created_at }] : [];
       }),
-      confirmed_facts: CHAT_FIELD_KEYS.flatMap((key) => facts[key] ? [{ id: key, label: CHAT_FIELD_LABELS[key], value: facts[key]!.value, raw_text: getCurrentFactSources(facts[key]!).map((source) => `[${source.messageId}] ${source.evidence}`).join("\n"), confidence: "customer_confirmed" }] : []),
-      pending_candidates: CHAT_FIELD_KEYS.flatMap((key) => facts[key] ? getPendingFactSources(facts[key]!).map((source) => ({ id: key, label: CHAT_FIELD_LABELS[key], value: source.value, raw_text: `[${source.messageId}] ${source.evidence}`, confidence: "needs_confirmation" })) : []),
+      confirmed_facts: CHAT_FIELD_KEYS.flatMap((key) => facts[key] && getCurrentFactSources(facts[key]!).length > 0 ? [{ id: key, label: CHAT_FIELD_LABELS[key], value: facts[key]!.value, raw_text: getCurrentFactSources(facts[key]!).map((source) => `[${source.messageId}] ${source.evidence}`).join("\n"), confidence: "customer_confirmed" }] : []),
+      pending_candidates: CHAT_FIELD_KEYS.flatMap((key) => facts[key] ? getPendingFactSources(facts[key]!).map((source) => ({ id: `${key}:${source.messageId}`, label: CHAT_FIELD_LABELS[key], value: source.value, raw_text: `[${source.messageId}] ${source.evidence}`, confidence: "needs_confirmation" })) : []),
       raw_inputs: validated.messages.filter((message) => message.role === "user").map((message) => message.text),
       current_question_key: "review"
     }

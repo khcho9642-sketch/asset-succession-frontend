@@ -10,7 +10,7 @@ async function filesIn(folder) {
   const nested = await Promise.all(entries.map(entry => entry.isDirectory() ? filesIn(path.join(folder, entry.name)) : [path.join(folder, entry.name)]));
   return nested.flat().filter(file => file.endsWith(".ts"));
 }
-const tests = ["scripts/tax-inheritance-gift-tests.ts", "scripts/tax-capital-business-tests.ts", "scripts/tax-comparison-tests.ts", "scripts/tax-housing-tests.ts", "scripts/tax-business-inheritance-tests.ts", "scripts/tax-snapshot-tests.ts"];
+const tests = ["scripts/tax-inheritance-gift-tests.ts", "scripts/tax-capital-business-tests.ts", "scripts/tax-comparison-tests.ts", "scripts/tax-housing-tests.ts", "scripts/tax-business-inheritance-tests.ts", "scripts/tax-snapshot-tests.ts", "scripts/chat-pending-tests.ts"];
 await rm(output, { recursive: true, force: true });
 for (const file of [...await filesIn("lib"), ...tests]) {
   const source = await readFile(path.join(root, file), "utf8");

@@ -57,6 +57,11 @@ await check("too many turns", { body: { messages: Array.from({ length: 81 }, (_,
 await check("oversize conversation text", { body: { messages: Array.from({ length: 7 }, (_, index) => user(`total-${index}`, "a".repeat(5000))) } });
 await check("oversize body bytes", { body: " ".repeat(128 * 1024 + 1), raw: true }, 413, "REQUEST_TOO_LARGE");
 await check("valid request without configured provider", {}, 503, "AI_NOT_CONFIGURED");
+const pendingSource = { value: "국민은행 대출 1억원으로 정정", evidence: "국민은행 대출 1억원으로 정정", messageId: "pending-user", status: "needs_confirmation" };
+const pendingBody = { messages: [user("pending-user", pendingSource.value), user("next-user", "대기 요청을 확인하고 싶어요")],
+  facts: { debt: { value: "", evidence: pendingSource.evidence, messageId: pendingSource.messageId, sources: [pendingSource] } } };
+await check("pending-only facts permit the next conversation turn", { body: pendingBody }, 503, "AI_NOT_CONFIGURED");
+await check("pending request cannot masquerade as a current fact", { body: { ...pendingBody, facts: { debt: { ...pendingBody.facts.debt, value: pendingSource.value } } } });
 
 console.log(JSON.stringify({ status: "passed", baseURL, providerInvoked: false, observations }, null, 2));
 

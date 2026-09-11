@@ -237,3 +237,71 @@ Local/browser/preview/model/device split for this recheck:
 - No physical device test was performed.
 
 This hardening pass does not mean the whole service is complete; it only closes the requested Phase 1 issues and the PR #13 follow-up counterexamples above.
+
+## PR #13 Request-Level Pending Resolution (2026-09-11)
+
+### Baseline and Reproduction
+
+- Continued `codex/phase1-hardening`, PR [#13](https://github.com/khcho98-maker/asset-succession-frontend/pull/13), targeting `codex/chat-opening-topics` (`1b465526cdce8b5edd8742d8ab98b79a8a9cedb7`). Fetched origin and verified local/remote HEAD `a9a87db5ce77966dbe8ee3b6554a3c69b2c327c1` before editing. PR was Draft and open.
+- No `AGENTS.md` or `asset_succession_phase1_instructions.md` was found in the searched project/ancestor paths; the user's instructions govern this pass.
+- Read `PR13_REVIEW_a9a87db.md` and all three executable regression scripts from `C:/Users/khcho/Downloads/PR13_pending_review_a9a87db.zip`. Attachment prose was review evidence, not independent authority. The archive was extracted under `.tmp/pr13_pending_review_a9a87db`; its `source/` was never copied into the project.
+- Existing untracked artifacts and sample/PDF review files were preserved and excluded from this commit.
+- The previous 12 counterexamples remain resolved: independent scripts passed 10/10 and 2/2 before and after this change.
+- All three new failures reproduced on the actual repository: Shinhan correction removed a KB pending request; August gift correction removed a February request; deleting the last deposit removed the pending bank-loan request.
+
+| Independent check | Before | After |
+|---|---:|---:|
+| Original C01-C04 / F01-F05 / F07 (10 cases) | 10 passed | 10 passed |
+| Original R1 / R2 | 2 passed | 2 passed |
+| R1-BANK / R1-GIFT / R1-EMPTY-ACTIVE | 3 failed | 3 passed |
+| CONTROL-R1 (duplicate cross-kind control) | 1 passed | 1 passed |
+
+Raw results are retained in [before](pr13-pending-evidence/before/pending-resolution-results.json) and [after](pr13-pending-evidence/after/pending-resolution-results.json), alongside both earlier suites' JSON results. The scripts were unmodified and each received `C:/Users/khcho/Documents/ChatGPT/상속증여/asset-succession-frontend` explicitly. Their historical `reviewed_commit` metadata is not the tested commit identifier. The baseline Git blob is `636339d569aeebb5df71e5601ebe1466ec781210`; Windows working-file line endings produce raw blob `410bb8e4c533d21a446be00e8543f922f1c324de`. Final intake Git blob: `fc5f2bf2647983bda7b1f04fa7f9cefd1758a0ac`; raw tested file: `f46a6af2a2678e22ba3f7dad44614cece9a50661`.
+
+### Implemented Behavior and Files
+
+The earlier descriptions of automatic same-kind / same-recipient-year pending clearance above are historical and superseded by this implementation.
+
+- `lib/chat/intake.ts`: ordinary correction, deletion, and whole-current-value replacement retain all unresolved requests. Customer resolution explicitly names the field/request message ID, action, and selected current item message ID; only that request is removed. New current items can be explicitly confirmed when no target exists. Invalid/stale selection has no effect. The resolution's user message and operation record preserve its provenance.
+- `lib/chat/intake.ts`: a fact can contain zero current sources and one or more pending sources (`value: ""`). This is neither zero debt nor confirmed absence. Optional, validated `factOperations` records `(field, messageId)` independently of current facts, preventing replay after deletion/cancellation and JSON restore. Version-1 saves without the ledger remain accepted.
+- `components/DiagnosisChat.tsx`: existing summary/review fields show each pending request, original evidence, target selector, confirmed replacement text, deletion and cancellation actions. Direct current-field removal preserves pending requests. Pending requests disable final confirmation/report opening; resolving or editing facts requires renewed confirmation through the existing signature/reset path. Existing CSS, shell, composer, viewport/keyboard logic, header and consultation links were not edited.
+- `lib/chat/server.ts`, `lib/chat/server.test.ts`, `scripts/chat-api-audit.mjs`: accept and retain validated pending-only/mixed source shapes for subsequent conversation requests; reject pending text presented as a current value. No model, key, provider, environment or billing configuration changed.
+- `lib/chat/report.ts`: current evidence and individually identified pending candidates remain distinct, including pending-only snapshots. A current `none` statement cannot hide an outstanding correction.
+- `lib/chat/tax.ts`: the final confirmed-tax report adapter rejects unresolved pending candidates, even if manual calculation inputs are otherwise ready. Missing/pending debt remains unseeded.
+- `lib/phase2b/normalize.ts`: withhold past-gift amounts from confirmed normalized inputs while a gift request is pending. This only changes fact confirmation, not tax formulas.
+- `scripts/chat-pending-tests.ts`, `scripts/run-tax-comparison-tests.mjs`: all 15 review cases plus six request lifecycle cases are part of `npm run test:tax`, already run by CI. Tests cover multiple requests for the same item/amount, one-request resolution, unrelated mutation, pending-only states, legacy restore, cancellation, stale IDs, operation replay, normalized inputs and final report gates.
+- `scripts/chat-domain-tests.ts`, `scripts/tax-comparison-tests.ts`: replaced three obsolete expectations of automatic pending clearance with explicit customer resolution assertions; retained the same final monetary expectations. Pending gift normalized amounts are now asserted missing until resolution.
+- `scripts/chat-ui-audit.mjs`: retained all existing flows and added the three new cases at 390px and 1440px, through mocked chat, reload, summary, review, two outstanding requests, selective confirmation/cancellation, and supported seven-page personal reports.
+- This report and `docs/reviews/pr13-pending-evidence/`: reproduction and validation evidence. No sample images/PDFs were staged.
+
+### Local Verification
+
+Local runtime: Windows, Node `v24.14.0`. GitHub Actions uses the repository's configured Node 22; CI results are recorded separately below.
+
+| Command | Result |
+|---|---|
+| `node --experimental-strip-types .tmp/pr13_pending_review_a9a87db/previous-regressions/pr13-regression-check.mjs <actual-absolute-repo-path>` | Passed 10/10 |
+| `node --experimental-strip-types .tmp/pr13_pending_review_a9a87db/additional-regressions/pr13-state-transition-check.mjs <actual-absolute-repo-path>` | Passed 2/2 |
+| `node --experimental-strip-types .tmp/pr13_pending_review_a9a87db/pending-resolution/pr13-pending-resolution-check.mjs <actual-absolute-repo-path>` | Passed new 3/3 plus control |
+| `npm run lint` | Passed |
+| `npm run typecheck` | Passed |
+| `npm run test:chat` | Passed 94 tests |
+| `npm run test:tax` | Passed 105 tests, including 21 pending/request regressions |
+| `npm run test:phase2b` | Passed 28 tests |
+| `npm run build` | Passed; rebuilt after the last application-source change |
+| `BASE_URL=http://127.0.0.1:4187 node scripts/chat-api-audit.mjs` | Passed 25 checks, provider not invoked |
+| `BASE_URL=http://127.0.0.1:4187 UI_AUDIT_DIR=artifacts/pr13-pending node scripts/chat-ui-audit.mjs` | Passed 19 flows; all 39 AI requests mocked |
+
+The server was started with `npm start -- --hostname 127.0.0.1 --port 4187` from this modified checkout's production build. No existing Preview was used as evidence for new source. Before finalizing, the server is stopped; CI builds and starts its own server from the pushed commit.
+
+Failed attempts are not hidden: the first sandboxed chat test run was blocked by Node child-process `spawn EPERM` before assertions; the identical command passed with the required process permission. A new test's optional-array TypeScript error was fixed and typecheck/build passed. The first new mobile browser flow tried to click behind the open summary overlay; the audit now closes the summary via its normal toggle before review and passes. This was an audit navigation failure; mobile product code was unchanged. The raw first attempt log remains at `artifacts/pr13-pending/chat-ui-first-attempt.log`. The standalone ZIP scripts emit a Node module-type warning; no module/package settings were changed to suppress it.
+
+### Screens, CI, and Limits
+
+- Local browser evidence: [chat audit JSON](pr13-pending-evidence/after/chat-audit-report.json), [API audit JSON](pr13-pending-evidence/after/chat-api.json). Local screenshots/logs are under `artifacts/pr13-pending/`: `pending-{bank,gift,empty}-{390,1440}-{summary,review,report}.png`, `chat-ui.log`, `application-server.log`, existing-flow screenshots and `chat-confirmed-report.pdf`. Visually inspected pending-only mobile review, bank desktop review, and gift desktop seven-page report screenshots.
+- Full CI for the new pushed source: pending execution at this source commit; the following completion entry will record actual run URLs and conclusions. `.github/workflows/pr-ci.yml` and `package.json` already cover this branch and actual PR target; the existing validate, common-header/responsive, mobile, sample-v5/seven-page, tax, smoke and PDF steps were preserved. The pending tests are connected through existing test commands.
+- Existing sample, responsive/UI, smoke, tax UI and PDF audit commands were not rerun locally in this pass beyond the chat UI's own report/PDF checks; their new-commit CI execution is recorded separately. Earlier local runs above are historical, not evidence for this commit.
+- Preview manual audit, real-model calls and physical-device testing: not performed. Browser tests use synthetic data and mocked responses; supported personal-report output is verified only for the stated synthetic conditions, not arbitrary customer scenarios.
+- Resolution is deliberately explicit: a free-text correction may update a uniquely matched current item, but does not automatically answer an earlier request. Customers can finish that request from its summary/review controls, or cancel it. General natural-language inference and broader service completeness are not claimed.
+- Preserved: common header/logo/menu and consultation links; mobile/composer/keyboard behavior; sample first page v5, all six remaining pages, images/PDF; Vercel Toolbar settings; tax rates/deductions/legal dates/formulas; AI/provider/key/environment/billing and operational configuration.
+- PR remains Draft. No merge, auto-merge or production deployment is authorized or performed.

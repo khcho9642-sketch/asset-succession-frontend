@@ -1,0 +1,79 @@
+{
+  "reviewed_commit": "e0bc4da068d81699194c6daf97fb9230c65ab7b1",
+  "tested_blob_sha": "410bb8e4c533d21a446be00e8543f922f1c324de",
+  "reviewed_source_matches": false,
+  "node": "v24.14.0",
+  "scope": "Direct execution of hash-verified intake module with valid synthetic proposals; no AI/browser/tax-report E2E execution.",
+  "network_calls": 0,
+  "remote_writes": 0,
+  "passed": 2,
+  "failed": 0,
+  "records": [
+    {
+      "id": "R1",
+      "title": "Unrelated correction must preserve the unresolved bank-loan correction",
+      "steps": [
+        "국민은행 대출 2억원",
+        "신한은행 대출 3억원",
+        "임대보증금 4억원",
+        "은행 대출 1억원으로 정정",
+        "임대보증금 5억원으로 정정"
+      ],
+      "before": {
+        "current": [
+          "국민은행 대출 2억원",
+          "신한은행 대출 3억원",
+          "임대보증금 4억원"
+        ],
+        "pending": [
+          "은행 대출 1억원으로 정정"
+        ]
+      },
+      "actual": {
+        "current": [
+          "국민은행 대출 2억원",
+          "신한은행 대출 3억원",
+          "임대보증금 5억원으로 정정"
+        ],
+        "pending": [
+          "은행 대출 1억원으로 정정"
+        ]
+      },
+      "expected": {
+        "current": [
+          "국민은행 대출 2억원",
+          "신한은행 대출 3억원",
+          "임대보증금 5억원으로 정정"
+        ],
+        "pending": [
+          "은행 대출 1억원으로 정정"
+        ]
+      },
+      "passed": true,
+      "restore_valid": true
+    },
+    {
+      "id": "R2",
+      "title": "Replaying the last deletion must not recreate a current debt fact",
+      "steps": [
+        "은행 대출 2억원",
+        "은행 대출 2억원 삭제",
+        "Replay the identical deletion proposal with the same message ID after JSON restore"
+      ],
+      "before": {
+        "current": [],
+        "pending": []
+      },
+      "actual": {
+        "current": [],
+        "pending": []
+      },
+      "expected": {
+        "current": [],
+        "pending": []
+      },
+      "passed": true,
+      "restore_valid": true
+    }
+  ]
+}

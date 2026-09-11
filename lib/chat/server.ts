@@ -43,10 +43,20 @@ const uiMessageSchema = z.object({
   return { id: message.id, role: message.role, parts: [{ type: "text" as const, text: historyText }] };
 });
 
-const factSchema = z.object({
+const factSourceSchema = z.object({
   value: z.string().min(1).max(DIAGNOSIS_LIMITS.factValueLength),
   evidence: z.string().min(1).max(DIAGNOSIS_LIMITS.factValueLength),
   messageId: z.string().min(1).max(120),
+  status: z.literal("needs_confirmation").optional(),
+});
+const factSchema = factSourceSchema.extend({
+  value: z.string().max(DIAGNOSIS_LIMITS.factValueLength),
+  sources: z.array(factSourceSchema).min(1).max(24).optional(),
+}).superRefine((fact, ctx) => {
+  const current = fact.sources?.filter(source => source.status !== "needs_confirmation");
+  if (fact.status !== undefined || (current ? fact.value !== current.map(source => source.value).join("\n") : !fact.value.trim())) {
+    ctx.addIssue({ code: "custom", message: "Invalid current fact value" });
+  }
 });
 
 export const diagnosisRequestSchema = z.object({

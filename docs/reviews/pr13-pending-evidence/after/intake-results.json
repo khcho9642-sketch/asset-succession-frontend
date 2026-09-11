@@ -1,0 +1,232 @@
+{
+  "commit": "different-source-see-blob",
+  "source_blob_sha": "f46a6af2a2678e22ba3f7dad44614cece9a50661",
+  "node": "v24.14.0",
+  "scope": "원문 검증을 통과하는 가상 추출값으로 applyChatPatches와 validateChatState 직접 실행. 실모델/브라우저/최종 세액 E2E 아님.",
+  "network_calls": 0,
+  "remote_writes": 0,
+  "passed": 10,
+  "failed": 0,
+  "records": [
+    {
+      "id": "C01",
+      "title": "요청된 서로 다른 종류 채무 누적",
+      "steps": [
+        {
+          "text": "은행 대출 2억원"
+        },
+        {
+          "text": "임대보증금 3억원도 있어요"
+        }
+      ],
+      "expected": [
+        "은행 대출 2억원",
+        "임대보증금 3억원도 있어요"
+      ],
+      "actual": [
+        "은행 대출 2억원",
+        "임대보증금 3억원도 있어요"
+      ],
+      "passed": true,
+      "survives_validation_and_restore": true
+    },
+    {
+      "id": "C02",
+      "title": "요청된 은행대출만 정정",
+      "steps": [
+        {
+          "text": "은행 대출 2억원"
+        },
+        {
+          "text": "임대보증금 3억원도 있어요"
+        },
+        {
+          "text": "은행 대출 1억5천만원으로 정정"
+        }
+      ],
+      "expected": [
+        "은행 대출 1억5천만원으로 정정",
+        "임대보증금 3억원도 있어요"
+      ],
+      "actual": [
+        "은행 대출 1억5천만원으로 정정",
+        "임대보증금 3억원도 있어요"
+      ],
+      "passed": true,
+      "survives_validation_and_restore": true
+    },
+    {
+      "id": "C03",
+      "title": "요청된 서로 다른 연도와 자녀의 과거 증여",
+      "key": "pastGifts",
+      "steps": [
+        {
+          "key": "pastGifts",
+          "text": "2020년 첫째에게 1억원 증여"
+        },
+        {
+          "key": "pastGifts",
+          "text": "2023년 둘째에게 5천만원도 증여"
+        }
+      ],
+      "expected": [
+        "2020년 첫째에게 1억원 증여",
+        "2023년 둘째에게 5천만원도 증여"
+      ],
+      "actual": [
+        "2020년 첫째에게 1억원 증여",
+        "2023년 둘째에게 5천만원도 증여"
+      ],
+      "passed": true,
+      "survives_validation_and_restore": true
+    },
+    {
+      "id": "F01",
+      "title": "다른 은행의 대출 일부 정정이 첫 번째 은행 대출을 덮어씀",
+      "steps": [
+        {
+          "text": "국민은행 대출 2억원"
+        },
+        {
+          "text": "신한은행 대출 3억원"
+        },
+        {
+          "text": "신한은행 대출 1억원으로 정정"
+        }
+      ],
+      "expected": [
+        "국민은행 대출 2억원",
+        "신한은행 대출 1억원으로 정정"
+      ],
+      "actual": [
+        "국민은행 대출 2억원",
+        "신한은행 대출 1억원으로 정정"
+      ],
+      "passed": true,
+      "survives_validation_and_restore": true
+    },
+    {
+      "id": "F02",
+      "title": "소수점이 다른 정정값을 중복으로 간주함",
+      "steps": [
+        {
+          "text": "은행 대출 1.5억원"
+        },
+        {
+          "text": "은행 대출 15억원으로 정정",
+          "value": "은행 대출 15억원"
+        }
+      ],
+      "expected": [
+        "은행 대출 15억원"
+      ],
+      "actual": [
+        "은행 대출 15억원"
+      ],
+      "passed": true,
+      "survives_validation_and_restore": true
+    },
+    {
+      "id": "F03",
+      "title": "마지막 채무 삭제 시 삭제 명령 자체가 현행 사실로 남음",
+      "steps": [
+        {
+          "text": "은행 대출 2억원"
+        },
+        {
+          "text": "은행 대출 2억원 삭제"
+        }
+      ],
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "survives_validation_and_restore": true
+    },
+    {
+      "id": "F04",
+      "title": "같은 자녀 같은 해 별도 날짜 증여 정정이 첫 날짜를 대체",
+      "key": "pastGifts",
+      "steps": [
+        {
+          "key": "pastGifts",
+          "text": "2023년 2월 첫째에게 1억원 증여"
+        },
+        {
+          "key": "pastGifts",
+          "text": "2023년 8월 첫째에게 2억원 증여"
+        },
+        {
+          "key": "pastGifts",
+          "text": "2023년 8월 첫째에게 3억원 증여로 정정"
+        }
+      ],
+      "expected": [
+        "2023년 2월 첫째에게 1억원 증여",
+        "2023년 8월 첫째에게 3억원 증여로 정정"
+      ],
+      "actual": [
+        "2023년 2월 첫째에게 1억원 증여",
+        "2023년 8월 첫째에게 3억원 증여로 정정"
+      ],
+      "passed": true,
+      "survives_validation_and_restore": true
+    },
+    {
+      "id": "F05",
+      "title": "전체대체가 기존 한 항목과 같으면 중복 검사에서 무시됨",
+      "steps": [
+        {
+          "text": "은행 대출 2억원"
+        },
+        {
+          "text": "임대보증금 3억원"
+        },
+        {
+          "text": "정정: 채무 — 은행 대출 2억원",
+          "value": "은행 대출 2억원"
+        }
+      ],
+      "expected": [
+        "은행 대출 2억원"
+      ],
+      "actual": [
+        "은행 대출 2억원"
+      ],
+      "passed": true,
+      "survives_validation_and_restore": true
+    },
+    {
+      "id": "F07",
+      "title": "부분삭제의 추출값이 원래 값과 같으면 삭제 무시됨",
+      "steps": [
+        {
+          "text": "은행 대출 2억원"
+        },
+        {
+          "text": "임대보증금 3억원"
+        },
+        {
+          "text": "은행 대출 2억원 삭제",
+          "value": "은행 대출 2억원"
+        }
+      ],
+      "expected": [
+        "임대보증금 3억원"
+      ],
+      "actual": [
+        "임대보증금 3억원"
+      ],
+      "passed": true,
+      "survives_validation_and_restore": true
+    },
+    {
+      "id": "C04",
+      "title": "동일 메시지 재처리는 중복되지 않음",
+      "passed": true,
+      "actual": [
+        "은행 대출 2억원",
+        "임대보증금 3억원"
+      ]
+    }
+  ]
+}

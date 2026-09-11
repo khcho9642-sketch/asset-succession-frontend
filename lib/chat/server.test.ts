@@ -20,6 +20,18 @@ const validBody = {
   facts: {},
 };
 
+test("API intake preserves pending-only and mixed sources without making them current values", () => {
+  const source = { value: "국민은행 대출 1억원으로 정정", evidence: "국민은행 대출 1억원으로 정정", messageId: "user-1", status: "needs_confirmation" };
+  const fact = { value: "", evidence: source.evidence, messageId: source.messageId, sources: [source] };
+  const result = diagnosisRequestSchema.parse({ ...validBody, facts: { debt: fact } });
+  assert.deepEqual(result.facts.debt, fact);
+  assert.equal(diagnosisRequestSchema.safeParse({ ...validBody, facts: { debt: { ...fact, sources: undefined } } }).success, false);
+  assert.equal(diagnosisRequestSchema.safeParse({ ...validBody, facts: { debt: { ...fact, value: source.value } } }).success, false);
+  const current = { value: "임대보증금 4억원", evidence: "임대보증금 4억원", messageId: "user-2" };
+  const mixed = { ...fact, value: current.value, sources: [current, source] };
+  assert.deepEqual(diagnosisRequestSchema.parse({ ...validBody, facts: { debt: mixed } }).facts.debt, mixed);
+});
+
 test("proposals need exact latest-turn evidence and quoted values across multiple facts", () => {
   const latest = { id: "user-1", text: validBody.messages[0].parts[0].text };
   assert.deepEqual(acceptFactProposals([

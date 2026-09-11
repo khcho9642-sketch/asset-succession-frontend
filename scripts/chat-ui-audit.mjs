@@ -113,12 +113,12 @@ async function setTaxField(page, key, value) {
   else await control.fill(value);
 }
 
-async function configureSyntheticInheritance(page, { estate = "50", financial = "10" } = {}) {
+async function configureSyntheticInheritance(page, { estate = "50", financial = "10", debt = "0" } = {}) {
   // The narrative deliberately leaves children's ages unknown. These are
   // separate, explicitly entered calculation assumptions for this synthetic
   // example, not facts extracted from that narrative or inferred defaults.
   await setTaxField(page, "track", "inheritance");
-  for (const [key, value] of Object.entries({ estate, financial, debt: "0", financialDebt: "0", funeral: "0.05", spouse: "yes", children: "3", spouseAllocation: "15", resident: "yes", standardCase: "yes", availableCash: "" })) {
+  for (const [key, value] of Object.entries({ estate, financial, debt, financialDebt: "0", funeral: "0.05", spouse: "yes", children: "3", spouseAllocation: "15", resident: "yes", standardCase: "yes", availableCash: "" })) {
     await setTaxField(page, key, value);
   }
   await page.locator('[data-tax-comparison-status="ready"]').waitFor();
@@ -216,6 +216,76 @@ function sseReply({ messageId = "audit-ai-answer", text, proposals = [] }) {
     { type: "finish-step" }, { type: "finish", finishReason: "stop" },
   ];
   return { contentType: "text/event-stream", headers: { "x-vercel-ai-ui-message-stream": "v1", "cache-control": "no-cache" }, body: `${events.map(event => `data: ${JSON.stringify(event)}\n\n`).join("")}data: [DONE]\n\n` };
+}
+
+async function auditPendingRequests(browser) {
+  const cases = [
+    { id: "bank", key: "debt", steps: ["국민은행 신용대출 2억원", "국민은행 사업대출 3억원", "신한은행 대출 4억원", "국민은행 대출 1억원으로 정정", "신한은행 대출 5억원으로 정정"], pending: "국민은행 대출 1억원으로 정정", other: "국민은행 대출 6억원으로 정정", target: "국민은행 신용대출 2억원", value: "국민은행 신용대출 1억원", debt: "9" },
+    { id: "gift", key: "pastGifts", steps: ["2023년 2월 1일 첫째에게 1억원 증여", "2023년 2월 20일 첫째에게 2억원 증여", "2023년 8월 첫째에게 4억원 증여", "2023년 2월 첫째에게 3억원 증여로 정정", "2023년 8월 첫째에게 5억원 증여로 정정"], pending: "2023년 2월 첫째에게 3억원 증여로 정정", other: "2023년 첫째 증여 삭제", target: "2023년 2월 1일 첫째에게 1억원 증여", value: "2023년 2월 1일 첫째에게 3억원 증여", debt: "0" },
+    { id: "empty", key: "debt", steps: ["임대보증금 4억원", "국민은행 대출 1억원으로 정정", "임대보증금 4억원 삭제"], pending: "국민은행 대출 1억원으로 정정", other: "신한은행 대출 2억원으로 정정", target: null, value: "국민은행 신용대출 1억원", debt: "1" },
+  ];
+  for (const width of [390, 1440]) for (const example of cases) {
+    let sequence = 0;
+    const context = await newContext(browser, { width, configured: true, post: route => {
+      const request = route.request().postDataJSON();
+      const text = request.messages.at(-1).parts.filter(part => part.type === "text").map(part => part.text).join("");
+      const proposals = sequence === 0
+        ? ["owner", "realEstate", "financialAssets"].map((key, index) => ({ key, value: ["본인 재산", "아파트 25억원", "금융자산 없음"][index], evidence: text }))
+        : [{ key: example.key, value: text, evidence: text }];
+      sequence += 1;
+      return route.fulfill(sseReply({ messageId: `pending-${example.id}-${sequence}`, text: JSON.stringify({ message: `입력 ${sequence}을 정리했습니다.`, choices: [] }), proposals }));
+    } });
+    const page = await context.newPage();
+    try {
+      await openChat(page, { configured: true });
+      for (const text of ["본인 재산, 아파트 25억원, 금융자산 없음", ...example.steps, example.other]) {
+        const expected = sequence + 1;
+        await send(page, text);
+        await page.getByText(`입력 ${expected}을 정리했습니다.`, { exact: true }).waitFor();
+      }
+      await page.reload({ waitUntil: "networkidle" });
+      const saved = await draft(page);
+      const sources = saved.state.facts[example.key].sources;
+      assert.equal(sources.filter(source => source.status === "needs_confirmation").length, 2);
+      if (example.id === "empty") assert.equal(saved.state.facts.debt.value, "");
+      if (width === 390) await page.getByRole("button", { name: /현재 정리된 내용/ }).click();
+      const requestName = `확인 대기: ${example.pending}`;
+      await page.getByRole("group", { name: requestName, exact: true }).waitFor();
+      await page.getByRole("group", { name: requestName, exact: true }).scrollIntoViewIfNeeded();
+      await assertNoOverflow(page, `pending-${example.id}-${width}-summary`);
+      await page.screenshot({ path: path.join(outputDir, `pending-${example.id}-${width}-summary.png`), fullPage: true });
+      if (width === 390) await page.getByRole("button", { name: /현재 정리된 내용/ }).click();
+      await openReview(page);
+      await configureSyntheticInheritance(page, { estate: "25", financial: "0" });
+      assert(await page.getByRole("checkbox", { name: confirmation, exact: true }).isDisabled(), "Pending requests must block final confirmation even with a ready manual calculation");
+      assert.equal(await snapshot(page), null);
+      const request = page.getByRole("group", { name: requestName, exact: true });
+      await request.getByRole("button", { name: "대상 확인", exact: true }).click();
+      const current = sources.filter(source => source.status !== "needs_confirmation");
+      await request.getByLabel("확인 대상 항목").selectOption(example.target ? current.find(source => source.value === example.target).messageId : "new");
+      await request.getByLabel("확인할 내용").fill(example.value);
+      await assertNoOverflow(page, `pending-${example.id}-${width}-review`);
+      await page.screenshot({ path: path.join(outputDir, `pending-${example.id}-${width}-review.png`), fullPage: true });
+      await request.getByRole("button", { name: "이 요청 확인", exact: true }).click();
+      assert.equal(await page.locator("[data-pending-request]").count(), 1);
+      assert(await page.getByRole("checkbox", { name: confirmation, exact: true }).isDisabled());
+      const resolved = await draft(page);
+      assert(resolved.state.factOperations.some(operation => operation.resolution?.requestMessageId === sources.find(source => source.value === example.pending).messageId));
+      assert.equal(resolved.taxInput.confirmed, false);
+      await page.reload({ waitUntil: "networkidle" });
+      await openReview(page);
+      await page.getByRole("group", { name: `확인 대기: ${example.other}`, exact: true }).getByRole("button", { name: "요청 취소", exact: true }).click();
+      assert.equal(await page.locator("[data-pending-request]").count(), 0);
+      assert(!await page.getByRole("checkbox", { name: confirmation, exact: true }).isChecked());
+      await confirmReport(page, `pending-${example.id}-${width}`, { estate: "25", financial: "0", debt: example.debt });
+      const report = await snapshot(page);
+      assert.equal(report.conversation.pending_candidates.length, 0);
+      assert.equal(report.taxComparisonInput.values.debt, example.debt);
+      assert(report.conversation.confirmed_facts.some(fact => fact.raw_text.includes(example.value)));
+      await page.screenshot({ path: path.join(outputDir, `pending-${example.id}-${width}-report.png`), fullPage: true });
+      observations.push({ name: `pending ${example.id} ${width}px: mock conversation, restore, summary, request selection/cancellation, calculation gate and seven-page personal report`, mockedRequests: sequence });
+    } finally { await context.close(); }
+  }
 }
 
 const browser = await chromium.launch({ headless: true });
@@ -476,6 +546,8 @@ try {
   assertGroundedSnapshot(await snapshot(aiPage));
   observations.push({ name: "SDK text/tool stream, evidence rejection, busy composer, explicit confirmation", mockRequests });
   await aiContext.close();
+
+  await auditPendingRequests(browser);
 
   await writeFile(path.join(outputDir, "chat-audit-report.json"), `${JSON.stringify({ status: errors.length ? "failed" : "passed", baseURL, providerInvoked: false, postCount, observations, errors }, null, 2)}\n`);
   assert.deepEqual(errors, [], "Browser errors or unintended provider calls were observed");

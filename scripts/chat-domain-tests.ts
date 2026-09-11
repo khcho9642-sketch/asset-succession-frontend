@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { buildAssessmentMetrics } from "../lib/assessment";
-import { applyChatPatches, createChatState, getMissingRequiredFields, validateChatState, type ChatFieldKey, type ChatPatch, type ChatState } from "../lib/chat/intake";
+import { applyChatPatches, createChatState, getCurrentFactSources, getMissingRequiredFields, getPendingFactSources, resolvePendingFact, validateChatState, type ChatFieldKey, type ChatPatch, type ChatState } from "../lib/chat/intake";
 import { extractLocalChatPatches, getLocalChatReply } from "../lib/chat/local";
 import { buildConfirmedAssessmentSnapshot, parseChatAmount } from "../lib/chat/report";
 import { buildScenarioPlan } from "../lib/phase2b/engine";
@@ -288,6 +288,9 @@ test("debt corrections require a specific target when multiple bank loans exist"
 
   state = add(state, "국민은행 대출은 1억5천만원으로 정정", [{ key: "debt", value: "국민은행 대출은 1억5천만원", evidence: "국민은행 대출은 1억5천만원으로 정정" }]);
   assert.equal(state.facts.debt?.value, "국민은행 대출은 1억5천만원\n신한은행 대출 3억원");
+  assert.equal(getPendingFactSources(state.facts.debt!).length, 1, "A separate correction is not an answer to the pending request");
+  state = resolvePendingFact(state, "debt", getPendingFactSources(state.facts.debt!)[0].messageId,
+    { action: "replace", targetMessageId: getCurrentFactSources(state.facts.debt!)[0].messageId, value: "국민은행 대출은 1억5천만원" }, { id: "confirmed-bank-request", created_at: DATE });
   const corrected = snapshot(state);
   assert.equal(corrected.answers.debt.debtAmounts?.["기타채무 있음"], "4.5");
   assert.equal(buildAssessmentMetrics(corrected).estimatedDebt, "4.5억");
@@ -385,10 +388,13 @@ test("past gift corrections require recipient specificity for same-year gifts", 
   let result = snapshot(state);
   assert.equal(result.answers.debt.facts?.["과거 증여 확인 필요"], "2023년 증여는 7천만원");
   assert.equal(result.conversation?.pending_candidates?.length, 1);
-  assert.deepEqual(normalizeAssessmentSnapshot(result).past_gifts.map((gift) => gift.amount_eok), [1, 0.5]);
+  assert.deepEqual(normalizeAssessmentSnapshot(result).past_gifts.map((gift) => gift.amount_eok), [null, null]);
 
   state = add(state, "2023년 둘째 증여는 7천만원으로 정정", [{ key: "pastGifts", value: "2023년 둘째 증여는 7천만원", evidence: "2023년 둘째 증여는 7천만원으로 정정" }]);
   assert.equal(state.facts.pastGifts?.value, "2023년 첫째에게 1억원 증여\n2023년 둘째 증여는 7천만원");
+  assert.equal(getPendingFactSources(state.facts.pastGifts!).length, 1);
+  state = resolvePendingFact(state, "pastGifts", getPendingFactSources(state.facts.pastGifts!)[0].messageId,
+    { action: "replace", targetMessageId: getCurrentFactSources(state.facts.pastGifts!)[1].messageId, value: "2023년 둘째 증여는 7천만원" }, { id: "confirmed-gift-request", created_at: DATE });
   result = snapshot(state);
   assert.equal(result.conversation?.pending_candidates?.length, 0);
   assert.deepEqual(normalizeAssessmentSnapshot(result).past_gifts.map((gift) => gift.amount_eok), [1, 0.7]);

@@ -7,8 +7,8 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { ArrowDown, ArrowLeft, ArrowRight, Check, ChevronDown, FileText, Pencil, Plus, RotateCcw, Send, ShieldCheck, Square, Trash2, X } from "lucide-react";
 import { clearAssessmentForSession, saveAssessmentForSession } from "@/lib/assessment";
-import { CHAT_FIELD_KEYS, CHAT_FIELD_LABELS, applyChatPatches, createChatState, getMissingRequiredFields, validateChatState } from "@/lib/chat/intake";
-import type { ChatFieldKey, ChatMessage, ChatState } from "@/lib/chat/intake";
+import { CHAT_FIELD_KEYS, CHAT_FIELD_LABELS, applyChatPatches, createChatState, getCurrentFactSources, getMissingRequiredFields, getPendingFactSources, hasPendingFactRequests, removeCurrentFact, resolvePendingFact, validateChatState } from "@/lib/chat/intake";
+import type { ChatFactSource, ChatFieldKey, ChatMessage, ChatState, PendingFactResolution } from "@/lib/chat/intake";
 import type { DiagnosisUIMessage } from "@/lib/chat/agent";
 import { extractLocalChatPatches, getLocalChatReply } from "@/lib/chat/local";
 import { getAssistantReply, SAFE_REVIEW_MESSAGE } from "@/lib/chat/choices";
@@ -214,6 +214,7 @@ export function DiagnosisChat() {
   const hasMessages = Boolean(firstUserMessage);
   const displayTopic = TOPICS[firstUserMessage?.text ?? ""] ?? topic;
   const readyForReview = missing.length === 0;
+  const hasPendingRequests = hasPendingFactRequests(state);
   const taxPreview = useMemo(() => calculateTaxComparison(taxInput), [taxInput]);
   const readyForEstimate = taxPreview.status === "ready" && taxSignature === taxFactsSignature(state);
   const latestAssistantReply = useMemo(() => {
@@ -278,10 +279,20 @@ export function DiagnosisChat() {
   function removeFact(key: ChatFieldKey) {
     if (busy) return;
     invalidateReport();
-    const facts = { ...stateRef.current.facts };
-    delete facts[key];
     const message: ChatMessage = { id: makeId(), role: "user", text: `정리 내용에서 ${CHAT_FIELD_LABELS[key]} 항목을 삭제했어요. 이 항목은 다시 확인이 필요해요.`, created_at: new Date().toISOString() };
-    const next = { ...stateRef.current, facts, messages: [...stateRef.current.messages, message] };
+    const next = removeCurrentFact(stateRef.current, key, message);
+    commit(next);
+    setMessages(toUiMessages(next));
+  }
+
+  function resolveRequest(key: ChatFieldKey, requestId: string, resolution: PendingFactResolution) {
+    if (busy) return;
+    const next = resolvePendingFact(stateRef.current, key, requestId, resolution, { id: makeId(), created_at: new Date().toISOString() });
+    if (next === stateRef.current) {
+      setReviewError("선택한 요청이나 항목이 바뀌었습니다. 내용을 다시 확인해 주세요.");
+      return;
+    }
+    invalidateReport();
     commit(next);
     setMessages(toUiMessages(next));
   }
@@ -345,7 +356,7 @@ export function DiagnosisChat() {
   }
 
   const renderField = (key: ChatFieldKey) => (
-    <FactEditor key={`${stage}-${key}`} fieldKey={key} fact={state.facts[key]} disabled={busy} onSave={editFact} onRemove={removeFact} onEditingChange={updateEditing} />
+    <FactEditor key={`${stage}-${key}`} fieldKey={key} fact={state.facts[key]} disabled={busy} onSave={editFact} onRemove={removeFact} onResolve={resolveRequest} onEditingChange={updateEditing} />
   );
 
   return (
@@ -427,8 +438,9 @@ export function DiagnosisChat() {
               {missing.length > 0 && <p className={styles.requiredNotice}>보고서를 준비하려면 {missing.map(key => CHAT_FIELD_LABELS[key]).join(", ")}을 먼저 알려주세요. 자산 금액을 모르면 자산 종류와 ‘금액 모름’을 함께 적어주세요.</p>}
               {editingIds.size > 0 && <p className={styles.requiredNotice} role="status">수정 중인 항목을 저장하거나 취소한 뒤 확인해 주세요.</p>}
               {input.trim() && <p className={styles.requiredNotice} role="status">아직 보내지 않은 이야기가 있어요. 입력창의 내용을 보내거나 지운 뒤 확인해 주세요.</p>}
-              <label className={styles.confirmRow}><input type="checkbox" checked={confirmed} onChange={event => setConfirmed(event.target.checked)} disabled={!readyForReview || busy || editingIds.size > 0 || Boolean(input.trim())} /><span>정리된 내용이 제가 전달한 상황과 맞는지 확인했습니다.</span></label>
-              <button className={styles.reportButton} disabled={!confirmed || !readyForReview || !readyForEstimate || busy || reportOpening || editingIds.size > 0 || Boolean(input.trim())} onClick={() => void openReport()}>{reportOpening ? "보고서를 준비하고 있어요…" : "확인한 내용으로 보고서 보기"}<ArrowRight size={19} aria-hidden="true" /></button>
+              {hasPendingRequests && <p className={styles.requiredNotice} role="status">확인 대기 요청이 남아 있어요. 위 요청에서 대상을 확인하거나 요청을 취소해 주세요.</p>}
+              <label className={styles.confirmRow}><input type="checkbox" checked={confirmed} onChange={event => setConfirmed(event.target.checked)} disabled={!readyForReview || hasPendingRequests || busy || editingIds.size > 0 || Boolean(input.trim())} /><span>정리된 내용이 제가 전달한 상황과 맞는지 확인했습니다.</span></label>
+              <button className={styles.reportButton} disabled={!confirmed || !readyForReview || !readyForEstimate || hasPendingRequests || busy || reportOpening || editingIds.size > 0 || Boolean(input.trim())} onClick={() => void openReport()}>{reportOpening ? "보고서를 준비하고 있어요…" : "확인한 내용으로 보고서 보기"}<ArrowRight size={19} aria-hidden="true" /></button>
               <Link href="/sample-report" className={`${styles.sampleReportLink} ${styles.reviewSampleLink}`}><FileText size={19} aria-hidden="true" /><span><strong>7장 샘플 보고서 먼저 보기</strong><small>입력 완료 전에도 바로 볼 수 있어요</small></span><ArrowRight size={19} aria-hidden="true" /></Link>
               {reviewError && <p className={styles.requiredNotice} role="alert">{reviewError}</p>}
               <p className={styles.reportFootnote}>확인한 계산 조건으로 예상 세액과 대안별 차이를 계산해요.<br />평가액·공제 요건 또는 가정이 바뀌면 결과도 달라집니다.</p>
@@ -581,7 +593,7 @@ function ReplyChoices({
   </div>;
 }
 
-function FactEditor({ fieldKey, fact, disabled, onSave, onRemove, onEditingChange }: { fieldKey: ChatFieldKey; fact: ChatState["facts"][ChatFieldKey]; disabled: boolean; onSave: (key: ChatFieldKey, value: string) => void; onRemove: (key: ChatFieldKey) => void; onEditingChange: (id: string, editing: boolean) => void }) {
+function FactEditor({ fieldKey, fact, disabled, onSave, onRemove, onResolve, onEditingChange }: { fieldKey: ChatFieldKey; fact: ChatState["facts"][ChatFieldKey]; disabled: boolean; onSave: (key: ChatFieldKey, value: string) => void; onRemove: (key: ChatFieldKey) => void; onResolve: (key: ChatFieldKey, requestId: string, resolution: PendingFactResolution) => void; onEditingChange: (id: string, editing: boolean) => void }) {
   const editorId = useId();
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(fact?.value ?? "");
@@ -594,7 +606,46 @@ function FactEditor({ fieldKey, fact, disabled, onSave, onRemove, onEditingChang
     {editing ? <div className={styles.factEditing}>
       <textarea ref={editRef} aria-label={`${CHAT_FIELD_LABELS[fieldKey]} 입력`} value={value} rows={2} maxLength={1000} placeholder={FIELD_HINTS[fieldKey]} onChange={event => setValue(event.target.value)} />
       <div className={styles.editActions}>{fact && <button className={styles.removeButton} aria-label={`${CHAT_FIELD_LABELS[fieldKey]} 삭제`} disabled={disabled} onClick={() => { onRemove(fieldKey); setEditing(false); }}><Trash2 size={14} aria-hidden="true" /> 삭제</button>}<button disabled={disabled} onClick={() => setEditing(false)}>취소</button><button className={styles.saveButton} disabled={disabled || !value.trim()} onClick={() => { onSave(fieldKey, value); setEditing(false); }}><Check size={14} aria-hidden="true" /> 저장</button></div>
-    </div> : <p className={fact ? styles.factValue : styles.factEmpty}>{fact?.value ?? "아직 알려주지 않으셨어요"}</p>}
-    {!editing && fact?.evidence && <details className={styles.evidence}><summary>어떤 말에서 정리했나요?</summary><p>“{fact.evidence}”</p></details>}
+    </div> : <p className={fact?.value ? styles.factValue : styles.factEmpty}>{fact?.value || (fact ? "현재 유효한 항목 없음 · 확인 대기 요청 있음" : "아직 알려주지 않으셨어요")}</p>}
+    {!editing && fact?.value && <details className={styles.evidence}><summary>어떤 말에서 정리했나요?</summary>{getCurrentFactSources(fact).map(source => <p key={source.messageId}>“{source.evidence}”</p>)}</details>}
+    {fact && getPendingFactSources(fact).map(request => <PendingRequestEditor key={request.messageId} request={request} current={getCurrentFactSources(fact)} disabled={disabled || editing} onResolve={resolution => onResolve(fieldKey, request.messageId, resolution)} onEditingChange={onEditingChange} />)}
+  </div>;
+}
+
+function PendingRequestEditor({ request, current, disabled, onResolve, onEditingChange }: {
+  request: ChatFactSource; current: ChatFactSource[]; disabled: boolean;
+  onResolve: (resolution: PendingFactResolution) => void; onEditingChange: (id: string, editing: boolean) => void;
+}) {
+  const editorId = useId();
+  const [editing, setEditing] = useState(false);
+  const [targetId, setTargetId] = useState("");
+  const [action, setAction] = useState<"replace" | "delete">("replace");
+  const [value, setValue] = useState("");
+  useEffect(() => { onEditingChange(editorId, editing); return () => onEditingChange(editorId, false); }, [editing, editorId, onEditingChange]);
+  const validTarget = targetId === "new" ? action === "replace" : current.some(source => source.messageId === targetId);
+  return <div className={styles.factEditing} role="group" aria-label={`확인 대기: ${request.value}`} data-pending-request={request.messageId}>
+    <p className={styles.requiredNotice}>확인 대기: {request.value}</p>
+    <details className={styles.evidence}><summary>요청 원문</summary><p>{request.evidence}</p></details>
+    {editing && <>
+      <select aria-label="요청 처리" value={action} disabled={disabled} onChange={event => setAction(event.target.value as "replace" | "delete")}>
+        <option value="replace">내용 확인·대체</option><option value="delete">선택 항목 삭제</option>
+      </select>
+      <select aria-label="확인 대상 항목" style={{ width: "100%", maxWidth: "100%" }} value={targetId} disabled={disabled} onChange={event => setTargetId(event.target.value)}>
+        <option value="">대상 선택</option>
+        {current.map(source => <option key={source.messageId} value={source.messageId}>{source.value}</option>)}
+        {action === "replace" && <option value="new">새 항목으로 확인</option>}
+      </select>
+      {action === "replace" && <textarea aria-label="확인할 내용" value={value} rows={2} maxLength={1000} disabled={disabled} onChange={event => setValue(event.target.value)} />}
+    </>}
+    <div className={styles.editActions}>
+      <button disabled={disabled} onClick={() => onResolve({ action: "cancel" })}><X size={14} aria-hidden="true" /> 요청 취소</button>
+      {editing ? <>
+        <button disabled={disabled} onClick={() => setEditing(false)}>닫기</button>
+        <button className={styles.saveButton} disabled={disabled || !validTarget || (action === "replace" && !value.trim())} onClick={() => {
+          onResolve(action === "delete" ? { action, targetMessageId: targetId } : { action, targetMessageId: targetId === "new" ? undefined : targetId, value });
+          setEditing(false);
+        }}><Check size={14} aria-hidden="true" /> 이 요청 확인</button>
+      </> : <button className={styles.saveButton} disabled={disabled} onClick={() => setEditing(true)}><Check size={14} aria-hidden="true" /> 대상 확인</button>}
+    </div>
   </div>;
 }

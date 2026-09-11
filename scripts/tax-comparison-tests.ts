@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { ordinaryTax, parseAmountWon } from "../lib/tax-comparison/common";
 import { calculateTaxComparison, validateTaxComparisonInput } from "../lib/tax-comparison";
 import { attachConfirmedTaxComparison, buildConfirmedTaxAssessmentSnapshot, createTaxInputFromChat, taxFactsSignature } from "../lib/chat/tax";
-import { createChatState, applyChatPatches } from "../lib/chat/intake";
+import { createChatState, applyChatPatches, getCurrentFactSources, getPendingFactSources, resolvePendingFact } from "../lib/chat/intake";
 import { createDemoAssessmentSnapshot } from "../lib/assessment";
 import type { TaxComparisonInput } from "../lib/tax-comparison/types";
 import { getAllowedTaxKeys, getTaxFields } from "../lib/tax-comparison/config";
@@ -97,6 +97,9 @@ test("prefill excludes ambiguous debt corrections and drops deleted last debt", 
   assert.equal(createTaxInputFromChat(state).values.debt, undefined, "unrelated lease-deposit correction must not clear pending bank-loan correction");
 
   state = add(state, "국민은행 대출은 1억5천만원으로 정정", [{ key: "debt", value: "국민은행 대출은 1억5천만원", evidence: "국민은행 대출은 1억5천만원으로 정정" }]);
+  assert.equal(createTaxInputFromChat(state).values.debt, undefined);
+  state = resolvePendingFact(state, "debt", getPendingFactSources(state.facts.debt!)[0].messageId,
+    { action: "replace", targetMessageId: getCurrentFactSources(state.facts.debt!)[0].messageId, value: "국민은행 대출은 1억5천만원" }, { id: "confirmed-pending-debt", created_at: now });
   assert.equal(createTaxInputFromChat(state).values.debt, "9.5");
 
   state = createChatState();

@@ -9,7 +9,12 @@ export type ChatMessage = { id: string; role: "user" | "assistant"; text: string
 export type ChatFactSource = { value: string; evidence: string; messageId: string; status?: "needs_confirmation" };
 export type ChatFact = ChatFactSource & { sources?: ChatFactSource[] };
 export type ChatPatch = { key: ChatFieldKey; value: string; evidence: string };
-export type ChatState = { version: 1; messages: ChatMessage[]; facts: Partial<Record<ChatFieldKey, ChatFact>> };
+export type PendingFactResolution =
+  | { action: "cancel" }
+  | { action: "replace"; targetMessageId?: string; value: string }
+  | { action: "delete"; targetMessageId: string };
+type FactOperation = { key: ChatFieldKey; messageId: string; resolution?: { requestMessageId: string; action: PendingFactResolution["action"]; targetMessageId?: string } };
+export type ChatState = { version: 1; messages: ChatMessage[]; facts: Partial<Record<ChatFieldKey, ChatFact>>; factOperations?: FactOperation[] };
 
 export const CHAT_FIELD_LABELS: Record<ChatFieldKey, string> = {
   topic: "상담 주제", timing: "준비 시기", owner: "재산 소유자", spouse: "소유자의 배우자",
@@ -101,30 +106,21 @@ export function getCurrentFactSources(fact: ChatFact): ChatFactSource[] {
 }
 
 export function getPendingFactSources(fact: ChatFact): ChatFactSource[] {
-  return (fact.sources ?? []).filter((source) => source.status === "needs_confirmation");
+  return (fact.sources ?? [fact]).filter((source) => source.status === "needs_confirmation");
+}
+
+export function hasPendingFactRequests(state: ChatState): boolean {
+  return Object.values(state.facts).some((fact) => getPendingFactSources(fact).length > 0);
 }
 
 function buildFactFromSources(sources: ChatFactSource[]): ChatFact | null {
   const current = sources.filter((source) => source.status !== "needs_confirmation");
-  if (current.length === 0) return null;
+  if (sources.length === 0) return null;
   const combined = current.map((item) => item.value).join("\n");
   if (combined.length > MAX_FACT_LENGTH || sources.length > 24) return null;
   const last = sources[sources.length - 1];
-  return sources.length === 1 ? { ...current[0] } : { ...last, value: combined, sources };
-}
-
-function pendingResolvedBy(key: ChatFieldKey, pending: ChatFactSource, next: ChatFactSource): boolean {
-  const pendingIdentity = factItemIdentity(key, `${pending.value} ${pending.evidence}`);
-  const nextIdentity = factItemIdentity(key, `${next.value} ${next.evidence}`);
-  if (!pendingIdentity || !nextIdentity) return false;
-  if (key === "debt") return pendingIdentity.split(":")[0] === nextIdentity.split(":")[0];
-  if (key === "pastGifts") {
-    const pendingParts = pendingIdentity.split(":");
-    const nextParts = nextIdentity.split(":");
-    const sameRecipient = pendingParts[1] === nextParts[1] || pendingParts[1] === "recipient_unknown";
-    return sameRecipient && pendingParts[2] === nextParts[2];
-  }
-  return false;
+  return sources.length === 1 && current.length === 1 ? { ...current[0] }
+    : { value: combined, evidence: last.evidence, messageId: last.messageId, sources };
 }
 
 function mergeFactSources(key: ChatFieldKey, previous: ChatFact, next: ChatFactSource, messageText: string): ChatFact | null {
@@ -135,7 +131,8 @@ function mergeFactSources(key: ChatFieldKey, previous: ChatFact, next: ChatFactS
   const deletion = isDeletionOperation(messageText);
   const completeReplacement = isCompleteReplacementOperation(key, messageText);
 
-  if (completeReplacement) return next;
+  // Replacing current facts does not answer any separately pending request.
+  if (completeReplacement) return buildFactFromSources([next, ...getPendingFactSources(previous)]) ?? previous;
 
   const identity = factItemIdentity(key, `${next.value} ${next.evidence}`);
   const currentSources = getCurrentFactSources(previous);
@@ -147,12 +144,12 @@ function mergeFactSources(key: ChatFieldKey, previous: ChatFact, next: ChatFactS
     const nextCurrentSources = deletion
       ? currentSources.filter((_, index) => index !== matchIndex)
       : currentSources.map((source, index) => index === matchIndex ? next : source);
-    const retainedPending = getPendingFactSources(previous).filter((source) => !pendingResolvedBy(key, source, next));
+    const retainedPending = getPendingFactSources(previous);
     const merged = [...nextCurrentSources, ...retainedPending];
-    return buildFactFromSources(merged);
+    return merged.length === 0 ? null : buildFactFromSources(merged) ?? previous;
   }
 
-  if ((correction || deletion) && (key === "debt" || key === "pastGifts") && currentSources.length > 0) {
+  if ((correction || deletion) && (key === "debt" || key === "pastGifts")) {
     if (matchingCurrentIndexes.length !== 1) {
       const merged = [...sources, { ...next, status: "needs_confirmation" as const }];
       return buildFactFromSources(merged) ?? previous;
@@ -196,20 +193,87 @@ export function validateChatState(value: unknown): ChatState | null {
   for (const [key, entry] of Object.entries(value.facts)) {
     if (!isFieldKey(key) || !isRecord(entry)) return null;
     if (entry.sources !== undefined) {
-      if (!Array.isArray(entry.sources) || entry.sources.length < 2 || entry.sources.length > 24 || !entry.sources.every((source) => validSource(source, messages))) return null;
+      if (!Array.isArray(entry.sources) || entry.sources.length < 1 || entry.sources.length > 24 || !entry.sources.every((source) => validSource(source, messages))) return null;
       const sources = entry.sources as ChatFactSource[];
       if (sources.some((source) => source.status !== undefined && source.status !== "needs_confirmation")) return null;
       const currentSources = sources.filter((source) => source.status !== "needs_confirmation");
-      if (currentSources.length === 0) return null;
       const last = sources[sources.length - 1];
       if (entry.value !== currentSources.map((source) => source.value).join("\n") || entry.evidence !== last.evidence || entry.messageId !== last.messageId || typeof entry.value !== "string" || entry.value.length > MAX_FACT_LENGTH) return null;
       facts[key] = { value: entry.value, evidence: last.evidence, messageId: last.messageId, sources: sources.map((source) => ({ value: source.value, evidence: source.evidence, messageId: source.messageId, status: source.status })) };
     } else {
-      if (!validSource(entry, messages)) return null;
+      if (!validSource(entry, messages) || entry.status !== undefined) return null;
       facts[key] = { value: entry.value, evidence: entry.evidence, messageId: entry.messageId };
     }
   }
-  return { version: 1, messages, facts };
+  const factOperations: FactOperation[] = [];
+  if (value.factOperations !== undefined) {
+    if (!Array.isArray(value.factOperations) || value.factOperations.length > MAX_MESSAGES * CHAT_FIELD_KEYS.length) return null;
+    const operationIds = new Set<string>();
+    const userIds = new Set(messages.filter((message) => message.role === "user").map((message) => message.id));
+    for (const operation of value.factOperations) {
+      if (!isRecord(operation) || !isFieldKey(operation.key) || typeof operation.messageId !== "string" || !userIds.has(operation.messageId)) return null;
+      const id = JSON.stringify([operation.key, operation.messageId]);
+      if (operationIds.has(id)) return null;
+      operationIds.add(id);
+      const record: FactOperation = { key: operation.key, messageId: operation.messageId };
+      if (operation.resolution !== undefined) {
+        const resolution = operation.resolution;
+        if (!isRecord(resolution) || typeof resolution.requestMessageId !== "string" || !userIds.has(resolution.requestMessageId)
+          || (resolution.action !== "cancel" && resolution.action !== "replace" && resolution.action !== "delete")
+          || (resolution.targetMessageId !== undefined && (typeof resolution.targetMessageId !== "string" || !userIds.has(resolution.targetMessageId)))
+          || (resolution.action === "delete" && !resolution.targetMessageId)) return null;
+        record.resolution = { requestMessageId: resolution.requestMessageId, action: resolution.action, targetMessageId: resolution.targetMessageId as string | undefined };
+      }
+      factOperations.push(record);
+    }
+  }
+  return { version: 1, messages, facts, ...(value.factOperations !== undefined ? { factOperations } : {}) };
+}
+
+function operationWasApplied(state: ChatState, key: ChatFieldKey, messageId: string): boolean {
+  return state.factOperations?.some((operation) => operation.key === key && operation.messageId === messageId) ?? false;
+}
+
+/** A customer action names the pending request and (when applicable) the exact current item. */
+export function resolvePendingFact(
+  state: ChatState, key: ChatFieldKey, requestMessageId: string, resolution: PendingFactResolution,
+  message: Pick<ChatMessage, "id" | "created_at">
+): ChatState {
+  if (operationWasApplied(state, key, message.id)) return state;
+  const previous = state.facts[key];
+  const request = previous && getPendingFactSources(previous).find((source) => source.messageId === requestMessageId);
+  if (!previous || !request || state.messages.some((item) => item.id === message.id)) return state;
+  const current = getCurrentFactSources(previous);
+  const targetId = resolution.action === "cancel" ? undefined : resolution.targetMessageId;
+  const target = targetId ? current.find((source) => source.messageId === targetId) : undefined;
+  if (targetId && !target) return state;
+  if (resolution.action === "replace" && !nonemptyString(resolution.value, MAX_FACT_LENGTH)) return state;
+  const value = resolution.action === "replace" ? resolution.value.trim() : "";
+  const actionLabel = resolution.action === "cancel" ? "요청 취소" : resolution.action === "delete" ? "선택 항목 삭제 확인" : "요청 대체 확인";
+  const text = [`${CHAT_FIELD_LABELS[key]} 확인 대기: ${request.evidence}`, actionLabel,
+    ...(target ? [`대상: ${target.value}`] : []), ...(value ? [`확인 값: ${value}`] : [])].join("\n");
+  const nextSource: ChatFactSource = { value, evidence: value, messageId: message.id };
+  const nextCurrent = resolution.action === "cancel" ? current : resolution.action === "delete"
+    ? current.filter((source) => source !== target)
+    : target ? current.map((source) => source === target ? nextSource : source) : [...current, nextSource];
+  const sources = [...nextCurrent, ...getPendingFactSources(previous).filter((source) => source !== request)];
+  const fact = buildFactFromSources(sources);
+  if (sources.length > 0 && !fact) return state;
+  const facts = { ...state.facts };
+  if (fact) facts[key] = fact; else delete facts[key];
+  const next: ChatState = { ...state, facts, messages: [...state.messages, { ...message, role: "user", text }],
+    factOperations: [...(state.factOperations ?? []), { key, messageId: message.id,
+      resolution: { requestMessageId, action: resolution.action, targetMessageId: targetId } }] };
+  return validateChatState(next) ?? state;
+}
+
+export function removeCurrentFact(state: ChatState, key: ChatFieldKey, message: ChatMessage): ChatState {
+  if (operationWasApplied(state, key, message.id) || state.messages.some((item) => item.id === message.id)) return state;
+  const facts = { ...state.facts };
+  const pending = facts[key] ? buildFactFromSources(getPendingFactSources(facts[key])) : null;
+  if (pending) facts[key] = pending; else delete facts[key];
+  return validateChatState({ ...state, facts, messages: [...state.messages, message],
+    factOperations: [...(state.factOperations ?? []), { key, messageId: message.id }] }) ?? state;
 }
 
 /** Only the latest user turn can update draft facts. Invalid patches have no effect. */
@@ -217,25 +281,30 @@ export function applyChatPatches(state: ChatState, patches: unknown, messageId: 
   const latest = [...state.messages].reverse().find((message) => message.role === "user");
   if (!latest || latest.id !== messageId || !Array.isArray(patches)) return state;
   const facts = { ...state.facts };
+  const factOperations = [...(state.factOperations ?? [])];
   const seen = new Set<ChatFieldKey>();
   for (const patch of patches.slice(0, CHAT_FIELD_KEYS.length)) {
-    if (!isRecord(patch) || !isFieldKey(patch.key) || seen.has(patch.key)) continue;
+    if (!isRecord(patch) || !isFieldKey(patch.key) || seen.has(patch.key) || operationWasApplied(state, patch.key, messageId)) continue;
     const source = { value: patch.value, evidence: patch.evidence, messageId };
     if (!validSource(source, [latest])) continue;
     seen.add(patch.key);
+    factOperations.push({ key: patch.key, messageId });
     const next: ChatFactSource = { value: source.value.trim(), evidence: source.evidence.trim(), messageId };
     const previous = facts[patch.key];
     if (previous && shouldAppendFactKey(patch.key)) {
       const merged = mergeFactSources(patch.key, previous, next, latest.text);
       if (merged) facts[patch.key] = merged;
       else delete facts[patch.key];
+    } else if ((patch.key === "debt" || patch.key === "pastGifts")
+      && (isDeletionOperation(latest.text) || isCorrectionOperation(latest.text)) && !isCompleteReplacementOperation(patch.key, latest.text)) {
+      facts[patch.key] = buildFactFromSources([{ ...next, status: "needs_confirmation" }])!;
     } else if (shouldAppendFactKey(patch.key) && isDeletionOperation(latest.text)) {
       continue;
     } else {
       facts[patch.key] = next;
     }
   }
-  return { ...state, facts };
+  return { ...state, facts, factOperations };
 }
 
 /** Unknown is a usable answer; unanswered required context is not. */

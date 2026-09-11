@@ -1,0 +1,149 @@
+{
+  "reviewed_commit": "a9a87db5ce77966dbe8ee3b6554a3c69b2c327c1",
+  "tested_blob_sha": "f46a6af2a2678e22ba3f7dad44614cece9a50661",
+  "expected_review_blob": "636339d569aeebb5df71e5601ebe1466ec781210",
+  "source_matches_review": false,
+  "node": "v24.14.0",
+  "scope": "Direct execution of intake module and JSON restore with valid synthetic proposals. No AI/browser/tax/report E2E.",
+  "network_calls": 0,
+  "remote_writes": 0,
+  "passed": 4,
+  "failed": 0,
+  "records": [
+    {
+      "id": "R1-BANK",
+      "title": "A correction to Shinhan must not resolve ambiguous KB loans",
+      "key": "debt",
+      "steps": [
+        "국민은행 신용대출 2억원",
+        "국민은행 사업대출 3억원",
+        "신한은행 대출 4억원",
+        "국민은행 대출 1억원으로 정정",
+        "신한은행 대출 5억원으로 정정"
+      ],
+      "before": {
+        "current": [
+          "국민은행 신용대출 2억원",
+          "국민은행 사업대출 3억원",
+          "신한은행 대출 4억원"
+        ],
+        "pending": [
+          "국민은행 대출 1억원으로 정정"
+        ]
+      },
+      "after": {
+        "current": [
+          "국민은행 신용대출 2억원",
+          "국민은행 사업대출 3억원",
+          "신한은행 대출 5억원으로 정정"
+        ],
+        "pending": [
+          "국민은행 대출 1억원으로 정정"
+        ]
+      },
+      "expected": {
+        "current": [
+          "국민은행 신용대출 2억원",
+          "국민은행 사업대출 3억원",
+          "신한은행 대출 5억원으로 정정"
+        ],
+        "pending": [
+          "국민은행 대출 1억원으로 정정"
+        ]
+      },
+      "passed": true,
+      "restore_valid": true
+    },
+    {
+      "id": "R1-GIFT",
+      "title": "An August gift correction must not resolve ambiguous February gifts",
+      "key": "pastGifts",
+      "steps": [
+        "2023년 2월 1일 첫째에게 1억원 증여",
+        "2023년 2월 20일 첫째에게 2억원 증여",
+        "2023년 8월 첫째에게 4억원 증여",
+        "2023년 2월 첫째에게 3억원 증여로 정정",
+        "2023년 8월 첫째에게 5억원 증여로 정정"
+      ],
+      "before": {
+        "current": [
+          "2023년 2월 1일 첫째에게 1억원 증여",
+          "2023년 2월 20일 첫째에게 2억원 증여",
+          "2023년 8월 첫째에게 4억원 증여"
+        ],
+        "pending": [
+          "2023년 2월 첫째에게 3억원 증여로 정정"
+        ]
+      },
+      "after": {
+        "current": [
+          "2023년 2월 1일 첫째에게 1억원 증여",
+          "2023년 2월 20일 첫째에게 2억원 증여",
+          "2023년 8월 첫째에게 5억원 증여로 정정"
+        ],
+        "pending": [
+          "2023년 2월 첫째에게 3억원 증여로 정정"
+        ]
+      },
+      "expected": {
+        "current": [
+          "2023년 2월 1일 첫째에게 1억원 증여",
+          "2023년 2월 20일 첫째에게 2억원 증여",
+          "2023년 8월 첫째에게 5억원 증여로 정정"
+        ],
+        "pending": [
+          "2023년 2월 첫째에게 3억원 증여로 정정"
+        ]
+      },
+      "passed": true,
+      "restore_valid": true
+    },
+    {
+      "id": "R1-EMPTY-ACTIVE",
+      "title": "Deleting the last known item must not discard another unresolved correction",
+      "key": "debt",
+      "steps": [
+        "임대보증금 4억원",
+        "국민은행 대출 1억원으로 정정",
+        "임대보증금 4억원 삭제"
+      ],
+      "before": {
+        "current": [
+          "임대보증금 4억원"
+        ],
+        "pending": [
+          "국민은행 대출 1억원으로 정정"
+        ]
+      },
+      "after": {
+        "current": [],
+        "pending": [
+          "국민은행 대출 1억원으로 정정"
+        ]
+      },
+      "expected": {
+        "current": [],
+        "pending": [
+          "국민은행 대출 1억원으로 정정"
+        ]
+      },
+      "passed": true,
+      "restore_valid": true
+    },
+    {
+      "id": "CONTROL-R1",
+      "title": "Previously reported cross-kind correction remains fixed",
+      "passed": true,
+      "after": {
+        "current": [
+          "국민은행 대출 2억원",
+          "신한은행 대출 3억원",
+          "임대보증금 5억원으로 정정"
+        ],
+        "pending": [
+          "은행 대출 1억원으로 정정"
+        ]
+      }
+    }
+  ]
+}
