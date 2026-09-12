@@ -1,0 +1,50 @@
+{
+  "baseURL": "https://frontend-prototype-m2vyqhd9r-khcho98-6477s-projects.vercel.app",
+  "head": "24559a0b0f3b4b9ffd1819d9fc99ea378bbbd36e",
+  "checkedAt": "2026-09-12T09:48:19.520Z",
+  "mode": "real Preview; no AI or MCP calls; guided report",
+  "errors": [],
+  "diagnosisPosts": 0,
+  "configuration": {
+    "configured": false,
+    "issues": [
+      "FREE_TRIAL_NOT_ENABLED",
+      "MODEL_MISSING",
+      "GOOGLE_API_KEY_MISSING"
+    ]
+  },
+  "questionFailureRestored": true,
+  "baseline": "1,394,375,000원",
+  "report": {
+    "url": "https://frontend-prototype-m2vyqhd9r-khcho98-6477s-projects.vercel.app/report-preview?assessment_id=AS360-20260912-Y43DGC&source=chat",
+    "pages": 7,
+    "matchesConfirmedCalculation": true
+  },
+  "directLinks": [
+    {
+      "text": "",
+      "href": "https://open.kakao.com/o/ss665WMi"
+    },
+    {
+      "text": "",
+      "href": "https://open.kakao.com/o/ss665WMi"
+    },
+    {
+      "text": "카카오 상담",
+      "href": "https://open.kakao.com/o/ss665WMi"
+    },
+    {
+      "text": "카카오톡 상담",
+      "href": "https://open.kakao.com/o/ss665WMi"
+    },
+    {
+      "text": "010-8930-9642",
+      "href": "tel:01089309642"
+    },
+    {
+      "text": "khcho@hangilac.co.kr",
+      "href": "mailto:khcho@hangilac.co.kr"
+    }
+  ],
+  "status": "passed"
+}

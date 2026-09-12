@@ -1,0 +1,38 @@
+▶ Phase 2B scenario engine
+  ✔ returns deterministic scenario priorities for identical inputs (12.7762ms)
+  ✔ branches all four top-level tracks without inventing product categories (1.166ms)
+  ✔ requires a baseline before expected savings or net effect can be displayed (0.1278ms)
+  ✔ does not convert missing calculated values to zero (0.2394ms)
+  ✔ calculates savings and net effect only from calculated baseline/scenario values (0.1643ms)
+  ✔ labels negative savings as additional burden, not savings (0.2057ms)
+  ✔ blocks comparisons across different valuation/family/asset bases (0.1215ms)
+  ✔ separates Report V2 and Conversational Precheck contracts (0.2596ms)
+  ✔ does not fabricate numbers from omitted debts or tax calculations (0.2125ms)
+  ✔ parses explicit Korean money units without treating plain numbers as confirmed money (1.8404ms)
+  ✔ keeps money ranges as ranges rather than confirmed sums (0.5994ms)
+  ✔ calculates only the supported inheritance/gift progressive tax schedule (0.1909ms)
+  ✔ connects a confirmed gift-tax-base fixture to baseline/scenario comparison (0.4083ms)
+  ✔ extracts conversational candidates but requires explicit confirmation outside the parser (3.0416ms)
+  ✔ parses the required 50억원 conversation without treating parent-child lending as secured debt (1.465ms)
+  ✔ does not infer parent basis or child age buckets from spouse and child count (0.2011ms)
+  ✔ flags parent-owned property as owner confirmation, not writer-owned assets (0.3221ms)
+  ✔ does not convert uncertain no-debt language into confirmed zero debt (0.234ms)
+  ✔ connects real assessment tax-base inputs to baseline, alternative, web/PDF model values (1.8789ms)
+  ✔ treats confirmed taxable base zero as valid calculable zero tax (0.2677ms)
+  ✔ calculates a liquidity gap when confirmed financial assets are zero (0.2072ms)
+  ✔ does not hide negative net assets behind zero (0.3941ms)
+  ✔ keeps help text and unknown paths distinct from confirmed answers (0.0925ms)
+  ✔ does not rank insurance as a first-priority solution from a liquidity ratio alone (0.1274ms)
+  ✔ keeps the 36-scenario candidate library internal and exposes only selected results (0.3906ms)
+  ✔ separates insurance liquidity support from the main three recommendations (0.4956ms)
+  ✔ prioritizes the required 50억원 case without exposing insurance as a direct tax-saving recommendation (1.1712ms)
+  ✔ changes recommended scenarios across financial-heavy, real-estate-heavy, and business-family inputs (0.6726ms)
+✔ Phase 2B scenario engine (31.5247ms)
+ℹ tests 28
+ℹ suites 1
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 157.0822

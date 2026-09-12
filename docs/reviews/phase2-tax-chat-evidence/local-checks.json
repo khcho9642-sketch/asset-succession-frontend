@@ -1,0 +1,62 @@
+{
+  "head": "24559a0b0f3b4b9ffd1819d9fc99ea378bbbd36e",
+  "node": "v24.14.0",
+  "checkedAt": "2026-09-12T09:43:23.298Z",
+  "results": [
+    {
+      "name": "lint",
+      "args": [
+        "node_modules/eslint/bin/eslint.js",
+        "app",
+        "components",
+        "lib",
+        "--ext",
+        ".ts,.tsx"
+      ],
+      "exit": 0,
+      "elapsedMs": 3092
+    },
+    {
+      "name": "typecheck",
+      "args": [
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "exit": 0,
+      "elapsedMs": 2653
+    },
+    {
+      "name": "test-chat",
+      "args": [
+        "scripts/run-chat-domain-tests.mjs"
+      ],
+      "exit": 0,
+      "elapsedMs": 1912
+    },
+    {
+      "name": "test-tax",
+      "args": [
+        "scripts/run-tax-comparison-tests.mjs"
+      ],
+      "exit": 0,
+      "elapsedMs": 1448
+    },
+    {
+      "name": "test-phase2b",
+      "args": [
+        "scripts/run-phase2b-unit-tests.mjs"
+      ],
+      "exit": 0,
+      "elapsedMs": 821
+    },
+    {
+      "name": "build",
+      "args": [
+        "node_modules/next/dist/bin/next",
+        "build"
+      ],
+      "exit": 0,
+      "elapsedMs": 11950
+    }
+  ]
+}

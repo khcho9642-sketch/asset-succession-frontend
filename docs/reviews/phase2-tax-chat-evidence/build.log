@@ -1,0 +1,32 @@
+▲ Next.js 16.3.4 (Turbopack)
+✓ Running next.config.mjs took 23ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.6s
+  Running TypeScript ...
+  Finished TypeScript in 3.2s ...
+  Collecting page data using 14 workers ...
+  Generating static pages using 14 workers (0/12) ...
+  Generating static pages using 14 workers (3/12)
+  Generating static pages using 14 workers (6/12)
+  Generating static pages using 14 workers (9/12)
+✓ Generating static pages using 14 workers (12/12) in 1750ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/diagnosis
+├ ○ /consultation
+├ ○ /expert/overview
+├ ○ /expert/workspace
+├ ○ /phase-2b
+├ ○ /precheck
+├ ○ /precheck/form
+├ ○ /precheck/result
+├ ○ /report-preview
+└ ○ /sample-report
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

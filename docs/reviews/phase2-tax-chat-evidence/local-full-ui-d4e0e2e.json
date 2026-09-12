@@ -1,0 +1,47 @@
+[
+  {
+    "script": "sample-report-static-audit",
+    "exit": 0,
+    "elapsedMs": 246
+  },
+  {
+    "script": "sample-report-ui-audit",
+    "exit": 0,
+    "elapsedMs": 18828
+  },
+  {
+    "script": "tax-comparison-ui-audit",
+    "exit": 0,
+    "elapsedMs": 46670
+  },
+  {
+    "script": "tax-extensions-ui-audit",
+    "exit": 0,
+    "elapsedMs": 42024
+  },
+  {
+    "script": "estimate-report-ui-audit",
+    "exit": 0,
+    "elapsedMs": 11324
+  },
+  {
+    "script": "ui-audit",
+    "exit": 0,
+    "elapsedMs": 81000
+  },
+  {
+    "script": "pr2-smoke",
+    "exit": 0,
+    "elapsedMs": 25705
+  },
+  {
+    "script": "pdf-audit",
+    "exit": 0,
+    "elapsedMs": 7623
+  },
+  {
+    "script": "paper-report-audit",
+    "exit": 0,
+    "elapsedMs": 8021
+  }
+]

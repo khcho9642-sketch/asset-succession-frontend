@@ -1,0 +1,35 @@
+{
+  "baseURL": "https://frontend-prototype-m2vyqhd9r-khcho98-6477s-projects.vercel.app",
+  "head": "24559a0b0f3b4b9ffd1819d9fc99ea378bbbd36e",
+  "checkedAt": "2026-09-12T09:46:09.684Z",
+  "mode": "real Preview; no AI or MCP calls; guided report",
+  "errors": [],
+  "diagnosisPosts": 0,
+  "configuration": {
+    "configured": false,
+    "issues": [
+      "FREE_TRIAL_NOT_ENABLED",
+      "MODEL_MISSING",
+      "GOOGLE_API_KEY_MISSING"
+    ]
+  },
+  "questionFailureRestored": true,
+  "baseline": "1,394,375,000원",
+  "report": {
+    "url": "https://frontend-prototype-m2vyqhd9r-khcho98-6477s-projects.vercel.app/report-preview?assessment_id=AS360-20260912-3FJ8CP&source=chat",
+    "pages": 7,
+    "matchesConfirmedCalculation": true
+  },
+  "directLinks": [
+    {
+      "text": "010-8930-9642",
+      "href": "tel:01089309642"
+    },
+    {
+      "text": "khcho@hangilac.co.kr",
+      "href": "mailto:khcho@hangilac.co.kr"
+    }
+  ],
+  "status": "failed",
+  "failure": "The expression evaluated to a falsy value:\n\n  assert.ok(evidence.directLinks.some(a => a.href.includes('pf.kakao.com')))\n"
+}

@@ -1,0 +1,51 @@
+{
+  "head": "24559a0b0f3b4b9ffd1819d9fc99ea378bbbd36e",
+  "base": "63b6a66fd9c02bba553a11962d62cfbf9c558971",
+  "changedFiles": [
+    ".env.example",
+    ".github/workflows/pr-ci.yml",
+    "components/DiagnosisChat.tsx",
+    "docs/tax-mcp-chat.md",
+    "lib/chat/agent.ts",
+    "lib/chat/choices.ts",
+    "lib/chat/fallback.ts",
+    "lib/chat/local.ts",
+    "lib/chat/tax-grounding.test.ts",
+    "lib/chat/tax-grounding.ts",
+    "lib/chat/tax-mcp.ts",
+    "package-lock.json",
+    "package.json",
+    "scripts/chat-ui-audit.mjs",
+    "scripts/run-chat-domain-tests.mjs",
+    "scripts/tax-mcp-live-audit.mjs"
+  ],
+  "pr": {
+    "baseRefName": "codex/phase1-hardening",
+    "headRefOid": "24559a0b0f3b4b9ffd1819d9fc99ea378bbbd36e",
+    "isDraft": true,
+    "state": "OPEN",
+    "url": "https://github.com/khcho98-maker/asset-succession-frontend/pull/14"
+  },
+  "parentPr": {
+    "baseRefName": "codex/chat-opening-topics",
+    "headRefOid": "63b6a66fd9c02bba553a11962d62cfbf9c558971",
+    "isDraft": true,
+    "state": "OPEN",
+    "url": "https://github.com/khcho98-maker/asset-succession-frontend/pull/13"
+  },
+  "localUI": {
+    "head": "24559a0b0f3b4b9ffd1819d9fc99ea378bbbd36e",
+    "url": "http://127.0.0.1:4186",
+    "providerRequestsMocked": 41
+  },
+  "earlierFullLocalUI": {
+    "head": "d4e0e2eced224881f9d455cd49d94b4767a88469",
+    "resultFile": "local-full-ui-d4e0e2e.json"
+  },
+  "screenshots": {
+    "mock-grounding-mobile.png": "Mock MCP/AI response on source build",
+    "mock-grounding-desktop.png": "Mock MCP/AI response on source build",
+    "preview-query-unconfigured.png": "Real Preview with AI unconfigured",
+    "preview-personal-report.png": "Real Preview, explicitly confirmed synthetic calculator inputs; no AI"
+  }
+}

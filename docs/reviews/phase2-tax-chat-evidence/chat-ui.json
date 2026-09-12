@@ -1,0 +1,99 @@
+{
+  "status": "passed",
+  "baseURL": "http://127.0.0.1:4186",
+  "providerInvoked": false,
+  "postCount": 41,
+  "observations": [
+    {
+      "name": "guided report, editing, reset, IME, overflow",
+      "width": 390,
+      "originalId": "AS360-20260912-ZMA8QD",
+      "refreshedId": "AS360-20260912-FIRTPM"
+    },
+    {
+      "name": "confirmed chat actual A4 PDF",
+      "assessmentId": "AS360-20260912-JL9O5M",
+      "pdf": "artifacts\\phase2-tax-chat\\final-ui\\chat-confirmed-report.pdf",
+      "pages": 7,
+      "bytes": 1066770
+    },
+    {
+      "name": "guided report, editing, reset, IME, overflow",
+      "width": 1440,
+      "originalId": "AS360-20260912-JL9O5M",
+      "refreshedId": "AS360-20260912-SJWP6R"
+    },
+    {
+      "name": "storage recovery and report handoff",
+      "storage": "blocked"
+    },
+    {
+      "name": "storage recovery and report handoff",
+      "storage": "corrupt"
+    },
+    {
+      "name": "unknown assets and debt stay unresolved and block report creation"
+    },
+    {
+      "name": "previous taxEnabled:false draft cannot bypass required estimates"
+    },
+    {
+      "name": "topic entry",
+      "purpose": "inheritance"
+    },
+    {
+      "name": "topic entry",
+      "purpose": "gift"
+    },
+    {
+      "name": "topic entry",
+      "purpose": "capital_gains"
+    },
+    {
+      "name": "topic entry",
+      "purpose": "business_succession"
+    },
+    {
+      "name": "configured inheritance choices continue to review without AI latency or a false result handoff"
+    },
+    {
+      "name": "SDK text/tool stream, evidence rejection, busy composer, explicit confirmation",
+      "mockRequests": 1
+    },
+    {
+      "name": "pending bank 390px: mock conversation, restore, summary, request selection/cancellation, calculation gate and seven-page personal report",
+      "mockedRequests": 7
+    },
+    {
+      "name": "pending gift 390px: mock conversation, restore, summary, request selection/cancellation, calculation gate and seven-page personal report",
+      "mockedRequests": 7
+    },
+    {
+      "name": "pending empty 390px: mock conversation, restore, summary, request selection/cancellation, calculation gate and seven-page personal report",
+      "mockedRequests": 5
+    },
+    {
+      "name": "pending bank 1440px: mock conversation, restore, summary, request selection/cancellation, calculation gate and seven-page personal report",
+      "mockedRequests": 7
+    },
+    {
+      "name": "pending gift 1440px: mock conversation, restore, summary, request selection/cancellation, calculation gate and seven-page personal report",
+      "mockedRequests": 7
+    },
+    {
+      "name": "pending empty 1440px: mock conversation, restore, summary, request selection/cancellation, calculation gate and seven-page personal report",
+      "mockedRequests": 5
+    },
+    {
+      "name": "tax sources 390px: mixed assertions, refresh, summary, calculator, confirmation, personal report and direct contacts",
+      "realAi": false,
+      "realMcp": false
+    },
+    {
+      "name": "tax sources 1440px: mixed assertions, refresh, summary, calculator, confirmation, personal report and direct contacts",
+      "realAi": false,
+      "realMcp": false
+    }
+  ],
+  "errors": []
+}

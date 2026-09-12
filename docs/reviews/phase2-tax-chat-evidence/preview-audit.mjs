@@ -1,0 +1,72 @@
+import assert from 'node:assert/strict';
+import { chromium } from 'playwright';
+import { mkdir, writeFile } from 'node:fs/promises';
+const baseURL = process.argv[2], head = process.argv[3];
+assert.ok(baseURL && head, 'Pass the verified deployment URL and source SHA');
+const dir = 'artifacts/phase2-tax-chat/preview';
+await mkdir(dir, { recursive: true });
+const browser = await chromium.launch({ headless: true });
+const evidence = { baseURL, head, checkedAt: new Date().toISOString(), mode: 'real Preview; no AI or MCP calls; guided report', errors: [], diagnosisPosts: 0 };
+try {
+  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+  const status = await context.request.get(`${baseURL}/api/diagnosis`);
+  assert.equal(status.status(), 200);
+  evidence.configuration = await status.json();
+  assert.equal(evidence.configuration.configured, false, 'Stop: this audit is not approved to invoke configured AI');
+  const page = await context.newPage();
+  page.on('pageerror', e => evidence.errors.push(e.message));
+  page.on('request', r => { if (r.url().endsWith('/api/diagnosis') && r.method() === 'POST') evidence.diagnosisPosts++; });
+  await page.goto(`${baseURL}/precheck`, { waitUntil: 'networkidle' });
+  await page.getByText('AI 연결 전 · 입력 정리 모드', { exact: true }).waitFor();
+  const send = async text => {
+    await page.locator('#diagnosis-message').fill(text);
+    await page.getByRole('button', { name: '메시지 보내기', exact: true }).click();
+    await page.waitForFunction(() => document.querySelector('#diagnosis-message')?.value === '');
+  };
+  await send('증여 공제는 무엇인가요?');
+  await page.getByText('현재 AI·세법 조회 연결이 준비되지 않아 근거 있는 답변을 드릴 수 없습니다.', { exact: false }).waitFor();
+  assert.equal(await page.getByLabel('세법 조회 근거').locator('a[href^="https://www.law.go.kr"]').count(), 0);
+  await page.screenshot({ path: `${dir}/preview-query-unconfigured.png`, fullPage: true });
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.getByText('현재 AI·세법 조회 연결이 준비되지 않아 근거 있는 답변을 드릴 수 없습니다.', { exact: false }).waitFor();
+  evidence.questionFailureRestored = true;
+  await send('아버지 재산이에요. 건물 25억, 아파트 15억, 예금 10억, 배우자 있음, 자녀 셋, 채무 없음, 과거 증여 없음, 세금 부담을 줄이고 싶어요.');
+  await page.getByRole('button', { name: /^(이제 정리한 내용을 확인해 볼까요\?|내 상황에 맞춘 보고서 준비하기)$/ }).click();
+  await page.getByRole('heading', { name: '제가 전한 상황과 맞나요?' }).waitFor();
+  const set = async (key, value) => {
+    const field = page.locator(`[data-tax-field="${key}"]`);
+    if (await field.evaluate(el => el.tagName) === 'SELECT') await field.selectOption(value);
+    else if (await field.getAttribute('type') === 'checkbox') await field.setChecked(value === 'yes');
+    else await field.fill(value);
+  };
+  await set('track', 'inheritance');
+  for (const [key, value] of Object.entries({ estate: '50', financial: '10', debt: '0', financialDebt: '0', funeral: '0.05', spouse: 'yes', children: '3', spouseAllocation: '15', resident: 'yes', standardCase: 'yes', availableCash: '' })) await set(key, value);
+  await page.locator('[data-tax-comparison-status="ready"]').waitFor();
+  const confirmation = page.getByRole('checkbox', { name: '정리된 내용이 제가 전달한 상황과 맞는지 확인했습니다.', exact: true });
+  assert.equal(await confirmation.isChecked(), false);
+  const final = page.getByRole('button', { name: '확인한 내용으로 보고서 보기', exact: true });
+  assert.equal(await final.isDisabled(), true);
+  evidence.baseline = (await page.locator('[data-tax-baseline]').innerText()).trim();
+  assert.equal(evidence.baseline, '1,394,375,000원');
+  await confirmation.check();
+  await final.click();
+  await page.waitForURL('**/report-preview?assessment_id=**');
+  await page.locator('[data-report-page="7"]').waitFor();
+  assert.equal(await page.locator('[data-report-page]').count(), 7);
+  assert.equal((await page.locator('[data-tax-report-baseline]').innerText()).trim(), evidence.baseline);
+  evidence.report = { url: page.url(), pages: 7, matchesConfirmedCalculation: true };
+  await page.screenshot({ path: `${dir}/preview-personal-report.png`, fullPage: false });
+  await page.goto(`${baseURL}/consultation`, { waitUntil: 'networkidle' });
+  evidence.directLinks = await page.locator('a[href^="tel:"], a[href^="mailto:"], a[href*="open.kakao.com"]').evaluateAll(links => links.map(a => ({ text: a.innerText, href: a.getAttribute('href') })));
+  assert.ok(evidence.directLinks.some(a => a.href.startsWith('tel:')));
+  assert.ok(evidence.directLinks.some(a => a.href.startsWith('mailto:')));
+  assert.ok(evidence.directLinks.some(a => a.href === 'https://open.kakao.com/o/ss665WMi'));
+  assert.equal(evidence.diagnosisPosts, 0);
+  assert.deepEqual(evidence.errors, []);
+  evidence.status = 'passed';
+} catch (e) { evidence.status = 'failed'; evidence.failure = e.message; throw e; }
+finally {
+  await writeFile(`${dir}/results.json`, JSON.stringify(evidence, null, 2));
+  await browser.close();
+}
+console.log(JSON.stringify(evidence, null, 2));
