@@ -46,6 +46,7 @@ function unpack(raw: unknown): Record<string, unknown> {
 export function normalizeTaxDocuments(raw: unknown, tool: string, retrievedAt: string): { documents: TaxDocument[]; status: string } {
   const data = unpack(raw);
   const documents: TaxDocument[] = [];
+  let unsupportedDocument = false;
   if (data.status !== "OK") return { documents, status: str(data.status) || "PARSE_ERROR" };
   const add = (input: unknown, body: string) => {
     const parsed = taxSourceSchema.safeParse(input);
@@ -64,14 +65,16 @@ export function normalizeTaxDocuments(raw: unknown, tool: string, retrievedAt: s
       if (!Array.isArray(items)) continue;
       for (const value of items.slice(0, 2)) {
         const item = record(value), id = str(item.doc_id), body = clean(item.content || item.detail_content || item.summary);
-        // This detail route is verified for NTS inquiry documents, not other document kinds.
-        if (!/^01\d{16}$/.test(id) || item.doc_type !== "질의") continue;
+        // Verified on actual inquiry and advance-answer detail pages; other kinds remain excluded.
+        const supported = (item.doc_type === "질의" && /^01\d{16}$/.test(id))
+          || (item.doc_type === "사전" && /^20\d{16}$/.test(id));
+        if (!supported) { unsupportedDocument = true; continue; }
         add({ id: `nts-${id}`, title: clean(item.title), agency: clean(item.source_org), url: `https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=${id}`,
           quote: clean(item.summary || body).slice(0, 480), retrievedAt, ...(item.date ? { publishedDate: str(item.date) } : {}) }, body);
       }
     }
   }
-  return { documents: documents.slice(0, 2), status: documents.length ? "OK" : "PARSE_ERROR" };
+  return { documents: documents.slice(0, 2), status: documents.length ? "OK" : unsupportedDocument ? "UNSUPPORTED_DOCUMENT" : "PARSE_ERROR" };
 }
 
 type Client = Pick<MCPClient, "listTools" | "callTool" | "close">;

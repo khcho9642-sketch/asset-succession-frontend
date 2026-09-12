@@ -52,7 +52,9 @@ not register remote secrets, broaden the existing activation default, or change 
   Grounded Google attempts are bounded to 18 seconds each and at most the existing two attempts.
 - Lookup errors, auth errors, no results and unusable sources remain distinct; no-source responses do not call AI.
 - Source titles, agencies, URLs, quotes, retrieval timestamps and available dates are server-owned.
-  NTS document numbers map to the verified inquiry-detail route; law MST maps to the verified version URL.
+  NTS inquiry (`질의`, ID prefix `01`) and advance-answer (`사전`, ID prefix `20`) documents map
+  to their verified detail route. Other document types are explicitly unsupported, not invented links.
+  Law MST maps to the verified version URL.
   A ruling date is not an effective date. Application provisions and transaction eligibility remain unconfirmed.
 - AI can cite only retrieved IDs. Unsupported links, numeric claims and personal tax estimates are blocked.
   These guards do not prove every qualitative sentence correct; live-model review is still required.

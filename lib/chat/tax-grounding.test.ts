@@ -57,6 +57,18 @@ test("MCP lookup calls only allowlisted tools and always closes", async () => {
   assert.deepEqual(calls, ["law_article_as_of", "nts_ruling_search"]);
   assert.equal(result.status, "ready"); assert.equal(result.sources.length, 2); assert.ok(closed);
 });
+test("verified NTS advance-answer links are retained, unknown document kinds are explicit", () => {
+  const raw = (doc_type: string, doc_id: string) => content({ status: "OK", question: { items: [{
+    title: "합성 사전답변 시험", doc_type, doc_id, source_org: "국세청", date: "20260825", content: "과거 증여 내역을 확인합니다.",
+  }] } });
+  const result = normalizeTaxDocuments(raw("사전", "200000000000022895"), "nts_ruling_search", at);
+  assert.equal(result.status, "OK");
+  assert.equal(result.documents[0].url, "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000022895");
+  assert.equal(result.documents[0].effectiveDate, undefined);
+  const unknown = normalizeTaxDocuments(raw("판례", "200000000000022895"), "nts_ruling_search", at);
+  assert.equal(unknown.status, "UNSUPPORTED_DOCUMENT"); assert.deepEqual(unknown.documents, []);
+});
+
 test("lookup distinguishes no results, auth errors and connection failure", async () => {
   for (const [status, expected] of [["NOT_FOUND", "not_found"], ["AUTH_ERROR", "authentication_required"], ["UPSTREAM_ERROR", "invalid_response"]]) {
     const result = await researchTaxQuestion(planTaxQuery(questions[1])!, undefined, async () => ({
