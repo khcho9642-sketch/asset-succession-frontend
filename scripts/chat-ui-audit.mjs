@@ -549,6 +549,42 @@ try {
 
   await auditPendingRequests(browser);
 
+  for (const width of [390, 1440]) {
+    const source = { id: "law-276123-제53조", title: "상속세 및 증여세법 제53조 증여재산 공제", agency: "법제처 국가법령정보센터", url: "https://www.law.go.kr/lsInfoP.do?lsiSeq=276123", quote: "거주자가 증여를 받은 경우", retrievedAt: "2026-09-12T00:00:00.000Z", effectiveDate: "20251001", article: "제53조" };
+    const grounding = { status: "ready", sources: [source], notice: "가상 응답 시험. 적용 시점은 별도 확인이 필요합니다." };
+    const context = await newContext(browser, { width, configured: true, post: route => route.fulfill(sseReply({ text: JSON.stringify({ message: "증여자와 수증자의 관계, 거주자 여부와 이전 증여 내역을 확인해야 합니다.", choices: [], grounding }) })) });
+    const page = await context.newPage();
+    await openChat(page, { configured: true });
+    await send(page, "본인 재산, 아파트 25억원, 금융자산 없음, 대출 5억원인데 증여 공제는 무엇인가요?");
+    const sources = page.getByLabel("세법 조회 근거", { exact: true });
+    await sources.getByRole("link", { name: source.title, exact: true }).waitFor();
+    assert.equal(await sources.getByRole("link", { name: source.title }).getAttribute("href"), source.url);
+    await waitFact(page, "debt", "대출 5억원");
+    assert.equal((await draft(page)).state.facts.notes, undefined);
+    await page.reload({ waitUntil: "networkidle" });
+    await page.getByLabel("세법 조회 근거", { exact: true }).waitFor();
+    await page.getByLabel("세법 조회 근거", { exact: true }).locator("summary").click({ position: { x: 3, y: 3 } });
+    await assertNoOverflow(page, `tax sources ${width}`);
+    await page.screenshot({ path: path.join(outputDir, `tax-grounding-${width}.png`), fullPage: true });
+    await openReview(page);
+    assert.equal(await taxField(page, "debt").inputValue(), "5");
+    await confirmReport(page, `grounded explanation to personal report ${width}`, { estate: "25", financial: "0", debt: "5" });
+    const confirmedSnapshot = await snapshot(page);
+    assert(!JSON.stringify(confirmedSnapshot.conversation.confirmed_facts).includes(source.title), "Law document entered customer facts");
+    await page.getByRole("link", { name: reportEditLink, exact: true }).click();
+    await openReview(page);
+    await editField(page, "채무", "대출 3억원");
+    await page.waitForFunction(() => document.querySelector('[data-tax-field="debt"]')?.value === "3");
+    assert.equal(await taxField(page, "debt").inputValue(), "3");
+    assert(!await page.getByRole("checkbox", { name: confirmation, exact: true }).isChecked());
+    assert.equal(await snapshot(page), null, "Fact correction retained the old personal report");
+    await page.goto(`${baseURL}/consultation`, { waitUntil: "networkidle" });
+    assert.equal(await page.locator('a[href="tel:01089309642"]').count(), 1);
+    assert.equal(await page.locator('a[href="mailto:khcho@hangilac.co.kr"]').count(), 1);
+    observations.push({ name: `tax sources ${width}px: mixed assertions, refresh, summary, calculator, confirmation, personal report and direct contacts`, realAi: false, realMcp: false });
+    await context.close();
+  }
+
   await writeFile(path.join(outputDir, "chat-audit-report.json"), `${JSON.stringify({ status: errors.length ? "failed" : "passed", baseURL, providerInvoked: false, postCount, observations, errors }, null, 2)}\n`);
   assert.deepEqual(errors, [], "Browser errors or unintended provider calls were observed");
   console.log(`Chat UI audit passed: ${observations.length} flows; all ${postCount} AI requests mocked.`);

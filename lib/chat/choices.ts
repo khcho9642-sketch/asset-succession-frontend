@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { taxGroundingSchema } from "./tax-grounding";
 
 export const diagnosisSelectionModeSchema = z.enum(["single", "multiple"]);
 export const diagnosisInputModeSchema = z.enum(["assetAmounts"]);
@@ -11,6 +12,7 @@ export const diagnosisReplySchema = z.object({
   selectionMode: diagnosisSelectionModeSchema.optional(),
   // Structured entry is opt-in so older saved replies remain valid.
   inputMode: diagnosisInputModeSchema.optional(),
+  grounding: taxGroundingSchema.optional(),
 }).strict();
 
 export type DiagnosisReply = z.infer<typeof diagnosisReplySchema>;

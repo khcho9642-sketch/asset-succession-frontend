@@ -156,3 +156,19 @@ export function extractLocalChatPatches(text: string, state: ChatState): ChatPat
   if (!found.size) found.set("notes",text);
   return Array.from(found,([key,value])=>({key,value,evidence:value}));
 }
+
+/** Persist explicit clauses before networking; hypothetical examples remain conversation-only. */
+export function extractAssertedChatPatches(text: string, state: ChatState): ChatPatch[] {
+  if (/가정|예를|만약|이라면|이면|라고\s*(?:하면|가정)/.test(text)) return [];
+  const clauses = text.split(/[,;\n]|(?:인데|이고|있고)\s*/).filter(clause => !/[?？]|무엇|어떻|어떤|왜|얼마|알려|궁금|되나요|인가요|있나요/.test(clause));
+  const patches = clauses.flatMap(clause => extractLocalChatPatches(clause.trim(), state)).filter(patch => patch.key !== "notes" && text.includes(patch.evidence));
+  const keys = [...new Set(patches.map(patch => patch.key))];
+  return keys.flatMap(key => {
+    const group = patches.filter(patch => patch.key === key);
+    if (group.length === 1) return group;
+    const start = text.indexOf(group[0].evidence), last = group.at(-1)!;
+    const value = text.slice(start, text.lastIndexOf(last.evidence) + last.evidence.length);
+    if (/[?？]|무엇|어떻|궁금/.test(value)) return [];
+    return [{ key, value, evidence: value }];
+  });
+}

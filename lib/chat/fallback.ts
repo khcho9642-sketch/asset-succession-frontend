@@ -2,8 +2,11 @@ import { createUIMessageStreamResponse, NoObjectGeneratedError, type ModelMessag
 import { acceptFactProposals, createDiagnosisAgent, diagnosisTurnSchema } from "./agent";
 import { diagnosisReplySchema, hasAppOwnedHandoffClaim } from "./choices";
 import { applyChatPatches, type ChatPatch, type ChatState } from "./intake";
-import { getLocalChatReply } from "./local";
+import { extractAssertedChatPatches, getLocalChatReply } from "./local";
 import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
+import { groundReply, isTaxCalculationRequest, planTaxQuery, type TaxResearch } from "./tax-grounding";
+import { researchTaxQuestion } from "./tax-mcp";
+import type { DiagnosisReply } from "./choices";
 
 type DiagnosisResponseOptions = DiagnosisRequest & {
   apiKey: string;
@@ -12,6 +15,9 @@ type DiagnosisResponseOptions = DiagnosisRequest & {
   headers?: HeadersInit;
   /** Shorter deadlines can be supplied by server-side tests only. */
   attemptTimeoutMs?: number;
+  research?: TaxResearch;
+  /** Server-only dependency injection, never read from the request body. */
+  lookup?: typeof researchTaxQuestion;
 };
 
 const ATTEMPT_TIMEOUT_MS = 24_000;
@@ -32,7 +38,7 @@ function stateAfterProposals(options: DiagnosisResponseOptions, proposals: ChatP
   return latest ? applyChatPatches(state, proposals, latest.id) : state;
 }
 
-function completedTurnChunks(proposals: ChatPatch[], reply: { message: string; choices: string[]; selectionMode?: "single" | "multiple"; inputMode?: "assetAmounts" }): UIMessageChunk[] {
+function completedTurnChunks(proposals: ChatPatch[], reply: DiagnosisReply): UIMessageChunk[] {
   const id = globalThis.crypto.randomUUID();
   const toolCallId = `facts-${id}`;
   const textId = `reply-${id}`;
@@ -99,6 +105,7 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
         model,
         messages: options.messages,
         facts: options.facts,
+        research: options.research,
       }).generate({ messages: modelMessages, abortSignal: signal });
       signal.throwIfAborted();
       if (result.finalStep.finishReason === "content-filter") {
@@ -106,11 +113,18 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
       }
       const turn = diagnosisTurnSchema.parse(result.output);
       const latest = options.messages[options.messages.length - 1];
-      const proposals = acceptFactProposals(turn.facts, { id: latest.id, text: latest.parts[0].text });
+      const proposals = options.research
+        ? extractAssertedChatPatches(latest.parts[0].text, stateAfterProposals(options, []))
+        : acceptFactProposals(turn.facts, { id: latest.id, text: latest.parts[0].text });
       const modelReply = diagnosisReplySchema.parse({ message: turn.message, choices: turn.choices, selectionMode: turn.selectionMode, inputMode: turn.inputMode });
-      const reply = hasAppOwnedHandoffClaim(modelReply.message)
+      let reply: DiagnosisReply = hasAppOwnedHandoffClaim(modelReply.message)
         ? getLocalChatReply(stateAfterProposals(options, proposals))
         : modelReply;
+      if (options.research) {
+        const grounded = !hasAppOwnedHandoffClaim(modelReply.message) && groundReply(modelReply.message, turn.citationIds, options.research);
+        reply = grounded ? { ...modelReply, grounding: grounded }
+          : { message: "조회된 근거와 AI 설명을 일치시키지 못해 세법 답변을 보류했습니다. 아래 원문을 확인하거나 질문을 구체적으로 다시 남겨주세요. 개인 세액은 계산 조건 확인 후 기존 계산기로 확인할 수 있습니다.", choices: [], grounding: { status: "invalid_response", sources: options.research.sources, notice: options.research.notice } };
+      }
       const chunks = completedTurnChunks(proposals, reply);
       const bytes = chunks.reduce((total, chunk) => total + Buffer.byteLength(JSON.stringify(chunk), "utf8"), 0);
       if (bytes > MAX_BUFFER_BYTES || chunks.length > MAX_BUFFER_CHUNKS) {
@@ -148,13 +162,31 @@ export function createDiagnosisResponse(options: DiagnosisResponseOptions): Resp
       void (async () => {
         try {
           cancelled.throwIfAborted();
+          const latest = options.messages.at(-1)!;
+          if (isTaxCalculationRequest(latest.parts[0].text)) {
+            const proposals = extractAssertedChatPatches(latest.parts[0].text, stateAfterProposals(options, []));
+            for (const chunk of completedTurnChunks(proposals, { message: "개인 세액은 확인된 입력으로 기존 계산기에서 계산합니다. 내용 확인에서 빠진 계산 조건을 확인해 주세요. 지원 범위와 조건이 충족되면 같은 입력의 개인 보고서를 열 수 있습니다.", choices: [] })) controller.enqueue(chunk);
+            return;
+          }
+          const query = planTaxQuery(latest.parts[0].text, options.facts.topic?.value);
+          const research = query ? await (options.lookup ?? researchTaxQuestion)(query, cancelled) : undefined;
+          const attemptOptions = research ? { ...options, research, attemptTimeoutMs: Math.min(options.attemptTimeoutMs ?? 18_000, 18_000) } : options;
+          const localProposals = research ? extractAssertedChatPatches(latest.parts[0].text, stateAfterProposals(options, [])) : [];
           let chunks: UIMessageChunk[];
-          try {
-            chunks = await collectAttempt(options, options.model, cancelled);
-          } catch (error) {
-            cancelled.throwIfAborted();
-            if (options.model === BACKUP_GOOGLE_DIAGNOSIS_MODEL || !canUseBackup(error)) throw error;
-            chunks = await collectAttempt(options, BACKUP_GOOGLE_DIAGNOSIS_MODEL, cancelled);
+          if (research && !research.sources.length) {
+            chunks = completedTurnChunks(localProposals, { message: research.notice, choices: [], grounding: { status: research.status, sources: [], notice: research.notice } });
+          } else {
+            try {
+              try { chunks = await collectAttempt(attemptOptions, options.model, cancelled); }
+              catch (error) {
+                cancelled.throwIfAborted();
+                if (options.model === BACKUP_GOOGLE_DIAGNOSIS_MODEL || !canUseBackup(error)) throw error;
+                chunks = await collectAttempt(attemptOptions, BACKUP_GOOGLE_DIAGNOSIS_MODEL, cancelled);
+              }
+            } catch (error) {
+              if (!research || cancelled.aborted) throw error;
+              chunks = completedTurnChunks(localProposals, { message: `[${getDiagnosisPublicErrorCode(error)}] 근거는 조회했지만 AI 설명을 완료하지 못했습니다. 입력은 유지됩니다. 잠시 후 다시 질문하거나 전문가에게 문의해 주세요.`, choices: [], grounding: { status: "unavailable", sources: research.sources, notice: research.notice } });
+            }
           }
           cancelled.throwIfAborted();
           for (const chunk of chunks) controller.enqueue(chunk);

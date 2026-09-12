@@ -10,7 +10,8 @@ import { clearAssessmentForSession, saveAssessmentForSession } from "@/lib/asses
 import { CHAT_FIELD_KEYS, CHAT_FIELD_LABELS, applyChatPatches, createChatState, getCurrentFactSources, getMissingRequiredFields, getPendingFactSources, hasPendingFactRequests, removeCurrentFact, resolvePendingFact, validateChatState } from "@/lib/chat/intake";
 import type { ChatFactSource, ChatFieldKey, ChatMessage, ChatState, PendingFactResolution } from "@/lib/chat/intake";
 import type { DiagnosisUIMessage } from "@/lib/chat/agent";
-import { extractLocalChatPatches, getLocalChatReply } from "@/lib/chat/local";
+import { extractAssertedChatPatches, extractLocalChatPatches, getLocalChatReply } from "@/lib/chat/local";
+import { groundingFailure, planTaxQuery } from "@/lib/chat/tax-grounding";
 import { getAssistantReply, SAFE_REVIEW_MESSAGE } from "@/lib/chat/choices";
 import type { DiagnosisReply } from "@/lib/chat/choices";
 import { getGuidedChatTurn } from "@/lib/chat/guided";
@@ -241,7 +242,9 @@ export function DiagnosisChat() {
     shouldFollow.current = true;
     const message: ChatMessage = { id: makeId(), role: "user", text: submittedText, created_at: new Date().toISOString() };
     let next: ChatState = { ...stateRef.current, messages: [...stateRef.current.messages, message] };
+    const taxQuestion = planTaxQuery(submittedText, next.facts.topic?.value ?? topic);
     if (guided) next = applyChatPatches(next, guided.patches, message.id);
+    else if (taxQuestion) next = applyChatPatches(next, extractAssertedChatPatches(submittedText, next), message.id);
     else if (!configured) next = applyChatPatches(next, extractLocalChatPatches(submittedText, next), message.id);
     commit(next);
     try {
@@ -255,7 +258,8 @@ export function DiagnosisChat() {
         await sendMessage({ id: message.id, role: "user", parts: [{ type: "text", text: submittedText }] }, { body: { facts: next.facts } });
       } else {
         // Save the local question too so its choices and context survive reload.
-        const reply = getLocalChatReply(next);
+        const failed = groundingFailure("unavailable");
+        const reply = taxQuestion ? { message: "현재 AI·세법 조회 연결이 준비되지 않아 근거 있는 답변을 드릴 수 없습니다. 입력은 유지되며 직접 입력이나 전문가 상담을 계속할 수 있습니다.", choices: [], grounding: { status: failed.status, sources: [], notice: failed.notice } } : getLocalChatReply(next);
         next = { ...next, messages: [...next.messages, { id: makeId(), role: "assistant", text: JSON.stringify(reply), created_at: new Date().toISOString() }] };
         commit(next);
         setMessages(toUiMessages(next));
@@ -401,6 +405,15 @@ export function DiagnosisChat() {
                 return <article className={message.role === "user" ? styles.userMessage : styles.assistantMessage} key={message.id}>
                   <p className={styles.speaker}>{message.role === "user" ? "내가 전한 이야기" : configured === false ? "입력 안내" : "자산승계360 AI"}</p>
                   <div className={styles.messageText}>{visibleText}</div>
+                  {reply?.grounding && <div aria-label="세법 조회 근거">
+                    <p>{reply.grounding.notice}</p>
+                    {reply.grounding.sources.map(source => <details key={source.id}>
+                      <summary><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a> · {source.agency}</summary>
+                      <blockquote>{source.quote}</blockquote>
+                      <p>조회: {source.retrievedAt.slice(0, 10)}{source.publishedDate ? ` · 회신일: ${source.publishedDate}` : ""}{source.effectiveDate ? ` · 조문 시행일: ${source.effectiveDate}` : " · 적용 시점 미확인"}</p>
+                    </details>)}
+                    <Link href="/consultation">전문가에게 직접 문의</Link>
+                  </div>}
                   {showChoices && <ReplyChoices
                     reply={reply}
                     disabled={!hydrated || reportOpening}
