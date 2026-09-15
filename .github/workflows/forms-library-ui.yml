@@ -43,12 +43,14 @@ jobs:
         run: |
           python - <<'PY'
           import subprocess
-          changed = subprocess.check_output(['git','diff','--name-only','f485cab75cc3c011e62390a28ccf1cb1b2df06d5','HEAD'],text=True).splitlines()
-          allowed = ('app/forms/', 'public/downloads/asset-succession-forms-v1/previews/', 'docs/reviews/FORMS_LIBRARY_UI')
-          exact = {'next.config.mjs','scripts/generate-forms-library-previews.py','scripts/forms-library-ui-audit.py','.github/workflows/forms-library-ui.yml'}
-          unexpected = [path for path in changed if path not in exact and not path.startswith(allowed)]
-          assert not unexpected, unexpected
-          print('Original documents, PublicNav, home, chat, MCP, tax and sample assets unchanged.')
+          base='4a9718be427552f5244a3fdea6ece8edc12617c4'
+          subprocess.run(['git','merge-base','--is-ancestor',base,'HEAD'],check=True)
+          changed=subprocess.check_output(['git','diff','--name-only',base,'HEAD'],text=True).splitlines()
+          allowed=('app/forms/','public/downloads/asset-succession-forms-v1/previews/','docs/reviews/FORMS_LIBRARY_UI')
+          exact={'next.config.mjs','scripts/generate-forms-library-previews.py','scripts/forms-library-ui-audit.py','.github/workflows/forms-library-ui.yml'}
+          unexpected=[path for path in changed if path not in exact and not path.startswith(allowed)]
+          assert not unexpected,unexpected
+          print('Original documents, PublicNav, home, latest chat/MCP, tax and sample assets unchanged.')
           PY
       - name: Install dependencies
         run: |
@@ -59,19 +61,22 @@ jobs:
         run: python scripts/generate-forms-library-previews.py
       - name: Lint, types, existing domain tests and production build
         run: |
-          npm run lint
-          npm run typecheck
-          npm run test:phase2b
-          npm run test:chat
-          npm run test:tax
-          npm run build
+          set -o pipefail
+          npm run lint 2>&1 | tee .tmp/forms-library-proof/lint.log
+          npm run typecheck 2>&1 | tee .tmp/forms-library-proof/typecheck.log
+          npm run test:phase2b 2>&1 | tee .tmp/forms-library-proof/phase2b.log
+          npm run test:chat 2>&1 | tee .tmp/forms-library-proof/chat.log
+          npm run test:tax 2>&1 | tee .tmp/forms-library-proof/tax.log
+          npm run build 2>&1 | tee .tmp/forms-library-proof/build.log
       - name: Start this source's production server
         run: |
           npm run start -- --hostname 127.0.0.1 --port 4188 > .tmp/forms-library-proof/server.log 2>&1 &
           for i in $(seq 1 50); do curl -fsS http://127.0.0.1:4188/forms > /dev/null && break; sleep 2; done
           curl -fsS http://127.0.0.1:4188/forms > /dev/null
       - name: Verify route, responsive views, modal, original downloads and shared header
-        run: python scripts/forms-library-ui-audit.py
+        run: |
+          set -o pipefail
+          python scripts/forms-library-ui-audit.py 2>&1 | tee .tmp/forms-library-proof/ui.log
       - name: Commit only the verified thumbnails
         run: |
           git fetch origin assistant/forms-library-ui
@@ -88,6 +93,7 @@ jobs:
           mkdir -p .tmp/forms-library-proof/source
           cp -r app/forms .tmp/forms-library-proof/source/
           cp next.config.mjs .tmp/forms-library-proof/source/
+          cp scripts/forms-library-ui-audit.py .tmp/forms-library-proof/source/
           git rev-parse HEAD > .tmp/forms-library-proof/final-sha.txt
       - name: Upload proof
         if: always()
