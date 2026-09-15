@@ -11,7 +11,7 @@ const files = [
   "lib/chat/guide.ts", "lib/chat/guide.test.ts",
   "lib/chat/response.ts", "lib/chat/response.test.ts", "lib/chat/guided.ts", "lib/chat/guided.test.ts",
   "lib/chat/choices.ts", "lib/chat/choices.test.ts",
-  "lib/chat/tax-grounding.ts", "lib/chat/tax-mcp.ts", "lib/chat/tax-grounding.test.ts",
+  "lib/chat/tax-grounding.ts", "lib/chat/tax-mcp.ts", "lib/chat/tax-direct.ts", "lib/chat/tax-grounding.test.ts",
   "lib/chat/agent.test.ts", "lib/chat/fallback.ts", "lib/chat/fallback.test.ts",
   "lib/phase2b/types.ts", "lib/phase2b/calculation.ts", "lib/phase2b/money.ts",
   "lib/phase2b/tax.ts", "lib/phase2b/conversation.ts", "lib/phase2b/normalize.ts",
