@@ -87,7 +87,7 @@ with sync_playwright() as p:
     page.keyboard.press('Escape')
     expect(page.get_by_role('dialog')).not_to_be_visible()
     expect(opener).to_be_focused()
-    assert page.evaluate('document.documentElement.style.overflow') == ''
+    page.wait_for_function('document.documentElement.style.overflow === ""',timeout=5000)
     checks.append({'case':'modal-focus-trap-and-return','passed':True})
 
     for formid in ['AS360-F06','AS360-F01']:
