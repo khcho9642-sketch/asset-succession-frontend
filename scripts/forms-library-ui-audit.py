@@ -1,8 +1,6 @@
 """Audit the actual built forms route, not a reconstructed HTML mock.
 
-FORM_LIBRARY_BASE_URL defaults to a local production server. This audit only
-opens public pages and downloads existing public reference files; it does not
-submit enquiries, invoke AI/MCP, or change operational settings.
+Only public-page reads and reference-file downloads. No AI/MCP requests.
 """
 from __future__ import annotations
 import hashlib
@@ -29,11 +27,10 @@ with sync_playwright() as p:
     assert old.status in (307,308), f"Legacy entry did not redirect: {old.status}"
     assert old.headers.get("location") in ("/forms",BASE + "/forms")
     checks.append({"case":"legacy-index-redirect", "status":old.status})
-    # All original files, including examples, arrive with identical bytes.
     files = []
     for item in manifest["documents"]:
         files += [(item["editable_file"], item["sha256"]), (item["example_file"], item["example_sha256"])]
-    for filename in ["asset_succession_forms_v1.zip", "00_작성예시_모아보기.pdf", "03_이용안내/00_먼저읽기_이용안내.pdf"]:
+    for filename in ["asset_succession_forms_v1.zip", "00_작성예시_모아보기.pdf", "03_利用案内/00_먼저읽기_이용안내.pdf".replace("03_利用案内", "03_이용안내")]:
         files.append((filename, hashlib.sha256((LIB / filename).read_bytes()).hexdigest()))
     for name, digest in files:
         response = request.get(BASE + URL + quote(name, safe="/"))
@@ -52,11 +49,20 @@ with sync_playwright() as p:
         expect(page.locator('[data-form-id]')).to_have_count(10)
         assert page.locator('header[data-public-header]').count() == 1
         assert page.locator('[data-prototype-header]').count() == 0
-        # Inspect full-page width rather than hiding overflow to pass.
+        for image in page.locator('[data-form-preview] img').all():
+            image.scroll_into_view_if_needed()
+            image.evaluate('(image)=>image.decode()')
+            assert image.evaluate('(image)=>image.complete && image.naturalWidth>0')
+        page.evaluate('scrollTo(0,0)')
+        page.wait_for_timeout(150)
         sizes=page.evaluate('({width:innerWidth,scroll:document.documentElement.scrollWidth})')
         page.screenshot(path=str(OUT / f"library-{width}.png"))
+        if width in (390,1440):
+            page.screenshot(path=str(OUT / f"library-full-{width}.png"),full_page=True)
+        if sizes["scroll"] > sizes["width"] + 1:
+            overflow = page.locator('body *').evaluate_all('(items)=>items.map(e=>({tag:e.tagName,cls:e.className,rect:e.getBoundingClientRect().toJSON()})).filter(e=>e.rect.right>innerWidth+1)')
+            (OUT/f'overflow-{width}.json').write_text(json.dumps(overflow,ensure_ascii=False,indent=2))
         assert sizes["scroll"] <= sizes["width"] + 1, ("horizontal-overflow",width,sizes)
-        assert page.locator('[data-form-preview] img').evaluate_all('(items)=>items.every(i=>i.complete && i.naturalWidth>0)')
         for element in page.locator('[data-form-download]').all():
             box=element.bounding_box()
             assert box and box['x']>=0 and box['x']+box['width']<=width+1
@@ -104,7 +110,6 @@ with sync_playwright() as p:
     assert info.value.failure() is None
     checks.append({"case":"browser-download", "word":True,"excel":True,"zip":True,"korean_filename":True})
 
-    # Shared header markup and existing public landing pages stay separate.
     page.set_viewport_size({"width":1440,"height":1000})
     page.goto(BASE + '/forms',wait_until='networkidle')
     forms_header=page.locator('header[data-public-header]').evaluate('(e)=>e.outerHTML')
@@ -121,7 +126,6 @@ with sync_playwright() as p:
     checks.append({"case":"home-consultation-sample-header-isolation", "passed":True})
     assert not errors, errors
     context.close()
-    # The route renders actual links without client-side JavaScript, too.
     nojs=browser.new_context(java_script_enabled=False)
     page=nojs.new_page()
     page.goto(BASE+'/forms')
