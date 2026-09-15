@@ -138,6 +138,15 @@ export function FormsLibrary({ documents, bundleUrl, bundleSize, guideUrl, allEx
       <div><a href={allExamplesUrl} target="_blank" rel="noopener noreferrer">예시 모아보기</a><a href={guideUrl} target="_blank" rel="noopener noreferrer">이용안내</a></div>
     </footer>
     <dialog ref={dialog} className={styles.dialog} aria-labelledby="form-preview-title" aria-describedby="form-preview-note"
+      onKeyDown={event => {
+        if (event.key !== "Tab") return;
+        const items = Array.from(event.currentTarget.querySelectorAll<HTMLElement>("a[href], button:not([disabled]), [tabindex='0']"))
+          .filter(element => element.getClientRects().length > 0);
+        const first = items[0];
+        const last = items.at(-1);
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      }}
       onClose={() => setPreview(null)} onClick={event => {
         if (event.target !== event.currentTarget) return;
         const box = event.currentTarget.getBoundingClientRect();
