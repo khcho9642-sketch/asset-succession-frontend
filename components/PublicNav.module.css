@@ -32,8 +32,10 @@
 .brand > span { font-family: "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", "Batang", serif; font-size: 24px; font-weight: 700; letter-spacing: -.065em; white-space: nowrap; }
 .brand em { font-family: Georgia, serif; font-weight: 500; }
 .brand small { display: none; color: var(--paper-muted); font-size: 12px; }
-.desktopNav, .desktopActions, .desktopConsultation { display: none; }
+.desktopNav, .desktopActions, .desktopConsultation, .formsLibrary { display: none; }
 .desktopActions { flex-shrink: 0; align-items: center; gap: 14px; white-space: nowrap; }
+.formsLibrary { gap: 7px; padding-inline: 12px; border: 1px solid var(--paper-line); border-radius: 4px; background: color-mix(in srgb, var(--paper-card) 72%, white); }
+.formsLibrary svg { color: var(--paper-seal); }
 .kakaoLink { display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; border-radius: 12px; transition: opacity 150ms ease; }
 .kakaoLink:hover { opacity: .86; }
 .kakaoImage { display: block; width: 160px; height: auto; }
@@ -52,8 +54,8 @@
   .brand > span { font-size: 30px; }
   .desktopNav { display: flex; gap: 30px; }
   .desktopActions { display: flex; }
-  .header .desktopNav a, .header .desktopConsultation { display: inline-flex; align-items: center; min-height: 44px; color: inherit; font-size: 16px; font-weight: 600; white-space: nowrap; }
-  .header .desktopNav a:hover, .header .desktopConsultation:hover { color: var(--paper-seal); }
+  .header .desktopNav a, .header .desktopConsultation, .header .formsLibrary { display: inline-flex; align-items: center; min-height: 44px; color: inherit; font-size: 16px; font-weight: 600; white-space: nowrap; }
+  .header .desktopNav a:hover, .header .desktopConsultation:hover, .header .formsLibrary:hover { color: var(--paper-seal); }
   .mobileNavActions, .mobileMenu { display: none; }
 }
 @media (min-width: 1280px) {
