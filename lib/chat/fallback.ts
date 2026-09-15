@@ -170,11 +170,12 @@ export function createDiagnosisResponse(options: DiagnosisResponseOptions): Resp
           }
           const query = planTaxQuery(latest.parts[0].text, options.facts.topic?.value);
           const research = query ? await (options.lookup ?? researchTaxQuestion)(query, cancelled) : undefined;
-          const attemptOptions = research ? { ...options, research, attemptTimeoutMs: Math.min(options.attemptTimeoutMs ?? 18_000, 18_000) } : options;
+          const usableResearch = research?.sources.length || (research && research.status !== "unavailable") ? research : undefined;
+          const attemptOptions = usableResearch ? { ...options, research: usableResearch, attemptTimeoutMs: Math.min(options.attemptTimeoutMs ?? 18_000, 18_000) } : options;
           const localProposals = research ? extractAssertedChatPatches(latest.parts[0].text, stateAfterProposals(options, [])) : [];
           let chunks: UIMessageChunk[];
-          if (research && !research.sources.length) {
-            chunks = completedTurnChunks(localProposals, { message: research.notice, choices: [], grounding: { status: research.status, sources: [], notice: research.notice } });
+          if (usableResearch && !usableResearch.sources.length) {
+            chunks = completedTurnChunks(localProposals, { message: usableResearch.notice, choices: [], grounding: { status: usableResearch.status, sources: [], notice: usableResearch.notice } });
           } else {
             try {
               try { chunks = await collectAttempt(attemptOptions, options.model, cancelled); }

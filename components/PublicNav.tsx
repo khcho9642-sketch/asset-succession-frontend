@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { FileText, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { KAKAO_OPEN_CHAT_URL } from "@/lib/contactLinks";
 import styles from "./PublicNav.module.css";
@@ -13,6 +13,8 @@ const diagnosisLinks = [
   { href: "/precheck?purpose=gift", label: "증여" },
   { href: "/precheck?purpose=business", label: "가업승계" }
 ];
+
+const formsLibraryHref = "/downloads/asset-succession-forms-v1/index.html";
 
 function KakaoConsultationLink({ compact = false }: { compact?: boolean }) {
   return (
@@ -57,10 +59,16 @@ export function PublicNav() {
         </nav>
         <div className={styles.desktopActions} data-public-desktop-actions>
           <KakaoConsultationLink />
+          <Link href={formsLibraryHref} className={styles.formsLibrary}>
+            <FileText aria-hidden="true" size={18} /><span>서류양식</span>
+          </Link>
           <Link href="/consultation" className={styles.desktopConsultation}>전문가 상담</Link>
         </div>
         <div className={styles.mobileNavActions}>
           <KakaoConsultationLink compact />
+          <Link href={formsLibraryHref} aria-label="서류양식">
+            <FileText aria-hidden="true" size={22} />
+          </Link>
           <Link href="/consultation">상담</Link>
           <button ref={menuButtonRef} type="button" aria-controls="mobile-diagnosis-menu"
             aria-expanded={isMenuOpen} aria-label={isMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
@@ -73,6 +81,7 @@ export function PublicNav() {
         {diagnosisLinks.map((item) => <Link href={item.href} key={item.href} onClick={() => setIsMenuOpen(false)}>{item.label}</Link>)}
         <a href={KAKAO_OPEN_CHAT_URL} target="_blank" rel="noopener noreferrer"
           aria-label="카카오 상담 (새 창)" onClick={() => setIsMenuOpen(false)}>카카오 상담</a>
+        <Link href={formsLibraryHref} onClick={() => setIsMenuOpen(false)}>서류양식</Link>
         <Link href="/consultation" onClick={() => setIsMenuOpen(false)}>전문가 상담</Link>
       </nav>
     </header>

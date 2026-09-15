@@ -1,6 +1,7 @@
 import { createMCPClient, type MCPClient } from "@ai-sdk/mcp";
 import { Experimental_StdioMCPTransport } from "@ai-sdk/mcp/mcp-stdio";
 import { groundingFailure, taxSourceSchema, type TaxDocument, type TaxQuery, type TaxResearch } from "./tax-grounding";
+import { researchTaxQuestionDirect } from "./tax-direct";
 
 type Environment = Record<string, string | undefined>;
 type Connection = { type: "http"; url: string; token: string } | { type: "stdio"; command: string; script: string; lawApiOc?: string };
@@ -29,6 +30,8 @@ async function connect(signal: AbortSignal): Promise<MCPClient> {
   return createMCPClient({ transport, protocolVersionDiscovery: false, initializationOptions: { signal, timeout: 5_000 }, maxRetries: 0,
     clientName: "asset-succession-tax-chat", onUncaughtError: () => undefined });
 }
+
+const defaultOpen = connect;
 
 function record(value: unknown): Record<string, unknown> { return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {}; }
 function str(value: unknown): string { return typeof value === "string" ? value : ""; }
@@ -79,7 +82,8 @@ export function normalizeTaxDocuments(raw: unknown, tool: string, retrievedAt: s
 
 type Client = Pick<MCPClient, "listTools" | "callTool" | "close">;
 /** Only these two read-only tools are callable, regardless of what a server advertises. */
-export async function researchTaxQuestion(query: TaxQuery, signal?: AbortSignal, open: (signal: AbortSignal) => Promise<Client> = connect): Promise<TaxResearch> {
+export async function researchTaxQuestion(query: TaxQuery, signal?: AbortSignal, open: (signal: AbortSignal) => Promise<Client> = defaultOpen): Promise<TaxResearch> {
+  if (open === defaultOpen && !taxMcpConnection()) return researchTaxQuestionDirect(query, signal);
   const deadline = AbortSignal.timeout(18_000);
   const cancelled = signal ? AbortSignal.any([signal, deadline]) : deadline;
   let client: Client | undefined;
