@@ -185,7 +185,10 @@ async function lawArticleAsOf(query: TaxQuery, signal: AbortSignal): Promise<unk
 }
 
 export async function researchTaxQuestionDirect(query: TaxQuery, signal?: AbortSignal): Promise<TaxResearch> {
-  const deadline = AbortSignal.timeout(18_000);
+  // Keep chat responsive on Vercel. If public source lookup is slow, the
+  // caller falls back to the normal Google conversation path instead of
+  // making the customer wait for a tax-source timeout.
+  const deadline = AbortSignal.timeout(3_500);
   const cancelled = signal ? AbortSignal.any([signal, deadline]) : deadline;
   const toolStatuses: ToolStatus[] = [];
   const documents: TaxDocument[] = [];
