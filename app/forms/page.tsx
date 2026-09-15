@@ -4,6 +4,7 @@ import path from "node:path";
 import { PublicNav } from "@/components/PublicNav";
 import { FormsLibrary, type LibraryDocument } from "./FormsLibrary";
 import styles from "./FormsLibrary.module.css";
+import shell from "./FormsHeader.module.css";
 
 export const metadata: Metadata = {
   title: "서류 양식과 작성 예시 | 자산승계 360",
@@ -46,7 +47,7 @@ export default function FormsPage() {
     };
   });
   const bundleBytes = statSync(path.join(directory, "asset_succession_forms_v1.zip")).size;
-  return <div className={styles.page}>
+  return <div className={`${styles.page} ${shell.root}`}>
     <PublicNav />
     <FormsLibrary documents={documents}
       bundleUrl={fileUrl("asset_succession_forms_v1.zip")}
