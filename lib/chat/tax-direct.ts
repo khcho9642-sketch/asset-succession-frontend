@@ -212,8 +212,8 @@ export async function researchTaxQuestionDirect(query: TaxQuery, signal?: AbortS
     return taxSourceSchema.parse(source);
   });
   const status = sources.length ? toolStatuses.every(item => item.status === "OK") ? "ready" : "partial"
-    : toolStatuses.some(item => item.status === "AUTH_ERROR") ? "authentication_required"
-    : toolStatuses.every(item => item.status === "NOT_FOUND") ? "not_found" : "unavailable";
+    : toolStatuses.every(item => item.status === "AUTH_ERROR") ? "authentication_required"
+    : toolStatuses.every(item => item.status === "NOT_FOUND" || item.status === "AUTH_ERROR") ? "not_found" : "unavailable";
   return {
     status,
     sources,
