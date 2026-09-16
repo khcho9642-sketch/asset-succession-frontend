@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FileText, Menu, X } from "lucide-react";
+import { Calculator, FileText, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { KAKAO_OPEN_CHAT_URL } from "@/lib/contactLinks";
 import styles from "./PublicNav.module.css";
@@ -59,6 +59,9 @@ export function PublicNav() {
         </nav>
         <div className={styles.desktopActions} data-public-desktop-actions>
           <KakaoConsultationLink />
+          <Link href="/calculator" className={styles.formsLibrary}>
+            <Calculator aria-hidden="true" size={18} /><span>간편계산기</span>
+          </Link>
           <Link href={formsLibraryHref} className={styles.formsLibrary}>
             <FileText aria-hidden="true" size={18} /><span>서류양식</span>
           </Link>
@@ -68,6 +71,9 @@ export function PublicNav() {
           <KakaoConsultationLink compact />
           <Link href={formsLibraryHref} aria-label="서류양식">
             <FileText aria-hidden="true" size={22} />
+          </Link>
+          <Link href="/calculator" aria-label="간편계산기">
+            <Calculator aria-hidden="true" size={22} />
           </Link>
           <Link href="/consultation">상담</Link>
           <button ref={menuButtonRef} type="button" aria-controls="mobile-diagnosis-menu"
@@ -81,6 +87,7 @@ export function PublicNav() {
         {diagnosisLinks.map((item) => <Link href={item.href} key={item.href} onClick={() => setIsMenuOpen(false)}>{item.label}</Link>)}
         <a href={KAKAO_OPEN_CHAT_URL} target="_blank" rel="noopener noreferrer"
           aria-label="카카오 상담 (새 창)" onClick={() => setIsMenuOpen(false)}>카카오 상담</a>
+        <Link href="/calculator" onClick={() => setIsMenuOpen(false)}>간편계산기</Link>
         <Link href={formsLibraryHref} onClick={() => setIsMenuOpen(false)}>서류양식</Link>
         <Link href="/consultation" onClick={() => setIsMenuOpen(false)}>전문가 상담</Link>
       </nav>

@@ -1,0 +1,65 @@
+name: Simple calculator verification
+on:
+  push:
+    branches: [assistant/simple-tax-calculator]
+    paths: ['app/calculator/**', 'lib/simple-calculator/**', 'scripts/simple-calculator*', '.github/workflows/simple-calculator-ci.yml', 'docs/reviews/SIMPLE_CALCULATOR*']
+permissions:
+  contents: read
+concurrency:
+  group: simple-calculator-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Initial isolated development snapshot
+        if: hashFiles('app/calculator/page.tsx') == ''
+        run: |
+          mkdir -p /tmp/calculator-snapshot
+          git archive --format=tar HEAD | gzip > /tmp/calculator-snapshot/source.tar.gz
+          tar -czf /tmp/calculator-snapshot/dependencies.tar.gz node_modules
+          git rev-parse HEAD > /tmp/calculator-snapshot/commit.txt
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('app/calculator/page.tsx') == ''
+        with:
+          name: calculator-development-snapshot
+          path: /tmp/calculator-snapshot/
+          retention-days: 2
+      - name: Validate calculator and preserve existing tests
+        if: hashFiles('app/calculator/page.tsx') != ''
+        run: |
+          mkdir -p .tmp/simple-calculator-proof
+          set -o pipefail
+          npm run lint | tee .tmp/simple-calculator-proof/lint.log
+          npm run typecheck | tee .tmp/simple-calculator-proof/typecheck.log
+          node scripts/simple-calculator-tests.mjs | tee .tmp/simple-calculator-proof/calculator.log
+          npm run test:tax | tee .tmp/simple-calculator-proof/existing-tax.log
+          npm run test:chat | tee .tmp/simple-calculator-proof/existing-chat.log
+          npm run test:phase2b | tee .tmp/simple-calculator-proof/existing-phase2b.log
+          npm run build | tee .tmp/simple-calculator-proof/build.log
+      - name: Real production browser audit
+        if: hashFiles('scripts/simple-calculator-ui-audit.py') != ''
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+          npm run start -- --hostname 127.0.0.1 --port 4191 > .tmp/simple-calculator-proof/server.log 2>&1 &
+          for i in $(seq 1 40); do curl -fsS http://127.0.0.1:4191/calculator > /dev/null && break; sleep 2; done
+          python scripts/simple-calculator-ui-audit.py
+          git rev-parse HEAD > .tmp/simple-calculator-proof/commit.txt
+      - uses: actions/upload-artifact@v4
+        if: always() && hashFiles('app/calculator/page.tsx') != ''
+        with:
+          name: simple-calculator-proof
+          path: .tmp/simple-calculator-proof/
+          retention-days: 7
