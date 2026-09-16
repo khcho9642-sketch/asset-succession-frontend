@@ -9,7 +9,7 @@ import type {
 
 export const SIMPLE_CALCULATOR_CHECKED_ON = "2026-09-16";
 
-const MAX_WON = 100_000_000_000_000;
+export const MAX_SIMPLE_CALCULATOR_WON = 100_000_000_000_000;
 const BASIC_CAPITAL_DEDUCTION = 2_500_000;
 
 export function parseWonInput(raw: string): number | null {
@@ -17,11 +17,24 @@ export function parseWonInput(raw: string): number | null {
   if (!normalized) return null;
   if (!/^\d+$/.test(normalized)) return null;
   const value = BigInt(normalized);
-  return value <= BigInt(MAX_WON) ? Number(value) : null;
+  return value <= BigInt(MAX_SIMPLE_CALCULATOR_WON) ? Number(value) : null;
 }
 
 export function formatWon(won: number): string {
   return `${Math.trunc(won).toLocaleString("ko-KR")}원`;
+}
+
+export function formatKoreanWon(won: number): string {
+  const value = Math.trunc(Math.max(0, won));
+  if (value === 0) return "0원";
+  const eok = Math.floor(value / 100_000_000);
+  const man = Math.floor((value % 100_000_000) / 10_000);
+  const rest = value % 10_000;
+  const parts: string[] = [];
+  if (eok) parts.push(`${eok.toLocaleString("ko-KR")}억`);
+  if (man) parts.push(`${man.toLocaleString("ko-KR")}만`);
+  if (!eok && !man && rest) parts.push(`${rest.toLocaleString("ko-KR")}`);
+  return `${parts.join(" ")} 원`;
 }
 
 export function roundPayment(won: number): number {
@@ -35,6 +48,40 @@ function percent(won: number, rate: number): number {
 function ratio(won: number, numerator: number, denominator: number): number {
   if (denominator <= 0) return 0;
   return Number(BigInt(Math.max(0, Math.trunc(won))) * BigInt(numerator) / BigInt(denominator));
+}
+
+export function deriveSpouseLegalShare({
+  spouse,
+  spouseSoleHeir,
+  childrenCount,
+}: {
+  spouse: "yes" | "no";
+  spouseSoleHeir: boolean;
+  childrenCount: number | null;
+}): { numerator: number | null; denominator: number | null; label: string; unsupported?: string } {
+  if (spouse === "no") return { numerator: 0, denominator: 1, label: "배우자 없음" };
+  if (spouseSoleHeir) return { numerator: 1, denominator: 1, label: "배우자가 단독 법정상속인" };
+  if (childrenCount !== null && childrenCount > 0) {
+    return {
+      numerator: 3,
+      denominator: 2 * childrenCount + 3,
+      label: `배우자 1.5 : 자녀 ${childrenCount}명 각 1`,
+    };
+  }
+  return {
+    numerator: null,
+    denominator: null,
+    label: "지원 범위 밖 가족관계",
+    unsupported: "현재 화면은 배우자와 자녀만 있는 단순 가족관계에서 법정상속분을 자동 산출합니다.",
+  };
+}
+
+export function calculateMinorDeductionFromAges(ages: number[]): number {
+  return ages.reduce((sum, age) => sum + Math.max(0, 19 - age) * 10_000_000, 0);
+}
+
+export function calculateDisabledDeductionFromLifeExpectancyYears(years: number): number {
+  return Math.max(0, Math.trunc(years)) * 10_000_000;
 }
 
 function base(kind: SimpleTaxKind, title: string, taxName: string): SimpleCalculationResult {
@@ -81,7 +128,7 @@ function ordinaryInheritanceGiftTax(taxableWon: number, filingCredit: boolean) {
     { ceiling: 500_000_000, rate: 20, deduction: 10_000_000 },
     { ceiling: 1_000_000_000, rate: 30, deduction: 60_000_000 },
     { ceiling: 3_000_000_000, rate: 40, deduction: 160_000_000 },
-    { ceiling: MAX_WON, rate: 50, deduction: 460_000_000 },
+    { ceiling: MAX_SIMPLE_CALCULATOR_WON, rate: 50, deduction: 460_000_000 },
   ];
   const bracket = brackets.find((item) => taxableWon <= item.ceiling) ?? brackets[brackets.length - 1];
   const grossTaxWon = percent(taxableWon, bracket.rate) - bracket.deduction;
@@ -103,7 +150,7 @@ function ordinaryCapitalTax(taxableWon: number) {
     { ceiling: 300_000_000, rate: 38, deduction: 19_940_000 },
     { ceiling: 500_000_000, rate: 40, deduction: 25_940_000 },
     { ceiling: 1_000_000_000, rate: 42, deduction: 35_940_000 },
-    { ceiling: MAX_WON, rate: 45, deduction: 65_940_000 },
+    { ceiling: MAX_SIMPLE_CALCULATOR_WON, rate: 45, deduction: 65_940_000 },
   ];
   const bracket = brackets.find((item) => taxableWon <= item.ceiling) ?? brackets[brackets.length - 1];
   return {
@@ -283,7 +330,7 @@ export function calculateGiftTax(input: GiftInput): SimpleCalculationResult {
   return result;
 }
 
-function fullYearsBetween(start: string, end: string): number | null {
+export function fullYearsBetween(start: string, end: string): number | null {
   const startDate = new Date(`${start}T00:00:00`);
   const endDate = new Date(`${end}T00:00:00`);
   if (!Number.isFinite(startDate.getTime()) || !Number.isFinite(endDate.getTime()) || endDate <= startDate) return null;

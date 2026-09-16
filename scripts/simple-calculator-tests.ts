@@ -1,9 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  calculateDisabledDeductionFromLifeExpectancyYears,
   calculateCapitalGainsTax,
   calculateGiftTax,
   calculateInheritanceTax,
+  calculateMinorDeductionFromAges,
+  deriveSpouseLegalShare,
+  formatKoreanWon,
+  fullYearsBetween,
   parseWonInput,
 } from "../lib/simple-calculator";
 
@@ -11,6 +16,18 @@ test("parseWonInput keeps blank distinct from zero", () => {
   assert.equal(parseWonInput(""), null);
   assert.equal(parseWonInput("0"), 0);
   assert.equal(parseWonInput("1,234,000"), 1234000);
+});
+
+test("customer-facing helpers derive readable amounts and family deductions", () => {
+  assert.equal(formatKoreanWon(1_200_000_000), "12억 원");
+  assert.deepEqual(deriveSpouseLegalShare({ spouse: "yes", spouseSoleHeir: false, childrenCount: 2 }), {
+    numerator: 3,
+    denominator: 7,
+    label: "배우자 1.5 : 자녀 2명 각 1",
+  });
+  assert.equal(calculateMinorDeductionFromAges([12, 16]), 100_000_000);
+  assert.equal(calculateDisabledDeductionFromLifeExpectancyYears(8), 80_000_000);
+  assert.equal(fullYearsBetween("2016-09-15", "2026-09-16"), 10);
 });
 
 test("gift tax calculates a current single recipient case", () => {
