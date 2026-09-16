@@ -16,6 +16,7 @@
     "test:chat-api": "node scripts/chat-api-audit.mjs",
     "test:chat-ui": "node scripts/chat-ui-audit.mjs",
     "test:tax": "node scripts/run-tax-comparison-tests.mjs",
+    "test:simple-calculator": "node scripts/simple-calculator-tests.mjs",
     "test:tax-ui": "node scripts/tax-comparison-ui-audit.mjs",
     "test:tax-extensions-ui": "node scripts/tax-extensions-ui-audit.mjs",
     "test:smoke": "node scripts/pr2-smoke.mjs"
