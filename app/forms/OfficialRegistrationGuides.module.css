@@ -1,0 +1,20 @@
+.root { margin-block: 32px 40px; color: var(--lib-ink, #29261f); }
+.heading { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 12px 24px; }
+.eyebrow { margin: 0 0 8px; color: var(--lib-brass, #806744); font-size: 12px; font-weight: 700; letter-spacing: .04em; }
+.heading h2 { margin: 0; font-size: clamp(20px, 2vw, 25px); line-height: 1.5; font-weight: 700; word-break: keep-all; overflow-wrap: anywhere; }
+.provider { margin: 0; color: var(--lib-muted, #6c6356); font-size: 12px; }
+.intro { margin: 12px 0 20px; color: var(--lib-muted, #6c6356); font-size: 14px; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.card { display: flex; flex-direction: column; min-width: 0; padding: 20px; border: 1px solid var(--lib-line, #d8cfc0); border-top: 2px solid var(--lib-brass, #806744); border-radius: 4px; background: var(--lib-card, #fffcf6); }
+.category { align-self: start; margin: 0 0 12px; padding: 3px 8px; border-radius: 3px; background: #f1ece2; color: var(--lib-brass, #806744); font-size: 12px; font-weight: 700; }
+.card h3 { margin: 0; font-size: 17px; line-height: 1.6; font-weight: 700; word-break: keep-all; overflow-wrap: anywhere; }
+.description { flex: 1; margin: 10px 0 18px; color: var(--lib-muted, #6c6356); font-size: 13px; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
+.links { display: grid; gap: 6px; }
+.links a { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-width: 0; min-height: 44px; padding: 8px 10px; border: 1px solid var(--lib-line, #d8cfc0); border-radius: 3px; color: var(--lib-ink, #29261f); font-size: 13px; font-weight: 600; line-height: 1.5; text-decoration: none; }
+.links a:hover { border-color: var(--lib-brass, #806744); background: #f5f0e6; }
+.links a:focus-visible { outline: 2px solid var(--lib-red, #ae3d2e); outline-offset: 3px; }
+.links svg { flex: 0 0 auto; }
+.footnote { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 14px 0 0; color: var(--lib-muted, #6c6356); font-size: 12px; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }
+@media (max-width: 1050px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .grid { grid-template-columns: minmax(0, 1fr); gap: 12px; } .card { padding: 18px; } .root { margin-block: 28px 32px; } }
+@media (prefers-reduced-motion: reduce) { .links a { transition: none; } }
