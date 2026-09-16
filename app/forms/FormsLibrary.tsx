@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ChevronRight, Download, FileText, Info, Search, X } from "lucide-react";
 import styles from "./FormsLibrary.module.css";
+import { OfficialRegistrationGuides } from "./OfficialRegistrationGuides";
 
 export type LibraryDocument = {
   id: string; title: string; category: string; description: string; tags: string;
@@ -79,6 +80,7 @@ export function FormsLibrary({ documents, bundleUrl, bundleSize, guideUrl, allEx
       <p><strong>자체 참고 초안입니다.</strong> 공식 신고서식이 아니며, 실제 사용 전 개별 법률·세무 검토가 필요합니다.</p>
       <a href={guideUrl} target="_blank" rel="noopener noreferrer">이용안내<span className={styles.srOnly}> PDF, 새 창</span></a>
     </aside>
+    <OfficialRegistrationGuides />
     <section className={styles.section} aria-labelledby="documents-title">
       <div className={styles.sectionHeading}>
         <h2 id="documents-title">어떤 서류가 필요하신가요?</h2>

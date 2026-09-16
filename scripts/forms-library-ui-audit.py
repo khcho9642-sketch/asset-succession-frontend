@@ -4,7 +4,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, urlparse
 from playwright.sync_api import sync_playwright, expect
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -43,6 +43,16 @@ with sync_playwright() as p:
         assert response and response.status == 200
         expect(page.locator('[data-forms-library="approved-v2"]')).to_be_visible()
         expect(page.locator('[data-form-id]')).to_have_count(10)
+        guides = page.locator('[data-official-registration-guides]')
+        expect(guides.locator('[data-registration-guide]')).to_have_count(4)
+        expect(guides.locator('a')).to_have_count(8)
+        for link in guides.locator('a').all():
+            href = link.get_attribute('href')
+            parsed = urlparse(href)
+            assert parsed.scheme == 'https' and parsed.netloc in ('easylaw.go.kr','www.easylaw.go.kr')
+            assert link.get_attribute('target') == '_blank'
+            assert {'noopener','noreferrer'} <= set((link.get_attribute('rel') or '').split())
+            assert link.get_attribute('download') is None
         assert page.locator('header[data-public-header]').count() == 1
         assert page.locator('[data-prototype-header]').count() == 0
         for image in page.locator('[data-form-preview] img').all():
@@ -75,6 +85,7 @@ with sync_playwright() as p:
     expect(search).to_have_value('')
     expect(page.locator('[data-form-id]')).to_have_count(10)
     checks.append({'case':'categories-and-search','passed':True})
+    checks.append({'case':'official-registration-guides','cards':4,'official_links':8,'new_tab':True})
 
     opener = page.get_by_role('link',name='가족별 재산배분·정산표 작성 예시 보기',exact=True)
     opener.click()
@@ -123,6 +134,7 @@ with sync_playwright() as p:
     page = nojs.new_page()
     page.goto(BASE+'/forms')
     assert page.locator('[data-form-download]').count() == 10
+    assert page.locator('[data-registration-guide]').count() == 4
     checks.append({'case':'server-rendered-downloads-without-js','passed':True})
     nojs.close()
     browser.close()
