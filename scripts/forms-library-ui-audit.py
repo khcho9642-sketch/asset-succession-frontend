@@ -123,7 +123,7 @@ with sync_playwright() as p:
         assert page.locator('[data-forms-library]').count() == 0
         assert page.locator('header[data-public-header]').evaluate('(e)=>e.outerHTML') == forms_header
     page.goto(BASE+'/',wait_until='networkidle')
-    page.locator(f'header a[href="{URL}index.html"]:visible').first.click()
+    page.locator('header a[href="/forms"]:visible').first.click()
     expect(page).to_have_url(BASE+'/forms')
     expect(page.locator('[data-forms-library]')).to_be_visible()
     checks.append({'case':'existing-header-click-to-library','passed':True})

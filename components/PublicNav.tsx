@@ -14,7 +14,7 @@ const diagnosisLinks = [
   { href: "/precheck?purpose=business", label: "가업승계" }
 ];
 
-const formsLibraryHref = "/downloads/asset-succession-forms-v1/index.html";
+const formsLibraryHref = "/forms";
 
 function KakaoConsultationLink({ compact = false }: { compact?: boolean }) {
   return (

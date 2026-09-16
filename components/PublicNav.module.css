@@ -69,6 +69,7 @@
 @media (max-width: 359px) {
   .headerInner { width: calc(100% - 24px); }
   .brand > span { font-size: 22px; }
+  .mobileNavActions a[href="/consultation"] { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .kakaoLink { transition: none; }
