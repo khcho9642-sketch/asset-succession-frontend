@@ -1,0 +1,7 @@
+{
+  "id": "P1-24",
+  "query": "이전등록 신청서",
+  "instrument": "자동차등록규칙",
+  "checked_at": "2026-09-17T07:47:28Z",
+  "error": "Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsBylSc.do\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n"
+}

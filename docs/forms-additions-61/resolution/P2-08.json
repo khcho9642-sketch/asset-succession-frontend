@@ -1,0 +1,7 @@
+{
+  "id": "P2-08",
+  "query": "납세담보 제공서",
+  "instrument": "국세징수법",
+  "checked_at": "2026-09-17T07:48:11Z",
+  "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n"
+}

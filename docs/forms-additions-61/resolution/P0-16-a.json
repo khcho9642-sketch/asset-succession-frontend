@@ -1,0 +1,7 @@
+{
+  "id": "P0-16-a",
+  "query": "유족연금 지급 청구서",
+  "instrument": "국민연금법",
+  "checked_at": "2026-09-17T07:45:58Z",
+  "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n"
+}

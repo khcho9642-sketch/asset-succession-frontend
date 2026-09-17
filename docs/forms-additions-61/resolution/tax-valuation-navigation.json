@@ -1,0 +1,5 @@
+{
+  "key": "tax-valuation",
+  "requested_url": "https://nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7731",
+  "error": "HTTPSConnectionPool(host='nts.go.kr', port=443): Max retries exceeded with url: /nts/cm/cntnts/cntntsView.do?cntntsId=7731 (Caused by ConnectTimeoutError(<HTTPSConnection(host='nts.go.kr', port=443) at 0x7f4dd2ed0f50>, 'Connection to nts.go.kr timed out. (connect timeout=10)'))"
+}

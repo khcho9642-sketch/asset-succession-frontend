@@ -1,0 +1,5 @@
+{
+  "key": "tribunal",
+  "requested_url": "https://www.tt.go.kr/",
+  "error": "HTTPSConnectionPool(host='www.tt.go.kr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.tt.go.kr', port=443) at 0x7f4dd2d7d0d0>, 'Connection to www.tt.go.kr timed out. (connect timeout=10)'))"
+}

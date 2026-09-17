@@ -1,0 +1,7 @@
+{
+  "id": "P3-01",
+  "query": "농지취득자격증명 신청서",
+  "instrument": "농지법",
+  "checked_at": "2026-09-17T07:49:13Z",
+  "error": "Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsBylSc.do\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n"
+}

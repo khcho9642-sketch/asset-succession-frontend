@@ -1,0 +1,7 @@
+{
+  "id": "P2-03",
+  "query": "주식등변동상황명세서",
+  "instrument": "법인세법",
+  "checked_at": "2026-09-17T07:47:43Z",
+  "error": "Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsBylSc.do\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n"
+}

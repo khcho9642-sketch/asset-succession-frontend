@@ -1,0 +1,5 @@
+{
+  "key": "court",
+  "requested_url": "https://www.scourt.go.kr/portal/main.jsp",
+  "error": "HTTPSConnectionPool(host='www.scourt.go.kr', port=443): Max retries exceeded with url: /portal/main.jsp (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.scourt.go.kr', port=443) at 0x7f4dd33c6090>, 'Connection to www.scourt.go.kr timed out. (connect timeout=10)'))"
+}

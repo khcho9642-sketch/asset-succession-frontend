@@ -1,0 +1,7 @@
+{
+  "id": "P3-02",
+  "query": "부동산 거래계약 신고서",
+  "instrument": "부동산 거래신고",
+  "checked_at": "2026-09-17T07:49:41Z",
+  "error": "Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsBylSc.do\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n"
+}

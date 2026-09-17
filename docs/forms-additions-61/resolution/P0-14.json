@@ -1,0 +1,7 @@
+{
+  "id": "P0-14",
+  "query": "지방세 감면 신청서",
+  "instrument": "지방세특례제한법",
+  "checked_at": "2026-09-17T07:45:28Z",
+  "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n"
+}

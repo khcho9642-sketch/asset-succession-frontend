@@ -1,0 +1,57 @@
+[
+  {
+    "id": "P0-14",
+    "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n",
+    "pages": 0
+  },
+  {
+    "id": "P0-16-a",
+    "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n",
+    "pages": 0
+  },
+  {
+    "id": "P0-16-b",
+    "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n",
+    "pages": 0
+  },
+  {
+    "id": "P0-16-c",
+    "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n",
+    "pages": 0
+  },
+  {
+    "id": "P1-24",
+    "error": "Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsBylSc.do\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n",
+    "pages": 0
+  },
+  {
+    "id": "P2-03",
+    "error": "Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsBylSc.do\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n",
+    "pages": 0
+  },
+  {
+    "id": "P2-08",
+    "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n",
+    "pages": 0
+  },
+  {
+    "id": "P2-11",
+    "error": "Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsBylSc.do\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n",
+    "pages": 0
+  },
+  {
+    "id": "P2-15",
+    "error": "Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsBylSc.do\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n",
+    "pages": 0
+  },
+  {
+    "id": "P3-01",
+    "error": "Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsBylSc.do\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n",
+    "pages": 0
+  },
+  {
+    "id": "P3-02",
+    "error": "Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsBylSc.do\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n",
+    "pages": 0
+  }
+]

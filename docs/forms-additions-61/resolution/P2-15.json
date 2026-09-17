@@ -1,0 +1,7 @@
+{
+  "id": "P2-15",
+  "query": "재산 평가심의위원회 심의신청서",
+  "instrument": "상속",
+  "checked_at": "2026-09-17T07:48:44Z",
+  "error": "Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsBylSc.do\nCall log:\n  - navigating to \"https://www.law.go.kr/lsBylSc.do\", waiting until \"domcontentloaded\"\n"
+}

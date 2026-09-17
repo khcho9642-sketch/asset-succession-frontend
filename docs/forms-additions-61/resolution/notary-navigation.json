@@ -1,0 +1,5 @@
+{
+  "key": "notary",
+  "requested_url": "https://www.moj.go.kr/moj/2303/subview.do",
+  "error": "HTTPSConnectionPool(host='www.moj.go.kr', port=443): Max retries exceeded with url: /moj/2303/subview.do (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.moj.go.kr', port=443) at 0x7f4dd2d7ea50>, 'Connection to www.moj.go.kr timed out. (connect timeout=10)'))"
+}
