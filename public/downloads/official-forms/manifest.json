@@ -7,10 +7,10 @@
   "hostedOriginalCount": 74,
   "hostedInstitutionalExampleCount": 39,
   "deliveryCounts": {
-    "hosted": 99,
+    "hosted": 105,
     "provider": 21,
     "direct": 0,
-    "pending": 57
+    "pending": 51
   },
   "documents": [
     {
@@ -6952,30 +6952,62 @@
       "catalogTitle": "유족연금/반환일시금·사망일시금 지급 청구서",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "유족연금 청구서 및 반환일시금·사망일시금 청구서를 함께 확보했습니다. 지급 종류와 대상에 맞는 서식을 선택하세요.",
       "tags": "P0-16 · 재산분배·상속",
-      "format": "확인 중",
-      "editable": "",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/expansion/P0-16_0a1df0831a20.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "72 KB",
+      "sourceUrl": "https://www.law.go.kr/lsBylSc.do?query=%EC%9C%A0%EC%A1%B1%EC%97%B0%EA%B8%88",
+      "institution": "국가법령정보센터",
+      "checkedOn": "2026-09-17",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
       "licenseUrl": "",
-      "verification": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EB%AF%BC%EC%97%B0%EA%B8%88%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "10\t국민연금법 시행규칙\n[시행 2026. 2. 13.] [보건복지부령 제1157호, 2026. 2. 13., 일부개정]\n\t[서식 17] 유족연금 지급 청구서\t \t44",
+          "path": "/downloads/official-forms/expansion/P0-16_0a1df0831a20.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 73216,
+          "delivery": "hosted"
+        },
+        {
+          "name": "3\t국민연금법 시행규칙\n[시행 2026. 2. 13.] [보건복지부령 제1157호, 2026. 2. 13., 일부개정]\n\t[서식 23] (반환일시금, 사망일시금) 지급 청구서\t \t104",
+          "path": "/downloads/official-forms/expansion/P0-16_5b1d4cbbc35b.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 76800,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "원본",
+      "checked_at": "2026-09-17T11:19:14Z",
+      "status": "확인 완료",
+      "source_evidence": [
+        {
+          "source": "https://www.law.go.kr/lsBylSc.do?query=%EC%9C%A0%EC%A1%B1%EC%97%B0%EA%B8%88",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:18:14Z",
+          "body_sha256": "b899ab2f33c491991b8cd36b75697c5f167ca0cf4506234749fbbd444edc85c3",
+          "binary_sha256": "0a1df0831a20d084ae2c0baf09fddc9dc3538e9abf707fc1afa21488b96bc0d0"
+        },
+        {
+          "source": "https://www.law.go.kr/lsBylSc.do?query=%EB%B0%98%ED%99%98%EC%9D%BC%EC%8B%9C%EA%B8%88",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:18:22Z",
+          "body_sha256": "1a2db55496a456909f642eb6cc79fe0414cfa15f957716b4f70dd810472448a5",
+          "binary_sha256": "5b1d4cbbc35bcd3969ec5ea22233cbd6eec26467da035e47cdfa2be8801eda39"
+        }
+      ],
       "task_id": "P0-16",
       "related_ids": []
     },
@@ -7667,30 +7699,44 @@
       "catalogTitle": "자동차 이전등록 신청서(상속)",
       "category": "등기",
       "originalCategory": "등기",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "부산시가 2026-04-28 시행 개정서식으로 게시한 이전등록 신청서입니다. 상속 원인 항목을 포함한 원본 본문을 확인했습니다.",
       "tags": "P1-24 · 등기",
-      "format": "확인 중",
-      "editable": "",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/expansion/P1-24_a864f9815e1f.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "57 KB",
+      "sourceUrl": "https://www.busan.go.kr/car/crdocuments/1617333",
+      "institution": "부산광역시 차량등록사업소",
+      "checkedOn": "2026-09-17",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
       "licenseUrl": "",
-      "verification": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%93%B1%EB%A1%9D%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
-      "files": [],
-      "form_no": null,
-      "revised_at": null,
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "[별지 제14호서식] 이전등록 신청서(자동차등록규칙).hwp",
+          "path": "/downloads/official-forms/expansion/P1-24_a864f9815e1f.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 57856,
+          "delivery": "hosted"
+        }
+      ],
+      "form_no": "자동차등록규칙 별지 제14호서식",
+      "revised_at": "2026-04-28",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "원본",
+      "checked_at": "2026-09-17T11:17:44Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:17:44Z",
+        "post_sha256": "e6a0ececc676b4c9bbae6853a34e6a8fbb8d1b188541ea5ee0cce5fd57230d70",
+        "form_sha256": "a864f9815e1fe5a99207e3c0519918bdfb4c82da3a0fac4f8e8191ecdf9e5ca4"
+      },
       "task_id": "P1-24",
       "related_ids": []
     },
@@ -7784,30 +7830,47 @@
       "catalogTitle": "주식등변동상황명세서",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "현행 별표·서식 검색 결과의 법령명과 서식명을 대조한 후 원본 파일 본문을 확인했습니다.",
       "tags": "P2-03 · 가업승계",
-      "format": "확인 중",
-      "editable": "",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/expansion/P2-03_0f40b731275a.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "94 KB",
+      "sourceUrl": "https://www.law.go.kr/lsBylSc.do?query=%EC%A3%BC%EC%8B%9D%EB%93%B1%EB%B3%80%EB%8F%99%EC%83%81%ED%99%A9",
+      "institution": "국가법령정보센터",
+      "checkedOn": "2026-09-17",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
       "licenseUrl": "",
-      "verification": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%95%EC%9D%B8%EC%84%B8%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "2\t법인세법 시행규칙\n[시행 2026. 7. 1.] [재정경제부령 제37호, 2026. 7. 1., 일부개정]\n\t[서식 54] 주식등변동상황명세서, 주식ㆍ출자지분 양도 등 명세서\t \t111",
+          "path": "/downloads/official-forms/expansion/P2-03_0f40b731275a.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 95744,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": null,
-      "revised_at": null,
+      "revised_at": "2026-03-20",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "원본",
+      "checked_at": "2026-09-17T11:18:35Z",
+      "status": "확인 완료",
+      "source_evidence": [
+        {
+          "source": "https://www.law.go.kr/lsBylSc.do?query=%EC%A3%BC%EC%8B%9D%EB%93%B1%EB%B3%80%EB%8F%99%EC%83%81%ED%99%A9",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:18:35Z",
+          "body_sha256": "602dcbb881c348a37ecd476fd8b1bb61df123a15f7e5b50dc993cdb81ba978b6",
+          "binary_sha256": "0f40b731275a8de7c6b487a73bbf34eac7b696f9be8ab769862d065cb52d48c5"
+        }
+      ],
       "task_id": "P2-03",
       "related_ids": []
     },
@@ -7983,30 +8046,47 @@
       "catalogTitle": "납세담보 제공서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "현행 별표·서식 검색 결과의 법령명과 서식명을 대조한 후 원본 파일 본문을 확인했습니다.",
       "tags": "P2-08 · 공제·납부",
-      "format": "확인 중",
-      "editable": "",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/expansion/P2-08_a9c49543fda1.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "44 KB",
+      "sourceUrl": "https://www.law.go.kr/lsBylSc.do?query=%EB%82%A9%EC%84%B8%EB%8B%B4%EB%B3%B4",
+      "institution": "국가법령정보센터",
+      "checkedOn": "2026-09-17",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
       "licenseUrl": "",
-      "verification": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%84%B8%EC%A7%95%EC%88%98%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "15\t국세징수법 시행규칙\n[시행 2026. 3. 20.] [재정경제부령 제19호, 2026. 3. 20., 일부개정]\n\t[서식 20] 납세담보제공서\t \t1,989",
+          "path": "/downloads/official-forms/expansion/P2-08_a9c49543fda1.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 44544,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": null,
-      "revised_at": null,
+      "revised_at": "2024-03-22",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "원본",
+      "checked_at": "2026-09-17T11:18:44Z",
+      "status": "확인 완료",
+      "source_evidence": [
+        {
+          "source": "https://www.law.go.kr/lsBylSc.do?query=%EB%82%A9%EC%84%B8%EB%8B%B4%EB%B3%B4",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:18:44Z",
+          "body_sha256": "601400083c2b1cc68ffcc3ccb6e9664b37f50ef91cf8a6d3b154eb5afc132b33",
+          "binary_sha256": "a9c49543fda1051fbe8ea9636a56f5f4b6ac475801a643e8e5960696a36ca9cb"
+        }
+      ],
       "task_id": "P2-08",
       "related_ids": []
     },
@@ -8110,7 +8190,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "현행 법령 서식 검색: 공식 검색 결과에 법령명과 요청 서식명 일치 없음",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -8260,7 +8340,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "현행 법령 서식 검색: 공식 검색 결과에 법령명과 요청 서식명 일치 없음",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -8281,30 +8361,47 @@
       "catalogTitle": "농지취득자격증명 신청서",
       "category": "매매·임대차",
       "originalCategory": "매매·임대차",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "현행 별표·서식 검색 결과의 법령명과 서식명을 대조한 후 원본 파일 본문을 확인했습니다.",
       "tags": "P3-01 · 매매·임대차",
-      "format": "확인 중",
-      "editable": "",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/expansion/P3-01_bc2c5c720468.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "110 KB",
+      "sourceUrl": "https://www.law.go.kr/lsBylSc.do?query=%EB%86%8D%EC%A7%80%EC%B7%A8%EB%93%9D%EC%9E%90%EA%B2%A9%EC%A6%9D%EB%AA%85",
+      "institution": "국가법령정보센터",
+      "checkedOn": "2026-09-17",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
       "licenseUrl": "",
-      "verification": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%86%8D%EC%A7%80%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "3\t농지법 시행규칙\n[시행 2025. 10. 31.] [농림축산식품부령 제741호, 2025. 10. 31., 타법개정]\n\t[서식 3] 농지취득자격증명신청서\t \t12,046",
+          "path": "/downloads/official-forms/expansion/P3-01_bc2c5c720468.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 112128,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": null,
-      "revised_at": null,
+      "revised_at": "2022-05-18",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "원본",
+      "checked_at": "2026-09-17T11:19:06Z",
+      "status": "확인 완료",
+      "source_evidence": [
+        {
+          "source": "https://www.law.go.kr/lsBylSc.do?query=%EB%86%8D%EC%A7%80%EC%B7%A8%EB%93%9D%EC%9E%90%EA%B2%A9%EC%A6%9D%EB%AA%85",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:19:06Z",
+          "body_sha256": "310a50e1f6d3bbdc6707a5ba6b017ae96b57c373b14adb1a882845ef6d0c1d46",
+          "binary_sha256": "bc2c5c720468aaddc8d316906250373c3881e7635806cb2cbdb09d18c8318985"
+        }
+      ],
       "task_id": "P3-01",
       "related_ids": []
     },
@@ -10187,30 +10284,47 @@
       "catalogTitle": "해외금융계좌 신고서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "현행 별표·서식 검색 결과의 법령명과 서식명을 대조한 후 원본 파일 본문을 확인했습니다.",
       "tags": "P9-08 · 공제·납부",
-      "format": "확인 중",
-      "editable": "",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/expansion/P9-08_477984df961b.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "62 KB",
+      "sourceUrl": "https://www.law.go.kr/lsBylSc.do?query=%ED%95%B4%EC%99%B8%EA%B8%88%EC%9C%B5%EA%B3%84%EC%A2%8C",
+      "institution": "국가법령정보센터",
+      "checkedOn": "2026-09-17",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
       "licenseUrl": "",
-      "verification": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%A0%9C%EC%A1%B0%EC%84%B8%EC%A1%B0%EC%A0%95%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%A0%9C%EC%A1%B0%EC%84%B8%EC%A1%B0%EC%A0%95%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "1\t국제조세조정에 관한 법률 시행규칙\n[시행 2026. 3. 20.] [재정경제부령 제21호, 2026. 3. 20., 일부개정]\n\t[서식 45] 해외금융계좌 신고서, 해외금융계좌 명세서, 해외금융계좌 관련자 명세서\t \t913",
+          "path": "/downloads/official-forms/expansion/P9-08_477984df961b.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 63488,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": null,
-      "revised_at": null,
+      "revised_at": "2023-03-20",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "원본",
+      "checked_at": "2026-09-17T11:19:14Z",
+      "status": "확인 완료",
+      "source_evidence": [
+        {
+          "source": "https://www.law.go.kr/lsBylSc.do?query=%ED%95%B4%EC%99%B8%EA%B8%88%EC%9C%B5%EA%B3%84%EC%A2%8C",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:19:14Z",
+          "body_sha256": "f33cc82a26c5a816a2f152db7e836a615397aad2209b724d98e7924f75c1c40c",
+          "binary_sha256": "477984df961bb386cbfb69b7d43ceb349635da332ddca92233f796c70585fcb8"
+        }
+      ],
       "task_id": "P9-08",
       "related_ids": []
     },
@@ -10976,17 +11090,45 @@
       "required_original": true,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.law.go.kr/lsBylSc.do?query=%EC%9C%A0%EC%A1%B1%EC%97%B0%EA%B8%88",
+      "checked_at": "2026-09-17T11:19:14Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
-      "files": [],
-      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EB%AF%BC%EC%97%B0%EA%B8%88%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
+      "source_type": "원본",
+      "files": [
+        {
+          "name": "10\t국민연금법 시행규칙\n[시행 2026. 2. 13.] [보건복지부령 제1157호, 2026. 2. 13., 일부개정]\n\t[서식 17] 유족연금 지급 청구서\t \t44",
+          "url": "https://www.law.go.kr/flDownload.do?flSeq=161706675",
+          "bytes": 73216,
+          "sha256": "0a1df0831a20d084ae2c0baf09fddc9dc3538e9abf707fc1afa21488b96bc0d0",
+          "format": "hwp",
+          "role": "original",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:18:14Z",
+          "title_verified": true,
+          "path": "public/downloads/official-forms/expansion/P0-16_0a1df0831a20.hwp",
+          "local_url": "/downloads/official-forms/expansion/P0-16_0a1df0831a20.hwp",
+          "revised_at": "2026-02-13"
+        },
+        {
+          "name": "3\t국민연금법 시행규칙\n[시행 2026. 2. 13.] [보건복지부령 제1157호, 2026. 2. 13., 일부개정]\n\t[서식 23] (반환일시금, 사망일시금) 지급 청구서\t \t104",
+          "url": "https://www.law.go.kr/flDownload.do?flSeq=161706745",
+          "bytes": 76800,
+          "sha256": "5b1d4cbbc35bcd3969ec5ea22233cbd6eec26467da035e47cdfa2be8801eda39",
+          "format": "hwp",
+          "role": "original",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:18:22Z",
+          "title_verified": true,
+          "path": "public/downloads/official-forms/expansion/P0-16_5b1d4cbbc35b.hwp",
+          "local_url": "/downloads/official-forms/expansion/P0-16_5b1d4cbbc35b.hwp",
+          "revised_at": "2026-02-13"
+        }
+      ],
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:53Z",
@@ -10998,7 +11140,25 @@
           "url": "https://www.law.go.kr/법령/국민연금법시행규칙",
           "result": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EB%AF%BC%EC%97%B0%EA%B8%88%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n"
         }
-      ]
+      ],
+      "institution": "국가법령정보센터",
+      "source_evidence": [
+        {
+          "source": "https://www.law.go.kr/lsBylSc.do?query=%EC%9C%A0%EC%A1%B1%EC%97%B0%EA%B8%88",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:18:14Z",
+          "body_sha256": "b899ab2f33c491991b8cd36b75697c5f167ca0cf4506234749fbbd444edc85c3",
+          "binary_sha256": "0a1df0831a20d084ae2c0baf09fddc9dc3538e9abf707fc1afa21488b96bc0d0"
+        },
+        {
+          "source": "https://www.law.go.kr/lsBylSc.do?query=%EB%B0%98%ED%99%98%EC%9D%BC%EC%8B%9C%EA%B8%88",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:18:22Z",
+          "body_sha256": "1a2db55496a456909f642eb6cc79fe0414cfa15f957716b4f70dd810472448a5",
+          "binary_sha256": "5b1d4cbbc35bcd3969ec5ea22233cbd6eec26467da035e47cdfa2be8801eda39"
+        }
+      ],
+      "note": "유족연금 청구서 및 반환일시금·사망일시금 청구서를 함께 확보했습니다. 지급 종류와 대상에 맞는 서식을 선택하세요."
     },
     {
       "id": "P1-01",
@@ -11882,17 +12042,32 @@
       "required_original": true,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
-      "form_no": null,
-      "revised_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.busan.go.kr/car/crdocuments/1617333",
+      "checked_at": "2026-09-17T11:17:44Z",
+      "form_no": "자동차등록규칙 별지 제14호서식",
+      "revised_at": "2026-04-28",
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
-      "files": [],
-      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%93%B1%EB%A1%9D%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
+      "source_type": "원본",
+      "files": [
+        {
+          "name": "[별지 제14호서식] 이전등록 신청서(자동차등록규칙).hwp",
+          "url": "https://www.busan.go.kr/comm/getFile?srvcId=BBSTY1&upperNo=1617333&fileTy=ATTACH&fileNo=6",
+          "bytes": 57856,
+          "sha256": "a864f9815e1fe5a99207e3c0519918bdfb4c82da3a0fac4f8e8191ecdf9e5ca4",
+          "format": "hwp",
+          "role": "original",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:17:44Z",
+          "title_verified": true,
+          "path": "public/downloads/official-forms/expansion/P1-24_a864f9815e1f.hwp",
+          "local_url": "/downloads/official-forms/expansion/P1-24_a864f9815e1f.hwp",
+          "revised_at": "2026-04-28",
+          "form_no_excerpt": "■ 자동차등록규칙 [별지 제14호 서식"
+        }
+      ],
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:53Z",
@@ -11904,7 +12079,15 @@
           "url": "https://www.law.go.kr/법령/자동차등록규칙",
           "result": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%93%B1%EB%A1%9D%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n"
         }
-      ]
+      ],
+      "institution": "부산광역시 차량등록사업소",
+      "source_evidence": {
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:17:44Z",
+        "post_sha256": "e6a0ececc676b4c9bbae6853a34e6a8fbb8d1b188541ea5ee0cce5fd57230d70",
+        "form_sha256": "a864f9815e1fe5a99207e3c0519918bdfb4c82da3a0fac4f8e8191ecdf9e5ca4"
+      },
+      "note": "부산시가 2026-04-28 시행 개정서식으로 게시한 이전등록 신청서입니다. 상속 원인 항목을 포함한 원본 본문을 확인했습니다."
     },
     {
       "id": "P2-01",
@@ -11977,17 +12160,31 @@
       "required_original": true,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.law.go.kr/lsBylSc.do?query=%EC%A3%BC%EC%8B%9D%EB%93%B1%EB%B3%80%EB%8F%99%EC%83%81%ED%99%A9",
+      "checked_at": "2026-09-17T11:18:35Z",
       "form_no": null,
-      "revised_at": null,
+      "revised_at": "2026-03-20",
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
-      "files": [],
-      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%95%EC%9D%B8%EC%84%B8%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
+      "source_type": "원본",
+      "files": [
+        {
+          "name": "2\t법인세법 시행규칙\n[시행 2026. 7. 1.] [재정경제부령 제37호, 2026. 7. 1., 일부개정]\n\t[서식 54] 주식등변동상황명세서, 주식ㆍ출자지분 양도 등 명세서\t \t111",
+          "url": "https://www.law.go.kr/flDownload.do?flSeq=168517915",
+          "bytes": 95744,
+          "sha256": "0f40b731275a8de7c6b487a73bbf34eac7b696f9be8ab769862d065cb52d48c5",
+          "format": "hwp",
+          "role": "original",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:18:35Z",
+          "title_verified": true,
+          "path": "public/downloads/official-forms/expansion/P2-03_0f40b731275a.hwp",
+          "local_url": "/downloads/official-forms/expansion/P2-03_0f40b731275a.hwp",
+          "revised_at": "2026-03-20"
+        }
+      ],
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:53Z",
@@ -11999,7 +12196,18 @@
           "url": "https://www.law.go.kr/법령/법인세법시행규칙",
           "result": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%95%EC%9D%B8%EC%84%B8%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n"
         }
-      ]
+      ],
+      "institution": "국가법령정보센터",
+      "source_evidence": [
+        {
+          "source": "https://www.law.go.kr/lsBylSc.do?query=%EC%A3%BC%EC%8B%9D%EB%93%B1%EB%B3%80%EB%8F%99%EC%83%81%ED%99%A9",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:18:35Z",
+          "body_sha256": "602dcbb881c348a37ecd476fd8b1bb61df123a15f7e5b50dc993cdb81ba978b6",
+          "binary_sha256": "0f40b731275a8de7c6b487a73bbf34eac7b696f9be8ab769862d065cb52d48c5"
+        }
+      ],
+      "note": "현행 별표·서식 검색 결과의 법령명과 서식명을 대조한 후 원본 파일 본문을 확인했습니다."
     },
     {
       "id": "P2-04",
@@ -12133,17 +12341,31 @@
       "required_original": true,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.law.go.kr/lsBylSc.do?query=%EB%82%A9%EC%84%B8%EB%8B%B4%EB%B3%B4",
+      "checked_at": "2026-09-17T11:18:44Z",
       "form_no": null,
-      "revised_at": null,
+      "revised_at": "2024-03-22",
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
-      "files": [],
-      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%84%B8%EC%A7%95%EC%88%98%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
+      "source_type": "원본",
+      "files": [
+        {
+          "name": "15\t국세징수법 시행규칙\n[시행 2026. 3. 20.] [재정경제부령 제19호, 2026. 3. 20., 일부개정]\n\t[서식 20] 납세담보제공서\t \t1,989",
+          "url": "https://www.law.go.kr/flDownload.do?flSeq=167465975",
+          "bytes": 44544,
+          "sha256": "a9c49543fda1051fbe8ea9636a56f5f4b6ac475801a643e8e5960696a36ca9cb",
+          "format": "hwp",
+          "role": "original",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:18:44Z",
+          "title_verified": true,
+          "path": "public/downloads/official-forms/expansion/P2-08_a9c49543fda1.hwp",
+          "local_url": "/downloads/official-forms/expansion/P2-08_a9c49543fda1.hwp",
+          "revised_at": "2024-03-22"
+        }
+      ],
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:53Z",
@@ -12155,7 +12377,18 @@
           "url": "https://www.law.go.kr/법령/국세징수법시행규칙",
           "result": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%84%B8%EC%A7%95%EC%88%98%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n"
         }
-      ]
+      ],
+      "institution": "국가법령정보센터",
+      "source_evidence": [
+        {
+          "source": "https://www.law.go.kr/lsBylSc.do?query=%EB%82%A9%EC%84%B8%EB%8B%B4%EB%B3%B4",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:18:44Z",
+          "body_sha256": "601400083c2b1cc68ffcc3ccb6e9664b37f50ef91cf8a6d3b154eb5afc132b33",
+          "binary_sha256": "a9c49543fda1051fbe8ea9636a56f5f4b6ac475801a643e8e5960696a36ca9cb"
+        }
+      ],
+      "note": "현행 별표·서식 검색 결과의 법령명과 서식명을 대조한 후 원본 파일 본문을 확인했습니다."
     },
     {
       "id": "P2-09",
@@ -12235,7 +12468,14 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "현행 법령 서식 검색: 공식 검색 결과에 법령명과 요청 서식명 일치 없음",
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:18:52Z",
+          "url": "https://www.law.go.kr/lsBylSc.do?query=%EA%B8%B0%ED%95%9C%ED%9B%84",
+          "result": "현행 법령 서식 검색: 공식 검색 결과에 법령명과 요청 서식명 일치 없음"
+        }
+      ]
     },
     {
       "id": "P2-12",
@@ -12337,7 +12577,14 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "현행 법령 서식 검색: 공식 검색 결과에 법령명과 요청 서식명 일치 없음",
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:18:58Z",
+          "url": "https://www.law.go.kr/lsBylSc.do?query=%ED%8F%89%EA%B0%80%EC%8B%AC%EC%9D%98%EC%9C%84%EC%9B%90%ED%9A%8C",
+          "result": "현행 법령 서식 검색: 공식 검색 결과에 법령명과 요청 서식명 일치 없음"
+        }
+      ]
     },
     {
       "id": "P3-01",
@@ -12346,17 +12593,31 @@
       "required_original": true,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.law.go.kr/lsBylSc.do?query=%EB%86%8D%EC%A7%80%EC%B7%A8%EB%93%9D%EC%9E%90%EA%B2%A9%EC%A6%9D%EB%AA%85",
+      "checked_at": "2026-09-17T11:19:06Z",
       "form_no": null,
-      "revised_at": null,
+      "revised_at": "2022-05-18",
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
-      "files": [],
-      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%86%8D%EC%A7%80%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
+      "source_type": "원본",
+      "files": [
+        {
+          "name": "3\t농지법 시행규칙\n[시행 2025. 10. 31.] [농림축산식품부령 제741호, 2025. 10. 31., 타법개정]\n\t[서식 3] 농지취득자격증명신청서\t \t12,046",
+          "url": "https://www.law.go.kr/flDownload.do?flSeq=157617839",
+          "bytes": 112128,
+          "sha256": "bc2c5c720468aaddc8d316906250373c3881e7635806cb2cbdb09d18c8318985",
+          "format": "hwp",
+          "role": "original",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:19:06Z",
+          "title_verified": true,
+          "path": "public/downloads/official-forms/expansion/P3-01_bc2c5c720468.hwp",
+          "local_url": "/downloads/official-forms/expansion/P3-01_bc2c5c720468.hwp",
+          "revised_at": "2022-05-18"
+        }
+      ],
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:53Z",
@@ -12368,7 +12629,18 @@
           "url": "https://www.law.go.kr/법령/농지법시행규칙",
           "result": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%86%8D%EC%A7%80%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n"
         }
-      ]
+      ],
+      "institution": "국가법령정보센터",
+      "source_evidence": [
+        {
+          "source": "https://www.law.go.kr/lsBylSc.do?query=%EB%86%8D%EC%A7%80%EC%B7%A8%EB%93%9D%EC%9E%90%EA%B2%A9%EC%A6%9D%EB%AA%85",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:19:06Z",
+          "body_sha256": "310a50e1f6d3bbdc6707a5ba6b017ae96b57c373b14adb1a882845ef6d0c1d46",
+          "binary_sha256": "bc2c5c720468aaddc8d316906250373c3881e7635806cb2cbdb09d18c8318985"
+        }
+      ],
+      "note": "현행 별표·서식 검색 결과의 법령명과 서식명을 대조한 후 원본 파일 본문을 확인했습니다."
     },
     {
       "id": "P3-02",
@@ -14223,17 +14495,31 @@
       "required_original": true,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.law.go.kr/lsBylSc.do?query=%ED%95%B4%EC%99%B8%EA%B8%88%EC%9C%B5%EA%B3%84%EC%A2%8C",
+      "checked_at": "2026-09-17T11:19:14Z",
       "form_no": null,
-      "revised_at": null,
+      "revised_at": "2023-03-20",
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
-      "files": [],
-      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%A0%9C%EC%A1%B0%EC%84%B8%EC%A1%B0%EC%A0%95%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%A0%9C%EC%A1%B0%EC%84%B8%EC%A1%B0%EC%A0%95%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
+      "source_type": "원본",
+      "files": [
+        {
+          "name": "1\t국제조세조정에 관한 법률 시행규칙\n[시행 2026. 3. 20.] [재정경제부령 제21호, 2026. 3. 20., 일부개정]\n\t[서식 45] 해외금융계좌 신고서, 해외금융계좌 명세서, 해외금융계좌 관련자 명세서\t \t913",
+          "url": "https://www.law.go.kr/flDownload.do?flSeq=162907683",
+          "bytes": 63488,
+          "sha256": "477984df961bb386cbfb69b7d43ceb349635da332ddca92233f796c70585fcb8",
+          "format": "hwp",
+          "role": "original",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:19:14Z",
+          "title_verified": true,
+          "path": "public/downloads/official-forms/expansion/P9-08_477984df961b.hwp",
+          "local_url": "/downloads/official-forms/expansion/P9-08_477984df961b.hwp",
+          "revised_at": "2023-03-20"
+        }
+      ],
       "attempts": [
         {
           "checked_at": "2026-09-17T09:31:30Z",
@@ -14245,7 +14531,18 @@
           "url": "https://www.law.go.kr/법령/국제조세조정에관한법률시행규칙",
           "result": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%A0%9C%EC%A1%B0%EC%84%B8%EC%A1%B0%EC%A0%95%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%A0%9C%EC%A1%B0%EC%84%B8%EC%A1%B0%EC%A0%95%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n"
         }
-      ]
+      ],
+      "institution": "국가법령정보센터",
+      "source_evidence": [
+        {
+          "source": "https://www.law.go.kr/lsBylSc.do?query=%ED%95%B4%EC%99%B8%EA%B8%88%EC%9C%B5%EA%B3%84%EC%A2%8C",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:19:14Z",
+          "body_sha256": "f33cc82a26c5a816a2f152db7e836a615397aad2209b724d98e7924f75c1c40c",
+          "binary_sha256": "477984df961bb386cbfb69b7d43ceb349635da332ddca92233f796c70585fcb8"
+        }
+      ],
+      "note": "현행 별표·서식 검색 결과의 법령명과 서식명을 대조한 후 원본 파일 본문을 확인했습니다."
     },
     {
       "id": "P9-09",
