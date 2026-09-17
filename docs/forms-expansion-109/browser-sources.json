@@ -1,0 +1,13 @@
+{
+  "P1-22": {"url":"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html","terms":["성년후견개시심판청구"],"institution":"서울가정법원 후견센터","note":"서울가정법원 후견센터의 성년후견 개시 청구 양식입니다. 대상자의 상태와 신청 목적에 맞는 절차를 확인하세요."},
+  "P8-08": {"url":"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html","terms":["한정후견개시심판청구","특정후견심판청구"],"institution":"서울가정법원 후견센터","note":"한정후견과 특정후견 청구 양식을 구분해 제공합니다. 양식 선택은 신청 목적에 맞게 확인하세요."},
+  "P8-09": {"url":"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html","terms":["후견계약 등기신청서","임의후견감독인"],"institution":"서울가정법원 후견센터","note":"후견계약 등기와 임의후견감독인 선임 등 관련 법원 양식입니다. 이 링크가 공증용 후견계약서 원본이라는 뜻은 아닙니다."},
+  "P8-10": {"url":"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html","terms":["피성년후견인 거주 건물 또는 대지 매도허가","법정대리권의 범위변경"],"institution":"서울가정법원 후견센터","note":"확인된 양식은 피성년후견인의 거주 건물·대지 매도허가와 법정대리권 범위변경 청구 등입니다. 모든 매각·증여에 동일한 허가서가 필요하다고 단정하지 않고 거래와 후견 권한별로 확인합니다."},
+  "P8-11": {"url":"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html","terms":["후견사무보고서","재산목록보고서"],"institution":"서울가정법원 후견센터","note":"후견 유형별 후견사무보고서와 재산목록보고서를 선택할 수 있는 공식 양식 목록입니다."},
+  "P6-02": {"url":"https://mmc.kinfa.or.kr/view/dmt/KFA_DMT_01010000","terms":["휴면예금","보험금","상속인"],"institution":"서민금융진흥원","note":"휴면예금·보험금 조회와 상속인의 지급 신청 안내입니다. 다른 기관의 전체 미청구 보험금 조회와 범위가 같다고 가정하지 않습니다."},
+  "P7-01": {"url":"https://www.geps.or.kr/cusEngagement_variousForms?upperCodeId=BBS_CATE_variousForms_1","terms":["퇴직유족","청구서"],"institution":"공무원연금공단","note":"퇴직유족 연금·일시금 및 퇴직수당 청구서와 유족대표자 선정서 등 공식 연금서식 목록입니다."},
+  "P7-02": {"url":"https://tp.or.kr/tp-kr/cntnts/i-218/dir.do","terms":["유족급여","제203호","청구서"],"institution":"사립학교교직원연금공단","note":"재직 중 발생한 유족급여의 제203호 퇴직유족급여·퇴직수당 청구서와 청구 방법을 안내합니다. 퇴직 후 사망 사례는 해당 수급자 절차를 추가 확인하세요."},
+  "P7-03": {"url":"https://www.mps.mil.kr/info/deceIncmAplcForm.do","terms":["유족연금","청구서","구비서류"],"institution":"국방부 군인연금","note":"퇴역·상이연금 수급자 사망 시 유족연금 청구서와 구비서류 안내입니다. 군 복무 중 사망 급여와 동일한 절차로 보지 않습니다."},
+  "P7-05": {"url":"https://eum.cw.or.kr/web/fir/WEBFIR090M00","terms":["사망자 퇴직공제금","청구","유족"],"institution":"건설근로자공제회","note":"사망한 건설근로자의 퇴직공제금을 청구할 유족 순위와 준비서류·청구 방법을 안내합니다."},
+  "P7-06": {"url":"https://www.poba.or.kr/prd/prd01/prd0101/prd010105","terms":["사망급여금","급여금 청구서","상속인"],"institution":"대한지방행정공제회","note":"회원 사망급여의 청구서와 구비서류 안내입니다. 일반 퇴직급여와 가족사망급여는 별도 제도로 구분합니다."}
+}
