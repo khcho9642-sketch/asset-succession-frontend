@@ -54,4 +54,9 @@ NTS-CG-15의 기존 목록 링크 `https://www.nts.go.kr/upload/ti_tax/01/개인
 - 기존 자체 제작 파일 37개 직접 URL의 404/410 및 옛 index의 `/forms` 이동 검사 유지.
 - 검사는 `.tmp/forms-library-proof/verification.json`에 결과·스크린샷을 출력. 배포 커밋과 Preview 실측 결과는 같은 Draft PR의 최신 보고에 기록.
 
+### 연속 다운로드 CI 점검
+
+첫 CI `35196789292`는 305개 단위시험·lint·typecheck·build와 계산기 브라우저 검사를 통과한 뒤, 자료실의 연속 형식별 다운로드 이벤트에서 시간 초과했다. 같은 코드의 로컬 및 실제 Preview에서는 전체 파일·해시·브라우저 검사가 통과했다.
+Chromium의 [LocalFrame::ShouldThrottleDownload](https://chromium.googlesource.com/chromium/src/+/6093f61a7bcb77bf706fcd022b8d0f1447b5f60e/third_party/blink/renderer/core/frame/local_frame.cc)에는 프레임당 연속 다운로드 제한과 1초 초기화 구간이 있다. CI가 여러 다운로드를 빠르게 연속 실행한 영향으로 추정하여 형식 선택 시험의 각 클릭 간격을 1.1초로 제한하고 파일별 진행 로그를 추가했다. 파일 수·해시·실제 다운로드 이벤트 단언을 유지했으며 브라우저 보안 설정을 해제하지 않았다. 최종 CI 결과는 PR에 기록한다.
+
 묶음 재현: `python scripts/build-official-forms-bundle.py`. 이 스크립트는 매니페스트의 사이트 보관 파일만 해시 확인 후 결정론적으로 압축하며, 다운로드·재작성·외부 파일 수집을 하지 않음.

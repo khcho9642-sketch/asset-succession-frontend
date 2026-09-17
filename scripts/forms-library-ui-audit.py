@@ -170,6 +170,7 @@ with sync_playwright() as p:
     checks.append({'case':'modal-focus-trap-and-return','passed':True})
 
     for formid in ['BP-I-01','BP-G-01','SC-01','FAMILY-I-01','DD-G-01','NTS-IG-10','NTS-CG-15','REG-I-01']:
+        print(f'Browser download: {formid}', flush=True)
         with page.expect_download() as info:
             page.locator(f'[data-form-id="{formid}"] [data-form-download]').click()
         download = info.value
@@ -185,6 +186,10 @@ with sync_playwright() as p:
     expect(page.get_by_role('dialog').locator('[data-file-download]')).to_have_count(3)
     court = next(item for item in manifest['documents'] if item['id']=='SC-01')
     for file in court['files']:
+        # Keep this synthetic batch below Chromium's per-frame download burst limit.
+        # This is pacing, not a DOM readiness wait; every file still must download and hash-match.
+        page.wait_for_timeout(1100)
+        print(f'Format picker download: SC-01 {file["format"]}', flush=True)
         with page.expect_download() as info:
             page.get_by_role('dialog').locator('[data-file-download]').filter(has_text=file['name']).click()
         assert info.value.failure() is None
@@ -193,6 +198,7 @@ with sync_playwright() as p:
     checks.append({'case':'court-format-picker-downloads','formats':['HWP','DOC','PDF'],'hash_match':True})
     if os.environ.get('FORMS_VERIFY_EXTERNAL_DOWNLOADS') == '1':
         for item in [item for item in manifest['documents'] if item['delivery']=='direct']:
+            print(f'Official attachment download: {item["id"]}', flush=True)
             with page.expect_download(timeout=60000) as info:
                 page.locator(f'[data-form-id="{item["id"]}"] [data-form-download]').click()
             assert info.value.failure() is None
