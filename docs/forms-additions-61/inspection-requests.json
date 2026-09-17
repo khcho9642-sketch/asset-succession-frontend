@@ -1,0 +1,17 @@
+[
+ {"id":"P0-02","url":"https://fine.fss.or.kr/fine/cmmn/file/fileDown.do?atchFileId=1a01e7d474ba40ec99b7ceb0613c6e9a&fileSn=2","binary":true,"origin":"https://fine.fss.or.kr/fine/main/contents.do?menuNo=900208","terms":["상속인","신청"]},
+ {"id":"P0-03","url":"https://fine.fss.or.kr/fine/cmmn/file/fileDown.do?atchFileId=d1eac548ed9f4aa883ddb0a8f29d3836&fileSn=1","binary":true,"origin":"https://fine.fss.or.kr/fine/main/contents.do?menuNo=900208","terms":["위임"]},
+ {"id":"P0-04","url":"https://fine.fss.or.kr/fine/cmmn/file/fileDown.do?atchFileId=063498ff82ed4bff875aca7ae4eab5d2&fileSn=1","binary":true,"origin":"https://fine.fss.or.kr/fine/main/contents.do?menuNo=900208","terms":["외국인","사망"]},
+ {"id":"FSS-LICENSE","url":"https://www.fss.or.kr/fss/main/contents.do?menuNo=200701"},
+ {"id":"P0-05-SEARCH","url":"https://efamily.scourt.go.kr/cs/CsBltnWrtListAjax.do","method":"POST","data":{"bltnbordId":"0000005","inqType":"01","inqTrgt":"02","srchKeywd":"사망","pageIndex":"1","selectYn":"N"},"origin":"https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005"},
+ {"id":"P0-05-GUIDE","url":"https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000008&guideCd=0000008006&guideYn=Y","terms":["사망","신고"]},
+ {"id":"P0-06-FAMILY","url":"https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y","terms":["가족관계증명서","상세"]},
+ {"id":"P0-06-BASIC","url":"https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y","terms":["기본증명서","상세"]},
+ {"id":"P0-06-REMOVED","url":"https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007007&guideYn=Y","terms":["제적"]},
+ {"id":"LAW-BYL-JS","url":"https://www.law.go.kr/LSW/js/byl/byl.js"},
+ {"id":"LAW-LINK-JS","url":"https://www.law.go.kr/LSW/js/ls/lsLink.js"},
+ {"id":"LAW-LS-JS","url":"https://www.law.go.kr/LSW/js/ls/ls.js"},
+ {"id":"IROS-INDEX","url":"https://www.iros.go.kr/index.jsp"},
+ {"id":"COURT-HOME","url":"https://www.scourt.go.kr/portal/main.jsp"},
+ {"id":"LAW-NATIONAL","url":"https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=284607"}
+]
