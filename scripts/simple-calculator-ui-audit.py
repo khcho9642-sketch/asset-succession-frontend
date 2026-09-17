@@ -106,7 +106,7 @@ with sync_playwright() as p:
         page.get_by_role("button", name="계산하기").click()
         expect(page.get_by_text("예상 납부세액")).to_be_visible()
         expect(page.get_by_text("62,468,000원").first).to_be_visible()
-        assert page.evaluate("document.activeElement?.hasAttribute('data-result-title')")
+        expect(page.locator("[data-result-title]")).to_be_focused()
         page.screenshot(path=str(OUT / f"{name}-after-example-result.png"), full_page=True)
 
         page.get_by_label("부동산가액").fill("1300000000")

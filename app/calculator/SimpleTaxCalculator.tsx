@@ -923,6 +923,7 @@ export function SimpleTaxCalculator() {
   const [exampleLoaded, setExampleLoaded] = useState<Partial<Record<SimpleTaxKind, boolean>>>({});
   const resultRef = useRef<HTMLDivElement | null>(null);
   const formRef = useRef<HTMLElement | null>(null);
+  const pendingResultFocus = useRef<SimpleCalculationResult | null>(null);
   const activeValues = forms[kind];
   const currentTab = useMemo(() => tabs.find((tab) => tab.kind === kind)!, [kind]);
 
@@ -933,9 +934,16 @@ export function SimpleTaxCalculator() {
 
   const runCalculation = () => {
     const nextResult = calculate(kind, activeValues);
+    pendingResultFocus.current = nextResult;
     setResults((current) => ({ ...current, [kind]: nextResult }));
     setStale((current) => ({ ...current, [kind]: false }));
-    window.requestAnimationFrame(() => {
+  };
+
+  // Focus only after React has committed the result and its input errors.
+  useLayoutEffect(() => {
+      const nextResult = pendingResultFocus.current;
+      if (!nextResult || results[kind] !== nextResult) return;
+      pendingResultFocus.current = null;
       if (nextResult.status === "ready") {
         const heading = resultRef.current?.querySelector<HTMLElement>("[data-result-title]");
         heading?.focus({ preventScroll: true });
@@ -961,8 +969,7 @@ export function SimpleTaxCalculator() {
       }
       target?.focus({ preventScroll: true });
       target?.scrollIntoView({ block: "center", behavior: "smooth" });
-    });
-  };
+  }, [kind, results]);
 
   const reset = () => {
     setForms((current) => ({ ...current, [kind]: { ...blankForms[kind] } }));
