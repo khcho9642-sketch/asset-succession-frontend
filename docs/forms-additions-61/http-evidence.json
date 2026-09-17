@@ -1,7 +1,7 @@
 [
   {
     "id": "P0-01",
-    "checked_at": "2026-09-17T08:04:33Z",
+    "checked_at": "2026-09-17T08:07:12Z",
     "url": "https://www.gov.kr/mw/AA020InfoCappView.do?CappBizCD=17400000001",
     "status": "확인 완료",
     "reason": null,
@@ -9,7 +9,7 @@
   },
   {
     "id": "P0-02",
-    "checked_at": "2026-09-17T08:04:35Z",
+    "checked_at": "2026-09-17T08:07:13Z",
     "url": "https://fine.fss.or.kr/fine/cmmn/file/fileDown.do?atchFileId=1a01e7d474ba40ec99b7ceb0613c6e9a&fileSn=2",
     "status": "확인 완료",
     "reason": null,
@@ -27,7 +27,7 @@
   },
   {
     "id": "P0-03",
-    "checked_at": "2026-09-17T08:04:38Z",
+    "checked_at": "2026-09-17T08:07:14Z",
     "url": "https://fine.fss.or.kr/fine/cmmn/file/fileDown.do?atchFileId=d1eac548ed9f4aa883ddb0a8f29d3836&fileSn=1",
     "status": "확인 완료",
     "reason": null,
@@ -45,7 +45,7 @@
   },
   {
     "id": "P0-04",
-    "checked_at": "2026-09-17T08:04:39Z",
+    "checked_at": "2026-09-17T08:07:15Z",
     "url": "https://fine.fss.or.kr/fine/cmmn/file/fileDown.do?atchFileId=063498ff82ed4bff875aca7ae4eab5d2&fileSn=1",
     "status": "확인 완료",
     "reason": null,
@@ -63,7 +63,7 @@
   },
   {
     "id": "P0-05",
-    "checked_at": "2026-09-17T08:04:40Z",
+    "checked_at": "2026-09-17T08:07:15Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -71,15 +71,15 @@
   },
   {
     "id": "P0-06",
-    "checked_at": "2026-09-17T08:04:40Z",
+    "checked_at": "2026-09-17T08:07:15Z",
     "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y",
     "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='efamily.scourt.go.kr', port=443): Max retries exceeded with url: /cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y (Caused by ConnectTimeoutError(<HTTPSConnection(host='efamily.scourt.go.kr', port=443) at 0x7fd151130aa0>, 'Connection to efamily.scourt.go.kr timed out. (connect timeout=12)'))",
+    "reason": "HTTP 또는 본문 일치 확인 실패",
     "files": []
   },
   {
     "id": "P0-07",
-    "checked_at": "2026-09-17T08:04:53Z",
+    "checked_at": "2026-09-17T08:07:19Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -87,7 +87,7 @@
   },
   {
     "id": "P0-08",
-    "checked_at": "2026-09-17T08:04:53Z",
+    "checked_at": "2026-09-17T08:07:19Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -95,7 +95,7 @@
   },
   {
     "id": "P0-09",
-    "checked_at": "2026-09-17T08:04:53Z",
+    "checked_at": "2026-09-17T08:07:19Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -103,7 +103,7 @@
   },
   {
     "id": "P0-10",
-    "checked_at": "2026-09-17T08:04:53Z",
+    "checked_at": "2026-09-17T08:07:19Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -111,7 +111,7 @@
   },
   {
     "id": "P0-11",
-    "checked_at": "2026-09-17T08:04:53Z",
+    "checked_at": "2026-09-17T08:07:19Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=164920469&bylClsCd=110202",
     "status": "확인 완료",
     "reason": null,
@@ -129,7 +129,7 @@
   },
   {
     "id": "P0-12",
-    "checked_at": "2026-09-17T08:04:56Z",
+    "checked_at": "2026-09-17T08:07:26Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=164920469&bylClsCd=110202",
     "status": "확인 완료",
     "reason": null,
@@ -147,7 +147,7 @@
   },
   {
     "id": "P0-13",
-    "checked_at": "2026-09-17T08:04:56Z",
+    "checked_at": "2026-09-17T08:07:26Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=164920481&bylClsCd=110202",
     "status": "확인 완료",
     "reason": null,
@@ -165,7 +165,7 @@
   },
   {
     "id": "P0-14",
-    "checked_at": "2026-09-17T08:04:57Z",
+    "checked_at": "2026-09-17T08:07:27Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -173,7 +173,7 @@
   },
   {
     "id": "P0-15",
-    "checked_at": "2026-09-17T08:04:57Z",
+    "checked_at": "2026-09-17T08:07:27Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=164920527&bylClsCd=110202",
     "status": "확인 완료",
     "reason": null,
@@ -191,7 +191,7 @@
   },
   {
     "id": "P0-16",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -199,7 +199,7 @@
   },
   {
     "id": "P1-01",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -207,7 +207,7 @@
   },
   {
     "id": "P1-02",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -215,7 +215,7 @@
   },
   {
     "id": "P1-03",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -223,7 +223,7 @@
   },
   {
     "id": "P1-04",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -231,7 +231,7 @@
   },
   {
     "id": "P1-05",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -239,7 +239,7 @@
   },
   {
     "id": "P1-06",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -247,7 +247,7 @@
   },
   {
     "id": "P1-07",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -255,7 +255,7 @@
   },
   {
     "id": "P1-08",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -263,7 +263,7 @@
   },
   {
     "id": "P1-09",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -271,7 +271,7 @@
   },
   {
     "id": "P1-10",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -279,7 +279,7 @@
   },
   {
     "id": "P1-11",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -287,7 +287,7 @@
   },
   {
     "id": "P1-12",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -295,7 +295,7 @@
   },
   {
     "id": "P1-13",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -303,7 +303,7 @@
   },
   {
     "id": "P1-14",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -311,7 +311,7 @@
   },
   {
     "id": "P1-15",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -319,7 +319,7 @@
   },
   {
     "id": "P1-16",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -327,7 +327,7 @@
   },
   {
     "id": "P1-17",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -335,7 +335,7 @@
   },
   {
     "id": "P1-18",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -343,7 +343,7 @@
   },
   {
     "id": "P1-19",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -351,7 +351,7 @@
   },
   {
     "id": "P1-20",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -359,7 +359,7 @@
   },
   {
     "id": "P1-21",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -367,7 +367,7 @@
   },
   {
     "id": "P1-22",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -375,7 +375,7 @@
   },
   {
     "id": "P1-23",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -383,7 +383,7 @@
   },
   {
     "id": "P1-24",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -391,7 +391,7 @@
   },
   {
     "id": "P2-01",
-    "checked_at": "2026-09-17T08:04:58Z",
+    "checked_at": "2026-09-17T08:07:28Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=168819381&bylClsCd=110202",
     "status": "확인 완료",
     "reason": null,
@@ -409,7 +409,7 @@
   },
   {
     "id": "P2-02",
-    "checked_at": "2026-09-17T08:04:59Z",
+    "checked_at": "2026-09-17T08:07:29Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=168819397&bylClsCd=110202",
     "status": "확인 완료",
     "reason": null,
@@ -427,7 +427,7 @@
   },
   {
     "id": "P2-03",
-    "checked_at": "2026-09-17T08:05:00Z",
+    "checked_at": "2026-09-17T08:07:30Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -435,7 +435,7 @@
   },
   {
     "id": "P2-04",
-    "checked_at": "2026-09-17T08:05:00Z",
+    "checked_at": "2026-09-17T08:07:30Z",
     "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619127&bylClsCd=110202",
     "status": "확인 완료",
     "reason": null,
@@ -453,7 +453,7 @@
   },
   {
     "id": "P2-05",
-    "checked_at": "2026-09-17T08:05:00Z",
+    "checked_at": "2026-09-17T08:07:31Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627307&bylClsCd=110202",
     "status": "확인 완료",
     "reason": null,
@@ -471,7 +471,7 @@
   },
   {
     "id": "P2-06",
-    "checked_at": "2026-09-17T08:05:02Z",
+    "checked_at": "2026-09-17T08:07:32Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -479,7 +479,7 @@
   },
   {
     "id": "P2-07",
-    "checked_at": "2026-09-17T08:05:02Z",
+    "checked_at": "2026-09-17T08:07:32Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627503&bylClsCd=110202",
     "status": "확인 완료",
     "reason": null,
@@ -497,7 +497,7 @@
   },
   {
     "id": "P2-08",
-    "checked_at": "2026-09-17T08:05:02Z",
+    "checked_at": "2026-09-17T08:07:32Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -505,7 +505,7 @@
   },
   {
     "id": "P2-09",
-    "checked_at": "2026-09-17T08:05:02Z",
+    "checked_at": "2026-09-17T08:07:32Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -513,7 +513,7 @@
   },
   {
     "id": "P2-10",
-    "checked_at": "2026-09-17T08:05:02Z",
+    "checked_at": "2026-09-17T08:07:32Z",
     "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=157546069&bylClsCd=110202",
     "status": "확인 완료",
     "reason": null,
@@ -531,7 +531,7 @@
   },
   {
     "id": "P2-11",
-    "checked_at": "2026-09-17T08:05:02Z",
+    "checked_at": "2026-09-17T08:07:32Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -539,7 +539,7 @@
   },
   {
     "id": "P2-12",
-    "checked_at": "2026-09-17T08:05:02Z",
+    "checked_at": "2026-09-17T08:07:32Z",
     "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=157546887&bylClsCd=110202",
     "status": "확인 완료",
     "reason": null,
@@ -557,7 +557,7 @@
   },
   {
     "id": "P2-13",
-    "checked_at": "2026-09-17T08:05:03Z",
+    "checked_at": "2026-09-17T08:07:33Z",
     "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=157546465&bylClsCd=110202",
     "status": "확인 완료",
     "reason": null,
@@ -575,7 +575,7 @@
   },
   {
     "id": "P2-14",
-    "checked_at": "2026-09-17T08:05:03Z",
+    "checked_at": "2026-09-17T08:07:33Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -583,7 +583,7 @@
   },
   {
     "id": "P2-15",
-    "checked_at": "2026-09-17T08:05:03Z",
+    "checked_at": "2026-09-17T08:07:33Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -591,7 +591,7 @@
   },
   {
     "id": "P3-01",
-    "checked_at": "2026-09-17T08:05:03Z",
+    "checked_at": "2026-09-17T08:07:33Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -599,7 +599,7 @@
   },
   {
     "id": "P3-02",
-    "checked_at": "2026-09-17T08:05:03Z",
+    "checked_at": "2026-09-17T08:07:33Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -607,7 +607,7 @@
   },
   {
     "id": "P3-03",
-    "checked_at": "2026-09-17T08:05:03Z",
+    "checked_at": "2026-09-17T08:07:33Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -615,7 +615,7 @@
   },
   {
     "id": "P3-04",
-    "checked_at": "2026-09-17T08:05:03Z",
+    "checked_at": "2026-09-17T08:07:33Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -623,7 +623,7 @@
   },
   {
     "id": "P3-05",
-    "checked_at": "2026-09-17T08:05:03Z",
+    "checked_at": "2026-09-17T08:07:33Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -631,7 +631,7 @@
   },
   {
     "id": "P3-06",
-    "checked_at": "2026-09-17T08:05:04Z",
+    "checked_at": "2026-09-17T08:07:33Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
