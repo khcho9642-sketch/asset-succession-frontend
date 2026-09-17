@@ -7,10 +7,10 @@
   "hostedOriginalCount": 74,
   "hostedInstitutionalExampleCount": 39,
   "deliveryCounts": {
-    "hosted": 94,
-    "provider": 18,
+    "hosted": 99,
+    "provider": 21,
     "direct": 0,
-    "pending": 65
+    "pending": 57
   },
   "documents": [
     {
@@ -6584,7 +6584,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y\", waiting until \"domcontentloaded\"\n",
+      "verification": "가족·기본·제적 안내 3종 중 확인된 페이지 1개",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -6617,7 +6617,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -6650,7 +6650,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -6683,7 +6683,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -6716,7 +6716,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -7367,7 +7367,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -7400,7 +7400,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -7473,7 +7473,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -7506,7 +7506,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -7539,7 +7539,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -7572,7 +7572,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -7646,7 +7646,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -8603,30 +8603,60 @@
       "catalogTitle": "부동산거래계약 해제등 신고서 / 변경 신고서",
       "category": "증여",
       "originalCategory": "증여",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "변경 신고서와 해제등 신고서 원본을 각각 제공합니다. 변경과 해제는 서로 다른 신청입니다.",
       "tags": "P4-04 · 증여",
-      "format": "확인 중",
-      "editable": "",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/expansion/P4-04_c2098c514832.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "20 KB",
+      "sourceUrl": "https://www.ifez.go.kr/main/pst/view.do?pst_id=ciz01&pst_sn=194681&search=",
+      "institution": "인천경제자유구역청",
+      "checkedOn": "2026-09-17",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='www.ifez.go.kr', port=443): Max retries exceeded with url: /other/attach/process.file.do?TP=dn&sn=51196&key=07CD13077418238 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.ifez.go.kr', port=443) at 0x7f4fd0495070>, 'Connection to www.ifez.go.kr timed out. (connect timeout=9)'))",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
-      "files": [],
-      "form_no": null,
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "부동산거래계약 / 해제 / 신고서",
+          "path": "/downloads/official-forms/expansion/P4-04_c2098c514832.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 20480,
+          "delivery": "hosted"
+        },
+        {
+          "name": "부동산거래계약 / 변경 / 신고서",
+          "path": "/downloads/official-forms/expansion/P4-04_24491698c18c.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 101888,
+          "delivery": "hosted"
+        }
+      ],
+      "form_no": "부동산 거래신고 등에 관한 법률 시행규칙 별지 제3호·제4호서식",
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "원본",
+      "checked_at": "2026-09-17T11:06:58Z",
+      "status": "확인 완료",
+      "source_evidence": [
+        {
+          "url": "https://www.ifez.go.kr/other/attach/process.file.do?TP=dn&sn=51196&key=07CD13077418238",
+          "http_status": 200,
+          "sha256": "c2098c514832dbb512fc45f47b70367a2eed573af7fffeb2861019f9f99875d5",
+          "checked_at": "2026-09-17T11:06:56Z"
+        },
+        {
+          "url": "https://www.ifez.go.kr/other/attach/process.file.do?TP=dn&sn=80454&key=BB3480D2E9F6BF9",
+          "http_status": 200,
+          "sha256": "24491698c18c347d030c8c433f4001851cafc2c2f0e43eb489ae5aac114b997a",
+          "checked_at": "2026-09-17T11:06:58Z"
+        }
+      ],
       "task_id": "P4-04",
       "related_ids": []
     },
@@ -8669,30 +8699,48 @@
       "catalogTitle": "영농자녀가 증여받은 농지 등에 대한 증여세 감면신청서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "공식 법령 페이지에서 발견한 첨부를 실제 다운로드하고 본문·서식명을 확인했습니다. 원본의 조항과 부표를 수정하지 않았습니다.",
       "tags": "P5-01 · 공제·납부",
-      "format": "확인 중",
-      "editable": "",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/expansion/P5-01_51d2d4c74230.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "55 KB",
+      "sourceUrl": "https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR",
+      "institution": "국가법령정보센터",
+      "checkedOn": "2026-09-17",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
       "licenseUrl": "",
-      "verification": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR\", waiting until \"domcontentloaded\"\n",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
-      "files": [],
-      "form_no": null,
-      "revised_at": null,
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "영농자녀가 증여받은 농지 등에 대한 증여세 감면신청서",
+          "path": "/downloads/official-forms/expansion/P5-01_51d2d4c74230.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 56320,
+          "delivery": "hosted"
+        }
+      ],
+      "form_no": "조세특례제한법 시행규칙 별지 제52호서식",
+      "revised_at": "2024-03-22",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "원본",
+      "checked_at": "2026-09-17T11:06:55Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:06:52Z",
+        "binary_sha256": "51d2d4c74230deb2e14defd7a19b50debe8aac88fa04e54342aa511820dfd633",
+        "matched_body_terms": [
+          "영농자녀",
+          "증여농지",
+          "세액감면신청서"
+        ]
+      },
       "task_id": "P5-01",
       "related_ids": []
     },
@@ -8942,30 +8990,48 @@
       "catalogTitle": "공익법인 출연재산 보고서 / 출연재산 명세서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "공식 법령 페이지에서 발견한 첨부를 실제 다운로드하고 본문·서식명을 확인했습니다. 원본의 조항과 부표를 수정하지 않았습니다.",
       "tags": "P5-07 · 공제·납부",
-      "format": "확인 중",
-      "editable": "",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/expansion/P5-07_542e40bac06c.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "73 KB",
+      "sourceUrl": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388",
+      "institution": "국가법령정보센터",
+      "checkedOn": "2026-09-17",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
       "licenseUrl": "",
-      "verification": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388\", waiting until \"domcontentloaded\"\n",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
-      "files": [],
-      "form_no": null,
-      "revised_at": null,
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "공익법인 출연재산 보고서 / 출연재산 명세서",
+          "path": "/downloads/official-forms/expansion/P5-07_542e40bac06c.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 74240,
+          "delivery": "hosted"
+        }
+      ],
+      "form_no": "상속세 및 증여세법 시행규칙 별지 제23호서식",
+      "revised_at": "2025-03-21",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "원본",
+      "checked_at": "2026-09-17T11:06:55Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:06:52Z",
+        "binary_sha256": "542e40bac06ceec664218eb7b24bb48490e3fdf93415939af1c646f1546d7fa4",
+        "matched_body_terms": [
+          "공익법인",
+          "출연재산",
+          "보고서"
+        ]
+      },
       "task_id": "P5-07",
       "related_ids": []
     },
@@ -9216,30 +9282,36 @@
       "catalogTitle": "공무원연금 유족급여 청구서",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "기관의 지급·청구 또는 신고 안내 원문입니다. 개별 대상·신청방법과 해당 서류를 원문에서 확인하세요.",
       "tags": "P7-01 · 재산조회",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://www.geps.or.kr/bizInformation_pensionBiz_retirementClaim",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://www.geps.or.kr/bizInformation_pensionBiz_retirementClaim",
+      "institution": "공무원연금공단",
+      "checkedOn": "2026-09-17",
+      "license": "공식 제공처 링크 · 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.geps.or.kr/cusEngagement_variousForms?upperCodeId=BBS_CATE_variousForms_1\", waiting until \"domcontentloaded\"\n",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-17T11:07:10Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "requested_url": "https://www.geps.or.kr/bizInformation_pensionBiz_retirementClaim",
+        "url": "https://www.geps.or.kr/bizInformation_pensionBiz_retirementClaim",
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:07:01Z",
+        "sha256": "6d11dac2a6fa7bcbe0318917607e74644c293c7dd1236bace4aaa8bcba80db8f"
+      },
       "task_id": "P7-01",
       "related_ids": []
     },
@@ -9401,30 +9473,36 @@
       "catalogTitle": "대한지방행정공제회 급여 청구",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "기관의 지급·청구 또는 신고 안내 원문입니다. 개별 대상·신청방법과 해당 서류를 원문에서 확인하세요.",
       "tags": "P7-06 · 재산조회",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
+      "institution": "대한지방행정공제회",
+      "checkedOn": "2026-09-17",
+      "license": "공식 제공처 링크 · 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "공식 제공처 확인 실패: 응답 본문에서 요청 서식·절차 존재를 확인하지 못함",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-17T11:07:10Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "requested_url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
+        "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:07:03Z",
+        "sha256": "7f75de7ee607c1cb53c39a13f17cfe99e7d54c9498c7bdcd1d8a2d2733111702"
+      },
       "task_id": "P7-06",
       "related_ids": []
     },
@@ -9446,7 +9524,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9479,7 +9557,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9512,7 +9590,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9545,7 +9623,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9842,30 +9920,48 @@
       "catalogTitle": "등록면허세 신고서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "공식 법령 페이지에서 발견한 첨부를 실제 다운로드하고 본문·서식명을 확인했습니다. 원본의 조항과 부표를 수정하지 않았습니다.",
       "tags": "P9-01 · 공제·납부",
-      "format": "확인 중",
-      "editable": "",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/expansion/P9-01_706627025a13.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "66 KB",
+      "sourceUrl": "https://www.law.go.kr/lsInfoP.do?lsiSeq=287031",
+      "institution": "국가법령정보센터",
+      "checkedOn": "2026-09-17",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
       "licenseUrl": "",
-      "verification": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?lsiSeq=287031\", waiting until \"domcontentloaded\"\n",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
-      "files": [],
-      "form_no": null,
-      "revised_at": null,
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "등록면허세 신고서",
+          "path": "/downloads/official-forms/expansion/P9-01_706627025a13.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 67072,
+          "delivery": "hosted"
+        }
+      ],
+      "form_no": "지방세법 시행규칙 별지 제9호서식",
+      "revised_at": "2022-06-07",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "원본",
+      "checked_at": "2026-09-17T11:06:55Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:06:53Z",
+        "binary_sha256": "706627025a135ed08410ef8181e605166f1006c30339a234faa24777f5657952",
+        "matched_body_terms": [
+          "등록",
+          "등록면허세",
+          "신고서"
+        ]
+      },
       "task_id": "P9-01",
       "related_ids": []
     },
@@ -9941,30 +10037,48 @@
       "catalogTitle": "폐업신고서",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "공식 법령 페이지에서 발견한 첨부를 실제 다운로드하고 본문·서식명을 확인했습니다. 원본의 조항과 부표를 수정하지 않았습니다.",
       "tags": "P9-04 · 가업승계",
-      "format": "확인 중",
-      "editable": "",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/expansion/P9-04_7dfc62cf3951.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "68 KB",
+      "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP",
+      "institution": "국가법령정보센터",
+      "checkedOn": "2026-09-17",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
       "licenseUrl": "",
-      "verification": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
-      "files": [],
-      "form_no": null,
-      "revised_at": null,
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "폐업신고서",
+          "path": "/downloads/official-forms/expansion/P9-04_7dfc62cf3951.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 69632,
+          "delivery": "hosted"
+        }
+      ],
+      "form_no": "부가가치세법 시행규칙 별지 제9호서식",
+      "revised_at": "2026-03-20",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "원본",
+      "checked_at": "2026-09-17T11:06:55Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:06:55Z",
+        "binary_sha256": "7dfc62cf3951ebfa3a8706158548592c47662fad51d11c21ae4b77a97de94ab5",
+        "matched_body_terms": [
+          "휴업",
+          "폐업",
+          "신고서"
+        ]
+      },
       "task_id": "P9-04",
       "related_ids": []
     },
@@ -10106,30 +10220,36 @@
       "catalogTitle": "국외전출자 국내주식 양도소득세 신고 안내",
       "category": "양도",
       "originalCategory": "양도",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "기관의 지급·청구 또는 신고 안내 원문입니다. 개별 대상·신청방법과 해당 서류를 원문에서 확인하세요.",
       "tags": "P9-09 · 양도",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2515&cntntsId=7821",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2515&cntntsId=7821",
+      "institution": "국세청",
+      "checkedOn": "2026-09-17",
+      "license": "공식 제공처 링크 · 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-17T11:07:12Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "requested_url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2515&cntntsId=7821",
+        "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2515&cntntsId=7821",
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:07:12Z",
+        "sha256": "1949027527887f9ba71f883fb19ce45422f33575f0e3f1ff6068f947c4138598"
+      },
       "task_id": "P9-09",
       "related_ids": []
     },
@@ -10345,7 +10465,7 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y\", waiting until \"domcontentloaded\"\n",
+      "failure_reason": "가족·기본·제적 안내 3종 중 확인된 페이지 1개",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:31:41Z",
@@ -10356,6 +10476,11 @@
           "checked_at": "2026-09-17T09:52:07Z",
           "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y",
           "result": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y\", waiting until \"domcontentloaded\"\n"
+        },
+        {
+          "checked_at": "2026-09-17T11:07:12Z",
+          "url": null,
+          "result": "가족·기본·제적 안내 3종 중 확인된 페이지 1개"
         }
       ]
     },
@@ -10376,7 +10501,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P0-08",
@@ -10395,7 +10577,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P0-09",
@@ -10414,7 +10653,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P0-10",
@@ -10433,7 +10729,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P0-11",
@@ -10940,7 +11293,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P1-16",
@@ -10959,7 +11369,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P1-17",
@@ -11009,7 +11476,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P1-19",
@@ -11028,7 +11552,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P1-20",
@@ -11047,7 +11628,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P1-21",
@@ -11066,7 +11704,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P1-22",
@@ -11121,7 +11816,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P1-24",
@@ -11916,17 +12668,47 @@
       "required_original": true,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
-      "form_no": null,
+      "status": "확인 완료",
+      "source_url": "https://www.ifez.go.kr/main/pst/view.do?pst_id=ciz01&pst_sn=194681&search=",
+      "checked_at": "2026-09-17T11:06:58Z",
+      "form_no": "부동산 거래신고 등에 관한 법률 시행규칙 별지 제3호·제4호서식",
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
-      "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='www.ifez.go.kr', port=443): Max retries exceeded with url: /other/attach/process.file.do?TP=dn&sn=51196&key=07CD13077418238 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.ifez.go.kr', port=443) at 0x7f4fd0495070>, 'Connection to www.ifez.go.kr timed out. (connect timeout=9)'))",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
+      "source_type": "원본",
+      "files": [
+        {
+          "name": "부동산거래계약 / 해제 / 신고서",
+          "url": "https://www.ifez.go.kr/other/attach/process.file.do?TP=dn&sn=51196&key=07CD13077418238",
+          "bytes": 20480,
+          "sha256": "c2098c514832dbb512fc45f47b70367a2eed573af7fffeb2861019f9f99875d5",
+          "format": "hwp",
+          "role": "original",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:06:56Z",
+          "title_verified": true,
+          "path": "public/downloads/official-forms/expansion/P4-04_c2098c514832.hwp",
+          "local_url": "/downloads/official-forms/expansion/P4-04_c2098c514832.hwp",
+          "revised_at": "2020-02-27",
+          "form_no_excerpt": "■ 부동산 거래신고 등에 관한 법률 시행규칙 [별지 제4호서식"
+        },
+        {
+          "name": "부동산거래계약 / 변경 / 신고서",
+          "url": "https://www.ifez.go.kr/other/attach/process.file.do?TP=dn&sn=80454&key=BB3480D2E9F6BF9",
+          "bytes": 101888,
+          "sha256": "24491698c18c347d030c8c433f4001851cafc2c2f0e43eb489ae5aac114b997a",
+          "format": "hwp",
+          "role": "original",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:06:58Z",
+          "title_verified": true,
+          "path": "public/downloads/official-forms/expansion/P4-04_24491698c18c.hwp",
+          "local_url": "/downloads/official-forms/expansion/P4-04_24491698c18c.hwp",
+          "revised_at": "2023-08-22",
+          "form_no_excerpt": "■ 부동산 거래신고 등에 관한 법률 시행규칙 [별지 제3호서식"
+        }
+      ],
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:54Z",
@@ -11943,7 +12725,23 @@
           "url": null,
           "result": "HTTPSConnectionPool(host='www.ifez.go.kr', port=443): Max retries exceeded with url: /other/attach/process.file.do?TP=dn&sn=51196&key=07CD13077418238 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.ifez.go.kr', port=443) at 0x7f4fd0495070>, 'Connection to www.ifez.go.kr timed out. (connect timeout=9)'))"
         }
-      ]
+      ],
+      "institution": "인천경제자유구역청",
+      "source_evidence": [
+        {
+          "url": "https://www.ifez.go.kr/other/attach/process.file.do?TP=dn&sn=51196&key=07CD13077418238",
+          "http_status": 200,
+          "sha256": "c2098c514832dbb512fc45f47b70367a2eed573af7fffeb2861019f9f99875d5",
+          "checked_at": "2026-09-17T11:06:56Z"
+        },
+        {
+          "url": "https://www.ifez.go.kr/other/attach/process.file.do?TP=dn&sn=80454&key=BB3480D2E9F6BF9",
+          "http_status": 200,
+          "sha256": "24491698c18c347d030c8c433f4001851cafc2c2f0e43eb489ae5aac114b997a",
+          "checked_at": "2026-09-17T11:06:58Z"
+        }
+      ],
+      "note": "변경 신고서와 해제등 신고서 원본을 각각 제공합니다. 변경과 해제는 서로 다른 신청입니다."
     },
     {
       "id": "P4-05",
@@ -11971,17 +12769,32 @@
       "required_original": true,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
-      "form_no": null,
-      "revised_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR",
+      "checked_at": "2026-09-17T11:06:55Z",
+      "form_no": "조세특례제한법 시행규칙 별지 제52호서식",
+      "revised_at": "2024-03-22",
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
-      "files": [],
-      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR\", waiting until \"domcontentloaded\"\n",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
+      "source_type": "원본",
+      "files": [
+        {
+          "name": "영농자녀가 증여받은 농지 등에 대한 증여세 감면신청서",
+          "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=168819949&bylClsCd=110202",
+          "bytes": 56320,
+          "sha256": "51d2d4c74230deb2e14defd7a19b50debe8aac88fa04e54342aa511820dfd633",
+          "format": "hwp",
+          "role": "original",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:06:52Z",
+          "title_verified": true,
+          "path": "public/downloads/official-forms/expansion/P5-01_51d2d4c74230.hwp",
+          "local_url": "/downloads/official-forms/expansion/P5-01_51d2d4c74230.hwp",
+          "revised_at": "2024-03-22",
+          "form_no_excerpt": "\u0002汤捯\u0000\u0000\u0000\u0000\u0002■ 조세특례제한법 시행규칙 [별지 제52호서식"
+        }
+      ],
       "attempts": [
         {
           "checked_at": "2026-09-17T09:30:07Z",
@@ -11993,7 +12806,19 @@
           "url": "https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR",
           "result": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR\", waiting until \"domcontentloaded\"\n"
         }
-      ]
+      ],
+      "institution": "국가법령정보센터",
+      "source_evidence": {
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:06:52Z",
+        "binary_sha256": "51d2d4c74230deb2e14defd7a19b50debe8aac88fa04e54342aa511820dfd633",
+        "matched_body_terms": [
+          "영농자녀",
+          "증여농지",
+          "세액감면신청서"
+        ]
+      },
+      "note": "공식 법령 페이지에서 발견한 첨부를 실제 다운로드하고 본문·서식명을 확인했습니다. 원본의 조항과 부표를 수정하지 않았습니다."
     },
     {
       "id": "P5-02",
@@ -12239,17 +13064,32 @@
       "required_original": true,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
-      "form_no": null,
-      "revised_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388",
+      "checked_at": "2026-09-17T11:06:55Z",
+      "form_no": "상속세 및 증여세법 시행규칙 별지 제23호서식",
+      "revised_at": "2025-03-21",
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
-      "files": [],
-      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388\", waiting until \"domcontentloaded\"\n",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
+      "source_type": "원본",
+      "files": [
+        {
+          "name": "공익법인 출연재산 보고서 / 출연재산 명세서",
+          "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627633&bylClsCd=110202",
+          "bytes": 74240,
+          "sha256": "542e40bac06ceec664218eb7b24bb48490e3fdf93415939af1c646f1546d7fa4",
+          "format": "hwp",
+          "role": "original",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:06:52Z",
+          "title_verified": true,
+          "path": "public/downloads/official-forms/expansion/P5-07_542e40bac06c.hwp",
+          "local_url": "/downloads/official-forms/expansion/P5-07_542e40bac06c.hwp",
+          "revised_at": "2025-03-21",
+          "form_no_excerpt": "■ 상속세 및 증여세법 시행규칙 [별지 제23호서식"
+        }
+      ],
       "attempts": [
         {
           "checked_at": "2026-09-17T09:31:03Z",
@@ -12261,7 +13101,19 @@
           "url": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388",
           "result": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388\", waiting until \"domcontentloaded\"\n"
         }
-      ]
+      ],
+      "institution": "국가법령정보센터",
+      "source_evidence": {
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:06:52Z",
+        "binary_sha256": "542e40bac06ceec664218eb7b24bb48490e3fdf93415939af1c646f1546d7fa4",
+        "matched_body_terms": [
+          "공익법인",
+          "출연재산",
+          "보고서"
+        ]
+      },
+      "note": "공식 법령 페이지에서 발견한 첨부를 실제 다운로드하고 본문·서식명을 확인했습니다. 원본의 조항과 부표를 수정하지 않았습니다."
     },
     {
       "id": "P5-08",
@@ -12415,24 +13267,32 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.geps.or.kr/bizInformation_pensionBiz_retirementClaim",
+      "checked_at": "2026-09-17T11:07:10Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 제공처 링크 · 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.geps.or.kr/cusEngagement_variousForms?upperCodeId=BBS_CATE_variousForms_1\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:50:39Z",
           "url": "https://www.geps.or.kr/cusEngagement_variousForms?upperCodeId=BBS_CATE_variousForms_1",
           "result": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.geps.or.kr/cusEngagement_variousForms?upperCodeId=BBS_CATE_variousForms_1\", waiting until \"domcontentloaded\"\n"
         }
-      ]
+      ],
+      "institution": "공무원연금공단",
+      "source_evidence": {
+        "requested_url": "https://www.geps.or.kr/bizInformation_pensionBiz_retirementClaim",
+        "url": "https://www.geps.or.kr/bizInformation_pensionBiz_retirementClaim",
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:07:01Z",
+        "sha256": "6d11dac2a6fa7bcbe0318917607e74644c293c7dd1236bace4aaa8bcba80db8f"
+      },
+      "note": "기관의 지급·청구 또는 신고 안내 원문입니다. 개별 대상·신청방법과 해당 서류를 원문에서 확인하세요."
     },
     {
       "id": "P7-02",
@@ -12548,24 +13408,32 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
+      "checked_at": "2026-09-17T11:07:10Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 제공처 링크 · 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "공식 제공처 확인 실패: 응답 본문에서 요청 서식·절차 존재를 확인하지 못함",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:51:23Z",
           "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
           "result": "공식 제공처 확인 실패: 응답 본문에서 요청 서식·절차 존재를 확인하지 못함"
         }
-      ]
+      ],
+      "institution": "대한지방행정공제회",
+      "source_evidence": {
+        "requested_url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
+        "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:07:03Z",
+        "sha256": "7f75de7ee607c1cb53c39a13f17cfe99e7d54c9498c7bdcd1d8a2d2733111702"
+      },
+      "note": "기관의 지급·청구 또는 신고 안내 원문입니다. 개별 대상·신청방법과 해당 서류를 원문에서 확인하세요."
     },
     {
       "id": "P7-07",
@@ -12603,7 +13471,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P8-02",
@@ -12622,7 +13547,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P8-03",
@@ -12641,7 +13623,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P8-04",
@@ -12660,7 +13699,64 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "search_attempts": [
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%BE%F0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%B1%E2%BF%A9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%AF%B7%F9%BA%D0 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C6%AF%BA%B0%B4%EB%B8%AE%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C4%A3%BB%FD%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C0%CE%C1%F6%C3%BB%B1%B8 (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BA%CE%C0%E7%C0%DA (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BD%C7%C1%BE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%C7%D1%C1%A4%BD%C2%C0%CE (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3%C0%E7%BB%EA%B8%F1%B7%CF (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        },
+        {
+          "url": "https://help.scourt.go.kr/nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord=",
+          "reason": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/ProDocList.work?eName=&min_gubun=&min_gubun_sel=&pageIndex=44&pageSize=5&sName=&searchWord= (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+        }
+      ],
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T11:07:10Z",
+          "url": null,
+          "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P8-05",
@@ -12916,17 +14012,32 @@
       "required_original": true,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
-      "form_no": null,
-      "revised_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.law.go.kr/lsInfoP.do?lsiSeq=287031",
+      "checked_at": "2026-09-17T11:06:55Z",
+      "form_no": "지방세법 시행규칙 별지 제9호서식",
+      "revised_at": "2022-06-07",
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
-      "files": [],
-      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?lsiSeq=287031\", waiting until \"domcontentloaded\"\n",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
+      "source_type": "원본",
+      "files": [
+        {
+          "name": "등록면허세 신고서",
+          "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=164920533&bylClsCd=110202",
+          "bytes": 67072,
+          "sha256": "706627025a135ed08410ef8181e605166f1006c30339a234faa24777f5657952",
+          "format": "hwp",
+          "role": "original",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:06:53Z",
+          "title_verified": true,
+          "path": "public/downloads/official-forms/expansion/P9-01_706627025a13.hwp",
+          "local_url": "/downloads/official-forms/expansion/P9-01_706627025a13.hwp",
+          "revised_at": "2022-06-07",
+          "form_no_excerpt": "■ 지방세법 시행규칙[별지 제9호서식"
+        }
+      ],
       "attempts": [
         {
           "checked_at": "2026-09-17T09:31:16Z",
@@ -12938,7 +14049,19 @@
           "url": "https://www.law.go.kr/lsInfoP.do?lsiSeq=287031",
           "result": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?lsiSeq=287031\", waiting until \"domcontentloaded\"\n"
         }
-      ]
+      ],
+      "institution": "국가법령정보센터",
+      "source_evidence": {
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:06:53Z",
+        "binary_sha256": "706627025a135ed08410ef8181e605166f1006c30339a234faa24777f5657952",
+        "matched_body_terms": [
+          "등록",
+          "등록면허세",
+          "신고서"
+        ]
+      },
+      "note": "공식 법령 페이지에서 발견한 첨부를 실제 다운로드하고 본문·서식명을 확인했습니다. 원본의 조항과 부표를 수정하지 않았습니다."
     },
     {
       "id": "P9-02",
@@ -12985,17 +14108,32 @@
       "required_original": true,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
-      "form_no": null,
-      "revised_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP",
+      "checked_at": "2026-09-17T11:06:55Z",
+      "form_no": "부가가치세법 시행규칙 별지 제9호서식",
+      "revised_at": "2026-03-20",
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
-      "files": [],
-      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n",
+      "license": "법령 별지서식 · 공공누리 유형 표시 없음",
+      "source_type": "원본",
+      "files": [
+        {
+          "name": "폐업신고서",
+          "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619115&bylClsCd=110202",
+          "bytes": 69632,
+          "sha256": "7dfc62cf3951ebfa3a8706158548592c47662fad51d11c21ae4b77a97de94ab5",
+          "format": "hwp",
+          "role": "original",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:06:55Z",
+          "title_verified": true,
+          "path": "public/downloads/official-forms/expansion/P9-04_7dfc62cf3951.hwp",
+          "local_url": "/downloads/official-forms/expansion/P9-04_7dfc62cf3951.hwp",
+          "revised_at": "2026-03-20",
+          "form_no_excerpt": "■ 부가가치세법 시행규칙 [별지 제9호서식"
+        }
+      ],
       "attempts": [
         {
           "checked_at": "2026-09-17T09:31:30Z",
@@ -13007,7 +14145,19 @@
           "url": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP",
           "result": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n"
         }
-      ]
+      ],
+      "institution": "국가법령정보센터",
+      "source_evidence": {
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:06:55Z",
+        "binary_sha256": "7dfc62cf3951ebfa3a8706158548592c47662fad51d11c21ae4b77a97de94ab5",
+        "matched_body_terms": [
+          "휴업",
+          "폐업",
+          "신고서"
+        ]
+      },
+      "note": "공식 법령 페이지에서 발견한 첨부를 실제 다운로드하고 본문·서식명을 확인했습니다. 원본의 조항과 부표를 수정하지 않았습니다."
     },
     {
       "id": "P9-05",
@@ -13104,17 +14254,25 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2515&cntntsId=7821",
+      "checked_at": "2026-09-17T11:07:12Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 제공처 링크 · 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "institution": "국세청",
+      "source_evidence": {
+        "requested_url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2515&cntntsId=7821",
+        "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2515&cntntsId=7821",
+        "http_status": 200,
+        "checked_at": "2026-09-17T11:07:12Z",
+        "sha256": "1949027527887f9ba71f883fb19ce45422f33575f0e3f1ff6068f947c4138598"
+      },
+      "note": "기관의 지급·청구 또는 신고 안내 원문입니다. 개별 대상·신청방법과 해당 서류를 원문에서 확인하세요."
     },
     {
       "id": "P9-10",
