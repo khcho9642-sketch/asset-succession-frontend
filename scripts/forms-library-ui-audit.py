@@ -65,6 +65,13 @@ with sync_playwright() as p:
         assert sorted(page.locator('[data-form-id]').evaluate_all('(items)=>items.map(item=>item.dataset.formId)')) == expected_ids
         expect(page.locator('[data-catalog-summary]')).to_contain_text('전체 74개 자료')
         expect(page.locator('[data-catalog-summary]')).to_contain_text('원본 다운로드 2 · 공식 제공처 72 · 확인 중 0')
+        bundle_summary = page.locator('[data-forms-bundle]')
+        expect(bundle_summary).not_to_contain_text('부평구청')
+        expect(bundle_summary).not_to_contain_text('HWP')
+        expect(bundle_summary).not_to_contain_text('ZIP')
+        expect(bundle_summary.locator('[data-bundle-download]')).to_have_text('확보한 4개 파일 받기')
+        for formid in ['BP-I-01', 'BP-G-01']:
+            expect(page.locator(f'[data-form-id="{formid}"]')).to_contain_text('부평구청')
         guides = page.locator('[data-official-registration-guides]')
         expect(guides.locator('[data-registration-guide]')).to_have_count(4)
         expect(guides.locator('a')).to_have_count(8)

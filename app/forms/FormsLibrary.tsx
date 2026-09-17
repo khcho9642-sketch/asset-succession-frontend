@@ -72,14 +72,13 @@ export function FormsLibrary({ documents }: Props) {
         <p className={styles.description}>재산을 나누고, 증여를 약속하고, 상담을 준비할 때.<br />빈 양식과 작성 예시를 함께 살펴보세요.</p>
         <p className={styles.catalogSummary} data-catalog-summary><strong>전체 {documents.length}개 자료</strong><span>원본 다운로드 {counts.hosted} · 공식 제공처 {counts.provider} · 확인 중 {counts.pending}</span></p>
       </div>
-      <div className={styles.bundle}>
+      <div className={styles.bundle} data-forms-bundle>
         <p className={styles.bundleOverline}>기관 양식과 제공처</p>
         <p className={styles.bundleCount}><strong>{documents.length}</strong>개 자료</p>
         <p className={styles.bundleDescription}>기관 원본 2종 · 기관 예시 2개</p>
         <a className={styles.bundleButton} href="/downloads/official-forms/official-forms.zip" download data-bundle-download>
           확보한 4개 파일 받기<Download size={18} aria-hidden="true" />
         </a>
-        <p className={styles.bundleMeta}><span>HWP 4개 · ZIP</span><span>부평구청 제공</span></p>
       </div>
     </section>
     <aside className={styles.notice} aria-label="양식 이용 안내">
