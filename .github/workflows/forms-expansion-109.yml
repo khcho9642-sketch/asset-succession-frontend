@@ -30,21 +30,20 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Recover private acquisition evidence only
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: forms-expansion-109-proof
           run-id: 35206693723
           github-token: ${{ github.token }}
           path: .tmp/recovered
-      - name: Collect actual institution attachments and inspect their content
+      - name: Acquire and inspect the next batch
         run: |
           mkdir -p .tmp/forms-expansion-proof
           cp -r .tmp/recovered/.tmp/forms-expansion-proof/downloaded-originals .tmp/forms-expansion-proof/
           python -m pip install --disable-pip-version-check requests beautifulsoup4 olefile pypdf lxml
           set -o pipefail
-          python scripts/forms-expansion-resume.py 2>&1 | tee .tmp/forms-expansion-proof/collection.log
-      - name: Check exact legacy preservation and all completed file hashes
+          python scripts/forms-expansion-round2.py 2>&1 | tee .tmp/forms-expansion-proof/collection.log
+      - name: Validate original hashes, task states, and preserved legacy records
         run: |
           python - <<'PY' | tee .tmp/forms-expansion-proof/validation.log
           from pathlib import Path
@@ -80,18 +79,17 @@ jobs:
           npm run lint 2>&1 | tee .tmp/forms-expansion-proof/lint.log
           npm run typecheck 2>&1 | tee .tmp/forms-expansion-proof/typecheck.log
           npm run build 2>&1 | tee .tmp/forms-expansion-proof/build.log
-      - name: Commit this batch to the working branch only
+      - name: Save this batch on the working branch only
         run: |
           git fetch origin assistant/forms-additions-109
           test "$(git rev-parse FETCH_HEAD)" = "${{ github.sha }}"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tasks.md docs/forms-expansion-109 public/downloads/official-forms/manifest.json public/downloads/official-forms/additions
-          if test -d public/downloads/official-forms/expansion; then git add public/downloads/official-forms/expansion; fi
+          git add tasks.md docs/forms-expansion-109 public/downloads/official-forms/manifest.json public/downloads/official-forms/additions public/downloads/official-forms/expansion
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'data(forms): register this batch of inspected institutional originals and sources'
+          git commit -m 'data(forms): save verified original files and official court/pension sources'
           git push origin HEAD:assistant/forms-additions-109
-      - name: Save collected evidence and exact source
+      - name: Save resumable proof and exact source
         if: always()
         run: |
           mkdir -p .tmp/forms-expansion-proof/source
@@ -102,7 +100,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: forms-expansion-109-batch-proof
+          name: forms-expansion-109-round2-proof
           path: |
             .tmp/forms-expansion-proof/
             docs/forms-expansion-109/
