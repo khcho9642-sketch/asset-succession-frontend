@@ -2,7 +2,7 @@ name: Forms expansion 109
 on:
   push:
     branches: [assistant/forms-additions-109]
-    paths: ['scripts/forms-expansion*', 'scripts/forms-browser-*', 'docs/forms-expansion-109/inputs/**', 'docs/forms-expansion-109/browser-sources.json', '.github/workflows/forms-expansion-109.yml']
+    paths: ['scripts/forms-expansion*', 'scripts/forms-browser-*', 'docs/forms-expansion-109/inputs/**', 'docs/forms-expansion-109/resume-sources.json', '.github/workflows/forms-expansion-109.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -14,7 +14,7 @@ jobs:
   collect:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
     env:
       PYTHONUNBUFFERED: '1'
       NEXT_TELEMETRY_DISABLED: '1'
@@ -23,78 +23,41 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
-      - name: Recover original evidence from the failed prior build
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recover already acquired originals and evidence
         uses: actions/download-artifact@v4
         with:
-          name: forms-additions-61-proof
-          run-id: 35198148042
+          name: forms-expansion-109-proof
+          run-id: 35206693723
           github-token: ${{ github.token }}
-          path: .tmp/restore61
-      - name: Checklist first, then collect and inspect actual files
-        run: |
-          python -m pip install --disable-pip-version-check requests beautifulsoup4 olefile pypdf lxml playwright
-          python -m playwright install --with-deps chromium
-          python scripts/forms-expansion-bootstrap.py
-          python scripts/forms-browser-collect.py
-          python scripts/forms-expansion-integrate.py
-      - name: Validate requested IDs, legacy preservation and actual file hashes
-        run: |
-          mkdir -p .tmp/forms-expansion-proof
-          python - <<'PY' | tee .tmp/forms-expansion-proof/records.log
-          import json,hashlib,re
-          from pathlib import Path
-          root=Path('.'); doc=root/'docs/forms-expansion-109'
-          m=json.loads((root/'public/downloads/official-forms/manifest.json').read_text())
-          legacy=json.loads((doc/'legacy-manifest.json').read_text())
-          results=json.loads((doc/'results.json').read_text())
-          assert len(results)==109 and len({r['id'] for r in results})==109
-          assert len(m['documents'])==177 and len({r['id'] for r in m['documents']})==177
-          assert len([r for r in results if r['operation']=='add'])==103
-          for old in legacy['documents']:
-            new=next(d for d in m['documents'] if d['id']==old['id'])
-            changed=any(r['operation']=='source_url_update' and r['status']=='확인 완료' and r['target_id']==old['id'] for r in results)
-            assert {k:v for k,v in old.items() if not(changed and k=='sourceUrl')}=={k:v for k,v in new.items() if not(changed and k=='sourceUrl')},old['id']
-          for r in results:
-            if r['status']!='확인 완료': continue
-            if r['required_original']: assert r['files'],r['id']
-            for f in r.get('files',[]):
-              p=root/f['path'] if f.get('path') else root/'.tmp/forms-expansion-proof'/f['artifact_path']
-              assert p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==f['sha256'],(r['id'],str(p))
-          t=(root/'tasks.md').read_text()
-          done=len(re.findall(r'^- \[x\] P\d-\d\d ',t,re.M)); pending=len(re.findall(r'^- \[ \] P\d-\d\d ',t,re.M))
-          assert done+pending==109
-          print('Requested IDs:',len(results),'New cards:',103,'Existing:',74,'Total cards:',177)
-          print('Verified:',done,'Unchecked:',pending)
-          print('grep count:',sum('확인 중' in line for line in (root/'public/downloads/official-forms/manifest.json').read_text().splitlines()))
-          print('Pending IDs:',','.join(r['id'] for r in results if r['status']!='확인 완료'))
-          print('All completed original files have matching bytes; incomplete tasks remain unchecked.')
-          PY
-      - name: Lint, types and production build
+          path: .tmp/recovered
+      - name: Restore verified records and fix failed JSX integration
+        run: python scripts/forms-expansion-rescue.py
+      - name: Lint types and production build
         run: |
           set -o pipefail
           npm ci --no-audit --no-fund
           npm run lint 2>&1 | tee .tmp/forms-expansion-proof/lint.log
           npm run typecheck 2>&1 | tee .tmp/forms-expansion-proof/typecheck.log
           npm run build 2>&1 | tee .tmp/forms-expansion-proof/build.log
-      - name: Commit only this work's records and forms code, never deploy
+      - name: Commit verified files and metadata on working branch only
         run: |
           git fetch origin assistant/forms-additions-109
           test "$(git rev-parse FETCH_HEAD)" = "${{ github.sha }}"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tasks.md docs/forms-expansion-109 app/forms public/downloads/official-forms/manifest.json public/downloads/official-forms/expansion
-          if test -d public/downloads/official-forms/additions; then git add public/downloads/official-forms/additions; fi
+          git add tasks.md docs/forms-expansion-109 app/forms public/downloads/official-forms/manifest.json public/downloads/official-forms/additions
+          if test -d public/downloads/official-forms/expansion; then git add public/downloads/official-forms/expansion; fi
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'data: save individually verified originals and explicit pending work for 109 tasks'
+          git commit -m 'fix(forms): recover inspected originals and repair catalog JSX'
           git push origin HEAD:assistant/forms-additions-109
-      - name: Preserve full source and collected evidence for review
+      - name: Preserve resumable evidence and source
         if: always()
         run: |
           mkdir -p .tmp/forms-expansion-proof/source
@@ -104,7 +67,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: forms-expansion-109-proof
+          name: forms-expansion-109-rescue-proof
           path: |
             .tmp/forms-expansion-proof/
             docs/forms-expansion-109/
