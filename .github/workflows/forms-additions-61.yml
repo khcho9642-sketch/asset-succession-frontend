@@ -27,14 +27,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Inspect actual published links
+      - name: Inspect and collect official sources
         run: |
-          python -m pip install requests beautifulsoup4 olefile pypdf
-          if test -f scripts/forms-additions-collect.py; then
-            python scripts/forms-additions-collect.py
-          else
-            python scripts/forms-additions-discover.py
-          fi
+          python -m pip install requests beautifulsoup4 olefile pypdf playwright
+          python -m playwright install --with-deps chromium
+          if ! test -f docs/forms-additions-61/discovery/index.json; then python scripts/forms-additions-discover.py; fi
+          if ! test -f docs/forms-additions-61/browser/index.json; then python scripts/forms-additions-browser.py; fi
+          if test -f scripts/forms-additions-collect.py; then python scripts/forms-additions-collect.py; fi
       - name: Validate registered additions
         if: hashFiles('scripts/forms-additions-tests.mjs') != ''
         run: node --test scripts/forms-additions-tests.mjs
@@ -47,7 +46,7 @@ jobs:
           git add tasks.md docs/forms-additions-61 app/forms public/downloads/official-forms
           if git diff --cached --quiet; then exit 0; fi
           git diff --cached --name-only
-          git commit -m 'data: record individually verified institutional forms and pending sources'
+          git commit -m 'data: register verified originals and per-item status without changing legacy records'
           git push origin HEAD:assistant/forms-additions-61
       - uses: actions/upload-artifact@v4
         if: always()
