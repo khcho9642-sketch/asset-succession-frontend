@@ -2,7 +2,7 @@ name: Forms expansion 109
 on:
   push:
     branches: [assistant/forms-additions-109]
-    paths: ['scripts/forms-expansion*', 'docs/forms-expansion-109/resume-sources.json', '.github/workflows/forms-expansion-109.yml']
+    paths: ['scripts/forms-expansion*', '.github/workflows/forms-expansion-109.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -14,7 +14,7 @@ jobs:
   collect:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     env:
       PYTHONUNBUFFERED: '1'
       NEXT_TELEMETRY_DISABLED: '1'
@@ -36,23 +36,21 @@ jobs:
           run-id: 35206693723
           github-token: ${{ github.token }}
           path: .tmp/recovered
-      - name: Acquire and inspect the next batch
+      - name: Acquire the next batch through actual public browser controls
         run: |
           mkdir -p .tmp/forms-expansion-proof
           cp -r .tmp/recovered/.tmp/forms-expansion-proof/downloaded-originals .tmp/forms-expansion-proof/
-          python -m pip install --disable-pip-version-check requests beautifulsoup4 olefile pypdf lxml
+          python -m pip install --disable-pip-version-check requests beautifulsoup4 olefile pypdf lxml playwright
+          python -m playwright install --with-deps chromium
           set -o pipefail
-          python scripts/forms-expansion-round2.py 2>&1 | tee .tmp/forms-expansion-proof/collection.log
-      - name: Validate original hashes, task states, and preserved legacy records
+          python scripts/forms-expansion-round3.py 2>&1 | tee .tmp/forms-expansion-proof/collection.log
+      - name: Validate original hashes, task states and preserved legacy records
         run: |
           python - <<'PY' | tee .tmp/forms-expansion-proof/validation.log
           from pathlib import Path
           import json,re,hashlib
-          root=Path('.')
-          d=root/'docs/forms-expansion-109'
-          results=json.loads((d/'results.json').read_text())
-          legacy=json.loads((d/'legacy-manifest.json').read_text())
-          m=json.loads((root/'public/downloads/official-forms/manifest.json').read_text())
+          root=Path('.');d=root/'docs/forms-expansion-109'
+          results=json.loads((d/'results.json').read_text());legacy=json.loads((d/'legacy-manifest.json').read_text());m=json.loads((root/'public/downloads/official-forms/manifest.json').read_text())
           assert len(results)==109 and len({r['id'] for r in results})==109
           assert len(m['documents'])==177 and len({r['id'] for r in m['documents']})==177
           for old in legacy['documents']:
@@ -65,9 +63,7 @@ jobs:
               for f in r.get('files',[]):
                   p=root/f['path'] if f.get('path') else root/'.tmp/forms-expansion-proof'/f['artifact_path']
                   assert p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==f['sha256'],(r['id'],str(p))
-          t=(root/'tasks.md').read_text()
-          done=len(re.findall(r'^- \[x\] P',t,re.M));todo=len(re.findall(r'^- \[ \] P',t,re.M))
-          assert done+todo==109
+          t=(root/'tasks.md').read_text();done=len(re.findall(r'^- \[x\] P',t,re.M));todo=len(re.findall(r'^- \[ \] P',t,re.M));assert done+todo==109
           print('Verified',done,'Unchecked',todo,'Legacy preserved',len(legacy['documents']))
           print('grep count:',sum('확인 중' in x for x in (root/'public/downloads/official-forms/manifest.json').read_text().splitlines()))
           print('Pending IDs:',','.join(r['id'] for r in results if r['status']!='확인 완료'))
@@ -87,20 +83,19 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add tasks.md docs/forms-expansion-109 public/downloads/official-forms/manifest.json public/downloads/official-forms/additions public/downloads/official-forms/expansion
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'data(forms): save verified original files and official court/pension sources'
+          git commit -m 'data(forms): register verified live statutory forms and keep blocked requests explicit'
           git push origin HEAD:assistant/forms-additions-109
-      - name: Save resumable proof and exact source
+      - name: Preserve resumable proof
         if: always()
         run: |
           mkdir -p .tmp/forms-expansion-proof/source
           cp -r app/forms .tmp/forms-expansion-proof/source/
           cp public/downloads/official-forms/manifest.json .tmp/forms-expansion-proof/manifest.json
           git rev-parse HEAD > .tmp/forms-expansion-proof/commit.txt
-          git archive --format=tar HEAD | gzip > .tmp/forms-expansion-proof/source.tar.gz
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: forms-expansion-109-round2-proof
+          name: forms-expansion-109-round3-proof
           path: |
             .tmp/forms-expansion-proof/
             docs/forms-expansion-109/
