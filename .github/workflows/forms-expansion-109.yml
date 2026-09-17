@@ -36,14 +36,16 @@ jobs:
           run-id: 35206693723
           github-token: ${{ github.token }}
           path: .tmp/recovered
-      - name: Acquire the next batch through actual public browser controls
+      - name: Execute the current finite collection batch
         run: |
           mkdir -p .tmp/forms-expansion-proof
           cp -r .tmp/recovered/.tmp/forms-expansion-proof/downloaded-originals .tmp/forms-expansion-proof/
           python -m pip install --disable-pip-version-check requests beautifulsoup4 olefile pypdf lxml playwright
           python -m playwright install --with-deps chromium
           set -o pipefail
-          python scripts/forms-expansion-round3.py 2>&1 | tee .tmp/forms-expansion-proof/collection.log
+          script=$(ls scripts/forms-expansion-round*.py | sort -V | tail -n 1)
+          echo "Executing $script"
+          python "$script" 2>&1 | tee .tmp/forms-expansion-proof/collection.log
       - name: Validate original hashes, task states and preserved legacy records
         run: |
           python - <<'PY' | tee .tmp/forms-expansion-proof/validation.log
@@ -83,7 +85,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add tasks.md docs/forms-expansion-109 public/downloads/official-forms/manifest.json public/downloads/official-forms/additions public/downloads/official-forms/expansion
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'data(forms): register verified live statutory forms and keep blocked requests explicit'
+          git commit -m 'data(forms): save verified files and institutional sources for the current batch'
           git push origin HEAD:assistant/forms-additions-109
       - name: Preserve resumable proof
         if: always()
@@ -95,7 +97,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: forms-expansion-109-round3-proof
+          name: forms-expansion-109-latest-proof
           path: |
             .tmp/forms-expansion-proof/
             docs/forms-expansion-109/
