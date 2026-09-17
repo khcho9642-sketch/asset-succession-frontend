@@ -13,11 +13,14 @@ export type LibraryDocument = {
   sizeLabel: string; institution: string; sourceUrl: string; checkedOn: string;
   license: string; verification: string; delivery: string;
   originalCategory: string; catalogTitle: string; exampleVerification: string;
+  form_no?: string | null; revised_at?: string | null; deadline?: string | null;
+  deadline_basis?: string | null; source_type?: "원본" | "공식제공처" | null; checked_at?: string;
+  status?: "확인 완료" | "확인 중"; task_id?: string;
 };
 type Props = {
   documents: LibraryDocument[];
 };
-const categories = ["전체", "재산분배·상속", "증여", "매매·임대차", "차용·상환", "양도", "가업승계", "공제·납부", "등기"];
+const categories = ["전체", "재산분배·상속", "증여", "매매·임대차", "차용·상환", "양도", "가업승계", "공제·납부", "등기", "재산조회", "유언", "후견", "불복·정정"];
 const deliveryLabels: Record<string, string> = { hosted: "원본 다운로드", provider: "공식 제공처", pending: "확인 중" };
 const actionLabel = (item: LibraryDocument) => item.delivery === "hosted" ? "기관 원본 받기" : item.delivery === "pending" ? "후보 제공처" : "공식 제공처";
 const normalize = (text: string) => text.normalize("NFKC").toLocaleLowerCase("ko-KR").replace(/\s+/g, "");
@@ -115,7 +118,7 @@ export function FormsLibrary({ documents }: Props) {
       <div className={styles.grid}>
         {filtered.map(item => <article className={styles.card} key={item.id} data-form-id={item.id} data-delivery={item.delivery}>
           <div className={styles.cardTop}><span>{item.originalCategory}</span><span className={styles.format}><FileText size={13} aria-hidden="true" />{item.format}</span></div>
-          <a href={item.example ?? item.sourceUrl} target="_blank" rel="noopener noreferrer" className={styles.visual}
+          <a href={item.example ?? (item.sourceUrl || undefined)} target="_blank" rel="noopener noreferrer" className={styles.visual}
             onClick={event => openPreview(event, item)} aria-label={`${item.title} 자료 확인`} data-form-preview>
             <span className={styles.previewTag}>{item.delivery === "hosted" ? "기관 작성 예시" : deliveryLabels[item.delivery]}</span>
             {item.thumbnail ? <Image src={item.thumbnail} width={724} height={1024} alt={`${item.title} 기관 예시의 내장 미리보기`}
@@ -128,7 +131,7 @@ export function FormsLibrary({ documents }: Props) {
             {item.delivery === "pending" ? <p className={styles.pendingNote}>{item.verification}</p> : null}
           </div>
           <div className={styles.cardActions}>
-            <a className={styles.download} href={item.editable} download={item.delivery === "hosted"} target={item.delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer" data-form-download
+            <a className={styles.download} href={item.editable || undefined} aria-disabled={!item.editable} download={item.delivery === "hosted"} target={item.delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer" data-form-download
               aria-label={`${item.title} ${actionLabel(item)}`}>
               {item.delivery === "hosted" ? <Download size={16} aria-hidden="true" /> : <ExternalLink size={16} aria-hidden="true" />}{actionLabel(item)}
             </a>
@@ -137,7 +140,7 @@ export function FormsLibrary({ documents }: Props) {
               {item.delivery === "hosted" ? "기관 예시" : "예시 안내"}<ArrowRight size={15} aria-hidden="true" />
             </a> : <span className={styles.example}>기관 예시 미확인</span>}
           </div>
-          <div className={styles.cardFoot}><span>{item.sizeLabel}</span><a href={item.sourceUrl} target="_blank" rel="noopener noreferrer">{item.institution}</a></div>
+          <div className={styles.cardFoot}><span>{item.sizeLabel}</span><a href={item.sourceUrl || undefined} target="_blank" rel="noopener noreferrer">{item.institution}</a></div>
         </article>)}
       </div>
       {filtered.length === 0 && <div className={styles.empty}>
@@ -176,11 +179,11 @@ export function FormsLibrary({ documents }: Props) {
         <div className={styles.dialogImage}>
           {preview.thumbnail ? <Image src={preview.thumbnail} width={724} height={1024} unoptimized alt={`${preview.title} 기관 예시 내장 미리보기`} /> : null}
           <p><strong>{deliveryLabels[preview.delivery]}</strong> · {preview.verification}</p><p>{preview.exampleVerification}</p><p>{preview.license} · 확인일 {preview.checkedOn}</p>
-          <a href={preview.sourceUrl} target="_blank" rel="noopener noreferrer">출처 게시물 확인</a>
+          <a href={preview.sourceUrl || undefined} target="_blank" rel="noopener noreferrer">출처 게시물 확인</a>
         </div>
         <div className={styles.dialogFooter}>
           {preview.example ? <a href={preview.example} target="_blank" rel="noopener noreferrer">{preview.delivery === "hosted" ? "기관 예시 원문 열기" : "기관 예시 안내 열기"}<ArrowRight size={15} aria-hidden="true" /></a> : <span>기관 작성 예시 미확인</span>}
-          <a className={styles.dialogDownload} href={preview.editable} download={preview.delivery === "hosted"} target={preview.delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer">{preview.delivery === "hosted" ? <Download size={16} aria-hidden="true" /> : <ExternalLink size={16} aria-hidden="true" />}{actionLabel(preview)}</a>
+          <a className={styles.dialogDownload} href={preview.editable || undefined} aria-disabled={!preview.editable} download={preview.delivery === "hosted"} target={preview.delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer">{preview.delivery === "hosted" ? <Download size={16} aria-hidden="true" /> : <ExternalLink size={16} aria-hidden="true" />}{actionLabel(preview)}</a>
         </div>
       </>}
     </dialog>
