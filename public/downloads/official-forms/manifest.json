@@ -7,10 +7,10 @@
   "hostedOriginalCount": 74,
   "hostedInstitutionalExampleCount": 39,
   "deliveryCounts": {
-    "hosted": 74,
-    "provider": 21,
+    "hosted": 89,
+    "provider": 12,
     "direct": 0,
-    "pending": 82
+    "pending": 76
   },
   "documents": [
     {
@@ -6551,7 +6551,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='efamily.scourt.go.kr', port=443): Max retries exceeded with url: /cs/CsBltnWrtGuide.do?bltnbordId=0000008&guideCd=0000008006&guideYn=Y (Caused by ConnectTimeoutError(<HTTPSConnection(host='efamily.scourt.go.kr', port=443) at 0x7f596296ede0>, 'Connection to efamily.scourt.go.kr timed out. (connect timeout=9)'))",
+      "verification": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -6584,7 +6584,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='efamily.scourt.go.kr', port=443): Max retries exceeded with url: /cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y (Caused by ConnectTimeoutError(<HTTPSConnection(host='efamily.scourt.go.kr', port=443) at 0x7f596296cfe0>, 'Connection to efamily.scourt.go.kr timed out. (connect timeout=9)'))",
+      "verification": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -6739,11 +6739,11 @@
       "originalCategory": "공제·납부",
       "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
       "tags": "P0-11 · 공제·납부",
-      "format": "공식 안내",
-      "editable": "https://www.law.go.kr/lsInfoP.do?lsiSeq=287031",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/additions/P0-11_%EC%B7%A8%EB%93%9D%EC%84%B8_%EA%B8%B0%ED%95%9C%EB%82%B4_%EA%B8%B0%ED%95%9C%ED%9B%84__%EC%8B%A0%EA%B3%A0%EC%84%9C.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "공식 제공처",
+      "sizeLabel": "88 KB",
       "sourceUrl": "https://www.law.go.kr/lsInfoP.do?lsiSeq=287031",
       "institution": "공식 출처 확인 중",
       "checkedOn": "2026-09-17",
@@ -6751,13 +6751,22 @@
       "licenseUrl": "",
       "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "provider",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "취득세(기한내/기한후) 신고서",
+          "path": "/downloads/official-forms/additions/P0-11_%EC%B7%A8%EB%93%9D%EC%84%B8_%EA%B8%B0%ED%95%9C%EB%82%B4_%EA%B8%B0%ED%95%9C%ED%9B%84__%EC%8B%A0%EA%B3%A0%EC%84%9C.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 89600,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": "지방세법 시행규칙 별지 제3호서식",
       "revised_at": "2024-12-31",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": "공식제공처",
+      "source_type": "원본",
       "checked_at": "2026-09-17T08:07:19Z",
       "status": "확인 완료",
       "source_evidence": null,
@@ -6772,11 +6781,11 @@
       "originalCategory": "공제·납부",
       "description": "공식 합본 서식은 분리·재작성하지 않고 원본 전체를 제공합니다.",
       "tags": "P0-12 · 공제·납부",
-      "format": "공식 안내",
-      "editable": "https://www.law.go.kr/lsInfoP.do?lsiSeq=287031",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/additions/P0-12_%EC%A3%BC%ED%83%9D_%EB%AC%B4%EC%83%81_%EC%9C%A0%EC%83%81%EA%B1%B0%EB%9E%98__%EC%B7%A8%EB%93%9D_%EC%83%81%EC%84%B8_%EB%AA%85%EC%84%B8%EC%84%9C.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "공식 제공처",
+      "sizeLabel": "88 KB",
       "sourceUrl": "https://www.law.go.kr/lsInfoP.do?lsiSeq=287031",
       "institution": "공식 출처 확인 중",
       "checkedOn": "2026-09-17",
@@ -6784,13 +6793,22 @@
       "licenseUrl": "",
       "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "provider",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "주택(무상·유상거래) 취득 상세 명세서",
+          "path": "/downloads/official-forms/additions/P0-12_%EC%A3%BC%ED%83%9D_%EB%AC%B4%EC%83%81_%EC%9C%A0%EC%83%81%EA%B1%B0%EB%9E%98__%EC%B7%A8%EB%93%9D_%EC%83%81%EC%84%B8_%EB%AA%85%EC%84%B8%EC%84%9C.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 89600,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": "지방세법 시행규칙 별지 제3호서식",
       "revised_at": "2024-12-31",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": "공식제공처",
+      "source_type": "원본",
       "checked_at": "2026-09-17T08:07:26Z",
       "status": "확인 완료",
       "source_evidence": null,
@@ -6805,11 +6823,11 @@
       "originalCategory": "공제·납부",
       "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
       "tags": "P0-13 · 공제·납부",
-      "format": "공식 안내",
-      "editable": "https://www.law.go.kr/lsInfoP.do?lsiSeq=287031",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/additions/P0-13_%EC%B7%A8%EB%93%9D%EC%84%B8_%EB%82%A9%EB%B6%80%EC%84%9C.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "공식 제공처",
+      "sizeLabel": "89 KB",
       "sourceUrl": "https://www.law.go.kr/lsInfoP.do?lsiSeq=287031",
       "institution": "공식 출처 확인 중",
       "checkedOn": "2026-09-17",
@@ -6817,13 +6835,22 @@
       "licenseUrl": "",
       "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "provider",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "취득세 납부서",
+          "path": "/downloads/official-forms/additions/P0-13_%EC%B7%A8%EB%93%9D%EC%84%B8_%EB%82%A9%EB%B6%80%EC%84%9C.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 90624,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": "지방세법 시행규칙 별지 제4호서식",
       "revised_at": "2022-06-07",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": "공식제공처",
+      "source_type": "원본",
       "checked_at": "2026-09-17T08:07:26Z",
       "status": "확인 완료",
       "source_evidence": null,
@@ -6848,7 +6875,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "공식 목록에서 요청 HWP 링크 미확보: 지방세,감면,신청서",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A7%80%EB%B0%A9%EC%84%B8%ED%8A%B9%EB%A1%80%EC%A0%9C%ED%95%9C%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -6871,11 +6898,11 @@
       "originalCategory": "공제·납부",
       "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
       "tags": "P0-15 · 공제·납부",
-      "format": "공식 안내",
-      "editable": "https://www.law.go.kr/lsInfoP.do?lsiSeq=287031",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/additions/P0-15_%EC%B7%A8%EB%93%9D%EC%84%B8_%EB%B9%84%EA%B3%BC%EC%84%B8_%ED%99%95%EC%9D%B8%EC%84%9C.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "공식 제공처",
+      "sizeLabel": "32 KB",
       "sourceUrl": "https://www.law.go.kr/lsInfoP.do?lsiSeq=287031",
       "institution": "공식 출처 확인 중",
       "checkedOn": "2026-09-17",
@@ -6883,13 +6910,22 @@
       "licenseUrl": "",
       "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "provider",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "취득세 비과세 확인서",
+          "path": "/downloads/official-forms/additions/P0-15_%EC%B7%A8%EB%93%9D%EC%84%B8_%EB%B9%84%EA%B3%BC%EC%84%B8_%ED%99%95%EC%9D%B8%EC%84%9C.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 32768,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": "지방세법 시행규칙 별지 제8호서식",
       "revised_at": "2022-03-31",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": "공식제공처",
+      "source_type": "원본",
       "checked_at": "2026-09-17T08:07:27Z",
       "status": "확인 완료",
       "source_evidence": null,
@@ -6914,7 +6950,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "공식 목록에서 요청 HWP 링크 미확보: 유족연금,지급,청구서",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EB%AF%BC%EC%97%B0%EA%B8%88%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -7555,7 +7591,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -7621,7 +7657,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "공식 목록에서 요청 HWP 링크 미확보: 이전등록,신청서",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%93%B1%EB%A1%9D%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -7644,11 +7680,11 @@
       "originalCategory": "가업승계",
       "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
       "tags": "P2-01 · 가업승계",
-      "format": "공식 안내",
-      "editable": "https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/additions/P2-01_%EC%B0%BD%EC%97%85%EC%9E%90%EA%B8%88_%EC%A6%9D%EC%97%AC%EC%84%B8_%EA%B3%BC%EC%84%B8%ED%8A%B9%EB%A1%80_%EC%A0%81%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "공식 제공처",
+      "sizeLabel": "55 KB",
       "sourceUrl": "https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR",
       "institution": "공식 출처 확인 중",
       "checkedOn": "2026-09-17",
@@ -7656,13 +7692,22 @@
       "licenseUrl": "",
       "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "provider",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "창업자금 증여세 과세특례 적용신청서",
+          "path": "/downloads/official-forms/additions/P2-01_%EC%B0%BD%EC%97%85%EC%9E%90%EA%B8%88_%EC%A6%9D%EC%97%AC%EC%84%B8_%EA%B3%BC%EC%84%B8%ED%8A%B9%EB%A1%80_%EC%A0%81%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 56320,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": "조세특례제한법 시행규칙 별지 제11호의6서식",
       "revised_at": "2024-03-22",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": "공식제공처",
+      "source_type": "원본",
       "checked_at": "2026-09-17T08:07:28Z",
       "status": "확인 완료",
       "source_evidence": null,
@@ -7677,11 +7722,11 @@
       "originalCategory": "가업승계",
       "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
       "tags": "P2-02 · 가업승계",
-      "format": "공식 안내",
-      "editable": "https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/additions/P2-02_%EA%B0%80%EC%97%85%EC%8A%B9%EA%B3%84_%EC%A3%BC%EC%8B%9D_%EC%A6%9D%EC%97%AC%EC%84%B8_%EA%B3%BC%EC%84%B8%ED%8A%B9%EB%A1%80_%EC%A0%81%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "공식 제공처",
+      "sizeLabel": "71 KB",
       "sourceUrl": "https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR",
       "institution": "공식 출처 확인 중",
       "checkedOn": "2026-09-17",
@@ -7689,13 +7734,22 @@
       "licenseUrl": "",
       "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "provider",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "가업승계 주식 증여세 과세특례 적용신청서",
+          "path": "/downloads/official-forms/additions/P2-02_%EA%B0%80%EC%97%85%EC%8A%B9%EA%B3%84_%EC%A3%BC%EC%8B%9D_%EC%A6%9D%EC%97%AC%EC%84%B8_%EA%B3%BC%EC%84%B8%ED%8A%B9%EB%A1%80_%EC%A0%81%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 72192,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": "조세특례제한법 시행규칙 별지 제11호의8서식",
       "revised_at": "2024-03-22",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": "공식제공처",
+      "source_type": "원본",
       "checked_at": "2026-09-17T08:07:29Z",
       "status": "확인 완료",
       "source_evidence": null,
@@ -7720,7 +7774,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "공식 목록에서 요청 HWP 링크 미확보: 주식등변동상황명세서",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%95%EC%9D%B8%EC%84%B8%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -7743,11 +7797,11 @@
       "originalCategory": "가업승계",
       "description": "사용자 목록의 제9호와 달리 실제 공식 서식은 제11호입니다. 원문 기준으로 기록했습니다.",
       "tags": "P2-04 · 가업승계",
-      "format": "공식 안내",
-      "editable": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/additions/P2-04_%EC%82%AC%EC%97%85%EC%9E%90%EB%93%B1%EB%A1%9D_%EC%A0%95%EC%A0%95%EC%8B%A0%EA%B3%A0%EC%84%9C_%EC%83%81%EC%86%8D_%EB%8C%80%ED%91%9C%EC%9E%90_%EB%B3%80%EA%B2%BD_.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "공식 제공처",
+      "sizeLabel": "82 KB",
       "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP",
       "institution": "공식 출처 확인 중",
       "checkedOn": "2026-09-17",
@@ -7755,13 +7809,22 @@
       "licenseUrl": "",
       "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "provider",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "사업자등록 정정신고서(상속 대표자 변경)",
+          "path": "/downloads/official-forms/additions/P2-04_%EC%82%AC%EC%97%85%EC%9E%90%EB%93%B1%EB%A1%9D_%EC%A0%95%EC%A0%95%EC%8B%A0%EA%B3%A0%EC%84%9C_%EC%83%81%EC%86%8D_%EB%8C%80%ED%91%9C%EC%9E%90_%EB%B3%80%EA%B2%BD_.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 83968,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": "부가가치세법 시행규칙 별지 제11호서식",
       "revised_at": "2024-03-22",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": "공식제공처",
+      "source_type": "원본",
       "checked_at": "2026-09-17T08:07:30Z",
       "status": "확인 완료",
       "source_evidence": null,
@@ -7776,11 +7839,11 @@
       "originalCategory": "가업승계",
       "description": "공식 합본 서식은 분리·재작성하지 않고 원본 전체를 제공합니다.",
       "tags": "P2-05 · 가업승계",
-      "format": "공식 안내",
-      "editable": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/additions/P2-05_%EA%B0%80%EC%97%85%EC%83%81%EC%86%8D%EA%B3%B5%EC%A0%9C_%EC%82%AC%ED%9B%84%EA%B4%80%EB%A6%AC_%EC%9C%84%EB%B0%98_%EC%8B%A0%EA%B3%A0%EC%84%9C.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "공식 제공처",
+      "sizeLabel": "156 KB",
       "sourceUrl": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388",
       "institution": "공식 출처 확인 중",
       "checkedOn": "2026-09-17",
@@ -7788,13 +7851,22 @@
       "licenseUrl": "",
       "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "provider",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "가업상속공제 사후관리 위반 신고서",
+          "path": "/downloads/official-forms/additions/P2-05_%EA%B0%80%EC%97%85%EC%83%81%EC%86%8D%EA%B3%B5%EC%A0%9C_%EC%82%AC%ED%9B%84%EA%B4%80%EB%A6%AC_%EC%9C%84%EB%B0%98_%EC%8B%A0%EA%B3%A0%EC%84%9C.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 159744,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": "상속세 및 증여세법 시행규칙 별지 제9호서식",
       "revised_at": "2026-03-20",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": "공식제공처",
+      "source_type": "원본",
       "checked_at": "2026-09-17T08:07:31Z",
       "status": "확인 완료",
       "source_evidence": null,
@@ -7849,11 +7921,11 @@
       "originalCategory": "공제·납부",
       "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
       "tags": "P2-07 · 공제·납부",
-      "format": "공식 안내",
-      "editable": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/additions/P2-07_%EC%83%81%EC%86%8D%EC%84%B8_%EB%AC%BC%EB%82%A9_%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "공식 제공처",
+      "sizeLabel": "20 KB",
       "sourceUrl": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388",
       "institution": "공식 출처 확인 중",
       "checkedOn": "2026-09-17",
@@ -7861,13 +7933,22 @@
       "licenseUrl": "",
       "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "provider",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "상속세 물납 신청서",
+          "path": "/downloads/official-forms/additions/P2-07_%EC%83%81%EC%86%8D%EC%84%B8_%EB%AC%BC%EB%82%A9_%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 20480,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": "상속세 및 증여세법 시행규칙 별지 제13호서식",
       "revised_at": "2020-03-13",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": "공식제공처",
+      "source_type": "원본",
       "checked_at": "2026-09-17T08:07:32Z",
       "status": "확인 완료",
       "source_evidence": null,
@@ -7892,7 +7973,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "공식 목록에서 요청 HWP 링크 미확보: 납세담보,제공서",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%84%B8%EC%A7%95%EC%88%98%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -7955,11 +8036,11 @@
       "originalCategory": "불복·정정",
       "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
       "tags": "P2-10 · 불복·정정",
-      "format": "공식 안내",
-      "editable": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=279429",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/additions/P2-10_%EA%B2%BD%EC%A0%95%EC%B2%AD%EA%B5%AC%EC%84%9C.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "공식 제공처",
+      "sizeLabel": "61 KB",
       "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=279429",
       "institution": "공식 출처 확인 중",
       "checkedOn": "2026-09-17",
@@ -7967,13 +8048,22 @@
       "licenseUrl": "",
       "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "provider",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "경정청구서",
+          "path": "/downloads/official-forms/additions/P2-10_%EA%B2%BD%EC%A0%95%EC%B2%AD%EA%B5%AC%EC%84%9C.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 61952,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": "국세기본법 시행규칙 별지 제16호의2서식",
       "revised_at": "2025-03-21",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": "공식제공처",
+      "source_type": "원본",
       "checked_at": "2026-09-17T08:07:32Z",
       "status": "확인 완료",
       "source_evidence": null,
@@ -8021,11 +8111,11 @@
       "originalCategory": "불복·정정",
       "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
       "tags": "P2-12 · 불복·정정",
-      "format": "공식 안내",
-      "editable": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=279429",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/additions/P2-12_%EA%B3%BC%EC%84%B8%EC%A0%84%EC%A0%81%EB%B6%80%EC%8B%AC%EC%82%AC_%EC%B2%AD%EA%B5%AC%EC%84%9C.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "공식 제공처",
+      "sizeLabel": "51 KB",
       "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=279429",
       "institution": "공식 출처 확인 중",
       "checkedOn": "2026-09-17",
@@ -8033,13 +8123,22 @@
       "licenseUrl": "",
       "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "provider",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "과세전적부심사 청구서",
+          "path": "/downloads/official-forms/additions/P2-12_%EA%B3%BC%EC%84%B8%EC%A0%84%EC%A0%81%EB%B6%80%EC%8B%AC%EC%82%AC_%EC%B2%AD%EA%B5%AC%EC%84%9C.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 52224,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": "국세기본법 시행규칙 별지 제56호의3서식",
       "revised_at": "2024-03-22",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": "공식제공처",
+      "source_type": "원본",
       "checked_at": "2026-09-17T08:07:32Z",
       "status": "확인 완료",
       "source_evidence": null,
@@ -8054,11 +8153,11 @@
       "originalCategory": "불복·정정",
       "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
       "tags": "P2-13 · 불복·정정",
-      "format": "공식 안내",
-      "editable": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=279429",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/additions/P2-13_%EC%9D%B4%EC%9D%98%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "공식 제공처",
+      "sizeLabel": "55 KB",
       "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=279429",
       "institution": "공식 출처 확인 중",
       "checkedOn": "2026-09-17",
@@ -8066,13 +8165,22 @@
       "licenseUrl": "",
       "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "provider",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "이의신청서",
+          "path": "/downloads/official-forms/additions/P2-13_%EC%9D%B4%EC%9D%98%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 56320,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": "국세기본법 시행규칙 별지 제32호서식",
       "revised_at": "2024-03-22",
       "deadline": null,
       "deadline_basis": null,
-      "source_type": "공식제공처",
+      "source_type": "원본",
       "checked_at": "2026-09-17T08:07:33Z",
       "status": "확인 완료",
       "source_evidence": null,
@@ -8163,7 +8271,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "공식 목록에서 요청 HWP 링크 미확보: 농지취득자격증명,신청서",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%86%8D%EC%A7%80%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -8196,7 +8304,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "공식 목록에서 요청 HWP 링크 미확보: 부동산,거래계약,신고서",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -8361,7 +8469,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "공식 목록에서 요청 HWP 링크 미확보: 주택취득자금,조달,입주계획서",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -8394,7 +8502,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "공식 목록에서 요청 HWP 링크 미확보: 토지취득자금,조달계획서",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -8427,7 +8535,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "공식 목록에서 요청 HWP 링크 미확보: 부동산,해제,신고서",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -8493,7 +8601,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=168819949&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962979190>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -8514,30 +8622,51 @@
       "catalogTitle": "창업자금 증여재산평가 및 과세가액 계산명세서",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "공식 합본 안에 요청한 별지·부표가 들어 있습니다. 필요한 부표 제목을 확인해 사용하며, 원본 전체를 변경 없이 제공합니다.",
       "tags": "P5-02 · 가업승계",
-      "format": "확인 중",
-      "editable": "",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/NTS-IG-12/%EC%A6%9D%EC%97%AC%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C(%EC%B0%BD%EC%97%85%EC%9E%90%EA%B8%88%20%EB%B0%8F%20%EA%B0%80%EC%97%85%EC%8A%B9%EA%B3%84%EC%A3%BC%EC%8B%9D%20%EB%93%B1%20%ED%8A%B9%EB%A1%80%EC%84%B8%EC%9C%A8%20%EC%A0%81%EC%9A%A9%20.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "100 KB",
+      "sourceUrl": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "institution": "국가법령정보센터",
+      "checkedOn": "2026-09-17",
+      "license": "법령 별지 서식: 저작권법 제7조 제1호. 원본 무수정·출처 표시",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627371&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962800650>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "증여세과세표준신고 및 자진납부계산서(창업자금 및 가업승계주식 등 특례세율 적용 .hwp",
+          "path": "/downloads/official-forms/NTS-IG-12/%EC%A6%9D%EC%97%AC%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C(%EC%B0%BD%EC%97%85%EC%9E%90%EA%B8%88%20%EB%B0%8F%20%EA%B0%80%EC%97%85%EC%8A%B9%EA%B3%84%EC%A3%BC%EC%8B%9D%20%EB%93%B1%20%ED%8A%B9%EB%A1%80%EC%84%B8%EC%9C%A8%20%EC%A0%81%EC%9A%A9%20.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 102400,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "원본",
+      "checked_at": "2026-09-17T09:44:33Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "type": "previous_official_acquisition_and_current_byte_inspection",
+        "legacy_id": "NTS-IG-12",
+        "original_source_url": "https://law.go.kr/LSW/flDownload.do?flSeq=162626037",
+        "original_checked_at": "2026-09-17",
+        "verified_sha256": "1500f93a2c1b77b717cfca743f3565eaa14bee6cc1c67d2025e61cd93fb4b2e1",
+        "current_inspection_at": "2026-09-17T09:44:33Z",
+        "matched_annex_titles": [
+          "창업자금",
+          "증여재산평가",
+          "과세가액 계산명세서"
+        ]
+      },
       "task_id": "P5-02",
       "related_ids": []
     },
@@ -8547,30 +8676,51 @@
       "catalogTitle": "가업승계 주식 등 증여재산평가 및 과세가액 계산명세서",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "공식 합본 안에 요청한 별지·부표가 들어 있습니다. 필요한 부표 제목을 확인해 사용하며, 원본 전체를 변경 없이 제공합니다.",
       "tags": "P5-03 · 가업승계",
-      "format": "확인 중",
-      "editable": "",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/NTS-IG-12/%EC%A6%9D%EC%97%AC%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C(%EC%B0%BD%EC%97%85%EC%9E%90%EA%B8%88%20%EB%B0%8F%20%EA%B0%80%EC%97%85%EC%8A%B9%EA%B3%84%EC%A3%BC%EC%8B%9D%20%EB%93%B1%20%ED%8A%B9%EB%A1%80%EC%84%B8%EC%9C%A8%20%EC%A0%81%EC%9A%A9%20.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "100 KB",
+      "sourceUrl": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "institution": "국가법령정보센터",
+      "checkedOn": "2026-09-17",
+      "license": "법령 별지 서식: 저작권법 제7조 제1호. 원본 무수정·출처 표시",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627371&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f596296e060>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "증여세과세표준신고 및 자진납부계산서(창업자금 및 가업승계주식 등 특례세율 적용 .hwp",
+          "path": "/downloads/official-forms/NTS-IG-12/%EC%A6%9D%EC%97%AC%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C(%EC%B0%BD%EC%97%85%EC%9E%90%EA%B8%88%20%EB%B0%8F%20%EA%B0%80%EC%97%85%EC%8A%B9%EA%B3%84%EC%A3%BC%EC%8B%9D%20%EB%93%B1%20%ED%8A%B9%EB%A1%80%EC%84%B8%EC%9C%A8%20%EC%A0%81%EC%9A%A9%20.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 102400,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "원본",
+      "checked_at": "2026-09-17T09:44:33Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "type": "previous_official_acquisition_and_current_byte_inspection",
+        "legacy_id": "NTS-IG-12",
+        "original_source_url": "https://law.go.kr/LSW/flDownload.do?flSeq=162626037",
+        "original_checked_at": "2026-09-17",
+        "verified_sha256": "1500f93a2c1b77b717cfca743f3565eaa14bee6cc1c67d2025e61cd93fb4b2e1",
+        "current_inspection_at": "2026-09-17T09:44:33Z",
+        "matched_annex_titles": [
+          "가업승계",
+          "증여재산평가",
+          "과세가액 계산명세서"
+        ]
+      },
       "task_id": "P5-03",
       "related_ids": []
     },
@@ -8580,30 +8730,49 @@
       "catalogTitle": "증여재산 및 평가명세서",
       "category": "증여",
       "originalCategory": "증여",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "공식 합본 안에 요청한 별지·부표가 들어 있습니다. 필요한 부표 제목을 확인해 사용하며, 원본 전체를 변경 없이 제공합니다.",
       "tags": "P5-04 · 증여",
-      "format": "확인 중",
-      "editable": "",
+      "format": "HWP",
+      "editable": "/downloads/official-forms/NTS-IG-11/%EC%A6%9D%EC%97%AC%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C(%EA%B8%B0%EB%B3%B8%EC%84%B8%EC%9C%A8%20%EC%A0%81%EC%9A%A9%20%EC%A6%9D%EC%97%AC%EC%9E%AC%EC%82%B0%20%EC%8B%A0%EA%B3%A0%EC%9A%A9)%20%EB%93%B1%20%C2%B7%20%EC%84%9C%EC%8B%9D.hwp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "135 KB",
+      "sourceUrl": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "institution": "국가법령정보센터",
+      "checkedOn": "2026-09-17",
+      "license": "법령 별지 서식: 저작권법 제7조 제1호. 원본 무수정·출처 표시",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627345&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962978d10>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
-      "files": [],
+      "delivery": "hosted",
+      "files": [
+        {
+          "name": "증여세과세표준신고 및 자진납부계산서(기본세율 적용 증여재산 신고용) 등 · 서식.hwp",
+          "path": "/downloads/official-forms/NTS-IG-11/%EC%A6%9D%EC%97%AC%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C(%EA%B8%B0%EB%B3%B8%EC%84%B8%EC%9C%A8%20%EC%A0%81%EC%9A%A9%20%EC%A6%9D%EC%97%AC%EC%9E%AC%EC%82%B0%20%EC%8B%A0%EA%B3%A0%EC%9A%A9)%20%EB%93%B1%20%C2%B7%20%EC%84%9C%EC%8B%9D.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 137728,
+          "delivery": "hosted"
+        }
+      ],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "원본",
+      "checked_at": "2026-09-17T09:44:34Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "type": "previous_official_acquisition_and_current_byte_inspection",
+        "legacy_id": "NTS-IG-11",
+        "original_source_url": "https://law.go.kr/LSW/flDownload.do?flSeq=162626011",
+        "original_checked_at": "2026-09-17",
+        "verified_sha256": "00a340234b0363b7e93dbc5d59b54e64c34792f4df74d3208df6feb29b67a78c",
+        "current_inspection_at": "2026-09-17T09:44:34Z",
+        "matched_annex_titles": [
+          "증여재산 및 평가명세서"
+        ]
+      },
       "task_id": "P5-04",
       "related_ids": []
     },
@@ -8625,7 +8794,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627307&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962801a90>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "verification": "기존 공식 합본의 실제 본문에서 요청한 부표를 확인하지 못했습니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -8691,7 +8860,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627633&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962967440>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -8778,30 +8947,40 @@
       "catalogTitle": "휴면예금·미청구 보험금 조회",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "휴면예금·보험금 조회와 상속인의 지급 신청 안내입니다. 다른 기관의 전체 미청구 보험금 조회와 범위가 같다고 가정하지 않습니다.",
       "tags": "P6-02 · 재산조회",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://mmc.kinfa.or.kr/view/dmt/KFA_DMT_01010000",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://mmc.kinfa.or.kr/view/dmt/KFA_DMT_01010000",
+      "institution": "서민금융진흥원",
+      "checkedOn": "2026-09-17",
+      "license": "공식 제공처 링크 · 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-17T09:50:17Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "url": "https://mmc.kinfa.or.kr/view/dmt/KFA_DMT_01010000",
+        "http_status": 200,
+        "checked_at": "2026-09-17T09:50:17Z",
+        "body_sha256": "e36b2f2bb2fabe747cfe0a101e9deac6ecabdbca0b64c95708fbd26a69627024",
+        "verified_terms": [
+          "휴면예금",
+          "보험금",
+          "상속인"
+        ]
+      },
       "task_id": "P6-02",
       "related_ids": []
     },
@@ -8955,7 +9134,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.geps.or.kr/cusEngagement_variousForms?upperCodeId=BBS_CATE_variousForms_1\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -8976,30 +9155,40 @@
       "catalogTitle": "사학연금 유족급여 청구서",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "재직 중 발생한 유족급여의 제203호 퇴직유족급여·퇴직수당 청구서와 청구 방법을 안내합니다. 퇴직 후 사망 사례는 해당 수급자 절차를 추가 확인하세요.",
       "tags": "P7-02 · 재산조회",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://www.tp.or.kr/tp-kr/cntnts/i-219/web.do",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://www.tp.or.kr/tp-kr/cntnts/i-219/web.do",
+      "institution": "사립학교교직원연금공단",
+      "checkedOn": "2026-09-17",
+      "license": "공식 제공처 링크 · 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-17T09:50:47Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "url": "https://www.tp.or.kr/tp-kr/cntnts/i-219/web.do",
+        "http_status": 200,
+        "checked_at": "2026-09-17T09:50:47Z",
+        "body_sha256": "8c02cca7e4665dc5fc5044ec38ce303e4ed09234bd562b02af904b408d738103",
+        "verified_terms": [
+          "유족급여",
+          "제203호",
+          "청구서"
+        ]
+      },
       "task_id": "P7-02",
       "related_ids": []
     },
@@ -9021,7 +9210,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.mps.mil.kr/info/deceIncmAplcForm.do\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9075,30 +9264,40 @@
       "catalogTitle": "건설근로자 퇴직공제금 청구",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "사망한 건설근로자의 퇴직공제금을 청구할 유족 순위와 준비서류·청구 방법을 안내합니다.",
       "tags": "P7-05 · 재산조회",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://eum.cw.or.kr/web/fir/WEBFIR090M00",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://eum.cw.or.kr/web/fir/WEBFIR090M00",
+      "institution": "건설근로자공제회",
+      "checkedOn": "2026-09-17",
+      "license": "공식 제공처 링크 · 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-17T09:51:15Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "url": "https://eum.cw.or.kr/web/fir/WEBFIR090M00",
+        "http_status": 200,
+        "checked_at": "2026-09-17T09:51:15Z",
+        "body_sha256": "2a4c0b167ae2d13ec5a4f38f11a7b969c5f019355b67118568bca0619253a587",
+        "verified_terms": [
+          "사망자 퇴직공제금",
+          "청구",
+          "유족"
+        ]
+      },
       "task_id": "P7-05",
       "related_ids": []
     },
@@ -9120,7 +9319,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 제공처 확인 실패: 응답 본문에서 요청 서식·절차 존재를 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9351,7 +9550,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9384,7 +9583,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9417,7 +9616,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9450,7 +9649,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9483,7 +9682,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='egdrs.scourt.go.kr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='egdrs.scourt.go.kr', port=443) at 0x7f596296eb40>, 'Connection to egdrs.scourt.go.kr timed out. (connect timeout=9)'))",
+      "verification": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://egdrs.scourt.go.kr/\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9516,7 +9715,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=164920533&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f59629674a0>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?lsiSeq=287031\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9615,7 +9814,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /LSW/flDownload.do?gubun=&flSeq=162619109&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f59629794f0>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9747,7 +9946,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "공식 목록에서 요청 HWP 링크 미확보: 해외금융계좌,신고서",
+      "verification": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%A0%9C%EC%A1%B0%EC%84%B8%EC%A1%B0%EC%A0%95%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%A0%9C%EC%A1%B0%EC%84%B8%EC%A1%B0%EC%A0%95%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9813,7 +10012,7 @@
       "checkedOn": "2026-09-17",
       "license": "공식 제공처 링크 · 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
+      "verification": "실제 공식 출처·서식 확인 대기",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "provider",
       "files": [],
@@ -9976,12 +10175,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='efamily.scourt.go.kr', port=443): Max retries exceeded with url: /cs/CsBltnWrtGuide.do?bltnbordId=0000008&guideCd=0000008006&guideYn=Y (Caused by ConnectTimeoutError(<HTTPSConnection(host='efamily.scourt.go.kr', port=443) at 0x7f596296ede0>, 'Connection to efamily.scourt.go.kr timed out. (connect timeout=9)'))",
+      "failure_reason": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:31:41Z",
           "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000008&guideCd=0000008006&guideYn=Y",
           "result": "HTTPSConnectionPool(host='efamily.scourt.go.kr', port=443): Max retries exceeded with url: /cs/CsBltnWrtGuide.do?bltnbordId=0000008&guideCd=0000008006&guideYn=Y (Caused by ConnectTimeoutError(<HTTPSConnection(host='efamily.scourt.go.kr', port=443) at 0x7f596296ede0>, 'Connection to efamily.scourt.go.kr timed out. (connect timeout=9)'))"
+        },
+        {
+          "checked_at": "2026-09-17T09:51:45Z",
+          "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005",
+          "result": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -10002,12 +10206,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='efamily.scourt.go.kr', port=443): Max retries exceeded with url: /cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y (Caused by ConnectTimeoutError(<HTTPSConnection(host='efamily.scourt.go.kr', port=443) at 0x7f596296cfe0>, 'Connection to efamily.scourt.go.kr timed out. (connect timeout=9)'))",
+      "failure_reason": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:31:41Z",
           "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y",
           "result": "HTTPSConnectionPool(host='efamily.scourt.go.kr', port=443): Max retries exceeded with url: /cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y (Caused by ConnectTimeoutError(<HTTPSConnection(host='efamily.scourt.go.kr', port=443) at 0x7f596296cfe0>, 'Connection to efamily.scourt.go.kr timed out. (connect timeout=9)'))"
+        },
+        {
+          "checked_at": "2026-09-17T09:52:07Z",
+          "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y",
+          "result": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -10111,7 +10320,8 @@
           "sha256": "69dc0d28ec59e548c792b6dc077aac0e875c2ee080829c45e522a378d262b279",
           "format": "hwp",
           "title_verified": true,
-          "http_status": 200
+          "http_status": 200,
+          "local_url": "/downloads/official-forms/additions/P0-11_%EC%B7%A8%EB%93%9D%EC%84%B8_%EA%B8%B0%ED%95%9C%EB%82%B4_%EA%B8%B0%ED%95%9C%ED%9B%84__%EC%8B%A0%EA%B3%A0%EC%84%9C.hwp"
         }
       ],
       "observed_title": "[별지 제3호서식] 취득세(기한 내, 기한 후)신고서, 주택 (무상, 유상거래) 취득 상세 명세서 .hwp",
@@ -10142,7 +10352,8 @@
           "sha256": "69dc0d28ec59e548c792b6dc077aac0e875c2ee080829c45e522a378d262b279",
           "format": "hwp",
           "title_verified": true,
-          "http_status": 200
+          "http_status": 200,
+          "local_url": "/downloads/official-forms/additions/P0-12_%EC%A3%BC%ED%83%9D_%EB%AC%B4%EC%83%81_%EC%9C%A0%EC%83%81%EA%B1%B0%EB%9E%98__%EC%B7%A8%EB%93%9D_%EC%83%81%EC%84%B8_%EB%AA%85%EC%84%B8%EC%84%9C.hwp"
         }
       ],
       "observed_title": "[별지 제3호서식] 취득세(기한 내, 기한 후)신고서, 주택 (무상, 유상거래) 취득 상세 명세서 .hwp",
@@ -10173,7 +10384,8 @@
           "sha256": "7eafa2e5e809e15eeb745607c1d26cf271f50ef7ada178d511cbbf03ab9428f5",
           "format": "hwp",
           "title_verified": true,
-          "http_status": 200
+          "http_status": 200,
+          "local_url": "/downloads/official-forms/additions/P0-13_%EC%B7%A8%EB%93%9D%EC%84%B8_%EB%82%A9%EB%B6%80%EC%84%9C.hwp"
         }
       ],
       "observed_title": "[별지 제4호서식] 취득세 납부서 납세자 보관용 영수증 .hwp",
@@ -10197,12 +10409,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "공식 목록에서 요청 HWP 링크 미확보: 지방세,감면,신청서",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A7%80%EB%B0%A9%EC%84%B8%ED%8A%B9%EB%A1%80%EC%A0%9C%ED%95%9C%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:53Z",
           "url": "https://www.law.go.kr/법령/지방세특례제한법시행규칙",
           "result": "공식 목록에서 요청 HWP 링크 미확보: 지방세,감면,신청서"
+        },
+        {
+          "checked_at": "2026-09-17T09:44:57Z",
+          "url": "https://www.law.go.kr/법령/지방세특례제한법시행규칙",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%A7%80%EB%B0%A9%EC%84%B8%ED%8A%B9%EB%A1%80%EC%A0%9C%ED%95%9C%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -10230,7 +10447,8 @@
           "sha256": "843d9d26746f9a7a17f9349552a907ff5c49c9c555bb316cc42d6e9c844c5f65",
           "format": "hwp",
           "title_verified": true,
-          "http_status": 200
+          "http_status": 200,
+          "local_url": "/downloads/official-forms/additions/P0-15_%EC%B7%A8%EB%93%9D%EC%84%B8_%EB%B9%84%EA%B3%BC%EC%84%B8_%ED%99%95%EC%9D%B8%EC%84%9C.hwp"
         }
       ],
       "observed_title": "[별지 제8호서식] 취득세(등록면허세) 비과세(감면) 확인서 .hwp",
@@ -10254,12 +10472,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "공식 목록에서 요청 HWP 링크 미확보: 유족연금,지급,청구서",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EB%AF%BC%EC%97%B0%EA%B8%88%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:53Z",
           "url": "https://www.law.go.kr/법령/국민연금법시행규칙",
           "result": "공식 목록에서 요청 HWP 링크 미확보: 유족연금,지급,청구서"
+        },
+        {
+          "checked_at": "2026-09-17T09:45:19Z",
+          "url": "https://www.law.go.kr/법령/국민연금법시행규칙",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EB%AF%BC%EC%97%B0%EA%B8%88%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -10701,7 +10924,14 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n",
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T09:48:39Z",
+          "url": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
+          "result": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n"
+        }
+      ]
     },
     {
       "id": "P1-23",
@@ -10739,12 +10969,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "공식 목록에서 요청 HWP 링크 미확보: 이전등록,신청서",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%93%B1%EB%A1%9D%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:53Z",
           "url": "https://www.law.go.kr/법령/자동차등록규칙",
           "result": "공식 목록에서 요청 HWP 링크 미확보: 이전등록,신청서"
+        },
+        {
+          "checked_at": "2026-09-17T09:45:41Z",
+          "url": "https://www.law.go.kr/법령/자동차등록규칙",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%93%B1%EB%A1%9D%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -10772,7 +11007,8 @@
           "sha256": "6c7a1a519118c264ef6c42c345af2e09480fbfeb838fb9f8502b755afbc16505",
           "format": "hwp",
           "title_verified": true,
-          "http_status": 200
+          "http_status": 200,
+          "local_url": "/downloads/official-forms/additions/P2-01_%EC%B0%BD%EC%97%85%EC%9E%90%EA%B8%88_%EC%A6%9D%EC%97%AC%EC%84%B8_%EA%B3%BC%EC%84%B8%ED%8A%B9%EB%A1%80_%EC%A0%81%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp"
         }
       ],
       "observed_title": "[별지 제11호의6서식] 창업자금(특례신청서, 사용내역서), 신규 고용명세서 .hwp",
@@ -10803,7 +11039,8 @@
           "sha256": "4bf5601ed40651cd669795c790d6ae4a6b3132985d30a716383390a465f1c6e5",
           "format": "hwp",
           "title_verified": true,
-          "http_status": 200
+          "http_status": 200,
+          "local_url": "/downloads/official-forms/additions/P2-02_%EA%B0%80%EC%97%85%EC%8A%B9%EA%B3%84_%EC%A3%BC%EC%8B%9D_%EC%A6%9D%EC%97%AC%EC%84%B8_%EA%B3%BC%EC%84%B8%ED%8A%B9%EB%A1%80_%EC%A0%81%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp"
         }
       ],
       "observed_title": "[별지 제11호의8서식] 가업승계 주식 등 증여세 과세특례 적용신청서 .hwp",
@@ -10827,12 +11064,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "공식 목록에서 요청 HWP 링크 미확보: 주식등변동상황명세서",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%95%EC%9D%B8%EC%84%B8%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:53Z",
           "url": "https://www.law.go.kr/법령/법인세법시행규칙",
           "result": "공식 목록에서 요청 HWP 링크 미확보: 주식등변동상황명세서"
+        },
+        {
+          "checked_at": "2026-09-17T09:46:03Z",
+          "url": "https://www.law.go.kr/법령/법인세법시행규칙",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%B2%95%EC%9D%B8%EC%84%B8%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -10860,7 +11102,8 @@
           "sha256": "d9ec3f3e7d958c206ab9cdb9e4aece3c9c62186694861780079cba25d3da45dc",
           "format": "hwp",
           "title_verified": true,
-          "http_status": 200
+          "http_status": 200,
+          "local_url": "/downloads/official-forms/additions/P2-04_%EC%82%AC%EC%97%85%EC%9E%90%EB%93%B1%EB%A1%9D_%EC%A0%95%EC%A0%95%EC%8B%A0%EA%B3%A0%EC%84%9C_%EC%83%81%EC%86%8D_%EB%8C%80%ED%91%9C%EC%9E%90_%EB%B3%80%EA%B2%BD_.hwp"
         }
       ],
       "observed_title": "[별지 제11호서식] 사업자등록 정정신고서, 법인이 아닌 단체의 고유번호 정정신고서, 사업자 단위 과세 사업자의 종된 사업장 정정신고서 (개인사업자용), 사업자 단위 과세 사업자의 종된 사업장 정정신고서 (법인사업자용) .hwp",
@@ -10891,7 +11134,8 @@
           "sha256": "a30d4e7899829018f4b98386c83b88083e5c68d2b798c007b0e1d5a2b417c1c2",
           "format": "hwp",
           "title_verified": true,
-          "http_status": 200
+          "http_status": 200,
+          "local_url": "/downloads/official-forms/additions/P2-05_%EA%B0%80%EC%97%85%EC%83%81%EC%86%8D%EA%B3%B5%EC%A0%9C_%EC%82%AC%ED%9B%84%EA%B4%80%EB%A6%AC_%EC%9C%84%EB%B0%98_%EC%8B%A0%EA%B3%A0%EC%84%9C.hwp"
         }
       ],
       "observed_title": "[별지 제9호서식] 상속세과세표준신고 및 자진납부계산서, 상속세과세가액계산명세서, 상속인별 상속재산 및 평가명세서, 채무ㆍ공과금ㆍ장례비용 및 상속공제명세서, 배우자 상속공제 명세서, 상속개시전 1(2)년 이내 처분재산ㆍ채무부담내역 및 사용처소명명세서 (갑), 상속개시전 1(2)년 이내 처분재산ㆍ채무부담내역 및 사용처소명명세서 (을), 영리법인 상속세 면제 및 납부 명세서, 가업(영농)상속공제 사후관리추징사유 신고 및 자진납부 계산서, 가업상속 납부유예 사후관리추징사유 신고 및 자진납부 계산서, 서화ㆍ골동품 등 상속재산 명세서 .hwp",
@@ -10951,7 +11195,8 @@
           "sha256": "e30a121bb95fa7309c2f8849a5458c11b884c1364b37fce14602185d4dbf132b",
           "format": "hwp",
           "title_verified": true,
-          "http_status": 200
+          "http_status": 200,
+          "local_url": "/downloads/official-forms/additions/P2-07_%EC%83%81%EC%86%8D%EC%84%B8_%EB%AC%BC%EB%82%A9_%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp"
         }
       ],
       "observed_title": "[별지 제13호서식] 상속세 물납(변경, 철회)신청서 .hwp",
@@ -10975,12 +11220,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "공식 목록에서 요청 HWP 링크 미확보: 납세담보,제공서",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%84%B8%EC%A7%95%EC%88%98%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:53Z",
           "url": "https://www.law.go.kr/법령/국세징수법시행규칙",
           "result": "공식 목록에서 요청 HWP 링크 미확보: 납세담보,제공서"
+        },
+        {
+          "checked_at": "2026-09-17T09:46:25Z",
+          "url": "https://www.law.go.kr/법령/국세징수법시행규칙",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%84%B8%EC%A7%95%EC%88%98%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -11037,7 +11287,8 @@
           "sha256": "b71d9493480140a8d773f34f367cee153b2aaba7ad4d831fdf310bea2ae3db14",
           "format": "hwp",
           "title_verified": true,
-          "http_status": 200
+          "http_status": 200,
+          "local_url": "/downloads/official-forms/additions/P2-10_%EA%B2%BD%EC%A0%95%EC%B2%AD%EA%B5%AC%EC%84%9C.hwp"
         }
       ],
       "observed_title": "[별지 제16호의2서식] 과세표준 및 세액의 결정(경정)청구서[「국세기본법」 제45조의2 또는 「소득세법」 제118조의15에 따른 결정(경정) 청구], 과세표준 및 세액의 경정청구서(「국제조세조정에 관한 법률」 제6조에 따른 경정청구) .hwp",
@@ -11087,7 +11338,8 @@
           "sha256": "36e16ccc784e2a5d512a7a27a6d0f881256a3bb5fc89a45460e3afbc4fe56740",
           "format": "hwp",
           "title_verified": true,
-          "http_status": 200
+          "http_status": 200,
+          "local_url": "/downloads/official-forms/additions/P2-12_%EA%B3%BC%EC%84%B8%EC%A0%84%EC%A0%81%EB%B6%80%EC%8B%AC%EC%82%AC_%EC%B2%AD%EA%B5%AC%EC%84%9C.hwp"
         }
       ],
       "observed_title": "[별지 제56호의3서식] 과세전적부심사청구서 .hwp",
@@ -11118,7 +11370,8 @@
           "sha256": "ae84cfd8a275ad0d00bf599b03d25e35a7796c2b4d1e031c3236d9cb23a346af",
           "format": "hwp",
           "title_verified": true,
-          "http_status": 200
+          "http_status": 200,
+          "local_url": "/downloads/official-forms/additions/P2-13_%EC%9D%B4%EC%9D%98%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp"
         }
       ],
       "observed_title": "[별지 제32호서식] 이의신청서 .hwp",
@@ -11180,12 +11433,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "공식 목록에서 요청 HWP 링크 미확보: 농지취득자격증명,신청서",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%86%8D%EC%A7%80%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:53Z",
           "url": "https://www.law.go.kr/법령/농지법시행규칙",
           "result": "공식 목록에서 요청 HWP 링크 미확보: 농지취득자격증명,신청서"
+        },
+        {
+          "checked_at": "2026-09-17T09:46:47Z",
+          "url": "https://www.law.go.kr/법령/농지법시행규칙",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EB%86%8D%EC%A7%80%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -11206,12 +11464,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "공식 목록에서 요청 HWP 링크 미확보: 부동산,거래계약,신고서",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:53Z",
           "url": "https://www.law.go.kr/법령/부동산거래신고등에관한법률시행규칙",
           "result": "공식 목록에서 요청 HWP 링크 미확보: 부동산,거래계약,신고서"
+        },
+        {
+          "checked_at": "2026-09-17T09:46:56Z",
+          "url": "https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -11308,12 +11571,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "공식 목록에서 요청 HWP 링크 미확보: 주택취득자금,조달,입주계획서",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:53Z",
           "url": "https://www.law.go.kr/법령/부동산거래신고등에관한법률시행규칙",
           "result": "공식 목록에서 요청 HWP 링크 미확보: 주택취득자금,조달,입주계획서"
+        },
+        {
+          "checked_at": "2026-09-17T09:46:56Z",
+          "url": "https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -11334,12 +11602,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "공식 목록에서 요청 HWP 링크 미확보: 토지취득자금,조달계획서",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:53Z",
           "url": "https://www.law.go.kr/법령/부동산거래신고등에관한법률시행규칙",
           "result": "공식 목록에서 요청 HWP 링크 미확보: 토지취득자금,조달계획서"
+        },
+        {
+          "checked_at": "2026-09-17T09:46:56Z",
+          "url": "https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -11379,12 +11652,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "공식 목록에서 요청 HWP 링크 미확보: 부동산,해제,신고서",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:29:54Z",
           "url": "https://www.law.go.kr/법령/부동산거래신고등에관한법률시행규칙",
           "result": "공식 목록에서 요청 HWP 링크 미확보: 부동산,해제,신고서"
+        },
+        {
+          "checked_at": "2026-09-17T09:46:56Z",
+          "url": "https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW//lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260210&lsiSeq=283339&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -11424,12 +11702,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=168819949&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962979190>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:30:07Z",
           "url": "https://www.law.go.kr/법령/조세특례제한법시행규칙",
           "result": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=168819949&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962979190>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))"
+        },
+        {
+          "checked_at": "2026-09-17T09:47:12Z",
+          "url": "https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?lsiSeq=286381&viewCls=lsRvsDocInfoR\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -11440,24 +11723,54 @@
       "required_original": true,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "checked_at": "2026-09-17T09:44:33Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
-      "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627371&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962800650>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "license": "법령 별지 서식: 저작권법 제7조 제1호. 원본 무수정·출처 표시",
+      "source_type": "원본",
+      "files": [
+        {
+          "name": "증여세과세표준신고 및 자진납부계산서(창업자금 및 가업승계주식 등 특례세율 적용 .hwp",
+          "url": "https://law.go.kr/LSW/flDownload.do?flSeq=162626037",
+          "path": "public/downloads/official-forms/NTS-IG-12/증여세과세표준신고 및 자진납부계산서(창업자금 및 가업승계주식 등 특례세율 적용 .hwp",
+          "local_url": "/downloads/official-forms/NTS-IG-12/%EC%A6%9D%EC%97%AC%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C(%EC%B0%BD%EC%97%85%EC%9E%90%EA%B8%88%20%EB%B0%8F%20%EA%B0%80%EC%97%85%EC%8A%B9%EA%B3%84%EC%A3%BC%EC%8B%9D%20%EB%93%B1%20%ED%8A%B9%EB%A1%80%EC%84%B8%EC%9C%A8%20%EC%A0%81%EC%9A%A9%20.hwp",
+          "bytes": 102400,
+          "sha256": "1500f93a2c1b77b717cfca743f3565eaa14bee6cc1c67d2025e61cd93fb4b2e1",
+          "format": "hwp",
+          "http_status": 200,
+          "title_verified": true,
+          "checked_at": "2026-09-17",
+          "reused_from": "NTS-IG-12",
+          "acquisition_note": "기존 공식 다운로드 원본을 재검수해 재사용. 이 기록은 이번 접속 성공을 주장하지 않습니다."
+        }
+      ],
       "attempts": [
         {
           "checked_at": "2026-09-17T09:30:21Z",
           "url": "https://www.law.go.kr/법령/상속세및증여세법시행규칙",
           "result": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627371&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962800650>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))"
         }
-      ]
+      ],
+      "reused_from": "NTS-IG-12",
+      "institution": "국가법령정보센터",
+      "source_evidence": {
+        "type": "previous_official_acquisition_and_current_byte_inspection",
+        "legacy_id": "NTS-IG-12",
+        "original_source_url": "https://law.go.kr/LSW/flDownload.do?flSeq=162626037",
+        "original_checked_at": "2026-09-17",
+        "verified_sha256": "1500f93a2c1b77b717cfca743f3565eaa14bee6cc1c67d2025e61cd93fb4b2e1",
+        "current_inspection_at": "2026-09-17T09:44:33Z",
+        "matched_annex_titles": [
+          "창업자금",
+          "증여재산평가",
+          "과세가액 계산명세서"
+        ]
+      },
+      "note": "공식 합본 안에 요청한 별지·부표가 들어 있습니다. 필요한 부표 제목을 확인해 사용하며, 원본 전체를 변경 없이 제공합니다."
     },
     {
       "id": "P5-03",
@@ -11466,24 +11779,54 @@
       "required_original": true,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "checked_at": "2026-09-17T09:44:33Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
-      "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627371&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f596296e060>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "license": "법령 별지 서식: 저작권법 제7조 제1호. 원본 무수정·출처 표시",
+      "source_type": "원본",
+      "files": [
+        {
+          "name": "증여세과세표준신고 및 자진납부계산서(창업자금 및 가업승계주식 등 특례세율 적용 .hwp",
+          "url": "https://law.go.kr/LSW/flDownload.do?flSeq=162626037",
+          "path": "public/downloads/official-forms/NTS-IG-12/증여세과세표준신고 및 자진납부계산서(창업자금 및 가업승계주식 등 특례세율 적용 .hwp",
+          "local_url": "/downloads/official-forms/NTS-IG-12/%EC%A6%9D%EC%97%AC%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C(%EC%B0%BD%EC%97%85%EC%9E%90%EA%B8%88%20%EB%B0%8F%20%EA%B0%80%EC%97%85%EC%8A%B9%EA%B3%84%EC%A3%BC%EC%8B%9D%20%EB%93%B1%20%ED%8A%B9%EB%A1%80%EC%84%B8%EC%9C%A8%20%EC%A0%81%EC%9A%A9%20.hwp",
+          "bytes": 102400,
+          "sha256": "1500f93a2c1b77b717cfca743f3565eaa14bee6cc1c67d2025e61cd93fb4b2e1",
+          "format": "hwp",
+          "http_status": 200,
+          "title_verified": true,
+          "checked_at": "2026-09-17",
+          "reused_from": "NTS-IG-12",
+          "acquisition_note": "기존 공식 다운로드 원본을 재검수해 재사용. 이 기록은 이번 접속 성공을 주장하지 않습니다."
+        }
+      ],
       "attempts": [
         {
           "checked_at": "2026-09-17T09:30:36Z",
           "url": "https://www.law.go.kr/법령/상속세및증여세법시행규칙",
           "result": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627371&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f596296e060>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))"
         }
-      ]
+      ],
+      "reused_from": "NTS-IG-12",
+      "institution": "국가법령정보센터",
+      "source_evidence": {
+        "type": "previous_official_acquisition_and_current_byte_inspection",
+        "legacy_id": "NTS-IG-12",
+        "original_source_url": "https://law.go.kr/LSW/flDownload.do?flSeq=162626037",
+        "original_checked_at": "2026-09-17",
+        "verified_sha256": "1500f93a2c1b77b717cfca743f3565eaa14bee6cc1c67d2025e61cd93fb4b2e1",
+        "current_inspection_at": "2026-09-17T09:44:33Z",
+        "matched_annex_titles": [
+          "가업승계",
+          "증여재산평가",
+          "과세가액 계산명세서"
+        ]
+      },
+      "note": "공식 합본 안에 요청한 별지·부표가 들어 있습니다. 필요한 부표 제목을 확인해 사용하며, 원본 전체를 변경 없이 제공합니다."
     },
     {
       "id": "P5-04",
@@ -11492,24 +11835,52 @@
       "required_original": true,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "checked_at": "2026-09-17T09:44:34Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
-      "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627345&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962978d10>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "license": "법령 별지 서식: 저작권법 제7조 제1호. 원본 무수정·출처 표시",
+      "source_type": "원본",
+      "files": [
+        {
+          "name": "증여세과세표준신고 및 자진납부계산서(기본세율 적용 증여재산 신고용) 등 · 서식.hwp",
+          "url": "https://law.go.kr/LSW/flDownload.do?flSeq=162626011",
+          "path": "public/downloads/official-forms/NTS-IG-11/증여세과세표준신고 및 자진납부계산서(기본세율 적용 증여재산 신고용) 등 · 서식.hwp",
+          "local_url": "/downloads/official-forms/NTS-IG-11/%EC%A6%9D%EC%97%AC%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C(%EA%B8%B0%EB%B3%B8%EC%84%B8%EC%9C%A8%20%EC%A0%81%EC%9A%A9%20%EC%A6%9D%EC%97%AC%EC%9E%AC%EC%82%B0%20%EC%8B%A0%EA%B3%A0%EC%9A%A9)%20%EB%93%B1%20%C2%B7%20%EC%84%9C%EC%8B%9D.hwp",
+          "bytes": 137728,
+          "sha256": "00a340234b0363b7e93dbc5d59b54e64c34792f4df74d3208df6feb29b67a78c",
+          "format": "hwp",
+          "http_status": 200,
+          "title_verified": true,
+          "checked_at": "2026-09-17",
+          "reused_from": "NTS-IG-11",
+          "acquisition_note": "기존 공식 다운로드 원본을 재검수해 재사용. 이 기록은 이번 접속 성공을 주장하지 않습니다."
+        }
+      ],
       "attempts": [
         {
           "checked_at": "2026-09-17T09:30:45Z",
           "url": "https://www.law.go.kr/법령/상속세및증여세법시행규칙",
           "result": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627345&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962978d10>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))"
         }
-      ]
+      ],
+      "reused_from": "NTS-IG-11",
+      "institution": "국가법령정보센터",
+      "source_evidence": {
+        "type": "previous_official_acquisition_and_current_byte_inspection",
+        "legacy_id": "NTS-IG-11",
+        "original_source_url": "https://law.go.kr/LSW/flDownload.do?flSeq=162626011",
+        "original_checked_at": "2026-09-17",
+        "verified_sha256": "00a340234b0363b7e93dbc5d59b54e64c34792f4df74d3208df6feb29b67a78c",
+        "current_inspection_at": "2026-09-17T09:44:34Z",
+        "matched_annex_titles": [
+          "증여재산 및 평가명세서"
+        ]
+      },
+      "note": "공식 합본 안에 요청한 별지·부표가 들어 있습니다. 필요한 부표 제목을 확인해 사용하며, 원본 전체를 변경 없이 제공합니다."
     },
     {
       "id": "P5-05",
@@ -11528,12 +11899,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627307&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962801a90>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "failure_reason": "기존 공식 합본의 실제 본문에서 요청한 부표를 확인하지 못했습니다.",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:30:54Z",
           "url": "https://www.law.go.kr/법령/상속세및증여세법시행규칙",
           "result": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627307&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962801a90>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))"
+        },
+        {
+          "checked_at": "2026-09-17T09:44:34Z",
+          "url": null,
+          "result": "기존 공식 합본의 실제 본문에서 요청한 부표를 확인하지 못했습니다."
         }
       ]
     },
@@ -11573,12 +11949,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627633&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962967440>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:31:03Z",
           "url": "https://www.law.go.kr/법령/상속세및증여세법시행규칙",
           "result": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627633&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f5962967440>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))"
+        },
+        {
+          "checked_at": "2026-09-17T09:47:32Z",
+          "url": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -11627,17 +12008,29 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://mmc.kinfa.or.kr/view/dmt/KFA_DMT_01010000",
+      "checked_at": "2026-09-17T09:50:17Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 제공처 링크 · 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "institution": "서민금융진흥원",
+      "source_evidence": {
+        "url": "https://mmc.kinfa.or.kr/view/dmt/KFA_DMT_01010000",
+        "http_status": 200,
+        "checked_at": "2026-09-17T09:50:17Z",
+        "body_sha256": "e36b2f2bb2fabe747cfe0a101e9deac6ecabdbca0b64c95708fbd26a69627024",
+        "verified_terms": [
+          "휴면예금",
+          "보험금",
+          "상속인"
+        ]
+      },
+      "note": "휴면예금·보험금 조회와 상속인의 지급 신청 안내입니다. 다른 기관의 전체 미청구 보험금 조회와 범위가 같다고 가정하지 않습니다."
     },
     {
       "id": "P6-03",
@@ -11732,7 +12125,14 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.geps.or.kr/cusEngagement_variousForms?upperCodeId=BBS_CATE_variousForms_1\", waiting until \"domcontentloaded\"\n",
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T09:50:39Z",
+          "url": "https://www.geps.or.kr/cusEngagement_variousForms?upperCodeId=BBS_CATE_variousForms_1",
+          "result": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.geps.or.kr/cusEngagement_variousForms?upperCodeId=BBS_CATE_variousForms_1\", waiting until \"domcontentloaded\"\n"
+        }
+      ]
     },
     {
       "id": "P7-02",
@@ -11741,17 +12141,29 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.tp.or.kr/tp-kr/cntnts/i-219/web.do",
+      "checked_at": "2026-09-17T09:50:47Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 제공처 링크 · 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "institution": "사립학교교직원연금공단",
+      "source_evidence": {
+        "url": "https://www.tp.or.kr/tp-kr/cntnts/i-219/web.do",
+        "http_status": 200,
+        "checked_at": "2026-09-17T09:50:47Z",
+        "body_sha256": "8c02cca7e4665dc5fc5044ec38ce303e4ed09234bd562b02af904b408d738103",
+        "verified_terms": [
+          "유족급여",
+          "제203호",
+          "청구서"
+        ]
+      },
+      "note": "재직 중 발생한 유족급여의 제203호 퇴직유족급여·퇴직수당 청구서와 청구 방법을 안내합니다. 퇴직 후 사망 사례는 해당 수급자 절차를 추가 확인하세요."
     },
     {
       "id": "P7-03",
@@ -11770,7 +12182,14 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.mps.mil.kr/info/deceIncmAplcForm.do\", waiting until \"domcontentloaded\"\n",
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T09:51:09Z",
+          "url": "https://www.mps.mil.kr/info/deceIncmAplcForm.do",
+          "result": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.mps.mil.kr/info/deceIncmAplcForm.do\", waiting until \"domcontentloaded\"\n"
+        }
+      ]
     },
     {
       "id": "P7-04",
@@ -11798,17 +12217,29 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://eum.cw.or.kr/web/fir/WEBFIR090M00",
+      "checked_at": "2026-09-17T09:51:15Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 제공처 링크 · 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "institution": "건설근로자공제회",
+      "source_evidence": {
+        "url": "https://eum.cw.or.kr/web/fir/WEBFIR090M00",
+        "http_status": 200,
+        "checked_at": "2026-09-17T09:51:15Z",
+        "body_sha256": "2a4c0b167ae2d13ec5a4f38f11a7b969c5f019355b67118568bca0619253a587",
+        "verified_terms": [
+          "사망자 퇴직공제금",
+          "청구",
+          "유족"
+        ]
+      },
+      "note": "사망한 건설근로자의 퇴직공제금을 청구할 유족 순위와 준비서류·청구 방법을 안내합니다."
     },
     {
       "id": "P7-06",
@@ -11827,7 +12258,14 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 제공처 확인 실패: 응답 본문에서 요청 서식·절차 존재를 확인하지 못함",
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T09:51:23Z",
+          "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
+          "result": "공식 제공처 확인 실패: 응답 본문에서 요청 서식·절차 존재를 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P7-07",
@@ -11998,7 +12436,14 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n",
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T09:49:02Z",
+          "url": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
+          "result": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n"
+        }
+      ]
     },
     {
       "id": "P8-09",
@@ -12017,7 +12462,14 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n",
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T09:49:24Z",
+          "url": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
+          "result": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n"
+        }
+      ]
     },
     {
       "id": "P8-10",
@@ -12036,7 +12488,14 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n",
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T09:49:46Z",
+          "url": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
+          "result": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n"
+        }
+      ]
     },
     {
       "id": "P8-11",
@@ -12055,7 +12514,14 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n",
+      "attempts": [
+        {
+          "checked_at": "2026-09-17T09:50:08Z",
+          "url": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
+          "result": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n"
+        }
+      ]
     },
     {
       "id": "P8-12",
@@ -12074,12 +12540,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='egdrs.scourt.go.kr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='egdrs.scourt.go.kr', port=443) at 0x7f596296eb40>, 'Connection to egdrs.scourt.go.kr timed out. (connect timeout=9)'))",
+      "failure_reason": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://egdrs.scourt.go.kr/\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:31:41Z",
           "url": "https://egdrs.scourt.go.kr/",
           "result": "HTTPSConnectionPool(host='egdrs.scourt.go.kr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='egdrs.scourt.go.kr', port=443) at 0x7f596296eb40>, 'Connection to egdrs.scourt.go.kr timed out. (connect timeout=9)'))"
+        },
+        {
+          "checked_at": "2026-09-17T09:52:29Z",
+          "url": "https://egdrs.scourt.go.kr/",
+          "result": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://egdrs.scourt.go.kr/\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -12100,12 +12571,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=164920533&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f59629674a0>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?lsiSeq=287031\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:31:16Z",
           "url": "https://www.law.go.kr/법령/지방세법시행규칙",
           "result": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=164920533&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f59629674a0>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))"
+        },
+        {
+          "checked_at": "2026-09-17T09:47:54Z",
+          "url": "https://www.law.go.kr/lsInfoP.do?lsiSeq=287031",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/lsInfoP.do?lsiSeq=287031\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -12164,12 +12640,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /LSW/flDownload.do?gubun=&flSeq=162619109&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f59629794f0>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:31:30Z",
           "url": "https://www.law.go.kr/법령/부가가치세법시행규칙",
           "result": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /LSW/flDownload.do?gubun=&flSeq=162619109&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f59629794f0>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))"
+        },
+        {
+          "checked_at": "2026-09-17T09:47:57Z",
+          "url": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -12247,12 +12728,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "공식 목록에서 요청 HWP 링크 미확보: 해외금융계좌,신고서",
+      "failure_reason": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%A0%9C%EC%A1%B0%EC%84%B8%EC%A1%B0%EC%A0%95%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%A0%9C%EC%A1%B0%EC%84%B8%EC%A1%B0%EC%A0%95%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n",
       "attempts": [
         {
           "checked_at": "2026-09-17T09:31:30Z",
           "url": "https://www.law.go.kr/법령/국제조세조정에관한법률시행규칙",
           "result": "공식 목록에서 요청 HWP 링크 미확보: 해외금융계좌,신고서"
+        },
+        {
+          "checked_at": "2026-09-17T09:48:17Z",
+          "url": "https://www.law.go.kr/법령/국제조세조정에관한법률시행규칙",
+          "result": "공식 법령 브라우저 조회 실패: Page.goto: net::ERR_CONNECTION_TIMED_OUT at https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%A0%9C%EC%A1%B0%EC%84%B8%EC%A1%B0%EC%A0%95%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\nCall log:\n  - navigating to \"https://www.law.go.kr/%EB%B2%95%EB%A0%B9/%EA%B5%AD%EC%A0%9C%EC%A1%B0%EC%84%B8%EC%A1%B0%EC%A0%95%EC%97%90%EA%B4%80%ED%95%9C%EB%B2%95%EB%A5%A0%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99\", waiting until \"domcontentloaded\"\n"
         }
       ]
     },
@@ -12292,6 +12778,7 @@
       "license": "공식 제공처 링크 · 재배포하지 않음",
       "source_type": "공식제공처",
       "files": [],
+      "failure_reason": "실제 공식 출처·서식 확인 대기",
       "institution": "부동산공시가격 알리미",
       "source_evidence": [
         {
