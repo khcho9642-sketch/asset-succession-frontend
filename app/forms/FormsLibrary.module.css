@@ -19,6 +19,12 @@
 .bundleCount{font-family:"Noto Serif KR",serif;margin:3px 0 7px;font-size:21px;line-height:1.4;letter-spacing:-.8px}
 .bundleCount strong{font-family:Georgia,serif;font-size:35px;font-weight:400;margin-right:3px}
 .bundleDescription{font-size:12px;color:var(--lib-muted);margin:0 0 12px}
+.bundleExclusions{font-size:12px;color:var(--lib-muted);margin:10px 0 0;line-height:1.7;overflow-wrap:anywhere}
+.fileList{list-style:none;padding:0;margin:20px 0 0}
+.fileList li{border-top:1px solid var(--lib-line)}
+.dialogImage .fileList a{display:flex;align-items:center;gap:10px;min-height:48px;padding:12px 0;text-decoration:none;overflow-wrap:anywhere;font-size:14px}
+.fileList span{min-width:0}.fileList small{display:block;font-size:12px;color:var(--lib-muted);margin-top:4px}
+.download[aria-disabled="true"]{color:var(--lib-muted);border-style:dashed}
 .library .bundleButton{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;padding:12px 16px;background:var(--lib-red);color:white;font-size:14px;font-weight:600;border-radius:3px}
 .library .bundleButton:hover{background:#933122}
 .bundleMeta{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--lib-muted);margin:9px 0 0}
