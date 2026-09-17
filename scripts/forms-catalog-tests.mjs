@@ -49,12 +49,14 @@ test('every category is reachable and all original category counts are preserved
 
 test('download, direct attachment and pending counts do not conflate records and files', () => {
   const counts = Object.fromEntries(['hosted', 'direct', 'pending'].map(key => [key, documents.filter(item => item.delivery === key).length]));
-  assert.deepEqual(counts, { hosted: 70, direct: 3, pending: 1 });
+  assert.deepEqual(counts, { hosted: 74, direct: 0, pending: 0 });
   assert.deepEqual(manifest.deliveryCounts, counts);
-  assert.equal(manifest.hostedOriginalCount, 70);
-  assert.equal(manifest.hostedInstitutionalExampleCount, 35);
-  assert.equal(manifest.hostedFileCount, 139);
-  assert.equal(manifest.directDownloadCount, 73);
+  assert.equal(manifest.hostedOriginalCount, 74);
+  assert.equal(manifest.hostedInstitutionalExampleCount, 39);
+  assert.equal(manifest.hostedFileCount, 148);
+  assert.equal(manifest.hostedOriginalFileCount, 147);
+  assert.equal(manifest.hostedDerivedFileCount, 1);
+  assert.equal(manifest.directDownloadCount, 74);
 });
 
 test('four hosted originals and examples retain their audited binary hashes', () => {
@@ -94,7 +96,7 @@ test('unhosted records retain official sources and never invent rehosting permis
   }
 });
 
-test('all 139 hosted binaries match their official attachment size, hash and format', () => {
+test('all 148 hosted binaries match recorded sizes, hashes and formats', () => {
   const paths = [];
   for (const item of documents.filter(item => item.delivery === 'hosted')) {
     assert.ok(item.files.length > 0, item.id);
@@ -108,6 +110,7 @@ test('all 139 hosted binaries match their official attachment size, hash and for
       assert.equal(createHash('sha256').update(bytes).digest('hex'), file.sha256, file.path);
       assert.ok(bytes.subarray(0, 8).toString('hex') === 'd0cf11e0a1b11ae1'
         || bytes.toString('ascii', 0, 5) === '%PDF-'
+        || bytes.subarray(0, 8).toString('hex') === '89504e470d0a1a0a'
         || bytes.subarray(0, Buffer.byteLength('HWP Document File V3.00')).equals(Buffer.from('HWP Document File V3.00'))
         || bytes.toString('ascii', 0, 6) === '{\\rtf1', file.path);
       assert.equal(file.delivery, 'hosted');
@@ -116,8 +119,8 @@ test('all 139 hosted binaries match their official attachment size, hash and for
       paths.push(file.path);
     }
   }
-  assert.equal(paths.length, 139);
-  assert.equal(new Set(paths).size, 139);
+  assert.equal(paths.length, 148);
+  assert.equal(new Set(paths).size, 148);
 });
 
 test('court editing formats and combined PDF examples are all reachable', () => {
@@ -149,23 +152,66 @@ test('incorrect NTS form 39-5 attachment is replaced by the actual form 40', () 
   assert.ok(file.rejectedCatalogDownload && file.sourceCorrection);
 });
 
-test('the batch download is restricted to 70 reviewed records, never labeled all 74', () => {
-  assert.equal(manifest.bundle.recordCount, 70);
-  assert.equal(manifest.bundle.fileCount, 139);
-  assert.deepEqual([...manifest.bundle.excludedIds].sort(), ['NTS-CE-01','NTS-IE-01','NTS-IE-02','NTS-IE-03']);
-  const blocked = documents.find(item => item.id === 'NTS-CE-01');
-  assert.equal(blocked.delivery, 'pending');
-  assert.equal(blocked.files.length, 0);
-  assert.equal(blocked.example, null);
+test('all 74 records now have local downloads and are present in the complete bundle', () => {
+  assert.equal(manifest.bundle.recordCount, 74);
+  assert.equal(manifest.bundle.fileCount, 148);
+  assert.deepEqual(manifest.bundle.excludedIds, []);
+  for (const item of documents) {
+    assert.equal(item.delivery, 'hosted');
+    assert.ok(item.editable.startsWith('/downloads/official-forms/'));
+    assert.ok(item.files.some(file => file.path === item.editable));
+  }
 });
 
 test('each hosted binary has a reviewable redistribution basis, distinct from hash verification', () => {
   for (const item of documents.filter(item => item.delivery === 'hosted')) {
     for (const file of item.files) {
-      assert.ok(['kogl-type-1','agency-policy','statutory-form'].includes(file.licenseBasis));
+      assert.ok(['kogl-type-1','agency-policy','statutory-form','public-work-article-24-2'].includes(file.licenseBasis));
       assert.equal(file.licenseUrl, item.licenseUrl);
       assert.notEqual(file.licenseBasis, file.sha256);
     }
+  }
+});
+
+test('remaining NTS examples preserve their eight source binary hashes', () => {
+  const expected = {
+    'NTS-IE-01': ['b13fd46afe7a926bcba6a04bb710c84dc7da3308ea50565f103d6990505300e5'],
+    'NTS-IE-02': ['3d22bb44878ff950e3a522261296e0e8450617462dff4568ae4bccc7e602d233'],
+    'NTS-IE-03': ['5d58bb0213b4ee96e68ab5b133c639b243531a25ffa49477b07f4488268f4c8b'],
+    'NTS-CE-01': ['c1cca58280526c12090f9d093d7dd80d323478d6c0a602939d096074522ad45b', 'd4fbba5b752e50f16b768d0d7ea00544bbee449295fa78abf8e5bac5025ed27c', 'e6c2840f51793094d48508c5d96cf7c3ed9bd18fba2e9d73738605d7530af7a6', '1f8df0114394d65f9750e3c68157362ac64dc06af5d3a0bb2d93f21f90d490e7', '24e9644221ebfdb69535233845a9291ee8bfe244c7f6d13deafd6a25f65670f9'],
+  };
+  for (const [id, hashes] of Object.entries(expected)) {
+    const item = documents.find(item => item.id === id);
+    assert.deepEqual(item.files.filter(file => file.artifactType === 'institution-original').map(file => file.sha256), hashes);
+    if (id.startsWith('NTS-IE')) assert.match(item.files[0].sourcePage, /nttSn=80304[123]/);
+  }
+});
+
+test('web PDF is identified as a six-page conversion, not an agency-provided PDF', () => {
+  const item = documents.find(item => item.id === 'NTS-CE-01');
+  const pdf = item.files[0];
+  assert.equal(item.primaryArtifactType, 'derived-image-compilation');
+  assert.match(item.description, /기관 제공 PDF가 아닌 사이트 변환본/);
+  assert.equal(item.files.length, 6);
+  assert.equal(pdf.role, 'image-compilation');
+  assert.equal(pdf.inspection.institutionProvidedPdf, false);
+  assert.equal(pdf.inspection.pages, 6);
+  assert.equal(pdf.includesOriginalCaseContext, true);
+  assert.equal(pdf.inspection.embeddedSourcePixelsMatch, true);
+  assert.deepEqual(pdf.derivedFrom, item.files.slice(1).map(file => ({ path:file.path, sha256:file.sha256 })));
+  assert.equal(pdf.inspection.sourcePages.length, 5);
+  assert.equal(documents.flatMap(item => item.files).filter(file => file.artifactType === 'derived-image-compilation').length, 1);
+});
+
+test('public-work assessment never claims a verified KOGL mark or agency permission', () => {
+  const assessed = documents.filter(item => item.licenseBasis === 'public-work-article-24-2');
+  assert.deepEqual(assessed.map(item => item.id).sort(), ['NTS-CE-01','NTS-IE-01','NTS-IE-02','NTS-IE-03']);
+  for (const item of assessed) {
+    assert.equal(item.rightsReview.status, 'public-work-assessment');
+    assert.equal(item.rightsReview.koglMarkVerified, false);
+    assert.equal(item.rightsReview.separatePermissionObtained, false);
+    assert.ok(item.rightsReview.publicationEvidence && item.rightsReview.limitation);
+    assert.match(item.licenseUrl, /law.go.kr/);
   }
 });
 

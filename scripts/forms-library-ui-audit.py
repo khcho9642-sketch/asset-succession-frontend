@@ -33,19 +33,19 @@ with sync_playwright() as p:
     for item in manifest['documents']:
         if item['delivery'] == 'hosted':
             files.extend([(file['path'],file['sha256']) for file in item['files']])
-    assert len(files) == 139
+    assert len(files) == 148
     for path,digest in files:
         response = context.request.get(BASE + path)
         assert response.status == 200,(path,response.status)
-        assert response.body().startswith((bytes.fromhex('d0cf11e0a1b11ae1'),b'%PDF-',b'HWP Document File V3.00',b'{\\rtf1'))
+        assert response.body().startswith((bytes.fromhex('d0cf11e0a1b11ae1'),b'%PDF-',b'HWP Document File V3.00',b'{\\rtf1',b'\x89PNG\r\n\x1a\n'))
         assert hashlib.sha256(response.body()).hexdigest() == digest,path
         assert hashlib.sha256((ROOT / 'public' / unquote(path).lstrip('/')).read_bytes()).hexdigest() == digest
     bundle = context.request.get(BASE + '/downloads/official-forms/official-forms.zip')
     assert bundle.status == 200
     with zipfile.ZipFile(io.BytesIO(bundle.body())) as archive:
-        assert len(archive.namelist()) == 141
+        assert len(archive.namelist()) == 150
         assert json.loads(archive.read('manifest.json')) == manifest
-        assert '74개 전부를 담은 묶음은 아닙니다' in archive.read('README.md').decode('utf-8')
+        assert '74개 전체 자료, 총 148개 파일' in archive.read('README.md').decode('utf-8')
         for path,digest in files:
             assert hashlib.sha256(archive.read(unquote(path).removeprefix('/downloads/official-forms/'))).hexdigest() == digest
     retired = json.loads((ROOT/'docs/reviews/retired-form-paths.json').read_text(encoding='utf-8'))
@@ -67,13 +67,14 @@ with sync_playwright() as p:
         expect(page.locator('[data-form-id]')).to_have_count(74)
         assert sorted(page.locator('[data-form-id]').evaluate_all('(items)=>items.map(item=>item.dataset.formId)')) == expected_ids
         expect(page.locator('[data-catalog-summary]')).to_contain_text('전체 74개 자료')
-        expect(page.locator('[data-catalog-summary]')).to_contain_text('사이트 다운로드 70 · 국세청 파일 직접 받기 3 · 파일 미확보 1')
+        expect(page.locator('[data-catalog-summary]')).to_contain_text('사이트에서 74개 개별·전체 다운로드')
         bundle_summary = page.locator('[data-forms-bundle]')
         expect(bundle_summary).not_to_contain_text('부평구청')
         expect(bundle_summary).not_to_contain_text('HWP')
         expect(bundle_summary).not_to_contain_text('ZIP')
-        expect(bundle_summary.locator('[data-bundle-download]')).to_have_text('70개 자료 한번에 받기')
-        expect(bundle_summary).to_contain_text('국세청 사례 3개는 개별 다운로드, 웹 사례 1개는 파일 미확보')
+        expect(bundle_summary.locator('[data-bundle-download]')).to_have_text('74개 자료 한번에 받기')
+        expect(bundle_summary).to_contain_text('전체 74개 자료 포함')
+        expect(bundle_summary).to_contain_text('사이트 변환 PDF')
         for formid in ['BP-I-01', 'BP-G-01']:
             expect(page.locator(f'[data-form-id="{formid}"]')).to_contain_text('부평구청')
         guides = page.locator('[data-official-registration-guides]')
@@ -127,7 +128,7 @@ with sync_playwright() as p:
     expect(search).to_have_value('')
     expect(page.locator('[data-form-id]')).to_have_count(74)
     status = page.get_by_role('combobox',name='자료 제공 상태')
-    for value,count in [('hosted',70),('direct',3),('pending',1),('all',74)]:
+    for value,count in [('hosted',74),('direct',0),('pending',0),('all',74)]:
         status.select_option(value)
         expect(page.locator('[data-form-id]')).to_have_count(count)
     page.locator('button[data-category="증여"]').click()
@@ -151,7 +152,7 @@ with sync_playwright() as p:
         if item['delivery'] == 'direct':
             assert action.get_attribute('download') is None,item['id']
             assert urlparse(action.get_attribute('href')).path == '/comm/nttFileDownload.do'
-    checks.append({'case':'full-catalog-status-and-links','candidate_ids':74,'hosted':70,'direct':3,'pending':1,'passed':True})
+    checks.append({'case':'full-catalog-status-and-links','candidate_ids':74,'hosted':74,'direct':0,'pending':0,'passed':True})
     checks.append({'case':'categories-and-search','passed':True})
     checks.append({'case':'official-registration-guides','cards':4,'official_links':8,'new_tab':True})
 
@@ -169,7 +170,8 @@ with sync_playwright() as p:
     page.wait_for_function('document.documentElement.style.overflow === ""',timeout=5000)
     checks.append({'case':'modal-focus-trap-and-return','passed':True})
 
-    for formid in ['BP-I-01','BP-G-01','SC-01','FAMILY-I-01','DD-G-01','NTS-IG-10','NTS-CG-15','REG-I-01']:
+    for formid in ['BP-I-01','BP-G-01','SC-01','FAMILY-I-01','DD-G-01','NTS-IG-10','NTS-CG-15','REG-I-01','NTS-IE-01','NTS-IE-02','NTS-IE-03','NTS-CE-01']:
+        page.wait_for_timeout(1100)
         print(f'Browser download: {formid}', flush=True)
         with page.expect_download() as info:
             page.locator(f'[data-form-id="{formid}"] [data-form-download]').click()
@@ -178,10 +180,11 @@ with sync_playwright() as p:
         assert download.failure() is None
         assert download.suggested_filename == Path(unquote(expected['editable'])).name
         assert hashlib.sha256(Path(download.path()).read_bytes()).hexdigest() == expected['sha256']
+        expect(page).to_have_url(BASE+'/forms')
     with page.expect_download() as info:
         page.locator('[data-bundle-download]').click()
     assert info.value.failure() is None
-    checks.append({'case':'browser-download','institutional_files':8,'zip':True,'korean_filename':True})
+    checks.append({'case':'browser-download','representative_files':12,'remaining_records':4,'zip':True,'korean_filename':True,'page_unchanged':True})
     page.locator('[data-form-id="SC-01"] [data-form-preview]').click()
     expect(page.get_by_role('dialog').locator('[data-file-download]')).to_have_count(3)
     court = next(item for item in manifest['documents'] if item['id']=='SC-01')
@@ -196,7 +199,23 @@ with sync_playwright() as p:
         assert hashlib.sha256(Path(info.value.path()).read_bytes()).hexdigest() == file['sha256']
     page.keyboard.press('Escape')
     checks.append({'case':'court-format-picker-downloads','formats':['HWP','DOC','PDF'],'hash_match':True})
-    if os.environ.get('FORMS_VERIFY_EXTERNAL_DOWNLOADS') == '1':
+    case = next(item for item in manifest['documents'] if item['id']=='NTS-CE-01')
+    page.locator('[data-form-id="NTS-CE-01"] [data-form-preview]').click()
+    expect(page.get_by_role('dialog').locator('[data-file-download]')).to_have_count(6)
+    expect(page.get_by_role('dialog')).to_contain_text('기관 제공 PDF가 아닌 사이트 변환본')
+    for file in case['files']:
+        page.wait_for_timeout(1100)
+        print(f'Web case download: {file["name"]}', flush=True)
+        with page.expect_download() as info:
+            page.get_by_role('dialog').locator('[data-file-download]').filter(has_text=file['name']).click()
+        assert info.value.failure() is None
+        assert hashlib.sha256(Path(info.value.path()).read_bytes()).hexdigest() == file['sha256']
+    page.screenshot(path=str(OUT/'web-case-modal-390.png'))
+    page.keyboard.press('Escape')
+    checks.append({'case':'web-case-original-images-and-pdf-download','original_images':5,'derived_pdf':1,'hash_match':True})
+    if not any(item['delivery']=='direct' for item in manifest['documents']):
+        checks.append({'case':'official-attachment-browser-download','status':'not applicable: every record is hosted and verified above'})
+    elif os.environ.get('FORMS_VERIFY_EXTERNAL_DOWNLOADS') == '1':
         for item in [item for item in manifest['documents'] if item['delivery']=='direct']:
             print(f'Official attachment download: {item["id"]}', flush=True)
             with page.expect_download(timeout=60000) as info:
@@ -204,7 +223,7 @@ with sync_playwright() as p:
             assert info.value.failure() is None
             assert hashlib.sha256(Path(info.value.path()).read_bytes()).hexdigest() == item['sha256']
             expect(page).to_have_url(BASE+'/forms')
-        checks.append({'case':'official-attachment-browser-download','files':3,'provider_page_bypassed':True})
+        checks.append({'case':'official-attachment-browser-download','files':sum(item['delivery']=='direct' for item in manifest['documents']),'provider_page_bypassed':True})
     else:
         checks.append({'case':'official-attachment-browser-download','status':'not run: enable FORMS_VERIFY_EXTERNAL_DOWNLOADS for live agency access'})
 
@@ -234,8 +253,8 @@ with sync_playwright() as p:
     page = nojs.new_page()
     page.goto(BASE+'/forms')
     assert page.locator('[data-form-id]').count() == 74
-    assert page.locator('[data-form-download]').count() == 73
-    assert page.locator('[data-form-id="NTS-CE-01"] [data-form-download]').count() == 0
+    assert page.locator('[data-form-download]').count() == 74
+    assert page.locator('[data-form-id="NTS-CE-01"] [data-form-download]').count() == 1
     assert page.locator('[data-registration-guide]').count() == 4
     checks.append({'case':'server-rendered-downloads-without-js','passed':True})
     nojs.close()

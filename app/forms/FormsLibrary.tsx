@@ -14,6 +14,7 @@ export type LibraryDocument = {
   license: string; verification: string; delivery: string;
   originalCategory: string; catalogTitle: string; exampleVerification: string;
   licenseUrl: string;
+  primaryArtifactType?: string;
   files: { name: string; path: string; format: string; role: string; bytes: number; delivery: string }[];
 };
 type Props = {
@@ -21,7 +22,7 @@ type Props = {
 };
 const categories = ["전체", "재산분배·상속", "증여", "매매·임대차", "차용·상환", "양도", "가업승계", "공제·납부", "등기"];
 const deliveryLabels: Record<string, string> = { hosted: "사이트에서 다운로드", direct: "국세청 파일 바로 받기", pending: "파일 미확보" };
-const actionLabel = (item: LibraryDocument) => item.delivery === "direct" ? "국세청 파일 받기" : "기관 원본 받기";
+const actionLabel = (item: LibraryDocument) => item.primaryArtifactType === "derived-image-compilation" ? "사례 PDF 받기" : item.delivery === "direct" ? "국세청 파일 받기" : "기관 원본 받기";
 const normalize = (text: string) => text.normalize("NFKC").toLocaleLowerCase("ko-KR").replace(/\s+/g, "");
 
 export function FormsLibrary({ documents }: Props) {
@@ -73,7 +74,7 @@ export function FormsLibrary({ documents }: Props) {
         <p className={styles.eyebrow}>자산승계 360 · 서류 자료실</p>
         <h1 id="library-title">생각을 정리하고,<br />필요한 서류를 준비하세요.</h1>
         <p className={styles.description}>재산을 나누고, 증여를 약속하고, 상담을 준비할 때.<br />빈 양식과 작성 예시를 함께 살펴보세요.</p>
-        <p className={styles.catalogSummary} data-catalog-summary><strong>전체 {documents.length}개 자료</strong><span>사이트 다운로드 {counts.hosted} · 국세청 파일 직접 받기 {counts.direct} · 파일 미확보 {counts.pending}</span></p>
+        <p className={styles.catalogSummary} data-catalog-summary><strong>전체 {documents.length}개 자료</strong><span>사이트에서 {counts.hosted}개 개별·전체 다운로드</span></p>
       </div>
       <div className={styles.bundle} data-forms-bundle>
         <p className={styles.bundleOverline}>기관 원본 모아 받기</p>
@@ -82,12 +83,12 @@ export function FormsLibrary({ documents }: Props) {
         <a className={styles.bundleButton} href="/downloads/official-forms/official-forms.zip" download data-bundle-download>
           {counts.hosted}개 자료 한번에 받기<Download size={18} aria-hidden="true" />
         </a>
-        <p className={styles.bundleExclusions}>국세청 사례 {counts.direct}개는 개별 다운로드, 웹 사례 {counts.pending}개는 파일 미확보로 묶음에서 제외됩니다.</p>
+        <p className={styles.bundleExclusions}>전체 {counts.hosted}개 자료 포함 · 웹 사례 1개는 원본 이미지와 사이트 변환 PDF로 제공합니다.</p>
       </div>
     </section>
     <aside className={styles.notice} aria-label="양식 이용 안내">
       <Info size={17} aria-hidden="true" />
-      <p><strong>기관 원본을 수정 없이 제공합니다.</strong> 자료별 게시 시점이 다릅니다. 예전 양식과 사례의 금액·법령이 현재에도 적용되는지는 제출 전에 확인하세요.</p>
+      <p><strong>기관 원본과 작성사례를 제공합니다.</strong> 웹 사례 PDF는 기관 원본 이미지·본문을 묶은 사이트 변환본입니다. 예전 양식과 사례의 금액·법령이 현재에도 적용되는지는 제출 전에 확인하세요.</p>
       <a href="#forms-usage">이용안내</a>
     </aside>
     <OfficialRegistrationGuides />
@@ -121,7 +122,7 @@ export function FormsLibrary({ documents }: Props) {
           <div className={styles.cardTop}><span>{item.originalCategory}</span><span className={styles.format}><FileText size={13} aria-hidden="true" />{item.format}</span></div>
           <a href={item.example ?? item.sourceUrl} target="_blank" rel="noopener noreferrer" className={styles.visual}
             onClick={event => openPreview(event, item)} aria-label={`${item.title} 자료 확인`} data-form-preview>
-            <span className={styles.previewTag}>{item.example ? "기관 작성 예시" : deliveryLabels[item.delivery]}</span>
+            <span className={styles.previewTag}>{item.primaryArtifactType === "derived-image-compilation" ? "웹 사례 원본 이미지" : item.example ? "기관 작성 예시" : deliveryLabels[item.delivery]}</span>
             {item.thumbnail ? <Image src={item.thumbnail} width={724} height={1024} alt={`${item.title} 기관 예시의 내장 미리보기`}
               unoptimized className={styles.thumbnail} /> : <span className={styles.providerVisual}><FileText size={34} aria-hidden="true" />{item.institution}</span>}
             <span className={styles.previewOpen}><Search size={13} aria-hidden="true" />{item.thumbnail ? "미리보기" : "자료 정보"}</span>
@@ -154,7 +155,7 @@ export function FormsLibrary({ documents }: Props) {
       <Link href="/precheck">AI 상담으로 돌아가기<ArrowRight size={18} aria-hidden="true" /></Link>
     </section>
     <footer className={styles.footer} id="forms-usage">
-      <p>확인일 2026-09-17 · 각 기관의 이용 조건과 출처는 자료 정보에 표시했습니다.<br />계약 조항과 예시를 재작성하지 않았습니다. HWP·Word 파일은 호환 프로그램이 필요합니다.<br />국세청 작성사례 3개는 재배포 조건 미확인으로 국세청의 첨부파일을 직접 받습니다.</p>
+      <p>확인일 2026-09-17 · 각 기관의 이용 근거와 출처는 자료 정보에 표시했습니다.<br />계약 조항과 예시를 재작성하지 않았습니다. HWP·Word 파일은 호환 프로그램이 필요합니다.<br />국세청 웹 사례 PDF는 기관 제공 문서가 아닌 사이트 변환본입니다.</p>
       <div><a href="/downloads/official-forms/manifest.json" target="_blank" rel="noopener noreferrer">출처·검증 기록</a></div>
     </footer>
     <dialog ref={dialog} className={styles.dialog} aria-labelledby="form-preview-title" aria-describedby="form-preview-note"
@@ -174,7 +175,7 @@ export function FormsLibrary({ documents }: Props) {
       }}>
       {preview && <>
         <div className={styles.dialogHead}><div><h2 id="form-preview-title">{preview.title}</h2>
-          <p id="form-preview-note">{preview.institution} · {preview.thumbnail ? "기관 예시 내장 미리보기" : "기관 원본·출처 정보"}</p></div>
+          <p id="form-preview-note">{preview.institution} · {preview.primaryArtifactType === "derived-image-compilation" ? "웹 사례 이미지·변환 PDF" : preview.thumbnail ? "기관 예시 내장 미리보기" : "기관 원본·출처 정보"}</p></div>
           <button type="button" aria-label="미리보기 닫기" onClick={() => dialog.current?.close()}><X size={22} aria-hidden="true" /></button>
         </div>
         <div className={styles.dialogImage}>
@@ -185,13 +186,13 @@ export function FormsLibrary({ documents }: Props) {
           {preview.files.length > 0 && <ul className={styles.fileList} aria-label="받을 수 있는 원본 파일">
             {preview.files.map(file => <li key={file.path}>
               <a href={file.path} download={file.delivery === "hosted"} rel="noopener noreferrer" data-file-download>
-                <Download size={16} aria-hidden="true" /><span>{file.name}<small>{file.format} · {Math.ceil(file.bytes / 1024).toLocaleString("ko-KR")} KB{file.role === "combined" ? " · 양식·설명·예시 합본" : file.role === "example" ? " · 기관 작성 예시" : " · 원본"}</small></span>
+                <Download size={16} aria-hidden="true" /><span>{file.name}<small>{file.format} · {Math.ceil(file.bytes / 1024).toLocaleString("ko-KR")} KB{file.role === "image-compilation" ? " · 웹 사례 묶음 · 사이트 변환본" : file.role === "web-example-image" ? " · 기관 원본 이미지" : file.role === "combined" ? " · 양식·설명·예시 합본" : file.role === "example" ? " · 기관 작성 예시" : " · 원본"}</small></span>
               </a>
             </li>)}
           </ul>}
         </div>
         <div className={styles.dialogFooter}>
-          {preview.example ? <a href={preview.example} target="_blank" rel="noopener noreferrer">기관 예시 원문 열기<ArrowRight size={15} aria-hidden="true" /></a> : <span>기관 작성 예시 미확인</span>}
+          {preview.example ? <a href={preview.example} target="_blank" rel="noopener noreferrer">{preview.primaryArtifactType === "derived-image-compilation" ? "웹 사례 PDF 열기" : "기관 예시 원문 열기"}<ArrowRight size={15} aria-hidden="true" /></a> : <span>기관 작성 예시 미확인</span>}
           {preview.delivery !== "pending" && <a className={styles.dialogDownload} href={preview.editable} download={preview.delivery === "hosted"} rel="noopener noreferrer"><Download size={16} aria-hidden="true" />{actionLabel(preview)}</a>}
         </div>
       </>}

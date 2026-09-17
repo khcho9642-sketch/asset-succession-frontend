@@ -1,15 +1,15 @@
 {
-  "version": 3,
+  "version": 4,
   "checkedOn": "2026-09-17",
   "candidateCount": 74,
   "publishedCount": 74,
   "countingRule": "74개는 자료 항목 수입니다. 70개 자료(139개 원본·예시 파일)는 사이트에서 다운로드, 3개는 국세청 첨부 직접 다운로드, 1개 웹 사례는 파일 미확보입니다.",
-  "hostedOriginalCount": 70,
-  "hostedInstitutionalExampleCount": 35,
+  "hostedOriginalCount": 74,
+  "hostedInstitutionalExampleCount": 39,
   "deliveryCounts": {
-    "hosted": 70,
-    "direct": 3,
-    "pending": 1
+    "hosted": 74,
+    "direct": 0,
+    "pending": 0
   },
   "documents": [
     {
@@ -5657,14 +5657,14 @@
       "description": "국세청이 공개한 작성사례입니다. 사례의 과세연도와 전제조건을 확인하세요.",
       "tags": "상속세 작성사례 · NTS-IE-01",
       "format": "HWP",
-      "editable": "https://www.nts.go.kr/comm/nttFileDownload.do?fileKey=380a76a32f3c5f7440ede05b9516aecf",
-      "example": "https://www.nts.go.kr/comm/nttFileDownload.do?fileKey=380a76a32f3c5f7440ede05b9516aecf",
+      "editable": "/downloads/official-forms/NTS-IE-01/210427_8.%EC%A3%BC%EC%9A%94%EC%84%9C%EC%8B%9D%20%EC%9E%91%EC%84%B1%EC%9A%94%EB%A0%B9%EC%82%AC%EB%A1%80_%EC%82%AC%EB%A1%8001_%ED%94%BC%EC%83%81%EC%86%8D%EC%9D%B8%EC%9D%B4%20%EB%B9%84%EA%B1%B0%EC%A3%BC%EC%9E%90%EC%9D%B8%20%EA%B2%BD%EC%9A%B0.hwp",
+      "example": "/downloads/official-forms/NTS-IE-01/210427_8.%EC%A3%BC%EC%9A%94%EC%84%9C%EC%8B%9D%20%EC%9E%91%EC%84%B1%EC%9A%94%EB%A0%B9%EC%82%AC%EB%A1%80_%EC%82%AC%EB%A1%8001_%ED%94%BC%EC%83%81%EC%86%8D%EC%9D%B8%EC%9D%B4%20%EB%B9%84%EA%B1%B0%EC%A3%BC%EC%9E%90%EC%9D%B8%20%EA%B2%BD%EC%9A%B0.hwp",
       "thumbnail": null,
       "sourceUrl": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=30021&mi=2334",
       "institution": "국세청",
       "sourceDate": null,
-      "license": "재배포 조건 미확인: 국세청 첨부파일 직접 다운로드만 제공, 일괄 묶음 제외",
-      "delivery": "direct",
+      "license": "국세청 업무상 공개 작성사례로 분류하여 저작권법 제24조의2에 근거해 출처 표시와 함께 제공합니다. 개별 공공누리 표시·별도 허락 취득을 뜻하지 않습니다.",
+      "delivery": "hosted",
       "sizeLabel": "1개 파일 · 96 KB",
       "sha256": "b13fd46afe7a926bcba6a04bb710c84dc7da3308ea50565f103d6990505300e5",
       "exampleSha256": "b13fd46afe7a926bcba6a04bb710c84dc7da3308ea50565f103d6990505300e5",
@@ -5677,28 +5677,41 @@
         {
           "name": "210427_8.주요서식 작성요령사례_사례01_피상속인이 비거주자인 경우.hwp",
           "originalFilename": "210427_8.주요서식 작성요령사례_사례01_피상속인이 비거주자인 경우.hwp",
-          "path": "https://www.nts.go.kr/comm/nttFileDownload.do?fileKey=380a76a32f3c5f7440ede05b9516aecf",
+          "path": "/downloads/official-forms/NTS-IE-01/210427_8.%EC%A3%BC%EC%9A%94%EC%84%9C%EC%8B%9D%20%EC%9E%91%EC%84%B1%EC%9A%94%EB%A0%B9%EC%82%AC%EB%A1%80_%EC%82%AC%EB%A1%8001_%ED%94%BC%EC%83%81%EC%86%8D%EC%9D%B8%EC%9D%B4%20%EB%B9%84%EA%B1%B0%EC%A3%BC%EC%9E%90%EC%9D%B8%20%EA%B2%BD%EC%9A%B0.hwp",
           "format": "HWP",
           "role": "example",
           "bytes": 98816,
           "sha256": "b13fd46afe7a926bcba6a04bb710c84dc7da3308ea50565f103d6990505300e5",
           "sourceUrl": "https://www.nts.go.kr/comm/nttFileDownload.do?fileKey=380a76a32f3c5f7440ede05b9516aecf",
-          "sourcePage": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=30021&mi=2334",
+          "sourcePage": "https://www.nts.go.kr/nts/na/ntt/selectNttInfo.do?mi=2334&bbsId=30021&nttSn=803043",
           "checkedOn": "2026-09-17",
-          "delivery": "direct",
-          "licenseBasis": "unconfirmed",
-          "licenseUrl": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6791&cntntsId=8169",
+          "delivery": "hosted",
+          "licenseBasis": "public-work-article-24-2",
+          "licenseUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
           "inspection": {
             "sha256Matches": true,
             "fullOfficeRenderingVerified": false,
             "kind": "HWP5",
             "bodyRecordsParsed": true,
             "extractedTextCharacters": 12983
-          }
+          },
+          "artifactType": "institution-original"
         }
       ],
-      "licenseUrl": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6791&cntntsId=8169",
-      "licenseBasis": "unconfirmed"
+      "licenseUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
+      "licenseBasis": "public-work-article-24-2",
+      "rightsReview": {
+        "basis": "public-work-article-24-2",
+        "status": "public-work-assessment",
+        "policyUrl": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6791&cntntsId=8169",
+        "lawUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
+        "checkedOn": "2026-09-17",
+        "koglMarkVerified": false,
+        "separatePermissionObtained": false,
+        "publicationEvidence": "국세청 세목별 신고안내의 작성사례로 국세청 명의 공개. 확인한 본문에 별도 저작자·제3자 권리 표시는 없음.",
+        "limitation": "개별 저작재산권 계약·등록 여부까지 확인한 법률 검토는 아님. 파일 해시 확인과 구분함.",
+        "publicationDecision": "자료의 성격과 제24조의2 적용에 근거한 게시 판단. 이용자가 원본 게시 진행을 명시적으로 요청함."
+      }
     },
     {
       "id": "NTS-IE-02",
@@ -5710,14 +5723,14 @@
       "description": "국세청이 공개한 작성사례입니다. 사례의 과세연도와 전제조건을 확인하세요.",
       "tags": "상속세 작성사례 · NTS-IE-02",
       "format": "HWP",
-      "editable": "https://www.nts.go.kr/comm/nttFileDownload.do?fileKey=a44994bdb5fbf39e30cd82ec44445c50",
-      "example": "https://www.nts.go.kr/comm/nttFileDownload.do?fileKey=a44994bdb5fbf39e30cd82ec44445c50",
+      "editable": "/downloads/official-forms/NTS-IE-02/210427_8.%EC%A3%BC%EC%9A%94%EC%84%9C%EC%8B%9D%20%EC%9E%91%EC%84%B1%EC%9A%94%EB%A0%B9%EC%82%AC%EB%A1%80_%EC%82%AC%EB%A1%8002_%ED%94%BC%EC%83%81%EC%86%8D%EC%9D%B8%EC%9D%B4%20%EA%B1%B0%EC%A3%BC%EC%9E%90%EB%A1%9C%20%EA%B3%BC%EC%84%B8%EB%AF%B8%EB%8B%AC%EC%9D%B8%20%EA%B2%BD%EC%9A%B0.hwp",
+      "example": "/downloads/official-forms/NTS-IE-02/210427_8.%EC%A3%BC%EC%9A%94%EC%84%9C%EC%8B%9D%20%EC%9E%91%EC%84%B1%EC%9A%94%EB%A0%B9%EC%82%AC%EB%A1%80_%EC%82%AC%EB%A1%8002_%ED%94%BC%EC%83%81%EC%86%8D%EC%9D%B8%EC%9D%B4%20%EA%B1%B0%EC%A3%BC%EC%9E%90%EB%A1%9C%20%EA%B3%BC%EC%84%B8%EB%AF%B8%EB%8B%AC%EC%9D%B8%20%EA%B2%BD%EC%9A%B0.hwp",
       "thumbnail": null,
       "sourceUrl": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=30021&mi=2334",
       "institution": "국세청",
       "sourceDate": null,
-      "license": "재배포 조건 미확인: 국세청 첨부파일 직접 다운로드만 제공, 일괄 묶음 제외",
-      "delivery": "direct",
+      "license": "국세청 업무상 공개 작성사례로 분류하여 저작권법 제24조의2에 근거해 출처 표시와 함께 제공합니다. 개별 공공누리 표시·별도 허락 취득을 뜻하지 않습니다.",
+      "delivery": "hosted",
       "sizeLabel": "1개 파일 · 102 KB",
       "sha256": "3d22bb44878ff950e3a522261296e0e8450617462dff4568ae4bccc7e602d233",
       "exampleSha256": "3d22bb44878ff950e3a522261296e0e8450617462dff4568ae4bccc7e602d233",
@@ -5730,28 +5743,41 @@
         {
           "name": "210427_8.주요서식 작성요령사례_사례02_피상속인이 거주자로 과세미달인 경우.hwp",
           "originalFilename": "210427_8.주요서식 작성요령사례_사례02_피상속인이 거주자로 과세미달인 경우.hwp",
-          "path": "https://www.nts.go.kr/comm/nttFileDownload.do?fileKey=a44994bdb5fbf39e30cd82ec44445c50",
+          "path": "/downloads/official-forms/NTS-IE-02/210427_8.%EC%A3%BC%EC%9A%94%EC%84%9C%EC%8B%9D%20%EC%9E%91%EC%84%B1%EC%9A%94%EB%A0%B9%EC%82%AC%EB%A1%80_%EC%82%AC%EB%A1%8002_%ED%94%BC%EC%83%81%EC%86%8D%EC%9D%B8%EC%9D%B4%20%EA%B1%B0%EC%A3%BC%EC%9E%90%EB%A1%9C%20%EA%B3%BC%EC%84%B8%EB%AF%B8%EB%8B%AC%EC%9D%B8%20%EA%B2%BD%EC%9A%B0.hwp",
           "format": "HWP",
           "role": "example",
           "bytes": 103936,
           "sha256": "3d22bb44878ff950e3a522261296e0e8450617462dff4568ae4bccc7e602d233",
           "sourceUrl": "https://www.nts.go.kr/comm/nttFileDownload.do?fileKey=a44994bdb5fbf39e30cd82ec44445c50",
-          "sourcePage": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=30021&mi=2334",
+          "sourcePage": "https://www.nts.go.kr/nts/na/ntt/selectNttInfo.do?mi=2334&bbsId=30021&nttSn=803042",
           "checkedOn": "2026-09-17",
-          "delivery": "direct",
-          "licenseBasis": "unconfirmed",
-          "licenseUrl": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6791&cntntsId=8169",
+          "delivery": "hosted",
+          "licenseBasis": "public-work-article-24-2",
+          "licenseUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
           "inspection": {
             "sha256Matches": true,
             "fullOfficeRenderingVerified": false,
             "kind": "HWP5",
             "bodyRecordsParsed": true,
             "extractedTextCharacters": 14832
-          }
+          },
+          "artifactType": "institution-original"
         }
       ],
-      "licenseUrl": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6791&cntntsId=8169",
-      "licenseBasis": "unconfirmed"
+      "licenseUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
+      "licenseBasis": "public-work-article-24-2",
+      "rightsReview": {
+        "basis": "public-work-article-24-2",
+        "status": "public-work-assessment",
+        "policyUrl": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6791&cntntsId=8169",
+        "lawUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
+        "checkedOn": "2026-09-17",
+        "koglMarkVerified": false,
+        "separatePermissionObtained": false,
+        "publicationEvidence": "국세청 세목별 신고안내의 작성사례로 국세청 명의 공개. 확인한 본문에 별도 저작자·제3자 권리 표시는 없음.",
+        "limitation": "개별 저작재산권 계약·등록 여부까지 확인한 법률 검토는 아님. 파일 해시 확인과 구분함.",
+        "publicationDecision": "자료의 성격과 제24조의2 적용에 근거한 게시 판단. 이용자가 원본 게시 진행을 명시적으로 요청함."
+      }
     },
     {
       "id": "NTS-IE-03",
@@ -5763,14 +5789,14 @@
       "description": "국세청이 공개한 작성사례입니다. 사례의 과세연도와 전제조건을 확인하세요.",
       "tags": "상속세 작성사례 · NTS-IE-03",
       "format": "HWP",
-      "editable": "https://www.nts.go.kr/comm/nttFileDownload.do?fileKey=8ac246f497b4886e447e32816c85b010",
-      "example": "https://www.nts.go.kr/comm/nttFileDownload.do?fileKey=8ac246f497b4886e447e32816c85b010",
+      "editable": "/downloads/official-forms/NTS-IE-03/210427_8.%EC%A3%BC%EC%9A%94%EC%84%9C%EC%8B%9D%20%EC%9E%91%EC%84%B1%EC%9A%94%EB%A0%B9%EC%82%AC%EB%A1%80_%EC%82%AC%EB%A1%8003_%ED%94%BC%EC%83%81%EC%86%8D%EC%9D%B8%EC%9D%B4%20%EA%B1%B0%EC%A3%BC%EC%9E%90%EB%A1%9C%20%EA%B3%BC%EC%84%B8%EC%9D%B8%20%EA%B2%BD%EC%9A%B0.hwp",
+      "example": "/downloads/official-forms/NTS-IE-03/210427_8.%EC%A3%BC%EC%9A%94%EC%84%9C%EC%8B%9D%20%EC%9E%91%EC%84%B1%EC%9A%94%EB%A0%B9%EC%82%AC%EB%A1%80_%EC%82%AC%EB%A1%8003_%ED%94%BC%EC%83%81%EC%86%8D%EC%9D%B8%EC%9D%B4%20%EA%B1%B0%EC%A3%BC%EC%9E%90%EB%A1%9C%20%EA%B3%BC%EC%84%B8%EC%9D%B8%20%EA%B2%BD%EC%9A%B0.hwp",
       "thumbnail": null,
       "sourceUrl": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=30021&mi=2334",
       "institution": "국세청",
       "sourceDate": null,
-      "license": "재배포 조건 미확인: 국세청 첨부파일 직접 다운로드만 제공, 일괄 묶음 제외",
-      "delivery": "direct",
+      "license": "국세청 업무상 공개 작성사례로 분류하여 저작권법 제24조의2에 근거해 출처 표시와 함께 제공합니다. 개별 공공누리 표시·별도 허락 취득을 뜻하지 않습니다.",
+      "delivery": "hosted",
       "sizeLabel": "1개 파일 · 104 KB",
       "sha256": "5d58bb0213b4ee96e68ab5b133c639b243531a25ffa49477b07f4488268f4c8b",
       "exampleSha256": "5d58bb0213b4ee96e68ab5b133c639b243531a25ffa49477b07f4488268f4c8b",
@@ -5783,28 +5809,41 @@
         {
           "name": "210427_8.주요서식 작성요령사례_사례03_피상속인이 거주자로 과세인 경우.hwp",
           "originalFilename": "210427_8.주요서식 작성요령사례_사례03_피상속인이 거주자로 과세인 경우.hwp",
-          "path": "https://www.nts.go.kr/comm/nttFileDownload.do?fileKey=8ac246f497b4886e447e32816c85b010",
+          "path": "/downloads/official-forms/NTS-IE-03/210427_8.%EC%A3%BC%EC%9A%94%EC%84%9C%EC%8B%9D%20%EC%9E%91%EC%84%B1%EC%9A%94%EB%A0%B9%EC%82%AC%EB%A1%80_%EC%82%AC%EB%A1%8003_%ED%94%BC%EC%83%81%EC%86%8D%EC%9D%B8%EC%9D%B4%20%EA%B1%B0%EC%A3%BC%EC%9E%90%EB%A1%9C%20%EA%B3%BC%EC%84%B8%EC%9D%B8%20%EA%B2%BD%EC%9A%B0.hwp",
           "format": "HWP",
           "role": "example",
           "bytes": 105984,
           "sha256": "5d58bb0213b4ee96e68ab5b133c639b243531a25ffa49477b07f4488268f4c8b",
           "sourceUrl": "https://www.nts.go.kr/comm/nttFileDownload.do?fileKey=8ac246f497b4886e447e32816c85b010",
-          "sourcePage": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=30021&mi=2334",
+          "sourcePage": "https://www.nts.go.kr/nts/na/ntt/selectNttInfo.do?mi=2334&bbsId=30021&nttSn=803041",
           "checkedOn": "2026-09-17",
-          "delivery": "direct",
-          "licenseBasis": "unconfirmed",
-          "licenseUrl": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6791&cntntsId=8169",
+          "delivery": "hosted",
+          "licenseBasis": "public-work-article-24-2",
+          "licenseUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
           "inspection": {
             "sha256Matches": true,
             "fullOfficeRenderingVerified": false,
             "kind": "HWP5",
             "bodyRecordsParsed": true,
             "extractedTextCharacters": 15533
-          }
+          },
+          "artifactType": "institution-original"
         }
       ],
-      "licenseUrl": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6791&cntntsId=8169",
-      "licenseBasis": "unconfirmed"
+      "licenseUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
+      "licenseBasis": "public-work-article-24-2",
+      "rightsReview": {
+        "basis": "public-work-article-24-2",
+        "status": "public-work-assessment",
+        "policyUrl": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6791&cntntsId=8169",
+        "lawUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
+        "checkedOn": "2026-09-17",
+        "koglMarkVerified": false,
+        "separatePermissionObtained": false,
+        "publicationEvidence": "국세청 세목별 신고안내의 작성사례로 국세청 명의 공개. 확인한 본문에 별도 저작자·제3자 권리 표시는 없음.",
+        "limitation": "개별 저작재산권 계약·등록 여부까지 확인한 법률 검토는 아님. 파일 해시 확인과 구분함.",
+        "publicationDecision": "자료의 성격과 제24조의2 적용에 근거한 게시 판단. 이용자가 원본 게시 진행을 명시적으로 요청함."
+      }
     },
     {
       "id": "NTS-CE-01",
@@ -5813,28 +5852,235 @@
       "originalCategory": "양도세 작성사례",
       "catalogTitle": "비상장 대기업 주식 양도 — 실지거래가액이 있는 경우",
       "sourceId": "NTS-CE",
-      "description": "국세청이 공개한 작성사례입니다. 사례의 과세연도와 전제조건을 확인하세요.",
+      "description": "국세청 웹 사례 본문과 원본 이미지 5장을 묶은 PDF입니다. 기관 제공 PDF가 아닌 사이트 변환본입니다.",
       "tags": "양도세 작성사례 · NTS-CE-01",
-      "format": "웹 작성사례",
-      "editable": "",
-      "example": null,
-      "thumbnail": null,
+      "format": "PDF · 원본 이미지",
+      "editable": "/downloads/official-forms/NTS-CE-01/%EA%B5%AD%EC%84%B8%EC%B2%AD_%EB%B9%84%EC%83%81%EC%9E%A5%EC%A3%BC%EC%8B%9D_%EC%9E%91%EC%84%B1%EC%82%AC%EB%A1%80_%EC%9B%B9%EC%9D%B4%EB%AF%B8%EC%A7%80%EB%AC%B6%EC%9D%8C_%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%B3%80%ED%99%98%EB%B3%B8.pdf",
+      "example": "/downloads/official-forms/NTS-CE-01/%EA%B5%AD%EC%84%B8%EC%B2%AD_%EB%B9%84%EC%83%81%EC%9E%A5%EC%A3%BC%EC%8B%9D_%EC%9E%91%EC%84%B1%EC%82%AC%EB%A1%80_%EC%9B%B9%EC%9D%B4%EB%AF%B8%EC%A7%80%EB%AC%B6%EC%9D%8C_%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%B3%80%ED%99%98%EB%B3%B8.pdf",
+      "thumbnail": "/downloads/official-forms/NTS-CE-01/img1.3.3.1_1.png",
       "sourceUrl": "https://www.nts.go.kr/tax/sub/1.3.3.1.%EB%B9%84%EC%83%81%EC%9E%A5%20%EC%A3%BC%EC%8B%9D%EC%9D%84%20%EC%96%91%EB%8F%84%ED%95%9C%20%EA%B2%BD%EC%9A%B0.html",
       "institution": "국세청",
       "sourceDate": "2020-02-15",
-      "license": "웹 작성사례의 재배포 조건 미확인",
-      "delivery": "pending",
-      "sizeLabel": "파일 미확보",
-      "sha256": null,
-      "exampleSha256": null,
-      "verification": "국세청 웹 이미지 사례입니다. 내려받을 문서 파일과 재배포 허용을 확인하지 못해 다운로드를 제공하지 않습니다.",
+      "license": "국세청 업무상 공개 작성사례로 분류하여 저작권법 제24조의2에 근거해 출처 표시와 함께 제공합니다. 개별 공공누리 표시·별도 허락 취득을 뜻하지 않습니다.",
+      "delivery": "hosted",
+      "sizeLabel": "6개 파일 · 2,107 KB",
+      "sha256": "6d8b8289a7fe108ca320b33f8d12a162ab041848ab885c3bf157e42853e3cc6c",
+      "exampleSha256": "6d8b8289a7fe108ca320b33f8d12a162ab041848ab885c3bf157e42853e3cc6c",
+      "verification": "원본 이미지 5장의 크기·SHA-256 및 PDF에 포함된 이미지 픽셀 일치 확인. 웹 사례 본문 포함, PDF 6쪽 전체 렌더링 확인.",
       "checkedOn": "2026-09-17",
-      "sourceVerification": "official_page_content",
-      "binaryInspected": false,
-      "exampleVerification": "기관 웹 사례는 확인했으나 PDF·HWP 원본 첨부는 없습니다. 이미지로 새 문서를 제작하지 않았습니다.",
-      "files": [],
-      "licenseUrl": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6791&cntntsId=8169",
-      "licenseBasis": "unconfirmed"
+      "sourceVerification": "official_images_and_derived_pdf",
+      "binaryInspected": true,
+      "exampleVerification": "웹 사례 본문과 함께 게시된 빈 서식·작성방법 이미지 5장을 그대로 담았습니다. 기관 제공 PDF가 아닌 사이트 변환본이며, 사례 거래일은 2020-02-15입니다. 금액을 채운 신고서나 최신 세법 검증본은 아닙니다.",
+      "files": [
+        {
+          "name": "국세청_비상장주식_작성사례_웹이미지묶음_사이트변환본.pdf",
+          "path": "/downloads/official-forms/NTS-CE-01/%EA%B5%AD%EC%84%B8%EC%B2%AD_%EB%B9%84%EC%83%81%EC%9E%A5%EC%A3%BC%EC%8B%9D_%EC%9E%91%EC%84%B1%EC%82%AC%EB%A1%80_%EC%9B%B9%EC%9D%B4%EB%AF%B8%EC%A7%80%EB%AC%B6%EC%9D%8C_%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%B3%80%ED%99%98%EB%B3%B8.pdf",
+          "format": "PDF",
+          "role": "image-compilation",
+          "artifactType": "derived-image-compilation",
+          "bytes": 1028167,
+          "sha256": "6d8b8289a7fe108ca320b33f8d12a162ab041848ab885c3bf157e42853e3cc6c",
+          "sourceUrl": "https://www.nts.go.kr/tax/sub/1.3.3.1.%EB%B9%84%EC%83%81%EC%9E%A5%20%EC%A3%BC%EC%8B%9D%EC%9D%84%20%EC%96%91%EB%8F%84%ED%95%9C%20%EA%B2%BD%EC%9A%B0.html",
+          "sourcePage": "https://www.nts.go.kr/tax/sub/1.3.3.1.%EB%B9%84%EC%83%81%EC%9E%A5%20%EC%A3%BC%EC%8B%9D%EC%9D%84%20%EC%96%91%EB%8F%84%ED%95%9C%20%EA%B2%BD%EC%9A%B0.html",
+          "checkedOn": "2026-09-17",
+          "delivery": "hosted",
+          "licenseBasis": "public-work-article-24-2",
+          "licenseUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
+          "derivedFrom": [
+            {
+              "path": "/downloads/official-forms/NTS-CE-01/img1.3.3.1_1.png",
+              "sha256": "c1cca58280526c12090f9d093d7dd80d323478d6c0a602939d096074522ad45b"
+            },
+            {
+              "path": "/downloads/official-forms/NTS-CE-01/img1.3.3.1_2.png",
+              "sha256": "d4fbba5b752e50f16b768d0d7ea00544bbee449295fa78abf8e5bac5025ed27c"
+            },
+            {
+              "path": "/downloads/official-forms/NTS-CE-01/img1.3.3.1_3.png",
+              "sha256": "e6c2840f51793094d48508c5d96cf7c3ed9bd18fba2e9d73738605d7530af7a6"
+            },
+            {
+              "path": "/downloads/official-forms/NTS-CE-01/img1.3.3.1_4.png",
+              "sha256": "1f8df0114394d65f9750e3c68157362ac64dc06af5d3a0bb2d93f21f90d490e7"
+            },
+            {
+              "path": "/downloads/official-forms/NTS-CE-01/img1.3.3.1_5.png",
+              "sha256": "24e9644221ebfdb69535233845a9291ee8bfe244c7f6d13deafd6a25f65670f9"
+            }
+          ],
+          "sourceHtmlSha256": "2f2168010fdad7f9e879aae7b2f2408cade3cb52379534f9c9b80a6b90acef3f",
+          "includesOriginalCaseContext": true,
+          "inspection": {
+            "kind": "PDF",
+            "pages": 6,
+            "allPagesRendered": true,
+            "embeddedSourcePixelsMatch": true,
+            "institutionProvidedPdf": false,
+            "sourcePages": [
+              {
+                "page": 1,
+                "sourceSha256": "c1cca58280526c12090f9d093d7dd80d323478d6c0a602939d096074522ad45b",
+                "embeddedPixelsMatch": true
+              },
+              {
+                "page": 2,
+                "sourceSha256": "d4fbba5b752e50f16b768d0d7ea00544bbee449295fa78abf8e5bac5025ed27c",
+                "embeddedPixelsMatch": true
+              },
+              {
+                "page": 3,
+                "sourceSha256": "e6c2840f51793094d48508c5d96cf7c3ed9bd18fba2e9d73738605d7530af7a6",
+                "embeddedPixelsMatch": true
+              },
+              {
+                "page": 4,
+                "sourceSha256": "1f8df0114394d65f9750e3c68157362ac64dc06af5d3a0bb2d93f21f90d490e7",
+                "embeddedPixelsMatch": true
+              },
+              {
+                "page": 5,
+                "sourceSha256": "24e9644221ebfdb69535233845a9291ee8bfe244c7f6d13deafd6a25f65670f9",
+                "embeddedPixelsMatch": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "img1.3.3.1_1.png",
+          "originalFilename": "img1.3.3.1_1.png",
+          "path": "/downloads/official-forms/NTS-CE-01/img1.3.3.1_1.png",
+          "format": "PNG",
+          "role": "web-example-image",
+          "bytes": 228953,
+          "sha256": "c1cca58280526c12090f9d093d7dd80d323478d6c0a602939d096074522ad45b",
+          "sourceUrl": "https://www.nts.go.kr/images/ad/yangdo/sub/img1.3.3.1_1.png",
+          "sourcePage": "https://www.nts.go.kr/tax/sub/1.3.3.1.%EB%B9%84%EC%83%81%EC%9E%A5%20%EC%A3%BC%EC%8B%9D%EC%9D%84%20%EC%96%91%EB%8F%84%ED%95%9C%20%EA%B2%BD%EC%9A%B0.html",
+          "checkedOn": "2026-09-17",
+          "delivery": "hosted",
+          "licenseBasis": "public-work-article-24-2",
+          "licenseUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
+          "inspection": {
+            "sha256Matches": true,
+            "fullOfficeRenderingVerified": false,
+            "kind": "PNG",
+            "width": 720,
+            "height": 1099,
+            "decoded": true
+          },
+          "artifactType": "institution-original"
+        },
+        {
+          "name": "img1.3.3.1_2.png",
+          "originalFilename": "img1.3.3.1_2.png",
+          "path": "/downloads/official-forms/NTS-CE-01/img1.3.3.1_2.png",
+          "format": "PNG",
+          "role": "web-example-image",
+          "bytes": 339811,
+          "sha256": "d4fbba5b752e50f16b768d0d7ea00544bbee449295fa78abf8e5bac5025ed27c",
+          "sourceUrl": "https://www.nts.go.kr/images/ad/yangdo/sub/img1.3.3.1_2.png",
+          "sourcePage": "https://www.nts.go.kr/tax/sub/1.3.3.1.%EB%B9%84%EC%83%81%EC%9E%A5%20%EC%A3%BC%EC%8B%9D%EC%9D%84%20%EC%96%91%EB%8F%84%ED%95%9C%20%EA%B2%BD%EC%9A%B0.html",
+          "checkedOn": "2026-09-17",
+          "delivery": "hosted",
+          "licenseBasis": "public-work-article-24-2",
+          "licenseUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
+          "inspection": {
+            "sha256Matches": true,
+            "fullOfficeRenderingVerified": false,
+            "kind": "PNG",
+            "width": 720,
+            "height": 1063,
+            "decoded": true
+          },
+          "artifactType": "institution-original"
+        },
+        {
+          "name": "img1.3.3.1_3.png",
+          "originalFilename": "img1.3.3.1_3.png",
+          "path": "/downloads/official-forms/NTS-CE-01/img1.3.3.1_3.png",
+          "format": "PNG",
+          "role": "web-example-image",
+          "bytes": 263214,
+          "sha256": "e6c2840f51793094d48508c5d96cf7c3ed9bd18fba2e9d73738605d7530af7a6",
+          "sourceUrl": "https://www.nts.go.kr/images/ad/yangdo/sub/img1.3.3.1_3.png",
+          "sourcePage": "https://www.nts.go.kr/tax/sub/1.3.3.1.%EB%B9%84%EC%83%81%EC%9E%A5%20%EC%A3%BC%EC%8B%9D%EC%9D%84%20%EC%96%91%EB%8F%84%ED%95%9C%20%EA%B2%BD%EC%9A%B0.html",
+          "checkedOn": "2026-09-17",
+          "delivery": "hosted",
+          "licenseBasis": "public-work-article-24-2",
+          "licenseUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
+          "inspection": {
+            "sha256Matches": true,
+            "fullOfficeRenderingVerified": false,
+            "kind": "PNG",
+            "width": 720,
+            "height": 995,
+            "decoded": true
+          },
+          "artifactType": "institution-original"
+        },
+        {
+          "name": "img1.3.3.1_4.png",
+          "originalFilename": "img1.3.3.1_4.png",
+          "path": "/downloads/official-forms/NTS-CE-01/img1.3.3.1_4.png",
+          "format": "PNG",
+          "role": "web-example-image",
+          "bytes": 111895,
+          "sha256": "1f8df0114394d65f9750e3c68157362ac64dc06af5d3a0bb2d93f21f90d490e7",
+          "sourceUrl": "https://www.nts.go.kr/images/ad/yangdo/sub/img1.3.3.1_4.png",
+          "sourcePage": "https://www.nts.go.kr/tax/sub/1.3.3.1.%EB%B9%84%EC%83%81%EC%9E%A5%20%EC%A3%BC%EC%8B%9D%EC%9D%84%20%EC%96%91%EB%8F%84%ED%95%9C%20%EA%B2%BD%EC%9A%B0.html",
+          "checkedOn": "2026-09-17",
+          "delivery": "hosted",
+          "licenseBasis": "public-work-article-24-2",
+          "licenseUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
+          "inspection": {
+            "sha256Matches": true,
+            "fullOfficeRenderingVerified": false,
+            "kind": "PNG",
+            "width": 720,
+            "height": 981,
+            "decoded": true
+          },
+          "artifactType": "institution-original"
+        },
+        {
+          "name": "img1.3.3.1_5.png",
+          "originalFilename": "img1.3.3.1_5.png",
+          "path": "/downloads/official-forms/NTS-CE-01/img1.3.3.1_5.png",
+          "format": "PNG",
+          "role": "web-example-image",
+          "bytes": 185236,
+          "sha256": "24e9644221ebfdb69535233845a9291ee8bfe244c7f6d13deafd6a25f65670f9",
+          "sourceUrl": "https://www.nts.go.kr/images/ad/yangdo/sub/img1.3.3.1_5.png",
+          "sourcePage": "https://www.nts.go.kr/tax/sub/1.3.3.1.%EB%B9%84%EC%83%81%EC%9E%A5%20%EC%A3%BC%EC%8B%9D%EC%9D%84%20%EC%96%91%EB%8F%84%ED%95%9C%20%EA%B2%BD%EC%9A%B0.html",
+          "checkedOn": "2026-09-17",
+          "delivery": "hosted",
+          "licenseBasis": "public-work-article-24-2",
+          "licenseUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
+          "inspection": {
+            "sha256Matches": true,
+            "fullOfficeRenderingVerified": false,
+            "kind": "PNG",
+            "width": 720,
+            "height": 483,
+            "decoded": true
+          },
+          "artifactType": "institution-original"
+        }
+      ],
+      "licenseUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
+      "licenseBasis": "public-work-article-24-2",
+      "rightsReview": {
+        "basis": "public-work-article-24-2",
+        "status": "public-work-assessment",
+        "policyUrl": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=6791&cntntsId=8169",
+        "lawUrl": "https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1030281869",
+        "checkedOn": "2026-09-17",
+        "koglMarkVerified": false,
+        "separatePermissionObtained": false,
+        "publicationEvidence": "국세청 세목별 신고안내의 작성사례로 국세청 명의 공개. 확인한 본문에 별도 저작자·제3자 권리 표시는 없음.",
+        "limitation": "개별 저작재산권 계약·등록 여부까지 확인한 법률 검토는 아님. 파일 해시 확인과 구분함.",
+        "publicationDecision": "자료의 성격과 제24조의2 적용에 근거한 게시 판단. 이용자가 원본 게시 진행을 명시적으로 요청함."
+      },
+      "primaryArtifactType": "derived-image-compilation"
     },
     {
       "id": "REG-I-01",
@@ -6155,17 +6401,14 @@
       "licenseBasis": "agency-policy"
     }
   ],
-  "hostedFileCount": 139,
-  "directDownloadCount": 73,
+  "hostedFileCount": 148,
+  "directDownloadCount": 74,
   "bundle": {
     "path": "/downloads/official-forms/official-forms.zip",
-    "recordCount": 70,
-    "fileCount": 139,
-    "excludedIds": [
-      "NTS-IE-01",
-      "NTS-IE-02",
-      "NTS-IE-03",
-      "NTS-CE-01"
-    ]
-  }
+    "recordCount": 74,
+    "fileCount": 148,
+    "excludedIds": []
+  },
+  "hostedOriginalFileCount": 147,
+  "hostedDerivedFileCount": 1
 }

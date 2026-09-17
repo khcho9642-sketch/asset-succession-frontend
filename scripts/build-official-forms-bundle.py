@@ -1,4 +1,4 @@
-"""Deterministic, allowlisted archive of unmodified, licensed institution files."""
+"""Deterministic archive of source originals and explicitly identified derived files."""
 import hashlib
 import json
 from pathlib import Path, PurePosixPath
@@ -15,7 +15,14 @@ assert len(documents) == manifest['bundle']['recordCount']
 assert len(files) == manifest['bundle']['fileCount']
 entries = {}
 for doc, file in files:
-    assert file['delivery'] == 'hosted' and file['licenseBasis'] != 'unconfirmed'
+    assert file['delivery'] == 'hosted' and file['licenseBasis'] in {
+        'kogl-type-1', 'agency-policy', 'statutory-form', 'public-work-article-24-2'}
+    if file['licenseBasis'] == 'public-work-article-24-2':
+        assert doc['rightsReview']['status'] == 'public-work-assessment'
+        assert not doc['rightsReview']['koglMarkVerified']
+    if file.get('artifactType') == 'derived-image-compilation':
+        assert file['role'] == 'image-compilation' and len(file['derivedFrom']) == 5
+        assert not file['inspection']['institutionProvidedPdf']
     relative = PurePosixPath(unquote(file['path']).removeprefix('/downloads/official-forms/'))
     assert not relative.is_absolute() and '..' not in relative.parts
     path = (LIB / relative).resolve()
