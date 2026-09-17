@@ -1,0 +1,39 @@
+{
+  "P1-14": {
+    "url": "https://www.easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=2&cciNo=1&cnpClsNo=1&csmSeq=234&menuType=cnpcls&popMenu=ov",
+    "institution": "법제처 찾기쉬운 생활법령정보",
+    "terms": ["자필증서", "유언", "작성"],
+    "note": "자필증서 유언의 작성방법·주의사항 안내이며, 출력 후 서명만 하는 계약서 양식이 아닙니다."
+  },
+  "P1-17": {
+    "url": "https://www.easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=2&cciNo=3&cnpClsNo=1&csmSeq=234&popMenu=ov",
+    "institution": "법제처 찾기쉬운 생활법령정보",
+    "terms": ["공정증서", "유언", "공증인"],
+    "related_sources": ["https://www.moj.go.kr/moj/2303/subview.do"],
+    "note": "법무부 공증인 제도 안내와 법제처의 공정증서 유언 안내를 구분해 제공합니다."
+  },
+  "P2-06": {
+    "url": "https://www.mss.go.kr/site/daegu/ex/bbs/View.do?bcIdx=1067075&cbIdx=253",
+    "institution": "중소벤처기업부",
+    "terms": ["2026", "명문장수기업", "모집", "hwpx"],
+    "note": "2026년 모집공고와 첨부 신청자료입니다. 해당 공고의 모집기간이 종료되었으므로 현재 접수 중이라고 표시하지 않습니다."
+  },
+  "P2-09": {
+    "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7724&mi=2331",
+    "institution": "국세청",
+    "terms": ["상속세", "분납"],
+    "note": "상속세 분납과 연부연납의 공식 안내입니다. 두 제도를 동일한 신청서로 취급하지 않습니다."
+  },
+  "P3-03": {
+    "url": "https://edi.nhis.or.kr/webedi/file_sy/all_sangsil.html",
+    "institution": "국민건강보험공단",
+    "terms": ["자격상실", "사망"],
+    "note": "사업장·직장가입자 자격상실 신고 안내입니다. 지역가입자 등 다른 자격의 절차와 구분해 확인하세요."
+  },
+  "P3-06": {
+    "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7960&mi=6538",
+    "institution": "국세청",
+    "terms": ["부담부증여", "양도"],
+    "note": "부담부증여의 채무인수 부분과 증여 부분에 대한 세금 구분 안내입니다. 국가기관 계약서 원본을 확보했다는 뜻은 아닙니다."
+  }
+}
