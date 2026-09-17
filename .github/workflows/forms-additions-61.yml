@@ -33,7 +33,9 @@ jobs:
           python -m playwright install --with-deps chromium
           if ! test -f docs/forms-additions-61/discovery/index.json; then python scripts/forms-additions-discover.py; fi
           if ! test -f docs/forms-additions-61/browser/index.json; then python scripts/forms-additions-browser.py; fi
-          if test -f scripts/forms-additions-collect.py; then python scripts/forms-additions-collect.py; fi
+          python scripts/forms-additions-resolve.py
+          python scripts/forms-additions-collect.py
+          python scripts/forms-additions-enrich.py
       - name: Validate registered additions
         if: hashFiles('scripts/forms-additions-tests.mjs') != ''
         run: node --test scripts/forms-additions-tests.mjs
@@ -56,4 +58,5 @@ jobs:
             .tmp/forms-additions-proof/
             docs/forms-additions-61/
             tasks.md
+            public/downloads/official-forms/additions/
           retention-days: 7
