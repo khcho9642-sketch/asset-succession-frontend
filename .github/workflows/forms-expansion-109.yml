@@ -2,7 +2,7 @@ name: Forms expansion 109
 on:
   push:
     branches: [assistant/forms-additions-109]
-    paths: ['scripts/forms-expansion*', 'scripts/forms-browser-*', 'docs/forms-expansion-109/inputs/**', 'docs/forms-expansion-109/resume-sources.json', '.github/workflows/forms-expansion-109.yml']
+    paths: ['scripts/forms-expansion*', 'docs/forms-expansion-109/resume-sources.json', '.github/workflows/forms-expansion-109.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -14,7 +14,7 @@ jobs:
   collect:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
     env:
       PYTHONUNBUFFERED: '1'
       NEXT_TELEMETRY_DISABLED: '1'
@@ -30,15 +30,49 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Recover already acquired originals and evidence
+      - name: Recover private acquisition evidence only
         uses: actions/download-artifact@v4
         with:
           name: forms-expansion-109-proof
           run-id: 35206693723
           github-token: ${{ github.token }}
           path: .tmp/recovered
-      - name: Restore verified records and fix failed JSX integration
-        run: python scripts/forms-expansion-rescue.py
+      - name: Collect actual institution attachments and inspect their content
+        run: |
+          mkdir -p .tmp/forms-expansion-proof
+          cp -r .tmp/recovered/.tmp/forms-expansion-proof/downloaded-originals .tmp/forms-expansion-proof/
+          python -m pip install --disable-pip-version-check requests beautifulsoup4 olefile pypdf lxml
+          set -o pipefail
+          python scripts/forms-expansion-resume.py 2>&1 | tee .tmp/forms-expansion-proof/collection.log
+      - name: Check exact legacy preservation and all completed file hashes
+        run: |
+          python - <<'PY' | tee .tmp/forms-expansion-proof/validation.log
+          from pathlib import Path
+          import json,re,hashlib
+          root=Path('.')
+          d=root/'docs/forms-expansion-109'
+          results=json.loads((d/'results.json').read_text())
+          legacy=json.loads((d/'legacy-manifest.json').read_text())
+          m=json.loads((root/'public/downloads/official-forms/manifest.json').read_text())
+          assert len(results)==109 and len({r['id'] for r in results})==109
+          assert len(m['documents'])==177 and len({r['id'] for r in m['documents']})==177
+          for old in legacy['documents']:
+              new=next(r for r in m['documents'] if r['id']==old['id'])
+              permitted=any(r['operation']=='source_url_update' and r['status']=='확인 완료' and r['target_id']==old['id'] for r in results)
+              assert {k:v for k,v in old.items() if not(permitted and k=='sourceUrl')}=={k:v for k,v in new.items() if not(permitted and k=='sourceUrl')},old['id']
+          for r in results:
+              if r['status']!='확인 완료':continue
+              if r['required_original']:assert r.get('files'),r['id']
+              for f in r.get('files',[]):
+                  p=root/f['path'] if f.get('path') else root/'.tmp/forms-expansion-proof'/f['artifact_path']
+                  assert p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==f['sha256'],(r['id'],str(p))
+          t=(root/'tasks.md').read_text()
+          done=len(re.findall(r'^- \[x\] P',t,re.M));todo=len(re.findall(r'^- \[ \] P',t,re.M))
+          assert done+todo==109
+          print('Verified',done,'Unchecked',todo,'Legacy preserved',len(legacy['documents']))
+          print('grep count:',sum('확인 중' in x for x in (root/'public/downloads/official-forms/manifest.json').read_text().splitlines()))
+          print('Pending IDs:',','.join(r['id'] for r in results if r['status']!='확인 완료'))
+          PY
       - name: Lint types and production build
         run: |
           set -o pipefail
@@ -46,28 +80,29 @@ jobs:
           npm run lint 2>&1 | tee .tmp/forms-expansion-proof/lint.log
           npm run typecheck 2>&1 | tee .tmp/forms-expansion-proof/typecheck.log
           npm run build 2>&1 | tee .tmp/forms-expansion-proof/build.log
-      - name: Commit verified files and metadata on working branch only
+      - name: Commit this batch to the working branch only
         run: |
           git fetch origin assistant/forms-additions-109
           test "$(git rev-parse FETCH_HEAD)" = "${{ github.sha }}"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tasks.md docs/forms-expansion-109 app/forms public/downloads/official-forms/manifest.json public/downloads/official-forms/additions
+          git add tasks.md docs/forms-expansion-109 public/downloads/official-forms/manifest.json public/downloads/official-forms/additions
           if test -d public/downloads/official-forms/expansion; then git add public/downloads/official-forms/expansion; fi
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'fix(forms): recover inspected originals and repair catalog JSX'
+          git commit -m 'data(forms): register this batch of inspected institutional originals and sources'
           git push origin HEAD:assistant/forms-additions-109
-      - name: Preserve resumable evidence and source
+      - name: Save collected evidence and exact source
         if: always()
         run: |
           mkdir -p .tmp/forms-expansion-proof/source
           cp -r app/forms .tmp/forms-expansion-proof/source/
           cp public/downloads/official-forms/manifest.json .tmp/forms-expansion-proof/manifest.json
           git rev-parse HEAD > .tmp/forms-expansion-proof/commit.txt
+          git archive --format=tar HEAD | gzip > .tmp/forms-expansion-proof/source.tar.gz
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: forms-expansion-109-rescue-proof
+          name: forms-expansion-109-batch-proof
           path: |
             .tmp/forms-expansion-proof/
             docs/forms-expansion-109/
