@@ -1,0 +1,6 @@
+{
+  "key": "guardian",
+  "source": "https://dgfamily.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
+  "checked_at": "2026-09-17T07:30:26Z",
+  "error": "Page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://dgfamily.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n"
+}

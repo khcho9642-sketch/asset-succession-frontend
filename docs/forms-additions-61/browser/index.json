@@ -1,0 +1,72 @@
+[
+  {
+    "key": "local-tax",
+    "status": 200,
+    "title": "법령 > 본문 > 지방세법 시행규칙 | 국가법령정보센터",
+    "links": 2157,
+    "error": null
+  },
+  {
+    "key": "national-tax",
+    "status": 200,
+    "title": "법령 > 본문 > 국세기본법 시행규칙 | 국가법령정보센터",
+    "links": 1106,
+    "error": null
+  },
+  {
+    "key": "inheritance-tax",
+    "status": 200,
+    "title": "법령 > 본문 > 상속세 및 증여세법 시행규칙 | 국가법령정보센터",
+    "links": 766,
+    "error": null
+  },
+  {
+    "key": "tax-special",
+    "status": 200,
+    "title": "법령 > 제정·개정문 - 조세특례제한법 시행규칙 | 국가법령정보센터",
+    "links": 3683,
+    "error": null
+  },
+  {
+    "key": "vat",
+    "status": 200,
+    "title": "법령 > 본문 > 부가가치세법 시행규칙 | 국가법령정보센터",
+    "links": 785,
+    "error": null
+  },
+  {
+    "key": "local-benefit-search",
+    "status": 200,
+    "title": "별표·서식 > 법령 > 서식명 | 국가법령정보센터",
+    "links": 205,
+    "error": null
+  },
+  {
+    "key": "court-home",
+    "status": null,
+    "title": null,
+    "links": 0,
+    "error": "Page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.scourt.go.kr/portal/main.jsp\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "key": "guardian",
+    "status": null,
+    "title": null,
+    "links": 0,
+    "error": "Page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://dgfamily.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "key": "iros",
+    "status": null,
+    "title": null,
+    "links": 0,
+    "error": "Page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.iros.go.kr/\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "key": "family",
+    "status": null,
+    "title": null,
+    "links": 0,
+    "error": "Page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005\", waiting until \"domcontentloaded\"\n"
+  }
+]

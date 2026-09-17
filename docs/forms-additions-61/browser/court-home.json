@@ -1,0 +1,6 @@
+{
+  "key": "court-home",
+  "source": "https://www.scourt.go.kr/portal/main.jsp",
+  "checked_at": "2026-09-17T07:29:41Z",
+  "error": "Page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://www.scourt.go.kr/portal/main.jsp\", waiting until \"domcontentloaded\"\n"
+}

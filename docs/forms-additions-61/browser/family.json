@@ -1,0 +1,6 @@
+{
+  "key": "family",
+  "source": "https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005",
+  "checked_at": "2026-09-17T07:31:56Z",
+  "error": "Page.goto: Timeout 45000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005\", waiting until \"domcontentloaded\"\n"
+}

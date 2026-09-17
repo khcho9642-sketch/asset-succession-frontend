@@ -1,0 +1,4742 @@
+{
+  "key": "vat",
+  "source": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP",
+  "checked_at": "2026-09-17T07:29:24Z",
+  "http_status": 200,
+  "clicked": [
+    "#bylView",
+    "a[onclick*=\"liBgcolorSpanByJi\"]"
+  ],
+  "url": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#0000",
+  "title": "법령 > 본문 > 부가가치세법 시행규칙 | 국가법령정보센터",
+  "links": [
+    {
+      "text": "본문목록열림서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fSelectJoListAncInfoPTree('liBgcolorSpanByJi','7','1','284995','20260320','','0');return false;",
+      "title": ""
+    },
+    {
+      "text": "[서식1] 하치장 설치 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044445",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식2] 임시사업장 개설 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044447",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식3] 임시사업장 폐쇄 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044449",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식4] 사업자등록 신청서(개인사업자용)(법인이 아닌 단체의 고유번호 신청서), 공동사업자 명세, 서류를 송달받을 장소, 투자조합 세부명세, 사업자 단위 과세 사업자의 종된 사업장 명세서(개인사업자용, 법인사업자용)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044451",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식5] 사업자 단위 과세 등록신청서(기존사업자용)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044453",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식5의2] 법정대리인 동의서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044455",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식6] 자금출처명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044457",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식7] 사업자등록증, 사업자 단위 과세 적용 종된 사업장 명세",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044459",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식8] 다단계판매원 (등록ㆍ폐업) 현황신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044461",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식9] (휴업, 폐업) 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044463",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식10] 법인합병신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044465",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식11] 사업자등록 정정신고서, 법인이 아닌 단체의 고유번호 정정신고서, 사업자 단위 과세 사업자의 종된 사업장 정정신고서 (개인사업자용), 사업자 단위 과세 사업자의 종된 사업장 정정신고서 (법인사업자용)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044467",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식12] 사업자 단위 과세 포기신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044469",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식13] 면세(포기, 적용)신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044471",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식14] 세금계산서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044473",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식14의2] 거래사실 확인신청서(매입자발행세금계산서 발급용)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044475",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식14의3] 매입자발행세금계산서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044477",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식14의4] 매입자발행세금계산서합계표",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044479",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식14의5] 수정수입세금계산서 발급신청서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044481",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식15] 의제매입세액 공제신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044483",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식16] 신용카드매출전표등 수령명세서(갑, 을)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044485",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식17] 과세사업전환 감가상각자산 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044487",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식18] (일반, 간이)과세전환 시의 재고품등 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044489",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식19] 대손세액 공제(변제)신고서(갑, 을, 병)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044491",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식20] 전자세금계산서 발급세액공제신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044493",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식21] 일반과세자 부가가치세(예정, 확정, 기한후과세표준, 영세율 등 조기환급)신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044495",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식22] 공제받지 못할 매입세액 명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044497",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식23] 신용카드매출전표등 발행금액 집계표",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044499",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식24] 전자화폐결제명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044501",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식25] 부동산임대공급가액명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044503",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식26] 현금매출명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044505",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식27] 건물 등 감가상각자산 취득명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044507",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식27의2] 재무구조개선계획서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044509",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식28] 사업자 단위 과세의 사업장별 부가가치세 과세표준 및 납부세액(환급세액) 신고명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044511",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식29] 영세율 매출명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044513",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식30] 동물 진료용역 매출명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044515",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식31] 사업양도신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044517",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식32] 건물관리명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044519",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식33] 사업장현황명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044521",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식33의2] 재화의 수입에 대한 부가가치세 납부유예 요건 확인(요청)서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044523",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식33의3] 재화의 수입에 대한 부가가치세 납부유예 적용 신청서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044525",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식34] 사업장별 부가가치세 과세표준 및 납부세액(환급세액) 신고명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044527",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식35] 주사업장 총괄 납부(신청서, 포기신고서)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044529",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식36] 주사업장 총괄 납부 변경신청서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044531",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식37] 부가가치세 대리납부신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044533",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식37의2] 부가가치세 대리납부신고서(사업양수자용)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044535",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식37의3] 전자적 용역 거래명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044537",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식38] 매출처별 세금계산서합계표",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044539",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식39] 매입처별 세금계산서합계표",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044541",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식40] 수출실적명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044543",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식41] 내국신용장ㆍ구매확인서 전자발급명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044545",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식42] 영세율 첨부서류 제출명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044547",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식43] 간이과세(적용, 포기, 재적용)신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044549",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식44] 간이과세자 부가가치세 (예정신고서, 신고서, 기한후과세표준신고서)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044551",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식45] 간이과세자 부가가치세 간편 신고서(부동산임대사업자용), 매입처별 세금계산서합계표",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044553",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식46] 간이과세자 부가가치세 간편 신고서(부동산임대업종 외 사업자용), 매입처별 세금계산서합계표",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044555",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식47] 동물 진료용역 매출대장",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044557",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식48] 월별 거래 명세(판매대행자료)(갑, 을)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044559",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식48의2] 월별 거래 명세(결제대행자료)(갑, 을)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044561",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식48의3] 월별 거래 명세(결제대금예치자료)(갑, 을)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044563",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식48의4] 월별 거래 명세(소액외환송금자료)(갑, 을)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044565",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식48의5] 월별 거래 명세(게시판을 이용한 판매중개자료)(갑, 을)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#J18044567",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "별표·서식",
+      "href": "javascript:;",
+      "onclick": null,
+      "title": "별표서식"
+    },
+    {
+      "text": "조례위임조문",
+      "href": "javascript:;",
+      "onclick": "unOrdinView(this); return false;",
+      "title": "조례위임조문"
+    },
+    {
+      "text": "위임조례",
+      "href": "javascript:;",
+      "onclick": "joDelegateLsPop(lsVO.lsValue.lsiSeq, el('lsId').value); return false;",
+      "title": "위임조례"
+    },
+    {
+      "text": "위임행정규칙",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#0000",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162618157&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162618159&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162618993&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162618157&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 1] 면세하는 미가공식료품 분류표(제24조제1항 관련) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162618157&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162618157&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 1] 면세하는 미가공식료품 분류표(제24조제1항 관련) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162618157&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162618159&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 1] 면세하는 미가공식료품 분류표(제24조제1항 관련) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162618159&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619019&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619021&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162618995&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619019&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 2] 면세하지 아니하는 수입 미가공식료품 분류표(제37조제1항 관련) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619019&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619019&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 2] 면세하지 아니하는 수입 미가공식료품 분류표(제37조제1항 관련) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619019&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619021&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 2] 면세하지 아니하는 수입 미가공식료품 분류표(제37조제1항 관련) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619021&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619025&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619027&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162618997&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619025&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 2의2] 부가가치세가 면제되는 장애인용품 (제42조 관련) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619025&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619025&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 2의2] 부가가치세가 면제되는 장애인용품 (제42조 관련) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619025&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619027&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 2의2] 부가가치세가 면제되는 장애인용품 (제42조 관련) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619027&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619035&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619037&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162618999&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619035&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 3] 면세하는 품목(관세의 기본세율이 무세인 품목)의 분류표(제43조 관련) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619035&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619035&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 3] 면세하는 품목(관세의 기본세율이 무세인 품목)의 분류표(제43조 관련) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619035&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619037&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 3] 면세하는 품목(관세의 기본세율이 무세인 품목)의 분류표(제43조 관련) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619037&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제1호서식] 하치장 설치 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044445');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619045&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619047&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619001&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619045&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제1호서식] 하치장 설치 신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619045&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619045&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제1호서식] 하치장 설치 신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619045&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619047&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제1호서식] 하치장 설치 신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619047&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제2호서식] 임시사업장 개설 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044447');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619051&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619053&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619003&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619051&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제2호서식] 임시사업장 개설 신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619051&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619051&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제2호서식] 임시사업장 개설 신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619051&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619053&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제2호서식] 임시사업장 개설 신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619053&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제3호서식] 임시사업장 폐쇄 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044449');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619057&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619059&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619005&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619057&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제3호서식] 임시사업장 폐쇄 신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619057&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619057&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제3호서식] 임시사업장 폐쇄 신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619057&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619059&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제3호서식] 임시사업장 폐쇄 신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619059&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제4호서식] 사업자등록 신청서(개인사업자용)(법인이 아닌 단체의 고유번호 신청서), 공동사업자 명세, 서류를 송달받을 장소, 투자조합 세부명세, 사업자 단위 과세 사업자의 종된 사업장 명세서(개인사업자용, 법인사업자용)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044451');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619063&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619065&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=163577309&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619063&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제4호서식] 사업자등록 신청서(개인사업자용)(법인이 아닌 단체의 고유번호 신청서), 공동사업자 명세, 서류를 송달받을 장소, 투자조합 세부명세, 사업자 단위 과세 사업자의 종된 사업장 명세서(개인사업자용, 법인사업자용) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619063&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619063&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제4호서식] 사업자등록 신청서(개인사업자용)(법인이 아닌 단체의 고유번호 신청서), 공동사업자 명세, 서류를 송달받을 장소, 투자조합 세부명세, 사업자 단위 과세 사업자의 종된 사업장 명세서(개인사업자용, 법인사업자용) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619063&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619065&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제4호서식] 사업자등록 신청서(개인사업자용)(법인이 아닌 단체의 고유번호 신청서), 공동사업자 명세, 서류를 송달받을 장소, 투자조합 세부명세, 사업자 단위 과세 사업자의 종된 사업장 명세서(개인사업자용, 법인사업자용) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619065&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제5호서식] 사업자 단위 과세 등록신청서(기존사업자용)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044453');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619079&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619081&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=163577313&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619079&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제5호서식] 사업자 단위 과세 등록신청서(기존사업자용) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619079&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619079&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제5호서식] 사업자 단위 과세 등록신청서(기존사업자용) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619079&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619081&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제5호서식] 사업자 단위 과세 등록신청서(기존사업자용) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619081&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제5호의2서식] 법정대리인 동의서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044455');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619085&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619087&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619007&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619085&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제5호의2서식] 법정대리인 동의서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619085&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619085&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제5호의2서식] 법정대리인 동의서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619085&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619087&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제5호의2서식] 법정대리인 동의서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619087&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제6호서식] 자금출처명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044457');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619091&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619093&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619009&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619091&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제6호서식] 자금출처명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619091&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619091&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제6호서식] 자금출처명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619091&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619093&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제6호서식] 자금출처명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619093&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제7호서식] 사업자등록증, 사업자 단위 과세 적용 종된 사업장 명세",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044459');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619097&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619099&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619011&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619097&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제7호서식] 사업자등록증, 사업자 단위 과세 적용 종된 사업장 명세 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619097&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619097&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제7호서식] 사업자등록증, 사업자 단위 과세 적용 종된 사업장 명세 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619097&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619099&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제7호서식] 사업자등록증, 사업자 단위 과세 적용 종된 사업장 명세 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619099&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제8호서식] 다단계판매원 (등록ㆍ폐업) 현황신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044461');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619109&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619111&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619013&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619109&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제8호서식] 다단계판매원 (등록ㆍ폐업) 현황신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619109&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619109&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제8호서식] 다단계판매원 (등록ㆍ폐업) 현황신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619109&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619111&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제8호서식] 다단계판매원 (등록ㆍ폐업) 현황신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619111&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제9호서식] (휴업, 폐업) 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044463');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619115&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619117&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=163577267&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619115&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제9호서식] (휴업, 폐업) 신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619115&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619115&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제9호서식] (휴업, 폐업) 신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619115&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619117&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제9호서식] (휴업, 폐업) 신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619117&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호서식] 법인합병신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044465');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619121&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619123&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=163577317&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619121&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호서식] 법인합병신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619121&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619121&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호서식] 법인합병신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619121&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619123&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호서식] 법인합병신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619123&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제11호서식] 사업자등록 정정신고서, 법인이 아닌 단체의 고유번호 정정신고서, 사업자 단위 과세 사업자의 종된 사업장 정정신고서 (개인사업자용), 사업자 단위 과세 사업자의 종된 사업장 정정신고서 (법인사업자용)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044467');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619127&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619129&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619015&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619127&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제11호서식] 사업자등록 정정신고서, 법인이 아닌 단체의 고유번호 정정신고서, 사업자 단위 과세 사업자의 종된 사업장 정정신고서 (개인사업자용), 사업자 단위 과세 사업자의 종된 사업장 정정신고서 (법인사업자용) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619127&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619127&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제11호서식] 사업자등록 정정신고서, 법인이 아닌 단체의 고유번호 정정신고서, 사업자 단위 과세 사업자의 종된 사업장 정정신고서 (개인사업자용), 사업자 단위 과세 사업자의 종된 사업장 정정신고서 (법인사업자용) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619127&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619129&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제11호서식] 사업자등록 정정신고서, 법인이 아닌 단체의 고유번호 정정신고서, 사업자 단위 과세 사업자의 종된 사업장 정정신고서 (개인사업자용), 사업자 단위 과세 사업자의 종된 사업장 정정신고서 (법인사업자용) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619129&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호서식] 사업자 단위 과세 포기신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044469');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619139&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619141&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619017&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619139&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호서식] 사업자 단위 과세 포기신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619139&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619139&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호서식] 사업자 단위 과세 포기신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619139&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619141&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호서식] 사업자 단위 과세 포기신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619141&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제13호서식] 면세(포기, 적용)신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044471');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619145&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619147&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620179&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619145&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제13호서식] 면세(포기, 적용)신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619145&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619145&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제13호서식] 면세(포기, 적용)신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619145&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619147&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제13호서식] 면세(포기, 적용)신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619147&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호서식] 세금계산서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044473');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619151&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619153&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620181&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619151&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호서식] 세금계산서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619151&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619151&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호서식] 세금계산서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619151&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619153&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호서식] 세금계산서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619153&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의2서식] 거래사실 확인신청서(매입자발행세금계산서 발급용)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044475');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619157&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619159&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=163704263&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619157&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의2서식] 거래사실 확인신청서(매입자발행세금계산서 발급용) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619157&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619157&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의2서식] 거래사실 확인신청서(매입자발행세금계산서 발급용) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619157&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619159&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의2서식] 거래사실 확인신청서(매입자발행세금계산서 발급용) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619159&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의3서식] 매입자발행세금계산서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044477');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619165&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619167&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620183&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619165&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의3서식] 매입자발행세금계산서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619165&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619165&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의3서식] 매입자발행세금계산서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619165&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619167&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의3서식] 매입자발행세금계산서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619167&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의4서식] 매입자발행세금계산서합계표",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044479');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619171&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619173&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620185&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619171&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의4서식] 매입자발행세금계산서합계표 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619171&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619171&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의4서식] 매입자발행세금계산서합계표 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619171&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619173&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의4서식] 매입자발행세금계산서합계표 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619173&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의5서식] 수정수입세금계산서 발급신청서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044481');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619179&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619181&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620187&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619179&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의5서식] 수정수입세금계산서 발급신청서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619179&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619179&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의5서식] 수정수입세금계산서 발급신청서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619179&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619181&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의5서식] 수정수입세금계산서 발급신청서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619181&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제15호서식] 의제매입세액 공제신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044483');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619185&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619187&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=163704267&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619185&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제15호서식] 의제매입세액 공제신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619185&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619185&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제15호서식] 의제매입세액 공제신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619185&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619187&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제15호서식] 의제매입세액 공제신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619187&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제16호서식] 신용카드매출전표등 수령명세서(갑, 을)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044485');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619193&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619195&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620189&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619193&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제16호서식] 신용카드매출전표등 수령명세서(갑, 을) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619193&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619193&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제16호서식] 신용카드매출전표등 수령명세서(갑, 을) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619193&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619195&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제16호서식] 신용카드매출전표등 수령명세서(갑, 을) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619195&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제17호서식] 과세사업전환 감가상각자산 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044487');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619203&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619205&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620191&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619203&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제17호서식] 과세사업전환 감가상각자산 신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619203&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619203&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제17호서식] 과세사업전환 감가상각자산 신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619203&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619205&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제17호서식] 과세사업전환 감가상각자산 신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619205&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제18호서식] (일반, 간이)과세전환 시의 재고품등 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044489');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619209&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619211&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620193&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619209&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제18호서식] (일반, 간이)과세전환 시의 재고품등 신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619209&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619209&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제18호서식] (일반, 간이)과세전환 시의 재고품등 신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619209&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619211&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제18호서식] (일반, 간이)과세전환 시의 재고품등 신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619211&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제19호서식] 대손세액 공제(변제)신고서(갑, 을, 병)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044491');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619215&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619217&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620195&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619215&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제19호서식] 대손세액 공제(변제)신고서(갑, 을, 병) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619215&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619215&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제19호서식] 대손세액 공제(변제)신고서(갑, 을, 병) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619215&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619217&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제19호서식] 대손세액 공제(변제)신고서(갑, 을, 병) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619217&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제20호서식] 전자세금계산서 발급세액공제신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044493');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619225&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619227&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620197&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619225&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제20호서식] 전자세금계산서 발급세액공제신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619225&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619225&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제20호서식] 전자세금계산서 발급세액공제신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619225&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619227&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제20호서식] 전자세금계산서 발급세액공제신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619227&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호서식] 일반과세자 부가가치세(예정, 확정, 기한후과세표준, 영세율 등 조기환급)신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044495');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619231&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619233&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=163704271&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619231&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호서식] 일반과세자 부가가치세(예정, 확정, 기한후과세표준, 영세율 등 조기환급)신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619231&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619231&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호서식] 일반과세자 부가가치세(예정, 확정, 기한후과세표준, 영세율 등 조기환급)신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619231&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619233&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호서식] 일반과세자 부가가치세(예정, 확정, 기한후과세표준, 영세율 등 조기환급)신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619233&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제22호서식] 공제받지 못할 매입세액 명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044497');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619247&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619249&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=163704275&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619247&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제22호서식] 공제받지 못할 매입세액 명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619247&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619247&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제22호서식] 공제받지 못할 매입세액 명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619247&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619249&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제22호서식] 공제받지 못할 매입세액 명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619249&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제23호서식] 신용카드매출전표등 발행금액 집계표",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044499');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619255&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619257&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620199&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619255&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제23호서식] 신용카드매출전표등 발행금액 집계표 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619255&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619255&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제23호서식] 신용카드매출전표등 발행금액 집계표 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619255&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619257&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제23호서식] 신용카드매출전표등 발행금액 집계표 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619257&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제24호서식] 전자화폐결제명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044501');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619261&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619263&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620201&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619261&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제24호서식] 전자화폐결제명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619261&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619261&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제24호서식] 전자화폐결제명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619261&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619263&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제24호서식] 전자화폐결제명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619263&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호서식] 부동산임대공급가액명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044503');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619267&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619269&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620203&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619267&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호서식] 부동산임대공급가액명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619267&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619267&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호서식] 부동산임대공급가액명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619267&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619269&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호서식] 부동산임대공급가액명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619269&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호서식] 현금매출명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044505');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619275&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619277&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=163704279&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619275&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호서식] 현금매출명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619275&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619275&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호서식] 현금매출명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619275&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619277&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호서식] 현금매출명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619277&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제27호서식] 건물 등 감가상각자산 취득명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044507');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619281&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619283&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620205&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619281&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제27호서식] 건물 등 감가상각자산 취득명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619281&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619281&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제27호서식] 건물 등 감가상각자산 취득명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619281&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619283&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제27호서식] 건물 등 감가상각자산 취득명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619283&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제27호의2서식] 재무구조개선계획서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044509');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619287&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619289&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620207&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619287&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제27호의2서식] 재무구조개선계획서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619287&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619287&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제27호의2서식] 재무구조개선계획서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619287&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619289&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제27호의2서식] 재무구조개선계획서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619289&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호서식] 사업자 단위 과세의 사업장별 부가가치세 과세표준 및 납부세액(환급세액) 신고명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044511');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619293&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619295&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620209&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619293&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호서식] 사업자 단위 과세의 사업장별 부가가치세 과세표준 및 납부세액(환급세액) 신고명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619293&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619293&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호서식] 사업자 단위 과세의 사업장별 부가가치세 과세표준 및 납부세액(환급세액) 신고명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619293&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619295&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호서식] 사업자 단위 과세의 사업장별 부가가치세 과세표준 및 납부세액(환급세액) 신고명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619295&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제29호서식] 영세율 매출명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044513');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619299&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619301&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620211&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619299&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제29호서식] 영세율 매출명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619299&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619299&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제29호서식] 영세율 매출명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619299&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619301&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제29호서식] 영세율 매출명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619301&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제30호서식] 동물 진료용역 매출명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044515');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619307&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619309&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620213&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619307&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제30호서식] 동물 진료용역 매출명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619307&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619307&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제30호서식] 동물 진료용역 매출명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619307&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619309&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제30호서식] 동물 진료용역 매출명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619309&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제31호서식] 사업양도신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044517');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619313&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619315&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620215&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619313&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제31호서식] 사업양도신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619313&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619313&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제31호서식] 사업양도신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619313&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619315&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제31호서식] 사업양도신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619315&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제32호서식] 건물관리명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044519');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619319&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619321&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620217&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619319&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제32호서식] 건물관리명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619319&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619319&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제32호서식] 건물관리명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619319&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619321&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제32호서식] 건물관리명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619321&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호서식] 사업장현황명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044521');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619325&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619327&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620219&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619325&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호서식] 사업장현황명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619325&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619325&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호서식] 사업장현황명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619325&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619327&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호서식] 사업장현황명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619327&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호의2서식] 재화의 수입에 대한 부가가치세 납부유예 요건 확인(요청)서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044523');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619331&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619333&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620221&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619331&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호의2서식] 재화의 수입에 대한 부가가치세 납부유예 요건 확인(요청)서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619331&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619331&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호의2서식] 재화의 수입에 대한 부가가치세 납부유예 요건 확인(요청)서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619331&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619333&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호의2서식] 재화의 수입에 대한 부가가치세 납부유예 요건 확인(요청)서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619333&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호의3서식] 재화의 수입에 대한 부가가치세 납부유예 적용 신청서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044525');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619337&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619339&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620223&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619337&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호의3서식] 재화의 수입에 대한 부가가치세 납부유예 적용 신청서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619337&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619337&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호의3서식] 재화의 수입에 대한 부가가치세 납부유예 적용 신청서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619337&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619339&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호의3서식] 재화의 수입에 대한 부가가치세 납부유예 적용 신청서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619339&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제34호서식] 사업장별 부가가치세 과세표준 및 납부세액(환급세액) 신고명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044527');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619343&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619345&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=163704283&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619343&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제34호서식] 사업장별 부가가치세 과세표준 및 납부세액(환급세액) 신고명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619343&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619343&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제34호서식] 사업장별 부가가치세 과세표준 및 납부세액(환급세액) 신고명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619343&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619345&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제34호서식] 사업장별 부가가치세 과세표준 및 납부세액(환급세액) 신고명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619345&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제35호서식] 주사업장 총괄 납부(신청서, 포기신고서)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044529');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619349&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619351&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620225&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619349&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제35호서식] 주사업장 총괄 납부(신청서, 포기신고서) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619349&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619349&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제35호서식] 주사업장 총괄 납부(신청서, 포기신고서) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619349&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619351&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제35호서식] 주사업장 총괄 납부(신청서, 포기신고서) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619351&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제36호서식] 주사업장 총괄 납부 변경신청서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044531');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619355&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619357&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620227&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619355&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제36호서식] 주사업장 총괄 납부 변경신청서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619355&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619355&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제36호서식] 주사업장 총괄 납부 변경신청서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619355&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619357&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제36호서식] 주사업장 총괄 납부 변경신청서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619357&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제37호서식] 부가가치세 대리납부신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044533');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619361&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619363&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620229&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619361&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제37호서식] 부가가치세 대리납부신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619361&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619361&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제37호서식] 부가가치세 대리납부신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619361&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619363&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제37호서식] 부가가치세 대리납부신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619363&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제37호의2서식] 부가가치세 대리납부신고서(사업양수자용)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044535');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619367&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619369&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620231&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619367&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제37호의2서식] 부가가치세 대리납부신고서(사업양수자용) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619367&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619367&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제37호의2서식] 부가가치세 대리납부신고서(사업양수자용) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619367&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619369&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제37호의2서식] 부가가치세 대리납부신고서(사업양수자용) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619369&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제37호의3서식] 전자적 용역 거래명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044537');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619373&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619375&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620233&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619373&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제37호의3서식] 전자적 용역 거래명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619373&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619373&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제37호의3서식] 전자적 용역 거래명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619373&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619375&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제37호의3서식] 전자적 용역 거래명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619375&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제38호서식] 매출처별 세금계산서합계표",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044539');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619381&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619383&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620235&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619381&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제38호서식] 매출처별 세금계산서합계표 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619381&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619381&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제38호서식] 매출처별 세금계산서합계표 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619381&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619383&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제38호서식] 매출처별 세금계산서합계표 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619383&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제39호서식] 매입처별 세금계산서합계표",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044541');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619391&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619393&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620237&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619391&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제39호서식] 매입처별 세금계산서합계표 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619391&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619391&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제39호서식] 매입처별 세금계산서합계표 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619391&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619393&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제39호서식] 매입처별 세금계산서합계표 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619393&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제40호서식] 수출실적명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044543');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619401&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619403&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620239&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619401&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제40호서식] 수출실적명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619401&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619401&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제40호서식] 수출실적명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619401&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619403&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제40호서식] 수출실적명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619403&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제41호서식] 내국신용장ㆍ구매확인서 전자발급명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044545');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619409&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619411&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620241&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619409&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제41호서식] 내국신용장ㆍ구매확인서 전자발급명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619409&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619409&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제41호서식] 내국신용장ㆍ구매확인서 전자발급명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619409&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619411&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제41호서식] 내국신용장ㆍ구매확인서 전자발급명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619411&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제42호서식] 영세율 첨부서류 제출명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044547');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619417&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619419&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620243&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619417&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제42호서식] 영세율 첨부서류 제출명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619417&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619417&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제42호서식] 영세율 첨부서류 제출명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619417&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619419&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제42호서식] 영세율 첨부서류 제출명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619419&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제43호서식] 간이과세(적용, 포기, 재적용)신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044549');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619425&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619427&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=163704287&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619425&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제43호서식] 간이과세(적용, 포기, 재적용)신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619425&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619425&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제43호서식] 간이과세(적용, 포기, 재적용)신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619425&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619427&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제43호서식] 간이과세(적용, 포기, 재적용)신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619427&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제44호서식] 간이과세자 부가가치세 (예정신고서, 신고서, 기한후과세표준신고서)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044551');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619431&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619433&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=163704291&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619431&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제44호서식] 간이과세자 부가가치세 (예정신고서, 신고서, 기한후과세표준신고서) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619431&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619431&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제44호서식] 간이과세자 부가가치세 (예정신고서, 신고서, 기한후과세표준신고서) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619431&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619433&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제44호서식] 간이과세자 부가가치세 (예정신고서, 신고서, 기한후과세표준신고서) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619433&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제45호서식] 간이과세자 부가가치세 간편 신고서(부동산임대사업자용), 매입처별 세금계산서합계표",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044553');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619443&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619445&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=163704295&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619443&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제45호서식] 간이과세자 부가가치세 간편 신고서(부동산임대사업자용), 매입처별 세금계산서합계표 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619443&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619443&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제45호서식] 간이과세자 부가가치세 간편 신고서(부동산임대사업자용), 매입처별 세금계산서합계표 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619443&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619445&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제45호서식] 간이과세자 부가가치세 간편 신고서(부동산임대사업자용), 매입처별 세금계산서합계표 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619445&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제46호서식] 간이과세자 부가가치세 간편 신고서(부동산임대업종 외 사업자용), 매입처별 세금계산서합계표",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044555');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619451&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619453&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620245&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619451&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제46호서식] 간이과세자 부가가치세 간편 신고서(부동산임대업종 외 사업자용), 매입처별 세금계산서합계표 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619451&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619451&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제46호서식] 간이과세자 부가가치세 간편 신고서(부동산임대업종 외 사업자용), 매입처별 세금계산서합계표 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619451&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619453&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제46호서식] 간이과세자 부가가치세 간편 신고서(부동산임대업종 외 사업자용), 매입처별 세금계산서합계표 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619453&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제47호서식] 동물 진료용역 매출대장",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044557');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619459&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619461&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=163704499&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619459&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제47호서식] 동물 진료용역 매출대장 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619459&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619459&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제47호서식] 동물 진료용역 매출대장 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619459&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619461&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제47호서식] 동물 진료용역 매출대장 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619461&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호서식] 월별 거래 명세(판매대행자료)(갑, 을)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044559');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619467&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619469&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620247&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619467&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호서식] 월별 거래 명세(판매대행자료)(갑, 을) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619467&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619467&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호서식] 월별 거래 명세(판매대행자료)(갑, 을) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619467&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619469&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호서식] 월별 거래 명세(판매대행자료)(갑, 을) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619469&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의2서식] 월별 거래 명세(결제대행자료)(갑, 을)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044561');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619475&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619477&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620249&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619475&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의2서식] 월별 거래 명세(결제대행자료)(갑, 을) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619475&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619475&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의2서식] 월별 거래 명세(결제대행자료)(갑, 을) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619475&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619477&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의2서식] 월별 거래 명세(결제대행자료)(갑, 을) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619477&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의3서식] 월별 거래 명세(결제대금예치자료)(갑, 을)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044563');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619483&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619485&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620251&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619483&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의3서식] 월별 거래 명세(결제대금예치자료)(갑, 을) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619483&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619483&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의3서식] 월별 거래 명세(결제대금예치자료)(갑, 을) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619483&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619485&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의3서식] 월별 거래 명세(결제대금예치자료)(갑, 을) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619485&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의4서식] 월별 거래 명세(소액외환송금자료)(갑, 을)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044565');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619491&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619493&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620253&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619491&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의4서식] 월별 거래 명세(소액외환송금자료)(갑, 을) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619491&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619491&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의4서식] 월별 거래 명세(소액외환송금자료)(갑, 을) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619491&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619493&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의4서식] 월별 거래 명세(소액외환송금자료)(갑, 을) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619493&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의5서식] 월별 거래 명세(게시판을 이용한 판매중개자료)(갑, 을)",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044567');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619499&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619501&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162620255&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619499&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의5서식] 월별 거래 명세(게시판을 이용한 판매중개자료)(갑, 을) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619499&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619499&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의5서식] 월별 거래 명세(게시판을 이용한 판매중개자료)(갑, 을) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flExt=hwpx&flSeq=162619499&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619501&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제48호의5서식] 월별 거래 명세(게시판을 이용한 판매중개자료)(갑, 을) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619501&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제1호서식] 하치장 설치 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044577','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제2호서식] 임시사업장 개설 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044579','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제3호서식] 임시사업장 폐쇄 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044581','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제4호서식] 사업자등록 신청서(개인사업자용...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044583','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제5호서식] 사업자 단위 과세 등록신청서(기...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044585','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제5호의2서식] 법정대리인 동의서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044587','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제6호서식] 자금출처명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044589','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제7호서식] 사업자등록증, 사업자 단위 과세...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044591','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제8호서식] 다단계판매원 (등록ㆍ폐업) 현황...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044593','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제9호서식] (휴업, 폐업) 신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044595','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제10호서식] 법인합병신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044597','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제11호서식] 사업자등록 정정신고서, 법인이...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044599','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제12호서식] 사업자 단위 과세 포기신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044601','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제13호서식] 면세(포기, 적용)신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044603','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제14호서식] 세금계산서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044605','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제14호의2서식] 거래사실 확인신청서(매입자...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044607','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제14호의3서식] 매입자발행세금계산서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044609','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제14호의4서식] 매입자발행세금계산서합계표...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044611','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제14호의5서식] 수정수입세금계산서 발급신청...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044613','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제15호서식] 의제매입세액 공제신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044615','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제16호서식] 신용카드매출전표등 수령명세서...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044617','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제17호서식] 과세사업전환 감가상각자산 신고...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044619','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제18호서식] (일반, 간이)과세전환 시의 재고...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044621','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제19호서식] 대손세액 공제(변제)신고서(갑, ...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044623','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제20호서식] 전자세금계산서 발급세액공제신...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044625','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제21호서식] 일반과세자 부가가치세(예정, 확...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044627','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제22호서식] 공제받지 못할 매입세액 명세서...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044629','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제23호서식] 신용카드매출전표등 발행금액 집...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044631','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제24호서식] 전자화폐결제명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044633','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제25호서식] 부동산임대공급가액명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044635','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제26호서식] 현금매출명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044637','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제27호서식] 건물 등 감가상각자산 취득명세...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044639','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제27호의2서식] 재무구조개선계획서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044641','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제28호서식] 사업자 단위 과세의 사업장별 부...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044643','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제29호서식] 영세율 매출명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044645','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제30호서식] 동물 진료용역 매출명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044647','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제31호서식] 사업양도신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044649','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제32호서식] 건물관리명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044651','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제33호서식] 사업장현황명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044653','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제33호의2서식] 재화의 수입에 대한 부가가치...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044655','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제33호의3서식] 재화의 수입에 대한 부가가치...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044657','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제34호서식] 사업장별 부가가치세 과세표준 및...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044659','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제35호서식] 주사업장 총괄 납부(신청서, 포...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044661','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제36호서식] 주사업장 총괄 납부 변경신청서...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044663','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제37호서식] 부가가치세 대리납부신고서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044665','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제37호의2서식] 부가가치세 대리납부신고서(사...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044667','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제37호의3서식] 전자적 용역 거래명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044669','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제38호서식] 매출처별 세금계산서합계표",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044671','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제39호서식] 매입처별 세금계산서합계표",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044673','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제40호서식] 수출실적명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044675','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제41호서식] 내국신용장ㆍ구매확인서 전자발...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044677','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제42호서식] 영세율 첨부서류 제출명세서",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044679','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제43호서식] 간이과세(적용, 포기, 재적용)신...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044681','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제44호서식] 간이과세자 부가가치세 (예정신...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044683','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제45호서식] 간이과세자 부가가치세 간편 신...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044685','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제46호서식] 간이과세자 부가가치세 간편 신...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044687','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제47호서식] 동물 진료용역 매출대장",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044689','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제48호서식] 월별 거래 명세(판매대행자료)(갑...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044691','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제48호의2서식] 월별 거래 명세(결제대행자료...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044693','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제48호의3서식] 월별 거래 명세(결제대금예치...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044695','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제48호의4서식] 월별 거래 명세(소액외환송금...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044697','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제48호의5서식] 월별 거래 명세(게시판을 이...",
+      "href": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18044699','284995','20260320');return false;",
+      "title": "팝업으로 이동"
+    }
+  ],
+  "text_sha256": "10dbaa86292abb1181f9350647ee585fec877783a40537b82b1c00b588d640de",
+  "text_excerpt": "법령(연혁)\n- 부가가치세법 시행규칙\n\n부가가치세법 시행규칙\n[시행 2026. 3. 20.] [재정경제부령 제9호, 2026. 3. 20., 일부개정]\n본문목록열림본문\n부칙목록열림부칙\n별표목록열림별표\n본문목록열림서식\n[서식1] 하치장 설치 신고서\n[서식2] 임시사업장 개설 신고서\n[서식3] 임시사업장 폐쇄 신고서\n[서식4] 사업자등록 신청서(개인사업자용)(법인이 아닌 단체의 고유번호 신청서), 공동사업자 명세, 서류를 송달받을 장소, 투자조합 세부명세, 사업자 단위 과세 사업자의 종된 사업장 명세서(개인사업자용, 법인사업자용)\n[서식5] 사업자 단위 과세 등록신청서(기존사업자용)\n[서식5의2] 법정대리인 동의서\n[서식6] 자금출처명세서\n[서식7] 사업자등록증, 사업자 단위 과세 적용 종된 사업장 명세\n[서식8] 다단계판매원 (등록ㆍ폐업) 현황신고서\n[서식9] (휴업, 폐업) 신고서\n[서식10] 법인합병신고서\n[서식11] 사업자등록 정정신고서, 법인이 아닌 단체의 고유번호 정정신고서, 사업자 단위 과세 사업자의 종된 사업장 정정신고서 (개인사업자용), 사업자 단위 과세 사업자의 종된 사업장 정정신고서 (법인사업자용)\n[서식12] 사업자 단위 과세 포기신고서\n[서식13] 면세(포기, 적용)신고서\n[서식14] 세금계산서\n[서식14의2] 거래사실 확인신청서(매입자발행세금계산서 발급용)\n[서식14의3] 매입자발행세금계산서\n[서식14의4] 매입자발행세금계산서합계표\n[서식14의5] 수정수입세금계산서 발급신청서\n[서식15] 의제매입세액 공제신고서\n[서식16] 신용카드매출전표등 수령명세서(갑, 을)\n[서식17] 과세사업전환 감가상각자산 신고서\n[서식18] (일반, 간이)과세전환 시의 재고품등 신고서\n[서식19] 대손세액 공제(변제)신고서(갑, 을, 병)\n[서식20] 전자세금계산서 발급세액공제신고서\n[서식21] 일반과세자 부가가치세(예정, 확정, 기한후과세표준, 영세율 등 조기환급)신고서\n[서식22] 공제받지 못할 매입세액 명세서\n[서식23] 신용카드매출전표등 발행금액 집계표\n[서식24] 전자화폐결제명세서\n[서식25] 부동산임대공급가액명세서\n[서식26] 현금매출명세서\n[서식27] 건물 등 감가상각자산 취득명세서\n[서식27의2] 재무구조개선계획서\n[서식28] 사업자 단위 과세의 사업장별 부가가치세 과세표준 및 납부세액(환급세액) 신고명세서\n[서식29] 영세율 매출명세서\n[서식30] 동물 진료용역 매출명세서\n[서식31] 사업양도신고서\n[서식32] 건물관리명세서\n[서식33] 사업장현황명세서\n[서식33의2] 재화의 수입에 대한 부가가치세 납부유예 요건 확인(요청)서\n[서식33의3] 재화의 수입에 대한 부가가치세 납부유예 적용 신청서\n[서식34] 사업장별 부가가치세 과세표준 및 납부세액(환급세액) 신고명세서\n[서식35] 주사업장 총괄 납부(신청서, 포기신고서)\n[서식36] 주사업장 총괄 ",
+  "responses": [
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=24001280",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/lsBylListR.do?lsiSeq=284995&lsId=007289&lsNm=%EB%B6%80%EA%B0%80%EA%B0%80%EC%B9%98%EC%84%B8%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99&ancYd=20260320&ancNo=00009&efYd=20260320&efYn=Y&chrClsCd=010202&ancYnChk=0&netPrivateYn=N",
+      "status": 200
+    }
+  ],
+  "frames": [
+    {
+      "name": "",
+      "url": "https://www.law.go.kr/LSW/lsInfoP.do?ancYnChk=0&chrClsCd=010202&efYd=20260320&lsiSeq=284995&urlMode=lsInfoP#0000"
+    }
+  ]
+}

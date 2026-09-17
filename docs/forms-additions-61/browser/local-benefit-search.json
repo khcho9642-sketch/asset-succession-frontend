@@ -1,0 +1,2352 @@
+{
+  "key": "local-benefit-search",
+  "source": "https://www.law.go.kr/lsBylSc.do",
+  "checked_at": "2026-09-17T07:29:35Z",
+  "http_status": 200,
+  "inputs": [
+    {
+      "tag": "INPUT",
+      "id": "netPrivateYn",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "skipFlag",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "query",
+      "name": "query",
+      "title": "",
+      "placeholder": "",
+      "type": "text"
+    },
+    {
+      "tag": "INPUT",
+      "id": "sub55",
+      "name": "inp_m",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "sub57",
+      "name": "inp_m",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "sub59",
+      "name": "inp_m",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "openPopYn",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "checkbox"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "submit"
+    },
+    {
+      "tag": "SELECT",
+      "id": "filSe",
+      "name": "",
+      "title": "",
+      "placeholder": null,
+      "type": "select-one"
+    },
+    {
+      "tag": "SELECT",
+      "id": "selGana",
+      "name": "",
+      "title": "",
+      "placeholder": null,
+      "type": "select-one"
+    },
+    {
+      "tag": "SELECT",
+      "id": "sortValue",
+      "name": "",
+      "title": "",
+      "placeholder": null,
+      "type": "select-one"
+    },
+    {
+      "tag": "SELECT",
+      "id": "bylCls",
+      "name": "bylCls",
+      "title": "",
+      "placeholder": null,
+      "type": "select-one"
+    },
+    {
+      "tag": "SELECT",
+      "id": "orgCd",
+      "name": "orgCd",
+      "title": "",
+      "placeholder": null,
+      "type": "select-one"
+    },
+    {
+      "tag": "INPUT",
+      "id": "pageSize",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "popYn",
+      "name": "popYn",
+      "title": "",
+      "placeholder": "",
+      "type": "checkbox"
+    },
+    {
+      "tag": "INPUT",
+      "id": "preBtn",
+      "name": "srcBtn",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "nextBtn",
+      "name": "srcBtn",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "selectSearchJo",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "checkbox"
+    },
+    {
+      "tag": "INPUT",
+      "id": "bdySearch",
+      "name": "bdySearch",
+      "title": "",
+      "placeholder": "",
+      "type": "text"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveTabMenuId",
+      "name": "tabMenuId",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "lsAstMode2",
+      "name": "lsAstMode",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveWhole",
+      "name": "saveTarget",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveListXLS",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveListTXT",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "lsAstMode3",
+      "name": "lsAstMode",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveWhole2",
+      "name": "saveTarget",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveJoListXLS",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveJoListTXT",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveHWPList",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "joDocSelectIdHWP",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "joDocSelectIdPDF",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "joDocSelectIdDOC",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveHtmlHTML",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveHtmlXLSb",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "newSaveHTML",
+      "name": "newSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "newSaveHWP",
+      "name": "newSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "newSaveXLS",
+      "name": "newSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "newSavePDF",
+      "name": "newSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "newBulkSaveHWP",
+      "name": "newBulkSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "newBulkSaveHWPX",
+      "name": "newBulkSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "newBulkSavePDF",
+      "name": "newBulkSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "newBulkSaveDOC",
+      "name": "newBulkSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "lawCmpSaveHWP",
+      "name": "lawCmpSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "lawCmpSavePDF",
+      "name": "lawCmpSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "lawCmpSaveDOC",
+      "name": "lawCmpSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveHWP",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveTXTb",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "lsRvsGubun",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveRvsRsnHWP",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveRvsRsnTXTb",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "seq",
+      "name": "schlPubRulSeq",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveSchlHWP",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveSchlTXTb",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "docSelectIdHWP",
+      "name": "docSelectId",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "docSelectIdPDF",
+      "name": "docSelectId",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "docSelectIdDOC",
+      "name": "docSelectId",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "multiLsHwp",
+      "name": "docSelectId",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "multiLsPdf",
+      "name": "docSelectId",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "multiLsDoc",
+      "name": "docSelectId",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveQuery",
+      "name": "lsTrm",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "lsTrmDocSelectIdHWP",
+      "name": "lsTrmDocSelectId",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "lsTrmDocSelectIdPDF",
+      "name": "lsTrmDocSelectId",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveQuery1",
+      "name": "lsTrm",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "lsTrmDocSelectIdHWP1",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "lsTrmDocSelectIdTXT1",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveThdCmpHTML",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveThdCmpHWP",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveThdCmpXLSb",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "chrClsCd",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveThdCmpNewHTML",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveThdCmpNewHWP",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveThdCmpNewXLSb",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveThdCmpNewPDF",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveThdCmpDOC",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveThdCmpTmpSaveHTML",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveThdCmpTmpSaveXLSb",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "saveThdCmpTmpSaveHWP",
+      "name": "saveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "admRulOANSaveHTML",
+      "name": "admRulOANSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "admRulOANSaveHWP",
+      "name": "admRulOANSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "admRulOANSaveXLS",
+      "name": "admRulOANSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "save",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "schlPubRulOANSaveHTML",
+      "name": "schlPubRulOANSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "schlPubRulOANSaveHWP",
+      "name": "schlPubRulOANSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "schlPubRulOANSaveXLS",
+      "name": "schlPubRulOANSaveExt",
+      "title": "",
+      "placeholder": "",
+      "type": "radio"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "",
+      "title": "전송",
+      "placeholder": "",
+      "type": "image"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "printTarget",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "lsBdyLsiSeq",
+      "name": "lsiSeq",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "lsBdySaveChrCls",
+      "name": "chrClsCd",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "bdyLanguageType",
+      "name": "languageType",
+      "title": "",
+      "placeholder": "",
+      "type": "hidden"
+    }
+  ],
+  "url": "https://www.law.go.kr/lsBylSc.do",
+  "title": "별표·서식 > 법령 > 서식명 | 국가법령정보센터",
+  "links": [
+    {
+      "text": "별표·서식",
+      "href": "javascript:moveTopMenu('/lsBylSc.do?menuId=9&subMenuId=55&tabMenuId=261');",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "별표·서식",
+      "href": "javascript:moveTopMenu('/lsBylSc.do?menuId=9&subMenuId=55&tabMenuId=261');",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "서식명",
+      "href": "   javascript:;",
+      "onclick": "javascript:brdSubTabOn();return false;",
+      "title": ""
+    },
+    {
+      "text": "서식명",
+      "href": "javascript:;",
+      "onclick": "javascript:tabLawSearch('/lsBylSc.do?menuId=9&subMenuId=55&tabMenuId=261', '1', this); chgTabMenu('서식명'); return false;",
+      "title": "서식명 선택"
+    },
+    {
+      "text": "별표·서식내용",
+      "href": "javascript:;",
+      "onclick": "javascript:tabLawSearch('/lsBylSc.do?menuId=9&subMenuId=55&tabMenuId=263', '2', this); chgTabMenu('별표·서식내용'); return false;",
+      "title": "별표·서식내용 미선택"
+    },
+    {
+      "text": "1.[서식 1] (1급, 2급, 3급, 4급) 도선사면허 신청서[시행 2026. 7. 13.] [해양수산부령 제807호, 2026. 7. 13., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18285355','288045', 'liBgcolor1', 'ls');return false;",
+      "title": "[서식 1] (1급, 2급, 3급, 4급) 도선사면허 신청서"
+    },
+    {
+      "text": "2.[서식 11] (1급ㆍ2급) 응급구조사자격등록대장[시행 2026. 8. 14.] [보건복지부령 제1189호, 2026. 7. 13., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18303683','288097', 'liBgcolor2', 'ls');return false;",
+      "title": "[서식 11] (1급ㆍ2급) 응급구조사자격등록대장"
+    },
+    {
+      "text": "3.[서식 13] (1급ㆍ2급)응급구조사자격증 재교부신청서[시행 2026. 8. 14.] [보건복지부령 제1189호, 2026. 7. 13., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18303687','288097', 'liBgcolor3', 'ls');return false;",
+      "title": "[서식 13] (1급ㆍ2급)응급구조사자격증 재교부신청서"
+    },
+    {
+      "text": "4.[서식 8] (1종화학물질 허가제조자, 생물작용제등 신고제조자)...[시행 2025. 10. 1.] [산업통상부령 제1호, 2025. 10. 1., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('17795925','278791', 'liBgcolor4', 'ls');return false;",
+      "title": "[서식 8] (1종화학물질 허가제조자, 생물작용제등 신고제조자)..."
+    },
+    {
+      "text": "5.[서식 17] (1종화학물질, 생물작용제등)인도(인수) 신고서[시행 2025. 10. 1.] [산업통상부령 제1호, 2025. 10. 1., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('17795943','278791', 'liBgcolor5', 'ls');return false;",
+      "title": "[서식 17] (1종화학물질, 생물작용제등)인도(인수) 신고서"
+    },
+    {
+      "text": "6.[서식 9] (1종화학물질, 생물작용제등)제조 폐지신고서[시행 2025. 10. 1.] [산업통상부령 제1호, 2025. 10. 1., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('17795927','278791', 'liBgcolor6', 'ls');return false;",
+      "title": "[서식 9] (1종화학물질, 생물작용제등)제조 폐지신고서"
+    },
+    {
+      "text": "7.[서식 14] (1종화학물질, 생물작용제등)폐기신고서[시행 2025. 10. 1.] [산업통상부령 제1호, 2025. 10. 1., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('17795937','278791', 'liBgcolor7', 'ls');return false;",
+      "title": "[서식 14] (1종화학물질, 생물작용제등)폐기신고서"
+    },
+    {
+      "text": "8.[서식 9] (Domestic, Overseas)Approval...[시행 2023. 8. 7.] [농림축산식품부령 제603호, 2023. 8. 7., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('15743713','253685', 'liBgcolor8', 'ls');return false;",
+      "title": "[서식 9] (Domestic, Overseas)Approval..."
+    },
+    {
+      "text": "9.[서식 1] (가스도매, 일반도시가스) 사업허가 신청서[시행 2026. 3. 31.] [산업통상부령 제10호, 2026. 3. 31., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18078071','285295', 'liBgcolor9', 'ls');return false;",
+      "title": "[서식 1] (가스도매, 일반도시가스) 사업허가 신청서"
+    },
+    {
+      "text": "10.[서식 36] (가압류, 가처분)중의 재산(압류, 압류해제)통지서[시행 2026. 7. 1.] [행정안전부령 제607호, 2026. 2. 5., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('17968727','283319', 'liBgcolor10', 'ls');return false;",
+      "title": "[서식 36] (가압류, 가처분)중의 재산(압류, 압류해제)통지서"
+    },
+    {
+      "text": "11.[서식 5] (가족, 종중ㆍ문중, 법인) 묘지 설치(변경)허가신...[시행 2026. 4. 3.] [보건복지부령 제1170호, 2026. 4. 3., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18083307','285427', 'liBgcolor11', 'ls');return false;",
+      "title": "[서식 5] (가족, 종중ㆍ문중, 법인) 묘지 설치(변경)허가신..."
+    },
+    {
+      "text": "12.[서식 6] (가족, 종중ㆍ문중, 법인)묘지 설치(변경)허가증[시행 2026. 4. 3.] [보건복지부령 제1170호, 2026. 4. 3., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18083309','285427', 'liBgcolor12', 'ls');return false;",
+      "title": "[서식 6] (가족, 종중ㆍ문중, 법인)묘지 설치(변경)허가증"
+    },
+    {
+      "text": "13.[서식 7의4] (가족관계등록부 작성 또는 정정, 사실상 혼인관계,...[시행 2026. 9. 1.] [대통령령 제36606호, 2026. 8. 25., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18443617','288967', 'liBgcolor13', 'ls');return false;",
+      "title": "[서식 7의4] (가족관계등록부 작성 또는 정정, 사실상 혼인관계,..."
+    },
+    {
+      "text": "14.[서식 7] (가족관계등록부 작성 또는 정정, 사실상 혼인관계,...[시행 2026. 9. 1.] [대통령령 제36606호, 2026. 8. 25., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18443611','288967', 'liBgcolor14', 'ls');return false;",
+      "title": "[서식 7] (가족관계등록부 작성 또는 정정, 사실상 혼인관계,..."
+    },
+    {
+      "text": "15.[서식 7의5] (가족관계등록부 작성 또는 정정, 사실상 혼인관계,...[시행 2026. 9. 1.] [대통령령 제36606호, 2026. 8. 25., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18443619','288967', 'liBgcolor15', 'ls');return false;",
+      "title": "[서식 7의5] (가족관계등록부 작성 또는 정정, 사실상 혼인관계,..."
+    },
+    {
+      "text": "16.[서식 1] (가족돌봄 아동ㆍ청년, 고립은둔 아동ㆍ청년) 사례관...[시행 2026. 3. 26.] [보건복지부령 제1165호, 2026. 3. 26., 제정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18075343','285235', 'liBgcolor16', 'ls');return false;",
+      "title": "[서식 1] (가족돌봄 아동ㆍ청년, 고립은둔 아동ㆍ청년) 사례관..."
+    },
+    {
+      "text": "17.[서식 16의4] (가종료의 취소, 치료 위탁 취소) 신청의 요청[시행 2024. 5. 21.] [법무부령 제1078호, 2024. 5. 21., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('16388893','262771', 'liBgcolor17', 'ls');return false;",
+      "title": "[서식 16의4] (가종료의 취소, 치료 위탁 취소) 신청의 요청"
+    },
+    {
+      "text": "18.[서식 1] (가축 사육제한, 가축사육시설 폐쇄)명령서[시행 2026. 7. 24.] [농림축산식품부령 제766호, 2026. 4. 23., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18103423','285745', 'liBgcolor18', 'ls');return false;",
+      "title": "[서식 1] (가축 사육제한, 가축사육시설 폐쇄)명령서"
+    },
+    {
+      "text": "19.[서식 12] (가축및축산물식별대장, 수입유통식별대장) 기록사항 ...[시행 2023. 4. 27.] [농림축산식품부령 제584호, 2023. 4. 27., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('15443809','250601', 'liBgcolor19', 'ls');return false;",
+      "title": "[서식 12] (가축및축산물식별대장, 수입유통식별대장) 기록사항 ..."
+    },
+    {
+      "text": "20.[서식 18] (가축분뇨재활용신고자, 가축분뇨관련영업자, 처리시설...[시행 2026. 7. 30.] [기후에너지환경부령 제52호, 2026. 7. 30., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18414405','288513', 'liBgcolor20', 'ls');return false;",
+      "title": "[서식 18] (가축분뇨재활용신고자, 가축분뇨관련영업자, 처리시설..."
+    },
+    {
+      "text": "21.[서식 8] (감시적, 단속적)근로종사자에 대한 적용 제외 승인...[시행 2025. 2. 23.] [고용노동부령 제436호, 2025. 2. 21., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('16984099','269393', 'liBgcolor21', 'ls');return false;",
+      "title": "[서식 8] (감시적, 단속적)근로종사자에 대한 적용 제외 승인..."
+    },
+    {
+      "text": "22.[서식 7] (감시적, 단속적)근로종사자에 대한 적용제외 승인 ...[시행 2025. 2. 23.] [고용노동부령 제436호, 2025. 2. 21., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('16984097','269393', 'liBgcolor22', 'ls');return false;",
+      "title": "[서식 7] (감시적, 단속적)근로종사자에 대한 적용제외 승인 ..."
+    },
+    {
+      "text": "23.[서식 28] (감정, 통역, 번역) 위촉[시행 2023. 12. 13.] [국방부령 제1132호, 2023. 12. 13., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('16004209','256947', 'liBgcolor23', 'ls');return false;",
+      "title": "[서식 28] (감정, 통역, 번역) 위촉"
+    },
+    {
+      "text": "24.[서식 128] (강사, 기능검정원)자격증 기재사항 변경 신청서[시행 2026. 8. 24.] [행정안전부령 제636호, 2026. 8. 24., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18409101','289009', 'liBgcolor24', 'ls');return false;",
+      "title": "[서식 128] (강사, 기능검정원)자격증 기재사항 변경 신청서"
+    },
+    {
+      "text": "25.[서식 127] (강사, 기능검정원)자격증 재발급 신청서[시행 2026. 8. 24.] [행정안전부령 제636호, 2026. 8. 24., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18409099','289009', 'liBgcolor25', 'ls');return false;",
+      "title": "[서식 127] (강사, 기능검정원)자격증 재발급 신청서"
+    },
+    {
+      "text": "26.[서식 95] (강사ㆍ기능검정원) 선임통지[시행 2026. 8. 24.] [행정안전부령 제636호, 2026. 8. 24., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18409035','289009', 'liBgcolor26', 'ls');return false;",
+      "title": "[서식 95] (강사ㆍ기능검정원) 선임통지"
+    },
+    {
+      "text": "27.[서식 129] (강사ㆍ기능검정원)자격증 재교부 신청자명단[시행 2026. 8. 24.] [행정안전부령 제636호, 2026. 8. 24., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18409103','289009', 'liBgcolor27', 'ls');return false;",
+      "title": "[서식 129] (강사ㆍ기능검정원)자격증 재교부 신청자명단"
+    },
+    {
+      "text": "28.[서식 21의2] (개선명령, 파기명령, 수거명령) 이행기간 연장신청...[시행 2026. 8. 30.] [행정안전부령 제633호, 2026. 7. 29., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18344293','288485', 'liBgcolor28', 'ls');return false;",
+      "title": "[서식 21의2] (개선명령, 파기명령, 수거명령) 이행기간 연장신청..."
+    },
+    {
+      "text": "29.[서식 10] (개인 또는 가족봉안묘(탑ㆍ담), 종중ㆍ문중봉안묘(...[시행 2026. 4. 3.] [보건복지부령 제1170호, 2026. 4. 3., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18083317','285427', 'liBgcolor29', 'ls');return false;",
+      "title": "[서식 10] (개인 또는 가족봉안묘(탑ㆍ담), 종중ㆍ문중봉안묘(..."
+    },
+    {
+      "text": "30.[서식 8] (거점동물원, 거점수족관) 지정서[시행 2025. 10. 1.] [기후에너지환경부령 제1호, 2025. 10. 1., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('17652193','278901', 'liBgcolor30', 'ls');return false;",
+      "title": "[서식 8] (거점동물원, 거점수족관) 지정서"
+    },
+    {
+      "text": "31.[서식 7] (거점동물원, 거점수족관) 지정신청서[시행 2025. 10. 1.] [기후에너지환경부령 제1호, 2025. 10. 1., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('17652191','278901', 'liBgcolor31', 'ls');return false;",
+      "title": "[서식 7] (거점동물원, 거점수족관) 지정신청서"
+    },
+    {
+      "text": "32.[서식 33의2] (건설기계, 농업기계, 철도차량) 원동기배출가스 인...[시행 2026. 7. 15.] [기후에너지환경부령 제49호, 2026. 7. 15., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18364123','288199', 'liBgcolor32', 'ls');return false;",
+      "title": "[서식 33의2] (건설기계, 농업기계, 철도차량) 원동기배출가스 인..."
+    },
+    {
+      "text": "33.[서식 31의2] (건설기계, 농업기계, 철도차량) 원동기배출가스 인...[시행 2026. 7. 15.] [기후에너지환경부령 제49호, 2026. 7. 15., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18364115','288199', 'liBgcolor33', 'ls');return false;",
+      "title": "[서식 31의2] (건설기계, 농업기계, 철도차량) 원동기배출가스 인..."
+    },
+    {
+      "text": "34.[서식 17의2] (건축물대장 도로명주소 변경, 건축물도로명주소 정정...[시행 2025. 7. 31.] [국토교통부령 제1512호, 2025. 7. 31., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('17484913','273103', 'liBgcolor34', 'ls');return false;",
+      "title": "[서식 17의2] (건축물대장 도로명주소 변경, 건축물도로명주소 정정..."
+    },
+    {
+      "text": "35.[서식 16] (건축사 자격시험, 건축사 자격시험 특별전형)응시원...[시행 2024. 9. 26.] [국토교통부령 제1390호, 2024. 9. 26., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('16656135','265655', 'liBgcolor35', 'ls');return false;",
+      "title": "[서식 16] (건축사 자격시험, 건축사 자격시험 특별전형)응시원..."
+    },
+    {
+      "text": "36.[서식 40] (건축사사무소개설 신고확인증, 엔지니어링사업자 소속...[시행 2024. 9. 26.] [국토교통부령 제1390호, 2024. 9. 26., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('16656183','265655', 'liBgcolor36', 'ls');return false;",
+      "title": "[서식 40] (건축사사무소개설 신고확인증, 엔지니어링사업자 소속..."
+    },
+    {
+      "text": "37.[서식 44] (건축사예비시험, 건축사 자격 특별전형시험)응시원서[시행 2024. 9. 26.] [국토교통부령 제1390호, 2024. 9. 26., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('16656191','265655', 'liBgcolor37', 'ls');return false;",
+      "title": "[서식 44] (건축사예비시험, 건축사 자격 특별전형시험)응시원서"
+    },
+    {
+      "text": "38.[서식 20의6] (검사기간연장, 명령이행기간연장)신청서[시행 2026. 3. 24.] [국토교통부령 제1572호, 2026. 3. 24., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18058765','285023', 'liBgcolor38', 'ls');return false;",
+      "title": "[서식 20의6] (검사기간연장, 명령이행기간연장)신청서"
+    },
+    {
+      "text": "39.[서식 18] (검정기관, 자체검정사업자)지정신청서[시행 2026. 9. 8.] [산업통상부령 제20호, 2026. 9. 8., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18452455','289529', 'liBgcolor39', 'ls');return false;",
+      "title": "[서식 18] (검정기관, 자체검정사업자)지정신청서"
+    },
+    {
+      "text": "40.[서식 15] (게임제작업, 게임배급업, 청소년게임제공업, 인터넷...[시행 2025. 10. 9.] [문화체육관광부령 제615호, 2025. 10. 2., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('17636477','279203', 'liBgcolor40', 'ls');return false;",
+      "title": "[서식 15] (게임제작업, 게임배급업, 청소년게임제공업, 인터넷..."
+    },
+    {
+      "text": "41.[서식 57] (경고 또는 삭제ㆍ전송중단, 계정 정지, 게시판 서...[시행 2026. 5. 11.] [문화체육관광부령 제631호, 2026. 5. 7., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18131641','285869', 'liBgcolor41', 'ls');return false;",
+      "title": "[서식 57] (경고 또는 삭제ㆍ전송중단, 계정 정지, 게시판 서..."
+    },
+    {
+      "text": "42.[서식 13의3] (경비원 복장 등, 출동차량 도색 등)시정명령 이행...[시행 2025. 1. 31.] [행정안전부령 제512호, 2024. 8. 14., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('16611121','264977', 'liBgcolor42', 'ls');return false;",
+      "title": "[서식 13의3] (경비원 복장 등, 출동차량 도색 등)시정명령 이행..."
+    },
+    {
+      "text": "43.[서식 10의3] (경비지도사,일반경비원,특수경비원) 교육기관 지정 ...[시행 2025. 1. 31.] [행정안전부령 제512호, 2024. 8. 14., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('16611103','264977', 'liBgcolor43', 'ls');return false;",
+      "title": "[서식 10의3] (경비지도사,일반경비원,특수경비원) 교육기관 지정 ..."
+    },
+    {
+      "text": "44.[서식 8] (경영지도사, 기술지도사)등록사항 변경신고서[시행 2021. 4. 9.] [중소벤처기업부령 제43호, 2021. 4. 9., 제정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('12734365','231549', 'liBgcolor44', 'ls');return false;",
+      "title": "[서식 8] (경영지도사, 기술지도사)등록사항 변경신고서"
+    },
+    {
+      "text": "45.[서식 7] (경영지도사, 기술지도사)등록증 재발급 신청서[시행 2021. 4. 9.] [중소벤처기업부령 제43호, 2021. 4. 9., 제정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('12734363','231549', 'liBgcolor45', 'ls');return false;",
+      "title": "[서식 7] (경영지도사, 기술지도사)등록증 재발급 신청서"
+    },
+    {
+      "text": "46.[서식 1] (경찰제복, 경찰장비) 제조ㆍ판매업 (등록신청서, ...[시행 2021. 12. 31.] [행정안전부령 제298호, 2021. 12. 31., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('14120467','239099', 'liBgcolor46', 'ls');return false;",
+      "title": "[서식 1] (경찰제복, 경찰장비) 제조ㆍ판매업 (등록신청서, ..."
+    },
+    {
+      "text": "47.[서식 4] (경찰제복, 경찰장비) 제조ㆍ판매업 재발급 신청서[시행 2021. 12. 31.] [행정안전부령 제298호, 2021. 12. 31., 타법개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('14120473','239099', 'liBgcolor47', 'ls');return false;",
+      "title": "[서식 4] (경찰제복, 경찰장비) 제조ㆍ판매업 재발급 신청서"
+    },
+    {
+      "text": "48.[서식 17] (계량기 검정, 계량기 재검정, 수리한 계량기 재검...[시행 2026. 9. 8.] [산업통상부령 제20호, 2026. 9. 8., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18452453','289529', 'liBgcolor48', 'ls');return false;",
+      "title": "[서식 17] (계량기 검정, 계량기 재검정, 수리한 계량기 재검..."
+    },
+    {
+      "text": "49.[서식 1] (계량기 제조업, 계량기 수리업, 계량증명업)등록신...[시행 2026. 9. 8.] [산업통상부령 제20호, 2026. 9. 8., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18452421','289529', 'liBgcolor49', 'ls');return false;",
+      "title": "[서식 1] (계량기 제조업, 계량기 수리업, 계량증명업)등록신..."
+    },
+    {
+      "text": "50.[서식 2] (계량기 제조업, 계량기 수리업, 계량증명업)등록증[시행 2026. 9. 8.] [산업통상부령 제20호, 2026. 9. 8., 일부개정]",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewAll('18452423','289529', 'liBgcolor50', 'ls');return false;",
+      "title": "[서식 2] (계량기 제조업, 계량기 수리업, 계량증명업)등록증"
+    },
+    {
+      "text": "[서식 1] (1급, 2급, 3급, 4급) 도선사면허 신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18285355','288045', 'liBgcolor1','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=166915621",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=166915623",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 11] (1급ㆍ2급) 응급구조사자격등록대장",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18303683','288097', 'liBgcolor2','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=167218811",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=167218813",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 13] (1급ㆍ2급)응급구조사자격증 재교부신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18303687','288097', 'liBgcolor3','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=167218825",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=167218827",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 8] (1종화학물질 허가제조자, 생물작용제등 신고제조자)지위승계 신고서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('17795925','278791', 'liBgcolor4','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=158665001",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=158665003",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 17] (1종화학물질, 생물작용제등)인도(인수) 신고서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('17795943','278791', 'liBgcolor5','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=158665057",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=158665059",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 9] (1종화학물질, 생물작용제등)제조 폐지신고서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('17795927','278791', 'liBgcolor6','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=158665007",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=158665009",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 14] (1종화학물질, 생물작용제등)폐기신고서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('17795937','278791', 'liBgcolor7','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=158665037",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=158665039",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 9] (Domestic, Overseas)Approval for Distribution of Genetic Resources",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('15743713','253685', 'liBgcolor8','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=131950451",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=131950453",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 1] (가스도매, 일반도시가스) 사업허가 신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18078071','285295', 'liBgcolor9','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=162945429",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=162945431",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 36] (가압류, 가처분)중의 재산(압류, 압류해제)통지서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('17968727','283319', 'liBgcolor10','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=161440351",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=161440353",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 5] (가족, 종중ㆍ문중, 법인) 묘지 설치(변경)허가신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18083307','285427', 'liBgcolor11','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=163088567",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=163088569",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 6] (가족, 종중ㆍ문중, 법인)묘지 설치(변경)허가증",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18083309','285427', 'liBgcolor12','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=163088575",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=163088577",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 7의4] (가족관계등록부 작성 또는 정정, 사실상 혼인관계, 사실상 양친자관계)결정 보증서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18443617','288967', 'liBgcolor13','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168933217",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168933219",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 7] (가족관계등록부 작성 또는 정정, 사실상 혼인관계, 사실상 양친자관계)결정 신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18443611','288967', 'liBgcolor14','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168933189",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168933191",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 7의5] (가족관계등록부 작성 또는 정정, 사실상 혼인관계, 사실상 양친자관계)결정 의견서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18443619','288967', 'liBgcolor15','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168933227",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168933229",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 1] (가족돌봄 아동ㆍ청년, 고립은둔 아동ㆍ청년) 사례관리 신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18075343','285235', 'liBgcolor16','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=162878457",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=162878459",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 16의4] (가종료의 취소, 치료 위탁 취소) 신청의 요청",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('16388893','262771', 'liBgcolor17','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=140624769",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=140624771",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 1] (가축 사육제한, 가축사육시설 폐쇄)명령서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18103423','285745', 'liBgcolor18','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=163673783",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=163673785",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 12] (가축및축산물식별대장, 수입유통식별대장) 기록사항 (변경신고서, 수정요구서)",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('15443809','250601', 'liBgcolor19','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=127586921",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=127586923",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 18] (가축분뇨재활용신고자, 가축분뇨관련영업자, 처리시설설계ㆍ시공업자)지위승계 신고서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18414405','288513', 'liBgcolor20','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168601529",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168601531",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 8] (감시적, 단속적)근로종사자에 대한 적용 제외 승인서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('16984099','269393', 'liBgcolor21','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=149281887",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=149281889",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 7] (감시적, 단속적)근로종사자에 대한 적용제외 승인 신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('16984097','269393', 'liBgcolor22','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=149281881",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=149281883",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 28] (감정, 통역, 번역) 위촉",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('16004209','256947', 'liBgcolor23','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=135326571",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=135326573",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 128] (강사, 기능검정원)자격증 기재사항 변경 신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18409101','289009', 'liBgcolor24','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168510397",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168510399",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 127] (강사, 기능검정원)자격증 재발급 신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18409099','289009', 'liBgcolor25','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168510391",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168510393",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 95] (강사ㆍ기능검정원) 선임통지",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18409035','289009', 'liBgcolor26','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168510175",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168510177",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 129] (강사ㆍ기능검정원)자격증 재교부 신청자명단",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18409103','289009', 'liBgcolor27','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168510403",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=168510405",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 21의2] (개선명령, 파기명령, 수거명령) 이행기간 연장신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18344293','288485', 'liBgcolor28','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=167625739",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=167625741",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 10] (개인 또는 가족봉안묘(탑ㆍ담), 종중ㆍ문중봉안묘(탑ㆍ담), 종교단체봉안묘(탑ㆍ담), 법인봉안묘(탑ㆍ담)) 설치(변경)신고증명서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18083317','285427', 'liBgcolor29','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=163088603",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=163088605",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 8] (거점동물원, 거점수족관) 지정서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('17652193','278901', 'liBgcolor30','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=156744493",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=156744495",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 7] (거점동물원, 거점수족관) 지정신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('17652191','278901', 'liBgcolor31','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=156744487",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=156744489",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 33의2] (건설기계, 농업기계, 철도차량) 원동기배출가스 인증생략서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18364123','288199', 'liBgcolor32','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=167973699",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=167973701",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 31의2] (건설기계, 농업기계, 철도차량) 원동기배출가스 인증서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18364115','288199', 'liBgcolor33','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=167973673",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=167973675",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 17의2] (건축물대장 도로명주소 변경, 건축물도로명주소 정정) 신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('17484913','273103', 'liBgcolor34','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=155201463",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=155201465",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 16] (건축사 자격시험, 건축사 자격시험 특별전형)응시원서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('16656135','265655', 'liBgcolor35','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=144368999",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=144369001",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 40] (건축사사무소개설 신고확인증, 엔지니어링사업자 소속 건축사 신고확인증, 건설사업자 소속 건축사 신고확인증)재발급 신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('16656183','265655', 'liBgcolor36','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=144369149",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=144369151",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 44] (건축사예비시험, 건축사 자격 특별전형시험)응시원서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('16656191','265655', 'liBgcolor37','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=144369173",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=144369175",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 20의6] (검사기간연장, 명령이행기간연장)신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18058765','285023', 'liBgcolor38','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=162704763",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=162704765",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 18] (검정기관, 자체검정사업자)지정신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18452455','289529', 'liBgcolor39','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=169143059",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=169143061",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 15] (게임제작업, 게임배급업, 청소년게임제공업, 인터넷컴퓨터게임시설제공업, 복합유통게임제공업, 일반게임제공업)허가ㆍ등록 또는 신고사항 변경신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('17636477','279203', 'liBgcolor40','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=156642169",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=156642171",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 57] (경고 또는 삭제ㆍ전송중단, 계정 정지, 게시판 서비스 정지, 접속차단) 명령서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18131641','285869', 'liBgcolor41','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=164050763",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=164050765",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 13의3] (경비원 복장 등, 출동차량 도색 등)시정명령 이행보고서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('16611121','264977', 'liBgcolor42','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=143593871",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=143593873",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 10의3] (경비지도사,일반경비원,특수경비원) 교육기관 지정 신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('16611103','264977', 'liBgcolor43','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=143593815",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=143593817",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 8] (경영지도사, 기술지도사)등록사항 변경신고서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('12734365','231549', 'liBgcolor44','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=99196025",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=99196027",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 7] (경영지도사, 기술지도사)등록증 재발급 신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('12734363','231549', 'liBgcolor45','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=99196019",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=99196021",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 1] (경찰제복, 경찰장비) 제조ㆍ판매업 (등록신청서, 변경등록 신청서)",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('14120467','239099', 'liBgcolor46','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=111180945",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=111180947",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 4] (경찰제복, 경찰장비) 제조ㆍ판매업 재발급 신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('14120473','239099', 'liBgcolor47','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=111180965",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=111180967",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 17] (계량기 검정, 계량기 재검정, 수리한 계량기 재검정)신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18452453','289529', 'liBgcolor48','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=169143053",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=169143055",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 1] (계량기 제조업, 계량기 수리업, 계량증명업)등록신청서",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18452421','289529', 'liBgcolor49','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=169142955",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=169142957",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식 2] (계량기 제조업, 계량기 수리업, 계량증명업)등록증",
+      "href": "https://www.law.go.kr/lsBylSc.do#AJAX",
+      "onclick": "javascript:bylViewWideAll('18452423','289529', 'liBgcolor50','ls');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=169142961",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?flSeq=169142963",
+      "onclick": null,
+      "title": ""
+    }
+  ],
+  "text_sha256": "108e9d8e118ce05ff3cedeb5bfead9d54150b511ffbd4a05b66b61086522bfd8",
+  "text_excerpt": "본문 바로가기\n 이 누리집은 대한민국 공식 전자정부 누리집입니다.\n법제처 국가법령정보센터 로고\n로그인\n회원가입\n국가법령 만족도조사\nEnglish\n화면\n글씨크기확대\n글씨크기확대초기화\n글씨크기축소\n법령검색 방법 상세내용 확인\n검색어 입력\n검색기록 열기\n법령\n행정규칙\n별표·서식\n법령\n행정규칙\n자치법규\n자치법규\n판례·해석례등\n중앙행정기관 결정선례\n그밖의 정보\n서식명\n별표·서식내용\n법령명\n\n 조회이력\n 새창(목록)\n표준국어대사전 \n\n총 39,733건(1/795)\n\n정렬분류 선택\n가나다별\n다운로드순\n선택\n가나다별 정렬방법 선택\n전체\n가\n나\n다\n라\n마\n바\n사\n아\n자\n차\n카\n타\n파\n하\n기타\n선택\n별표·서식 선택\n별표·서식 선택\n별표\n서식\n별지\n별도\n부록\n선택\n소관부처 선택\n소관부처선택\n고용노동부\n과학기술정보통신부\n교육부\n국가보훈부\n국방부\n국토교통부\n기획재정부\n기후에너지환경부\n농림축산식품부\n문화체육관광부\n법무부\n보건복지부\n산업통상부\n성평등가족부\n외교부\n인사혁신처\n재정경제부\n중소벤처기업부\n통일부\n해양수산부\n행정안전부\n고위공직자범죄수사처\n국가데이터처\n기획예산처\n법제처\n식품의약품안전처\n지식재산처\n검찰청\n경찰청\n관세청\n국가유산청\n국세청\n기상청\n농촌진흥청\n방위사업청\n병무청\n산림청\n새만금개발청\n소방청\n우주항공청\n재외동포청\n조달청\n질병관리청\n해양경찰청\n행정중심복합도시건설청\n개인정보보호위원회\n공정거래위원회\n국가인권위원회\n국민권익위원회\n금융위원회\n방송미디어통신위원회\n원자력안전위원회\n국가정보원\n국무조정실\n기타\n대통령경호처\n감사원\n국회\n대법원\n민주평화통일자문회의\n중앙선거관리위원회\n헌법재판소\n선택\n별표서식 법령 검색결과 목록\n번호\t법령명\t별표·서식 제목\t다운로드\t다운로드수\n1\t도선법 시행규칙\n[시행 2026. 7. 13.] [해양수산부령 제807호, 2026. 7. 13., 타법개정]\n\t[서식 1] (1급, 2급, 3급, 4급) 도선사면허 신청서\t \t1,237\n2\t응급의료에 관한 법률 시행규칙\n[시행 2026. 8. 14.] [보건복지부령 제1189호, 2026. 7. 13., 일부개정]\n\t[서식 11] (1급ㆍ2급) 응급구조사자격등록대장\t \t1,446\n3\t응급의료에 관한 법률 시행규칙\n[시행 2026. 8. 14.] [보건복지부령 제1189호, 2026. 7. 13., 일부개정]\n\t[서식 13] (1급ㆍ2급)응급구조사자격증 재교부신청서\t \t1,663\n4\t화학무기ㆍ생물무기의 금지와 특정화학물질ㆍ생물작용제 등의...\n[시행 2025. 10. 1.] [산업통상부령 제1호, 2025. 10. 1., 타법개정]\n\t[서식 8] (1종화학물질 허가제조자, 생물작용제등 신고제조자)지위승계 신고서\t \t518\n5\t화학무기ㆍ생물무기의 금지와 특정화학물질ㆍ생물작용제 등의...\n[시행 2025. 10. 1.] [산업통상부령 제1호, 2025. 10. 1., 타법개정]\n\t[서식 17] (1종화학물질, 생물작용제등)인도(인",
+  "responses": [
+    {
+      "url": "https://www.law.go.kr/lsBylSc.do",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/css/byl.css",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/js/byl/bylLayout.js",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/js/byl/byl.js",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/lsBylScListR.do?menuId=9&subMenuId=55&tabMenuId=261",
+      "status": 200
+    }
+  ],
+  "frames": [
+    {
+      "name": "",
+      "url": "https://www.law.go.kr/lsBylSc.do"
+    }
+  ]
+}

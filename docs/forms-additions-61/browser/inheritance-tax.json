@@ -1,0 +1,4688 @@
+{
+  "key": "inheritance-tax",
+  "source": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388",
+  "checked_at": "2026-09-17T07:28:59Z",
+  "http_status": 200,
+  "clicked": [
+    "#bylView",
+    "a[onclick*=\"liBgcolorSpanByJi\"]"
+  ],
+  "url": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J17:0",
+  "title": "법령 > 본문 > 상속세 및 증여세법 시행규칙 | 국가법령정보센터",
+  "links": [
+    {
+      "text": "상속세 및 증여세법 시행규칙  [시행 2026. 3. 20.] [재정경제부령 제15호, 2026. 3. 20., 일부개정]",
+      "href": "javascript:;",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "본문목록열림서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fSelectJoListAncInfoPTree('liBgcolorSpanByJi','7','1','284609','20260320','','');return false;",
+      "title": ""
+    },
+    {
+      "text": "[서식1] 가업상속공제신고서, 가업상속재산명세서, 가업용 자산 명세",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18044875",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식2] 영농상속공제신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18044877",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식3] 배우자 상속재산 미분할 신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045919",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식3의2] 임신사실확인서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045921",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식4] 장애인증명서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045923",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식5] 금융재산 상속공제 신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045925",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식6] 재해손실 공제신고서(상속세, 증여세)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045927",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식6의2] 동거주택상속공제신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045929",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식7] 외국납부세액공제신청서(상속세, 증여세)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045931",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식8] 삭제 <1999.5.7>",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045933",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식9] 상속세과세표준신고 및 자진납부계산서, 상속세과세가액계산명세서, 상속인별 상속재산 및 평가명세서, 채무ㆍ공과금ㆍ장례비용 및 상속공제명세서, 배우자 상속공제 명세서, 상속개시전 1(2)년 이내 처분재산ㆍ채무부담내역 및 사용처소명명세서 (갑), 상속개시전 1(2)년 이내 처분재산ㆍ채무부담내역 및 사용처소명명세서 (을), 영리법인 상속세 면제 및 납부 명세서, 가업(영농)상속공제 사후관리추징사유 신고 및 자진납부 계산서, 가업상속 납부유예 사후관리추징사유 신고 및 자진납부 계산서, 서화ㆍ골동품 등 상속재산 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045935",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식10] 증여세과세표준신고 및 자진납부계산서(기본세율 적용 증여재산 신고용), 증여재산 및 평가명세서, 가업승계 증여세 납부유예 증여재산평가 및 납부유예 세액 계산명세서, 혼인 및 출산 증여재산 공제 명세서, 혼인 증여재산 공제 추징사유 신고 및 자진납부 계산서, 서화ㆍ골동품 등 증여재산 명세서, 공익법인 등 관련 가산세 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045937",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식10의2] 증여세과세표준신고 및 자진납부계산서(창업자금 및 가업승계주식 등 특례세율 적용 증여재산 신고용), 창업자금 증여재산평가 및 과세가액 계산명세서, 가업승계 주식 등 증여재산평가 및 과세가액 계산명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045939",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식10의3] 증여세과세표준신고 및 자진납부계산서(특수관계법인과의 거래를 통한 증여의제이익 신고용), 수증자 등 및 과세가액 계산명세서(Ⅰ), 수혜법인 지배주주 판정을 위한 간접보유비율 산정,  수증자 간접보유비율 (간접출자법인 해당여부 및 간접보유비율), 지배주주 등과 특수관계법인(증여자 등), 수증자 등 및 과세가액 계산명세서(Ⅱ)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045941",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식10의4] 증여세과세표준신고 및 자진납부계산서(특수관계법인으로부터 제공받은 사업기회로 발생한 증여의제이익 신고용), 수증자 등 및 과세가액 계산명세서(A)(특수관계법인으로부터 제공받은 사업기회로 발생한 이익의 증여의제 신고용), 수증자 등 및 과세가액 계산명세서(A-1)(수증자 간접보유비율), 수증자 등 및 과세가액 계산명세서(B), 수증자 및 과세가액 계산명세서(B-1)(수혜법인의 부문별 영업이익 명세서)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045943",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식10의5] 증여세과세표준신고 및 자진납부계산서(초과배당에 따른 이익의 증여재산 신고용), 증여재산 및 평가명세서, 서화ㆍ골동품 등 증여재산 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045945",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식10의6] 증여세과세표준신고 및 자진납부계산서(특정법인과의 거래를 통한 증여의제이익 신고용), 증여재산 및 평가명세서, 서화ㆍ골동품 등 증여재산 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045947",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식11] 상속세(증여세) 연부연납허가(변경, 철회) 신청서, 연부연납세액 계산명세",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045949",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식12] 상속세(증여세) 연부연납(허가, 변경 허가, 불허가, 취소) 통지서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045951",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식12의2] 가업상속 납부유예 신청서, 가업상속재산명세서, 가업용 자산 명세",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045953",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식12의3] 가업상속 납부유예(허가, 불허가) 통지서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045955",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식13] 상속세 물납(변경, 철회)신청서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045957",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식13의2] 물납 재산 재평가 신청서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045959",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식14] 상속세 (물납(변경)허가, 물납(변경)불허가, 물납재산 변경명령) 통지서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045961",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식14의2] 문화재 등 상속세 물납 (철회)신청서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045963",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식14의3] 징수유예 국가지정문화재등 (보유현황명세서, 양도거래신고서)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045965",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식15] (상속세, 증여세) 결정지연통지서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045967",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식16] 상속세(증여세) 과세표준 및 세액의 결정(경정)청구서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045969",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식17] 삭제 <2020. 3. 13.>",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045971",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식17의2] 삭제 <2008.4.30>",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045973",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식18] 퇴직급여 등 지급명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045975",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식19] 보험(해약환급)금 지급명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045977",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식19의2] 보험계약자 등 명의변경 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045979",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식20] 주권(출자증권ㆍ공채ㆍ사채ㆍ집합투자증권ㆍ은행예금ㆍ그 밖의 예금) 명의개서 명세서(변경 명세서)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045981",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식20의2] 특정시설물(골프회원권 등)이용권 명의개서 명세서(변경 명세서)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045983",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식21] 타인신탁재산수탁명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045985",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식21의2] 전환사채등 발행 및 인수인 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045987",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식21의3] 주식 등의 이체명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045989",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식21의4] 투자조합의 권리 등 보유ㆍ거래 및 조합원에 관한 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045991",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식22] 공익법인등의 주식 보유 관련 의무이행 신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045993",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식23] 공익법인 출연재산 등에 대한 보고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045995",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식23의2] 삭제 <2009.4.23>",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045997",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식24] 출연재산ㆍ운용소득ㆍ매각대금의 사용계획 및 진도내역서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18045999",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식25] 삭제 <2006.4.25>",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046001",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식25의2] 출연받은 재산의 사용명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046003",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식25의3] 출연재산 매각대금 사용명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046005",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식25의4] 운용소득 사용명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046007",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식26] 주식(출자지분) 보유명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046009",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식26의2] 이사 등 선임명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046011",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식26의3] 특정기업광고 등 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046013",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식27] 공익법인 과세내용 통보서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046015",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식28] 공익법인 설립허가등 통보서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046017",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식28의2] 지정 예정 통지에 대한 의견서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046019",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식28의3] 지정 통지에 대한 재지정 요청서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046021",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식29] 전용계좌외거래명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046023",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식30] 전용계좌개설(변경ㆍ추가)신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046025",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식31] 공익법인 결산서류 등의 공시_표준서식, 기부금품의 수입 및 지출 명세서, 주식 등의 출연ㆍ취득ㆍ보유 및 처분 명세서, 출연자 및 이사 등 주요 구성원 현황 명세서, 출연받은 재산의 공익목적사용 현황, 운용소득 사용명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046027",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식31의2] 공익법인 결산서류 등의 공시 간편서식",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046029",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식32] 공익법인 등의 세무확인서,공익법인 등의 세무확인 결과 집계표,출연자 등 특수관계인 사용수익명세서,수혜자 선정 부적정명세서,재산의 운용 및 수익사업내역 부적정명세서,장부의 작성ㆍ비치 의무 불이행 등 명세서,보유뷰동산 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046031",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식33] 장애인신탁 원금 인출신청서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046033",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식34] 장애인신탁 원금 인출내역서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046035",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식35] 감사인 지정을 위한 기초자료 내역서 (공익법인등 작성용)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046037",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[서식36] 지정감사인 지정 신청서, 감사인으로 지정받기 위한 기초자료",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J18046039",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "별표·서식",
+      "href": "javascript:;",
+      "onclick": null,
+      "title": "별표서식"
+    },
+    {
+      "text": "조례위임조문",
+      "href": "javascript:;",
+      "onclick": "unOrdinView(this); return false;",
+      "title": "조례위임조문"
+    },
+    {
+      "text": "위임조례",
+      "href": "javascript:;",
+      "onclick": "joDelegateLsPop(lsVO.lsValue.lsiSeq, el('lsId').value); return false;",
+      "title": "위임조례"
+    },
+    {
+      "text": "점자뷰어",
+      "href": "javascript:;",
+      "onclick": "openBrlViewer('상속세 및 증여세법 시행규칙', null, brlConfArray);return false;",
+      "title": "점자뷰어"
+    },
+    {
+      "text": "위임행정규칙",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J17:0",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "「상속세 및 증여세법」",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032485797','ALLJO','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "「상속세 및 증여세법 시행령」",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032485795','ALLJO','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "「상속세 및 증여세법 시행령」",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486455','ALLJO','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "「상속세 및 증여세법」",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032485977','ALLJO','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "「양식산업발전법 시행규칙」",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486563','ALLJO','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제22호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486853','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제25호의4서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486877','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제26호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486869','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제26호의3서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486845','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제32호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486863','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제35호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486933','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "「주식회사 등의 외부감사에 관한 법률」",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486975','ALLJO','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제36호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486981','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "「주식회사 등의 외부감사에 관한 법률」",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486969','ALLJO','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제13호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032485949','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제13호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032485959','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제1호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486097','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제9호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486397','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제2호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486299','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제3호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486291','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제3호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486225','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제4호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486147','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제5호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486181','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제6호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486189','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제6호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486219','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제7호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486257','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제33호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486351','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제34호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486283','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제9호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486375','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제10호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486413','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제10호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486109','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제10호의3서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486235','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제10호의4서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486285','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제10호의5서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486079','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제10호의6서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486395','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제11호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486381','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제12호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486419','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제12호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486361','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제12호의3서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486159','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제9호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486289','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제13호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486415','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제13호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486157','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제14호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486093','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제14호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486275','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제14호의3서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486365','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제15호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486121','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제16호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486241','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제18호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486389','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제19호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486279','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제19호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486127','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제20호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486131','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제20호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486327','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제21호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486305','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제21호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486139','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제21호의3서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486099','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제21호의4서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032486329','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제23호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487623','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제24호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487577','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제25호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487571','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제25호의3서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487611','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제25호의4서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487601','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제26호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487635','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제26호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487573','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제26호의3서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487625','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제27호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487639','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제28호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487567','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제28호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487551','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제28호의3서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487599','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제29호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487589','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제30호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487559','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제31호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487591','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제31호의2서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487631','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "별지 제32호서식",
+      "href": "javascript:;",
+      "onclick": "javascript:fncLsLawPop('1032487587','BF','');",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627229&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627231&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627229&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 ] 지정감사인 지정 방법(제14조의2제4항 관련) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627229&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627229&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 ] 지정감사인 지정 방법(제14조의2제4항 관련) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627229&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627231&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별표 ] 지정감사인 지정 방법(제14조의2제4항 관련) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627231&bylClsCd=110201",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제1호서식] 가업상속공제신고서, 가업상속재산명세서, 가업용 자산 명세",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044875');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627235&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627237&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627235&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제1호서식] 가업상속공제신고서, 가업상속재산명세서, 가업용 자산 명세 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627235&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627235&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제1호서식] 가업상속공제신고서, 가업상속재산명세서, 가업용 자산 명세 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627235&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627237&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제1호서식] 가업상속공제신고서, 가업상속재산명세서, 가업용 자산 명세 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627237&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제2호서식] 영농상속공제신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18044877');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627247&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627249&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627247&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제2호서식] 영농상속공제신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627247&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627247&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제2호서식] 영농상속공제신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627247&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627249&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제2호서식] 영농상속공제신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627249&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제3호서식] 배우자 상속재산 미분할 신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045919');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627255&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627257&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627255&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제3호서식] 배우자 상속재산 미분할 신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627255&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627255&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제3호서식] 배우자 상속재산 미분할 신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627255&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627257&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제3호서식] 배우자 상속재산 미분할 신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627257&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제3호의2서식] 임신사실확인서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045921');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627261&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627263&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627261&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제3호의2서식] 임신사실확인서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627261&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627261&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제3호의2서식] 임신사실확인서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627261&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627263&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제3호의2서식] 임신사실확인서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627263&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제4호서식] 장애인증명서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045923');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627267&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627269&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627267&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제4호서식] 장애인증명서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627267&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627267&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제4호서식] 장애인증명서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627267&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627269&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제4호서식] 장애인증명서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627269&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제5호서식] 금융재산 상속공제 신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045925');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627273&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627275&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627273&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제5호서식] 금융재산 상속공제 신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627273&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627273&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제5호서식] 금융재산 상속공제 신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627273&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627275&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제5호서식] 금융재산 상속공제 신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627275&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제6호서식] 재해손실 공제신고서(상속세, 증여세)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045927');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627281&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627283&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627281&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제6호서식] 재해손실 공제신고서(상속세, 증여세) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627281&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627281&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제6호서식] 재해손실 공제신고서(상속세, 증여세) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627281&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627283&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제6호서식] 재해손실 공제신고서(상속세, 증여세) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627283&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제6호의2서식] 동거주택상속공제신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045929');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627287&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627289&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627287&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제6호의2서식] 동거주택상속공제신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627287&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627287&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제6호의2서식] 동거주택상속공제신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627287&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627289&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제6호의2서식] 동거주택상속공제신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627289&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제7호서식] 외국납부세액공제신청서(상속세, 증여세)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045931');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627295&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627297&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627295&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제7호서식] 외국납부세액공제신청서(상속세, 증여세) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627295&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627295&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제7호서식] 외국납부세액공제신청서(상속세, 증여세) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627295&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627297&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제7호서식] 외국납부세액공제신청서(상속세, 증여세) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627297&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627301&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제8호서식] 삭제 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627301&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627301&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제8호서식] 삭제 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627301&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627303&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제8호서식] 삭제 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627303&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제9호서식] 상속세과세표준신고 및 자진납부계산서, 상속세과세가액계산명세서, 상속인별 상속재산 및 평가명세서, 채무ㆍ공과금ㆍ장례비용 및 상속공제명세서, 배우자 상속공제 명세서, 상속개시전 1(2)년 이내 처분재산ㆍ채무부담내역 및 사용처소명명세서 (갑), 상속개시전 1(2)년 이내 처분재산ㆍ채무부담내역 및 사용처소명명세서 (을), 영리법인 상속세 면제 및 납부 명세서, 가업(영농)상속공제 사후관리추징사유 신고 및 자진납부 계산서, 가업상속 납부유예 사후관리추징사유 신고 및 자진납부 계산서, 서화ㆍ골동품 등 상속재산 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045935');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627307&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627309&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627307&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제9호서식] 상속세과세표준신고 및 자진납부계산서, 상속세과세가액계산명세서, 상속인별 상속재산 및 평가명세서, 채무ㆍ공과금ㆍ장례비용 및 상속공제명세서, 배우자 상속공제 명세서, 상속개시전 1(2)년 이내 처분재산ㆍ채무부담내역 및 사용처소명명세서 (갑), 상속개시전 1(2)년 이내 처분재산ㆍ채무부담내역 및 사용처소명명세서 (을), 영리법인 상속세 면제 및 납부 명세서, 가업(영농)상속공제 사후관리추징사유 신고 및 자진납부 계산서, 가업상속 납부유예 사후관리추징사유 신고 및 자진납부 계산서, 서화ㆍ골동품 등 상속재산 명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627307&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627307&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제9호서식] 상속세과세표준신고 및 자진납부계산서, 상속세과세가액계산명세서, 상속인별 상속재산 및 평가명세서, 채무ㆍ공과금ㆍ장례비용 및 상속공제명세서, 배우자 상속공제 명세서, 상속개시전 1(2)년 이내 처분재산ㆍ채무부담내역 및 사용처소명명세서 (갑), 상속개시전 1(2)년 이내 처분재산ㆍ채무부담내역 및 사용처소명명세서 (을), 영리법인 상속세 면제 및 납부 명세서, 가업(영농)상속공제 사후관리추징사유 신고 및 자진납부 계산서, 가업상속 납부유예 사후관리추징사유 신고 및 자진납부 계산서, 서화ㆍ골동품 등 상속재산 명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627307&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627309&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제9호서식] 상속세과세표준신고 및 자진납부계산서, 상속세과세가액계산명세서, 상속인별 상속재산 및 평가명세서, 채무ㆍ공과금ㆍ장례비용 및 상속공제명세서, 배우자 상속공제 명세서, 상속개시전 1(2)년 이내 처분재산ㆍ채무부담내역 및 사용처소명명세서 (갑), 상속개시전 1(2)년 이내 처분재산ㆍ채무부담내역 및 사용처소명명세서 (을), 영리법인 상속세 면제 및 납부 명세서, 가업(영농)상속공제 사후관리추징사유 신고 및 자진납부 계산서, 가업상속 납부유예 사후관리추징사유 신고 및 자진납부 계산서, 서화ㆍ골동품 등 상속재산 명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627309&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호서식] 증여세과세표준신고 및 자진납부계산서(기본세율 적용 증여재산 신고용), 증여재산 및 평가명세서, 가업승계 증여세 납부유예 증여재산평가 및 납부유예 세액 계산명세서, 혼인 및 출산 증여재산 공제 명세서, 혼인 증여재산 공제 추징사유 신고 및 자진납부 계산서, 서화ㆍ골동품 등 증여재산 명세서, 공익법인 등 관련 가산세 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045937');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627345&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627347&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627345&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호서식] 증여세과세표준신고 및 자진납부계산서(기본세율 적용 증여재산 신고용), 증여재산 및 평가명세서, 가업승계 증여세 납부유예 증여재산평가 및 납부유예 세액 계산명세서, 혼인 및 출산 증여재산 공제 명세서, 혼인 증여재산 공제 추징사유 신고 및 자진납부 계산서, 서화ㆍ골동품 등 증여재산 명세서, 공익법인 등 관련 가산세 명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627345&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627345&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호서식] 증여세과세표준신고 및 자진납부계산서(기본세율 적용 증여재산 신고용), 증여재산 및 평가명세서, 가업승계 증여세 납부유예 증여재산평가 및 납부유예 세액 계산명세서, 혼인 및 출산 증여재산 공제 명세서, 혼인 증여재산 공제 추징사유 신고 및 자진납부 계산서, 서화ㆍ골동품 등 증여재산 명세서, 공익법인 등 관련 가산세 명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627345&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627347&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호서식] 증여세과세표준신고 및 자진납부계산서(기본세율 적용 증여재산 신고용), 증여재산 및 평가명세서, 가업승계 증여세 납부유예 증여재산평가 및 납부유예 세액 계산명세서, 혼인 및 출산 증여재산 공제 명세서, 혼인 증여재산 공제 추징사유 신고 및 자진납부 계산서, 서화ㆍ골동품 등 증여재산 명세서, 공익법인 등 관련 가산세 명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627347&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의2서식] 증여세과세표준신고 및 자진납부계산서(창업자금 및 가업승계주식 등 특례세율 적용 증여재산 신고용), 창업자금 증여재산평가 및 과세가액 계산명세서, 가업승계 주식 등 증여재산평가 및 과세가액 계산명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045939');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627371&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627373&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627371&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의2서식] 증여세과세표준신고 및 자진납부계산서(창업자금 및 가업승계주식 등 특례세율 적용 증여재산 신고용), 창업자금 증여재산평가 및 과세가액 계산명세서, 가업승계 주식 등 증여재산평가 및 과세가액 계산명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627371&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627371&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의2서식] 증여세과세표준신고 및 자진납부계산서(창업자금 및 가업승계주식 등 특례세율 적용 증여재산 신고용), 창업자금 증여재산평가 및 과세가액 계산명세서, 가업승계 주식 등 증여재산평가 및 과세가액 계산명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627371&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627373&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의2서식] 증여세과세표준신고 및 자진납부계산서(창업자금 및 가업승계주식 등 특례세율 적용 증여재산 신고용), 창업자금 증여재산평가 및 과세가액 계산명세서, 가업승계 주식 등 증여재산평가 및 과세가액 계산명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627373&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의3서식] 증여세과세표준신고 및 자진납부계산서(특수관계법인과의 거래를 통한 증여의제이익 신고용), 수증자 등 및 과세가액 계산명세서(Ⅰ), 수혜법인 지배주주 판정을 위한 간접보유비율 산정, 수증자 간접보유비율 (간접출자법인 해당여부 및 간접보유비율), 지배주주 등과 특수관계법인(증여자 등), 수증자 등 및 과세가액 계산명세서(Ⅱ)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045941');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627387&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627389&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627387&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의3서식] 증여세과세표준신고 및 자진납부계산서(특수관계법인과의 거래를 통한 증여의제이익 신고용), 수증자 등 및 과세가액 계산명세서(Ⅰ), 수혜법인 지배주주 판정을 위한 간접보유비율 산정, 수증자 간접보유비율 (간접출자법인 해당여부 및 간접보유비율), 지배주주 등과 특수관계법인(증여자 등), 수증자 등 및 과세가액 계산명세서(Ⅱ) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627387&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627387&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의3서식] 증여세과세표준신고 및 자진납부계산서(특수관계법인과의 거래를 통한 증여의제이익 신고용), 수증자 등 및 과세가액 계산명세서(Ⅰ), 수혜법인 지배주주 판정을 위한 간접보유비율 산정, 수증자 간접보유비율 (간접출자법인 해당여부 및 간접보유비율), 지배주주 등과 특수관계법인(증여자 등), 수증자 등 및 과세가액 계산명세서(Ⅱ) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627387&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627389&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의3서식] 증여세과세표준신고 및 자진납부계산서(특수관계법인과의 거래를 통한 증여의제이익 신고용), 수증자 등 및 과세가액 계산명세서(Ⅰ), 수혜법인 지배주주 판정을 위한 간접보유비율 산정, 수증자 간접보유비율 (간접출자법인 해당여부 및 간접보유비율), 지배주주 등과 특수관계법인(증여자 등), 수증자 등 및 과세가액 계산명세서(Ⅱ) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627389&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의4서식] 증여세과세표준신고 및 자진납부계산서(특수관계법인으로부터 제공받은 사업기회로 발생한 증여의제이익 신고용), 수증자 등 및 과세가액 계산명세서(A)(특수관계법인으로부터 제공받은 사업기회로 발생한 이익의 증여의제 신고용), 수증자 등 및 과세가액 계산명세서(A-1)(수증자 간접보유비율), 수증자 등 및 과세가액 계산명세서(B), 수증자 및 과세가액 계산명세서(B-1)(수혜법인의 부문별 영업이익 명세서)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045943');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627415&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627417&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627415&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의4서식] 증여세과세표준신고 및 자진납부계산서(특수관계법인으로부터 제공받은 사업기회로 발생한 증여의제이익 신고용), 수증자 등 및 과세가액 계산명세서(A)(특수관계법인으로부터 제공받은 사업기회로 발생한 이익의 증여의제 신고용), 수증자 등 및 과세가액 계산명세서(A-1)(수증자 간접보유비율), 수증자 등 및 과세가액 계산명세서(B), 수증자 및 과세가액 계산명세서(B-1)(수혜법인의 부문별 영업이익 명세서) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627415&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627415&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의4서식] 증여세과세표준신고 및 자진납부계산서(특수관계법인으로부터 제공받은 사업기회로 발생한 증여의제이익 신고용), 수증자 등 및 과세가액 계산명세서(A)(특수관계법인으로부터 제공받은 사업기회로 발생한 이익의 증여의제 신고용), 수증자 등 및 과세가액 계산명세서(A-1)(수증자 간접보유비율), 수증자 등 및 과세가액 계산명세서(B), 수증자 및 과세가액 계산명세서(B-1)(수혜법인의 부문별 영업이익 명세서) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627415&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627417&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의4서식] 증여세과세표준신고 및 자진납부계산서(특수관계법인으로부터 제공받은 사업기회로 발생한 증여의제이익 신고용), 수증자 등 및 과세가액 계산명세서(A)(특수관계법인으로부터 제공받은 사업기회로 발생한 이익의 증여의제 신고용), 수증자 등 및 과세가액 계산명세서(A-1)(수증자 간접보유비율), 수증자 등 및 과세가액 계산명세서(B), 수증자 및 과세가액 계산명세서(B-1)(수혜법인의 부문별 영업이익 명세서) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627417&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의5서식] 증여세과세표준신고 및 자진납부계산서(초과배당에 따른 이익의 증여재산 신고용), 증여재산 및 평가명세서, 서화ㆍ골동품 등 증여재산 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045945');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627439&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627441&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627439&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의5서식] 증여세과세표준신고 및 자진납부계산서(초과배당에 따른 이익의 증여재산 신고용), 증여재산 및 평가명세서, 서화ㆍ골동품 등 증여재산 명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627439&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627439&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의5서식] 증여세과세표준신고 및 자진납부계산서(초과배당에 따른 이익의 증여재산 신고용), 증여재산 및 평가명세서, 서화ㆍ골동품 등 증여재산 명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627439&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627441&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의5서식] 증여세과세표준신고 및 자진납부계산서(초과배당에 따른 이익의 증여재산 신고용), 증여재산 및 평가명세서, 서화ㆍ골동품 등 증여재산 명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627441&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의6서식] 증여세과세표준신고 및 자진납부계산서(특정법인과의 거래를 통한 증여의제이익 신고용), 증여재산 및 평가명세서, 서화ㆍ골동품 등 증여재산 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045947');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627453&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627455&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627453&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의6서식] 증여세과세표준신고 및 자진납부계산서(특정법인과의 거래를 통한 증여의제이익 신고용), 증여재산 및 평가명세서, 서화ㆍ골동품 등 증여재산 명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627453&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627453&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의6서식] 증여세과세표준신고 및 자진납부계산서(특정법인과의 거래를 통한 증여의제이익 신고용), 증여재산 및 평가명세서, 서화ㆍ골동품 등 증여재산 명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627453&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627455&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제10호의6서식] 증여세과세표준신고 및 자진납부계산서(특정법인과의 거래를 통한 증여의제이익 신고용), 증여재산 및 평가명세서, 서화ㆍ골동품 등 증여재산 명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627455&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제11호서식] 상속세(증여세) 연부연납허가(변경, 철회) 신청서, 연부연납세액 계산명세",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045949');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627467&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627469&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627467&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제11호서식] 상속세(증여세) 연부연납허가(변경, 철회) 신청서, 연부연납세액 계산명세 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627467&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627467&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제11호서식] 상속세(증여세) 연부연납허가(변경, 철회) 신청서, 연부연납세액 계산명세 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627467&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627469&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제11호서식] 상속세(증여세) 연부연납허가(변경, 철회) 신청서, 연부연납세액 계산명세 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627469&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호서식] 상속세(증여세) 연부연납(허가, 변경 허가, 불허가, 취소) 통지서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045951');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627479&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627481&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627479&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호서식] 상속세(증여세) 연부연납(허가, 변경 허가, 불허가, 취소) 통지서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627479&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627479&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호서식] 상속세(증여세) 연부연납(허가, 변경 허가, 불허가, 취소) 통지서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627479&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627481&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호서식] 상속세(증여세) 연부연납(허가, 변경 허가, 불허가, 취소) 통지서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627481&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호의2서식] 가업상속 납부유예 신청서, 가업상속재산명세서, 가업용 자산 명세",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045953');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627485&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627487&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627485&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호의2서식] 가업상속 납부유예 신청서, 가업상속재산명세서, 가업용 자산 명세 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627485&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627485&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호의2서식] 가업상속 납부유예 신청서, 가업상속재산명세서, 가업용 자산 명세 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627485&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627487&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호의2서식] 가업상속 납부유예 신청서, 가업상속재산명세서, 가업용 자산 명세 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627487&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호의3서식] 가업상속 납부유예(허가, 불허가) 통지서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045955');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627497&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627499&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627497&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호의3서식] 가업상속 납부유예(허가, 불허가) 통지서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627497&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627497&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호의3서식] 가업상속 납부유예(허가, 불허가) 통지서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627497&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627499&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제12호의3서식] 가업상속 납부유예(허가, 불허가) 통지서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627499&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제13호서식] 상속세 물납(변경, 철회)신청서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045957');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627503&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627505&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627503&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제13호서식] 상속세 물납(변경, 철회)신청서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627503&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627503&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제13호서식] 상속세 물납(변경, 철회)신청서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627503&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627505&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제13호서식] 상속세 물납(변경, 철회)신청서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627505&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제13호의2서식] 물납 재산 재평가 신청서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045959');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627511&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627513&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627511&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제13호의2서식] 물납 재산 재평가 신청서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627511&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627511&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제13호의2서식] 물납 재산 재평가 신청서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627511&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627513&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제13호의2서식] 물납 재산 재평가 신청서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627513&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호서식] 상속세 (물납(변경)허가, 물납(변경)불허가, 물납재산 변경명령) 통지서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045961');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627517&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627519&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627517&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호서식] 상속세 (물납(변경)허가, 물납(변경)불허가, 물납재산 변경명령) 통지서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627517&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627517&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호서식] 상속세 (물납(변경)허가, 물납(변경)불허가, 물납재산 변경명령) 통지서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627517&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627519&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호서식] 상속세 (물납(변경)허가, 물납(변경)불허가, 물납재산 변경명령) 통지서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627519&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의2서식] 문화재 등 상속세 물납 (철회)신청서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045963');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627523&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627525&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627523&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의2서식] 문화재 등 상속세 물납 (철회)신청서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627523&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627523&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의2서식] 문화재 등 상속세 물납 (철회)신청서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627523&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627525&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의2서식] 문화재 등 상속세 물납 (철회)신청서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627525&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의3서식] 징수유예 국가지정문화재등 (보유현황명세서, 양도거래신고서)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045965');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627531&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627533&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627531&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의3서식] 징수유예 국가지정문화재등 (보유현황명세서, 양도거래신고서) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627531&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627531&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의3서식] 징수유예 국가지정문화재등 (보유현황명세서, 양도거래신고서) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627531&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627533&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제14호의3서식] 징수유예 국가지정문화재등 (보유현황명세서, 양도거래신고서) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627533&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제15호서식] (상속세, 증여세) 결정지연통지서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045967');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627539&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627541&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627539&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제15호서식] (상속세, 증여세) 결정지연통지서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627539&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627539&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제15호서식] (상속세, 증여세) 결정지연통지서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627539&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627541&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제15호서식] (상속세, 증여세) 결정지연통지서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627541&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제16호서식] 상속세(증여세) 과세표준 및 세액의 결정(경정)청구서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045969');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627545&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627547&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627545&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제16호서식] 상속세(증여세) 과세표준 및 세액의 결정(경정)청구서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627545&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627545&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제16호서식] 상속세(증여세) 과세표준 및 세액의 결정(경정)청구서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627545&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627547&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제16호서식] 상속세(증여세) 과세표준 및 세액의 결정(경정)청구서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627547&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627551&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제17호서식] 삭제 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627551&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627551&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제17호서식] 삭제 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627551&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627553&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제17호서식] 삭제 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627553&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627557&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제17호의2서식] 삭제 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627557&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627557&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제17호의2서식] 삭제 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627557&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627559&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제17호의2서식] 삭제 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627559&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제18호서식] 퇴직급여 등 지급명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045975');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627563&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627565&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627563&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제18호서식] 퇴직급여 등 지급명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627563&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627563&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제18호서식] 퇴직급여 등 지급명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627563&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627565&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제18호서식] 퇴직급여 등 지급명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627565&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제19호서식] 보험(해약환급)금 지급명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045977');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627569&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627571&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627569&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제19호서식] 보험(해약환급)금 지급명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627569&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627569&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제19호서식] 보험(해약환급)금 지급명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627569&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627571&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제19호서식] 보험(해약환급)금 지급명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627571&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제19호의2서식] 보험계약자 등 명의변경 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045979');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627575&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627577&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627575&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제19호의2서식] 보험계약자 등 명의변경 명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627575&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627575&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제19호의2서식] 보험계약자 등 명의변경 명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627575&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627577&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제19호의2서식] 보험계약자 등 명의변경 명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627577&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제20호서식] 주권(출자증권ㆍ공채ㆍ사채ㆍ집합투자증권ㆍ은행예금ㆍ그 밖의 예금) 명의개서 명세서(변경 명세서)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045981');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627581&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627583&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627581&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제20호서식] 주권(출자증권ㆍ공채ㆍ사채ㆍ집합투자증권ㆍ은행예금ㆍ그 밖의 예금) 명의개서 명세서(변경 명세서) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627581&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627581&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제20호서식] 주권(출자증권ㆍ공채ㆍ사채ㆍ집합투자증권ㆍ은행예금ㆍ그 밖의 예금) 명의개서 명세서(변경 명세서) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627581&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627583&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제20호서식] 주권(출자증권ㆍ공채ㆍ사채ㆍ집합투자증권ㆍ은행예금ㆍ그 밖의 예금) 명의개서 명세서(변경 명세서) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627583&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제20호의2서식] 특정시설물(골프회원권 등)이용권 명의개서 명세서(변경 명세서)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045983');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627587&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627589&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627587&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제20호의2서식] 특정시설물(골프회원권 등)이용권 명의개서 명세서(변경 명세서) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627587&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627587&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제20호의2서식] 특정시설물(골프회원권 등)이용권 명의개서 명세서(변경 명세서) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627587&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627589&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제20호의2서식] 특정시설물(골프회원권 등)이용권 명의개서 명세서(변경 명세서) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627589&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호서식] 타인신탁재산수탁명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045985');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627593&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627595&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627593&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호서식] 타인신탁재산수탁명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627593&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627593&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호서식] 타인신탁재산수탁명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627593&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627595&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호서식] 타인신탁재산수탁명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627595&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호의2서식] 전환사채등 발행 및 인수인 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045987');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627601&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627603&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627601&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호의2서식] 전환사채등 발행 및 인수인 명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627601&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627601&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호의2서식] 전환사채등 발행 및 인수인 명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627601&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627603&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호의2서식] 전환사채등 발행 및 인수인 명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627603&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호의3서식] 주식 등의 이체명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045989');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627609&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627611&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627609&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호의3서식] 주식 등의 이체명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627609&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627609&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호의3서식] 주식 등의 이체명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627609&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627611&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호의3서식] 주식 등의 이체명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627611&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호의4서식] 투자조합의 권리 등 보유ㆍ거래 및 조합원에 관한 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045991');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627617&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627619&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627617&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호의4서식] 투자조합의 권리 등 보유ㆍ거래 및 조합원에 관한 명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627617&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627617&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호의4서식] 투자조합의 권리 등 보유ㆍ거래 및 조합원에 관한 명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627617&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627619&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제21호의4서식] 투자조합의 권리 등 보유ㆍ거래 및 조합원에 관한 명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627619&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제22호서식] 공익법인등의 주식 보유 관련 의무이행 신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045993');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627625&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627627&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627625&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제22호서식] 공익법인등의 주식 보유 관련 의무이행 신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627625&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627625&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제22호서식] 공익법인등의 주식 보유 관련 의무이행 신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627625&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627627&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제22호서식] 공익법인등의 주식 보유 관련 의무이행 신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627627&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제23호서식] 공익법인 출연재산 등에 대한 보고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045995');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627633&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627635&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627633&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제23호서식] 공익법인 출연재산 등에 대한 보고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627633&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627633&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제23호서식] 공익법인 출연재산 등에 대한 보고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627633&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627635&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제23호서식] 공익법인 출연재산 등에 대한 보고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627635&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627641&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제23호의2서식] 삭제 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627641&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627641&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제23호의2서식] 삭제 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627641&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627643&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제23호의2서식] 삭제 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627643&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제24호서식] 출연재산ㆍ운용소득ㆍ매각대금의 사용계획 및 진도내역서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18045999');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627647&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627649&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627647&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제24호서식] 출연재산ㆍ운용소득ㆍ매각대금의 사용계획 및 진도내역서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627647&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627647&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제24호서식] 출연재산ㆍ운용소득ㆍ매각대금의 사용계획 및 진도내역서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627647&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627649&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제24호서식] 출연재산ㆍ운용소득ㆍ매각대금의 사용계획 및 진도내역서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627649&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627655&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호서식] 삭제 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627655&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627655&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호서식] 삭제 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627655&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627657&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호서식] 삭제 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627657&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호의2서식] 출연받은 재산의 사용명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046003');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627661&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627663&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627661&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호의2서식] 출연받은 재산의 사용명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627661&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627661&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호의2서식] 출연받은 재산의 사용명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627661&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627663&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호의2서식] 출연받은 재산의 사용명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627663&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호의3서식] 출연재산 매각대금 사용명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046005');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627669&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627671&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627669&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호의3서식] 출연재산 매각대금 사용명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627669&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627669&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호의3서식] 출연재산 매각대금 사용명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627669&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627671&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호의3서식] 출연재산 매각대금 사용명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627671&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호의4서식] 운용소득 사용명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046007');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627679&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627681&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627679&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호의4서식] 운용소득 사용명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627679&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627679&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호의4서식] 운용소득 사용명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627679&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627681&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제25호의4서식] 운용소득 사용명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627681&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호서식] 주식(출자지분) 보유명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046009');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627691&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627693&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627691&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호서식] 주식(출자지분) 보유명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627691&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627691&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호서식] 주식(출자지분) 보유명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627691&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627693&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호서식] 주식(출자지분) 보유명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627693&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호의2서식] 이사 등 선임명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046011');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627699&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627701&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627699&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호의2서식] 이사 등 선임명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627699&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627699&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호의2서식] 이사 등 선임명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627699&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627701&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호의2서식] 이사 등 선임명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627701&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호의3서식] 특정기업광고 등 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046013');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627707&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627709&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627707&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호의3서식] 특정기업광고 등 명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627707&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627707&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호의3서식] 특정기업광고 등 명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627707&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627709&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제26호의3서식] 특정기업광고 등 명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627709&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제27호서식] 공익법인 과세내용 통보서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046015');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627713&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627715&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627713&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제27호서식] 공익법인 과세내용 통보서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627713&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627713&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제27호서식] 공익법인 과세내용 통보서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627713&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627715&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제27호서식] 공익법인 과세내용 통보서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627715&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호서식] 공익법인 설립허가등 통보서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046017');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627719&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627721&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627719&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호서식] 공익법인 설립허가등 통보서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627719&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627719&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호서식] 공익법인 설립허가등 통보서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627719&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627721&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호서식] 공익법인 설립허가등 통보서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627721&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호의2서식] 지정 예정 통지에 대한 의견서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046019');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627725&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627727&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627725&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호의2서식] 지정 예정 통지에 대한 의견서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627725&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627725&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호의2서식] 지정 예정 통지에 대한 의견서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627725&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627727&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호의2서식] 지정 예정 통지에 대한 의견서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627727&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호의3서식] 지정 통지에 대한 재지정 요청서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046021');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627731&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627733&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627731&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호의3서식] 지정 통지에 대한 재지정 요청서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627731&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627731&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호의3서식] 지정 통지에 대한 재지정 요청서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627731&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627733&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제28호의3서식] 지정 통지에 대한 재지정 요청서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627733&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제29호서식] 전용계좌외거래명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046023');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627737&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627739&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627737&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제29호서식] 전용계좌외거래명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627737&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627737&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제29호서식] 전용계좌외거래명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627737&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627739&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제29호서식] 전용계좌외거래명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627739&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제30호서식] 전용계좌개설(변경ㆍ추가)신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046025');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627745&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627747&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627745&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제30호서식] 전용계좌개설(변경ㆍ추가)신고서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627745&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627745&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제30호서식] 전용계좌개설(변경ㆍ추가)신고서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627745&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627747&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제30호서식] 전용계좌개설(변경ㆍ추가)신고서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627747&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제31호서식] 공익법인 결산서류 등의 공시_표준서식, 기부금품의 수입 및 지출 명세서, 주식 등의 출연ㆍ취득ㆍ보유 및 처분 명세서, 출연자 및 이사 등 주요 구성원 현황 명세서, 출연받은 재산의 공익목적사용 현황, 운용소득 사용명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046027');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627751&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627753&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627751&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제31호서식] 공익법인 결산서류 등의 공시_표준서식, 기부금품의 수입 및 지출 명세서, 주식 등의 출연ㆍ취득ㆍ보유 및 처분 명세서, 출연자 및 이사 등 주요 구성원 현황 명세서, 출연받은 재산의 공익목적사용 현황, 운용소득 사용명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627751&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627751&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제31호서식] 공익법인 결산서류 등의 공시_표준서식, 기부금품의 수입 및 지출 명세서, 주식 등의 출연ㆍ취득ㆍ보유 및 처분 명세서, 출연자 및 이사 등 주요 구성원 현황 명세서, 출연받은 재산의 공익목적사용 현황, 운용소득 사용명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627751&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627753&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제31호서식] 공익법인 결산서류 등의 공시_표준서식, 기부금품의 수입 및 지출 명세서, 주식 등의 출연ㆍ취득ㆍ보유 및 처분 명세서, 출연자 및 이사 등 주요 구성원 현황 명세서, 출연받은 재산의 공익목적사용 현황, 운용소득 사용명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627753&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제31호의2서식] 공익법인 결산서류 등의 공시 간편서식",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046029');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627791&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627793&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627791&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제31호의2서식] 공익법인 결산서류 등의 공시 간편서식 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627791&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627791&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제31호의2서식] 공익법인 결산서류 등의 공시 간편서식 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627791&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627793&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제31호의2서식] 공익법인 결산서류 등의 공시 간편서식 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627793&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제32호서식] 공익법인 등의 세무확인서,공익법인 등의 세무확인 결과 집계표,출연자 등 특수관계인 사용수익명세서,수혜자 선정 부적정명세서,재산의 운용 및 수익사업내역 부적정명세서,장부의 작성ㆍ비치 의무 불이행 등 명세서,보유뷰동산 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046031');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627803&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627805&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627803&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제32호서식] 공익법인 등의 세무확인서,공익법인 등의 세무확인 결과 집계표,출연자 등 특수관계인 사용수익명세서,수혜자 선정 부적정명세서,재산의 운용 및 수익사업내역 부적정명세서,장부의 작성ㆍ비치 의무 불이행 등 명세서,보유뷰동산 명세서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627803&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627803&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제32호서식] 공익법인 등의 세무확인서,공익법인 등의 세무확인 결과 집계표,출연자 등 특수관계인 사용수익명세서,수혜자 선정 부적정명세서,재산의 운용 및 수익사업내역 부적정명세서,장부의 작성ㆍ비치 의무 불이행 등 명세서,보유뷰동산 명세서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627803&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627805&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제32호서식] 공익법인 등의 세무확인서,공익법인 등의 세무확인 결과 집계표,출연자 등 특수관계인 사용수익명세서,수혜자 선정 부적정명세서,재산의 운용 및 수익사업내역 부적정명세서,장부의 작성ㆍ비치 의무 불이행 등 명세서,보유뷰동산 명세서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627805&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호서식] 장애인신탁 원금 인출신청서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046033');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627831&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627833&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627831&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호서식] 장애인신탁 원금 인출신청서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627831&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627831&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호서식] 장애인신탁 원금 인출신청서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627831&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627833&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제33호서식] 장애인신탁 원금 인출신청서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627833&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제34호서식] 장애인신탁 원금 인출내역서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046035');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627837&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627839&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627837&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제34호서식] 장애인신탁 원금 인출내역서 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627837&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627837&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제34호서식] 장애인신탁 원금 인출내역서 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627837&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627839&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제34호서식] 장애인신탁 원금 인출내역서 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627839&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제35호서식] 감사인 지정을 위한 기초자료 내역서 (공익법인등 작성용)",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046037');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627843&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627845&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627843&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제35호서식] 감사인 지정을 위한 기초자료 내역서 (공익법인등 작성용) \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627843&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627843&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제35호서식] 감사인 지정을 위한 기초자료 내역서 (공익법인등 작성용) \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627843&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627845&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제35호서식] 감사인 지정을 위한 기초자료 내역서 (공익법인등 작성용) \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627845&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제36호서식] 지정감사인 지정 신청서, 감사인으로 지정받기 위한 기초자료",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:bylInfoDiv('18046039');",
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627851&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627853&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627851&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제36호서식] 지정감사인 지정 신청서, 감사인으로 지정받기 위한 기초자료 \n              \n             \n              .hwp",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627851&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627851&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제36호서식] 지정감사인 지정 신청서, 감사인으로 지정받기 위한 기초자료 \n              \n             \n              .hwpx",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flExt=hwpx&flSeq=162627851&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627853&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제36호서식] 지정감사인 지정 신청서, 감사인으로 지정받기 위한 기초자료 \n              \n             \n              .pdf",
+      "href": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627853&bylClsCd=110202",
+      "onclick": null,
+      "title": ""
+    },
+    {
+      "text": "[별지 제1호서식] 가업상속공제신고서, 가업상속재...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045777','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제2호서식] 영농상속공제신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045779','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제3호서식] 배우자 상속재산 미분할 신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045781','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제3호의2서식] 임신사실확인서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045783','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제4호서식] 장애인증명서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045785','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제5호서식] 금융재산 상속공제 신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045787','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제6호서식] 재해손실 공제신고서(상속세, 증...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045789','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제6호의2서식] 동거주택상속공제신고서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045791','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제7호서식] 외국납부세액공제신청서(상속세, ...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045793','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제8호서식] 삭제 <1999.5.7>",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045795','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제9호서식] 상속세과세표준신고 및 자진납부...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045797','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제10호서식] 증여세과세표준신고 및 자진납부...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045799','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제10호의2서식] 증여세과세표준신고 및 자진...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045801','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제10호의3서식] 증여세과세표준신고 및 자진...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045803','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제10호의4서식] 증여세과세표준신고 및 자진...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045805','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제10호의5서식] 증여세과세표준신고 및 자진...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045807','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제10호의6서식] 증여세과세표준신고 및 자진...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045809','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제11호서식] 상속세(증여세) 연부연납허가(변...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045811','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제12호서식] 상속세(증여세) 연부연납(허가, ...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045813','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제12호의2서식] 가업상속 납부유예 신청서, 가...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045815','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제12호의3서식] 가업상속 납부유예(허가, 불...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045817','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제13호서식] 상속세 물납(변경, 철회)신청서...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045819','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제13호의2서식] 물납 재산 재평가 신청서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045821','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제14호서식] 상속세 (물납(변경)허가, 물납(변...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045823','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제14호의2서식] 문화재 등 상속세 물납 (철회...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045825','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제14호의3서식] 징수유예 국가지정문화재등 (...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045827','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제15호서식] (상속세, 증여세) 결정지연통지...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045829','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제16호서식] 상속세(증여세) 과세표준 및 세...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045831','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제17호서식] 삭제 <2020. 3. 13.>",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045833','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제17호의2서식] 삭제 <2008.4.30>",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045835','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제18호서식] 퇴직급여 등 지급명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045837','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제19호서식] 보험(해약환급)금 지급명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045839','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제19호의2서식] 보험계약자 등 명의변경 명세...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045841','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제20호서식] 주권(출자증권ㆍ공채ㆍ사채ㆍ집...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045843','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제20호의2서식] 특정시설물(골프회원권 등)이...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045845','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제21호서식] 타인신탁재산수탁명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045847','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제21호의2서식] 전환사채등 발행 및 인수인 명...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045849','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제21호의3서식] 주식 등의 이체명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045851','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제21호의4서식] 투자조합의 권리 등 보유ㆍ거...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045853','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제22호서식] 공익법인등의 주식 보유 관련 의...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045855','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제23호서식] 공익법인 출연재산 등에 대한 보...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045857','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제23호의2서식] 삭제 <2009.4.23>",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045859','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제24호서식] 출연재산ㆍ운용소득ㆍ매각대금의...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045861','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제25호서식] 삭제 <2006.4.25>",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045863','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제25호의2서식] 출연받은 재산의 사용명세서...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045865','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제25호의3서식] 출연재산 매각대금 사용명세...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045867','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제25호의4서식] 운용소득 사용명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045869','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제26호서식] 주식(출자지분) 보유명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045871','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제26호의2서식] 이사 등 선임명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045873','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제26호의3서식] 특정기업광고 등 명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045875','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제27호서식] 공익법인 과세내용 통보서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045877','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제28호서식] 공익법인 설립허가등 통보서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045879','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제28호의2서식] 지정 예정 통지에 대한 의견...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045881','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제28호의3서식] 지정 통지에 대한 재지정 요...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045883','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제29호서식] 전용계좌외거래명세서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045885','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제30호서식] 전용계좌개설(변경ㆍ추가)신고서...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045887','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제31호서식] 공익법인 결산서류 등의 공시_표...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045889','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제31호의2서식] 공익법인 결산서류 등의 공시...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045891','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제32호서식] 공익법인 등의 세무확인서,공익...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045893','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제33호서식] 장애인신탁 원금 인출신청서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045895','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제34호서식] 장애인신탁 원금 인출내역서",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045897','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제35호서식] 감사인 지정을 위한 기초자료 내...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045899','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    },
+    {
+      "text": "[별지 제36호서식] 지정감사인 지정 신청서, 감사인...",
+      "href": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#AJAX",
+      "onclick": "javascript:showDetailNwLsByl('18045901','284609','20260320');return false;",
+      "title": "팝업으로 이동"
+    }
+  ],
+  "text_sha256": "b7778ac4526697a719c7a178a014c029d8634a755680b19fcb2c14c487d19ae3",
+  "text_excerpt": "법령\n- 상속세 및 증여세법 시행규칙\n\n상속세 및 증여세법 시행규칙\n[시행 2026. 3. 20.] [재정경제부령 제15호, 2026. 3. 20., 일부개정]\n본문목록열림본문\n부칙목록열림부칙\n별표목록열림별표\n본문목록열림서식\n[서식1] 가업상속공제신고서, 가업상속재산명세서, 가업용 자산 명세\n[서식2] 영농상속공제신고서\n[서식3] 배우자 상속재산 미분할 신고서\n[서식3의2] 임신사실확인서\n[서식4] 장애인증명서\n[서식5] 금융재산 상속공제 신고서\n[서식6] 재해손실 공제신고서(상속세, 증여세)\n[서식6의2] 동거주택상속공제신고서\n[서식7] 외국납부세액공제신청서(상속세, 증여세)\n[서식8] 삭제 <1999.5.7>\n[서식9] 상속세과세표준신고 및 자진납부계산서, 상속세과세가액계산명세서, 상속인별 상속재산 및 평가명세서, 채무ㆍ공과금ㆍ장례비용 및 상속공제명세서, 배우자 상속공제 명세서, 상속개시전 1(2)년 이내 처분재산ㆍ채무부담내역 및 사용처소명명세서 (갑), 상속개시전 1(2)년 이내 처분재산ㆍ채무부담내역 및 사용처소명명세서 (을), 영리법인 상속세 면제 및 납부 명세서, 가업(영농)상속공제 사후관리추징사유 신고 및 자진납부 계산서, 가업상속 납부유예 사후관리추징사유 신고 및 자진납부 계산서, 서화ㆍ골동품 등 상속재산 명세서\n[서식10] 증여세과세표준신고 및 자진납부계산서(기본세율 적용 증여재산 신고용), 증여재산 및 평가명세서, 가업승계 증여세 납부유예 증여재산평가 및 납부유예 세액 계산명세서, 혼인 및 출산 증여재산 공제 명세서, 혼인 증여재산 공제 추징사유 신고 및 자진납부 계산서, 서화ㆍ골동품 등 증여재산 명세서, 공익법인 등 관련 가산세 명세서\n[서식10의2] 증여세과세표준신고 및 자진납부계산서(창업자금 및 가업승계주식 등 특례세율 적용 증여재산 신고용), 창업자금 증여재산평가 및 과세가액 계산명세서, 가업승계 주식 등 증여재산평가 및 과세가액 계산명세서\n[서식10의3] 증여세과세표준신고 및 자진납부계산서(특수관계법인과의 거래를 통한 증여의제이익 신고용), 수증자 등 및 과세가액 계산명세서(Ⅰ), 수혜법인 지배주주 판정을 위한 간접보유비율 산정, 수증자 간접보유비율 (간접출자법인 해당여부 및 간접보유비율), 지배주주 등과 특수관계법인(증여자 등), 수증자 등 및 과세가액 계산명세서(Ⅱ)\n[서식10의4] 증여세과세표준신고 및 자진납부계산서(특수관계법인으로부터 제공받은 사업기회로 발생한 증여의제이익 신고용), 수증자 등 및 과세가액 계산명세서(A)(특수관계법인으로부터 제공받은 사업기회로 발생한 이익의 증여의제 신고용), 수증자 등 및 과세가액 계산명세서(A-1)(수증자 간접보유비율), 수증자 등 및 과세가액 계산명세서(B), 수증자 및 과세가액 계산명세서(B-1)(수혜법인의 부문별 영업이익 명세서)\n[서식10의5] 증여세과세표준신고 및 자진납부계산서(초과배",
+  "responses": [
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=24100482",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=22116942",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=97513099",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=138835647",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=58838309",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=126166423",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=126166425",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=22116648",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=22116851",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=22116999",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=22117119",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/lsBylListR.do?lsiSeq=284609&lsId=007388&lsNm=%EC%83%81%EC%86%8D%EC%84%B8%20%EB%B0%8F%20%EC%A6%9D%EC%97%AC%EC%84%B8%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99&ancYd=20260320&ancNo=00015&efYd=20260320&efYn=Y&chrClsCd=010202&netPrivateYn=N",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=22117121",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=22117317",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=22117316",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=24106687",
+      "status": 200
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=22117319",
+      "status": 200
+    }
+  ],
+  "frames": [
+    {
+      "name": "",
+      "url": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388#J17:0"
+    }
+  ]
+}
