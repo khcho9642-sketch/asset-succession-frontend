@@ -56,6 +56,13 @@ with sync_playwright() as p:
         assert response.status in (404,410),(path,response.status)
     checks.append({'case':'institutional-original-download-integrity','verified_files':len(files),'retired_urls':len(retired)-1})
 
+    for item in manifest['documents']:
+        response = context.request.get(BASE + item['thumbnail'])
+        assert response.status == 200, item['id']
+        assert hashlib.sha256(response.body()).hexdigest() == item['preview']['sha256'], item['id']
+        assert len(response.body()) == item['preview']['bytes'], item['id']
+    checks.append({'case':'real-document-preview-integrity','verified_previews':74})
+
     page = context.new_page()
     errors = []
     page.on('pageerror',lambda error:errors.append(str(error)))
@@ -89,10 +96,11 @@ with sync_playwright() as p:
             assert link.get_attribute('download') is None
         assert page.locator('header[data-public-header]').count() == 1
         assert page.locator('[data-prototype-header]').count() == 0
+        expect(page.locator('[data-form-preview] img')).to_have_count(74)
         for image in page.locator('[data-form-preview] img').all():
             image.scroll_into_view_if_needed()
             image.evaluate('(image)=>image.decode()')
-            assert image.evaluate('(image)=>image.complete && image.naturalWidth>0')
+            assert image.evaluate('(image)=>image.complete && image.naturalWidth>0 && image.naturalWidth===Number(image.getAttribute("width")) && image.naturalHeight===Number(image.getAttribute("height"))')
         page.evaluate('window.scrollTo({top:0,left:0,behavior:"instant"})')
         page.wait_for_function('window.scrollY === 0')
         sizes = page.evaluate('({width:innerWidth,scroll:document.documentElement.scrollWidth})')
@@ -160,6 +168,7 @@ with sync_playwright() as p:
     opener.click()
     expect(page.get_by_role('dialog')).to_be_visible()
     expect(page.get_by_role('dialog').get_by_role('heading')).to_have_text('상속재산분할협의서')
+    expect(page.locator('[data-preview-resolution-note]')).to_be_visible()
     page.screenshot(path=str(OUT/'example-modal-390.png'))
     for _ in range(7):
         page.keyboard.press('Tab')
@@ -169,6 +178,24 @@ with sync_playwright() as p:
     expect(opener).to_be_focused()
     page.wait_for_function('document.documentElement.style.overflow === ""',timeout=5000)
     checks.append({'case':'modal-focus-trap-and-return','passed':True})
+
+    for width,height in [(360,812),(390,844),(1440,1000)]:
+        page.set_viewport_size({'width':width,'height':height})
+        for formid,label in [('SC-01','기관 합본 첫 페이지'),('NTS-CG-06','기관 원본 양식'),('NTS-IE-01','기관 작성 예시'),('NTS-CE-01','웹 사례 원본 이미지')]:
+            page.locator(f'[data-form-id="{formid}"] [data-form-preview]').click()
+            modal = page.get_by_role('dialog')
+            expect(modal.locator('#form-preview-note')).to_contain_text(label)
+            img = modal.locator('img')
+            img.evaluate('(image)=>image.decode()')
+            item = next(item for item in manifest['documents'] if item['id']==formid)
+            box = img.bounding_box()
+            assert box and box['width'] <= item['preview']['width'] + 1
+            assert abs(box['width']/box['height'] - item['preview']['width']/item['preview']['height']) < .01
+            expect(modal.locator('[data-preview-resolution-note]')).to_have_count(int(item['preview']['lowResolution']))
+            assert modal.evaluate('(element)=>element.scrollWidth<=element.clientWidth+1')
+            page.screenshot(path=str(OUT/f'preview-{formid}-{width}.png'))
+            page.keyboard.press('Escape')
+    checks.append({'case':'preview-type-resolution-and-dialog','widths':[360,390,1440],'records':['SC-01','NTS-CG-06','NTS-IE-01','NTS-CE-01'],'passed':True})
 
     for formid in ['BP-I-01','BP-G-01','SC-01','FAMILY-I-01','DD-G-01','NTS-IG-10','NTS-CG-15','REG-I-01','NTS-IE-01','NTS-IE-02','NTS-IE-03','NTS-CE-01']:
         page.wait_for_timeout(1100)

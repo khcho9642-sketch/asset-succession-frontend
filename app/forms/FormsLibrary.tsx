@@ -15,6 +15,9 @@ export type LibraryDocument = {
   originalCategory: string; catalogTitle: string; exampleVerification: string;
   licenseUrl: string;
   primaryArtifactType?: string;
+  preview: {
+    method: string; sourceRole: string; width: number; height: number; lowResolution: boolean;
+  };
   files: { name: string; path: string; format: string; role: string; bytes: number; delivery: string }[];
 };
 type Props = {
@@ -23,6 +26,9 @@ type Props = {
 const categories = ["전체", "재산분배·상속", "증여", "매매·임대차", "차용·상환", "양도", "가업승계", "공제·납부", "등기"];
 const deliveryLabels: Record<string, string> = { hosted: "사이트에서 다운로드", direct: "국세청 파일 바로 받기", pending: "파일 미확보" };
 const actionLabel = (item: LibraryDocument) => item.primaryArtifactType === "derived-image-compilation" ? "사례 PDF 받기" : item.delivery === "direct" ? "국세청 파일 받기" : "기관 원본 받기";
+const previewLabel = (item: LibraryDocument) => item.preview.method === "institution-image" ? "웹 사례 원본 이미지"
+  : item.preview.sourceRole === "example" ? "기관 작성 예시"
+  : item.preview.sourceRole === "combined" ? "기관 합본 첫 페이지" : "기관 원본 양식";
 const normalize = (text: string) => text.normalize("NFKC").toLocaleLowerCase("ko-KR").replace(/\s+/g, "");
 
 export function FormsLibrary({ documents }: Props) {
@@ -122,8 +128,8 @@ export function FormsLibrary({ documents }: Props) {
           <div className={styles.cardTop}><span>{item.originalCategory}</span><span className={styles.format}><FileText size={13} aria-hidden="true" />{item.format}</span></div>
           <a href={item.example ?? item.sourceUrl} target="_blank" rel="noopener noreferrer" className={styles.visual}
             onClick={event => openPreview(event, item)} aria-label={`${item.title} 자료 확인`} data-form-preview>
-            <span className={styles.previewTag}>{item.primaryArtifactType === "derived-image-compilation" ? "웹 사례 원본 이미지" : item.example ? "기관 작성 예시" : deliveryLabels[item.delivery]}</span>
-            {item.thumbnail ? <Image src={item.thumbnail} width={724} height={1024} alt={`${item.title} 기관 예시의 내장 미리보기`}
+            <span className={styles.previewTag}>{previewLabel(item)}</span>
+            {item.thumbnail ? <Image src={item.thumbnail} width={item.preview.width} height={item.preview.height} alt={`${item.title} · ${previewLabel(item)} 미리보기`}
               unoptimized className={styles.thumbnail} /> : <span className={styles.providerVisual}><FileText size={34} aria-hidden="true" />{item.institution}</span>}
             <span className={styles.previewOpen}><Search size={13} aria-hidden="true" />{item.thumbnail ? "미리보기" : "자료 정보"}</span>
           </a>
@@ -175,11 +181,13 @@ export function FormsLibrary({ documents }: Props) {
       }}>
       {preview && <>
         <div className={styles.dialogHead}><div><h2 id="form-preview-title">{preview.title}</h2>
-          <p id="form-preview-note">{preview.institution} · {preview.primaryArtifactType === "derived-image-compilation" ? "웹 사례 이미지·변환 PDF" : preview.thumbnail ? "기관 예시 내장 미리보기" : "기관 원본·출처 정보"}</p></div>
+          <p id="form-preview-note">{preview.institution} · {previewLabel(preview)}</p></div>
           <button type="button" aria-label="미리보기 닫기" onClick={() => dialog.current?.close()}><X size={22} aria-hidden="true" /></button>
         </div>
         <div className={styles.dialogImage}>
-          {preview.thumbnail ? <Image src={preview.thumbnail} width={724} height={1024} unoptimized alt={`${preview.title} 기관 예시 내장 미리보기`} /> : null}
+          {preview.preview.lowResolution && <p className={styles.previewNote} data-preview-resolution-note>문서에 포함된 작은 미리보기 이미지입니다. 자세한 내용은 원본 파일에서 확인해 주세요.</p>}
+          {preview.thumbnail ? <Image src={preview.thumbnail} width={preview.preview.width} height={preview.preview.height}
+            style={{ width: Math.min(640, preview.preview.width) }} unoptimized alt={`${preview.title} · ${previewLabel(preview)} 미리보기`} /> : null}
           <p><strong>{deliveryLabels[preview.delivery]}</strong> · {preview.verification}</p><p>{preview.exampleVerification}</p><p>{preview.license} · 확인일 {preview.checkedOn}</p>
           <a href={preview.sourceUrl} target="_blank" rel="noopener noreferrer">출처 게시물 확인</a>
           {" · "}<a href={preview.licenseUrl} target="_blank" rel="noopener noreferrer">이용 조건 확인</a>

@@ -76,6 +76,7 @@
 .cardFoot{flex-wrap:wrap}
 .dialogImage p{font-size:13px;overflow-wrap:anywhere}
 .dialogImage a{text-decoration:underline}
+.dialogImage .previewNote{margin:0 0 16px;padding:10px 12px;border-left:3px solid #8c795a;background:#fffaf1;line-height:1.7;font-size:14px}
 .dialogHead h2{overflow-wrap:anywhere}
 .srOnly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .dialog{margin:auto;padding:0;width:min(760px,calc(100vw - 32px));max-height:calc(100dvh - 32px);border:1px solid #c4b69f;border-radius:4px;background:var(--lib-card);color:var(--lib-ink);box-shadow:0 24px 80px #0004}

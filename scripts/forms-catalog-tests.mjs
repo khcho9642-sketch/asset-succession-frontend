@@ -222,3 +222,47 @@ test('unconfirmed NTS examples are not fabricated and withdrawn drafts never rea
   }
   assert.ok(!JSON.stringify(manifest).includes('/downloads/asset-succession-forms-v1/'));
 });
+
+test('all 74 previews are real PNGs with native dimensions and audited hashes', () => {
+  const paths = new Set();
+  for (const item of documents) {
+    assert.equal(item.thumbnail, `/downloads/official-forms/previews/${item.id}.png`);
+    paths.add(item.thumbnail);
+    const data = readFileSync(new URL('../public' + item.thumbnail, import.meta.url));
+    assert.equal(data.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+    assert.equal(data.length, item.preview.bytes, item.id);
+    assert.equal(createHash('sha256').update(data).digest('hex'), item.preview.sha256, item.id);
+    assert.equal(data.readUInt32BE(16), item.preview.width, item.id);
+    assert.equal(data.readUInt32BE(20), item.preview.height, item.id);
+    assert.equal(item.preview.lowResolution, Math.min(item.preview.width, item.preview.height) < 400);
+  }
+  assert.equal(paths.size, 74);
+});
+
+test('preview provenance is tied to each record, not a generic or fictional document', () => {
+  const methods = {};
+  for (const item of documents) {
+    const preview = item.preview;
+    const source = item.files.find(file => file.path === preview.sourcePath);
+    assert.ok(source, item.id);
+    assert.equal(source.sha256, preview.sourceSha256, item.id);
+    assert.equal(source.role, preview.sourceRole, item.id);
+    methods[preview.method] = (methods[preview.method] ?? 0) + 1;
+    if (preview.method === 'pdf-first-page') {
+      assert.equal(source.format, 'PDF');
+      assert.equal(preview.page, 1);
+      assert.ok(preview.sourcePages >= 1);
+      assert.notEqual(source.role, 'image-compilation');
+    } else if (preview.method === 'hwp-embedded-image') {
+      assert.equal(source.format, 'HWP');
+      assert.equal(preview.sourceStream, 'PrvImage');
+      assert.match(preview.sourceStreamSha256, /^[a-f0-9]{64}$/);
+    } else {
+      assert.equal(preview.method, 'institution-image');
+      assert.equal(source.format, 'PNG');
+      assert.equal(preview.sha256, source.sha256);
+    }
+    if (!item.example) assert.equal(preview.sourceRole, 'original');
+  }
+  assert.deepEqual(methods, { 'hwp-embedded-image': 40, 'pdf-first-page': 33, 'institution-image': 1 });
+});
