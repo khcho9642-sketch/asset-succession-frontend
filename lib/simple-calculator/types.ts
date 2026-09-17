@@ -28,6 +28,7 @@ export type SimpleCalculationResult = {
   missing: string[];
   assumptions: string[];
   unsupported: UnsupportedItem[];
+  scopeNotes: UnsupportedItem[];
   references: Array<{ label: string; url: string }>;
   checkedOn: string;
 };
@@ -49,6 +50,7 @@ export type InheritanceInput = {
   priorGiftHeirsWon: MoneyInput;
   priorGiftOthersWon: MoneyInput;
   debtWon: MoneyInput;
+  financialDebtWon: MoneyInput;
   publicChargesWon: MoneyInput;
   funeralWon: MoneyInput;
   burialWon: MoneyInput;
@@ -65,7 +67,8 @@ export type GiftInput = {
   amountWon: MoneyInput;
   debtAssumedWon: MoneyInput;
   priorGiftWon: MoneyInput;
-  usedDeductionWon: MoneyInput;
+  priorGiftDeductionWon: MoneyInput;
+  otherGiftDeductionWon: MoneyInput;
   appraisalFeeWon: MoneyInput;
   marriageBirthDeductionWon: MoneyInput;
   previousTaxPaidWon: MoneyInput;
@@ -85,4 +88,9 @@ export type CapitalGainsInput = {
   residenceYears: number | null;
   homeCount: number | null;
   regulatedArea: boolean;
+  resident: "yes" | "no" | null;
+  homeOwnership: "solePurchased" | "other" | null;
+  householdOtherRights: "no" | "yes" | "unknown" | null;
+  regulatedAtAcquisition: "no" | "yes" | "unknown" | null;
+  homeSpecialConditions: "no" | "yes" | "unknown" | null;
 };

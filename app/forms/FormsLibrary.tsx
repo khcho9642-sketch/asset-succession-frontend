@@ -9,17 +9,17 @@ import { OfficialRegistrationGuides } from "./OfficialRegistrationGuides";
 
 export type LibraryDocument = {
   id: string; title: string; category: string; description: string; tags: string;
-  format: "Word" | "Excel"; editable: string; example: string; thumbnail: string;
-  sizeLabel: string; version: string;
+  format: string; editable: string; example: string | null; thumbnail: string | null;
+  sizeLabel: string; institution: string; sourceUrl: string; checkedOn: string;
+  license: string; verification: string; delivery: string;
 };
 type Props = {
-  documents: LibraryDocument[]; bundleUrl: string; bundleSize: string;
-  guideUrl: string; allExamplesUrl: string;
+  documents: LibraryDocument[];
 };
 const categories = ["전체", "재산분배·상속", "증여", "차용·상환", "양도", "가업승계"];
 const normalize = (text: string) => text.normalize("NFKC").toLocaleLowerCase("ko-KR").replace(/\s+/g, "");
 
-export function FormsLibrary({ documents, bundleUrl, bundleSize, guideUrl, allExamplesUrl }: Props) {
+export function FormsLibrary({ documents }: Props) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("전체");
   const [preview, setPreview] = useState<LibraryDocument | null>(null);
@@ -55,7 +55,7 @@ export function FormsLibrary({ documents, bundleUrl, bundleSize, guideUrl, allEx
     setQuery(""); setCategory("전체"); search.current?.focus();
   }
 
-  return <main className={styles.library} id="forms-library" data-forms-library="approved-v2">
+  return <main className={styles.library} id="forms-library" data-forms-library="institutional-v1">
     <nav className={styles.breadcrumb} aria-label="현재 위치">
       <Link href="/">홈</Link><ChevronRight size={13} aria-hidden="true" /><span aria-current="page">서류양식</span>
     </nav>
@@ -66,19 +66,19 @@ export function FormsLibrary({ documents, bundleUrl, bundleSize, guideUrl, allEx
         <p className={styles.description}>재산을 나누고, 증여를 약속하고, 상담을 준비할 때.<br />빈 양식과 작성 예시를 함께 살펴보세요.</p>
       </div>
       <div className={styles.bundle}>
-        <p className={styles.bundleOverline}>편집 가능한 작성 양식</p>
+        <p className={styles.bundleOverline}>기관 양식과 제공처</p>
         <p className={styles.bundleCount}><strong>{documents.length}</strong>종</p>
-        <p className={styles.bundleDescription}>Word · Excel · 가상 작성 예시 PDF</p>
-        <a className={styles.bundleButton} href={bundleUrl} download data-bundle-download>
-          전체 양식 받기<Download size={18} aria-hidden="true" />
+        <p className={styles.bundleDescription}>기관 원본 2종 · 기관 예시 2개</p>
+        <a className={styles.bundleButton} href="/downloads/official-forms/official-forms.zip" download data-bundle-download>
+          확인한 기관 원본 받기<Download size={18} aria-hidden="true" />
         </a>
-        <p className={styles.bundleMeta}><span>ZIP · {bundleSize}</span><span>이용안내 포함</span></p>
+        <p className={styles.bundleMeta}><span>HWP 4개 · ZIP</span><span>부평구청 제공</span></p>
       </div>
     </section>
     <aside className={styles.notice} aria-label="양식 이용 안내">
       <Info size={17} aria-hidden="true" />
-      <p><strong>자체 참고 초안입니다.</strong> 공식 신고서식이 아니며, 실제 사용 전 개별 법률·세무 검토가 필요합니다.</p>
-      <a href={guideUrl} target="_blank" rel="noopener noreferrer">이용안내<span className={styles.srOnly}> PDF, 새 창</span></a>
+      <p><strong>기관이 제공한 양식과 예시입니다.</strong> 기관 예시도 개별 사정에 맞는 검토가 필요합니다. 게시일·제출처의 최신 요건을 확인하세요.</p>
+      <a href="#forms-usage">이용안내</a>
     </aside>
     <OfficialRegistrationGuides />
     <section className={styles.section} aria-labelledby="documents-title">
@@ -98,32 +98,32 @@ export function FormsLibrary({ documents, bundleUrl, bundleSize, guideUrl, allEx
         </button>)}
       </div>
       <p className={styles.resultCount} role="status" aria-live="polite" data-result-count>
-        {query.trim() ? "검색 결과" : category} <strong>{filtered.length}종</strong> · 편집 양식과 작성 예시
+        {query.trim() ? "검색 결과" : category} <strong>{filtered.length}종</strong> · 기관 원본 또는 공식 제공처
       </p>
       <div className={styles.grid}>
         {filtered.map(item => <article className={styles.card} key={item.id} data-form-id={item.id}>
           <div className={styles.cardTop}><span>{item.category}</span><span className={styles.format}><FileText size={13} aria-hidden="true" />{item.format}</span></div>
-          <a href={item.example} target="_blank" rel="noopener noreferrer" className={styles.visual}
-            onClick={event => openPreview(event, item)} aria-label={`${item.title} 작성 예시 미리보기`} data-form-preview>
-            <span className={styles.previewTag}>가상 작성 예시</span>
-            <Image src={item.thumbnail} width={720} height={1019} alt={`${item.title} 가상 작성 예시의 첫 페이지`}
-              unoptimized className={styles.thumbnail} />
+          <a href={item.example ?? item.sourceUrl} target="_blank" rel="noopener noreferrer" className={styles.visual}
+            onClick={event => openPreview(event, item)} aria-label={`${item.title} 자료 확인`} data-form-preview>
+            <span className={styles.previewTag}>{item.delivery === "hosted" ? "기관 작성 예시" : "공식 제공처"}</span>
+            {item.thumbnail ? <Image src={item.thumbnail} width={724} height={1024} alt={`${item.title} 기관 예시의 내장 미리보기`}
+              unoptimized className={styles.thumbnail} /> : <span className={styles.providerVisual}><FileText size={34} aria-hidden="true" />{item.institution}</span>}
             <span className={styles.previewOpen}><Search size={13} aria-hidden="true" />미리보기</span>
           </a>
           <div className={styles.cardCopy}>
             <h3>{item.title}</h3><p>{item.description}</p><small>{item.tags}</small>
           </div>
           <div className={styles.cardActions}>
-            <a className={styles.download} href={item.editable} download data-form-download
-              aria-label={`${item.title} ${item.format} 양식 받기`}>
-              <Download size={16} aria-hidden="true" />{item.format === "Excel" ? "엑셀 양식 받기" : "빈 양식 받기"}
+            <a className={styles.download} href={item.editable} download={item.delivery === "hosted"} target={item.delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer" data-form-download
+              aria-label={`${item.title} ${item.delivery === "hosted" ? "원본 받기" : "공식 제공처"}`}>
+              <Download size={16} aria-hidden="true" />{item.delivery === "hosted" ? "기관 원본 받기" : "공식 제공처"}
             </a>
-            <a className={styles.example} href={item.example} target="_blank" rel="noopener noreferrer"
-              onClick={event => openPreview(event, item)} aria-label={`${item.title} 작성 예시 보기`}>
-              작성 예시<ArrowRight size={15} aria-hidden="true" />
-            </a>
+            {item.example ? <a className={styles.example} href={item.example} target="_blank" rel="noopener noreferrer"
+              onClick={event => openPreview(event, item)} aria-label={`${item.title} 기관 작성 예시 보기`}>
+              기관 예시<ArrowRight size={15} aria-hidden="true" />
+            </a> : <span className={styles.example}>기관 예시 미확인</span>}
           </div>
-          <div className={styles.cardFoot}><span>{item.sizeLabel} · v{item.version}</span><span>자체 참고 초안</span></div>
+          <div className={styles.cardFoot}><span>{item.sizeLabel}</span><a href={item.sourceUrl} target="_blank" rel="noopener noreferrer">{item.institution}</a></div>
         </article>)}
       </div>
       {filtered.length === 0 && <div className={styles.empty}>
@@ -135,9 +135,9 @@ export function FormsLibrary({ documents, bundleUrl, bundleSize, guideUrl, allEx
       <div><h2>어떤 서류부터 준비할지 고민되시나요?</h2><p>상황을 먼저 이야기해 주세요. 모든 서류를 한 번에 준비하지 않아도 괜찮아요.</p></div>
       <Link href="/precheck">AI 상담으로 돌아가기<ArrowRight size={18} aria-hidden="true" /></Link>
     </section>
-    <footer className={styles.footer}>
-      <p>자산승계 360 · 자체 참고 양식 v1.0<br />작성 예시의 인물과 재산은 모두 가상입니다.</p>
-      <div><a href={allExamplesUrl} target="_blank" rel="noopener noreferrer">예시 모아보기</a><a href={guideUrl} target="_blank" rel="noopener noreferrer">이용안내</a></div>
+    <footer className={styles.footer} id="forms-usage">
+      <p>확인일 2026-09-17 · 부평구청 원본은 공공누리 제1유형(출처표시)으로 이용합니다.<br />계약 조항과 예시를 재작성하지 않았습니다. HWP는 한글 호환 프로그램에서 열어 주세요.<br />기타 자료는 기관 제공처에서 최신 양식과 예시 유무를 확인하세요.</p>
+      <div><a href="/downloads/official-forms/manifest.json" target="_blank" rel="noopener noreferrer">출처·검증 기록</a></div>
     </footer>
     <dialog ref={dialog} className={styles.dialog} aria-labelledby="form-preview-title" aria-describedby="form-preview-note"
       onKeyDown={event => {
@@ -156,14 +156,17 @@ export function FormsLibrary({ documents, bundleUrl, bundleSize, guideUrl, allEx
       }}>
       {preview && <>
         <div className={styles.dialogHead}><div><h2 id="form-preview-title">{preview.title}</h2>
-          <p id="form-preview-note">가상 작성 예시 · 첫 페이지 미리보기</p></div>
+          <p id="form-preview-note">{preview.institution} · {preview.thumbnail ? "기관 예시 내장 미리보기" : "공식 제공처 안내"}</p></div>
           <button type="button" aria-label="미리보기 닫기" onClick={() => dialog.current?.close()}><X size={22} aria-hidden="true" /></button>
         </div>
-        <div className={styles.dialogImage}><Image src={preview.thumbnail} width={720} height={1019} unoptimized
-          alt={`${preview.title} 가상 작성 예시 첫 페이지`} /></div>
+        <div className={styles.dialogImage}>
+          {preview.thumbnail ? <Image src={preview.thumbnail} width={724} height={1024} unoptimized alt={`${preview.title} 기관 예시 내장 미리보기`} /> : null}
+          <p>{preview.verification}</p><p>{preview.license} · 확인일 {preview.checkedOn}</p>
+          <a href={preview.sourceUrl} target="_blank" rel="noopener noreferrer">출처 게시물 확인</a>
+        </div>
         <div className={styles.dialogFooter}>
-          <a href={preview.example} target="_blank" rel="noopener noreferrer">전체 예시 PDF 열기<ArrowRight size={15} aria-hidden="true" /></a>
-          <a className={styles.dialogDownload} href={preview.editable} download><Download size={16} aria-hidden="true" />편집 양식 받기</a>
+          {preview.example ? <a href={preview.example} target="_blank" rel="noopener noreferrer">기관 예시 원문 열기<ArrowRight size={15} aria-hidden="true" /></a> : <span>기관 작성 예시 미확인</span>}
+          <a className={styles.dialogDownload} href={preview.editable} download={preview.delivery === "hosted"} target={preview.delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer"><Download size={16} aria-hidden="true" />{preview.delivery === "hosted" ? "기관 원본 받기" : "공식 제공처"}</a>
         </div>
       </>}
     </dialog>

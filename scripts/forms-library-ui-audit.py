@@ -4,16 +4,18 @@ import hashlib
 import json
 import os
 from pathlib import Path
-from urllib.parse import quote, urlparse
+from urllib.parse import quote, urlparse, unquote
+import io
+import zipfile
 from playwright.sync_api import sync_playwright, expect
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = os.environ.get('FORM_LIBRARY_BASE_URL', 'http://127.0.0.1:4188').rstrip('/')
 OUT = ROOT / '.tmp/forms-library-proof'
 OUT.mkdir(parents=True, exist_ok=True)
-LIB = ROOT / 'public/downloads/asset-succession-forms-v1'
+LIB = ROOT / 'public/downloads/official-forms'
 URL = '/downloads/asset-succession-forms-v1/'
-manifest = json.loads((LIB / '04_사이트등록/forms_manifest.json').read_text(encoding='utf-8'))
+manifest = json.loads((LIB / 'manifest.json').read_text(encoding='utf-8'))
 checks = []
 
 with sync_playwright() as p:
@@ -25,14 +27,27 @@ with sync_playwright() as p:
     checks.append({'case':'legacy-index-redirect','status':old.status})
     files = []
     for item in manifest['documents']:
-        files.extend([(item['editable_file'],item['sha256']),(item['example_file'],item['example_sha256'])])
-    for name in ['asset_succession_forms_v1.zip','00_작성예시_모아보기.pdf','03_이용안내/00_먼저읽기_이용안내.pdf']:
-        files.append((name,hashlib.sha256((LIB/name).read_bytes()).hexdigest()))
-    for name,digest in files:
-        response = context.request.get(BASE + URL + quote(name,safe='/'))
-        assert response.status == 200,(name,response.status)
-        assert hashlib.sha256(response.body()).hexdigest() == digest,name
-    checks.append({'case':'original-download-integrity','verified_files':len(files)})
+        if item['delivery'] == 'hosted':
+            files.extend([(item['editable'],item['sha256']),(item['example'],item['exampleSha256'])])
+    for path,digest in files:
+        response = context.request.get(BASE + path)
+        assert response.status == 200,(path,response.status)
+        assert response.body().startswith(bytes.fromhex('d0cf11e0a1b11ae1'))
+        assert hashlib.sha256(response.body()).hexdigest() == digest,path
+        assert hashlib.sha256((ROOT / 'public' / unquote(path).lstrip('/')).read_bytes()).hexdigest() == digest
+    bundle = context.request.get(BASE + '/downloads/official-forms/official-forms.zip')
+    assert bundle.status == 200
+    with zipfile.ZipFile(io.BytesIO(bundle.body())) as archive:
+        assert len(archive.namelist()) == 4
+        for path,digest in files:
+            assert hashlib.sha256(archive.read(Path(unquote(path)).name)).hexdigest() == digest
+    retired = json.loads((ROOT/'docs/reviews/retired-form-paths.json').read_text(encoding='utf-8'))
+    for path in retired:
+        if path.endswith('/index.html'):
+            continue
+        response = context.request.get(BASE + quote(path, safe='/'), max_redirects=0)
+        assert response.status in (404,410),(path,response.status)
+    checks.append({'case':'institutional-original-download-integrity','verified_files':len(files),'retired_urls':len(retired)-1})
 
     page = context.new_page()
     errors = []
@@ -41,7 +56,7 @@ with sync_playwright() as p:
         page.set_viewport_size({'width':width,'height':height})
         response = page.goto(BASE+'/forms',wait_until='networkidle')
         assert response and response.status == 200
-        expect(page.locator('[data-forms-library="approved-v2"]')).to_be_visible()
+        expect(page.locator('[data-forms-library="institutional-v1"]')).to_be_visible()
         expect(page.locator('[data-form-id]')).to_have_count(10)
         guides = page.locator('[data-official-registration-guides]')
         expect(guides.locator('[data-registration-guide]')).to_have_count(4)
@@ -72,13 +87,13 @@ with sync_playwright() as p:
         checks.append({'case':'responsive','width':width,'height':height,'no_horizontal_overflow':True,'cards':10})
 
     page.set_viewport_size({'width':390,'height':844})
-    for category,count in [('재산분배·상속',2),('증여',4),('차용·상환',2),('양도',1),('가업승계',1),('전체',10)]:
+    for category,count in [('재산분배·상속',3),('증여',2),('차용·상환',3),('양도',1),('가업승계',1),('전체',10)]:
         page.locator(f'button[data-category="{category}"]').click()
         expect(page.locator('[data-form-id]')).to_have_count(count)
     search = page.get_by_role('searchbox',name='서류명·용도로 찾기')
     search.fill('차 용 증')
     expect(page.locator('[data-form-id]')).to_have_count(1)
-    expect(page.locator('[data-form-id] h3')).to_have_text('금전소비대차계약서')
+    expect(page.locator('[data-form-id] h3')).to_have_text('차용증')
     search.fill('검색결과가없는가상단어')
     expect(page.locator('[data-form-id]')).to_have_count(0)
     page.get_by_role('button',name='전체 서류 보기',exact=True).click()
@@ -87,10 +102,10 @@ with sync_playwright() as p:
     checks.append({'case':'categories-and-search','passed':True})
     checks.append({'case':'official-registration-guides','cards':4,'official_links':8,'new_tab':True})
 
-    opener = page.get_by_role('link',name='가족별 재산배분·정산표 작성 예시 보기',exact=True)
+    opener = page.get_by_role('link',name='상속재산분할협의서 기관 작성 예시 보기',exact=True)
     opener.click()
     expect(page.get_by_role('dialog')).to_be_visible()
-    expect(page.get_by_role('dialog').get_by_role('heading')).to_have_text('가족별 재산배분·정산표')
+    expect(page.get_by_role('dialog').get_by_role('heading')).to_have_text('상속재산분할협의서')
     page.screenshot(path=str(OUT/'example-modal-390.png'))
     for _ in range(7):
         page.keyboard.press('Tab')
@@ -101,18 +116,18 @@ with sync_playwright() as p:
     page.wait_for_function('document.documentElement.style.overflow === ""',timeout=5000)
     checks.append({'case':'modal-focus-trap-and-return','passed':True})
 
-    for formid in ['AS360-F06','AS360-F01']:
+    for formid in ['BP-I-01','BP-G-01']:
         with page.expect_download() as info:
             page.locator(f'[data-form-id="{formid}"] [data-form-download]').click()
         download = info.value
         expected = next(item for item in manifest['documents'] if item['id']==formid)
         assert download.failure() is None
-        assert download.suggested_filename == Path(expected['editable_file']).name
+        assert download.suggested_filename == Path(unquote(expected['editable'])).name
         assert hashlib.sha256(Path(download.path()).read_bytes()).hexdigest() == expected['sha256']
     with page.expect_download() as info:
         page.locator('[data-bundle-download]').click()
     assert info.value.failure() is None
-    checks.append({'case':'browser-download','word':True,'excel':True,'zip':True,'korean_filename':True})
+    checks.append({'case':'browser-download','institutional_hwp':2,'zip':True,'korean_filename':True})
 
     page.set_viewport_size({'width':1440,'height':1000})
     page.goto(BASE+'/forms',wait_until='networkidle')
@@ -122,6 +137,12 @@ with sync_playwright() as p:
         assert response and response.status == 200
         assert page.locator('[data-forms-library]').count() == 0
         assert page.locator('header[data-public-header]').evaluate('(e)=>e.outerHTML') == forms_header
+    page.goto(BASE+'/consultation',wait_until='networkidle')
+    assert page.locator('input[type="tel"],form').count() == 0
+    assert page.locator('a[href^="tel:"]').count() == 1
+    assert page.locator('a[href^="mailto:"]').count() == 1
+    assert page.get_by_role('link',name='카카오톡 상담 (새 창)').count() == 1
+    checks.append({'case':'contact-links-without-dummy-form','passed':True})
     page.goto(BASE+'/',wait_until='networkidle')
     page.locator('header a[href="/forms"]:visible').first.click()
     expect(page).to_have_url(BASE+'/forms')

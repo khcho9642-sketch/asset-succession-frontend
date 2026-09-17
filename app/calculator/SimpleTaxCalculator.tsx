@@ -1,7 +1,7 @@
 "use client";
 
 import { AlertTriangle, Calculator, CheckCircle2, ClipboardList, Info, RotateCcw } from "lucide-react";
-import { useMemo, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   calculateCapitalGainsTax,
   calculateDisabledDeductionFromLifeExpectancyYears,
@@ -48,6 +48,7 @@ const blankForms: Record<SimpleTaxKind, FormValues> = {
     nonTaxableWon: "",
     debtStatus: "",
     debtWon: "",
+    financialDebtWon: "",
     publicChargesStatus: "",
     publicChargesWon: "",
     funeralStatus: "",
@@ -78,8 +79,9 @@ const blankForms: Record<SimpleTaxKind, FormValues> = {
     priorGiftWon: "",
     previousTaxKnown: "",
     previousTaxPaidWon: "",
-    usedDeductionStatus: "",
-    usedDeductionWon: "",
+    priorGiftDeductionWon: "",
+    otherGiftDeductionStatus: "",
+    otherGiftDeductionWon: "",
     appraisalStatus: "",
     appraisalFeeWon: "",
     marriageBirthStatus: "",
@@ -87,6 +89,7 @@ const blankForms: Record<SimpleTaxKind, FormValues> = {
     minorOverTwoBillion: false,
   },
   capitalGains: {
+    resident: "",
     acquisitionDate: "",
     transferDate: "",
     assetType: "",
@@ -101,7 +104,10 @@ const blankForms: Record<SimpleTaxKind, FormValues> = {
     residenceStatus: "",
     residenceYears: "",
     homeCount: "",
-    regulatedAreaStatus: "",
+    homeOwnership: "",
+    householdOtherRights: "",
+    regulatedAtAcquisition: "",
+    homeSpecialConditions: "",
   },
 };
 
@@ -119,6 +125,7 @@ const exampleForms: Record<SimpleTaxKind, FormValues> = {
     nonTaxableStatus: "no",
     debtStatus: "yes",
     debtWon: "100,000,000",
+    financialDebtWon: "100,000,000",
     publicChargesStatus: "no",
     funeralStatus: "yes",
     funeralWon: "8,000,000",
@@ -137,13 +144,14 @@ const exampleForms: Record<SimpleTaxKind, FormValues> = {
     amountWon: "100,000,000",
     debtStatus: "no",
     priorGiftStatus: "no",
-    usedDeductionStatus: "no",
+    otherGiftDeductionStatus: "no",
     appraisalStatus: "no",
     marriageBirthStatus: "no",
     generationSkipStatus: "no",
   },
   capitalGains: {
     ...blankForms.capitalGains,
+    resident: "yes",
     acquisitionDate: "2016-09-15",
     transferDate: "2026-09-16",
     assetType: "generalBuilding",
@@ -263,6 +271,7 @@ function makeBlockedResult(
     totalTaxWon: 0,
     lines: [],
     missing,
+    scopeNotes: [],
     unsupported,
     assumptions: [
       "계산을 막는 입력 또는 미지원 조건이 있어 세액을 산출하지 않았습니다.",
@@ -334,6 +343,8 @@ function buildInheritanceInput(values: FormValues): { input: InheritanceInput | 
       ? requiredMoney(values, "priorGiftOthersWon", "5년 이내 상속인 외 사전증여", missing)
       : null,
     debtWon: optionalMoney(values, "debtStatus", "debtWon", "채무", missing),
+    financialDebtWon: condition(values, "debtStatus") === "no" ? 0 : condition(values, "debtStatus") === "yes"
+      ? requiredMoney(values, "financialDebtWon", "총채무 중 금융채무 금액", missing) : null,
     publicChargesWon: optionalMoney(values, "publicChargesStatus", "publicChargesWon", "공과금", missing),
     funeralWon: optionalMoney(values, "funeralStatus", "funeralWon", "일반 장례비용", missing),
     burialWon: optionalMoney(values, "burialStatus", "burialWon", "봉안시설·자연장지 비용", missing),
@@ -364,9 +375,9 @@ function buildGiftInput(values: FormValues): { input: GiftInput | null; missing:
     : priorGiftStatus === "yes"
       ? (missing.push("종전 증여재산 산출세액: 과거 증여가 있으면 확인된 금액이 필요합니다."), null)
       : null;
-  const usedDeductionWon = condition(values, "usedDeductionStatus") === "no" ? 0 : condition(values, "usedDeductionStatus") === "yes"
-    ? requiredMoney(values, "usedDeductionWon", "최근 10년 사용한 일반 증여재산공제", missing)
-    : (missing.push("최근 10년 사용한 일반 증여재산공제: 없음·있음·모름 중 하나를 선택해 주세요."), null);
+  const priorGiftDeductionWon = priorGiftStatus === "no" ? 0 : priorGiftStatus === "yes"
+    ? requiredMoney(values, "priorGiftDeductionWon", "같은 증여자의 과거 증여에 적용한 공제", missing) : null;
+  const otherGiftDeductionWon = optionalMoney(values, "otherGiftDeductionStatus", "otherGiftDeductionWon", "그 밖의 증여에서 사용한 같은 구분의 공제", missing);
   const appraisalFeeWon = optionalMoney(values, "appraisalStatus", "appraisalFeeWon", "감정평가수수료", missing);
   let marriageBirthDeductionWon = 0;
   if (condition(values, "marriageBirthStatus") === "yes") {
@@ -389,7 +400,8 @@ function buildGiftInput(values: FormValues): { input: GiftInput | null; missing:
     amountWon: requiredMoney(values, "amountWon", "증여재산가액", missing),
     debtAssumedWon,
     priorGiftWon,
-    usedDeductionWon,
+    priorGiftDeductionWon,
+    otherGiftDeductionWon,
     appraisalFeeWon,
     marriageBirthDeductionWon,
     previousTaxPaidWon,
@@ -416,11 +428,10 @@ function buildCapitalInput(values: FormValues): { input: CapitalGainsInput | nul
       : (missing.push("주택 거주기간: 없음·있음·모름 중 하나를 선택해 주세요."), null)
     : 0;
   const homeCount = isHome ? requiredInteger(values, "homeCount", "보유 주택 수", missing, 1, 20) : 0;
-  let regulatedArea = false;
+  const resident = text(values, "resident");
+  if (resident !== "yes" && resident !== "no") missing.push("양도자 거주자 여부를 선택해 주세요.");
   if (isHome) {
-    const selected = condition(values, "regulatedAreaStatus");
-    if (selected === "yes") regulatedArea = true;
-    else if (selected !== "no") missing.push("조정대상지역 여부: 없음·있음·모름 중 하나를 선택해 주세요.");
+    if (!text(values, "homeOwnership")) missing.push("주택 소유·취득 형태를 선택해 주세요.");
   }
   const input: CapitalGainsInput = {
     transferDate: text(values, "transferDate"),
@@ -433,7 +444,12 @@ function buildCapitalInput(values: FormValues): { input: CapitalGainsInput | nul
     basicDeductionUsedWon: optionalMoney(values, "basicDeductionStatus", "basicDeductionUsedWon", "이미 사용한 양도소득 기본공제", missing),
     residenceYears,
     homeCount,
-    regulatedArea,
+    resident: resident === "yes" || resident === "no" ? resident : null,
+    homeOwnership: isHome ? (text(values, "homeOwnership") || null) as CapitalGainsInput["homeOwnership"] : null,
+    householdOtherRights: isHome ? condition(values, "householdOtherRights") || null : null,
+    regulatedAtAcquisition: isHome ? condition(values, "regulatedAtAcquisition") || null : null,
+    homeSpecialConditions: isHome ? condition(values, "homeSpecialConditions") || null : null,
+    regulatedArea: false,
   };
   return { input: missing.length || unsupported.length ? null : input, missing, unsupported, derived };
 }
@@ -474,7 +490,16 @@ function MoneyField({
   onChange: (name: string, value: string) => void;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const pendingSelection = useRef<{ value: string; position: number } | null>(null);
   const value = text(values, name);
+  useLayoutEffect(() => {
+    const pending = pendingSelection.current;
+    pendingSelection.current = null;
+    const input = inputRef.current;
+    if (pending && input && input === document.activeElement && input.value === pending.value) {
+      input.setSelectionRange(pending.position, pending.position);
+    }
+  });
   const parsed = parseMoneyText(value);
   const helper = parsed.status === "valid"
     ? formatKoreanWon(parsed.value ?? 0)
@@ -484,12 +509,14 @@ function MoneyField({
         ? `${formatWon(MAX_SIMPLE_CALCULATOR_WON)} 이하로 입력해 주세요.`
         : hint ?? "빈 값은 모름입니다. 해당 없으면 0원을 입력하세요.";
   return (
-    <label className={styles.field}>
+    <label className={styles.field} data-input-label={label}>
       <span>{label}</span>
       <div className={styles.moneyInput}>
         <input
           ref={inputRef}
           name={name}
+          aria-label={label}
+          aria-describedby={`${name}-hint`}
           type="text"
           inputMode="numeric"
           autoComplete="off"
@@ -500,18 +527,15 @@ function MoneyField({
             const selection = event.currentTarget.selectionStart ?? raw.length;
             const digitsBeforeCursor = raw.slice(0, selection).replace(/\D/g, "").length;
             const nextValue = formatMoneyText(raw);
+            pendingSelection.current = /[^\d,\s]/.test(nextValue) ? null : {
+              value: nextValue, position: cursorPositionForDigitCount(nextValue, digitsBeforeCursor),
+            };
             onChange(name, nextValue);
-            window.requestAnimationFrame(() => {
-              const input = inputRef.current;
-              if (!input || /[^\d,\s]/.test(nextValue)) return;
-              const nextCursor = cursorPositionForDigitCount(nextValue, digitsBeforeCursor);
-              input.setSelectionRange(nextCursor, nextCursor);
-            });
           }}
         />
         <em>원</em>
       </div>
-      <small className={parsed.status === "invalid" || parsed.status === "overflow" ? styles.errorText : undefined}>{helper}</small>
+      <small id={`${name}-hint`} className={parsed.status === "invalid" || parsed.status === "overflow" ? styles.errorText : undefined}>{helper}</small>
     </label>
   );
 }
@@ -534,10 +558,11 @@ function InputField({
   onChange: (name: string, value: string) => void;
 }) {
   return (
-    <label className={styles.field}>
+    <label className={styles.field} data-input-label={label}>
       <span>{label}</span>
       <input
         name={name}
+        aria-label={label}
         type={type}
         inputMode={inputMode}
         value={text(values, name)}
@@ -562,9 +587,9 @@ function SelectField({
   onChange: (name: string, value: string) => void;
 }) {
   return (
-    <label className={styles.field}>
+    <label className={styles.field} data-input-label={label}>
       <span>{label}</span>
-      <select value={text(values, name)} onChange={(event) => onChange(name, event.target.value)}>
+      <select name={name} aria-label={label} value={text(values, name)} onChange={(event) => onChange(name, event.target.value)}>
         <option value="">선택</option>
         {options.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
       </select>
@@ -584,7 +609,7 @@ function ConditionField({
   onChange: (name: string, value: string) => void;
 }) {
   return (
-    <fieldset className={styles.condition}>
+    <fieldset className={styles.condition} data-input-label={label}>
       <legend>{label}</legend>
       <div>
         {conditionOptions.map((option) => (
@@ -661,7 +686,10 @@ function InheritanceFields({ values, setValue }: { values: FormValues; setValue:
           <ConditionField values={values} name="nonTaxableStatus" label="비과세·과세가액 불산입액" onChange={setValue} />
           {condition(values, "nonTaxableStatus") === "yes" ? <MoneyField values={values} name="nonTaxableWon" label="불산입액" onChange={setValue} /> : null}
           <ConditionField values={values} name="debtStatus" label="채무" onChange={setValue} />
-          {condition(values, "debtStatus") === "yes" ? <MoneyField values={values} name="debtWon" label="채무 금액" onChange={setValue} /> : null}
+          {condition(values, "debtStatus") === "yes" ? <>
+            <MoneyField values={values} name="debtWon" label="총채무 금액" onChange={setValue} />
+            <MoneyField values={values} name="financialDebtWon" label="총채무 중 금융채무 금액" hint="금융채무가 없으면 0원. 총채무에 포함된 금액만 입력합니다." onChange={setValue} />
+          </> : null}
           <ConditionField values={values} name="publicChargesStatus" label="공과금" onChange={setValue} />
           {condition(values, "publicChargesStatus") === "yes" ? <MoneyField values={values} name="publicChargesWon" label="공과금" onChange={setValue} /> : null}
           <ConditionField values={values} name="funeralStatus" label="일반 장례비용" onChange={setValue} />
@@ -720,12 +748,13 @@ function GiftFields({ values, setValue }: { values: FormValues; setValue: (name:
           {condition(values, "priorGiftStatus") === "yes" ? (
             <>
               <MoneyField values={values} name="priorGiftWon" label="최근 10년 증여재산가액" onChange={setValue} />
+              <MoneyField values={values} name="priorGiftDeductionWon" label="같은 증여자의 과거 증여에 적용한 공제" hint="위 과거 증여에서 실제 적용한 일반 증여재산공제. 직계존속은 그 배우자 포함." onChange={setValue} />
               <ConditionField values={values} name="previousTaxKnown" label="종전 증여 산출세액 확인" onChange={setValue} />
               {condition(values, "previousTaxKnown") === "yes" ? <MoneyField values={values} name="previousTaxPaidWon" label="종전 증여 산출세액" onChange={setValue} /> : null}
             </>
           ) : null}
-          <ConditionField values={values} name="usedDeductionStatus" label="최근 10년 사용한 일반 공제" onChange={setValue} />
-          {condition(values, "usedDeductionStatus") === "yes" ? <MoneyField values={values} name="usedDeductionWon" label="사용한 증여재산공제" onChange={setValue} /> : null}
+          <ConditionField values={values} name="otherGiftDeductionStatus" label="그 밖의 증여에서 사용한 같은 구분의 공제" onChange={setValue} />
+          {condition(values, "otherGiftDeductionStatus") === "yes" ? <MoneyField values={values} name="otherGiftDeductionWon" label="그 밖의 증여에서 사용한 같은 구분의 공제" hint="최근 10년 같은 관계 구분의 공제. 위 동일인 관련 과거 공제는 제외합니다." onChange={setValue} /> : null}
           <ConditionField values={values} name="appraisalStatus" label="감정평가수수료" onChange={setValue} />
           {condition(values, "appraisalStatus") === "yes" ? <MoneyField values={values} name="appraisalFeeWon" label="감정평가수수료" onChange={setValue} /> : null}
           <ConditionField values={values} name="marriageBirthStatus" label="혼인·출산 증여재산공제 요건 충족" onChange={setValue} />
@@ -747,11 +776,12 @@ function CapitalGainsFields({ values, setValue }: { values: FormValues; setValue
         <div className={styles.grid}>
           <InputField values={values} name="acquisitionDate" label="취득일" type="date" onChange={setValue} />
           <InputField values={values} name="transferDate" label="양도일" type="date" onChange={setValue} />
+          <SelectField values={values} name="resident" label="양도자 거주자 여부" onChange={setValue} options={[{ value: "yes", label: "거주자" }, { value: "no", label: "비거주자" }]} />
           <SelectField values={values} name="assetType" label="자산 종류" onChange={setValue}
             options={[
               { value: "generalBuilding", label: "일반 건물" },
               { value: "land", label: "일반 토지" },
-              { value: "oneHome", label: "1세대 1주택" },
+              { value: "oneHome", label: "주택 (비과세 요건 별도 확인)" },
               { value: "otherUnsupported", label: "분양권·입주권 등" },
             ]} />
           {heldYears !== null ? <p className={styles.derivedBox}>보유기간은 만 {heldYears}년으로 계산됩니다.</p> : null}
@@ -775,10 +805,14 @@ function CapitalGainsFields({ values, setValue }: { values: FormValues; setValue
           {condition(values, "basicDeductionStatus") === "yes" ? <MoneyField values={values} name="basicDeductionUsedWon" label="이미 사용한 기본공제" onChange={setValue} /> : null}
           {assetType === "oneHome" ? (
             <>
-              <InputField values={values} name="homeCount" label="보유 주택 수" inputMode="numeric" onChange={setValue} />
+              <InputField values={values} name="homeCount" label="세대 기준 보유 주택 수" inputMode="numeric" onChange={setValue} />
+              <SelectField values={values} name="homeOwnership" label="주택 소유·취득 형태" onChange={setValue} options={[{ value: "solePurchased", label: "매수한 단독명의 주택" }, { value: "other", label: "공동명의·상속·증여 취득 등" }]} />
+              <ConditionField values={values} name="householdOtherRights" label="세대의 입주권·분양권" onChange={setValue} />
               <ConditionField values={values} name="residenceStatus" label="거주기간" onChange={setValue} />
               {condition(values, "residenceStatus") === "yes" ? <InputField values={values} name="residenceYears" label="거주 연수" inputMode="numeric" onChange={setValue} /> : null}
-              <ConditionField values={values} name="regulatedAreaStatus" label="조정대상지역 주택" onChange={setValue} />
+              <ConditionField values={values} name="regulatedAtAcquisition" label="취득 당시 조정대상지역" onChange={setValue} />
+              <ConditionField values={values} name="homeSpecialConditions" label="주택의 별도 특례·제외 조건" onChange={setValue} />
+              <p className={styles.derivedBox}>미등기·겸용주택·기준면적 초과 부수토지·상생임대 등 별도 특례가 있거나 확인하지 못했다면 표시해 주세요. 주택 수만으로 비과세가 확정되지 않습니다.</p>
             </>
           ) : null}
         </div>
@@ -822,7 +856,7 @@ function ResultPanel({
         </span>
         <p>기준 확인일 {result.checkedOn}</p>
       </div>
-      <h2>{result.title}</h2>
+      <h2 tabIndex={-1} data-result-title>{result.title}</h2>
       {ready ? (
         <>
           <p className={styles.totalLabel}>예상 납부세액</p>
@@ -834,8 +868,8 @@ function ResultPanel({
           <p>{stale ? "이전 결과를 현재 세액처럼 표시하지 않습니다. 다시 계산해 주세요." : "아래 항목을 확인하면 계산할 수 있습니다."}</p>
         </div>
       )}
-      {result.missing.length ? <div className={styles.notice}><b>이번 계산을 막는 입력</b>{result.missing.map((item) => <p key={item}>{item}</p>)}</div> : null}
-      {result.unsupported.length ? <div className={styles.notice}><b>현재 직접 계산 미지원</b>{result.unsupported.map((item) => <p key={item.label}>{item.label}: {item.reason}</p>)}</div> : null}
+      {!stale && result.missing.length ? <div className={styles.notice}><b>이번 계산을 막는 입력</b>{result.missing.map((item) => <p key={item}>{item}</p>)}</div> : null}
+      {!stale && result.unsupported.length ? <div className={styles.notice}><b>이번 조건은 직접 계산 미지원</b>{result.unsupported.map((item) => <p key={item.label}>{item.label}: {item.reason}</p>)}</div> : null}
       {ready ? (
         <dl className={styles.summary}>
           <div><dt>과세표준</dt><dd>{formatWon(result.taxableBaseWon)}</dd></div>
@@ -856,7 +890,7 @@ function ResultPanel({
           ))}
         </section>
       ) : null}
-      {result.lines.length ? (
+      {ready && result.lines.length ? (
         <details className={styles.details}>
           <summary>상세 계산내역 보기</summary>
           <div className={styles.lines}>
@@ -872,6 +906,7 @@ function ResultPanel({
       <details className={styles.details}>
         <summary>계산 조건·근거 보기</summary>
         <div className={styles.assumptions}>
+          {result.scopeNotes.map((item) => <p key={item.label}><b>{item.label}</b>: {item.reason}</p>)}
           {result.assumptions.map((item) => <p key={item}>{item}</p>)}
           {result.references.map((ref) => <a key={ref.url} href={ref.url} target="_blank" rel="noreferrer">{ref.label}</a>)}
         </div>
@@ -887,6 +922,7 @@ export function SimpleTaxCalculator() {
   const [stale, setStale] = useState<Partial<Record<SimpleTaxKind, boolean>>>({});
   const [exampleLoaded, setExampleLoaded] = useState<Partial<Record<SimpleTaxKind, boolean>>>({});
   const resultRef = useRef<HTMLDivElement | null>(null);
+  const formRef = useRef<HTMLElement | null>(null);
   const activeValues = forms[kind];
   const currentTab = useMemo(() => tabs.find((tab) => tab.kind === kind)!, [kind]);
 
@@ -899,7 +935,33 @@ export function SimpleTaxCalculator() {
     const nextResult = calculate(kind, activeValues);
     setResults((current) => ({ ...current, [kind]: nextResult }));
     setStale((current) => ({ ...current, [kind]: false }));
-    window.requestAnimationFrame(() => resultRef.current?.focus());
+    window.requestAnimationFrame(() => {
+      if (nextResult.status === "ready") {
+        const heading = resultRef.current?.querySelector<HTMLElement>("[data-result-title]");
+        heading?.focus({ preventScroll: true });
+        heading?.scrollIntoView({ block: "center", behavior: "smooth" });
+        return;
+      }
+      const issue = nextResult.missing[0] ?? nextResult.unsupported[0]?.label ?? "";
+      const aliases: Record<string, string> = {
+        "가족관계": "familyType", "배우자·자녀 외 가족관계": "familyType", "취득일과 양도일": "acquisitionDate",
+        "법정상속 대상 자녀 수": "childrenCount", "금융채무": "financialDebtWon", "채무": "debtWon",
+        "미성년 상속인 나이": "minorAges", "장애인 기대여명 합계": "disabledLifeYears",
+        "증여자와 수증자의 관계": "relationship", "종전 증여재산 산출세액": "previousTaxKnown",
+        "사전증여재산": "priorGiftStatus", "주택 거주기간": "residenceStatus",
+      };
+      const alias = Object.entries(aliases).find(([label]) => issue.startsWith(label))?.[1];
+      const fields = Array.from(formRef.current?.querySelectorAll<HTMLElement>("[data-input-label]") ?? []);
+      const matching = fields.filter((field) => issue.startsWith(field.dataset.inputLabel ?? "__"))
+        .sort((a, b) => (b.dataset.inputLabel?.length ?? 0) - (a.dataset.inputLabel?.length ?? 0))[0];
+      const target = (alias ? formRef.current?.querySelector<HTMLElement>(`[name="${alias}"]`) : null)
+        ?? matching?.querySelector<HTMLElement>("input,select") ?? resultRef.current;
+      for (let parent = target?.parentElement; parent; parent = parent.parentElement) {
+        if (parent instanceof HTMLDetailsElement) parent.open = true;
+      }
+      target?.focus({ preventScroll: true });
+      target?.scrollIntoView({ block: "center", behavior: "smooth" });
+    });
   };
 
   const reset = () => {
@@ -924,7 +986,7 @@ export function SimpleTaxCalculator() {
         <span>날짜·가족관계·금액을 입력하면 같은 화면에서 예상 세액을 확인합니다. 확정 신고 전에는 전문가 검토가 필요합니다.</span>
       </section>
       <div className={styles.layout}>
-        <section className={styles.formPanel}>
+        <section ref={formRef} className={styles.formPanel}>
           <div className={styles.tabs} role="tablist" aria-label="세목 선택">
             {tabs.map((tab) => (
               <button

@@ -38,7 +38,8 @@ test("gift tax calculates a current single recipient case", () => {
     amountWon: 100_000_000,
     debtAssumedWon: 0,
     priorGiftWon: 0,
-    usedDeductionWon: 0,
+    priorGiftDeductionWon: 0,
+    otherGiftDeductionWon: 0,
     appraisalFeeWon: 0,
     marriageBirthDeductionWon: 0,
     previousTaxPaidWon: 0,
@@ -65,6 +66,11 @@ test("capital gains separates national and local taxes", () => {
     residenceYears: 0,
     homeCount: 0,
     regulatedArea: false,
+    resident: "yes",
+    homeOwnership: null,
+    householdOtherRights: null,
+    regulatedAtAcquisition: null,
+    homeSpecialConditions: null,
   });
   assert.equal(result.status, "ready");
   assert.equal(result.taxableBaseWon, 213_500_000);
@@ -91,6 +97,7 @@ test("inheritance uses the entered current condition, not a comparison baseline"
     priorGiftHeirsWon: 0,
     priorGiftOthersWon: 0,
     debtWon: 100_000_000,
+    financialDebtWon: 0,
     publicChargesWon: 0,
     funeralWon: 8_000_000,
     burialWon: 0,

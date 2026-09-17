@@ -1,8 +1,9 @@
 name: Simple calculator verification
 on:
+  workflow_dispatch:
   push:
-    branches: [assistant/simple-tax-calculator]
-    paths: ['app/calculator/**', 'lib/simple-calculator/**', 'scripts/simple-calculator*', '.github/workflows/simple-calculator-ci.yml', 'docs/reviews/SIMPLE_CALCULATOR*']
+    branches: [assistant/simple-tax-calculator, codex/calculator-forms-review]
+    paths: ['app/calculator/**', 'app/forms/**', 'app/consultation/**', 'public/downloads/**', 'lib/simple-calculator/**', 'scripts/simple-calculator*', 'scripts/forms-library-ui-audit.py', '.github/workflows/simple-calculator-ci.yml', 'docs/reviews/**']
 permissions:
   contents: read
 concurrency:
@@ -55,11 +56,15 @@ jobs:
           python -m playwright install --with-deps chromium
           npm run start -- --hostname 127.0.0.1 --port 4191 > .tmp/simple-calculator-proof/server.log 2>&1 &
           for i in $(seq 1 40); do curl -fsS http://127.0.0.1:4191/calculator > /dev/null && break; sleep 2; done
+          curl -fsS http://127.0.0.1:4191/calculator > /dev/null
           python scripts/simple-calculator-ui-audit.py
+          FORM_LIBRARY_BASE_URL=http://127.0.0.1:4191 python scripts/forms-library-ui-audit.py
           git rev-parse HEAD > .tmp/simple-calculator-proof/commit.txt
       - uses: actions/upload-artifact@v4
         if: always() && hashFiles('app/calculator/page.tsx') != ''
         with:
           name: simple-calculator-proof
-          path: .tmp/simple-calculator-proof/
+          path: |
+            .tmp/simple-calculator-proof/
+            .tmp/forms-library-proof/
           retention-days: 7
