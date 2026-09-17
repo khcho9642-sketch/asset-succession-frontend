@@ -1,0 +1,22 @@
+{
+  "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005",
+  "checked_at": "2026-09-17T11:36:27Z",
+  "events": [
+    {
+      "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005",
+      "status": 200
+    },
+    {
+      "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtListAjax.do",
+      "status": 200
+    }
+  ],
+  "frames": [
+    {
+      "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005",
+      "text": "본문 바로가기\n주메뉴 바로가기\nENGLISH\n中國語\n日本語\n사용자지원센터 1899-2732, (031-776-7878) 월~금요일 (09:00~18:00) / 토 · 일요일 및 공휴일은 휴무\n사이트 내 전체검색\n검색어 필수\n검색\n주메뉴\n증명서발급\t인터넷신고\t민원안내\t고객센터\t통계\n전체메뉴 열기\n고객센터\n공지사항\n자주 하는 질문\n사이트이용안내\n신청서 양식 다운로드\n무인증명서발급기 위치 조회\n국어의 로마자 표기 조회\n인명용 한자 조회\n위변조 확인 프로그램\n설치 프로그램\n웹 접근성 안내\n홈 고객센터 신청서 양식 다운로드\n신청서 양식 다운로드\n검색구분\n제목\n내용\n제목+내용\n \n검색어\n 조회\n\n총 46건이 검색되었습니다.\n\n신청서 양식 다운로드 목록\n번호\t제목\t첨부파일\t등록일자\t수정일자\n1\t가족관계등록 관련 서식 일본어 번역본(참고용, 행정안전부 제공)\t \t2025-02-14\t2025-02-14\n2\t가족관계등록 관련 서식 크메르어(캄보디아) 번역본(참고용, 행정안전부 제공)\t \t2025-02-14\t2025-02-14\n3\t가족관계등록 관련 서식 타갈로그어(필리핀) 번역본(참고용, 행정안전부 제공)\t \t2025-02-14\t2025-02-14\n4\t가족관계등록 관련 서식 태국어 번역본(참고용, 행정안전부 제공)\t \t2025-02-14\t2025-02-14\n5\t가족관계등록 관련 서식 중국어 번역본(참고용, 행정안전부 제공)\t \t2025-02-14\t2025-02-14\n6\t가족관계등록 관련 서식 우즈벡어 번역본(참고용, 행정안전부 제공)\t \t2025-02-14\t2025-02-14\n7\t가족관계등록 관련 서식 영어 번역본(참고용, 행정안전부 제공)\t \t2025-02-14\t2025-02-14\n8\t가족관계등록 관련 서식 베트남어 번역본(참고용, 행정안전부 제공)\t \t2025-02-14\t2025-02-14\n9\t가족관계등록 관련 서식 몽골어 번역본(참고용, 행정안전부 제공)\t \t2025-02-14\t2025-02-14\n10\t가족관계등록 관련 서식 러시아어 번역본(참고용, 행정안전부 제공)\t \t2025-02-14\t2025-02-14\n현재\n1\n2\n3\n4\n5\nPDF 뷰어 다운로드 출력\n푸터영역\n사용자지원센터 일반 통화요금 부과 (별도 정보이용료 없음)\n\n1899-2732, 031-776-7878\n\n월~금요일 (09:00~18:00) / 토 · 일요일 및 공휴일은 휴무\n하단 링크\n이용약관\n개인정보 처리방침\n저작권 보호 정책\n링크 시 유의사항\n원격지원\n\nCopyright©Supreme Court of Korea. All Rights reserved.",
+      "link_error": "Locator.evaluate_all: TypeError: this._engines.set is not a function\n    at new SelectorEvaluatorImpl (<anonymous>:5459:19)\n    at new InjectedScript (<anonymous>:6838:23)\n    at <anonymous>:8388:16\n    at <anonymous>:8389:11",
+      "input_error": "Locator.evaluate_all: TypeError: this._engines.set is not a function\n    at new SelectorEvaluatorImpl (<anonymous>:5459:19)\n    at new InjectedScript (<anonymous>:6838:23)\n    at <anonymous>:8388:16\n    at <anonymous>:8389:11"
+    }
+  ]
+}

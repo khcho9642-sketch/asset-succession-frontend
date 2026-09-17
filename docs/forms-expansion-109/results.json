@@ -3922,17 +3922,28 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=2&cnpClsNo=2&csmSeq=566&popMenu=ov",
+    "checked_at": "2026-09-17T11:34:50Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 링크 · 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "related_ids": [
+      "BP-G-01",
+      "REG-G-01"
+    ],
+    "institution": "법제처 찾기쉬운 생활법령정보",
+    "source_evidence": {
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=2&cnpClsNo=2&csmSeq=566&popMenu=ov",
+      "http_status": 200,
+      "checked_at": "2026-09-17T11:34:49Z",
+      "sha256": "6fc1b42926e237bad92b02949ebbe2e25a954cda49cd146f7fc3226b36677f23"
+    },
+    "note": "증여에 의한 부동산 소유권 이전등기의 제출서류 중 증여계약서 검인 절차를 안내합니다. 기존 부평구청 증여계약서와 함께 확인하세요."
   },
   {
     "id": "P9-03",
