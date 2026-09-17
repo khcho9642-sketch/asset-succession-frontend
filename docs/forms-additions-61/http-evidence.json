@@ -1,15 +1,15 @@
 [
   {
     "id": "P0-01",
-    "checked_at": "2026-09-17T07:51:25Z",
+    "checked_at": "2026-09-17T08:04:33Z",
     "url": "https://www.gov.kr/mw/AA020InfoCappView.do?CappBizCD=17400000001",
-    "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='www.gov.kr', port=443): Max retries exceeded with url: /mw/AA020InfoCappView.do?CappBizCD=17400000001 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.gov.kr', port=443) at 0x7f4bc63e2570>, 'Connection to www.gov.kr timed out. (connect timeout=12)'))",
+    "status": "확인 완료",
+    "reason": null,
     "files": []
   },
   {
     "id": "P0-02",
-    "checked_at": "2026-09-17T07:51:38Z",
+    "checked_at": "2026-09-17T08:04:35Z",
     "url": "https://fine.fss.or.kr/fine/cmmn/file/fileDown.do?atchFileId=1a01e7d474ba40ec99b7ceb0613c6e9a&fileSn=2",
     "status": "확인 완료",
     "reason": null,
@@ -27,7 +27,7 @@
   },
   {
     "id": "P0-03",
-    "checked_at": "2026-09-17T07:51:39Z",
+    "checked_at": "2026-09-17T08:04:38Z",
     "url": "https://fine.fss.or.kr/fine/cmmn/file/fileDown.do?atchFileId=d1eac548ed9f4aa883ddb0a8f29d3836&fileSn=1",
     "status": "확인 완료",
     "reason": null,
@@ -45,7 +45,7 @@
   },
   {
     "id": "P0-04",
-    "checked_at": "2026-09-17T07:51:39Z",
+    "checked_at": "2026-09-17T08:04:39Z",
     "url": "https://fine.fss.or.kr/fine/cmmn/file/fileDown.do?atchFileId=063498ff82ed4bff875aca7ae4eab5d2&fileSn=1",
     "status": "확인 완료",
     "reason": null,
@@ -63,7 +63,7 @@
   },
   {
     "id": "P0-05",
-    "checked_at": "2026-09-17T07:51:39Z",
+    "checked_at": "2026-09-17T08:04:40Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -71,15 +71,15 @@
   },
   {
     "id": "P0-06",
-    "checked_at": "2026-09-17T07:51:39Z",
+    "checked_at": "2026-09-17T08:04:40Z",
     "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y",
     "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='efamily.scourt.go.kr', port=443): Max retries exceeded with url: /cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y (Caused by ConnectTimeoutError(<HTTPSConnection(host='efamily.scourt.go.kr', port=443) at 0x7f4bc642cd10>, 'Connection to efamily.scourt.go.kr timed out. (connect timeout=12)'))",
+    "reason": "HTTPSConnectionPool(host='efamily.scourt.go.kr', port=443): Max retries exceeded with url: /cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y (Caused by ConnectTimeoutError(<HTTPSConnection(host='efamily.scourt.go.kr', port=443) at 0x7fd151130aa0>, 'Connection to efamily.scourt.go.kr timed out. (connect timeout=12)'))",
     "files": []
   },
   {
     "id": "P0-07",
-    "checked_at": "2026-09-17T07:51:51Z",
+    "checked_at": "2026-09-17T08:04:53Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -87,7 +87,7 @@
   },
   {
     "id": "P0-08",
-    "checked_at": "2026-09-17T07:51:51Z",
+    "checked_at": "2026-09-17T08:04:53Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -95,7 +95,7 @@
   },
   {
     "id": "P0-09",
-    "checked_at": "2026-09-17T07:51:51Z",
+    "checked_at": "2026-09-17T08:04:53Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -103,7 +103,7 @@
   },
   {
     "id": "P0-10",
-    "checked_at": "2026-09-17T07:51:51Z",
+    "checked_at": "2026-09-17T08:04:53Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -111,31 +111,61 @@
   },
   {
     "id": "P0-11",
-    "checked_at": "2026-09-17T07:51:51Z",
+    "checked_at": "2026-09-17T08:04:53Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=164920469&bylClsCd=110202",
-    "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=164920469&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f4bc63ea1b0>, 'Connection to www.law.go.kr timed out. (connect timeout=12)'))",
-    "files": []
+    "status": "확인 완료",
+    "reason": null,
+    "files": [
+      {
+        "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=164920469&bylClsCd=110202",
+        "path": "public/downloads/official-forms/additions/P0-11_취득세_기한내_기한후__신고서.hwp",
+        "bytes": 89600,
+        "sha256": "69dc0d28ec59e548c792b6dc077aac0e875c2ee080829c45e522a378d262b279",
+        "format": "hwp",
+        "title_verified": true,
+        "http_status": 200
+      }
+    ]
   },
   {
     "id": "P0-12",
-    "checked_at": "2026-09-17T07:52:09Z",
+    "checked_at": "2026-09-17T08:04:56Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=164920469&bylClsCd=110202",
-    "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=164920469&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f4bc63e29f0>, 'Connection to www.law.go.kr timed out. (connect timeout=12)'))",
-    "files": []
+    "status": "확인 완료",
+    "reason": null,
+    "files": [
+      {
+        "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=164920469&bylClsCd=110202",
+        "path": "public/downloads/official-forms/additions/P0-12_주택_무상_유상거래__취득_상세_명세서.hwp",
+        "bytes": 89600,
+        "sha256": "69dc0d28ec59e548c792b6dc077aac0e875c2ee080829c45e522a378d262b279",
+        "format": "hwp",
+        "title_verified": true,
+        "http_status": 200
+      }
+    ]
   },
   {
     "id": "P0-13",
-    "checked_at": "2026-09-17T07:52:26Z",
+    "checked_at": "2026-09-17T08:04:56Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=164920481&bylClsCd=110202",
-    "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=164920481&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f4bc6432360>, 'Connection to www.law.go.kr timed out. (connect timeout=12)'))",
-    "files": []
+    "status": "확인 완료",
+    "reason": null,
+    "files": [
+      {
+        "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=164920481&bylClsCd=110202",
+        "path": "public/downloads/official-forms/additions/P0-13_취득세_납부서.hwp",
+        "bytes": 90624,
+        "sha256": "7eafa2e5e809e15eeb745607c1d26cf271f50ef7ada178d511cbbf03ab9428f5",
+        "format": "hwp",
+        "title_verified": true,
+        "http_status": 200
+      }
+    ]
   },
   {
     "id": "P0-14",
-    "checked_at": "2026-09-17T07:52:38Z",
+    "checked_at": "2026-09-17T08:04:57Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -143,15 +173,25 @@
   },
   {
     "id": "P0-15",
-    "checked_at": "2026-09-17T07:52:38Z",
+    "checked_at": "2026-09-17T08:04:57Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=164920527&bylClsCd=110202",
-    "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=164920527&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f4bc63e2750>, 'Connection to www.law.go.kr timed out. (connect timeout=12)'))",
-    "files": []
+    "status": "확인 완료",
+    "reason": null,
+    "files": [
+      {
+        "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=164920527&bylClsCd=110202",
+        "path": "public/downloads/official-forms/additions/P0-15_취득세_비과세_확인서.hwp",
+        "bytes": 32768,
+        "sha256": "843d9d26746f9a7a17f9349552a907ff5c49c9c555bb316cc42d6e9c844c5f65",
+        "format": "hwp",
+        "title_verified": true,
+        "http_status": 200
+      }
+    ]
   },
   {
     "id": "P0-16",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -159,7 +199,7 @@
   },
   {
     "id": "P1-01",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -167,7 +207,7 @@
   },
   {
     "id": "P1-02",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -175,7 +215,7 @@
   },
   {
     "id": "P1-03",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -183,7 +223,7 @@
   },
   {
     "id": "P1-04",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -191,7 +231,7 @@
   },
   {
     "id": "P1-05",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -199,7 +239,7 @@
   },
   {
     "id": "P1-06",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -207,7 +247,7 @@
   },
   {
     "id": "P1-07",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -215,7 +255,7 @@
   },
   {
     "id": "P1-08",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -223,7 +263,7 @@
   },
   {
     "id": "P1-09",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -231,7 +271,7 @@
   },
   {
     "id": "P1-10",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -239,7 +279,7 @@
   },
   {
     "id": "P1-11",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -247,7 +287,7 @@
   },
   {
     "id": "P1-12",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -255,7 +295,7 @@
   },
   {
     "id": "P1-13",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -263,7 +303,7 @@
   },
   {
     "id": "P1-14",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -271,7 +311,7 @@
   },
   {
     "id": "P1-15",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -279,7 +319,7 @@
   },
   {
     "id": "P1-16",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -287,7 +327,7 @@
   },
   {
     "id": "P1-17",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -295,7 +335,7 @@
   },
   {
     "id": "P1-18",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -303,7 +343,7 @@
   },
   {
     "id": "P1-19",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -311,7 +351,7 @@
   },
   {
     "id": "P1-20",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -319,7 +359,7 @@
   },
   {
     "id": "P1-21",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -327,7 +367,7 @@
   },
   {
     "id": "P1-22",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -335,7 +375,7 @@
   },
   {
     "id": "P1-23",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -343,7 +383,7 @@
   },
   {
     "id": "P1-24",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -351,23 +391,43 @@
   },
   {
     "id": "P2-01",
-    "checked_at": "2026-09-17T07:52:55Z",
+    "checked_at": "2026-09-17T08:04:58Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=168819381&bylClsCd=110202",
-    "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=168819381&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f4bc63e2870>, 'Connection to www.law.go.kr timed out. (connect timeout=12)'))",
-    "files": []
+    "status": "확인 완료",
+    "reason": null,
+    "files": [
+      {
+        "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=168819381&bylClsCd=110202",
+        "path": "public/downloads/official-forms/additions/P2-01_창업자금_증여세_과세특례_적용신청서.hwp",
+        "bytes": 56320,
+        "sha256": "6c7a1a519118c264ef6c42c345af2e09480fbfeb838fb9f8502b755afbc16505",
+        "format": "hwp",
+        "title_verified": true,
+        "http_status": 200
+      }
+    ]
   },
   {
     "id": "P2-02",
-    "checked_at": "2026-09-17T07:53:08Z",
+    "checked_at": "2026-09-17T08:04:59Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=168819397&bylClsCd=110202",
-    "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=168819397&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f4bc63ea9c0>, 'Connection to www.law.go.kr timed out. (connect timeout=12)'))",
-    "files": []
+    "status": "확인 완료",
+    "reason": null,
+    "files": [
+      {
+        "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=168819397&bylClsCd=110202",
+        "path": "public/downloads/official-forms/additions/P2-02_가업승계_주식_증여세_과세특례_적용신청서.hwp",
+        "bytes": 72192,
+        "sha256": "4bf5601ed40651cd669795c790d6ae4a6b3132985d30a716383390a465f1c6e5",
+        "format": "hwp",
+        "title_verified": true,
+        "http_status": 200
+      }
+    ]
   },
   {
     "id": "P2-03",
-    "checked_at": "2026-09-17T07:53:25Z",
+    "checked_at": "2026-09-17T08:05:00Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -375,23 +435,43 @@
   },
   {
     "id": "P2-04",
-    "checked_at": "2026-09-17T07:53:25Z",
+    "checked_at": "2026-09-17T08:05:00Z",
     "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619127&bylClsCd=110202",
-    "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /LSW/flDownload.do?gubun=&flSeq=162619127&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f4bc64320f0>, 'Connection to www.law.go.kr timed out. (connect timeout=12)'))",
-    "files": []
+    "status": "확인 완료",
+    "reason": null,
+    "files": [
+      {
+        "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162619127&bylClsCd=110202",
+        "path": "public/downloads/official-forms/additions/P2-04_사업자등록_정정신고서_상속_대표자_변경_.hwp",
+        "bytes": 83968,
+        "sha256": "d9ec3f3e7d958c206ab9cdb9e4aece3c9c62186694861780079cba25d3da45dc",
+        "format": "hwp",
+        "title_verified": true,
+        "http_status": 200
+      }
+    ]
   },
   {
     "id": "P2-05",
-    "checked_at": "2026-09-17T07:53:42Z",
+    "checked_at": "2026-09-17T08:05:00Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627307&bylClsCd=110202",
-    "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627307&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f4bc642e0c0>, 'Connection to www.law.go.kr timed out. (connect timeout=12)'))",
-    "files": []
+    "status": "확인 완료",
+    "reason": null,
+    "files": [
+      {
+        "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627307&bylClsCd=110202",
+        "path": "public/downloads/official-forms/additions/P2-05_가업상속공제_사후관리_위반_신고서.hwp",
+        "bytes": 159744,
+        "sha256": "a30d4e7899829018f4b98386c83b88083e5c68d2b798c007b0e1d5a2b417c1c2",
+        "format": "hwp",
+        "title_verified": true,
+        "http_status": 200
+      }
+    ]
   },
   {
     "id": "P2-06",
-    "checked_at": "2026-09-17T07:53:59Z",
+    "checked_at": "2026-09-17T08:05:02Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -399,15 +479,25 @@
   },
   {
     "id": "P2-07",
-    "checked_at": "2026-09-17T07:53:59Z",
+    "checked_at": "2026-09-17T08:05:02Z",
     "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627503&bylClsCd=110202",
-    "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /flDownload.do?gubun=&flSeq=162627503&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f4bc63ea300>, 'Connection to www.law.go.kr timed out. (connect timeout=12)'))",
-    "files": []
+    "status": "확인 완료",
+    "reason": null,
+    "files": [
+      {
+        "url": "https://www.law.go.kr/flDownload.do?gubun=&flSeq=162627503&bylClsCd=110202",
+        "path": "public/downloads/official-forms/additions/P2-07_상속세_물납_신청서.hwp",
+        "bytes": 20480,
+        "sha256": "e30a121bb95fa7309c2f8849a5458c11b884c1364b37fce14602185d4dbf132b",
+        "format": "hwp",
+        "title_verified": true,
+        "http_status": 200
+      }
+    ]
   },
   {
     "id": "P2-08",
-    "checked_at": "2026-09-17T07:54:15Z",
+    "checked_at": "2026-09-17T08:05:02Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -415,7 +505,7 @@
   },
   {
     "id": "P2-09",
-    "checked_at": "2026-09-17T07:54:15Z",
+    "checked_at": "2026-09-17T08:05:02Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -423,15 +513,25 @@
   },
   {
     "id": "P2-10",
-    "checked_at": "2026-09-17T07:54:15Z",
+    "checked_at": "2026-09-17T08:05:02Z",
     "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=157546069&bylClsCd=110202",
-    "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /LSW/flDownload.do?gubun=&flSeq=157546069&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f4bc642e9f0>, 'Connection to www.law.go.kr timed out. (connect timeout=12)'))",
-    "files": []
+    "status": "확인 완료",
+    "reason": null,
+    "files": [
+      {
+        "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=157546069&bylClsCd=110202",
+        "path": "public/downloads/official-forms/additions/P2-10_경정청구서.hwp",
+        "bytes": 61952,
+        "sha256": "b71d9493480140a8d773f34f367cee153b2aaba7ad4d831fdf310bea2ae3db14",
+        "format": "hwp",
+        "title_verified": true,
+        "http_status": 200
+      }
+    ]
   },
   {
     "id": "P2-11",
-    "checked_at": "2026-09-17T07:54:33Z",
+    "checked_at": "2026-09-17T08:05:02Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -439,23 +539,43 @@
   },
   {
     "id": "P2-12",
-    "checked_at": "2026-09-17T07:54:33Z",
+    "checked_at": "2026-09-17T08:05:02Z",
     "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=157546887&bylClsCd=110202",
-    "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /LSW/flDownload.do?gubun=&flSeq=157546887&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f4bc6433d40>, 'Connection to www.law.go.kr timed out. (connect timeout=12)'))",
-    "files": []
+    "status": "확인 완료",
+    "reason": null,
+    "files": [
+      {
+        "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=157546887&bylClsCd=110202",
+        "path": "public/downloads/official-forms/additions/P2-12_과세전적부심사_청구서.hwp",
+        "bytes": 52224,
+        "sha256": "36e16ccc784e2a5d512a7a27a6d0f881256a3bb5fc89a45460e3afbc4fe56740",
+        "format": "hwp",
+        "title_verified": true,
+        "http_status": 200
+      }
+    ]
   },
   {
     "id": "P2-13",
-    "checked_at": "2026-09-17T07:54:45Z",
+    "checked_at": "2026-09-17T08:05:03Z",
     "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=157546465&bylClsCd=110202",
-    "status": "확인 중",
-    "reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /LSW/flDownload.do?gubun=&flSeq=157546465&bylClsCd=110202 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f4bc63e3f50>, 'Connection to www.law.go.kr timed out. (connect timeout=12)'))",
-    "files": []
+    "status": "확인 완료",
+    "reason": null,
+    "files": [
+      {
+        "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=157546465&bylClsCd=110202",
+        "path": "public/downloads/official-forms/additions/P2-13_이의신청서.hwp",
+        "bytes": 56320,
+        "sha256": "ae84cfd8a275ad0d00bf599b03d25e35a7796c2b4d1e031c3236d9cb23a346af",
+        "format": "hwp",
+        "title_verified": true,
+        "http_status": 200
+      }
+    ]
   },
   {
     "id": "P2-14",
-    "checked_at": "2026-09-17T07:55:02Z",
+    "checked_at": "2026-09-17T08:05:03Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -463,7 +583,7 @@
   },
   {
     "id": "P2-15",
-    "checked_at": "2026-09-17T07:55:02Z",
+    "checked_at": "2026-09-17T08:05:03Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -471,7 +591,7 @@
   },
   {
     "id": "P3-01",
-    "checked_at": "2026-09-17T07:55:02Z",
+    "checked_at": "2026-09-17T08:05:03Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -479,7 +599,7 @@
   },
   {
     "id": "P3-02",
-    "checked_at": "2026-09-17T07:55:02Z",
+    "checked_at": "2026-09-17T08:05:03Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -487,7 +607,7 @@
   },
   {
     "id": "P3-03",
-    "checked_at": "2026-09-17T07:55:02Z",
+    "checked_at": "2026-09-17T08:05:03Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -495,7 +615,7 @@
   },
   {
     "id": "P3-04",
-    "checked_at": "2026-09-17T07:55:02Z",
+    "checked_at": "2026-09-17T08:05:03Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -503,7 +623,7 @@
   },
   {
     "id": "P3-05",
-    "checked_at": "2026-09-17T07:55:02Z",
+    "checked_at": "2026-09-17T08:05:03Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
@@ -511,7 +631,7 @@
   },
   {
     "id": "P3-06",
-    "checked_at": "2026-09-17T07:55:02Z",
+    "checked_at": "2026-09-17T08:05:04Z",
     "url": "",
     "status": "확인 중",
     "reason": "개별 공식 출처·서식 또는 원본 파일 확인 대기",
