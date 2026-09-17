@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [assistant/simple-tax-calculator, codex/calculator-forms-review]
-    paths: ['app/calculator/**', 'app/forms/**', 'app/consultation/**', 'public/downloads/**', 'lib/simple-calculator/**', 'scripts/simple-calculator*', 'scripts/forms-library-ui-audit.py', '.github/workflows/simple-calculator-ci.yml', 'docs/reviews/**']
+    paths: ['app/calculator/**', 'app/forms/**', 'app/consultation/**', 'public/downloads/**', 'lib/simple-calculator/**', 'scripts/simple-calculator*', 'scripts/forms-*', '.github/workflows/simple-calculator-ci.yml', 'docs/reviews/**']
 permissions:
   contents: read
 concurrency:
@@ -45,6 +45,7 @@ jobs:
           npm run lint | tee .tmp/simple-calculator-proof/lint.log
           npm run typecheck | tee .tmp/simple-calculator-proof/typecheck.log
           node scripts/simple-calculator-tests.mjs | tee .tmp/simple-calculator-proof/calculator.log
+          node --test scripts/forms-catalog-tests.mjs | tee .tmp/simple-calculator-proof/forms-catalog.log
           npm run test:tax | tee .tmp/simple-calculator-proof/existing-tax.log
           npm run test:chat | tee .tmp/simple-calculator-proof/existing-chat.log
           npm run test:phase2b | tee .tmp/simple-calculator-proof/existing-phase2b.log

@@ -16,6 +16,10 @@ OUT.mkdir(parents=True, exist_ok=True)
 LIB = ROOT / 'public/downloads/official-forms'
 URL = '/downloads/asset-succession-forms-v1/'
 manifest = json.loads((LIB / 'manifest.json').read_text(encoding='utf-8'))
+catalog = json.loads((ROOT / 'docs/reviews/official_forms_catalog_candidates.json').read_text(encoding='utf-8-sig'))
+expected_ids = sorted(item['id'] for item in catalog['records'])
+assert len(expected_ids) == len(set(expected_ids)) == 74
+assert sorted(item['id'] for item in manifest['documents']) == expected_ids
 checks = []
 
 with sync_playwright() as p:
@@ -57,7 +61,10 @@ with sync_playwright() as p:
         response = page.goto(BASE+'/forms',wait_until='networkidle')
         assert response and response.status == 200
         expect(page.locator('[data-forms-library="institutional-v1"]')).to_be_visible()
-        expect(page.locator('[data-form-id]')).to_have_count(10)
+        expect(page.locator('[data-form-id]')).to_have_count(74)
+        assert sorted(page.locator('[data-form-id]').evaluate_all('(items)=>items.map(item=>item.dataset.formId)')) == expected_ids
+        expect(page.locator('[data-catalog-summary]')).to_contain_text('전체 74개 자료')
+        expect(page.locator('[data-catalog-summary]')).to_contain_text('원본 다운로드 2 · 공식 제공처 72 · 확인 중 0')
         guides = page.locator('[data-official-registration-guides]')
         expect(guides.locator('[data-registration-guide]')).to_have_count(4)
         expect(guides.locator('a')).to_have_count(8)
@@ -79,26 +86,57 @@ with sync_playwright() as p:
         sizes = page.evaluate('({width:innerWidth,scroll:document.documentElement.scrollWidth})')
         page.screenshot(path=str(OUT/f'library-{width}.png'))
         if width in (390,1440):
-            page.screenshot(path=str(OUT/f'library-full-{width}.png'),full_page=True)
+            page.locator('[data-result-count]').scroll_into_view_if_needed()
+            page.screenshot(path=str(OUT/f'library-catalog-{width}.png'))
         assert sizes['scroll'] <= sizes['width']+1,('horizontal-overflow',width,sizes)
         for element in page.locator('[data-form-download]').all():
             box = element.bounding_box()
             assert box and box['x']>=0 and box['x']+box['width']<=width+1
-        checks.append({'case':'responsive','width':width,'height':height,'no_horizontal_overflow':True,'cards':10})
+        clipped = page.locator('[data-form-id] h3').evaluate_all('(items)=>items.filter(item=>item.scrollWidth>item.clientWidth+1).map(item=>item.textContent)')
+        assert not clipped,('clipped-titles',width,clipped)
+        checks.append({'case':'responsive','width':width,'height':height,'no_horizontal_overflow':True,'cards':74})
 
     page.set_viewport_size({'width':390,'height':844})
-    for category,count in [('재산분배·상속',3),('증여',2),('차용·상환',3),('양도',1),('가업승계',1),('전체',10)]:
+    for category,count in [('재산분배·상속',10),('증여',3),('매매·임대차',21),('차용·상환',10),('양도',16),('가업승계',3),('공제·납부',5),('등기',6),('전체',74)]:
         page.locator(f'button[data-category="{category}"]').click()
         expect(page.locator('[data-form-id]')).to_have_count(count)
     search = page.get_by_role('searchbox',name='서류명·용도로 찾기')
     search.fill('차 용 증')
+    expect(page.locator('[data-form-id]')).to_have_count(2)
+    assert set(page.locator('[data-form-id]').evaluate_all('(items)=>items.map(item=>item.dataset.formId)')) == {'SC-30','SC-31'}
+    search.fill('개인지방소득세')
     expect(page.locator('[data-form-id]')).to_have_count(1)
-    expect(page.locator('[data-form-id] h3')).to_have_text('차용증')
+    expect(page.locator('[data-form-id="NTS-CG-15"]')).to_be_visible()
+    search.fill('동대문구')
+    expect(page.locator('[data-form-id]')).to_have_count(1)
+    expect(page.locator('[data-form-id="DD-G-01"]')).to_be_visible()
     search.fill('검색결과가없는가상단어')
     expect(page.locator('[data-form-id]')).to_have_count(0)
     page.get_by_role('button',name='전체 서류 보기',exact=True).click()
     expect(search).to_have_value('')
-    expect(page.locator('[data-form-id]')).to_have_count(10)
+    expect(page.locator('[data-form-id]')).to_have_count(74)
+    status = page.get_by_role('combobox',name='자료 제공 상태')
+    for value,count in [('hosted',2),('provider',72),('pending',0),('all',74)]:
+        status.select_option(value)
+        expect(page.locator('[data-form-id]')).to_have_count(count)
+    page.locator('button[data-category="증여"]').click()
+    status.select_option('provider')
+    expect(page.locator('[data-form-id]')).to_have_count(2)
+    search.fill('동대문구')
+    expect(page.locator('[data-form-id]')).to_have_count(1)
+    search.fill('없는서류')
+    page.get_by_role('button',name='전체 서류 보기',exact=True).click()
+    expect(status).to_have_value('all')
+    expect(page.locator('[data-form-id]')).to_have_count(74)
+    for item in manifest['documents']:
+        card = page.locator(f'[data-form-id="{item["id"]}"]')
+        expect(card.locator('[data-verification-status]')).to_have_text('원본 다운로드' if item['delivery']=='hosted' else '공식 제공처')
+        action = card.locator('[data-form-download]')
+        assert action.get_attribute('href') == item['editable'],item['id']
+        if item['delivery'] != 'hosted':
+            assert action.get_attribute('download') is None,item['id']
+            assert action.get_attribute('target') == '_blank'
+    checks.append({'case':'full-catalog-status-and-links','candidate_ids':74,'hosted':2,'provider':72,'pending':0,'passed':True})
     checks.append({'case':'categories-and-search','passed':True})
     checks.append({'case':'official-registration-guides','cards':4,'official_links':8,'new_tab':True})
 
@@ -154,7 +192,7 @@ with sync_playwright() as p:
     nojs = browser.new_context(java_script_enabled=False)
     page = nojs.new_page()
     page.goto(BASE+'/forms')
-    assert page.locator('[data-form-download]').count() == 10
+    assert page.locator('[data-form-download]').count() == 74
     assert page.locator('[data-registration-guide]').count() == 4
     checks.append({'case':'server-rendered-downloads-without-js','passed':True})
     nojs.close()
