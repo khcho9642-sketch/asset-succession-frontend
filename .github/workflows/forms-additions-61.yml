@@ -27,19 +27,51 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Inspect and collect official sources
+      - name: Restore verified originals and verify new sources incrementally
         run: |
           python -m pip install requests beautifulsoup4 olefile pypdf playwright
           python -m playwright install --with-deps chromium
-          if ! test -f docs/forms-additions-61/discovery/index.json; then python scripts/forms-additions-discover.py; fi
-          if ! test -f docs/forms-additions-61/browser/index.json; then python scripts/forms-additions-browser.py; fi
-          python scripts/forms-additions-resolve.py
-          python scripts/forms-additions-collect.py
-          python scripts/forms-additions-enrich.py
-      - name: Validate registered additions
-        if: hashFiles('scripts/forms-additions-tests.mjs') != ''
-        run: node --test scripts/forms-additions-tests.mjs
-      - name: Commit only collection scope, never deploy
+          python scripts/forms-additions-recover-progress.py
+          python scripts/forms-additions-deep.py
+          python - <<'PY'
+          from pathlib import Path
+          import json,requests,hashlib
+          p=Path('app/forms/FormsLibrary.tsx');s=p.read_text()
+          if 'import { AdditionalFormMetadata }' not in s:
+            s=s.replace('import styles from "./FormsLibrary.module.css";', 'import styles from "./FormsLibrary.module.css";\nimport { AdditionalFormMetadata } from "./AdditionalFormMetadata";')
+            s=s.replace('<h3>{item.title}</h3><p>{item.description}</p><small>{item.tags}</small>', '<h3>{item.title}</h3><p>{item.description}</p><small>{item.tags}</small>\n            <AdditionalFormMetadata item={item} />')
+          p.write_text(s)
+          for r in json.loads(Path('docs/forms-additions-61/results.json').read_text()):
+            for f in r.get('files',[]):
+              if f.get('artifact_path'):
+                dest=Path('.tmp/forms-additions-proof')/f['artifact_path'];dest.parent.mkdir(parents=True,exist_ok=True)
+                response=requests.get(f['url'],timeout=(10,25));response.raise_for_status()
+                assert hashlib.sha256(response.content).hexdigest()==f['sha256']
+                dest.write_bytes(response.content)
+          PY
+      - name: Validate actual records and original bytes
+        run: |
+          mkdir -p .tmp/forms-additions-proof
+          set -o pipefail
+          node --test scripts/forms-additions-tests.mjs | tee .tmp/forms-additions-proof/records.log
+          python - <<'PY'
+          import json,re
+          from pathlib import Path
+          m=Path('public/downloads/official-forms/manifest.json').read_text()
+          # grep counts are informational; task IDs and pending objects are counted structurally.
+          print('grep count:',sum('확인 중' in line for line in m.splitlines()))
+          print('new records:',len([d for d in json.loads(m)['documents'] if d['id'].startswith(('P0-','P1-','P2-','P3-'))]))
+          print('requested tasks:',len(json.loads(m)['additionRequests']))
+          print('UNCHECKED:',len(re.findall(r'^- \[ \] P[0-3]-\d\d ',Path('tasks.md').read_text(),re.M)))
+          PY
+      - name: Lint and build actual forms page
+        run: |
+          set -o pipefail
+          npm ci --no-audit --no-fund
+          npm run lint 2>&1 | tee .tmp/forms-additions-proof/lint.log
+          npm run typecheck 2>&1 | tee .tmp/forms-additions-proof/typecheck.log
+          npm run build 2>&1 | tee .tmp/forms-additions-proof/build.log
+      - name: Commit only verified collection scope, never deploy
         run: |
           git fetch origin assistant/forms-additions-61
           test "$(git rev-parse FETCH_HEAD)" = "${{ github.sha }}"
@@ -48,7 +80,7 @@ jobs:
           git add tasks.md docs/forms-additions-61 app/forms public/downloads/official-forms
           if git diff --cached --quiet; then exit 0; fi
           git diff --cached --name-only
-          git commit -m 'data: register verified originals and per-item status without changing legacy records'
+          git commit -m 'data: preserve verified original files and register individually checked new sources'
           git push origin HEAD:assistant/forms-additions-61
       - uses: actions/upload-artifact@v4
         if: always()
