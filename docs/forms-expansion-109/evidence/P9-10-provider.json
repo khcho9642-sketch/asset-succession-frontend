@@ -1,0 +1,370 @@
+{
+  "requested_url": "https://www.realtyprice.kr/",
+  "checked_at": "2026-09-17T09:31:34Z",
+  "http_status": 200,
+  "chain": [
+    {
+      "url": "https://www.realtyprice.kr/notice/main/main.do",
+      "http_status": 200,
+      "sha256": "df39dadac15679a0e45359e90f3d955c492fa21242e317be5f79d0b22a519318",
+      "checked_at": "2026-09-17T09:31:34Z"
+    }
+  ],
+  "text": "부동산공시가격 알리미 공시가격열람 공시가격열람 주택 공동주택 공시가격 열람 표준주택 공시가격 열람 개별주택 공시가격 열람 토지 표준지 공시지가 열람 개별지 공시지가 열람 공시가격개요 주택 공동주택 개요 표준주택 개요 개별주택 개요 토지 표준지 개요 개별지 개요 의견제출/이의신청 의견제출 공동주택 표준주택 개별주택 표준지 개별지 이의신청 공동주택 표준주택 개별주택 표준지 개별지 열린광장 공지사항 자주묻는 질문(FAQ) 연락처 한국부동산원 지사 안내 개별지/개별주택 담당자 안내 주택 공시가격 열람 공동주택 (아파트,연립,다세대) 공동주택 공시가격 열람하기 + 단독주택 (단독,다가구,다중주택) 표준주택 공시가격 열람하기 + 개별주택 공시가격 열람하기 + 토지 공시지가 열람 표준지 공시지가 열람하기 + 개별지 공시지가 열람하기 + 의견제출 + 공지사항 자주묻는질문(FAQ) 바로가기 토지 2026년 7월 1일 기준 개별공시지가(안) 열람 및 의견제출 알림 2026-09-01 공동 2026년 6월 1일 기준 공동주택가격(안) 열람 및 의견제출 알림 2026-08-05 단독 2026년 6월 1일 기준 개별주택가격(안) 열람 및 의견제출 알림 2026-08-05 단독 2026년 1월 1일 기준 개별주택가격 결정·공시 및 이의신청 알림 2026-04-30 부동산 보유세 프로 시뮬레이션 재산세, 종부세 계산 간편하게 확인해 보세요 2026년 7.1기준 개별지 열람 및 의견제출 열람 및 의견제출 기간 2026.9.1 - 2026.9.22 문의전화 각 지자체 문의 전자열람 바로가기 + 의견제출 바로가기 + 부동산 공시가격은 한국부동산원 「부동산정보」 앱 에서도 확인하실 수 있습니다. 공시가격, 시세, 실거래가, 나에게 맞는 매물찾기,아파트관리비 정보 등 25종의 국민맞춤형 정보 제공 일시정지 재생 부동산 공시가격 콜센터 1644-2828 상담시간 평일  09:30 ~ 17:00 (점심시간 12~13시) 부동산 보유세 프로 시뮬레이션 (우)41068 대구광역시 동구 이노밸리로 291 (신서동) 한국부동산원 COPYRIGHT (C) 2025. KOREA REAL ESTATE BOARD. ALL RIGHTS RESERVED. 개인정보처리방침 본인정보 다운로드 품질오류신고센터",
+  "links": [
+    {
+      "text": "",
+      "url": "https://www.realtyprice.kr/notice/main/main.do",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "공시가격열람",
+      "url": "https://www.realtyprice.kr/notice/town/siteLink.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "주택",
+      "url": "https://www.realtyprice.kr/notice/main/main.do",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "공동주택 공시가격 열람",
+      "url": "https://www.realtyprice.kr/notice/town/siteLink.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "표준주택 공시가격 열람",
+      "url": "https://www.realtyprice.kr/notice/hpstandard/search.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "개별주택 공시가격 열람",
+      "url": "https://www.realtyprice.kr/notice/nf/nfCommon.htm?page_gbn=hpi_search",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "토지",
+      "url": "https://www.realtyprice.kr/notice/main/main.do",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "표준지 공시지가 열람",
+      "url": "https://www.realtyprice.kr/notice/gsstandard/search.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "개별지 공시지가 열람",
+      "url": "https://www.realtyprice.kr/notice/nf/nfCommon.htm?page_gbn=gsi_search",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "공시가격개요",
+      "url": "https://www.realtyprice.kr/notice/town/view.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "주택",
+      "url": "https://www.realtyprice.kr/notice/main/main.do",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "공동주택 개요",
+      "url": "https://www.realtyprice.kr/notice/town/view.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "표준주택 개요",
+      "url": "https://www.realtyprice.kr/notice/hpstandard/view.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "개별주택 개요",
+      "url": "https://www.realtyprice.kr/notice/hpindividual/view.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "토지",
+      "url": "https://www.realtyprice.kr/notice/main/main.do",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "표준지 개요",
+      "url": "https://www.realtyprice.kr/notice/gsstandard/view.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "개별지 개요",
+      "url": "https://www.realtyprice.kr/notice/gsindividual/view.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "의견제출/이의신청",
+      "url": "https://www.realtyprice.kr/notice/town/opinionGuide.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "의견제출",
+      "url": "https://www.realtyprice.kr/notice/main/main.do",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "공동주택",
+      "url": "https://www.realtyprice.kr/notice/town/opinionGuide.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "표준주택",
+      "url": "https://www.realtyprice.kr/notice/hpstandard/realopinionGuide.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "개별주택",
+      "url": "https://www.realtyprice.kr/notice/hpindividual/realopinionGuide.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "표준지",
+      "url": "https://www.realtyprice.kr/notice/gsstandard/realopinionGuide.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "개별지",
+      "url": "https://www.realtyprice.kr/notice/gsindividual/realopinionGuide.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "이의신청",
+      "url": "https://www.realtyprice.kr/notice/main/main.do",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "공동주택",
+      "url": "https://www.realtyprice.kr/notice/town/objectionGuide.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "표준주택",
+      "url": "https://www.realtyprice.kr/notice/hpstandard/objectionGuide.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "개별주택",
+      "url": "https://www.realtyprice.kr/notice/hpindividual/objectionGuide.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "표준지",
+      "url": "https://www.realtyprice.kr/notice/gsstandard/objectionGuide.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "개별지",
+      "url": "https://www.realtyprice.kr/notice/gsindividual/objectionGuide.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "열린광장",
+      "url": "https://www.realtyprice.kr/notice/board/boardListAll.board",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "공지사항",
+      "url": "https://www.realtyprice.kr/notice/board/boardListAll.board",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "자주묻는 질문(FAQ)",
+      "url": "https://www.realtyprice.kr/notice/support/faq.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "연락처",
+      "url": "https://www.realtyprice.kr/notice/main/main.do",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "한국부동산원 지사 안내",
+      "url": "https://www.realtyprice.kr/notice/town/branchGuide.search",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "",
+      "url": "https://www.molit.go.kr",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "공동주택 공시가격",
+      "url": "https://www.realtyprice.kr/notice/town/siteLink.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "열람하기 +",
+      "url": "https://www.realtyprice.kr/notice/town/siteLink.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "표준주택 공시가격",
+      "url": "https://www.realtyprice.kr/notice/hpstandard/search.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "열람하기 +",
+      "url": "https://www.realtyprice.kr/notice/hpstandard/search.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "개별주택 공시가격",
+      "url": "https://www.realtyprice.kr/notice/nf/nfCommon.htm?page_gbn=hpi_search",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "열람하기 +",
+      "url": "https://www.realtyprice.kr/notice/nf/nfCommon.htm?page_gbn=hpi_search",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "표준지 공시지가",
+      "url": "https://www.realtyprice.kr/notice/gsstandard/search.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "열람하기 +",
+      "url": "https://www.realtyprice.kr/notice/gsstandard/search.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "개별지 공시지가",
+      "url": "https://www.realtyprice.kr/notice/nf/nfCommon.htm?page_gbn=gsi_search",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "열람하기 +",
+      "url": "https://www.realtyprice.kr/notice/nf/nfCommon.htm?page_gbn=gsi_search",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "의견제출 +",
+      "url": "https://www.realtyprice.kr/notice/gsindividual/realopinionGuide.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "자주묻는질문(FAQ)",
+      "url": "https://www.realtyprice.kr/notice/support/faq.htm",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "바로가기",
+      "url": "https://www.realtyprice.kr/notice/board/boardListAll.board",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "부동산 보유세 프로 시뮬레이션 재산세, 종부세 계산 간편하게 확인해 보세요",
+      "url": "https://www.realtyprice.kr/notice/common/insBannerLog.common?banner_id=holding_tax",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "부동산 보유세 프로 시뮬레이션",
+      "url": "https://www.realtyprice.kr/notice/common/insBannerLog.common?banner_id=holding_tax",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "",
+      "url": "https://www.molit.go.kr",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "",
+      "url": "https://www.reb.or.kr",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "",
+      "url": "https://www.kapanet.or.kr",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "",
+      "url": "https://rt.molit.go.kr",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "",
+      "url": "https://k-apt.go.kr",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "",
+      "url": "https://www.reb.or.kr/r-one/main.do",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "",
+      "url": "https://www.wetax.go.kr",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    },
+    {
+      "text": "",
+      "url": "https://www.rtech.or.kr",
+      "onclick": null,
+      "origin": "https://www.realtyprice.kr/notice/main/main.do"
+    }
+  ]
+}
