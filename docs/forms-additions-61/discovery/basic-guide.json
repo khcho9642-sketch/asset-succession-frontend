@@ -1,0 +1,182 @@
+{
+  "key": "basic-guide",
+  "requested_url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y",
+  "checked_at": "2026-09-17T07:25:03Z",
+  "status": 200,
+  "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y",
+  "content_type": "text/html; charset=utf-8",
+  "bytes": 389489,
+  "sha256": "a9f901175380b246c0bb1bd92b4d688902a8ab2779f203abf1bebe67c467f65d",
+  "title": "기본증명서 | 증명서발급 | 민원안내 | 전자가족관계등록시스템",
+  "links": [
+    {
+      "text": "사망 신고",
+      "href": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y#_",
+      "onclick": "javascript:headerMenu('/cs/CsBltnWrtGuide.do?bltnbordId=0000008&guideCd=0000008006&guideYn=Y','030000000017','N');",
+      "outer": "<a href=\"#_\" onclick=\"javascript:headerMenu('/cs/CsBltnWrtGuide.do?bltnbordId=0000008&amp;guideCd=0000008006&amp;guideYn=Y','030000000017','N');\">사망 신고</a>"
+    },
+    {
+      "text": "사망 · 실종선고 · 부재선고",
+      "href": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y",
+      "onclick": "javascript:headerMenu('/st/StFrrStatcsView.do?pgmId=090000000051','090000000019','N');",
+      "outer": "<a class=\"nw\" href=\"#\" onclick=\"javascript:headerMenu('/st/StFrrStatcsView.do?pgmId=090000000051','090000000019','N');\" title=\"새창\">사망 · 실종선고 · 부재선고 </a>"
+    },
+    {
+      "text": "사망 현황",
+      "href": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y#_",
+      "onclick": "javascript:headerMenu('/st/StFrrStatcsView.do?pgmId=090000000051','090000000020','N');",
+      "outer": "<a class=\"nw\" href=\"#_\" onclick=\"javascript:headerMenu('/st/StFrrStatcsView.do?pgmId=090000000051','090000000020','N');\" title=\"새창\">사망 현황</a>"
+    },
+    {
+      "text": "성별 사망 현황",
+      "href": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y#_",
+      "onclick": "javascript:headerMenu('/st/StFrrStatcsView.do?pgmId=090000000052','090000000021','N');",
+      "outer": "<a class=\"nw\" href=\"#_\" onclick=\"javascript:headerMenu('/st/StFrrStatcsView.do?pgmId=090000000052','090000000021','N');\" title=\"새창\">성별 사망 현황</a>"
+    },
+    {
+      "text": "사망 신고",
+      "href": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y#_",
+      "onclick": "javascript:headerMenu('/cs/CsBltnWrtGuide.do?bltnbordId=0000008&guideCd=0000008006&guideYn=Y','030000000017','N');",
+      "outer": "<a href=\"#_\" onclick=\"javascript:headerMenu('/cs/CsBltnWrtGuide.do?bltnbordId=0000008&amp;guideCd=0000008006&amp;guideYn=Y','030000000017','N');\">사망 신고</a>"
+    },
+    {
+      "text": "사망 · 실종선고 · 부재선고",
+      "href": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y",
+      "onclick": "javascript:headerMenu('/st/StFrrStatcsView.do?pgmId=090000000051','090000000019','N');",
+      "outer": "<a class=\"nw\" href=\"#\" onclick=\"javascript:headerMenu('/st/StFrrStatcsView.do?pgmId=090000000051','090000000019','N');\" title=\"새창\">사망 · 실종선고 · 부재선고 </a>"
+    },
+    {
+      "text": "사망 현황",
+      "href": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y#_",
+      "onclick": "javascript:headerMenu('/st/StFrrStatcsView.do?pgmId=090000000051','090000000020','N');",
+      "outer": "<a class=\"nw\" href=\"#_\" onclick=\"javascript:headerMenu('/st/StFrrStatcsView.do?pgmId=090000000051','090000000020','N');\" title=\"새창\">사망 현황</a>"
+    },
+    {
+      "text": "성별 사망 현황",
+      "href": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y#_",
+      "onclick": "javascript:headerMenu('/st/StFrrStatcsView.do?pgmId=090000000052','090000000021','N');",
+      "outer": "<a class=\"nw\" href=\"#_\" onclick=\"javascript:headerMenu('/st/StFrrStatcsView.do?pgmId=090000000052','090000000021','N');\" title=\"새창\">성별 사망 현황</a>"
+    },
+    {
+      "text": "사망 신고",
+      "href": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y#_",
+      "onclick": "javascript:leftMnCalled('/cs/CsBltnWrtGuide.do?bltnbordId=0000008&guideCd=0000008006&guideYn=Y','030000000017','03','010306','N');",
+      "outer": "<a href=\"#_\" onclick=\"javascript:leftMnCalled('/cs/CsBltnWrtGuide.do?bltnbordId=0000008&amp;guideCd=0000008006&amp;guideYn=Y','030000000017','03','010306','N');\"> <span>사망 신고</span></a>"
+    }
+  ],
+  "scripts": [
+    "https://efamily.scourt.go.kr/js/common/window.js",
+    "https://efamily.scourt.go.kr/js/common/common.js",
+    "https://efamily.scourt.go.kr/js/common/validation.js",
+    "https://efamily.scourt.go.kr/js/common/datetime.js",
+    "https://efamily.scourt.go.kr/js/common/jquery-1.7.2.min.js",
+    "https://efamily.scourt.go.kr/js/common/jquery-ui.min.js",
+    "https://efamily.scourt.go.kr/js/common/ui.js?ver=1789629904549",
+    "https://efamily.scourt.go.kr/js/common/popup.js?ver=1789629904549",
+    "https://efamily.scourt.go.kr/webhanja/libs/tinymce-3.4.8/tiny_mce_src.js",
+    "https://efamily.scourt.go.kr/webhanja/libs/jquery.blockUI.js",
+    "https://efamily.scourt.go.kr/webhanja/whjprocjs",
+    "https://efamily.scourt.go.kr/TouchEn/raonnx/cmn/json2.js",
+    "https://efamily.scourt.go.kr/TouchEn/raonnx/cmn/TouchEnNx.js",
+    "https://efamily.scourt.go.kr/TouchEn/raonnx/cmn/TouchEnNx_exproto.js",
+    "https://efamily.scourt.go.kr/TouchEn/raonnx/cmn/TouchEnNx_install.js",
+    "https://efamily.scourt.go.kr/TouchEn/raonnx/cmn/TouchEnNx_daemon.js",
+    "https://efamily.scourt.go.kr/TouchEn/raonnx/nxKey/js/nxkey_config.js?ver=20230627",
+    "https://efamily.scourt.go.kr/TouchEn/raonnx/nxKey/js/TouchEnNxKey_Interface.js",
+    "https://efamily.scourt.go.kr/TouchEn/raonnx/nxKey/js/TouchEnNxKey.js?ver=2023040601",
+    "https://efamily.scourt.go.kr/TouchEn/raonnx/cmn/TouchEnNx_loader.js",
+    "https://efamily.scourt.go.kr/js/common/nxKey.js",
+    "https://efamily.scourt.go.kr/pluginfree/js/nppfs-1.13.0.js",
+    "https://efamily.scourt.go.kr/js/common/nProtect.js"
+  ],
+  "forms": [
+    {
+      "action": "/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y",
+      "method": "post",
+      "fields": [
+        {
+          "name": "fg",
+          "value": "Y"
+        },
+        {
+          "name": "inqTrgt",
+          "value": "02"
+        },
+        {
+          "name": "inqType",
+          "value": "03"
+        },
+        {
+          "name": "srchWord",
+          "value": null
+        }
+      ]
+    },
+    {
+      "action": "/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y",
+      "method": "post",
+      "fields": []
+    },
+    {
+      "action": "/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y",
+      "method": "post",
+      "fields": [
+        {
+          "name": "prgId",
+          "value": null
+        },
+        {
+          "name": "leftMnCd",
+          "value": null
+        }
+      ]
+    },
+    {
+      "action": "/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y",
+      "method": "post",
+      "fields": [
+        {
+          "name": "bltnbordId",
+          "value": "0000003"
+        },
+        {
+          "name": "guideCd",
+          "value": "0000007002"
+        }
+      ]
+    },
+    {
+      "action": "/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y",
+      "method": "post",
+      "fields": [
+        {
+          "name": "bltnbordId",
+          "value": "0000007"
+        },
+        {
+          "name": "guideCd",
+          "value": "0000007002"
+        },
+        {
+          "name": "guideYn",
+          "value": "Y"
+        }
+      ]
+    }
+  ],
+  "download_fragments": [
+    "    'cursor':         isDisabled ? 'pointer' : 'default',\r\n\t        'opacity':        isDisabled ? '1' : '0.5' // 처리 중임을 알리는 시각적 효과\r\n\t    });\r\n\t}\r\n\t\r\n\tfunction fileDownloader(fileUrl) {\r\n\t    \r\n\t    var downloadLink = document.createElement('a');\r\n\t    downloadLink.href = fileUrl;\r\n\t    \r\n\t    document.body.appendChild(downloadLink);\r\n\t    downloadLink.click();\r\n\t    document.body.removeChild(downloadLink);\r\n\t}\r\n\t\r\n\t\r\n</script>\r\n\r\n\r\n<script type=\"text/javaScript\" defer=\"defer\">\r\n\r\n\t//선택한 질문 번호\r\n\tvar selectNum = \"\";\r\n\t\r\n\t/* 초기화 및 클릭이벤트 */\r\n\t$(document).re"
+  ],
+  "text_excerpt": "기본증명서 | 증명서발급 | 민원안내 | 전자가족관계등록시스템 본문 바로가기 주메뉴 바로가기 ENGLISH 中國語 日本語 사용자지원센터 1899-2732, (031-776-7878) 월~금요일 (09:00~18:00) / 토 · 일요일 및 공휴일은 휴무 사이트 내 전체검색 검색어 필수 검색 주메뉴 증명서발급 가족관계등록부 가족관계증명서 기본증명서 혼인관계증명서 입양관계증명서 친양자입양관계증명서 영문증명서 제적부 제적등본 제적초본 이미지 제적부 이미지 제적부 열람 및 발급 신청 이미지 제적부 열람 및 발급 내역 나의 발급 이력 증명서 진위확인 인터넷신고 출생 신고 개명 신고 등록부정정 신청 국적취득자의 성본창설 신고 가족관계등록창설 신고 등록기준지변경 신고 신고서 수정/제출 처리내역 확인 민원안내 가족관계등록제도 개요 증명서발급 가족관계증명서 기본증명서 혼인관계증명서 입양관계증명서 친양자입양관계증명서 영문증명서 제적등·초본 이미지 제적부 신고 출생 신고 개명 신고 등록부정정 신청 국적취득자의 성·본창설 신고 가족관계등록창설 신고 사망 신고 혼인 신고 이혼 신고 친권에 관한 신고 등록기준지변경 신고 입양 신고 친양자입양 및 친양자파양 신고 인지 신고 재외국민 가족관계등록창설, 가족관계등록부 정정 및 정리 가족관계등록비송 개명 허가 가족관계등록부정정 허가 국적취득자의 성·본창설 허가 가족관계등록창설 허가 과태료 및 벌칙 가족관계등록예규 및 선례 목적에 따른 증명서의 분류예시표 고객센터 공지사항 자주 하는 질문 사이트이용안내 인터넷 증명서 발급 방법 안내 인터넷 신고 방법 안내 아포스티유 안내 인증서 가져오기/내보내기 신청서 양식 다운로드 무인증명서발급기 위치 조회 국어의 로마자 표기 조회 인명용 한자 조회 위변조 확인 프로그램 설치 프로그램 웹 접근성 안내 통계 통계서비스 안내 출생 출생 현황 혼인중/혼인외 출생 현황 성별 출생 현황 다문화가정 출생 현황 상위 출생신고 이름 현황 인지 및 입양 인지 현황 양자의 성별 입양 현황 국제 · 국내입양에 관한 특별법/친양자입양 현황 혼인 및 이혼 혼인 현황 협의/재판 이혼 현황 내국인의 연령별 국제혼인 현황 배우자 국적별 국제혼인 현황 배우자 국적별 국제이혼 현황 사망 · 실종선고 · 부재선고 사망 현황 성별 사망 현황 실종선고 현황 부재선고 현황 개명 및 창설 성별 개명 현황 상위 개명신고 이름 현황 국적취득자의 창성 현황 복합통계 사건별 처리 현황 기간별 처리 현황 성별 처리 현황 테마통계 단태아/다태아 출생 현황 모 1인당 출생 현황 혼인 후 출산까지의 소요기간 현황 국제혼인 현황 연령대별 혼인 현황 이혼사건에서의 혼인유지기간 현황 입양자 수별 양부모 현황 부부의 연령 차이 현황 가족관계등록부상 성씨 현황 전체메뉴 전체메뉴 하위메뉴 열기 ENGLISH 中國語 日本語 증명서발급 가족관계등록부 가족관계증명서 기본증명서 혼인관계증명서 입양관계증명서 친양자입양관계증명서 영문증명서 제적부 제적등본 제적초본 이미지 제적부 이미지 제적부 열람 및 발급 신청 이미지 제적부 열람 및 발급 내역 나의 발급 이력 증명서 진위확인 인터넷신고 출생 신고 개명 신고 등록부정정 신청 국적취득자의 성본창설 신고 가족관계등록창설 신고 등록기준지변경 신고 신고서 수정/제출 처리내역 확인 민원안내 가족관계등록제도 개요 증명서발급 가족관계증명서 기본증명서 혼인관계증명서 입양관계증명서 친양자입양관계증명서 영문증명서 제적등·초본 이미지 제적부 신고 출생 신고 개명 신고 등록부정정 신청 국적취득자의 성·본창설 신고 가족관계등록창설 신고 사망 신고 혼인 신고 이혼 신고 친권에 관한 신고 등록기준지변경 신고 입양 신고 친양자입양 및 친양자파양 신고 인지 신고 재외국민 가족관계등록창설, 가족관계등록부 정정 및 정리 가족관계등록비송 개명 허가 가족관계등록부정정 허가 국적취득자의 성·본창설 허가 가족관계등록창설 허가 과태료 및 벌칙 가족관계등록예규 및 선례 목적에 따른 증명서의 분류예시표 고객센터 공지사항 자주 하는 질문 사이트이용안내 인터넷 증명서 발급 방법 안내 인터넷 신고 방법 안내 아포스티유 안내 인증서 가져오기/내보내기 신청서 양식 다운로드 무인증명서발급기 위치 조회 국어의 로마자 표기 조회 인명용 한자 조회 위변조 확인 프로그램 설치 프로그램 웹 접근성 안내 통계 통계서비스 안내 출생 출생 현황 혼인중/혼인외 출생 현황 성별 출생 현황 다문화가정 출생 현황 상위 출생신고 이름 현황 인지 및 입양 인지 현황 양자의 성별 입양 현황 국제 · 국내입양에 관한 특별법/친양자입양 현황 혼인 및 이혼 혼인 현황 협의/재판 이혼 현황 내국인의 연령별 국제혼인 현황 배우자 국적별 국제혼인 현황 배우자 국적별 국제이혼 현황 사망 · 실종선고 · 부재선고 사망 현황 성별 사망 현황 실종선고 현황 부재선고 현황 개명 및 창설 성별 개명 현황 상위 개명신고 이름 현황 국적취득자의 창성 현황 복합통계 사건별 처리 현황 기간별 처리 현황 성별 처리 현황 테마통계 단태아/다태아 출생 현황 모 1인당 출생 현황 혼인 후 출산까지의 소요기간 현황 국제혼인 현황 연령대별 혼인 현황 이혼사건에서의 혼인유지기간 현황 입양자",
+  "relevant_text": [
+    "이미지 제적부 신고 출생 신고 개명 신고 등록부정정 신청 국적취득자의 성·본창설 신고 가족관계등록창설 신고 사망 신고 혼인 신고 이혼 신고 친권에 관한 신고 등록기준지변경 신고 입양 신고 친양자입양 및 친양자파양 신고 인지 신고 재외국민 가족관계등록창설, 가족관계등록부 정정 및 정리 가족관계등록비송 개명 허가 가족관계등록부정정 허가 국적취득자의 성·본창설 허가 가족관계등록창설 허가 과태료 및 벌칙 가족관계등록예규 및 선례 목적에 따른 증명서의 분류예시표 고객센터",
+    "의/재판 이혼 현황 내국인의 연령별 국제혼인 현황 배우자 국적별 국제혼인 현황 배우자 국적별 국제이혼 현황 사망 · 실종선고 · 부재선고 사망 현황 성별 사망 현황 실종선고 현황 부재선고 현황 개명 및 창설 성별 개명 현황 상위 개명신고 이름 현황 국적취득자의 창성 현황 복합통계 사건별 처리 현황 기간별 처리 현황 성별 처리 현황 테마통계 단태아/다태아 출생 현황 모 1인당 출생 현황 혼인 후 출산까지의 소요기간 현황 국제혼인 현황 연령대별 혼인 현황 이혼사건에",
+    "령별 국제혼인 현황 배우자 국적별 국제혼인 현황 배우자 국적별 국제이혼 현황 사망 · 실종선고 · 부재선고 사망 현황 성별 사망 현황 실종선고 현황 부재선고 현황 개명 및 창설 성별 개명 현황 상위 개명신고 이름 현황 국적취득자의 창성 현황 복합통계 사건별 처리 현황 기간별 처리 현황 성별 처리 현황 테마통계 단태아/다태아 출생 현황 모 1인당 출생 현황 혼인 후 출산까지의 소요기간 현황 국제혼인 현황 연령대별 혼인 현황 이혼사건에서의 혼인유지기간 현황 입양자 ",
+    "황 배우자 국적별 국제혼인 현황 배우자 국적별 국제이혼 현황 사망 · 실종선고 · 부재선고 사망 현황 성별 사망 현황 실종선고 현황 부재선고 현황 개명 및 창설 성별 개명 현황 상위 개명신고 이름 현황 국적취득자의 창성 현황 복합통계 사건별 처리 현황 기간별 처리 현황 성별 처리 현황 테마통계 단태아/다태아 출생 현황 모 1인당 출생 현황 혼인 후 출산까지의 소요기간 현황 국제혼인 현황 연령대별 혼인 현황 이혼사건에서의 혼인유지기간 현황 입양자 수별 양부모 현황",
+    "이미지 제적부 신고 출생 신고 개명 신고 등록부정정 신청 국적취득자의 성·본창설 신고 가족관계등록창설 신고 사망 신고 혼인 신고 이혼 신고 친권에 관한 신고 등록기준지변경 신고 입양 신고 친양자입양 및 친양자파양 신고 인지 신고 재외국민 가족관계등록창설, 가족관계등록부 정정 및 정리 가족관계등록비송 개명 허가 가족관계등록부정정 허가 국적취득자의 성·본창설 허가 가족관계등록창설 허가 과태료 및 벌칙 가족관계등록예규 및 선례 목적에 따른 증명서의 분류예시표 고객센터",
+    "의/재판 이혼 현황 내국인의 연령별 국제혼인 현황 배우자 국적별 국제혼인 현황 배우자 국적별 국제이혼 현황 사망 · 실종선고 · 부재선고 사망 현황 성별 사망 현황 실종선고 현황 부재선고 현황 개명 및 창설 성별 개명 현황 상위 개명신고 이름 현황 국적취득자의 창성 현황 복합통계 사건별 처리 현황 기간별 처리 현황 성별 처리 현황 테마통계 단태아/다태아 출생 현황 모 1인당 출생 현황 혼인 후 출산까지의 소요기간 현황 국제혼인 현황 연령대별 혼인 현황 이혼사건에",
+    "령별 국제혼인 현황 배우자 국적별 국제혼인 현황 배우자 국적별 국제이혼 현황 사망 · 실종선고 · 부재선고 사망 현황 성별 사망 현황 실종선고 현황 부재선고 현황 개명 및 창설 성별 개명 현황 상위 개명신고 이름 현황 국적취득자의 창성 현황 복합통계 사건별 처리 현황 기간별 처리 현황 성별 처리 현황 테마통계 단태아/다태아 출생 현황 모 1인당 출생 현황 혼인 후 출산까지의 소요기간 현황 국제혼인 현황 연령대별 혼인 현황 이혼사건에서의 혼인유지기간 현황 입양자 ",
+    "황 배우자 국적별 국제혼인 현황 배우자 국적별 국제이혼 현황 사망 · 실종선고 · 부재선고 사망 현황 성별 사망 현황 실종선고 현황 부재선고 현황 개명 및 창설 성별 개명 현황 상위 개명신고 이름 현황 국적취득자의 창성 현황 복합통계 사건별 처리 현황 기간별 처리 현황 성별 처리 현황 테마통계 단태아/다태아 출생 현황 모 1인당 출생 현황 혼인 후 출산까지의 소요기간 현황 국제혼인 현황 연령대별 혼인 현황 이혼사건에서의 혼인유지기간 현황 입양자 수별 양부모 현황",
+    "이미지 제적부 신고 출생 신고 개명 신고 등록부정정 신청 국적취득자의 성·본창설 신고 가족관계등록창설 신고 사망 신고 혼인 신고 이혼 신고 친권에 관한 신고 등록기준지변경 신고 입양 신고 친양자입양 및 친양자파양 신고 인지 신고 재외국민 가족관계등록창설, 가족관계등록부 정정 및 정리 가족관계등록비송 개명 허가 가족관계등록부정정 허가 국적취득자의 성·본창설 허가 가족관계등록창설 허가 과태료 및 벌칙 가족관계등록예규 및 선례 목적에 따른 증명서의 분류예시표 홈 민원"
+  ]
+}

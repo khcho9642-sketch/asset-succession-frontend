@@ -1,0 +1,17 @@
+{
+  "key": "pension",
+  "requested_url": "https://www.nps.or.kr/jsppage/mobile/in/HG_4B0004_01.jsp?hrnkMenuId=MW_IN&menuId=MW_IN_06",
+  "checked_at": "2026-09-17T07:25:01Z",
+  "status": 500,
+  "url": "https://www.nps.or.kr/jsppage/mobile/in/HG_4B0004_01.jsp?hrnkMenuId=MW_IN&menuId=MW_IN_06",
+  "content_type": "text/html; charset=UTF-8",
+  "bytes": 1948,
+  "sha256": "571e20c80c2ef0ef8b9980a913ee06c5b98b4c13ff0543ee2e0bc779c0f43287",
+  "title": "404 Not Found",
+  "links": [],
+  "scripts": [],
+  "forms": [],
+  "download_fragments": [],
+  "text_excerpt": "404 Not Found 404 Not Found",
+  "relevant_text": []
+}

@@ -1,0 +1,6 @@
+{
+  "key": "court-forms",
+  "requested_url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work",
+  "checked_at": "2026-09-17T07:24:59Z",
+  "error": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+}

@@ -1,0 +1,104 @@
+[
+  {
+    "key": "local-tax",
+    "status": 200,
+    "title": "법령 > 본문 > 지방세법 시행규칙 | 국가법령정보센터",
+    "error": null
+  },
+  {
+    "key": "national-tax",
+    "status": 200,
+    "title": "법령 > 본문 > 국세기본법 시행규칙 | 국가법령정보센터",
+    "error": null
+  },
+  {
+    "key": "inheritance-tax",
+    "status": 200,
+    "title": "법령 > 본문 > 상속세 및 증여세법 시행규칙 | 국가법령정보센터",
+    "error": null
+  },
+  {
+    "key": "local-tax-benefits",
+    "status": 200,
+    "title": "",
+    "error": null
+  },
+  {
+    "key": "fss",
+    "status": 200,
+    "title": "제도안내 | 상속인금융거래조회 | 내 돈 관리 | 금융소비자 정보포털 파인",
+    "error": null
+  },
+  {
+    "key": "law-byl-js",
+    "status": 200,
+    "title": "",
+    "error": null
+  },
+  {
+    "key": "court-forms",
+    "status": null,
+    "title": null,
+    "error": "HTTPSConnectionPool(host='help.scourt.go.kr', port=443): Max retries exceeded with url: /nm/minwon/doc/DocListAction.work (Caused by NameResolutionError(\"HTTPSConnection(host='help.scourt.go.kr', port=443): Failed to resolve 'help.scourt.go.kr' ([Errno -2] Name or service not known)\"))"
+  },
+  {
+    "key": "court-home",
+    "status": 200,
+    "title": "대한민국 법원 대국민서비스",
+    "error": null
+  },
+  {
+    "key": "iros",
+    "status": 200,
+    "title": "index페이지",
+    "error": null
+  },
+  {
+    "key": "family",
+    "status": 200,
+    "title": "신청서 양식 다운로드 | 고객센터 | 전자가족관계등록시스템",
+    "error": null
+  },
+  {
+    "key": "pension",
+    "status": 500,
+    "title": "404 Not Found",
+    "error": null
+  },
+  {
+    "key": "government-inheritance",
+    "status": 200,
+    "title": "사망자 및 피후견인 등 재산조회 통합처리 신청(안심상속) | 민원안내 및 신청 | 정부24",
+    "error": null
+  },
+  {
+    "key": "guardian",
+    "status": 200,
+    "title": "민원 - 각종 양식 | 서울가정법원",
+    "error": null
+  },
+  {
+    "key": "family-guide",
+    "status": 200,
+    "title": "가족관계증명서 | 증명서발급 | 민원안내 | 전자가족관계등록시스템",
+    "error": null
+  },
+  {
+    "key": "basic-guide",
+    "status": 200,
+    "title": "기본증명서 | 증명서발급 | 민원안내 | 전자가족관계등록시스템",
+    "error": null
+  },
+  {
+    "key": "removed-guide",
+    "status": 200,
+    "title": "제적 등·초본 | 증명서발급 | 민원안내 | 전자가족관계등록시스템",
+    "error": null
+  },
+  {
+    "key": "death-guide",
+    "status": 200,
+    "title": "사망 신고 | 신고 | 민원안내 | 전자가족관계등록시스템",
+    "error": null
+  }
+]
