@@ -43,6 +43,7 @@ export type InheritanceInput = {
   disabledDeductionWon: MoneyInput;
   realEstateWon: MoneyInput;
   financialAssetsWon: MoneyInput;
+  financialExclusionsWon: MoneyInput;
   otherAssetsWon: MoneyInput;
   deemedAssetsWon: MoneyInput;
   nonTaxableWon: MoneyInput;

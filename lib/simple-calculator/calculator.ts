@@ -188,6 +188,7 @@ function checkCalculationDate(value: string, label: string, start: string, resul
 export function calculateInheritanceTax(input: InheritanceInput): SimpleCalculationResult {
   const result = base("inheritance", "상속세 간편계산", "상속세");
   result.references = [
+    { label: "국세청 금융재산공제 대상·제외 및 공제액 (2026-09-18 확인)", url: "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7956&mi=6528" },
     { label: "상속세 및 증여세법 제22조 (2026-01-02 시행)", url: "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1032161999" },
     { label: "손택스 상속세 간편계산 입력 항목", url: "https://mob.tbht.hometax.go.kr/jsonAction.do?actionId=UTBRNAAM02F001" },
     { label: "상속세 및 증여세법 제25조~제27조", url: "https://taxlaw.nts.go.kr/st/USESTA002P.do?ntstBscId=100000000000001561&ntstEnfrDt=2019.02.25.&ntstSysClCd=01&ntstTlawClCd=109" },
@@ -200,6 +201,7 @@ export function calculateInheritanceTax(input: InheritanceInput): SimpleCalculat
   const seniorCount = requireCount(input.seniorCount, "연로자 수", m, 0, 20);
   const realEstate = requireMoney(input.realEstateWon, "부동산가액", m);
   const financialAssets = requireMoney(input.financialAssetsWon, "금융재산가액", m);
+  const financialExclusions = requireMoney(input.financialExclusionsWon, "금융재산 중 공제 제외 금액", m);
   const otherAssets = requireMoney(input.otherAssetsWon, "기타재산가액", m);
   const deemedAssets = requireMoney(input.deemedAssetsWon, "퇴직금·보험금·신탁재산 등", m);
   const nonTaxable = requireMoney(input.nonTaxableWon, "비과세·과세가액 불산입액", m);
@@ -219,6 +221,9 @@ export function calculateInheritanceTax(input: InheritanceInput): SimpleCalculat
     m.push("배우자 법정지분율의 분자와 분모를 입력해 주세요.");
   }
   if (financialDebt !== null && debt !== null && financialDebt > debt) m.push("총채무 중 금융채무 금액: 총채무를 초과할 수 없습니다.");
+  if (financialExclusions !== null && financialAssets !== null && financialExclusions > financialAssets) {
+    m.push("금융재산 중 공제 제외 금액: 금융재산가액을 초과할 수 없습니다.");
+  }
   if (result.unsupported.length) result.status = "unsupported";
   if (m.length || result.unsupported.length) return result;
 
@@ -228,7 +233,9 @@ export function calculateInheritanceTax(input: InheritanceInput): SimpleCalculat
   const funeralDeduction = Math.min(10_000_000, Math.max(5_000_000, funeral!));
   const burialDeduction = Math.min(5_000_000, burial!);
   const taxableEstate = Math.max(0, taxableEstateBeforeDeductions - debt! - publicCharges! - funeralDeduction - burialDeduction);
-  const netFinancial = Math.max(0, financialAssets! - financialDebt!);
+  // Excluded property stays in totalAssets; it only reduces financial deduction eligibility.
+  const eligibleFinancialAssets = financialAssets! - financialExclusions!;
+  const netFinancial = Math.max(0, eligibleFinancialAssets - financialDebt!);
   const financialDeduction = netFinancial <= 20_000_000
     ? netFinancial
     : Math.min(200_000_000, Math.max(20_000_000, percent(netFinancial, 20)));
@@ -261,7 +268,7 @@ export function calculateInheritanceTax(input: InheritanceInput): SimpleCalculat
     { label: "상속세 과세가액", amountWon: taxableEstate },
     { label: "인적공제 또는 일괄공제", amountWon: -personalDeduction },
     { label: "배우자 상속공제", amountWon: -spouseDeduction, note: input.spouse === "yes" ? `입력 상속액·법정지분 한도·30억원 한도 기준` : "배우자 없음" },
-    { label: "금융재산 상속공제", amountWon: -financialDeduction, note: `금융재산 ${formatWon(financialAssets!)} - 금융채무 ${formatWon(financialDebt!)} = 순금융재산 ${formatWon(netFinancial)}. 금융채무는 위 총채무에 포함되어 한 번만 차감됩니다.` },
+    { label: "금융재산 상속공제", amountWon: -financialDeduction, note: `금융재산 ${formatWon(financialAssets!)} - 공제 제외 재산 ${formatWon(financialExclusions!)} - 금융채무 ${formatWon(financialDebt!)} = 공제 대상 순금융재산 ${formatWon(netFinancial)}. 공제 제외 재산은 총 상속재산에 남고, 금융채무는 총채무에 포함되어 한 번만 차감됩니다.` },
     { label: "상속공제 적용 합계", amountWon: -appliedDeductions, note: "상속세 과세가액 한도" },
     { label: "과세표준", amountWon: taxableBaseWon },
     { label: `산출세액 (${tax.rateLabel})`, amountWon: tax.grossTaxWon },

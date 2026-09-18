@@ -40,6 +40,8 @@ const blankForms: Record<SimpleTaxKind, FormValues> = {
     childrenCount: "",
     realEstateWon: "",
     financialAssetsWon: "",
+    financialExclusionsStatus: "",
+    financialExclusionsWon: "",
     otherAssetsWon: "",
     spouseActualInheritanceWon: "",
     deemedAssetsStatus: "",
@@ -119,6 +121,7 @@ const exampleForms: Record<SimpleTaxKind, FormValues> = {
     childrenCount: "2",
     realEstateWon: "1,200,000,000",
     financialAssetsWon: "200,000,000",
+    financialExclusionsStatus: "no",
     otherAssetsWon: "100,000,000",
     spouseActualInheritanceWon: "500,000,000",
     deemedAssetsStatus: "no",
@@ -320,6 +323,11 @@ function buildInheritanceInput(values: FormValues): { input: InheritanceInput | 
     })()
     : (missing.push("장애인 공제 대상: 없음·있음·모름 중 하나를 선택해 주세요."), null);
 
+  const financialAssetsWon = requiredMoney(values, "financialAssetsWon", "금융재산가액", missing);
+  const financialExclusionsWon = financialAssetsWon === 0 ? 0 : financialAssetsWon === null ? null
+    : condition(values, "financialExclusionsStatus") === "unknown"
+      ? (missing.push("금융재산 중 공제 제외 재산: 공제 대상 여부를 확인해 주세요. 모름 상태에서는 계산할 수 없습니다."), null)
+      : optionalMoney(values, "financialExclusionsStatus", "financialExclusionsWon", "금융재산 중 공제 제외 재산", missing);
   const input: InheritanceInput = {
     deathDate: text(values, "deathDate"),
     spouse,
@@ -329,7 +337,8 @@ function buildInheritanceInput(values: FormValues): { input: InheritanceInput | 
     seniorCount,
     disabledDeductionWon: disabledDeduction,
     realEstateWon: requiredMoney(values, "realEstateWon", "부동산가액", missing),
-    financialAssetsWon: requiredMoney(values, "financialAssetsWon", "금융재산가액", missing),
+    financialAssetsWon,
+    financialExclusionsWon,
     otherAssetsWon: requiredMoney(values, "otherAssetsWon", "기타재산가액", missing),
     deemedAssetsWon: optionalMoney(values, "deemedAssetsStatus", "deemedAssetsWon", "퇴직금·보험금·신탁재산 등", missing),
     nonTaxableWon: optionalMoney(values, "nonTaxableStatus", "nonTaxableWon", "비과세·과세가액 불산입액", missing),
@@ -652,6 +661,7 @@ function InheritanceFields({ values, setValue }: { values: FormValues; setValue:
   const familyType = text(values, "familyType");
   const hasSpouse = familyType === "spouseChildren" || familyType === "spouseOnly";
   const showChildren = familyType === "spouseChildren" || familyType === "childrenOnly";
+  const hasFinancialAssets = (parseMoneyText(text(values, "financialAssetsWon")).value ?? 0) > 0;
   return (
     <>
       <section className={styles.group}>
@@ -677,6 +687,15 @@ function InheritanceFields({ values, setValue }: { values: FormValues; setValue:
           <MoneyField values={values} name="financialAssetsWon" label="금융재산가액" onChange={setValue} />
           <MoneyField values={values} name="otherAssetsWon" label="기타재산가액" onChange={setValue} />
         </div>
+        {hasFinancialAssets ? (
+          <div className={styles.conditionGrid}>
+            <ConditionField values={values} name="financialExclusionsStatus" label="금융재산 중 공제 제외 재산" onChange={setValue} />
+            <p className={styles.inlineHelp}>위 금융재산에 포함한 최대주주 보유 주식·출자지분 등은 금융재산공제에서 제외됩니다. 금융기관 예금과 보유 현금은 구분해 주세요. 공제 대상 여부를 확인하지 못했다면 모름을 선택해 주세요.</p>
+            {condition(values, "financialExclusionsStatus") === "yes" ? (
+              <MoneyField values={values} name="financialExclusionsWon" label="금융재산 중 공제 제외 금액" hint="위 금융재산에 포함한 금액만 입력합니다. 상속재산에서 빼는 비과세 금액이 아닙니다." onChange={setValue} />
+            ) : null}
+          </div>
+        ) : null}
       </section>
       <section className={styles.group}>
         <h2>추가 조건</h2>
@@ -846,7 +865,8 @@ function ResultPanel({
     );
   }
   const ready = result.status === "ready" && !stale;
-  const coreLines = result.lines.slice(Math.max(0, result.lines.length - 5));
+  const financialDeduction = result.kind === "inheritance" ? result.lines.find((line) => line.label === "금융재산 상속공제") : undefined;
+  const coreLines = result.lines.slice(Math.max(0, result.lines.length - (result.kind === "inheritance" ? 6 : 5)));
   return (
     <aside ref={panelRef} className={styles.result} aria-live="polite" tabIndex={-1}>
       <div className={styles.resultHeader}>
@@ -859,7 +879,7 @@ function ResultPanel({
       <h2 tabIndex={-1} data-result-title>{result.title}</h2>
       {ready ? (
         <>
-          <p className={styles.totalLabel}>예상 납부세액</p>
+          <p className={styles.totalLabel}>{result.kind === "capitalGains" ? "예상 납부세액 합계 (국세 + 지방소득세)" : "예상 납부세액"}</p>
           <strong className={styles.total}>{formatWon(result.totalTaxWon)}</strong>
         </>
       ) : (
@@ -875,9 +895,12 @@ function ResultPanel({
           <div><dt>과세표준</dt><dd>{formatWon(result.taxableBaseWon)}</dd></div>
           <div><dt>산출세액</dt><dd>{formatWon(result.grossTaxWon)}</dd></div>
           <div><dt>세액공제</dt><dd>{formatWon(result.creditWon)}</dd></div>
-          <div><dt>국세</dt><dd>{formatWon(result.nationalTaxWon)}</dd></div>
-          {result.localTaxWon ? <div><dt>지방소득세</dt><dd>{formatWon(result.localTaxWon)}</dd></div> : null}
+          <div><dt>{result.kind === "capitalGains" ? "양도소득세 (국세)" : "국세"}</dt><dd>{formatWon(result.nationalTaxWon)}</dd></div>
+          {result.kind === "capitalGains" ? <div><dt>지방소득세</dt><dd>{formatWon(result.localTaxWon)}</dd></div> : null}
         </dl>
+      ) : null}
+      {ready && financialDeduction && financialDeduction.amountWon < 0 ? (
+        <p className={styles.inlineHelp} data-financial-deduction-note>금융재산공제 {formatWon(-financialDeduction.amountWon)}을 반영했습니다. 홈택스 간편계산과 비교할 때에는 금융재산공제 등 적용된 공제 항목도 함께 확인해 주세요.</p>
       ) : null}
       {ready ? (
         <section className={styles.lines}>
@@ -957,6 +980,7 @@ export function SimpleTaxCalculator() {
         "미성년 상속인 나이": "minorAges", "장애인 기대여명 합계": "disabledLifeYears",
         "증여자와 수증자의 관계": "relationship", "종전 증여재산 산출세액": "previousTaxKnown",
         "사전증여재산": "priorGiftStatus", "주택 거주기간": "residenceStatus",
+        "금융재산 중 공제 제외 재산": condition(activeValues, "financialExclusionsStatus") === "yes" ? "financialExclusionsWon" : "financialExclusionsStatus",
       };
       const alias = Object.entries(aliases).find(([label]) => issue.startsWith(label))?.[1];
       const fields = Array.from(formRef.current?.querySelectorAll<HTMLElement>("[data-input-label]") ?? []);
@@ -969,7 +993,7 @@ export function SimpleTaxCalculator() {
       }
       target?.focus({ preventScroll: true });
       target?.scrollIntoView({ block: "center", behavior: "smooth" });
-  }, [kind, results]);
+  }, [activeValues, kind, results]);
 
   const reset = () => {
     setForms((current) => ({ ...current, [kind]: { ...blankForms[kind] } }));

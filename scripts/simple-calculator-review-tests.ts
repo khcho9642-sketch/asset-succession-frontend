@@ -6,7 +6,7 @@ import type { InheritanceInput, GiftInput, CapitalGainsInput, SimpleCalculationR
 const I: InheritanceInput = {
   deathDate: "2026-09-16", spouse: "yes", spouseSoleHeir: false, childrenCount: 2,
   minorDeductionWon: 0, seniorCount: 0, disabledDeductionWon: 0,
-  realEstateWon: 1_200_000_000, financialAssetsWon: 200_000_000, otherAssetsWon: 100_000_000,
+  realEstateWon: 1_200_000_000, financialAssetsWon: 200_000_000, financialExclusionsWon: 0, otherAssetsWon: 100_000_000,
   deemedAssetsWon: 0, nonTaxableWon: 0, priorGiftSpouseWon: 0, priorGiftHeirsWon: 0, priorGiftOthersWon: 0,
   debtWon: 100_000_000, financialDebtWon: 100_000_000, publicChargesWon: 0,
   funeralWon: 8_000_000, burialWon: 0, spouseActualInheritanceWon: 500_000_000,
@@ -51,6 +51,55 @@ for (const [assets, debt, expected] of [
 });
 for (const value of [null, -1, 100_000_001]) test(`financial debt invalid/unknown ${value}`, () => {
   const r = inh({ ...I, financialDebtWon: value });
+  assert.equal(r.status, "needs_info");
+  assert.equal(r.lines.length, 0);
+});
+
+test("2026-09-18 live comparison: retain the financial deduction absent from HomeTax simple output", () => {
+  const r = inh({ ...I, financialDebtWon: 0 });
+  assert.equal(r.status, "ready");
+  assert.equal(line(r, "금융재산 상속공제"), -40_000_000);
+  assert.equal(r.taxableBaseWon, 352_000_000);
+  assert.equal(r.grossTaxWon, 60_400_000);
+  assert.equal(r.creditWon, 1_812_000);
+  assert.equal(r.nationalTaxWon, 58_588_000);
+  // Observed HomeTax SIMPLE result, not an expected full-deduction tax amount.
+  assert.equal(66_348_000 - r.nationalTaxWon, 7_760_000);
+});
+
+test("excluded financial property remains in the estate but receives no financial deduction", () => {
+  const r = inh({ ...I, financialDebtWon: 0, financialExclusionsWon: 50_000_000 });
+  assert.equal(r.status, "ready");
+  assert.equal(line(r, "총 상속재산"), 1_500_000_000);
+  assert.equal(line(r, "상속세 과세가액"), 1_392_000_000);
+  assert.equal(line(r, "금융재산 상속공제"), -30_000_000);
+  assert.equal(r.nationalTaxWon, 60_528_000);
+});
+
+test("all financial property excluded removes only that deduction", () => {
+  const r = inh({ ...I, financialDebtWon: 0, financialExclusionsWon: 200_000_000 });
+  assert.equal(r.status, "ready");
+  assert.equal(Math.abs(line(r, "금융재산 상속공제")), 0);
+  assert.equal(line(r, "총 상속재산"), 1_500_000_000);
+  assert.equal(r.nationalTaxWon, 66_348_000);
+});
+
+test("financial exclusions and debt are separate from the estate debt subtraction", () => {
+  const r = inh({ ...I, financialAssetsWon: 400_000_000, financialExclusionsWon: 150_000_000 });
+  assert.equal(r.status, "ready");
+  assert.equal(line(r, "금융재산 상속공제"), -30_000_000);
+  assert.equal(line(r, "채무·공과금 차감"), -100_000_000);
+  assert.equal(line(r, "상속세 과세가액"), 1_592_000_000);
+});
+
+for (const value of [null, undefined, -1, 200_000_001, 0.5]) test(`financial exclusions invalid/unknown ${value}`, () => {
+  const r = inh({ ...I, financialExclusionsWon: value as number | null });
+  assert.equal(r.status, "needs_info");
+  assert.equal(r.lines.length, 0);
+});
+
+test("zero financial assets cannot contain excluded financial property", () => {
+  const r = inh({ ...I, financialAssetsWon: 0, financialExclusionsWon: 1 });
   assert.equal(r.status, "needs_info");
   assert.equal(r.lines.length, 0);
 });

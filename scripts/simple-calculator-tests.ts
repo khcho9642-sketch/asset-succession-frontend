@@ -90,6 +90,7 @@ test("inheritance uses the entered current condition, not a comparison baseline"
     disabledDeductionWon: 0,
     realEstateWon: 1_200_000_000,
     financialAssetsWon: 200_000_000,
+    financialExclusionsWon: 0,
     otherAssetsWon: 100_000_000,
     deemedAssetsWon: 0,
     nonTaxableWon: 0,
