@@ -1,0 +1,6 @@
+{
+  "url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+  "checked_at": "2026-09-19T14:30:10Z",
+  "error": "Page.goto: net::ERR_NAME_NOT_RESOLVED at https://www.klac.or.kr/legalinfo/legalFrm.do\nCall log:\n  - navigating to \"https://www.klac.or.kr/legalinfo/legalFrm.do\", waiting until \"commit\"\n",
+  "events": []
+}

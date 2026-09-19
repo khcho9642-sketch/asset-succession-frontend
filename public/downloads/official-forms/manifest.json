@@ -8,9 +8,9 @@
   "hostedInstitutionalExampleCount": 39,
   "deliveryCounts": {
     "hosted": 105,
-    "provider": 37,
+    "provider": 40,
     "direct": 0,
-    "pending": 35
+    "pending": 32
   },
   "documents": [
     {
@@ -8423,7 +8423,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "HTTPSConnectionPool(host='sc.nts.go.kr', port=443): Max retries exceeded with url: /tax_inquiry/guide_01.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='sc.nts.go.kr', port=443) at 0x7f548c5b7fb0>, 'Connection to sc.nts.go.kr timed out. (connect timeout=9)'))",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -8633,7 +8633,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "HTTPSConnectionPool(host='sc.nts.go.kr', port=443): Max retries exceeded with url: /tax_inquiry/guide_01.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='sc.nts.go.kr', port=443) at 0x7f548c5b7fb0>, 'Connection to sc.nts.go.kr timed out. (connect timeout=9)'))",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9287,32 +9287,48 @@
       "catalogTitle": "상속재산 협의분할 후 재분할 안내",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "상속등기 후 신고기한을 경과하여 재분할하는 경우의 증여세 과세 여부를 다룬 국세청 회신(2024-09-26)입니다. 최초 협의분할과 재분할을 구분하고 원문의 적용 요건·예외를 확인하세요. 특정 질의회신이며 모든 재분할에 증여세가 발생한다는 뜻은 아닙니다.",
       "tags": "P5-08 · 재산분배·상속",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000009274",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000009274",
+      "institution": "국세청 국세법령정보시스템",
+      "checkedOn": "2026-09-19",
+      "license": "공식 제공처 연결 · 원문 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "요청한 안내 본문을 확인하지 못함",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-19T14:18:25Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "url": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000009274",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:18:25Z",
+        "body_sha256": "b72b8a41bc2e385d1d55f51f7e31c8a06029b89f41444dda3a76082ad55200fc",
+        "matched_terms": [
+          "상속재산 재분할",
+          "서면-2024-상속증여-3343",
+          "신고기한",
+          "증여세"
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round9/taxinterpretation-loaded.json",
+        "verification_method": "public_HTTP_200_and_rendered_primary_source"
+      },
       "task_id": "P5-08",
-      "related_ids": []
+      "related_ids": [
+        "BP-I-01",
+        "P1-18"
+      ]
     },
     {
       "id": "P6-01",
@@ -9320,30 +9336,36 @@
       "catalogTitle": "상속예금 지급 청구 안내",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "하나은행이 게시한 상속예금 지급 신청 시 필요서류 안내(2015-01-08)입니다. 가족관계 및 지급 동의 관련 자료를 확인하는 참고 출처로 연결합니다. 오래된 게시물의 소액 기준을 현재 기준이나 전 은행 공통 기준으로 사용하지 말고, 청구 시 거래 은행에 최신 서류와 간편지급 요건을 확인하세요.",
       "tags": "P6-01 · 재산조회",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://www.kebhana.com/cont/news/news01/news0101/1424358_118324.jsp",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://www.kebhana.com/cont/news/news01/news0101/1424358_118324.jsp",
+      "institution": "하나은행",
+      "checkedOn": "2026-09-19",
+      "license": "은행 공식 제공처 연결 · 문서 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-19T14:29:15Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "url": "https://www.kebhana.com/cont/news/news01/news0101/1424358_118324.jsp",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:28:58Z",
+        "sha256": "d4f3da1bd43c2983d8ec5fcf0e56fcef87144491ed47107ffcaf607ae81b55fb",
+        "evidence_file": "docs/forms-expansion-109/evidence/round10/hana-inheritance.json"
+      },
       "task_id": "P6-01",
       "related_ids": []
     },
@@ -10480,32 +10502,49 @@
       "catalogTitle": "사업포괄양수도 관련 안내",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "사업용 건물의 매각이 사업의 포괄양도로 인정되지 않은 사례와 관련 법령을 확인할 수 있는 국세청 판례 자료(2022-04-15)입니다. 단순 자산 매각과 사업의 동일성을 유지한 권리·의무의 포괄승계를 구분하여 검토하는 참고자료이며, 현재 거래의 비과세 여부를 확정하는 안내는 아닙니다.",
       "tags": "P9-05 · 가업승계",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=000000000000574762",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=000000000000574762",
+      "institution": "국세청 국세법령정보시스템",
+      "checkedOn": "2026-09-19",
+      "license": "공식 제공처 연결 · 원문 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-19T14:18:36Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "url": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=000000000000574762",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:18:36Z",
+        "body_sha256": "ee14d1583a0e2113c4b57a875cfb2a958330736f9bcde3e3fe2b249349bd85a2",
+        "matched_terms": [
+          "사업의 포괄양도",
+          "광주지방법원-2021-구합-12336",
+          "권리",
+          "의무",
+          "부가가치세"
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round9/taxbusiness-loaded.json",
+        "verification_method": "public_HTTP_200_and_rendered_primary_source"
+      },
       "task_id": "P9-05",
-      "related_ids": []
+      "related_ids": [
+        "P2-04",
+        "P9-04"
+      ]
     },
     {
       "id": "P9-06",
@@ -13054,7 +13093,14 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "HTTPSConnectionPool(host='sc.nts.go.kr', port=443): Max retries exceeded with url: /tax_inquiry/guide_01.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='sc.nts.go.kr', port=443) at 0x7f548c5b7fb0>, 'Connection to sc.nts.go.kr timed out. (connect timeout=9)'))",
+      "attempts": [
+        {
+          "checked_at": "2026-09-19T14:29:15Z",
+          "url": "https://sc.nts.go.kr/tax_inquiry/guide_01.html",
+          "result": "HTTPSConnectionPool(host='sc.nts.go.kr', port=443): Max retries exceeded with url: /tax_inquiry/guide_01.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='sc.nts.go.kr', port=443) at 0x7f548c5b7fb0>, 'Connection to sc.nts.go.kr timed out. (connect timeout=9)'))"
+        }
+      ]
     },
     {
       "id": "P2-15",
@@ -13251,7 +13297,14 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "HTTPSConnectionPool(host='sc.nts.go.kr', port=443): Max retries exceeded with url: /tax_inquiry/guide_01.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='sc.nts.go.kr', port=443) at 0x7f548c5b7fb0>, 'Connection to sc.nts.go.kr timed out. (connect timeout=9)'))",
+      "attempts": [
+        {
+          "checked_at": "2026-09-19T14:29:15Z",
+          "url": "https://sc.nts.go.kr/tax_inquiry/guide_01.html",
+          "result": "HTTPSConnectionPool(host='sc.nts.go.kr', port=443): Max retries exceeded with url: /tax_inquiry/guide_01.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='sc.nts.go.kr', port=443) at 0x7f548c5b7fb0>, 'Connection to sc.nts.go.kr timed out. (connect timeout=9)'))"
+        }
+      ]
     },
     {
       "id": "P3-05",
@@ -13950,23 +14003,43 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000009274",
+      "checked_at": "2026-09-19T14:18:25Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 제공처 연결 · 원문 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "요청한 안내 본문을 확인하지 못함",
       "attempts": [
         {
           "checked_at": "2026-09-19T14:07:10Z",
           "url": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000003515",
           "result": "요청한 안내 본문을 확인하지 못함"
         }
+      ],
+      "source_evidence": {
+        "url": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000009274",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:18:25Z",
+        "body_sha256": "b72b8a41bc2e385d1d55f51f7e31c8a06029b89f41444dda3a76082ad55200fc",
+        "matched_terms": [
+          "상속재산 재분할",
+          "서면-2024-상속증여-3343",
+          "신고기한",
+          "증여세"
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round9/taxinterpretation-loaded.json",
+        "verification_method": "public_HTTP_200_and_rendered_primary_source"
+      },
+      "institution": "국세청 국세법령정보시스템",
+      "reviewed_at": "2026-09-19T14:28:56Z",
+      "note": "상속등기 후 신고기한을 경과하여 재분할하는 경우의 증여세 과세 여부를 다룬 국세청 회신(2024-09-26)입니다. 최초 협의분할과 재분할을 구분하고 원문의 적용 요건·예외를 확인하세요. 특정 질의회신이며 모든 재분할에 증여세가 발생한다는 뜻은 아닙니다.",
+      "related_ids": [
+        "BP-I-01",
+        "P1-18"
       ]
     },
     {
@@ -13976,17 +14049,25 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.kebhana.com/cont/news/news01/news0101/1424358_118324.jsp",
+      "checked_at": "2026-09-19T14:29:15Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "은행 공식 제공처 연결 · 문서 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "institution": "하나은행",
+      "source_evidence": {
+        "url": "https://www.kebhana.com/cont/news/news01/news0101/1424358_118324.jsp",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:28:58Z",
+        "sha256": "d4f3da1bd43c2983d8ec5fcf0e56fcef87144491ed47107ffcaf607ae81b55fb",
+        "evidence_file": "docs/forms-expansion-109/evidence/round10/hana-inheritance.json"
+      },
+      "note": "하나은행이 게시한 상속예금 지급 신청 시 필요서류 안내(2015-01-08)입니다. 가족관계 및 지급 동의 관련 자료를 확인하는 참고 출처로 연결합니다. 오래된 게시물의 소액 기준을 현재 기준이나 전 은행 공통 기준으로 사용하지 말고, 청구 시 거래 은행에 최신 서류와 간편지급 요건을 확인하세요."
     },
     {
       "id": "P6-02",
@@ -15230,17 +15311,38 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=000000000000574762",
+      "checked_at": "2026-09-19T14:18:36Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 제공처 연결 · 원문 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "source_evidence": {
+        "url": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=000000000000574762",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:18:36Z",
+        "body_sha256": "ee14d1583a0e2113c4b57a875cfb2a958330736f9bcde3e3fe2b249349bd85a2",
+        "matched_terms": [
+          "사업의 포괄양도",
+          "광주지방법원-2021-구합-12336",
+          "권리",
+          "의무",
+          "부가가치세"
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round9/taxbusiness-loaded.json",
+        "verification_method": "public_HTTP_200_and_rendered_primary_source"
+      },
+      "institution": "국세청 국세법령정보시스템",
+      "reviewed_at": "2026-09-19T14:28:56Z",
+      "note": "사업용 건물의 매각이 사업의 포괄양도로 인정되지 않은 사례와 관련 법령을 확인할 수 있는 국세청 판례 자료(2022-04-15)입니다. 단순 자산 매각과 사업의 동일성을 유지한 권리·의무의 포괄승계를 구분하여 검토하는 참고자료이며, 현재 거래의 비과세 여부를 확정하는 안내는 아닙니다.",
+      "related_ids": [
+        "P2-04",
+        "P9-04"
+      ]
     },
     {
       "id": "P9-06",

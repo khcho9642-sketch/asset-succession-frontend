@@ -1,0 +1,5 @@
+{
+  "url": "https://mob.tbht.hometax.go.kr/jsonAction.do?actionId=UTBRNAAX18F001",
+  "error": "HTTPSConnectionPool(host='mob.tbht.hometax.go.kr', port=443): Max retries exceeded with url: /jsonAction.do?actionId=UTBRNAAX18F001 (Caused by ConnectTimeoutError(<HTTPSConnection(host='mob.tbht.hometax.go.kr', port=443) at 0x7f548c5e6060>, 'Connection to mob.tbht.hometax.go.kr timed out. (connect timeout=9)'))",
+  "checked_at": "2026-09-19T14:29:05Z"
+}

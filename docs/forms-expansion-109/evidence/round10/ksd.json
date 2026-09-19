@@ -1,0 +1,15 @@
+{
+  "url": "https://ta.ksd.or.kr/",
+  "http_status": 200,
+  "checked_at": "2026-09-19T14:29:07Z",
+  "sha256": "7070d2a219ea3b7af75eb704e2c05e79d0108bb5bf633c8a117d3942838a2447",
+  "text": "한국예탁결제원 증권대행",
+  "html": "<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n\t<head>\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n\t\t<meta http-equiv=\"pragma\" content=\"no-cache\">\n\t\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"/>\n\t\t<meta name=\"viewport\" content=\"width=device-width; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=yes;\">\n\t\t<meta name=\"title\" content=\"한국예탁결제원 증권대행 홈페이지\">\t\t\n\t\t<meta name=\"description\" content=\"한국예탁결제원을 명의개서대리인으로 선임한 발행회사ㆍ주주 및 신규 계약 대상 발행회사에 증권대행 업무서비스를 제공하는 홈페이지입니다.\"/>\n\t\t<meta name=\"keywords\" content=\"한국예탁결제원,예탁결제원,증권대행,증권대행업무,명의개서대리인,명의개서대행회사,명의개서대행기관,통지서수령거부,현금배당금조회,소액주식교부,소액대금지급,주식찾기,상속인금융거래조회,전자증권,예탁,증권대행부\">\n\t\t<meta property=\"og:type\" content=\"website\">\n\t\t<meta property=\"og:locale\" content=\"ko_KR\">\n\t\t<meta property=\"og:title\" content=\"한국예탁결제원 증권대행 홈페이지\">\n\t\t<meta property=\"og:url\" content=\"https://ta.ksd.or.kr\">\n\t\t<meta property=\"og:description\" content=\"주식사무의 모든 것, KSD가 함께 합니다!\">\n\t\t<meta property=\"og:image\" content=\"https://ta.ksd.or.kr/kakao_OG.png\" />\n\t\t<link rel=\"icon\" href=\"/images/favicon.ico\"/>\n\t\t<link rel=\"shortcut icon\" href=\"https://ta.ksd.or.kr/images/favicon.ico\"/>\n\t\t<link rel=\"canonical\" href=\"https://ta.ksd.or.kr\"/>\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/contents.css\">\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/common.css?v=2026-NTA-0005-04\">\n\t\t<!-- <link rel=\"preload\" as=\"style\" onload=\"this.rel='stylesheet'\" href=\"/css/swiper.min.css\">\n\t\t<link rel=\"preload\" as=\"style\" onload=\"this.rel='stylesheet'\" href=\"/css/hardData.css\"> -->\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/swiper.min.css\">\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/hardData.css\">\n\t\t<title>한국예탁결제원 증권대행</title>\n\t\t\n\t\t<script type=\"text/javascript\">\n\n        /**\n         * 메인페이지 이동\n         */\n        window.location.href = \"/index.jsp\";\n        \n        </script>\n\t\t\n\t</head>\t\n</html>",
+  "links": [],
+  "scripts": [
+    {
+      "url": "",
+      "text": "\n\n        /**\n         * 메인페이지 이동\n         */\n        window.location.href = \"/index.jsp\";\n        \n        "
+    }
+  ]
+}
