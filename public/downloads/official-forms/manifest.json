@@ -8,9 +8,9 @@
   "hostedInstitutionalExampleCount": 39,
   "deliveryCounts": {
     "hosted": 105,
-    "provider": 31,
+    "provider": 35,
     "direct": 0,
-    "pending": 41
+    "pending": 37
   },
   "documents": [
     {
@@ -8578,30 +8578,40 @@
       "catalogTitle": "국민건강보험 자격상실 안내",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "국민건강보험공단의 사업장 가입자 자격상실 신고 작성안내입니다. 사망 관련 상실 사유와 작성 항목을 확인하세요. 지역가입자·피부양자 처리는 자격 유형에 맞는 공단 안내를 별도로 확인해야 합니다.",
       "tags": "P3-03 · 재산조회",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://edi.nhis.or.kr/webedi/file_sy/all_sangsil.html",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://edi.nhis.or.kr/webedi/file_sy/all_sangsil.html",
+      "institution": "국민건강보험공단 EDI",
+      "checkedOn": "2026-09-19",
+      "license": "공식 제공처 링크 · 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-19T14:07:10Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "url": "https://edi.nhis.or.kr/webedi/file_sy/all_sangsil.html",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:07:06Z",
+        "sha256": "8bf1166063102f4c138ae6c2547bd0219786467fbefe0285debfe2e45e22c045",
+        "matched_terms": [
+          "자격상실",
+          "사망"
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round8/P3-03.json"
+      },
       "task_id": "P3-03",
       "related_ids": []
     },
@@ -8677,30 +8687,41 @@
       "catalogTitle": "부담부증여 계약서 안내",
       "category": "증여",
       "originalCategory": "증여",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "채무를 함께 인수하는 부담부증여의 안내입니다. 채무인수 부분의 양도소득세와 증여 부분의 증여세를 구분하여 확인하세요. 새 계약서를 작성하거나 이 안내를 계약서 원본으로 제공하지 않습니다.",
       "tags": "P3-06 · 증여",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=2&cnpClsNo=2&csmSeq=1259&popMenu=ov",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=2&cnpClsNo=2&csmSeq=1259&popMenu=ov",
+      "institution": "법제처 찾기쉬운 생활법령정보",
+      "checkedOn": "2026-09-19",
+      "license": "공식 제공처 링크 · 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=2&cnpClsNo=2&csmSeq=1259&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='easylaw.go.kr', port=443) at 0x7ff5fb3414c0>, 'Connection to easylaw.go.kr timed out. (connect timeout=9)'))",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-19T14:07:10Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "url": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=2&cnpClsNo=2&csmSeq=1259&popMenu=ov",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:07:07Z",
+        "sha256": "a1b59b834073e279a410a504e72979c641a98108f07bf77f62a94bd7b60e0691",
+        "matched_terms": [
+          "부담부증여",
+          "채무",
+          "양도소득세"
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round8/P3-06.json"
+      },
       "task_id": "P3-06",
       "related_ids": []
     },
@@ -9170,30 +9191,42 @@
       "catalogTitle": "장애인 신탁 증여세 과세가액 불산입 안내",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "장애인에게 증여한 재산을 신탁하는 경우의 과세가액 불산입 요건과 사후관리 안내입니다. 신탁계약·장애인 증명·신고서 등 원문에 제시된 서류를 확인하세요. 모든 장애인 증여에 자동 적용된다는 뜻은 아닙니다.",
       "tags": "P5-06 · 공제·납부",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=1&cnpClsNo=2&csmSeq=916&popMenu=ov",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=1&cnpClsNo=2&csmSeq=916&popMenu=ov",
+      "institution": "법제처 찾기쉬운 생활법령정보",
+      "checkedOn": "2026-09-19",
+      "license": "공식 제공처 링크 · 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=1&cnpClsNo=2&csmSeq=916&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='easylaw.go.kr', port=443) at 0x7ff5fb3410d0>, 'Connection to easylaw.go.kr timed out. (connect timeout=9)'))",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-19T14:07:10Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "url": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=1&cnpClsNo=2&csmSeq=916&popMenu=ov",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:07:07Z",
+        "sha256": "0c6175c7d60e171a06bab258a3773c637612255a8b3b2e698e3feabd58a4e1bb",
+        "matched_terms": [
+          "장애인",
+          "신탁",
+          "과세가액",
+          "불산입"
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round8/P5-06.json"
+      },
       "task_id": "P5-06",
       "related_ids": []
     },
@@ -9266,7 +9299,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "요청한 안내 본문을 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -9977,30 +10010,42 @@
       "catalogTitle": "한정승인 후 청산 절차 안내",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "한정승인 이후 상속채권자에 대한 공고·최고와 변제 등 청산 절차를 안내합니다. 법원 심판 수리와 청산 완료는 구분해야 합니다.",
       "tags": "P8-05 · 재산분배·상속",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255",
+      "institution": "법제처 찾기쉬운 생활법령정보",
+      "checkedOn": "2026-09-19",
+      "license": "공식 제공처 링크 · 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='www.easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.easylaw.go.kr', port=443) at 0x7ff5fb33f920>, 'Connection to www.easylaw.go.kr timed out. (connect timeout=9)'))",
+      "verification": "실제 응답·문서 존재 확인. 전체 서식의 제출 적합성 판단은 별도입니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-19T14:07:10Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "url": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:07:07Z",
+        "sha256": "13907d1b33b9b9d73c85db5bb13d64aa5ed4fa8aa451d33dcb07c3f9312f6676",
+        "matched_terms": [
+          "한정승인",
+          "청산",
+          "채권",
+          "공고"
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round8/P8-05.json"
+      },
       "task_id": "P8-05",
       "related_ids": []
     },
@@ -10022,7 +10067,7 @@
       "checkedOn": "",
       "license": "미확인",
       "licenseUrl": "",
-      "verification": "HTTPSConnectionPool(host='www.easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=1&csmSeq=255&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.easylaw.go.kr', port=443) at 0x7ff5fb3408c0>, 'Connection to www.easylaw.go.kr timed out. (connect timeout=9)'))",
+      "verification": "요청한 안내 본문을 확인하지 못함",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
       "delivery": "pending",
       "files": [],
@@ -13136,24 +13181,36 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://edi.nhis.or.kr/webedi/file_sy/all_sangsil.html",
+      "checked_at": "2026-09-19T14:07:10Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 제공처 링크 · 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
       "attempts": [
         {
           "checked_at": "2026-09-19T13:12:10Z",
           "url": "https://edi.nhis.or.kr/webedi/file_sy/all_sangsil.html",
           "result": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
         }
-      ]
+      ],
+      "institution": "국민건강보험공단 EDI",
+      "source_evidence": {
+        "url": "https://edi.nhis.or.kr/webedi/file_sy/all_sangsil.html",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:07:06Z",
+        "sha256": "8bf1166063102f4c138ae6c2547bd0219786467fbefe0285debfe2e45e22c045",
+        "matched_terms": [
+          "자격상실",
+          "사망"
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round8/P3-03.json"
+      },
+      "note": "국민건강보험공단의 사업장 가입자 자격상실 신고 작성안내입니다. 사망 관련 상실 사유와 작성 항목을 확인하세요. 지역가입자·피부양자 처리는 자격 유형에 맞는 공단 안내를 별도로 확인해야 합니다."
     },
     {
       "id": "P3-04",
@@ -13200,24 +13257,37 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=2&cnpClsNo=2&csmSeq=1259&popMenu=ov",
+      "checked_at": "2026-09-19T14:07:10Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 제공처 링크 · 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=2&cnpClsNo=2&csmSeq=1259&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='easylaw.go.kr', port=443) at 0x7ff5fb3414c0>, 'Connection to easylaw.go.kr timed out. (connect timeout=9)'))",
       "attempts": [
         {
           "checked_at": "2026-09-19T13:12:10Z",
           "url": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=2&cnpClsNo=2&csmSeq=1259&popMenu=ov",
           "result": "HTTPSConnectionPool(host='easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=2&cnpClsNo=2&csmSeq=1259&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='easylaw.go.kr', port=443) at 0x7ff5fb3414c0>, 'Connection to easylaw.go.kr timed out. (connect timeout=9)'))"
         }
-      ]
+      ],
+      "institution": "법제처 찾기쉬운 생활법령정보",
+      "source_evidence": {
+        "url": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=2&cnpClsNo=2&csmSeq=1259&popMenu=ov",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:07:07Z",
+        "sha256": "a1b59b834073e279a410a504e72979c641a98108f07bf77f62a94bd7b60e0691",
+        "matched_terms": [
+          "부담부증여",
+          "채무",
+          "양도소득세"
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round8/P3-06.json"
+      },
+      "note": "채무를 함께 인수하는 부담부증여의 안내입니다. 채무인수 부분의 양도소득세와 증여 부분의 증여세를 구분하여 확인하세요. 새 계약서를 작성하거나 이 안내를 계약서 원본으로 제공하지 않습니다."
     },
     {
       "id": "P4-01",
@@ -13760,24 +13830,38 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=1&cnpClsNo=2&csmSeq=916&popMenu=ov",
+      "checked_at": "2026-09-19T14:07:10Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 제공처 링크 · 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=1&cnpClsNo=2&csmSeq=916&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='easylaw.go.kr', port=443) at 0x7ff5fb3410d0>, 'Connection to easylaw.go.kr timed out. (connect timeout=9)'))",
       "attempts": [
         {
           "checked_at": "2026-09-19T13:12:10Z",
           "url": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=1&cnpClsNo=2&csmSeq=916&popMenu=ov",
           "result": "HTTPSConnectionPool(host='easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=1&cnpClsNo=2&csmSeq=916&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='easylaw.go.kr', port=443) at 0x7ff5fb3410d0>, 'Connection to easylaw.go.kr timed out. (connect timeout=9)'))"
         }
-      ]
+      ],
+      "institution": "법제처 찾기쉬운 생활법령정보",
+      "source_evidence": {
+        "url": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=1&cnpClsNo=2&csmSeq=916&popMenu=ov",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:07:07Z",
+        "sha256": "0c6175c7d60e171a06bab258a3773c637612255a8b3b2e698e3feabd58a4e1bb",
+        "matched_terms": [
+          "장애인",
+          "신탁",
+          "과세가액",
+          "불산입"
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round8/P5-06.json"
+      },
+      "note": "장애인에게 증여한 재산을 신탁하는 경우의 과세가액 불산입 요건과 사후관리 안내입니다. 신탁계약·장애인 증명·신고서 등 원문에 제시된 서류를 확인하세요. 모든 장애인 증여에 자동 적용된다는 뜻은 아닙니다."
     },
     {
       "id": "P5-07",
@@ -13854,7 +13938,14 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "failure_reason": "요청한 안내 본문을 확인하지 못함",
+      "attempts": [
+        {
+          "checked_at": "2026-09-19T14:07:10Z",
+          "url": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000003515",
+          "result": "요청한 안내 본문을 확인하지 못함"
+        }
+      ]
     },
     {
       "id": "P6-01",
@@ -14240,24 +14331,34 @@
       "required_original": false,
       "operation": "alias",
       "target_id": "P3-03",
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.nhis.or.kr/static/alim/paper/oldpaper/202302/sub/23.html",
+      "checked_at": "2026-09-19T13:11:43Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 제공처 연결 · 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "자격상실 기본 안내의 확인을 먼저 완료해야 합니다.",
       "attempts": [
         {
           "checked_at": "2026-09-19T13:12:10Z",
           "url": "https://www.nhis.or.kr/static/alim/paper/oldpaper/202302/sub/23.html",
           "result": "자격상실 기본 안내의 확인을 먼저 완료해야 합니다."
         }
-      ]
+      ],
+      "alias_verified": true,
+      "source_evidence": {
+        "url": "https://www.nhis.or.kr/static/alim/paper/oldpaper/202302/sub/23.html",
+        "http_status": 200,
+        "checked_at": "2026-09-19T13:11:43Z",
+        "sha256": "5aa69f82b966980fb759d4ffc941d947d9417facb69be6d84e84942b64a9344d",
+        "evidence_file": "docs/forms-expansion-109/evidence/round6/P7-07.json"
+      },
+      "institution": "국민건강보험공단",
+      "reviewed_at": "2026-09-19T14:07:10Z",
+      "note": "국민건강보험공단의 자격상실 안내에 2023년 2월 공단 사보의 퇴직자 임의계속가입 안내를 연결합니다. 임의계속가입은 사망자의 자격을 상속한다는 제도가 아닙니다. 퇴직자의 가입·신청 요건은 최신 공단 안내와 개별 자격으로 다시 확인하세요."
     },
     {
       "id": "P8-01",
@@ -14647,24 +14748,38 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255",
+      "checked_at": "2026-09-19T14:07:10Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 제공처 링크 · 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='www.easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.easylaw.go.kr', port=443) at 0x7ff5fb33f920>, 'Connection to www.easylaw.go.kr timed out. (connect timeout=9)'))",
       "attempts": [
         {
           "checked_at": "2026-09-19T13:12:10Z",
           "url": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255",
           "result": "HTTPSConnectionPool(host='www.easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.easylaw.go.kr', port=443) at 0x7ff5fb33f920>, 'Connection to www.easylaw.go.kr timed out. (connect timeout=9)'))"
         }
-      ]
+      ],
+      "institution": "법제처 찾기쉬운 생활법령정보",
+      "source_evidence": {
+        "url": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:07:07Z",
+        "sha256": "13907d1b33b9b9d73c85db5bb13d64aa5ed4fa8aa451d33dcb07c3f9312f6676",
+        "matched_terms": [
+          "한정승인",
+          "청산",
+          "채권",
+          "공고"
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round8/P8-05.json"
+      },
+      "note": "한정승인 이후 상속채권자에 대한 공고·최고와 변제 등 청산 절차를 안내합니다. 법원 심판 수리와 청산 완료는 구분해야 합니다."
     },
     {
       "id": "P8-06",
@@ -14683,12 +14798,17 @@
       "license": "미확인",
       "source_type": null,
       "files": [],
-      "failure_reason": "HTTPSConnectionPool(host='www.easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=1&csmSeq=255&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.easylaw.go.kr', port=443) at 0x7ff5fb3408c0>, 'Connection to www.easylaw.go.kr timed out. (connect timeout=9)'))",
+      "failure_reason": "요청한 안내 본문을 확인하지 못함",
       "attempts": [
         {
           "checked_at": "2026-09-19T13:12:10Z",
           "url": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=1&csmSeq=255&popMenu=ov",
           "result": "HTTPSConnectionPool(host='www.easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=1&csmSeq=255&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.easylaw.go.kr', port=443) at 0x7ff5fb3408c0>, 'Connection to www.easylaw.go.kr timed out. (connect timeout=9)'))"
+        },
+        {
+          "checked_at": "2026-09-19T14:07:10Z",
+          "url": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=1&csmSeq=255&popMenu=ov",
+          "result": "요청한 안내 본문을 확인하지 못함"
         }
       ]
     },
