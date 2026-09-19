@@ -1,0 +1,36 @@
+name: Forms Library Review
+
+on:
+  pull_request:
+    branches: [assistant/forms-additions-109]
+  push:
+    branches: [codex/forms-library-complete]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: forms-library-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci --no-audit --no-fund
+      - run: python -m pip install jsonschema==4.26.0
+      - run: npm run test:forms
+      - run: npm run lint
+      - run: npm run build
+      - run: npm run test:forms-routes
+      - run: npm run typecheck
+      - run: npm run test:chat

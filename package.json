@@ -19,7 +19,9 @@
     "test:simple-calculator": "node scripts/simple-calculator-tests.mjs",
     "test:tax-ui": "node scripts/tax-comparison-ui-audit.mjs",
     "test:tax-extensions-ui": "node scripts/tax-extensions-ui-audit.mjs",
-    "test:smoke": "node scripts/pr2-smoke.mjs"
+    "test:smoke": "node scripts/pr2-smoke.mjs",
+    "test:forms": "node scripts/run-forms-library-tests.mjs",
+    "test:forms-routes": "node scripts/forms-route-smoke.mjs"
   },
   "dependencies": {
     "@ai-sdk/google": "4.0.65",

@@ -1,0 +1,68 @@
+{
+  "id": "P1-03",
+  "title": "상속 소유권이전등기 신청서",
+  "status": "확인 완료",
+  "source_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=3&cnpClsNo=3&csmSeq=566&popMenu=ov",
+  "checked_at": "2026-09-19T17:21:54Z",
+  "source_type": "공식제공처",
+  "institution": "법제처 찾기쉬운 생활법령정보",
+  "requested_provider": "대한민국 법원 인터넷등기소",
+  "alternative_official_source": true,
+  "license": "법제처 공식 제공처의 첨부 원본 확인 · 자체 재배포하지 않음",
+  "files": [],
+  "inspected_originals": [
+    {
+      "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1776928547393",
+      "bytes": 29696,
+      "sha256": "52c55269052ae428f590a373eb5cefbfd94f6bcddb8337f2e988e200d3924dd6",
+      "format": "hwp",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:22:07Z",
+      "title_verified": true,
+      "role": "original",
+      "name": "상속 소유권이전등기 신청서"
+    },
+    {
+      "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1776928582533",
+      "bytes": 30208,
+      "sha256": "0cc9ea72420abb26cfd1cfdb142e33570759aa897ec17d238a909a64b7acd395",
+      "format": "hwp",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:22:17Z",
+      "title_verified": true,
+      "role": "original",
+      "name": "상속 소유권이전등기 신청서 (구분건물)"
+    }
+  ],
+  "source_evidence": {
+    "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=3&cnpClsNo=3&csmSeq=566&popMenu=ov",
+    "http_status": 200,
+    "checked_at": "2026-09-19T17:21:54Z",
+    "page_sha256": "388ee07f95d2b27762af6f5748246b1e5f296cfaa12eb4adf88c8182fd8f6754",
+    "matched_terms": [
+      "상속 소유권이전등기 신청서"
+    ],
+    "download_sha256": [
+      "52c55269052ae428f590a373eb5cefbfd94f6bcddb8337f2e988e200d3924dd6",
+      "0cc9ea72420abb26cfd1cfdb142e33570759aa897ec17d238a909a64b7acd395"
+    ],
+    "confirmed_observations": [
+      "본문의 해당 서식 다운로드 링크 확인",
+      "실제 HWP 파일의 HWP Document File 서명 확인",
+      "파일 내 신청서 제목 및 요청 목적 대조"
+    ],
+    "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-03.json",
+    "evidence_sha256": "eb147a80db71c691a3453d4a1b9c8a593032d8be9629bbffbc25f1de989452eb"
+  },
+  "failure_reason": null,
+  "note": "법제처 공식 제공처에서 해당 신청서의 다운로드 링크와 실제 HWP 파일의 제목·본문을 대조했습니다. 인터넷등기소 직링크로 표기하지 않으며 법제처 공식 페이지로 연결합니다. 현행 제출 요건은 관할 등기소에 확인하세요.",
+  "candidate_reviewed_at": "2026-09-19T17:31:51.512411+00:00",
+  "task_operation": "source_url_update",
+  "target_id": "REG-I-01",
+  "evidence_retention": {
+    "representation": "metadata_and_short_excerpts",
+    "support_file": "docs/forms-expansion-109/evidence/round16/support/P1-03.json",
+    "new_original_binaries_included": false,
+    "private_local_paths_included": false
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "id": "P2-11",
+  "title": "기한후과세표준신고서",
+  "display_title_recommendation": "기한 후 신고 · 세목별 신고서",
+  "status": "확인 완료",
+  "source_url": "https://www.law.go.kr/법령/국세기본법시행령/제25조의4",
+  "institution": "국가법령정보센터 · 국세청",
+  "checked_at": "2026-09-19T17:29:12Z",
+  "source_type": "원본",
+  "form_no": "상속세 및 증여세법 시행규칙 별지 제9호·제10호·제10호의2, 소득세법 시행규칙 별지 제84호",
+  "revised_at": null,
+  "deadline": null,
+  "deadline_basis": null,
+  "license": "법령 별지서식 · 원본 무수정·출처 표시",
+  "note": "기한 후 신고는 하나의 공통 신고서가 아니라 해당 세목의 법정 신고서로 합니다. 이 묶음은 기한 후 신고 선택란이 실제 표시된 상속세·기본증여세·특례증여세·양도소득세 원본을 제공합니다. 국세기본법 시행령의 위임 규정과 각 현행 시행규칙의 서식을 확인했으며, 수정신고서나 세무서 발송용 안내문을 대신 수집하지 않았습니다. 세목과 적용요건에 맞는 원본을 선택하세요.",
+  "verified": [
+    "국세기본법 시행령에서 기한후과세표준신고서는 각 세법에 따른다고 정한 조문 확인",
+    "상속·기본증여·특례증여·양도 신고서 원본 첫머리에 기한 후 신고 선택란 확인",
+    "현재 시행규칙 원문이 제공하는 PDF 원본 다운로드·전체 텍스트·해시 확인"
+  ],
+  "evidence_refs": [
+    "docs/forms-expansion-109/evidence/round16/support/P2-11.json"
+  ],
+  "files": [
+    {
+      "name": "상속세과세표준신고 및 자진납부계산서.pdf",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162625975&bylClsCd=110202",
+      "bytes": 265841,
+      "sha256": "7f46b68911f46c6aa65265734c165d09f03ddf640dbb3248b4ac36866948ffd2",
+      "format": "pdf",
+      "role": "original",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:28:38Z",
+      "title_verified": true,
+      "path": "public/downloads/official-forms/expansion/P2-11_7f46b68911f4.pdf",
+      "local_url": "/downloads/official-forms/expansion/P2-11_7f46b68911f4.pdf"
+    },
+    {
+      "name": "증여세과세표준신고 및 자진납부계산서 · 기본세율.pdf",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162626013&bylClsCd=110202",
+      "bytes": 217314,
+      "sha256": "a5dd1e04db15869d5308ae69d1af35e4889e67b57e5354ab72882b0c1f6aa912",
+      "format": "pdf",
+      "role": "original",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:28:38Z",
+      "title_verified": true,
+      "path": "public/downloads/official-forms/expansion/P2-11_a5dd1e04db15.pdf",
+      "local_url": "/downloads/official-forms/expansion/P2-11_a5dd1e04db15.pdf"
+    },
+    {
+      "name": "증여세과세표준신고 및 자진납부계산서 · 창업자금·가업승계 특례.pdf",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162626039&bylClsCd=110202",
+      "bytes": 140673,
+      "sha256": "77a238390d4016a2d7b567fde0f85cfb06260fc8d40ea6083a43aa7f2689691b",
+      "format": "pdf",
+      "role": "original",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:28:38Z",
+      "title_verified": true,
+      "path": "public/downloads/official-forms/expansion/P2-11_77a238390d40.pdf",
+      "local_url": "/downloads/official-forms/expansion/P2-11_77a238390d40.pdf"
+    },
+    {
+      "name": "양도소득과세표준 신고 및 납부계산서.pdf",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=164445095&bylClsCd=110202",
+      "bytes": 267524,
+      "sha256": "4920658fe5222742246868ad5cf4f398422614dc6895ad55f39bb2db51d6ea1d",
+      "format": "pdf",
+      "role": "original",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:29:12Z",
+      "title_verified": true,
+      "path": "public/downloads/official-forms/expansion/P2-11_4920658fe522.pdf",
+      "local_url": "/downloads/official-forms/expansion/P2-11_4920658fe522.pdf"
+    }
+  ],
+  "source_evidence": {
+    "url": "https://www.law.go.kr/LSW/lsSideInfoP.do?lsiSeq=283623&joNo=0025&joBrNo=04&docCls=jo&urlMode=lsScJoRltInfoR",
+    "http_status": 200,
+    "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P2-11.json",
+    "matched_terms": [
+      "기한 후 과세표준신고",
+      "기한후과세표준신고서는 세법에서 정하는 바에 따른다"
+    ],
+    "evidence_sha256": "403172db4698c2531b28b40bf651dfa95d31b50ab6599a7e759aa728fd4076c9"
+  },
+  "related_ids": [
+    "NTS-IG-10",
+    "NTS-IG-11",
+    "NTS-IG-12",
+    "NTS-CG-01"
+  ],
+  "scope_review_required": [
+    "독립 공통서식이 아닌 기존 세목별 서식 묶음이므로 기존 자료와 관계 연결 필요",
+    "해당 ID를 별도 새 원본 4종으로 중복집계 금지"
+  ],
+  "candidate_reviewed_at": "2026-09-19T17:31:52.179013+00:00",
+  "task_operation": "add",
+  "target_id": null,
+  "evidence_retention": {
+    "representation": "metadata_and_short_excerpts",
+    "support_file": "docs/forms-expansion-109/evidence/round16/support/P2-11.json",
+    "new_original_binaries_included": false,
+    "private_local_paths_included": false
+  }
+}

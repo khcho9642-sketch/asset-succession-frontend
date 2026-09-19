@@ -1,0 +1,71 @@
+{
+  "id": "P1-04",
+  "title": "협의분할 상속 소유권이전등기 신청서",
+  "institution": "법제처 찾기쉬운 생활법령정보",
+  "source_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=3&cnpClsNo=3&csmSeq=566&popMenu=ov",
+  "checked_at": "2026-09-19T17:21:54Z",
+  "retention": "검증 메타데이터와 짧은 발췌만 보존. 원본·전체 텍스트·화면·쿠키·임시 경로는 포함하지 않음.",
+  "records": [
+    {
+      "capture_name": "P1-04-evidence.json",
+      "capture_sha256": "afe4a26f86f61ee4a99fe21ffea919c297cceea59a797e428d0937c6721b8dab",
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=3&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:21:54Z",
+      "page_sha256": "388ee07f95d2b27762af6f5748246b1e5f296cfaa12eb4adf88c8182fd8f6754",
+      "verification_method": "official_download_and_body",
+      "confirmed_observations": [
+        "본문의 해당 서식 다운로드 링크 확인",
+        "실제 HWP 파일의 HWP Document File 서명 확인",
+        "파일 내 신청서 제목 및 요청 목적 대조"
+      ],
+      "observed_download_links": [
+        {
+          "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1776928616519",
+          "label": "협의분할에 의한 상속을 원인으로 한 소유권 이전등기 신청서 양식은"
+        },
+        {
+          "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1776928630992",
+          "label": "협의분할에 의한 상속을 원인으로 한 소유권 이전등기 신청서(구분건물) 양식은"
+        }
+      ],
+      "download_verified": true
+    },
+    {
+      "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1776928616519",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:22:07Z",
+      "sha256": "7a7db50c8f18f0bed9669a1ddbdca7744e39dca2abb0ef5bb3362b4fdff0f485",
+      "bytes": 31232,
+      "format": "hwp",
+      "title_verified": true,
+      "name": "협의분할 상속 소유권이전등기 신청서",
+      "role": "original",
+      "text_sha256": "cc4876b0f8dc9c8f9e82dfcd660b8fc21cb80e767ae6f0d1baaf02a8cab7745f",
+      "excerpt": [
+        "소유권이전등기신청",
+        "(협의분할에 의한 상속)"
+      ],
+      "download_verified": true,
+      "binary_included_in_support": false
+    },
+    {
+      "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1776928630992",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:22:17Z",
+      "sha256": "54f86ccd7357c6a0a5d85b363b613bde45f292ac1704a2f6fbd19eeaaec5cdc7",
+      "bytes": 31744,
+      "format": "hwp",
+      "title_verified": true,
+      "name": "협의분할 상속 소유권이전등기 신청서 (구분건물)",
+      "role": "original",
+      "text_sha256": "7cbd595906ccc9082d492a302b5491653391c842c96166a047cf4504d677abca",
+      "excerpt": [
+        "소유권이전등기신청",
+        "(협의분할에 의한 상속)"
+      ],
+      "download_verified": true,
+      "binary_included_in_support": false
+    }
+  ]
+}

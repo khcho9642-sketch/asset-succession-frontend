@@ -6,14 +6,17 @@ import { createHash } from 'node:crypto';
 const readJson = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8').replace(/^\uFEFF/, ''));
 const catalog = readJson('../docs/reviews/official_forms_catalog_candidates.json');
 const manifest = readJson('../public/downloads/official-forms/manifest.json');
-const documents = manifest.documents;
+// This suite retains the original 74-record/binary audit after the catalog expands.
+const legacyIds = new Set(catalog.records.map(item => item.id));
+const documents = manifest.documents.filter(item => legacyIds.has(item.id));
+const approvedSourceUpdates = new Map(manifest.additionRequests.filter(item => item.operation === 'source_url_update' && item.status === '확인 완료').map(item => [item.target_id, item.source_url]));
 const expectedCategories = { '재산분배·상속': 10, '증여': 3, '매매·임대차': 21, '차용·상환': 10, '양도': 16, '가업승계': 3, '공제·납부': 5, '등기': 6 };
 
 test('all 74 candidate IDs are published exactly once, without substitute aggregates', () => {
   assert.equal(documents.length, 74);
   assert.equal(new Set(documents.map(item => item.id)).size, 74);
   assert.deepEqual(documents.map(item => item.id).sort(), catalog.records.map(item => item.id).sort());
-  assert.equal(manifest.publishedCount, 74);
+  assert.equal(manifest.legacyBundleCount, 74);
 });
 
 test('catalog titles, original categories and source groups remain traceable', () => {
@@ -22,7 +25,7 @@ test('catalog titles, original categories and source groups remain traceable', (
     assert.equal(item.catalogTitle, record.title, record.id);
     assert.equal(item.originalCategory, record.category, record.id);
     assert.equal(item.sourceId, record.source_id, record.id);
-    assert.equal(item.sourceUrl, record.source_url, record.id);
+    assert.equal(item.sourceUrl, approvedSourceUpdates.get(record.id) ?? record.source_url, record.id);
     assert.ok(item.institution && item.checkedOn && item.verification && item.format, record.id);
   }
 });
@@ -37,7 +40,7 @@ test('all 74 titles have a dated official-page evidence record, separate from bi
     assert.equal(item.titleFoundInOfficialPage, true, item.id);
     assert.equal(item.binaryVerifiedByThisAudit, false, item.id);
     assert.match(item.pageTextSha256, /^[a-f0-9]{64}$/);
-    assert.equal(item.url, documents.find(document => document.id === item.id).sourceUrl);
+    assert.equal(item.url, catalog.records.find(record => record.id === item.id).source_url);
   }
 });
 
@@ -50,13 +53,25 @@ test('every category is reachable and all original category counts are preserved
 test('download, direct attachment and pending counts do not conflate records and files', () => {
   const counts = Object.fromEntries(['hosted', 'direct', 'pending'].map(key => [key, documents.filter(item => item.delivery === key).length]));
   assert.deepEqual(counts, { hosted: 74, direct: 0, pending: 0 });
+  const files = documents.flatMap(item => item.files);
+  assert.equal(files.length, 148);
+  assert.equal(files.filter(file => file.artifactType !== 'derived-image-compilation').length, 147);
+  assert.equal(files.filter(file => file.artifactType === 'derived-image-compilation').length, 1);
+});
+
+test('expanded catalog aggregates count current records and unique local file paths', () => {
+  assert.equal(manifest.documents.length, 177);
+  assert.equal(new Set(manifest.documents.map(item => item.id)).size, 177);
+  assert.equal(manifest.publishedCount, 177);
+  assert.equal(manifest.candidateCount, 177);
+  const counts = Object.fromEntries(['hosted', 'provider', 'direct', 'pending'].map(key => [key, manifest.documents.filter(item => item.delivery === key).length]));
   assert.deepEqual(manifest.deliveryCounts, counts);
-  assert.equal(manifest.hostedOriginalCount, 74);
-  assert.equal(manifest.hostedInstitutionalExampleCount, 39);
-  assert.equal(manifest.hostedFileCount, 148);
-  assert.equal(manifest.hostedOriginalFileCount, 147);
-  assert.equal(manifest.hostedDerivedFileCount, 1);
-  assert.equal(manifest.directDownloadCount, 74);
+  const files = [...new Map(manifest.documents.flatMap(item => item.files).filter(file => file.delivery === 'hosted').map(file => [file.path, file])).values()];
+  assert.equal(manifest.hostedFileCount, files.length);
+  assert.equal(manifest.hostedOriginalCount, counts.hosted);
+  assert.equal(manifest.directDownloadCount, counts.hosted + counts.direct);
+  assert.equal(manifest.hostedOriginalFileCount, files.filter(file => file.artifactType !== 'derived-image-compilation').length);
+  assert.equal(manifest.hostedDerivedFileCount, files.filter(file => file.artifactType === 'derived-image-compilation').length);
 });
 
 test('four hosted originals and examples retain their audited binary hashes', () => {
