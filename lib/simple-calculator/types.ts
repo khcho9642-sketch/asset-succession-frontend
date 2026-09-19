@@ -31,6 +31,16 @@ export type SimpleCalculationResult = {
   scopeNotes: UnsupportedItem[];
   references: Array<{ label: string; url: string }>;
   checkedOn: string;
+  annualAggregation?: boolean;
+};
+
+export type InheritancePriorGift = {
+  recipient: "spouse" | "child" | "other" | null;
+  propertyKind: "cash" | "other" | null;
+  amountWon: MoneyInput;
+  taxableBaseWon: MoneyInput;
+  calculatedTaxWon: MoneyInput;
+  creditEligible: "yes" | "no" | "unknown" | null;
 };
 
 export type InheritanceInput = {
@@ -59,6 +69,7 @@ export type InheritanceInput = {
   statutoryShareNumerator: number | null;
   statutoryShareDenominator: number | null;
   spousePriorGiftTaxableWon: MoneyInput;
+  priorGifts: InheritancePriorGift[] | null;
 };
 
 export type GiftInput = {
@@ -72,6 +83,9 @@ export type GiftInput = {
   otherGiftDeductionWon: MoneyInput;
   appraisalFeeWon: MoneyInput;
   marriageBirthDeductionWon: MoneyInput;
+  marriageBirthPreviouslyUsedWon: MoneyInput;
+  marriageBirthEvent: "marriage" | "birth" | null;
+  marriageBirthEventDate: string | null;
   previousTaxPaidWon: MoneyInput;
   generationSkip: boolean;
   minorOverTwoBillion: boolean;
@@ -86,6 +100,10 @@ export type CapitalGainsInput = {
   necessaryExpenseWon: MoneyInput;
   otherCapitalGainWon: MoneyInput;
   basicDeductionUsedWon: MoneyInput;
+  annualAggregation: boolean;
+  otherGainsGeneralRate: "yes" | "no" | "unknown" | null;
+  previousNationalTaxWon: MoneyInput;
+  previousLocalTaxWon: MoneyInput;
   residenceYears: number | null;
   homeCount: number | null;
   regulatedArea: boolean;

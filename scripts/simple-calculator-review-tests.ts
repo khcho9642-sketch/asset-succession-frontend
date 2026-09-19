@@ -11,12 +11,14 @@ const I: InheritanceInput = {
   debtWon: 100_000_000, financialDebtWon: 100_000_000, publicChargesWon: 0,
   funeralWon: 8_000_000, burialWon: 0, spouseActualInheritanceWon: 500_000_000,
   statutoryShareNumerator: 3, statutoryShareDenominator: 7, spousePriorGiftTaxableWon: 0,
+  priorGifts: [],
 };
 const G: GiftInput = {
   giftDate: "2026-09-16", resident: "yes", relationship: "linealAscendantAdult",
   amountWon: 50_000_000, debtAssumedWon: 0, priorGiftWon: 50_000_000,
   priorGiftDeductionWon: 50_000_000, otherGiftDeductionWon: 0, appraisalFeeWon: 0,
   marriageBirthDeductionWon: 0, previousTaxPaidWon: 0, generationSkip: false, minorOverTwoBillion: false,
+  marriageBirthPreviouslyUsedWon: 0, marriageBirthEvent: null, marriageBirthEventDate: null,
 };
 const H: CapitalGainsInput = {
   transferDate: "2026-09-16", acquisitionDate: "2016-09-15", assetType: "oneHome",
@@ -24,6 +26,7 @@ const H: CapitalGainsInput = {
   otherCapitalGainWon: 0, basicDeductionUsedWon: 0, residenceYears: 10, homeCount: 1,
   resident: "yes", homeOwnership: "solePurchased", householdOtherRights: "no",
   regulatedAtAcquisition: "no", homeSpecialConditions: "no", regulatedArea: false,
+  annualAggregation: false, otherGainsGeneralRate: null, previousNationalTaxWon: 0, previousLocalTaxWon: 0,
 };
 function line(result: SimpleCalculationResult, label: string) {
   const found = result.lines.find(item => item.label.startsWith(label));
@@ -201,4 +204,153 @@ test("invalid calendar dates and unverified future dates blocked", () => {
   assert.equal(fullYearsBetween("2026-02-30", "2026-09-16"), null);
   assert.equal(capital({ ...H, transferDate: "2027-01-01" }).status, "unsupported");
   assert.equal(inh({ ...I, deathDate: "2026-02-30" }).status, "needs_info");
+});
+
+const priorChildGift = { recipient: "child" as const, propertyKind: "cash" as const, amountWon: 100_000_000,
+  taxableBaseWon: 50_000_000, calculatedTaxWon: 5_000_000, creditEligible: "yes" as const };
+const IWithGift = { ...I, financialDebtWon: 0, priorGiftHeirsWon: 100_000_000, priorGifts: [priorChildGift] };
+const marriage = { ...G, amountWon: 150_000_000, priorGiftWon: 0, priorGiftDeductionWon: 0,
+  otherGiftDeductionWon: 50_000_000, marriageBirthDeductionWon: 100_000_000,
+  marriageBirthEvent: "marriage" as const, marriageBirthEventDate: "2025-09-16", marriageBirthPreviouslyUsedWon: 60_000_000 };
+const annual = { ...H, assetType: "generalBuilding" as const, annualAggregation: true,
+  otherCapitalGainWon: 100_000_000, basicDeductionUsedWon: 2_500_000, otherGainsGeneralRate: "yes" as const,
+  previousNationalTaxWon: 18_685_000, previousLocalTaxWon: 1_868_500 };
+
+test("2026-09-19 inheritance prior gift credit precedes filing credit", () => {
+  const r = inh(IWithGift);
+  assert.equal(r.status, "ready");
+  assert.equal(r.taxableBaseWon, 452_000_000);
+  assert.equal(line(r, "사전증여 증여세액공제"), -5_000_000);
+  assert.equal(line(r, "신고세액공제"), -2_262_000);
+  assert.equal(r.nationalTaxWon, 73_138_000);
+});
+test("2026-09-19 inheritance missing gift returns cannot silently omit credit", () => {
+  assert.equal(inh({ ...IWithGift, priorGifts: null }).status, "needs_info");
+});
+test("2026-09-19 expired inheritance gift does not receive a credit", () => {
+  const r = inh({ ...IWithGift, priorGifts: [{ ...priorChildGift, creditEligible: "no" }] });
+  assert.equal(r.status, "ready");
+  assert.equal(r.nationalTaxWon, 77_988_000);
+});
+for (const change of [{ taxableBaseWon: null }, { calculatedTaxWon: null }, { creditEligible: "unknown" as const },
+  { taxableBaseWon: 100_000_001 }, { calculatedTaxWon: 50_000_001 }]) {
+  test(`2026-09-19 missing/invalid inheritance gift facts ${JSON.stringify(change)}`, () => {
+    assert.equal(inh({ ...IWithGift, priorGifts: [{ ...priorChildGift, ...change }] }).status, "needs_info");
+  });
+}
+test("2026-09-19 nonheir gift allocation is explicitly unsupported", () => {
+  const r = inh({ ...IWithGift, priorGiftHeirsWon: 0, priorGiftOthersWon: 100_000_000,
+    priorGifts: [{ ...priorChildGift, recipient: "other" }] });
+  assert.equal(r.status, "unsupported");
+  assert.equal(r.lines.length, 0);
+});
+test("2026-09-19 noncash and unconfirmed past gift valuation stay outside supported credit scope", () => {
+  assert.equal(inh({ ...IWithGift, priorGifts: [{ ...priorChildGift, propertyKind: "other" }] }).status, "unsupported");
+  assert.equal(inh({ ...IWithGift, priorGifts: [{ ...priorChildGift, propertyKind: null }] }).status, "needs_info");
+});
+test("2026-09-19 gift records must reconcile to estate aggregation", () => {
+  assert.equal(inh({ ...IWithGift, priorGiftHeirsWon: 0 }).status, "needs_info");
+});
+test("2026-09-19 two child recipients each retain their reported gift tax", () => {
+  const r = inh({ ...IWithGift, priorGiftHeirsWon: 200_000_000, priorGifts: [priorChildGift, priorChildGift] });
+  assert.equal(r.status, "ready");
+  assert.equal(line(r, "사전증여 증여세액공제"), -10_000_000);
+  assert.equal(r.nationalTaxWon, 92_732_000);
+});
+test("2026-09-19 inheritance gift deduction limit activates only above 500m", () => {
+  const input = { ...IWithGift, realEstateWon: 408_000_000, financialAssetsWon: 0, otherAssetsWon: 0,
+    debtWon: 0, spouseActualInheritanceWon: 0 };
+  assert.equal(inh(input).taxableBaseWon, 0);
+  assert.equal(inh({ ...input, realEstateWon: 408_000_001 }).taxableBaseWon, 50_000_000);
+});
+test("2026-09-19 inheritance gift taxable base limits estate deductions", () => {
+  const r = inh({ ...IWithGift, realEstateWon: 100_000_000, financialAssetsWon: 0, otherAssetsWon: 0,
+    debtWon: 0, priorGiftHeirsWon: 500_000_000, spouseActualInheritanceWon: 0,
+    priorGifts: [{ ...priorChildGift, amountWon: 500_000_000, taxableBaseWon: 450_000_000, calculatedTaxWon: 80_000_000 }] });
+  assert.equal(r.status, "ready");
+  assert.equal(r.taxableBaseWon, 450_000_000);
+  assert.equal(line(r, "상속공제 적용 합계"), -142_000_000);
+  assert.equal(r.nationalTaxWon, 0);
+});
+test("2026-09-19 spouse legal cap includes heir gifts and excludes nontaxable assets", () => {
+  const r = inh({ ...IWithGift, priorGiftHeirsWon: 350_000_000, nonTaxableWon: 50_000_000,
+    spouseActualInheritanceWon: 900_000_000,
+    priorGifts: [{ ...priorChildGift, amountWon: 350_000_000, taxableBaseWon: 300_000_000, calculatedTaxWon: 50_000_000 }] });
+  assert.equal(r.status, "ready");
+  assert.equal(line(r, "배우자 상속공제"), -728_571_428);
+});
+test("2026-09-19 marriage allowance uses lifetime remaining amount", () => {
+  const r = gift(marriage);
+  assert.equal(r.status, "ready");
+  assert.equal(line(r, "혼인·출산 추가 공제"), -40_000_000);
+  assert.equal(r.nationalTaxWon, 11_640_000);
+});
+for (const used of [0, 100_000_000]) test(`2026-09-19 marriage lifetime boundary ${used}`, () => {
+  const r = gift({ ...marriage, marriageBirthPreviouslyUsedWon: used });
+  assert.equal(r.status, "ready");
+  assert.equal(Math.abs(line(r, "혼인·출산 추가 공제")), 100_000_000 - used);
+});
+for (const used of [null, -1, 100_000_001]) test(`2026-09-19 marriage missing/invalid prior allowance ${used}`, () => {
+  assert.equal(gift({ ...marriage, marriageBirthPreviouslyUsedWon: used }).status, "needs_info");
+});
+for (const day of ["2024-09-16", "2028-09-16"]) test(`2026-09-19 marriage two-year inclusive ${day}`, () => {
+  assert.equal(gift({ ...marriage, marriageBirthEventDate: day }).status, "ready");
+});
+for (const day of ["2024-09-15", "2028-09-17"]) test(`2026-09-19 marriage outside two years ${day}`, () => {
+  assert.equal(gift({ ...marriage, marriageBirthEventDate: day }).status, "unsupported");
+});
+test("2026-09-19 birth must precede gift and cannot use spouse allowance", () => {
+  assert.equal(gift({ ...marriage, marriageBirthEvent: "birth", marriageBirthEventDate: "2026-09-17" }).status, "unsupported");
+  assert.equal(gift({ ...marriage, relationship: "spouse" }).status, "unsupported");
+});
+test("2026-09-19 allowance dates are required and leap day anniversary is clamped", () => {
+  assert.equal(gift({ ...marriage, marriageBirthEventDate: null }).status, "needs_info");
+  assert.equal(gift({ ...marriage, marriageBirthEventDate: "2024-02-29", giftDate: "2026-02-28" }).status, "ready");
+  assert.equal(gift({ ...marriage, marriageBirthEventDate: "2024-02-29", giftDate: "2026-03-01" }).status, "unsupported");
+});
+test("2026-09-19 annual capital aggregation keeps one basic deduction and subtracts prior payments", () => {
+  const r = capital(annual);
+  assert.equal(r.status, "ready");
+  assert.equal(r.taxableBaseWon, 313_500_000);
+  assert.equal(r.grossTaxWon, 99_460_000);
+  assert.equal(r.nationalTaxWon, 80_775_000);
+  assert.equal(r.localTaxWon, 8_077_500);
+  assert.equal(r.totalTaxWon, 88_852_500);
+});
+test("2026-09-19 capital missing local payment is not assumed zero", () => {
+  assert.equal(capital({ ...annual, previousLocalTaxWon: null }).status, "needs_info");
+});
+test("2026-09-19 capital mixed rates need separate comparison", () => {
+  assert.equal(capital({ ...annual, otherGainsGeneralRate: "no" }).status, "unsupported");
+  assert.equal(capital({ ...annual, otherGainsGeneralRate: "unknown" }).status, "needs_info");
+});
+test("2026-09-19 capital same-year loss offsets income and preserves refund balance", () => {
+  const r = capital({ ...annual, salePriceWon: 550_000_000, necessaryExpenseWon: 0 });
+  assert.equal(r.status, "ready");
+  assert.equal(r.taxableBaseWon, 47_500_000);
+  assert.equal(r.grossTaxWon, 5_865_000);
+  assert.equal(r.nationalTaxWon, -12_820_000);
+  assert.equal(r.localTaxWon, -1_282_000);
+});
+test("2026-09-19 past capital loss is signed rather than discarded", () => {
+  const r = capital({ ...annual, otherCapitalGainWon: -50_000_000, basicDeductionUsedWon: 0, previousNationalTaxWon: 0, previousLocalTaxWon: 0 });
+  assert.equal(r.status, "ready");
+  assert.equal(r.taxableBaseWon, 163_500_000);
+});
+test("2026-09-19 capital aggregation cannot be omitted with prior payments or deduction use", () => {
+  assert.equal(capital({ ...annual, annualAggregation: false }).status, "needs_info");
+  assert.equal(capital({ ...H, basicDeductionUsedWon: 2_500_000 }).status, "needs_info");
+});
+test("2026-09-19 short-term capital with prior loss still needs rate comparison", () => {
+  assert.equal(capital({ ...annual, acquisitionDate: "2026-01-01", otherCapitalGainWon: -50_000_000 }).status, "unsupported");
+});
+test("2026-09-19 single-home rules are not silently combined with annual aggregation", () => {
+  assert.equal(capital({ ...annual, assetType: "oneHome" }).status, "unsupported");
+  assert.equal(capital(H).status, "ready");
+});
+for (const day of ["2026-09-19", "2026-09-20"]) test(`2026-09-19 verified date boundary ${day}`, () => {
+  const status = day === "2026-09-19" ? "ready" : "unsupported";
+  assert.equal(inh({ ...I, deathDate: day }).status, status);
+  assert.equal(gift({ ...G, giftDate: day }).status, status);
+  assert.equal(capital({ ...H, transferDate: day }).status, status);
 });
