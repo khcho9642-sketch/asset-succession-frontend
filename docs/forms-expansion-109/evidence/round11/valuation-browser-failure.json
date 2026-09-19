@@ -1,0 +1,7 @@
+{
+  "url": "https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000281898",
+  "checked_at": "2026-09-19T14:56:55Z",
+  "error": "Page.goto: Timeout 20000ms exceeded.\nCall log:\n  - navigating to \"https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000281898\", waiting until \"commit\"\n",
+  "events": [],
+  "page_errors": []
+}

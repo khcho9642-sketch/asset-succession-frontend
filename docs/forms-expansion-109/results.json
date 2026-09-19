@@ -2328,14 +2328,20 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "HTTPSConnectionPool(host='sc.nts.go.kr', port=443): Max retries exceeded with url: /tax_inquiry/guide_01.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='sc.nts.go.kr', port=443) at 0x7f548c5b7fb0>, 'Connection to sc.nts.go.kr timed out. (connect timeout=9)'))",
+    "failure_reason": "",
     "attempts": [
       {
         "checked_at": "2026-09-19T14:29:15Z",
         "url": "https://sc.nts.go.kr/tax_inquiry/guide_01.html",
         "result": "HTTPSConnectionPool(host='sc.nts.go.kr', port=443): Max retries exceeded with url: /tax_inquiry/guide_01.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='sc.nts.go.kr', port=443) at 0x7f548c5b7fb0>, 'Connection to sc.nts.go.kr timed out. (connect timeout=9)'))"
+      },
+      {
+        "checked_at": "2026-09-19T14:54:59Z",
+        "url": null,
+        "result": ""
       }
-    ]
+    ],
+    "alternative_official_source": true
   },
   {
     "id": "P2-15",
@@ -2532,14 +2538,20 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "HTTPSConnectionPool(host='sc.nts.go.kr', port=443): Max retries exceeded with url: /tax_inquiry/guide_01.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='sc.nts.go.kr', port=443) at 0x7f548c5b7fb0>, 'Connection to sc.nts.go.kr timed out. (connect timeout=9)'))",
+    "failure_reason": "",
     "attempts": [
       {
         "checked_at": "2026-09-19T14:29:15Z",
         "url": "https://sc.nts.go.kr/tax_inquiry/guide_01.html",
         "result": "HTTPSConnectionPool(host='sc.nts.go.kr', port=443): Max retries exceeded with url: /tax_inquiry/guide_01.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='sc.nts.go.kr', port=443) at 0x7f548c5b7fb0>, 'Connection to sc.nts.go.kr timed out. (connect timeout=9)'))"
+      },
+      {
+        "checked_at": "2026-09-19T14:54:59Z",
+        "url": null,
+        "result": ""
       }
-    ]
+    ],
+    "alternative_official_source": true
   },
   {
     "id": "P3-05",
@@ -3595,7 +3607,14 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "failure_reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f55d41211c0>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+    "attempts": [
+      {
+        "checked_at": "2026-09-19T14:55:22Z",
+        "url": null,
+        "result": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /%EB%B2%95%EB%A0%B9/%EC%82%B0%EC%97%85%EC%9E%AC%ED%95%B4%EB%B3%B4%EC%83%81%EB%B3%B4%ED%97%98%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f55d41211c0>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))"
+      }
+    ]
   },
   {
     "id": "P7-05",
@@ -4629,7 +4648,14 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "failure_reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /%EB%B2%95%EB%A0%B9/%EB%AF%BC%EA%B0%84%EC%9E%84%EB%8C%80%EC%A3%BC%ED%83%9D%EC%97%90%EA%B4%80%ED%95%9C%ED%8A%B9%EB%B3%84%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f55d5b810d0>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+    "attempts": [
+      {
+        "checked_at": "2026-09-19T14:55:08Z",
+        "url": null,
+        "result": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /%EB%B2%95%EB%A0%B9/%EB%AF%BC%EA%B0%84%EC%9E%84%EB%8C%80%EC%A3%BC%ED%83%9D%EC%97%90%EA%B4%80%ED%95%9C%ED%8A%B9%EB%B3%84%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f55d5b810d0>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))"
+      }
+    ]
   },
   {
     "id": "P9-08",
