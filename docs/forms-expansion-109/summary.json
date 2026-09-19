@@ -5,8 +5,8 @@
   "existing_records": 74,
   "new_unique_records": 103,
   "manifest_records": 177,
-  "completed": 88,
-  "unchecked": 21,
+  "completed": 89,
+  "unchecked": 20,
   "completed_ids": [
     "P0-01",
     "P0-02",
@@ -90,6 +90,7 @@
     "P8-12",
     "P9-01",
     "P9-02",
+    "P9-03",
     "P9-04",
     "P9-05",
     "P9-06",
@@ -117,7 +118,6 @@
     "P6-06",
     "P8-02",
     "P8-07",
-    "P9-03",
     "P9-07"
   ],
   "original_required_ids": [

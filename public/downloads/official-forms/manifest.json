@@ -8,9 +8,9 @@
   "hostedInstitutionalExampleCount": 39,
   "deliveryCounts": {
     "hosted": 105,
-    "provider": 55,
+    "provider": 56,
     "direct": 0,
-    "pending": 17
+    "pending": 16
   },
   "documents": [
     {
@@ -10665,32 +10665,95 @@
       "catalogTitle": "금전소비대차 공정증서 / 확정일자 안내",
       "category": "차용·상환",
       "originalCategory": "차용·상환",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "금전소비대차 공정증서는 강제집행인낙이 기재되고 집행문 부여 등 요건을 갖추면 별도 판결 없이 강제집행의 근거가 될 수 있습니다. 사서증서 인증은 서명·날인의 진정성을 확인하는 절차이며, 확정일자는 부여일에 문서가 존재했음을 증명하는 절차입니다. 단순 인증이나 확정일자만으로 집행력이 생기는 것은 아닙니다. 차용증 작성은 기존 SC-30 일반 차용증, SC-31 연대보증인이 있는 차용증을 함께 참고하고, 공정증서 작성·집행문 요건은 공증사무소에서 확인하세요.",
       "tags": "P9-03 · 차용·상환",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://gwangju.scourt.go.kr/gjfaq/new/GJFaqView.work?seqnum=300",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://gwangju.scourt.go.kr/gjfaq/new/GJFaqView.work?seqnum=300",
+      "institution": "광주지방법원",
+      "checkedOn": "2026-09-19",
+      "license": "공식 공증 안내 링크 · 안내문·첨부파일 재배포 없음",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 안내 본문과 요청 절차·서류의 존재를 확인했습니다. 바이너리 원본은 재배포하지 않습니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-19T15:36:58Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "url": "https://gwangju.scourt.go.kr/gjfaq/new/GJFaqView.work?seqnum=300",
+        "checked_at": "2026-09-19T15:36:58Z",
+        "verification_method": "web_open_official_page",
+        "title": "공 증(公 證) · 민원 상담사례",
+        "verified_terms": [
+          "금전소비대차공정증서",
+          "강제집행인낙",
+          "집행문 부여",
+          "사서증서의 인증",
+          "확정일자의 압날"
+        ],
+        "observed_excerpt": "그 일자에 해당문서가 존재한 사실을 증명하는 제도",
+        "content_summary": "광주지방법원 민원 상담사례의 2항은 사서증서 인증, 3항은 확정일자에 의한 문서 존재 시점의 증명, 4항은 강제집행인낙이 기재된 금전소비대차공정증서와 집행문 부여를 각각 설명한다. 금전소비대차 공정증서와 확정일자 모두 본문에서 직접 확인했다.",
+        "limitations": "웹 열기로 공식 본문을 직접 읽었다. 도구가 실제 HTTP 응답 상태·바이트·해시를 제공하지 않아 해당 값을 기록하지 않는다. 게시·개정일은 표시되지 않았으며, 첨부된 공증수수료 조견표는 이 항목에 수록하거나 검증하지 않았다.",
+        "observed_evidence": {
+          "successful_source": "광주지방법원 공식 페이지에서 금전소비대차공정증서와 확정일자 양쪽을 직접 열어 확인함.",
+          "successful_open_time": "2026-09-19T15:36:58Z",
+          "scope_satisfied": [
+            "금전소비대차공정증서와 강제집행인낙·집행문 부여의 연결",
+            "사서증서 인증·확정일자·집행력 있는 공정증서의 구분",
+            "기존 SC-30·SC-31 식별자와 정확한 제목을 로컬 최신 manifest에서 확인해 note에 연결"
+          ],
+          "related_existing_documents": [
+            {
+              "id": "SC-30",
+              "title": "차용·영수증 · [차용증] 일반적인 경우"
+            },
+            {
+              "id": "SC-31",
+              "title": "차용·영수증 · [차용증] 연대보증인이 있는 경우"
+            }
+          ],
+          "alternate_source_attempts": [
+            {
+              "url": "https://www.koreanotary.or.kr/?page_id=3622",
+              "result": "공식 검색에서 법률행위 공정증서 페이지의 금전소비대차계약 설명을 찾았으나 직접 열기는 Timeout fetching / Bad Gateway. 완료의 근거로 사용하지 않음."
+            },
+            {
+              "url": "https://www.koreanotary.or.kr/?page_id=2404",
+              "result": "공식 검색에서 확정일자 설명을 찾았으나 직접 열기는 Bad Gateway. 완료의 근거로 사용하지 않음."
+            },
+            {
+              "url": "https://www.koreanotary.or.kr/?page_id=3620",
+              "result": "직접 열기는 Timeout fetching. 완료의 근거로 사용하지 않음."
+            },
+            {
+              "url": "https://www.law.go.kr/법령/민사집행법/제56조",
+              "result": "web 도구에서 inaccessible. 별도 최신 조문 검증 주장 없음."
+            }
+          ],
+          "integration_instruction": "P9-03 기존 요청의 required_original=false를 유지하고 공식제공처로 등록한다. failure_reason는 삭제한다. 기존 SC-30/31 파일·레코드는 수정하지 않는다. 새 다운로드 파일은 주장하지 않는다. source_evidence를 항목별 증거 파일로 저장할 때 해당 evidence_file 경로만 보충한다."
+        },
+        "sources": [
+          {
+            "title": "광주지방법원 민원 상담사례 — 공증",
+            "url": "https://gwangju.scourt.go.kr/gjfaq/new/GJFaqView.work?seqnum=300"
+          }
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round15/P9-03.json"
+      },
       "task_id": "P9-03",
-      "related_ids": []
+      "related_ids": [
+        "SC-30",
+        "SC-31"
+      ]
     },
     {
       "id": "P9-04",
@@ -15951,17 +16014,83 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://gwangju.scourt.go.kr/gjfaq/new/GJFaqView.work?seqnum=300",
+      "checked_at": "2026-09-19T15:36:58Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 공증 안내 링크 · 안내문·첨부파일 재배포 없음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "institution": "광주지방법원",
+      "note": "금전소비대차 공정증서는 강제집행인낙이 기재되고 집행문 부여 등 요건을 갖추면 별도 판결 없이 강제집행의 근거가 될 수 있습니다. 사서증서 인증은 서명·날인의 진정성을 확인하는 절차이며, 확정일자는 부여일에 문서가 존재했음을 증명하는 절차입니다. 단순 인증이나 확정일자만으로 집행력이 생기는 것은 아닙니다. 차용증 작성은 기존 SC-30 일반 차용증, SC-31 연대보증인이 있는 차용증을 함께 참고하고, 공정증서 작성·집행문 요건은 공증사무소에서 확인하세요.",
+      "related_ids": [
+        "SC-30",
+        "SC-31"
+      ],
+      "source_evidence": {
+        "url": "https://gwangju.scourt.go.kr/gjfaq/new/GJFaqView.work?seqnum=300",
+        "checked_at": "2026-09-19T15:36:58Z",
+        "verification_method": "web_open_official_page",
+        "title": "공 증(公 證) · 민원 상담사례",
+        "verified_terms": [
+          "금전소비대차공정증서",
+          "강제집행인낙",
+          "집행문 부여",
+          "사서증서의 인증",
+          "확정일자의 압날"
+        ],
+        "observed_excerpt": "그 일자에 해당문서가 존재한 사실을 증명하는 제도",
+        "content_summary": "광주지방법원 민원 상담사례의 2항은 사서증서 인증, 3항은 확정일자에 의한 문서 존재 시점의 증명, 4항은 강제집행인낙이 기재된 금전소비대차공정증서와 집행문 부여를 각각 설명한다. 금전소비대차 공정증서와 확정일자 모두 본문에서 직접 확인했다.",
+        "limitations": "웹 열기로 공식 본문을 직접 읽었다. 도구가 실제 HTTP 응답 상태·바이트·해시를 제공하지 않아 해당 값을 기록하지 않는다. 게시·개정일은 표시되지 않았으며, 첨부된 공증수수료 조견표는 이 항목에 수록하거나 검증하지 않았다.",
+        "observed_evidence": {
+          "successful_source": "광주지방법원 공식 페이지에서 금전소비대차공정증서와 확정일자 양쪽을 직접 열어 확인함.",
+          "successful_open_time": "2026-09-19T15:36:58Z",
+          "scope_satisfied": [
+            "금전소비대차공정증서와 강제집행인낙·집행문 부여의 연결",
+            "사서증서 인증·확정일자·집행력 있는 공정증서의 구분",
+            "기존 SC-30·SC-31 식별자와 정확한 제목을 로컬 최신 manifest에서 확인해 note에 연결"
+          ],
+          "related_existing_documents": [
+            {
+              "id": "SC-30",
+              "title": "차용·영수증 · [차용증] 일반적인 경우"
+            },
+            {
+              "id": "SC-31",
+              "title": "차용·영수증 · [차용증] 연대보증인이 있는 경우"
+            }
+          ],
+          "alternate_source_attempts": [
+            {
+              "url": "https://www.koreanotary.or.kr/?page_id=3622",
+              "result": "공식 검색에서 법률행위 공정증서 페이지의 금전소비대차계약 설명을 찾았으나 직접 열기는 Timeout fetching / Bad Gateway. 완료의 근거로 사용하지 않음."
+            },
+            {
+              "url": "https://www.koreanotary.or.kr/?page_id=2404",
+              "result": "공식 검색에서 확정일자 설명을 찾았으나 직접 열기는 Bad Gateway. 완료의 근거로 사용하지 않음."
+            },
+            {
+              "url": "https://www.koreanotary.or.kr/?page_id=3620",
+              "result": "직접 열기는 Timeout fetching. 완료의 근거로 사용하지 않음."
+            },
+            {
+              "url": "https://www.law.go.kr/법령/민사집행법/제56조",
+              "result": "web 도구에서 inaccessible. 별도 최신 조문 검증 주장 없음."
+            }
+          ],
+          "integration_instruction": "P9-03 기존 요청의 required_original=false를 유지하고 공식제공처로 등록한다. failure_reason는 삭제한다. 기존 SC-30/31 파일·레코드는 수정하지 않는다. 새 다운로드 파일은 주장하지 않는다. source_evidence를 항목별 증거 파일로 저장할 때 해당 evidence_file 경로만 보충한다."
+        },
+        "sources": [
+          {
+            "title": "광주지방법원 민원 상담사례 — 공증",
+            "url": "https://gwangju.scourt.go.kr/gjfaq/new/GJFaqView.work?seqnum=300"
+          }
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round15/P9-03.json"
+      }
     },
     {
       "id": "P9-04",
