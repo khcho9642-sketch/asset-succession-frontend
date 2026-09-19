@@ -128,7 +128,7 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005\", waiting until \"commit\"\n",
+    "failure_reason": "HTTPSConnectionPool(host='efamily.scourt.go.kr', port=443): Max retries exceeded with url: /cs/CsBltnWrtListAjax.do (Caused by ConnectTimeoutError(<HTTPSConnection(host='efamily.scourt.go.kr', port=443) at 0x7fedd8f755e0>, 'Connection to efamily.scourt.go.kr timed out. (connect timeout=9)'))",
     "attempts": [
       {
         "checked_at": "2026-09-17T09:31:41Z",
@@ -144,6 +144,11 @@
         "checked_at": "2026-09-19T12:56:21Z",
         "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005",
         "result": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005\", waiting until \"commit\"\n"
+      },
+      {
+        "checked_at": "2026-09-19T14:16:29Z",
+        "url": null,
+        "result": "HTTPSConnectionPool(host='efamily.scourt.go.kr', port=443): Max retries exceeded with url: /cs/CsBltnWrtListAjax.do (Caused by ConnectTimeoutError(<HTTPSConnection(host='efamily.scourt.go.kr', port=443) at 0x7fedd8f755e0>, 'Connection to efamily.scourt.go.kr timed out. (connect timeout=9)'))"
       }
     ]
   },
@@ -4079,17 +4084,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=1&csmSeq=255&popMenu=ov",
+    "checked_at": "2026-09-19T14:07:07Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 연결 · 개별 첨부 재배포 조건 미확인",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청한 안내 본문을 확인하지 못함",
     "attempts": [
       {
         "checked_at": "2026-09-19T13:12:10Z",
@@ -4101,7 +4105,17 @@
         "url": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=1&csmSeq=255&popMenu=ov",
         "result": "요청한 안내 본문을 확인하지 못함"
       }
-    ]
+    ],
+    "source_evidence": {
+      "url": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=1&csmSeq=255&popMenu=ov",
+      "http_status": 200,
+      "checked_at": "2026-09-19T14:07:07Z",
+      "sha256": "75ed2f2cb2cf2a0a0a7375902da8a6f5f4fc1b22566c4684d870c43b8252f5f9",
+      "evidence_file": "docs/forms-expansion-109/evidence/round8/P8-06.json"
+    },
+    "institution": "법제처 찾기쉬운 생활법령정보",
+    "reviewed_at": "2026-09-19T14:16:19Z",
+    "note": "상속인이 없는 경우의 상속재산귀속에 관한 공식 안내입니다. 상속재산관리인 선임 공고, 채권자 등에 대한 공고와 최고, 상속인 수색·특별연고자 분여 등 원문에 안내된 절차를 확인하세요. 기관의 현재 게시 명칭을 보존하며 실제 사건의 청산인·관리인 명칭과 적용 절차는 관할법원에서 확인해야 합니다."
   },
   {
     "id": "P8-07",
@@ -4509,17 +4523,31 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open",
+    "checked_at": "2026-09-19T14:07:16Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 연결 · 개별 첨부 재배포 조건 미확인",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "source_evidence": {
+      "url": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open",
+      "http_status": 200,
+      "checked_at": "2026-09-19T14:07:16Z",
+      "matched_titles": [
+        "임대사업자 등록신청서(2025.06.04)",
+        "임대사업자 등록사항 변경신고서(2025.06.04)",
+        "임대사업자 등록(전부,일부)말소 신청서(2020.12.10)"
+      ],
+      "response_sha256": "438216e068fdf8e892dd9033585c81be5ec6eb463ed81c8c082ddded73aca823",
+      "evidence_file": "docs/forms-expansion-109/evidence/round8/rent.json"
+    },
+    "institution": "국토교통부·한국토지주택공사 렌트홈",
+    "reviewed_at": "2026-09-19T14:16:19Z",
+    "note": "렌트홈 민원법정서식 목록에서 임대사업자 등록신청서, 등록사항 변경신고서와 등록 전부·일부 말소 신청서를 확인했습니다. 목록의 서식명과 개정 표시를 확인하고 해당 HWP 또는 PDF를 선택하세요. 등록·변경과 말소는 서로 다른 신청입니다. 기존 주택임대사업자 거주주택 특례 자료와 함께 검토할 수 있습니다."
   },
   {
     "id": "P9-07",

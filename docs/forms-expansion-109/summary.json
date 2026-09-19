@@ -5,8 +5,8 @@
   "existing_records": 74,
   "new_unique_records": 103,
   "manifest_records": 177,
-  "completed": 68,
-  "unchecked": 41,
+  "completed": 70,
+  "unchecked": 39,
   "completed_ids": [
     "P0-01",
     "P0-02",
@@ -65,6 +65,7 @@
     "P8-01",
     "P8-03",
     "P8-05",
+    "P8-06",
     "P8-08",
     "P8-09",
     "P8-10",
@@ -73,6 +74,7 @@
     "P9-01",
     "P9-02",
     "P9-04",
+    "P9-06",
     "P9-08",
     "P9-09",
     "P9-10"
@@ -113,11 +115,9 @@
     "P7-04",
     "P8-02",
     "P8-04",
-    "P8-06",
     "P8-07",
     "P9-03",
     "P9-05",
-    "P9-06",
     "P9-07"
   ],
   "original_required_ids": [
