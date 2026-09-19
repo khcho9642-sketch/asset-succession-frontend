@@ -28,8 +28,28 @@ export type SimpleCalculationResult = {
   missing: string[];
   assumptions: string[];
   unsupported: UnsupportedItem[];
+  scopeNotes: UnsupportedItem[];
   references: Array<{ label: string; url: string }>;
   checkedOn: string;
+  annualAggregation?: boolean;
+};
+
+export type InheritancePriorGift = {
+  recipient: "spouse" | "child" | "other" | null;
+  propertyKind: "cash" | "other" | null;
+  amountWon: MoneyInput;
+  taxableBaseWon: MoneyInput;
+  calculatedTaxWon: MoneyInput;
+  creditEligible: "yes" | "no" | "unknown" | null;
+};
+
+export type DeemedAssetPart = {
+  id: string;
+  kind: "insurance" | "retirement" | "moneyTrust" | "other";
+  estateIncludedWon: MoneyInput;
+  financialEligibleWon: MoneyInput;
+  classification: "confirmed" | "unknown" | "unsupported" | null;
+  subtype?: string;
 };
 
 export type InheritanceInput = {
@@ -42,13 +62,18 @@ export type InheritanceInput = {
   disabledDeductionWon: MoneyInput;
   realEstateWon: MoneyInput;
   financialAssetsWon: MoneyInput;
+  financialExclusionsWon: MoneyInput;
   otherAssetsWon: MoneyInput;
-  deemedAssetsWon: MoneyInput;
+  // Legacy total is only a consistency check when a breakdown is supplied.
+  deemedAssetsWon?: MoneyInput;
+  deemedAssetBreakdown?: DeemedAssetPart[] | null;
+  nonTaxableFinancialOverlap?: "no" | "yes" | "unknown" | null;
   nonTaxableWon: MoneyInput;
   priorGiftSpouseWon: MoneyInput;
   priorGiftHeirsWon: MoneyInput;
   priorGiftOthersWon: MoneyInput;
   debtWon: MoneyInput;
+  financialDebtWon: MoneyInput;
   publicChargesWon: MoneyInput;
   funeralWon: MoneyInput;
   burialWon: MoneyInput;
@@ -56,6 +81,7 @@ export type InheritanceInput = {
   statutoryShareNumerator: number | null;
   statutoryShareDenominator: number | null;
   spousePriorGiftTaxableWon: MoneyInput;
+  priorGifts: InheritancePriorGift[] | null;
 };
 
 export type GiftInput = {
@@ -65,9 +91,22 @@ export type GiftInput = {
   amountWon: MoneyInput;
   debtAssumedWon: MoneyInput;
   priorGiftWon: MoneyInput;
-  usedDeductionWon: MoneyInput;
+  priorGiftDeductionWon: MoneyInput;
+  priorGiftMarriageBirthStatus?: "yes" | "no" | "unknown" | null;
+  priorGiftMarriageBirthAppliedWon?: MoneyInput;
+  priorGiftTaxableBaseWon?: MoneyInput;
+  priorGiftHistoryConfirmed?: boolean | null;
+  ordinaryCashHistory?: boolean | null;
+  priorGiftDate?: string | null;
+  priorGiftMarriageBirthEvent?: "marriage" | "birth" | null;
+  priorGiftMarriageBirthEventDate?: string | null;
+  priorGiftDonor?: "sameFather" | "other" | null;
+  otherGiftDeductionWon: MoneyInput;
   appraisalFeeWon: MoneyInput;
   marriageBirthDeductionWon: MoneyInput;
+  marriageBirthPreviouslyUsedWon: MoneyInput;
+  marriageBirthEvent: "marriage" | "birth" | null;
+  marriageBirthEventDate: string | null;
   previousTaxPaidWon: MoneyInput;
   generationSkip: boolean;
   minorOverTwoBillion: boolean;
@@ -82,7 +121,16 @@ export type CapitalGainsInput = {
   necessaryExpenseWon: MoneyInput;
   otherCapitalGainWon: MoneyInput;
   basicDeductionUsedWon: MoneyInput;
+  annualAggregation: boolean;
+  otherGainsGeneralRate: "yes" | "no" | "unknown" | null;
+  previousNationalTaxWon: MoneyInput;
+  previousLocalTaxWon: MoneyInput;
   residenceYears: number | null;
   homeCount: number | null;
   regulatedArea: boolean;
+  resident: "yes" | "no" | null;
+  homeOwnership: "solePurchased" | "other" | null;
+  householdOtherRights: "no" | "yes" | "unknown" | null;
+  regulatedAtAcquisition: "no" | "yes" | "unknown" | null;
+  homeSpecialConditions: "no" | "yes" | "unknown" | null;
 };

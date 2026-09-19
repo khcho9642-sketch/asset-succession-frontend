@@ -1,0 +1,2408 @@
+{
+  "commit": "e403ead772405214620532d60a186b7d5a0cb10f",
+  "rows": [
+    {
+      "id": "G01",
+      "input": {
+        "giftDate": "2026-09-19",
+        "resident": "yes",
+        "relationship": "linealAscendantAdult",
+        "amountWon": 100000000,
+        "debtAssumedWon": 0,
+        "priorGiftWon": 150000000,
+        "priorGiftDeductionWon": 50000000,
+        "otherGiftDeductionWon": 0,
+        "appraisalFeeWon": 0,
+        "marriageBirthDeductionWon": 0,
+        "marriageBirthPreviouslyUsedWon": 100000000,
+        "marriageBirthEvent": null,
+        "marriageBirthEventDate": null,
+        "previousTaxPaidWon": 0,
+        "generationSkip": false,
+        "minorOverTwoBillion": false,
+        "priorGiftMarriageBirthStatus": "yes",
+        "priorGiftMarriageBirthAppliedWon": 100000000,
+        "priorGiftTaxableBaseWon": 0,
+        "priorGiftHistoryConfirmed": true,
+        "ordinaryCashHistory": true
+      },
+      "result": {
+        "kind": "gift",
+        "title": "증여세 간편계산",
+        "status": "ready",
+        "taxName": "증여세",
+        "taxableBaseWon": 200000000,
+        "grossTaxWon": 30000000,
+        "creditWon": 900000,
+        "nationalTaxWon": 29100000,
+        "localTaxWon": 0,
+        "totalTaxWon": 29100000,
+        "lines": [
+          {
+            "label": "이번 증여재산가액",
+            "amountWon": 100000000
+          },
+          {
+            "label": "수증자 인수 채무 차감",
+            "amountWon": 0,
+            "note": "부담부증여는 양도소득세 등 별도 검토가 필요합니다."
+          },
+          {
+            "label": "최근 10년 동일인 관련 증여 가산",
+            "amountWon": 150000000,
+            "note": "동일인(직계존속은 그 배우자 포함)에게 받은 금액 합계 1천만원 이상일 때 합산"
+          },
+          {
+            "label": "직계존속 → 성년 수증자 증여재산공제 적용",
+            "amountWon": -50000000,
+            "note": "합산된 과거 재산의 공제 50,000,000원 + 이번 공제 0원. 다른 증여의 사용 공제 0원는 한도에서 차감합니다."
+          },
+          {
+            "label": "혼인·출산 추가 공제",
+            "amountWon": 0,
+            "note": "해당 없음"
+          },
+          {
+            "label": "감정평가수수료",
+            "amountWon": 0
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 200000000
+          },
+          {
+            "label": "합산 산출세액 (20% / 누진공제 10,000,000원)",
+            "amountWon": 30000000
+          },
+          {
+            "label": "종전 증여 산출세액 차감",
+            "amountWon": 0,
+            "note": "가산 재산의 과세표준 비율로 산출한 공제 한도 15,000,000원"
+          },
+          {
+            "label": "세대생략 할증 0%",
+            "amountWon": 0
+          },
+          {
+            "label": "신고세액공제 3%",
+            "amountWon": -900000
+          },
+          {
+            "label": "예상 납부 증여세",
+            "amountWon": 29100000
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "거주자인 수증자가 기한 내 신고하는 일반 증여를 기준으로 합니다.",
+          "최근 10년 합산 증여와 이미 사용한 공제는 사용자가 확인해 입력한 금액입니다.",
+          "혼인·출산 공제는 입력한 기준일과 통합 평생 1억원의 남은 한도를 적용합니다. 혼인일은 혼인신고일, 출산은 출생일 또는 입양신고일입니다. 혼인 예정 후 미혼인·혼인 무효 등은 별도 수정신고 확인이 필요합니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "창업자금·가업승계 과세특례",
+            "reason": "특례 한도와 사후관리 요건이 달라 이 간편계산에서 제외합니다."
+          },
+          {
+            "label": "부동산 부담부증여의 양도소득세",
+            "reason": "증여세와 별도 세목으로 분리 계산해야 합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "혼인·출산 공제 사용액 및 잔여 한도 명세서 (2026-03-20 개정)",
+            "url": "https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110202&flSeq=162626013&gubun="
+          },
+          {
+            "label": "상속세 및 증여세법 제53·55·58조 (2026-01-02 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1026647923"
+          },
+          {
+            "label": "국세청 재차증여 납부세액공제 한도 해석",
+            "url": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000001535"
+          },
+          {
+            "label": "국세청 증여세 세액계산 흐름도",
+            "url": "https://g.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7728&mi=2340"
+          },
+          {
+            "label": "국세청 증여재산공제·세율",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7960&mi=6538"
+          },
+          {
+            "label": "국세청 증여세 신고 작성 안내",
+            "url": "https://www.nts.go.kr/webtv/na/ntt/selectNttList.do?bbsId=50839&nttSn=1346300"
+          }
+        ],
+        "checkedOn": "2026-09-19"
+      }
+    },
+    {
+      "id": "G02",
+      "input": {
+        "giftDate": "2026-09-19",
+        "resident": "yes",
+        "relationship": "linealAscendantAdult",
+        "amountWon": 100000000,
+        "debtAssumedWon": 0,
+        "priorGiftWon": 150000000,
+        "priorGiftDeductionWon": 50000000,
+        "otherGiftDeductionWon": 0,
+        "appraisalFeeWon": 0,
+        "marriageBirthDeductionWon": 0,
+        "marriageBirthPreviouslyUsedWon": 50000000,
+        "marriageBirthEvent": null,
+        "marriageBirthEventDate": null,
+        "previousTaxPaidWon": 5000000,
+        "generationSkip": false,
+        "minorOverTwoBillion": false,
+        "priorGiftMarriageBirthStatus": "yes",
+        "priorGiftMarriageBirthAppliedWon": 50000000,
+        "priorGiftTaxableBaseWon": 50000000,
+        "priorGiftHistoryConfirmed": true,
+        "ordinaryCashHistory": true
+      },
+      "result": {
+        "kind": "gift",
+        "title": "증여세 간편계산",
+        "status": "ready",
+        "taxName": "증여세",
+        "taxableBaseWon": 200000000,
+        "grossTaxWon": 25000000,
+        "creditWon": 750000,
+        "nationalTaxWon": 24250000,
+        "localTaxWon": 0,
+        "totalTaxWon": 24250000,
+        "lines": [
+          {
+            "label": "이번 증여재산가액",
+            "amountWon": 100000000
+          },
+          {
+            "label": "수증자 인수 채무 차감",
+            "amountWon": 0,
+            "note": "부담부증여는 양도소득세 등 별도 검토가 필요합니다."
+          },
+          {
+            "label": "최근 10년 동일인 관련 증여 가산",
+            "amountWon": 150000000,
+            "note": "동일인(직계존속은 그 배우자 포함)에게 받은 금액 합계 1천만원 이상일 때 합산"
+          },
+          {
+            "label": "직계존속 → 성년 수증자 증여재산공제 적용",
+            "amountWon": -50000000,
+            "note": "합산된 과거 재산의 공제 50,000,000원 + 이번 공제 0원. 다른 증여의 사용 공제 0원는 한도에서 차감합니다."
+          },
+          {
+            "label": "혼인·출산 추가 공제",
+            "amountWon": 0,
+            "note": "해당 없음"
+          },
+          {
+            "label": "감정평가수수료",
+            "amountWon": 0
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 200000000
+          },
+          {
+            "label": "합산 산출세액 (20% / 누진공제 10,000,000원)",
+            "amountWon": 30000000
+          },
+          {
+            "label": "종전 증여 산출세액 차감",
+            "amountWon": -5000000,
+            "note": "가산 재산의 과세표준 비율로 산출한 공제 한도 15,000,000원"
+          },
+          {
+            "label": "세대생략 할증 0%",
+            "amountWon": 0
+          },
+          {
+            "label": "신고세액공제 3%",
+            "amountWon": -750000
+          },
+          {
+            "label": "예상 납부 증여세",
+            "amountWon": 24250000
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "거주자인 수증자가 기한 내 신고하는 일반 증여를 기준으로 합니다.",
+          "최근 10년 합산 증여와 이미 사용한 공제는 사용자가 확인해 입력한 금액입니다.",
+          "혼인·출산 공제는 입력한 기준일과 통합 평생 1억원의 남은 한도를 적용합니다. 혼인일은 혼인신고일, 출산은 출생일 또는 입양신고일입니다. 혼인 예정 후 미혼인·혼인 무효 등은 별도 수정신고 확인이 필요합니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "창업자금·가업승계 과세특례",
+            "reason": "특례 한도와 사후관리 요건이 달라 이 간편계산에서 제외합니다."
+          },
+          {
+            "label": "부동산 부담부증여의 양도소득세",
+            "reason": "증여세와 별도 세목으로 분리 계산해야 합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "혼인·출산 공제 사용액 및 잔여 한도 명세서 (2026-03-20 개정)",
+            "url": "https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110202&flSeq=162626013&gubun="
+          },
+          {
+            "label": "상속세 및 증여세법 제53·55·58조 (2026-01-02 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1026647923"
+          },
+          {
+            "label": "국세청 재차증여 납부세액공제 한도 해석",
+            "url": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000001535"
+          },
+          {
+            "label": "국세청 증여세 세액계산 흐름도",
+            "url": "https://g.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7728&mi=2340"
+          },
+          {
+            "label": "국세청 증여재산공제·세율",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7960&mi=6538"
+          },
+          {
+            "label": "국세청 증여세 신고 작성 안내",
+            "url": "https://www.nts.go.kr/webtv/na/ntt/selectNttList.do?bbsId=50839&nttSn=1346300"
+          }
+        ],
+        "checkedOn": "2026-09-19"
+      }
+    },
+    {
+      "id": "G03",
+      "input": {
+        "giftDate": "2026-09-19",
+        "resident": "yes",
+        "relationship": "linealAscendantAdult",
+        "amountWon": 150000000,
+        "debtAssumedWon": 0,
+        "priorGiftWon": 0,
+        "priorGiftDeductionWon": 0,
+        "otherGiftDeductionWon": 50000000,
+        "appraisalFeeWon": 0,
+        "marriageBirthDeductionWon": 100000000,
+        "marriageBirthPreviouslyUsedWon": 60000000,
+        "marriageBirthEvent": "marriage",
+        "marriageBirthEventDate": "2025-09-16",
+        "previousTaxPaidWon": 0,
+        "generationSkip": false,
+        "minorOverTwoBillion": false,
+        "priorGiftMarriageBirthStatus": "no",
+        "priorGiftMarriageBirthAppliedWon": 0,
+        "priorGiftTaxableBaseWon": 0,
+        "priorGiftHistoryConfirmed": true,
+        "ordinaryCashHistory": true
+      },
+      "result": {
+        "kind": "gift",
+        "title": "증여세 간편계산",
+        "status": "ready",
+        "taxName": "증여세",
+        "taxableBaseWon": 110000000,
+        "grossTaxWon": 12000000,
+        "creditWon": 360000,
+        "nationalTaxWon": 11640000,
+        "localTaxWon": 0,
+        "totalTaxWon": 11640000,
+        "lines": [
+          {
+            "label": "이번 증여재산가액",
+            "amountWon": 150000000
+          },
+          {
+            "label": "수증자 인수 채무 차감",
+            "amountWon": 0,
+            "note": "부담부증여는 양도소득세 등 별도 검토가 필요합니다."
+          },
+          {
+            "label": "최근 10년 동일인 관련 증여 가산",
+            "amountWon": 0,
+            "note": "동일인(직계존속은 그 배우자 포함)에게 받은 금액 합계 1천만원 이상일 때 합산"
+          },
+          {
+            "label": "직계존속 → 성년 수증자 증여재산공제 적용",
+            "amountWon": 0,
+            "note": "합산된 과거 재산의 공제 0원 + 이번 공제 0원. 다른 증여의 사용 공제 50,000,000원는 한도에서 차감합니다."
+          },
+          {
+            "label": "혼인·출산 추가 공제",
+            "amountWon": -40000000,
+            "note": "통합 1억원 - 이전 사용액 60,000,000원 = 남은 한도 40,000,000원"
+          },
+          {
+            "label": "감정평가수수료",
+            "amountWon": 0
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 110000000
+          },
+          {
+            "label": "합산 산출세액 (20% / 누진공제 10,000,000원)",
+            "amountWon": 12000000
+          },
+          {
+            "label": "종전 증여 산출세액 차감",
+            "amountWon": 0,
+            "note": "가산 재산의 과세표준 비율로 산출한 공제 한도 0원"
+          },
+          {
+            "label": "세대생략 할증 0%",
+            "amountWon": 0
+          },
+          {
+            "label": "신고세액공제 3%",
+            "amountWon": -360000
+          },
+          {
+            "label": "예상 납부 증여세",
+            "amountWon": 11640000
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "거주자인 수증자가 기한 내 신고하는 일반 증여를 기준으로 합니다.",
+          "최근 10년 합산 증여와 이미 사용한 공제는 사용자가 확인해 입력한 금액입니다.",
+          "혼인·출산 공제는 입력한 기준일과 통합 평생 1억원의 남은 한도를 적용합니다. 혼인일은 혼인신고일, 출산은 출생일 또는 입양신고일입니다. 혼인 예정 후 미혼인·혼인 무효 등은 별도 수정신고 확인이 필요합니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "창업자금·가업승계 과세특례",
+            "reason": "특례 한도와 사후관리 요건이 달라 이 간편계산에서 제외합니다."
+          },
+          {
+            "label": "부동산 부담부증여의 양도소득세",
+            "reason": "증여세와 별도 세목으로 분리 계산해야 합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "혼인·출산 공제 사용액 및 잔여 한도 명세서 (2026-03-20 개정)",
+            "url": "https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110202&flSeq=162626013&gubun="
+          },
+          {
+            "label": "상속세 및 증여세법 제53·55·58조 (2026-01-02 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1026647923"
+          },
+          {
+            "label": "국세청 재차증여 납부세액공제 한도 해석",
+            "url": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000001535"
+          },
+          {
+            "label": "국세청 증여세 세액계산 흐름도",
+            "url": "https://g.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7728&mi=2340"
+          },
+          {
+            "label": "국세청 증여재산공제·세율",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7960&mi=6538"
+          },
+          {
+            "label": "국세청 증여세 신고 작성 안내",
+            "url": "https://www.nts.go.kr/webtv/na/ntt/selectNttList.do?bbsId=50839&nttSn=1346300"
+          }
+        ],
+        "checkedOn": "2026-09-19"
+      }
+    },
+    {
+      "id": "G04",
+      "input": {
+        "giftDate": "2026-09-19",
+        "resident": "yes",
+        "relationship": "linealAscendantAdult",
+        "amountWon": 100000000,
+        "debtAssumedWon": 0,
+        "priorGiftWon": 0,
+        "priorGiftDeductionWon": 0,
+        "otherGiftDeductionWon": 0,
+        "appraisalFeeWon": 0,
+        "marriageBirthDeductionWon": 0,
+        "marriageBirthPreviouslyUsedWon": 0,
+        "marriageBirthEvent": null,
+        "marriageBirthEventDate": null,
+        "previousTaxPaidWon": 0,
+        "generationSkip": false,
+        "minorOverTwoBillion": false,
+        "priorGiftMarriageBirthStatus": "no",
+        "priorGiftMarriageBirthAppliedWon": 0,
+        "priorGiftTaxableBaseWon": 0,
+        "priorGiftHistoryConfirmed": true,
+        "ordinaryCashHistory": true
+      },
+      "result": {
+        "kind": "gift",
+        "title": "증여세 간편계산",
+        "status": "ready",
+        "taxName": "증여세",
+        "taxableBaseWon": 50000000,
+        "grossTaxWon": 5000000,
+        "creditWon": 150000,
+        "nationalTaxWon": 4850000,
+        "localTaxWon": 0,
+        "totalTaxWon": 4850000,
+        "lines": [
+          {
+            "label": "이번 증여재산가액",
+            "amountWon": 100000000
+          },
+          {
+            "label": "수증자 인수 채무 차감",
+            "amountWon": 0,
+            "note": "부담부증여는 양도소득세 등 별도 검토가 필요합니다."
+          },
+          {
+            "label": "최근 10년 동일인 관련 증여 가산",
+            "amountWon": 0,
+            "note": "동일인(직계존속은 그 배우자 포함)에게 받은 금액 합계 1천만원 이상일 때 합산"
+          },
+          {
+            "label": "직계존속 → 성년 수증자 증여재산공제 적용",
+            "amountWon": -50000000,
+            "note": "합산된 과거 재산의 공제 0원 + 이번 공제 50,000,000원. 다른 증여의 사용 공제 0원는 한도에서 차감합니다."
+          },
+          {
+            "label": "혼인·출산 추가 공제",
+            "amountWon": 0,
+            "note": "해당 없음"
+          },
+          {
+            "label": "감정평가수수료",
+            "amountWon": 0
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 50000000
+          },
+          {
+            "label": "합산 산출세액 (10% / 누진공제 0원)",
+            "amountWon": 5000000
+          },
+          {
+            "label": "종전 증여 산출세액 차감",
+            "amountWon": 0,
+            "note": "가산 재산의 과세표준 비율로 산출한 공제 한도 0원"
+          },
+          {
+            "label": "세대생략 할증 0%",
+            "amountWon": 0
+          },
+          {
+            "label": "신고세액공제 3%",
+            "amountWon": -150000
+          },
+          {
+            "label": "예상 납부 증여세",
+            "amountWon": 4850000
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "거주자인 수증자가 기한 내 신고하는 일반 증여를 기준으로 합니다.",
+          "최근 10년 합산 증여와 이미 사용한 공제는 사용자가 확인해 입력한 금액입니다.",
+          "혼인·출산 공제는 입력한 기준일과 통합 평생 1억원의 남은 한도를 적용합니다. 혼인일은 혼인신고일, 출산은 출생일 또는 입양신고일입니다. 혼인 예정 후 미혼인·혼인 무효 등은 별도 수정신고 확인이 필요합니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "창업자금·가업승계 과세특례",
+            "reason": "특례 한도와 사후관리 요건이 달라 이 간편계산에서 제외합니다."
+          },
+          {
+            "label": "부동산 부담부증여의 양도소득세",
+            "reason": "증여세와 별도 세목으로 분리 계산해야 합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "혼인·출산 공제 사용액 및 잔여 한도 명세서 (2026-03-20 개정)",
+            "url": "https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110202&flSeq=162626013&gubun="
+          },
+          {
+            "label": "상속세 및 증여세법 제53·55·58조 (2026-01-02 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1026647923"
+          },
+          {
+            "label": "국세청 재차증여 납부세액공제 한도 해석",
+            "url": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000001535"
+          },
+          {
+            "label": "국세청 증여세 세액계산 흐름도",
+            "url": "https://g.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7728&mi=2340"
+          },
+          {
+            "label": "국세청 증여재산공제·세율",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7960&mi=6538"
+          },
+          {
+            "label": "국세청 증여세 신고 작성 안내",
+            "url": "https://www.nts.go.kr/webtv/na/ntt/selectNttList.do?bbsId=50839&nttSn=1346300"
+          }
+        ],
+        "checkedOn": "2026-09-19"
+      }
+    },
+    {
+      "id": "I01",
+      "input": {
+        "deathDate": "2026-09-19",
+        "spouse": "no",
+        "spouseSoleHeir": false,
+        "childrenCount": 1,
+        "minorDeductionWon": 0,
+        "seniorCount": 0,
+        "disabledDeductionWon": 0,
+        "realEstateWon": 1000000000,
+        "financialAssetsWon": 0,
+        "financialExclusionsWon": 0,
+        "otherAssetsWon": 0,
+        "deemedAssetBreakdown": [
+          {
+            "id": "insurance-1",
+            "kind": "insurance",
+            "estateIncludedWon": 200000000,
+            "financialEligibleWon": 200000000,
+            "classification": "confirmed",
+            "subtype": "financial_institution_death_insurance"
+          }
+        ],
+        "nonTaxableWon": 0,
+        "priorGiftSpouseWon": 0,
+        "priorGiftHeirsWon": 0,
+        "priorGiftOthersWon": 0,
+        "debtWon": 0,
+        "financialDebtWon": 0,
+        "publicChargesWon": 0,
+        "funeralWon": 5000000,
+        "burialWon": 0,
+        "spouseActualInheritanceWon": 0,
+        "statutoryShareNumerator": 0,
+        "statutoryShareDenominator": 1,
+        "spousePriorGiftTaxableWon": 0,
+        "priorGifts": [],
+        "deemedAssetsWon": 200000000
+      },
+      "result": {
+        "kind": "inheritance",
+        "title": "상속세 간편계산",
+        "status": "ready",
+        "taxName": "상속세",
+        "taxableBaseWon": 695000000,
+        "grossTaxWon": 148500000,
+        "creditWon": 4455000,
+        "nationalTaxWon": 144045000,
+        "localTaxWon": 0,
+        "totalTaxWon": 144045000,
+        "lines": [
+          {
+            "label": "총 상속재산",
+            "amountWon": 1200000000
+          },
+          {
+            "label": "비과세·과세가액 불산입",
+            "amountWon": 0
+          },
+          {
+            "label": "사전증여재산 가산",
+            "amountWon": 0
+          },
+          {
+            "label": "채무·공과금 차감",
+            "amountWon": 0
+          },
+          {
+            "label": "장례비·봉안시설 비용 공제",
+            "amountWon": -5000000,
+            "note": "일반 장례비 500만원~1,000만원, 봉안시설 등 500만원 한도"
+          },
+          {
+            "label": "상속세 과세가액",
+            "amountWon": 1195000000
+          },
+          {
+            "label": "인적공제 또는 일괄공제",
+            "amountWon": -500000000
+          },
+          {
+            "label": "배우자 상속공제",
+            "amountWon": 0,
+            "note": "배우자 없음"
+          },
+          {
+            "label": "금융재산 상속공제",
+            "amountWon": 0,
+            "note": "금융재산 0원 - 공제 제외 재산 0원 - 금융채무 0원 = 공제 대상 순금융재산 0원. 공제 제외 재산은 총 상속재산에 남고, 금융채무는 총채무에 포함되어 한 번만 차감됩니다."
+          },
+          {
+            "label": "상속공제 적용 합계",
+            "amountWon": -500000000,
+            "note": "공제 한도 1,195,000,000원. 과세가액 5억원 초과 시 합산 사전증여 과세표준을 한도에서 차감합니다."
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 695000000
+          },
+          {
+            "label": "산출세액 (30% / 누진공제 60,000,000원)",
+            "amountWon": 148500000
+          },
+          {
+            "label": "사전증여 증여세액공제",
+            "amountWon": 0,
+            "note": "수증자별 신고 산출세액과 법정 한도 중 작은 금액. 과세가액 5억원 이하 또는 부과제척기간 만료분은 제외"
+          },
+          {
+            "label": "신고세액공제 3%",
+            "amountWon": -4455000
+          },
+          {
+            "label": "예상 납부 상속세",
+            "amountWon": 144045000
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "피상속인은 거주자이고, 유증·상속인 외 수유자·상속포기 특례는 없다고 가정합니다.",
+          "재산가액은 사용자가 이미 세법상 평가한 금액이며, 이 화면은 재산평가 서비스를 제공하지 않습니다.",
+          "배우자 상속재산 분할과 신고 요건을 기한 내 충족하는 것으로 계산합니다.",
+          "사전증여는 배우자·자녀의 일반 현금증여 신고 내역만 지원합니다. 피상속인에게 받은 합산 대상만 포함된 수증자별 신고 과세표준과 산출세액을 사용하며, 재차증여 신고서를 중복 합산하지 않습니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "가업·영농상속공제",
+            "reason": "간편계산 범위를 벗어나 별도 요건 검토가 필요합니다."
+          },
+          {
+            "label": "상속인 외 수유자·비거주자",
+            "reason": "손택스 간편계산도 지원 제외로 안내합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "국세청 사전증여 증여세액공제·신고세액공제",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7959&mi=6531"
+          },
+          {
+            "label": "상증세법 시행령 제3조 상속인별 과세표준 상당액 (2026-09-18 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=900410489"
+          },
+          {
+            "label": "국세청 금융재산공제 대상·제외 및 공제액 (2026-09-18 확인)",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7956&mi=6528"
+          },
+          {
+            "label": "상속세 및 증여세법 제22조 (2026-01-02 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1032161999"
+          },
+          {
+            "label": "손택스 상속세 간편계산 입력 항목",
+            "url": "https://mob.tbht.hometax.go.kr/jsonAction.do?actionId=UTBRNAAM02F001"
+          },
+          {
+            "label": "상속세 및 증여세법 제25조~제27조",
+            "url": "https://taxlaw.nts.go.kr/st/USESTA002P.do?ntstBscId=100000000000001561&ntstEnfrDt=2019.02.25.&ntstSysClCd=01&ntstTlawClCd=109"
+          },
+          {
+            "label": "상속세 및 증여세법 제69조 신고세액공제",
+            "url": "https://www.law.go.kr/LSW//lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0069&lsiSeq=276123&urlMode=lsScJoRltInfoR"
+          }
+        ],
+        "checkedOn": "2026-09-19"
+      }
+    },
+    {
+      "id": "I02",
+      "input": {
+        "deathDate": "2026-09-19",
+        "spouse": "no",
+        "spouseSoleHeir": false,
+        "childrenCount": 1,
+        "minorDeductionWon": 0,
+        "seniorCount": 0,
+        "disabledDeductionWon": 0,
+        "realEstateWon": 1000000000,
+        "financialAssetsWon": 100000000,
+        "financialExclusionsWon": 0,
+        "otherAssetsWon": 0,
+        "deemedAssetBreakdown": [
+          {
+            "id": "insurance-1",
+            "kind": "insurance",
+            "estateIncludedWon": 200000000,
+            "financialEligibleWon": 200000000,
+            "classification": "confirmed",
+            "subtype": "financial_institution_death_insurance"
+          }
+        ],
+        "nonTaxableWon": 0,
+        "priorGiftSpouseWon": 0,
+        "priorGiftHeirsWon": 0,
+        "priorGiftOthersWon": 0,
+        "debtWon": 100000000,
+        "financialDebtWon": 100000000,
+        "publicChargesWon": 0,
+        "funeralWon": 5000000,
+        "burialWon": 0,
+        "spouseActualInheritanceWon": 0,
+        "statutoryShareNumerator": 0,
+        "statutoryShareDenominator": 1,
+        "spousePriorGiftTaxableWon": 0,
+        "priorGifts": [],
+        "deemedAssetsWon": 200000000
+      },
+      "result": {
+        "kind": "inheritance",
+        "title": "상속세 간편계산",
+        "status": "ready",
+        "taxName": "상속세",
+        "taxableBaseWon": 695000000,
+        "grossTaxWon": 148500000,
+        "creditWon": 4455000,
+        "nationalTaxWon": 144045000,
+        "localTaxWon": 0,
+        "totalTaxWon": 144045000,
+        "lines": [
+          {
+            "label": "총 상속재산",
+            "amountWon": 1300000000
+          },
+          {
+            "label": "비과세·과세가액 불산입",
+            "amountWon": 0
+          },
+          {
+            "label": "사전증여재산 가산",
+            "amountWon": 0
+          },
+          {
+            "label": "채무·공과금 차감",
+            "amountWon": -100000000
+          },
+          {
+            "label": "장례비·봉안시설 비용 공제",
+            "amountWon": -5000000,
+            "note": "일반 장례비 500만원~1,000만원, 봉안시설 등 500만원 한도"
+          },
+          {
+            "label": "상속세 과세가액",
+            "amountWon": 1195000000
+          },
+          {
+            "label": "인적공제 또는 일괄공제",
+            "amountWon": -500000000
+          },
+          {
+            "label": "배우자 상속공제",
+            "amountWon": 0,
+            "note": "배우자 없음"
+          },
+          {
+            "label": "금융재산 상속공제",
+            "amountWon": 0,
+            "note": "금융재산 100,000,000원 - 공제 제외 재산 0원 - 금융채무 100,000,000원 = 공제 대상 순금융재산 0원. 공제 제외 재산은 총 상속재산에 남고, 금융채무는 총채무에 포함되어 한 번만 차감됩니다."
+          },
+          {
+            "label": "상속공제 적용 합계",
+            "amountWon": -500000000,
+            "note": "공제 한도 1,195,000,000원. 과세가액 5억원 초과 시 합산 사전증여 과세표준을 한도에서 차감합니다."
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 695000000
+          },
+          {
+            "label": "산출세액 (30% / 누진공제 60,000,000원)",
+            "amountWon": 148500000
+          },
+          {
+            "label": "사전증여 증여세액공제",
+            "amountWon": 0,
+            "note": "수증자별 신고 산출세액과 법정 한도 중 작은 금액. 과세가액 5억원 이하 또는 부과제척기간 만료분은 제외"
+          },
+          {
+            "label": "신고세액공제 3%",
+            "amountWon": -4455000
+          },
+          {
+            "label": "예상 납부 상속세",
+            "amountWon": 144045000
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "피상속인은 거주자이고, 유증·상속인 외 수유자·상속포기 특례는 없다고 가정합니다.",
+          "재산가액은 사용자가 이미 세법상 평가한 금액이며, 이 화면은 재산평가 서비스를 제공하지 않습니다.",
+          "배우자 상속재산 분할과 신고 요건을 기한 내 충족하는 것으로 계산합니다.",
+          "사전증여는 배우자·자녀의 일반 현금증여 신고 내역만 지원합니다. 피상속인에게 받은 합산 대상만 포함된 수증자별 신고 과세표준과 산출세액을 사용하며, 재차증여 신고서를 중복 합산하지 않습니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "가업·영농상속공제",
+            "reason": "간편계산 범위를 벗어나 별도 요건 검토가 필요합니다."
+          },
+          {
+            "label": "상속인 외 수유자·비거주자",
+            "reason": "손택스 간편계산도 지원 제외로 안내합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "국세청 사전증여 증여세액공제·신고세액공제",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7959&mi=6531"
+          },
+          {
+            "label": "상증세법 시행령 제3조 상속인별 과세표준 상당액 (2026-09-18 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=900410489"
+          },
+          {
+            "label": "국세청 금융재산공제 대상·제외 및 공제액 (2026-09-18 확인)",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7956&mi=6528"
+          },
+          {
+            "label": "상속세 및 증여세법 제22조 (2026-01-02 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1032161999"
+          },
+          {
+            "label": "손택스 상속세 간편계산 입력 항목",
+            "url": "https://mob.tbht.hometax.go.kr/jsonAction.do?actionId=UTBRNAAM02F001"
+          },
+          {
+            "label": "상속세 및 증여세법 제25조~제27조",
+            "url": "https://taxlaw.nts.go.kr/st/USESTA002P.do?ntstBscId=100000000000001561&ntstEnfrDt=2019.02.25.&ntstSysClCd=01&ntstTlawClCd=109"
+          },
+          {
+            "label": "상속세 및 증여세법 제69조 신고세액공제",
+            "url": "https://www.law.go.kr/LSW//lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0069&lsiSeq=276123&urlMode=lsScJoRltInfoR"
+          }
+        ],
+        "checkedOn": "2026-09-19"
+      }
+    },
+    {
+      "id": "I03",
+      "input": {
+        "deathDate": "2026-09-19",
+        "spouse": "no",
+        "spouseSoleHeir": false,
+        "childrenCount": 1,
+        "minorDeductionWon": 0,
+        "seniorCount": 0,
+        "disabledDeductionWon": 0,
+        "realEstateWon": 1000000000,
+        "financialAssetsWon": 0,
+        "financialExclusionsWon": 0,
+        "otherAssetsWon": 0,
+        "deemedAssetBreakdown": [
+          {
+            "id": "retirement-1",
+            "kind": "retirement",
+            "estateIncludedWon": 200000000,
+            "financialEligibleWon": 0,
+            "classification": "confirmed",
+            "subtype": "post_death_retirement_benefit_not_eligible"
+          }
+        ],
+        "nonTaxableWon": 0,
+        "priorGiftSpouseWon": 0,
+        "priorGiftHeirsWon": 0,
+        "priorGiftOthersWon": 0,
+        "debtWon": 0,
+        "financialDebtWon": 0,
+        "publicChargesWon": 0,
+        "funeralWon": 5000000,
+        "burialWon": 0,
+        "spouseActualInheritanceWon": 0,
+        "statutoryShareNumerator": 0,
+        "statutoryShareDenominator": 1,
+        "spousePriorGiftTaxableWon": 0,
+        "priorGifts": [],
+        "deemedAssetsWon": 200000000
+      },
+      "result": {
+        "kind": "inheritance",
+        "title": "상속세 간편계산",
+        "status": "ready",
+        "taxName": "상속세",
+        "taxableBaseWon": 695000000,
+        "grossTaxWon": 148500000,
+        "creditWon": 4455000,
+        "nationalTaxWon": 144045000,
+        "localTaxWon": 0,
+        "totalTaxWon": 144045000,
+        "lines": [
+          {
+            "label": "총 상속재산",
+            "amountWon": 1200000000
+          },
+          {
+            "label": "비과세·과세가액 불산입",
+            "amountWon": 0
+          },
+          {
+            "label": "사전증여재산 가산",
+            "amountWon": 0
+          },
+          {
+            "label": "채무·공과금 차감",
+            "amountWon": 0
+          },
+          {
+            "label": "장례비·봉안시설 비용 공제",
+            "amountWon": -5000000,
+            "note": "일반 장례비 500만원~1,000만원, 봉안시설 등 500만원 한도"
+          },
+          {
+            "label": "상속세 과세가액",
+            "amountWon": 1195000000
+          },
+          {
+            "label": "인적공제 또는 일괄공제",
+            "amountWon": -500000000
+          },
+          {
+            "label": "배우자 상속공제",
+            "amountWon": 0,
+            "note": "배우자 없음"
+          },
+          {
+            "label": "금융재산 상속공제",
+            "amountWon": 0,
+            "note": "금융재산 0원 - 공제 제외 재산 0원 - 금융채무 0원 = 공제 대상 순금융재산 0원. 공제 제외 재산은 총 상속재산에 남고, 금융채무는 총채무에 포함되어 한 번만 차감됩니다."
+          },
+          {
+            "label": "상속공제 적용 합계",
+            "amountWon": -500000000,
+            "note": "공제 한도 1,195,000,000원. 과세가액 5억원 초과 시 합산 사전증여 과세표준을 한도에서 차감합니다."
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 695000000
+          },
+          {
+            "label": "산출세액 (30% / 누진공제 60,000,000원)",
+            "amountWon": 148500000
+          },
+          {
+            "label": "사전증여 증여세액공제",
+            "amountWon": 0,
+            "note": "수증자별 신고 산출세액과 법정 한도 중 작은 금액. 과세가액 5억원 이하 또는 부과제척기간 만료분은 제외"
+          },
+          {
+            "label": "신고세액공제 3%",
+            "amountWon": -4455000
+          },
+          {
+            "label": "예상 납부 상속세",
+            "amountWon": 144045000
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "피상속인은 거주자이고, 유증·상속인 외 수유자·상속포기 특례는 없다고 가정합니다.",
+          "재산가액은 사용자가 이미 세법상 평가한 금액이며, 이 화면은 재산평가 서비스를 제공하지 않습니다.",
+          "배우자 상속재산 분할과 신고 요건을 기한 내 충족하는 것으로 계산합니다.",
+          "사전증여는 배우자·자녀의 일반 현금증여 신고 내역만 지원합니다. 피상속인에게 받은 합산 대상만 포함된 수증자별 신고 과세표준과 산출세액을 사용하며, 재차증여 신고서를 중복 합산하지 않습니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "가업·영농상속공제",
+            "reason": "간편계산 범위를 벗어나 별도 요건 검토가 필요합니다."
+          },
+          {
+            "label": "상속인 외 수유자·비거주자",
+            "reason": "손택스 간편계산도 지원 제외로 안내합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "국세청 사전증여 증여세액공제·신고세액공제",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7959&mi=6531"
+          },
+          {
+            "label": "상증세법 시행령 제3조 상속인별 과세표준 상당액 (2026-09-18 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=900410489"
+          },
+          {
+            "label": "국세청 금융재산공제 대상·제외 및 공제액 (2026-09-18 확인)",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7956&mi=6528"
+          },
+          {
+            "label": "상속세 및 증여세법 제22조 (2026-01-02 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1032161999"
+          },
+          {
+            "label": "손택스 상속세 간편계산 입력 항목",
+            "url": "https://mob.tbht.hometax.go.kr/jsonAction.do?actionId=UTBRNAAM02F001"
+          },
+          {
+            "label": "상속세 및 증여세법 제25조~제27조",
+            "url": "https://taxlaw.nts.go.kr/st/USESTA002P.do?ntstBscId=100000000000001561&ntstEnfrDt=2019.02.25.&ntstSysClCd=01&ntstTlawClCd=109"
+          },
+          {
+            "label": "상속세 및 증여세법 제69조 신고세액공제",
+            "url": "https://www.law.go.kr/LSW//lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0069&lsiSeq=276123&urlMode=lsScJoRltInfoR"
+          }
+        ],
+        "checkedOn": "2026-09-19"
+      }
+    },
+    {
+      "id": "I04",
+      "input": {
+        "deathDate": "2026-09-19",
+        "spouse": "no",
+        "spouseSoleHeir": false,
+        "childrenCount": 1,
+        "minorDeductionWon": 0,
+        "seniorCount": 0,
+        "disabledDeductionWon": 0,
+        "realEstateWon": 1000000000,
+        "financialAssetsWon": 0,
+        "financialExclusionsWon": 0,
+        "otherAssetsWon": 0,
+        "deemedAssetBreakdown": [
+          {
+            "id": "insurance-1",
+            "kind": "insurance",
+            "estateIncludedWon": 80000000,
+            "financialEligibleWon": 80000000,
+            "classification": "confirmed",
+            "subtype": "financial_institution_death_insurance"
+          }
+        ],
+        "nonTaxableWon": 0,
+        "priorGiftSpouseWon": 0,
+        "priorGiftHeirsWon": 0,
+        "priorGiftOthersWon": 0,
+        "debtWon": 0,
+        "financialDebtWon": 0,
+        "publicChargesWon": 0,
+        "funeralWon": 5000000,
+        "burialWon": 0,
+        "spouseActualInheritanceWon": 0,
+        "statutoryShareNumerator": 0,
+        "statutoryShareDenominator": 1,
+        "spousePriorGiftTaxableWon": 0,
+        "priorGifts": [],
+        "deemedAssetsWon": 80000000
+      },
+      "result": {
+        "kind": "inheritance",
+        "title": "상속세 간편계산",
+        "status": "ready",
+        "taxName": "상속세",
+        "taxableBaseWon": 575000000,
+        "grossTaxWon": 112500000,
+        "creditWon": 3375000,
+        "nationalTaxWon": 109125000,
+        "localTaxWon": 0,
+        "totalTaxWon": 109125000,
+        "lines": [
+          {
+            "label": "총 상속재산",
+            "amountWon": 1080000000
+          },
+          {
+            "label": "비과세·과세가액 불산입",
+            "amountWon": 0
+          },
+          {
+            "label": "사전증여재산 가산",
+            "amountWon": 0
+          },
+          {
+            "label": "채무·공과금 차감",
+            "amountWon": 0
+          },
+          {
+            "label": "장례비·봉안시설 비용 공제",
+            "amountWon": -5000000,
+            "note": "일반 장례비 500만원~1,000만원, 봉안시설 등 500만원 한도"
+          },
+          {
+            "label": "상속세 과세가액",
+            "amountWon": 1075000000
+          },
+          {
+            "label": "인적공제 또는 일괄공제",
+            "amountWon": -500000000
+          },
+          {
+            "label": "배우자 상속공제",
+            "amountWon": 0,
+            "note": "배우자 없음"
+          },
+          {
+            "label": "금융재산 상속공제",
+            "amountWon": 0,
+            "note": "금융재산 0원 - 공제 제외 재산 0원 - 금융채무 0원 = 공제 대상 순금융재산 0원. 공제 제외 재산은 총 상속재산에 남고, 금융채무는 총채무에 포함되어 한 번만 차감됩니다."
+          },
+          {
+            "label": "상속공제 적용 합계",
+            "amountWon": -500000000,
+            "note": "공제 한도 1,075,000,000원. 과세가액 5억원 초과 시 합산 사전증여 과세표준을 한도에서 차감합니다."
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 575000000
+          },
+          {
+            "label": "산출세액 (30% / 누진공제 60,000,000원)",
+            "amountWon": 112500000
+          },
+          {
+            "label": "사전증여 증여세액공제",
+            "amountWon": 0,
+            "note": "수증자별 신고 산출세액과 법정 한도 중 작은 금액. 과세가액 5억원 이하 또는 부과제척기간 만료분은 제외"
+          },
+          {
+            "label": "신고세액공제 3%",
+            "amountWon": -3375000
+          },
+          {
+            "label": "예상 납부 상속세",
+            "amountWon": 109125000
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "피상속인은 거주자이고, 유증·상속인 외 수유자·상속포기 특례는 없다고 가정합니다.",
+          "재산가액은 사용자가 이미 세법상 평가한 금액이며, 이 화면은 재산평가 서비스를 제공하지 않습니다.",
+          "배우자 상속재산 분할과 신고 요건을 기한 내 충족하는 것으로 계산합니다.",
+          "사전증여는 배우자·자녀의 일반 현금증여 신고 내역만 지원합니다. 피상속인에게 받은 합산 대상만 포함된 수증자별 신고 과세표준과 산출세액을 사용하며, 재차증여 신고서를 중복 합산하지 않습니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "가업·영농상속공제",
+            "reason": "간편계산 범위를 벗어나 별도 요건 검토가 필요합니다."
+          },
+          {
+            "label": "상속인 외 수유자·비거주자",
+            "reason": "손택스 간편계산도 지원 제외로 안내합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "국세청 사전증여 증여세액공제·신고세액공제",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7959&mi=6531"
+          },
+          {
+            "label": "상증세법 시행령 제3조 상속인별 과세표준 상당액 (2026-09-18 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=900410489"
+          },
+          {
+            "label": "국세청 금융재산공제 대상·제외 및 공제액 (2026-09-18 확인)",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7956&mi=6528"
+          },
+          {
+            "label": "상속세 및 증여세법 제22조 (2026-01-02 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1032161999"
+          },
+          {
+            "label": "손택스 상속세 간편계산 입력 항목",
+            "url": "https://mob.tbht.hometax.go.kr/jsonAction.do?actionId=UTBRNAAM02F001"
+          },
+          {
+            "label": "상속세 및 증여세법 제25조~제27조",
+            "url": "https://taxlaw.nts.go.kr/st/USESTA002P.do?ntstBscId=100000000000001561&ntstEnfrDt=2019.02.25.&ntstSysClCd=01&ntstTlawClCd=109"
+          },
+          {
+            "label": "상속세 및 증여세법 제69조 신고세액공제",
+            "url": "https://www.law.go.kr/LSW//lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0069&lsiSeq=276123&urlMode=lsScJoRltInfoR"
+          }
+        ],
+        "checkedOn": "2026-09-19"
+      }
+    },
+    {
+      "id": "I05",
+      "input": {
+        "deathDate": "2026-09-19",
+        "spouse": "yes",
+        "spouseSoleHeir": false,
+        "childrenCount": 2,
+        "minorDeductionWon": 0,
+        "seniorCount": 0,
+        "disabledDeductionWon": 0,
+        "realEstateWon": 1200000000,
+        "financialAssetsWon": 200000000,
+        "financialExclusionsWon": 0,
+        "otherAssetsWon": 100000000,
+        "deemedAssetBreakdown": [],
+        "nonTaxableWon": 0,
+        "priorGiftSpouseWon": 0,
+        "priorGiftHeirsWon": 0,
+        "priorGiftOthersWon": 0,
+        "debtWon": 100000000,
+        "financialDebtWon": 0,
+        "publicChargesWon": 0,
+        "funeralWon": 8000000,
+        "burialWon": 0,
+        "spouseActualInheritanceWon": 500000000,
+        "statutoryShareNumerator": 3,
+        "statutoryShareDenominator": 7,
+        "spousePriorGiftTaxableWon": 0,
+        "priorGifts": [],
+        "deemedAssetsWon": 0
+      },
+      "result": {
+        "kind": "inheritance",
+        "title": "상속세 간편계산",
+        "status": "ready",
+        "taxName": "상속세",
+        "taxableBaseWon": 352000000,
+        "grossTaxWon": 60400000,
+        "creditWon": 1812000,
+        "nationalTaxWon": 58588000,
+        "localTaxWon": 0,
+        "totalTaxWon": 58588000,
+        "lines": [
+          {
+            "label": "총 상속재산",
+            "amountWon": 1500000000
+          },
+          {
+            "label": "비과세·과세가액 불산입",
+            "amountWon": 0
+          },
+          {
+            "label": "사전증여재산 가산",
+            "amountWon": 0
+          },
+          {
+            "label": "채무·공과금 차감",
+            "amountWon": -100000000
+          },
+          {
+            "label": "장례비·봉안시설 비용 공제",
+            "amountWon": -8000000,
+            "note": "일반 장례비 500만원~1,000만원, 봉안시설 등 500만원 한도"
+          },
+          {
+            "label": "상속세 과세가액",
+            "amountWon": 1392000000
+          },
+          {
+            "label": "인적공제 또는 일괄공제",
+            "amountWon": -500000000
+          },
+          {
+            "label": "배우자 상속공제",
+            "amountWon": -500000000,
+            "note": "입력 상속액·법정지분 한도·30억원 한도 기준"
+          },
+          {
+            "label": "금융재산 상속공제",
+            "amountWon": -40000000,
+            "note": "금융재산 200,000,000원 - 공제 제외 재산 0원 - 금융채무 0원 = 공제 대상 순금융재산 200,000,000원. 공제 제외 재산은 총 상속재산에 남고, 금융채무는 총채무에 포함되어 한 번만 차감됩니다."
+          },
+          {
+            "label": "상속공제 적용 합계",
+            "amountWon": -1040000000,
+            "note": "공제 한도 1,392,000,000원. 과세가액 5억원 초과 시 합산 사전증여 과세표준을 한도에서 차감합니다."
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 352000000
+          },
+          {
+            "label": "산출세액 (20% / 누진공제 10,000,000원)",
+            "amountWon": 60400000
+          },
+          {
+            "label": "사전증여 증여세액공제",
+            "amountWon": 0,
+            "note": "수증자별 신고 산출세액과 법정 한도 중 작은 금액. 과세가액 5억원 이하 또는 부과제척기간 만료분은 제외"
+          },
+          {
+            "label": "신고세액공제 3%",
+            "amountWon": -1812000
+          },
+          {
+            "label": "예상 납부 상속세",
+            "amountWon": 58588000
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "피상속인은 거주자이고, 유증·상속인 외 수유자·상속포기 특례는 없다고 가정합니다.",
+          "재산가액은 사용자가 이미 세법상 평가한 금액이며, 이 화면은 재산평가 서비스를 제공하지 않습니다.",
+          "배우자 상속재산 분할과 신고 요건을 기한 내 충족하는 것으로 계산합니다.",
+          "사전증여는 배우자·자녀의 일반 현금증여 신고 내역만 지원합니다. 피상속인에게 받은 합산 대상만 포함된 수증자별 신고 과세표준과 산출세액을 사용하며, 재차증여 신고서를 중복 합산하지 않습니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "가업·영농상속공제",
+            "reason": "간편계산 범위를 벗어나 별도 요건 검토가 필요합니다."
+          },
+          {
+            "label": "상속인 외 수유자·비거주자",
+            "reason": "손택스 간편계산도 지원 제외로 안내합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "국세청 사전증여 증여세액공제·신고세액공제",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7959&mi=6531"
+          },
+          {
+            "label": "상증세법 시행령 제3조 상속인별 과세표준 상당액 (2026-09-18 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=900410489"
+          },
+          {
+            "label": "국세청 금융재산공제 대상·제외 및 공제액 (2026-09-18 확인)",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7956&mi=6528"
+          },
+          {
+            "label": "상속세 및 증여세법 제22조 (2026-01-02 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1032161999"
+          },
+          {
+            "label": "손택스 상속세 간편계산 입력 항목",
+            "url": "https://mob.tbht.hometax.go.kr/jsonAction.do?actionId=UTBRNAAM02F001"
+          },
+          {
+            "label": "상속세 및 증여세법 제25조~제27조",
+            "url": "https://taxlaw.nts.go.kr/st/USESTA002P.do?ntstBscId=100000000000001561&ntstEnfrDt=2019.02.25.&ntstSysClCd=01&ntstTlawClCd=109"
+          },
+          {
+            "label": "상속세 및 증여세법 제69조 신고세액공제",
+            "url": "https://www.law.go.kr/LSW//lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0069&lsiSeq=276123&urlMode=lsScJoRltInfoR"
+          }
+        ],
+        "checkedOn": "2026-09-19"
+      }
+    },
+    {
+      "id": "I06",
+      "input": {
+        "deathDate": "2026-09-19",
+        "spouse": "yes",
+        "spouseSoleHeir": false,
+        "childrenCount": 2,
+        "minorDeductionWon": 0,
+        "seniorCount": 0,
+        "disabledDeductionWon": 0,
+        "realEstateWon": 1200000000,
+        "financialAssetsWon": 200000000,
+        "financialExclusionsWon": 0,
+        "otherAssetsWon": 100000000,
+        "deemedAssetBreakdown": [],
+        "nonTaxableWon": 0,
+        "priorGiftSpouseWon": 0,
+        "priorGiftHeirsWon": 100000000,
+        "priorGiftOthersWon": 0,
+        "debtWon": 100000000,
+        "financialDebtWon": 0,
+        "publicChargesWon": 0,
+        "funeralWon": 8000000,
+        "burialWon": 0,
+        "spouseActualInheritanceWon": 500000000,
+        "statutoryShareNumerator": 3,
+        "statutoryShareDenominator": 7,
+        "spousePriorGiftTaxableWon": 0,
+        "priorGifts": [
+          {
+            "recipient": "child",
+            "propertyKind": "cash",
+            "amountWon": 100000000,
+            "taxableBaseWon": 50000000,
+            "calculatedTaxWon": 5000000,
+            "creditEligible": "yes"
+          }
+        ],
+        "deemedAssetsWon": 0
+      },
+      "result": {
+        "kind": "inheritance",
+        "title": "상속세 간편계산",
+        "status": "ready",
+        "taxName": "상속세",
+        "taxableBaseWon": 452000000,
+        "grossTaxWon": 80400000,
+        "creditWon": 7262000,
+        "nationalTaxWon": 73138000,
+        "localTaxWon": 0,
+        "totalTaxWon": 73138000,
+        "lines": [
+          {
+            "label": "총 상속재산",
+            "amountWon": 1500000000
+          },
+          {
+            "label": "비과세·과세가액 불산입",
+            "amountWon": 0
+          },
+          {
+            "label": "사전증여재산 가산",
+            "amountWon": 100000000
+          },
+          {
+            "label": "채무·공과금 차감",
+            "amountWon": -100000000
+          },
+          {
+            "label": "장례비·봉안시설 비용 공제",
+            "amountWon": -8000000,
+            "note": "일반 장례비 500만원~1,000만원, 봉안시설 등 500만원 한도"
+          },
+          {
+            "label": "상속세 과세가액",
+            "amountWon": 1492000000
+          },
+          {
+            "label": "인적공제 또는 일괄공제",
+            "amountWon": -500000000
+          },
+          {
+            "label": "배우자 상속공제",
+            "amountWon": -500000000,
+            "note": "입력 상속액·법정지분 한도·30억원 한도 기준"
+          },
+          {
+            "label": "금융재산 상속공제",
+            "amountWon": -40000000,
+            "note": "금융재산 200,000,000원 - 공제 제외 재산 0원 - 금융채무 0원 = 공제 대상 순금융재산 200,000,000원. 공제 제외 재산은 총 상속재산에 남고, 금융채무는 총채무에 포함되어 한 번만 차감됩니다."
+          },
+          {
+            "label": "상속공제 적용 합계",
+            "amountWon": -1040000000,
+            "note": "공제 한도 1,442,000,000원. 과세가액 5억원 초과 시 합산 사전증여 과세표준을 한도에서 차감합니다."
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 452000000
+          },
+          {
+            "label": "산출세액 (20% / 누진공제 10,000,000원)",
+            "amountWon": 80400000
+          },
+          {
+            "label": "사전증여 증여세액공제",
+            "amountWon": -5000000,
+            "note": "수증자별 신고 산출세액과 법정 한도 중 작은 금액. 과세가액 5억원 이하 또는 부과제척기간 만료분은 제외"
+          },
+          {
+            "label": "신고세액공제 3%",
+            "amountWon": -2262000
+          },
+          {
+            "label": "예상 납부 상속세",
+            "amountWon": 73138000
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "피상속인은 거주자이고, 유증·상속인 외 수유자·상속포기 특례는 없다고 가정합니다.",
+          "재산가액은 사용자가 이미 세법상 평가한 금액이며, 이 화면은 재산평가 서비스를 제공하지 않습니다.",
+          "배우자 상속재산 분할과 신고 요건을 기한 내 충족하는 것으로 계산합니다.",
+          "사전증여는 배우자·자녀의 일반 현금증여 신고 내역만 지원합니다. 피상속인에게 받은 합산 대상만 포함된 수증자별 신고 과세표준과 산출세액을 사용하며, 재차증여 신고서를 중복 합산하지 않습니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "가업·영농상속공제",
+            "reason": "간편계산 범위를 벗어나 별도 요건 검토가 필요합니다."
+          },
+          {
+            "label": "상속인 외 수유자·비거주자",
+            "reason": "손택스 간편계산도 지원 제외로 안내합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "국세청 사전증여 증여세액공제·신고세액공제",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7959&mi=6531"
+          },
+          {
+            "label": "상증세법 시행령 제3조 상속인별 과세표준 상당액 (2026-09-18 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=900410489"
+          },
+          {
+            "label": "국세청 금융재산공제 대상·제외 및 공제액 (2026-09-18 확인)",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7956&mi=6528"
+          },
+          {
+            "label": "상속세 및 증여세법 제22조 (2026-01-02 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1032161999"
+          },
+          {
+            "label": "손택스 상속세 간편계산 입력 항목",
+            "url": "https://mob.tbht.hometax.go.kr/jsonAction.do?actionId=UTBRNAAM02F001"
+          },
+          {
+            "label": "상속세 및 증여세법 제25조~제27조",
+            "url": "https://taxlaw.nts.go.kr/st/USESTA002P.do?ntstBscId=100000000000001561&ntstEnfrDt=2019.02.25.&ntstSysClCd=01&ntstTlawClCd=109"
+          },
+          {
+            "label": "상속세 및 증여세법 제69조 신고세액공제",
+            "url": "https://www.law.go.kr/LSW//lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0069&lsiSeq=276123&urlMode=lsScJoRltInfoR"
+          }
+        ],
+        "checkedOn": "2026-09-19"
+      }
+    },
+    {
+      "id": "I07",
+      "input": {
+        "deathDate": "2026-09-19",
+        "spouse": "yes",
+        "spouseSoleHeir": false,
+        "childrenCount": 2,
+        "minorDeductionWon": 0,
+        "seniorCount": 0,
+        "disabledDeductionWon": 0,
+        "realEstateWon": 1200000000,
+        "financialAssetsWon": 200000000,
+        "financialExclusionsWon": 50000000,
+        "otherAssetsWon": 100000000,
+        "deemedAssetBreakdown": [],
+        "nonTaxableWon": 0,
+        "priorGiftSpouseWon": 0,
+        "priorGiftHeirsWon": 0,
+        "priorGiftOthersWon": 0,
+        "debtWon": 100000000,
+        "financialDebtWon": 0,
+        "publicChargesWon": 0,
+        "funeralWon": 8000000,
+        "burialWon": 0,
+        "spouseActualInheritanceWon": 500000000,
+        "statutoryShareNumerator": 3,
+        "statutoryShareDenominator": 7,
+        "spousePriorGiftTaxableWon": 0,
+        "priorGifts": [],
+        "deemedAssetsWon": 0
+      },
+      "result": {
+        "kind": "inheritance",
+        "title": "상속세 간편계산",
+        "status": "ready",
+        "taxName": "상속세",
+        "taxableBaseWon": 362000000,
+        "grossTaxWon": 62400000,
+        "creditWon": 1872000,
+        "nationalTaxWon": 60528000,
+        "localTaxWon": 0,
+        "totalTaxWon": 60528000,
+        "lines": [
+          {
+            "label": "총 상속재산",
+            "amountWon": 1500000000
+          },
+          {
+            "label": "비과세·과세가액 불산입",
+            "amountWon": 0
+          },
+          {
+            "label": "사전증여재산 가산",
+            "amountWon": 0
+          },
+          {
+            "label": "채무·공과금 차감",
+            "amountWon": -100000000
+          },
+          {
+            "label": "장례비·봉안시설 비용 공제",
+            "amountWon": -8000000,
+            "note": "일반 장례비 500만원~1,000만원, 봉안시설 등 500만원 한도"
+          },
+          {
+            "label": "상속세 과세가액",
+            "amountWon": 1392000000
+          },
+          {
+            "label": "인적공제 또는 일괄공제",
+            "amountWon": -500000000
+          },
+          {
+            "label": "배우자 상속공제",
+            "amountWon": -500000000,
+            "note": "입력 상속액·법정지분 한도·30억원 한도 기준"
+          },
+          {
+            "label": "금융재산 상속공제",
+            "amountWon": -30000000,
+            "note": "금융재산 200,000,000원 - 공제 제외 재산 50,000,000원 - 금융채무 0원 = 공제 대상 순금융재산 150,000,000원. 공제 제외 재산은 총 상속재산에 남고, 금융채무는 총채무에 포함되어 한 번만 차감됩니다."
+          },
+          {
+            "label": "상속공제 적용 합계",
+            "amountWon": -1030000000,
+            "note": "공제 한도 1,392,000,000원. 과세가액 5억원 초과 시 합산 사전증여 과세표준을 한도에서 차감합니다."
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 362000000
+          },
+          {
+            "label": "산출세액 (20% / 누진공제 10,000,000원)",
+            "amountWon": 62400000
+          },
+          {
+            "label": "사전증여 증여세액공제",
+            "amountWon": 0,
+            "note": "수증자별 신고 산출세액과 법정 한도 중 작은 금액. 과세가액 5억원 이하 또는 부과제척기간 만료분은 제외"
+          },
+          {
+            "label": "신고세액공제 3%",
+            "amountWon": -1872000
+          },
+          {
+            "label": "예상 납부 상속세",
+            "amountWon": 60528000
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "피상속인은 거주자이고, 유증·상속인 외 수유자·상속포기 특례는 없다고 가정합니다.",
+          "재산가액은 사용자가 이미 세법상 평가한 금액이며, 이 화면은 재산평가 서비스를 제공하지 않습니다.",
+          "배우자 상속재산 분할과 신고 요건을 기한 내 충족하는 것으로 계산합니다.",
+          "사전증여는 배우자·자녀의 일반 현금증여 신고 내역만 지원합니다. 피상속인에게 받은 합산 대상만 포함된 수증자별 신고 과세표준과 산출세액을 사용하며, 재차증여 신고서를 중복 합산하지 않습니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "가업·영농상속공제",
+            "reason": "간편계산 범위를 벗어나 별도 요건 검토가 필요합니다."
+          },
+          {
+            "label": "상속인 외 수유자·비거주자",
+            "reason": "손택스 간편계산도 지원 제외로 안내합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "국세청 사전증여 증여세액공제·신고세액공제",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7959&mi=6531"
+          },
+          {
+            "label": "상증세법 시행령 제3조 상속인별 과세표준 상당액 (2026-09-18 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=900410489"
+          },
+          {
+            "label": "국세청 금융재산공제 대상·제외 및 공제액 (2026-09-18 확인)",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7956&mi=6528"
+          },
+          {
+            "label": "상속세 및 증여세법 제22조 (2026-01-02 시행)",
+            "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1032161999"
+          },
+          {
+            "label": "손택스 상속세 간편계산 입력 항목",
+            "url": "https://mob.tbht.hometax.go.kr/jsonAction.do?actionId=UTBRNAAM02F001"
+          },
+          {
+            "label": "상속세 및 증여세법 제25조~제27조",
+            "url": "https://taxlaw.nts.go.kr/st/USESTA002P.do?ntstBscId=100000000000001561&ntstEnfrDt=2019.02.25.&ntstSysClCd=01&ntstTlawClCd=109"
+          },
+          {
+            "label": "상속세 및 증여세법 제69조 신고세액공제",
+            "url": "https://www.law.go.kr/LSW//lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0069&lsiSeq=276123&urlMode=lsScJoRltInfoR"
+          }
+        ],
+        "checkedOn": "2026-09-19"
+      }
+    },
+    {
+      "id": "C01",
+      "input": {
+        "transferDate": "2026-09-16",
+        "acquisitionDate": "2016-09-15",
+        "assetType": "generalBuilding",
+        "salePriceWon": 900000000,
+        "purchasePriceWon": 600000000,
+        "necessaryExpenseWon": 30000000,
+        "otherCapitalGainWon": 0,
+        "basicDeductionUsedWon": 0,
+        "annualAggregation": false,
+        "otherGainsGeneralRate": null,
+        "previousNationalTaxWon": 0,
+        "previousLocalTaxWon": 0,
+        "residenceYears": 0,
+        "homeCount": 0,
+        "regulatedArea": false,
+        "resident": "yes",
+        "homeOwnership": null,
+        "householdOtherRights": null,
+        "regulatedAtAcquisition": null,
+        "homeSpecialConditions": null
+      },
+      "result": {
+        "kind": "capitalGains",
+        "title": "양도소득세 간편계산",
+        "status": "ready",
+        "taxName": "양도소득세",
+        "taxableBaseWon": 213500000,
+        "grossTaxWon": 61190000,
+        "creditWon": 0,
+        "nationalTaxWon": 61190000,
+        "localTaxWon": 6119000,
+        "totalTaxWon": 67309000,
+        "lines": [
+          {
+            "label": "양도가액",
+            "amountWon": 900000000
+          },
+          {
+            "label": "취득가액",
+            "amountWon": -600000000
+          },
+          {
+            "label": "필요경비",
+            "amountWon": -30000000
+          },
+          {
+            "label": "양도차익",
+            "amountWon": 270000000
+          },
+          {
+            "label": "장기보유특별공제 20%",
+            "amountWon": -54000000,
+            "note": "만 10년 보유 기준"
+          },
+          {
+            "label": "같은 해 다른 양도소득금액",
+            "amountWon": 0
+          },
+          {
+            "label": "양도소득 기본공제",
+            "amountWon": -2500000,
+            "note": "연 250만원 한도"
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 213500000
+          },
+          {
+            "label": "양도소득세 산출세액 (38% / 누진공제 19,940,000원)",
+            "amountWon": 61190000
+          },
+          {
+            "label": "개인지방소득세 산출세액",
+            "amountWon": 6119000,
+            "note": "일반세율의 10% 수준으로 별도 표시"
+          },
+          {
+            "label": "예상 납부세액 합계",
+            "amountWon": 67309000
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "국내 거주자 1인이 보유한 부동산 1건의 일반 양도이며, 감면·이월과세·부담부증여는 제외합니다.",
+          "취득가액과 필요경비는 세법상 인정되는 실지거래가액과 비용입니다.",
+          "양도소득세에는 신고세액공제 3%를 적용하지 않습니다.",
+          "기본세율은 양도일 2026-09-16 기준 2023년 이후 구간을 적용했습니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "주택 계산 범위",
+            "reason": "거주자·매수한 단독 소유 주택의 일반 비과세와 12억원 초과 안분을 지원합니다. 공동명의·입주권·분양권·겸용·다주택 특례는 제외합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "국세청 양도소득세 확정신고·합산 신고 안내",
+            "url": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=131041&mi=2307"
+          },
+          {
+            "label": "국세청 1세대 1주택 비과세 요건",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7707&mi=2308"
+          },
+          {
+            "label": "국세청 고가주택 안분 산식·공개 계산사례",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=8799&mi=12271"
+          },
+          {
+            "label": "국세청 양도소득세 세액계산 흐름도",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7709&mi=2446"
+          },
+          {
+            "label": "국세청 양도소득세 세율",
+            "url": "https://b.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7711&mi=2312"
+          },
+          {
+            "label": "국세청 양도소득 기본공제 신고서식 안내",
+            "url": "https://www.nts.go.kr/tax/sub/1.2.3.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%20%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C.html"
+          }
+        ],
+        "checkedOn": "2026-09-19",
+        "annualAggregation": false
+      }
+    },
+    {
+      "id": "C02",
+      "input": {
+        "transferDate": "2026-09-16",
+        "acquisitionDate": "2016-09-15",
+        "assetType": "generalBuilding",
+        "salePriceWon": 900000000,
+        "purchasePriceWon": 600000000,
+        "necessaryExpenseWon": 30000000,
+        "otherCapitalGainWon": 100000000,
+        "basicDeductionUsedWon": 2500000,
+        "annualAggregation": true,
+        "otherGainsGeneralRate": "yes",
+        "previousNationalTaxWon": 18685000,
+        "previousLocalTaxWon": 1868500,
+        "residenceYears": 0,
+        "homeCount": 0,
+        "regulatedArea": false,
+        "resident": "yes",
+        "homeOwnership": null,
+        "householdOtherRights": null,
+        "regulatedAtAcquisition": null,
+        "homeSpecialConditions": null
+      },
+      "result": {
+        "kind": "capitalGains",
+        "title": "양도소득세 간편계산",
+        "status": "ready",
+        "taxName": "양도소득세",
+        "taxableBaseWon": 313500000,
+        "grossTaxWon": 99460000,
+        "creditWon": 0,
+        "nationalTaxWon": 80775000,
+        "localTaxWon": 8077500,
+        "totalTaxWon": 88852500,
+        "lines": [
+          {
+            "label": "양도가액",
+            "amountWon": 900000000
+          },
+          {
+            "label": "취득가액",
+            "amountWon": -600000000
+          },
+          {
+            "label": "필요경비",
+            "amountWon": -30000000
+          },
+          {
+            "label": "양도차익",
+            "amountWon": 270000000
+          },
+          {
+            "label": "장기보유특별공제 20%",
+            "amountWon": -54000000,
+            "note": "만 10년 보유 기준"
+          },
+          {
+            "label": "같은 해 다른 양도소득금액",
+            "amountWon": 100000000
+          },
+          {
+            "label": "양도소득 기본공제",
+            "amountWon": -2500000,
+            "note": "연간 합산 소득에서 250만원 한 번 적용. 앞선 신고의 사용 공제 2,500,000원를 중복 차감하지 않습니다."
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 313500000
+          },
+          {
+            "label": "양도소득세 산출세액 (40% / 누진공제 25,940,000원)",
+            "amountWon": 99460000
+          },
+          {
+            "label": "개인지방소득세 산출세액",
+            "amountWon": 9946000,
+            "note": "일반세율의 10% 수준으로 별도 표시"
+          },
+          {
+            "label": "기납부 양도소득세 차감",
+            "amountWon": -18685000
+          },
+          {
+            "label": "기납부 지방소득세 차감",
+            "amountWon": -1868500
+          },
+          {
+            "label": "차가감 양도소득세",
+            "amountWon": 80775000
+          },
+          {
+            "label": "차가감 지방소득세",
+            "amountWon": 8077500
+          },
+          {
+            "label": "추가 납부·환급 차액 합계",
+            "amountWon": 88852500
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "같은 해 국내 토지·건물의 일반세율 과세소득(장기보유특별공제 후, 기본공제 전)을 합산합니다. 과세대상 양도차손은 통산하며 비과세 손실은 제외합니다. 음수 차액은 환급 예상액으로 신고·심사가 필요합니다.",
+          "취득가액과 필요경비는 세법상 인정되는 실지거래가액과 비용입니다.",
+          "양도소득세에는 신고세액공제 3%를 적용하지 않습니다.",
+          "기본세율은 양도일 2026-09-16 기준 2023년 이후 구간을 적용했습니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "주택 계산 범위",
+            "reason": "거주자·매수한 단독 소유 주택의 일반 비과세와 12억원 초과 안분을 지원합니다. 공동명의·입주권·분양권·겸용·다주택 특례는 제외합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "국세청 양도소득세 확정신고·합산 신고 안내",
+            "url": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=131041&mi=2307"
+          },
+          {
+            "label": "국세청 1세대 1주택 비과세 요건",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7707&mi=2308"
+          },
+          {
+            "label": "국세청 고가주택 안분 산식·공개 계산사례",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=8799&mi=12271"
+          },
+          {
+            "label": "국세청 양도소득세 세액계산 흐름도",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7709&mi=2446"
+          },
+          {
+            "label": "국세청 양도소득세 세율",
+            "url": "https://b.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7711&mi=2312"
+          },
+          {
+            "label": "국세청 양도소득 기본공제 신고서식 안내",
+            "url": "https://www.nts.go.kr/tax/sub/1.2.3.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%20%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C.html"
+          }
+        ],
+        "checkedOn": "2026-09-19",
+        "annualAggregation": true
+      }
+    },
+    {
+      "id": "C03",
+      "input": {
+        "transferDate": "2026-09-16",
+        "acquisitionDate": "2016-09-15",
+        "assetType": "generalBuilding",
+        "salePriceWon": 550000000,
+        "purchasePriceWon": 600000000,
+        "necessaryExpenseWon": 0,
+        "otherCapitalGainWon": 100000000,
+        "basicDeductionUsedWon": 2500000,
+        "annualAggregation": true,
+        "otherGainsGeneralRate": "yes",
+        "previousNationalTaxWon": 18685000,
+        "previousLocalTaxWon": 1868500,
+        "residenceYears": 0,
+        "homeCount": 0,
+        "regulatedArea": false,
+        "resident": "yes",
+        "homeOwnership": null,
+        "householdOtherRights": null,
+        "regulatedAtAcquisition": null,
+        "homeSpecialConditions": null
+      },
+      "result": {
+        "kind": "capitalGains",
+        "title": "양도소득세 간편계산",
+        "status": "ready",
+        "taxName": "양도소득세",
+        "taxableBaseWon": 47500000,
+        "grossTaxWon": 5865000,
+        "creditWon": 0,
+        "nationalTaxWon": -12820000,
+        "localTaxWon": -1282000,
+        "totalTaxWon": -14102000,
+        "lines": [
+          {
+            "label": "양도가액",
+            "amountWon": 550000000
+          },
+          {
+            "label": "취득가액",
+            "amountWon": -600000000
+          },
+          {
+            "label": "필요경비",
+            "amountWon": 0
+          },
+          {
+            "label": "양도차익",
+            "amountWon": -50000000
+          },
+          {
+            "label": "장기보유특별공제 20%",
+            "amountWon": 0,
+            "note": "만 10년 보유 기준"
+          },
+          {
+            "label": "같은 해 다른 양도소득금액",
+            "amountWon": 100000000
+          },
+          {
+            "label": "양도소득 기본공제",
+            "amountWon": -2500000,
+            "note": "연간 합산 소득에서 250만원 한 번 적용. 앞선 신고의 사용 공제 2,500,000원를 중복 차감하지 않습니다."
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 47500000
+          },
+          {
+            "label": "양도소득세 산출세액 (15% / 누진공제 1,260,000원)",
+            "amountWon": 5865000
+          },
+          {
+            "label": "개인지방소득세 산출세액",
+            "amountWon": 586500,
+            "note": "일반세율의 10% 수준으로 별도 표시"
+          },
+          {
+            "label": "기납부 양도소득세 차감",
+            "amountWon": -18685000
+          },
+          {
+            "label": "기납부 지방소득세 차감",
+            "amountWon": -1868500
+          },
+          {
+            "label": "차가감 양도소득세",
+            "amountWon": -12820000
+          },
+          {
+            "label": "차가감 지방소득세",
+            "amountWon": -1282000
+          },
+          {
+            "label": "추가 납부·환급 차액 합계",
+            "amountWon": -14102000
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "같은 해 국내 토지·건물의 일반세율 과세소득(장기보유특별공제 후, 기본공제 전)을 합산합니다. 과세대상 양도차손은 통산하며 비과세 손실은 제외합니다. 음수 차액은 환급 예상액으로 신고·심사가 필요합니다.",
+          "취득가액과 필요경비는 세법상 인정되는 실지거래가액과 비용입니다.",
+          "양도소득세에는 신고세액공제 3%를 적용하지 않습니다.",
+          "기본세율은 양도일 2026-09-16 기준 2023년 이후 구간을 적용했습니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "주택 계산 범위",
+            "reason": "거주자·매수한 단독 소유 주택의 일반 비과세와 12억원 초과 안분을 지원합니다. 공동명의·입주권·분양권·겸용·다주택 특례는 제외합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "국세청 양도소득세 확정신고·합산 신고 안내",
+            "url": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=131041&mi=2307"
+          },
+          {
+            "label": "국세청 1세대 1주택 비과세 요건",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7707&mi=2308"
+          },
+          {
+            "label": "국세청 고가주택 안분 산식·공개 계산사례",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=8799&mi=12271"
+          },
+          {
+            "label": "국세청 양도소득세 세액계산 흐름도",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7709&mi=2446"
+          },
+          {
+            "label": "국세청 양도소득세 세율",
+            "url": "https://b.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7711&mi=2312"
+          },
+          {
+            "label": "국세청 양도소득 기본공제 신고서식 안내",
+            "url": "https://www.nts.go.kr/tax/sub/1.2.3.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%20%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C.html"
+          }
+        ],
+        "checkedOn": "2026-09-19",
+        "annualAggregation": true
+      }
+    },
+    {
+      "id": "C04",
+      "input": {
+        "transferDate": "2026-09-16",
+        "acquisitionDate": "2016-09-15",
+        "assetType": "oneHome",
+        "salePriceWon": 1200000000,
+        "purchasePriceWon": 600000000,
+        "necessaryExpenseWon": 0,
+        "otherCapitalGainWon": 0,
+        "basicDeductionUsedWon": 0,
+        "annualAggregation": false,
+        "otherGainsGeneralRate": null,
+        "previousNationalTaxWon": 0,
+        "previousLocalTaxWon": 0,
+        "residenceYears": 10,
+        "homeCount": 1,
+        "regulatedArea": false,
+        "resident": "yes",
+        "homeOwnership": "solePurchased",
+        "householdOtherRights": "no",
+        "regulatedAtAcquisition": "no",
+        "homeSpecialConditions": "no"
+      },
+      "result": {
+        "kind": "capitalGains",
+        "title": "양도소득세 간편계산",
+        "status": "ready",
+        "taxName": "양도소득세",
+        "taxableBaseWon": 0,
+        "grossTaxWon": 0,
+        "creditWon": 0,
+        "nationalTaxWon": 0,
+        "localTaxWon": 0,
+        "totalTaxWon": 0,
+        "lines": [
+          {
+            "label": "양도가액",
+            "amountWon": 1200000000
+          },
+          {
+            "label": "취득가액",
+            "amountWon": -600000000
+          },
+          {
+            "label": "필요경비",
+            "amountWon": 0
+          },
+          {
+            "label": "양도차익",
+            "amountWon": 600000000
+          },
+          {
+            "label": "1세대 1주택 비과세 양도차익",
+            "amountWon": -600000000,
+            "note": "세대·취득·보유·거주 요건 확인. 양도가액 12억원 초과분만 과세"
+          },
+          {
+            "label": "과세대상 양도차익",
+            "amountWon": 0
+          },
+          {
+            "label": "장기보유특별공제 80%",
+            "amountWon": 0,
+            "note": "만 10년 보유 기준"
+          },
+          {
+            "label": "같은 해 다른 양도소득금액",
+            "amountWon": 0
+          },
+          {
+            "label": "양도소득 기본공제",
+            "amountWon": 0,
+            "note": "연 250만원 한도"
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 0
+          },
+          {
+            "label": "양도소득세 산출세액 (6% / 누진공제 0원)",
+            "amountWon": 0
+          },
+          {
+            "label": "개인지방소득세 산출세액",
+            "amountWon": 0,
+            "note": "일반세율의 10% 수준으로 별도 표시"
+          },
+          {
+            "label": "예상 납부세액 합계",
+            "amountWon": 0
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "국내 거주자 1인이 보유한 부동산 1건의 일반 양도이며, 감면·이월과세·부담부증여는 제외합니다.",
+          "취득가액과 필요경비는 세법상 인정되는 실지거래가액과 비용입니다.",
+          "양도소득세에는 신고세액공제 3%를 적용하지 않습니다.",
+          "기본세율은 양도일 2026-09-16 기준 2023년 이후 구간을 적용했습니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "주택 계산 범위",
+            "reason": "거주자·매수한 단독 소유 주택의 일반 비과세와 12억원 초과 안분을 지원합니다. 공동명의·입주권·분양권·겸용·다주택 특례는 제외합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "국세청 양도소득세 확정신고·합산 신고 안내",
+            "url": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=131041&mi=2307"
+          },
+          {
+            "label": "국세청 1세대 1주택 비과세 요건",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7707&mi=2308"
+          },
+          {
+            "label": "국세청 고가주택 안분 산식·공개 계산사례",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=8799&mi=12271"
+          },
+          {
+            "label": "국세청 양도소득세 세액계산 흐름도",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7709&mi=2446"
+          },
+          {
+            "label": "국세청 양도소득세 세율",
+            "url": "https://b.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7711&mi=2312"
+          },
+          {
+            "label": "국세청 양도소득 기본공제 신고서식 안내",
+            "url": "https://www.nts.go.kr/tax/sub/1.2.3.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%20%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C.html"
+          }
+        ],
+        "checkedOn": "2026-09-19",
+        "annualAggregation": false
+      }
+    },
+    {
+      "id": "C05",
+      "input": {
+        "transferDate": "2026-09-16",
+        "acquisitionDate": "2016-09-15",
+        "assetType": "oneHome",
+        "salePriceWon": 1500000000,
+        "purchasePriceWon": 600000000,
+        "necessaryExpenseWon": 0,
+        "otherCapitalGainWon": 0,
+        "basicDeductionUsedWon": 0,
+        "annualAggregation": false,
+        "otherGainsGeneralRate": null,
+        "previousNationalTaxWon": 0,
+        "previousLocalTaxWon": 0,
+        "residenceYears": 10,
+        "homeCount": 1,
+        "regulatedArea": false,
+        "resident": "yes",
+        "homeOwnership": "solePurchased",
+        "householdOtherRights": "no",
+        "regulatedAtAcquisition": "no",
+        "homeSpecialConditions": "no"
+      },
+      "result": {
+        "kind": "capitalGains",
+        "title": "양도소득세 간편계산",
+        "status": "ready",
+        "taxName": "양도소득세",
+        "taxableBaseWon": 33500000,
+        "grossTaxWon": 3765000,
+        "creditWon": 0,
+        "nationalTaxWon": 3765000,
+        "localTaxWon": 376500,
+        "totalTaxWon": 4141500,
+        "lines": [
+          {
+            "label": "양도가액",
+            "amountWon": 1500000000
+          },
+          {
+            "label": "취득가액",
+            "amountWon": -600000000
+          },
+          {
+            "label": "필요경비",
+            "amountWon": 0
+          },
+          {
+            "label": "양도차익",
+            "amountWon": 900000000
+          },
+          {
+            "label": "1세대 1주택 비과세 양도차익",
+            "amountWon": -720000000,
+            "note": "세대·취득·보유·거주 요건 확인. 양도가액 12억원 초과분만 과세"
+          },
+          {
+            "label": "과세대상 양도차익",
+            "amountWon": 180000000
+          },
+          {
+            "label": "장기보유특별공제 80%",
+            "amountWon": -144000000,
+            "note": "만 10년 보유 기준"
+          },
+          {
+            "label": "같은 해 다른 양도소득금액",
+            "amountWon": 0
+          },
+          {
+            "label": "양도소득 기본공제",
+            "amountWon": -2500000,
+            "note": "연 250만원 한도"
+          },
+          {
+            "label": "과세표준",
+            "amountWon": 33500000
+          },
+          {
+            "label": "양도소득세 산출세액 (15% / 누진공제 1,260,000원)",
+            "amountWon": 3765000
+          },
+          {
+            "label": "개인지방소득세 산출세액",
+            "amountWon": 376500,
+            "note": "일반세율의 10% 수준으로 별도 표시"
+          },
+          {
+            "label": "예상 납부세액 합계",
+            "amountWon": 4141500
+          }
+        ],
+        "missing": [],
+        "assumptions": [
+          "국내 거주자 1인이 보유한 부동산 1건의 일반 양도이며, 감면·이월과세·부담부증여는 제외합니다.",
+          "취득가액과 필요경비는 세법상 인정되는 실지거래가액과 비용입니다.",
+          "양도소득세에는 신고세액공제 3%를 적용하지 않습니다.",
+          "기본세율은 양도일 2026-09-16 기준 2023년 이후 구간을 적용했습니다."
+        ],
+        "unsupported": [],
+        "scopeNotes": [
+          {
+            "label": "주택 계산 범위",
+            "reason": "거주자·매수한 단독 소유 주택의 일반 비과세와 12억원 초과 안분을 지원합니다. 공동명의·입주권·분양권·겸용·다주택 특례는 제외합니다."
+          }
+        ],
+        "references": [
+          {
+            "label": "국세청 양도소득세 확정신고·합산 신고 안내",
+            "url": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=131041&mi=2307"
+          },
+          {
+            "label": "국세청 1세대 1주택 비과세 요건",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7707&mi=2308"
+          },
+          {
+            "label": "국세청 고가주택 안분 산식·공개 계산사례",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=8799&mi=12271"
+          },
+          {
+            "label": "국세청 양도소득세 세액계산 흐름도",
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7709&mi=2446"
+          },
+          {
+            "label": "국세청 양도소득세 세율",
+            "url": "https://b.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7711&mi=2312"
+          },
+          {
+            "label": "국세청 양도소득 기본공제 신고서식 안내",
+            "url": "https://www.nts.go.kr/tax/sub/1.2.3.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%20%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C.html"
+          }
+        ],
+        "checkedOn": "2026-09-19",
+        "annualAggregation": false
+      }
+    }
+  ]
+}

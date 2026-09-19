@@ -15,7 +15,8 @@ async function filesIn(folder) {
 }
 
 await rm(output, { recursive: true, force: true });
-const files = [...await filesIn("lib/simple-calculator"), "scripts/simple-calculator-tests.ts"];
+const suites = ["simple-calculator-tests", "simple-calculator-review-tests", "simple-calculator-final-tests"];
+const files = [...await filesIn("lib/simple-calculator"), ...suites.map(name => `scripts/${name}.ts`)];
 for (const file of files) {
   const source = await readFile(path.join(root, file), "utf8");
   const transpiled = ts.transpileModule(source, {
@@ -32,8 +33,9 @@ for (const file of files) {
   await writeFile(destination, transpiled.outputText);
 }
 
-const result = spawnSync(process.execPath, ["--test", path.join(output, "scripts", "simple-calculator-tests.js")], {
+const result = spawnSync(process.execPath, ["--test", ...suites.map(name => path.join(output, "scripts", `${name}.js`))], {
   cwd: output,
+  env: { ...process.env, SIMPLE_CALCULATOR_ROOT: root },
   stdio: "inherit",
 });
 process.exit(result.status ?? 1);

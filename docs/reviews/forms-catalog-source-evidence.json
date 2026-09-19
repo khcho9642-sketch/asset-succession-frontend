@@ -1,0 +1,802 @@
+{
+  "checkedAt": "2026-09-17T05:31:52.854009+00:00",
+  "recordCount": 74,
+  "matchedCount": 74,
+  "scope": "Official page title/list evidence only; not original file validation or redistribution clearance.",
+  "sources": [
+    {
+      "id": "SC1",
+      "requestedUrl": "https://seoul.scourt.go.kr/contract/new/DocListAction.work",
+      "status": 200,
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work",
+      "title": "법문화 강좌 | 서울중앙지방법원",
+      "textLength": 2392,
+      "blocked": false
+    },
+    {
+      "id": "SC2",
+      "requestedUrl": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=2",
+      "status": 200,
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=2",
+      "title": "법문화 강좌 | 서울중앙지방법원",
+      "textLength": 827,
+      "blocked": false
+    },
+    {
+      "id": "SC3",
+      "requestedUrl": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=3",
+      "status": 200,
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=3",
+      "title": "법문화 강좌 | 서울중앙지방법원",
+      "textLength": 758,
+      "blocked": false
+    },
+    {
+      "id": "SC4",
+      "requestedUrl": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=4",
+      "status": 200,
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=4",
+      "title": "법문화 강좌 | 서울중앙지방법원",
+      "textLength": 2117,
+      "blocked": false
+    },
+    {
+      "id": "BP-G",
+      "requestedUrl": "https://www.icbp.go.kr/main/bbs/bbsMsgDetail.do?bcd=taxes_form&msg_seq=64",
+      "status": 200,
+      "url": "https://www.icbp.go.kr/main/bbs/bbsMsgDetail.do?bcd=taxes_form&msg_seq=64",
+      "title": "지방세 민원서식자료실-증여계약서 내용 | 인천광역시 부평구청>종합민원>지방세",
+      "textLength": 1549,
+      "blocked": false
+    },
+    {
+      "id": "BP-I",
+      "requestedUrl": "https://www.icbp.go.kr/main/bbs/bbsMsgDetail.do?bcd=taxes_form&msg_seq=9&pgno=3",
+      "status": 200,
+      "url": "https://www.icbp.go.kr/main/bbs/bbsMsgDetail.do?bcd=taxes_form&msg_seq=9&pgno=3",
+      "title": "지방세 민원서식자료실-상속재산분할협의서 내용 | 인천광역시 부평구청>종합민원>지방세",
+      "textLength": 1757,
+      "blocked": false
+    },
+    {
+      "id": "DD-G",
+      "requestedUrl": "https://www.ddm.go.kr/www/selectBbsNttView.do?bbsNo=1&integrDeptCode=&key=6&nttNo=13128&pageIndex=13&searchCnd=all&searchCtgry=&searchKrwd=",
+      "status": 200,
+      "url": "https://www.ddm.go.kr/www/selectBbsNttView.do?bbsNo=1&integrDeptCode=&key=6&nttNo=13128&pageIndex=13&searchCnd=all&searchCtgry=&searchKrwd=",
+      "title": "민원편람(민원서식) - 동대문구",
+      "textLength": 3443,
+      "blocked": false
+    },
+    {
+      "id": "FAMILY-I",
+      "requestedUrl": "https://www.scourt.go.kr/portal/dcboard/DcNewsViewAction.work?cbub_code=000230&gubun=41&seqnum=585",
+      "status": 200,
+      "url": "https://www.scourt.go.kr/portal/dcboard/DcNewsViewAction.work?cbub_code=000230&gubun=41&seqnum=585",
+      "title": "상속재산명세표 양식 게시 - 전국법원소식",
+      "textLength": 1220,
+      "blocked": false
+    },
+    {
+      "id": "NTS-IG",
+      "requestedUrl": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "status": 200,
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "title": "국세청>국세정책/제도>세무서식>법령서식> 상속세및증여세법",
+      "textLength": 3232,
+      "blocked": false
+    },
+    {
+      "id": "NTS-CG",
+      "requestedUrl": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "status": 200,
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "title": "알기 쉬운 양도소득세",
+      "textLength": 1090,
+      "blocked": false
+    },
+    {
+      "id": "NTS-IE",
+      "requestedUrl": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=30021&mi=2334",
+      "status": 200,
+      "url": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=30021&mi=2334",
+      "title": "국세청>국세신고안내>개인신고안내>상속세>주요서식 작성요령/사례",
+      "textLength": 1108,
+      "blocked": false
+    },
+    {
+      "id": "NTS-CE",
+      "requestedUrl": "https://www.nts.go.kr/tax/sub/1.3.3.1.%EB%B9%84%EC%83%81%EC%9E%A5%20%EC%A3%BC%EC%8B%9D%EC%9D%84%20%EC%96%91%EB%8F%84%ED%95%9C%20%EA%B2%BD%EC%9A%B0.html",
+      "status": 200,
+      "url": "https://www.nts.go.kr/tax/sub/1.3.3.1.%EB%B9%84%EC%83%81%EC%9E%A5%20%EC%A3%BC%EC%8B%9D%EC%9D%84%20%EC%96%91%EB%8F%84%ED%95%9C%20%EA%B2%BD%EC%9A%B0.html",
+      "title": "알기 쉬운 양도소득세",
+      "textLength": 963,
+      "blocked": false
+    },
+    {
+      "id": "REG-I",
+      "requestedUrl": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=3&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "status": 200,
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=3&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "title": "부동산등기 > 소유권 이전등기 > 상속에 의한 소유권 이전등기 > 신청서 작성 (본문) | 찾기쉬운 생활법령정보",
+      "textLength": 2029,
+      "blocked": false
+    },
+    {
+      "id": "REG-G",
+      "requestedUrl": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=2&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "status": 200,
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=2&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "title": "부동산등기 > 소유권 이전등기 > 증여에 의한 소유권 이전등기 > 신청서 작성 (본문) | 찾기쉬운 생활법령정보",
+      "textLength": 2745,
+      "blocked": false
+    }
+  ],
+  "records": [
+    {
+      "id": "BP-I-01",
+      "sourceId": "BP-I",
+      "url": "https://www.icbp.go.kr/main/bbs/bbsMsgDetail.do?bcd=taxes_form&msg_seq=9&pgno=3",
+      "titleKey": "상속재산분할협의서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "e17f9c9de6763fddded15522dcd98c763390aef0ae21140217c7e6699576b316",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "BP-G-01",
+      "sourceId": "BP-G",
+      "url": "https://www.icbp.go.kr/main/bbs/bbsMsgDetail.do?bcd=taxes_form&msg_seq=64",
+      "titleKey": "증여계약서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "ca275aa50530e6fe9ad9eca7ae4aab2c8f53e6705a672d725abcd7b5b2a850d0",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "DD-G-01",
+      "sourceId": "DD-G",
+      "url": "https://www.ddm.go.kr/www/selectBbsNttView.do?bbsNo=1&integrDeptCode=&key=6&nttNo=13128&pageIndex=13&searchCnd=all&searchCtgry=&searchKrwd=",
+      "titleKey": "증여계약서(샘플).hwp",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "3d75759055a66304bbe60a9fbc1101581955af067a8e1757319797cff8b6111c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "FAMILY-I-01",
+      "sourceId": "FAMILY-I",
+      "url": "https://www.scourt.go.kr/portal/dcboard/DcNewsViewAction.work?cbub_code=000230&gubun=41&seqnum=585",
+      "titleKey": "상속재산명세표 양식 게시",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "92e4b1c0abe4baddeebc87abf6424f51251e3c20b1954a99fa9ca4f932ed9ff9",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-01",
+      "sourceId": "SC1",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work",
+      "titleKey": "[단독주택] 간이하게 작성하는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "fe8758f685a4609050d09fbec6c47fbe02d4958ee1971020a17f63c5488b3657",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-02",
+      "sourceId": "SC1",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work",
+      "titleKey": "[아파트,연립주택] 간이하게 작성하는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "fe8758f685a4609050d09fbec6c47fbe02d4958ee1971020a17f63c5488b3657",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-03",
+      "sourceId": "SC1",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work",
+      "titleKey": "[토지] 간이하게 작성하는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "fe8758f685a4609050d09fbec6c47fbe02d4958ee1971020a17f63c5488b3657",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-04",
+      "sourceId": "SC1",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work",
+      "titleKey": "[단독주택] 일반적인 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "fe8758f685a4609050d09fbec6c47fbe02d4958ee1971020a17f63c5488b3657",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-05",
+      "sourceId": "SC1",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work",
+      "titleKey": "[단독주택] 저당권이 있는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "fe8758f685a4609050d09fbec6c47fbe02d4958ee1971020a17f63c5488b3657",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-06",
+      "sourceId": "SC1",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work",
+      "titleKey": "[단독주택] 전세를 안고 사는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "fe8758f685a4609050d09fbec6c47fbe02d4958ee1971020a17f63c5488b3657",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-07",
+      "sourceId": "SC1",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work",
+      "titleKey": "[단독주택] 저당권도 있고 전세도 안고 사는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "fe8758f685a4609050d09fbec6c47fbe02d4958ee1971020a17f63c5488b3657",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-08",
+      "sourceId": "SC1",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work",
+      "titleKey": "[아파트,연립주택] 일반적인 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "fe8758f685a4609050d09fbec6c47fbe02d4958ee1971020a17f63c5488b3657",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-09",
+      "sourceId": "SC1",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work",
+      "titleKey": "[아파트,연립주택] 저당권이 있는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "fe8758f685a4609050d09fbec6c47fbe02d4958ee1971020a17f63c5488b3657",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-10",
+      "sourceId": "SC1",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work",
+      "titleKey": "[아파트,연립주택] 전세를 안고 사는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "fe8758f685a4609050d09fbec6c47fbe02d4958ee1971020a17f63c5488b3657",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-11",
+      "sourceId": "SC2",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=2",
+      "titleKey": "[아파트,연립주택] 저당권도 있고 전세도 안고 사는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "34f5d524581f476f7e712025f7ed15a0728f6089c4a52aeb35cd07ad0457f29e",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-12",
+      "sourceId": "SC2",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=2",
+      "titleKey": "[토지] 일반적인 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "34f5d524581f476f7e712025f7ed15a0728f6089c4a52aeb35cd07ad0457f29e",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-13",
+      "sourceId": "SC2",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=2",
+      "titleKey": "[토지] 저당권이 있는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "34f5d524581f476f7e712025f7ed15a0728f6089c4a52aeb35cd07ad0457f29e",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-14",
+      "sourceId": "SC2",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=2",
+      "titleKey": "[토지] 전세를 안고 사는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "34f5d524581f476f7e712025f7ed15a0728f6089c4a52aeb35cd07ad0457f29e",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-15",
+      "sourceId": "SC2",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=2",
+      "titleKey": "[토지] 저당권도 있고 전세도 안고 사는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "34f5d524581f476f7e712025f7ed15a0728f6089c4a52aeb35cd07ad0457f29e",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-16",
+      "sourceId": "SC2",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=2",
+      "titleKey": "[일반건물] 간이하게 작성하는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "34f5d524581f476f7e712025f7ed15a0728f6089c4a52aeb35cd07ad0457f29e",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-17",
+      "sourceId": "SC2",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=2",
+      "titleKey": "[아파트,연립주택] 간이하게 작성하는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "34f5d524581f476f7e712025f7ed15a0728f6089c4a52aeb35cd07ad0457f29e",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-18",
+      "sourceId": "SC2",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=2",
+      "titleKey": "[상가건물] 간이하게 작성하는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "34f5d524581f476f7e712025f7ed15a0728f6089c4a52aeb35cd07ad0457f29e",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-19",
+      "sourceId": "SC2",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=2",
+      "titleKey": "[일반건물] 일반적인 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "34f5d524581f476f7e712025f7ed15a0728f6089c4a52aeb35cd07ad0457f29e",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-20",
+      "sourceId": "SC2",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=2",
+      "titleKey": "[아파트,연립주택] 일반적인 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "34f5d524581f476f7e712025f7ed15a0728f6089c4a52aeb35cd07ad0457f29e",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-21",
+      "sourceId": "SC3",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=3",
+      "titleKey": "[상가건물] 일반적인 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "f577632e739e7ed0432179e4e7d4c5fa29d4a0e842ec7b061acaf6b795a3d7f0",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-22",
+      "sourceId": "SC3",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=3",
+      "titleKey": "일반적인 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "f577632e739e7ed0432179e4e7d4c5fa29d4a0e842ec7b061acaf6b795a3d7f0",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-23",
+      "sourceId": "SC3",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=3",
+      "titleKey": "연대보증인이 있는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "f577632e739e7ed0432179e4e7d4c5fa29d4a0e842ec7b061acaf6b795a3d7f0",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-24",
+      "sourceId": "SC3",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=3",
+      "titleKey": "차용인 부동산에 저당권 설정하는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "f577632e739e7ed0432179e4e7d4c5fa29d4a0e842ec7b061acaf6b795a3d7f0",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-25",
+      "sourceId": "SC3",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=3",
+      "titleKey": "제3자 부동산에 저당권 설정하는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "f577632e739e7ed0432179e4e7d4c5fa29d4a0e842ec7b061acaf6b795a3d7f0",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-26",
+      "sourceId": "SC3",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=3",
+      "titleKey": "[영수증] 매매대금을 받는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "f577632e739e7ed0432179e4e7d4c5fa29d4a0e842ec7b061acaf6b795a3d7f0",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-27",
+      "sourceId": "SC3",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=3",
+      "titleKey": "[영수증] 전세금을 받는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "f577632e739e7ed0432179e4e7d4c5fa29d4a0e842ec7b061acaf6b795a3d7f0",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-28",
+      "sourceId": "SC3",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=3",
+      "titleKey": "[영수증] 대여금을 전부 돌려받는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "f577632e739e7ed0432179e4e7d4c5fa29d4a0e842ec7b061acaf6b795a3d7f0",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-29",
+      "sourceId": "SC3",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=3",
+      "titleKey": "[영수증] 대여금을 일부 돌려받는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "f577632e739e7ed0432179e4e7d4c5fa29d4a0e842ec7b061acaf6b795a3d7f0",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-30",
+      "sourceId": "SC3",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=3",
+      "titleKey": "[차용증] 일반적인 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "f577632e739e7ed0432179e4e7d4c5fa29d4a0e842ec7b061acaf6b795a3d7f0",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "SC-31",
+      "sourceId": "SC4",
+      "url": "https://seoul.scourt.go.kr/contract/new/DocListAction.work?pageIndex=4",
+      "titleKey": "[차용증] 연대보증인이 있는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1bb3734e8dd8f8cdfb7161478d17eb1905681c7ea0b356cede70c0e645660cdb",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IG-01",
+      "sourceId": "NTS-IG",
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "titleKey": "가업상속공제신고서·가업상속재산명세서·가업용 자산 명세",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "57e411ad2ac1be84c5b49260dfd413adb3ba73385ae64b583447fa526f8c068c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IG-02",
+      "sourceId": "NTS-IG",
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "titleKey": "영농상속공제신고서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "57e411ad2ac1be84c5b49260dfd413adb3ba73385ae64b583447fa526f8c068c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IG-03",
+      "sourceId": "NTS-IG",
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "titleKey": "배우자 상속재산 미분할 신고서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "57e411ad2ac1be84c5b49260dfd413adb3ba73385ae64b583447fa526f8c068c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IG-04",
+      "sourceId": "NTS-IG",
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "titleKey": "임신사실확인서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "57e411ad2ac1be84c5b49260dfd413adb3ba73385ae64b583447fa526f8c068c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IG-05",
+      "sourceId": "NTS-IG",
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "titleKey": "장애인증명서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "57e411ad2ac1be84c5b49260dfd413adb3ba73385ae64b583447fa526f8c068c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IG-06",
+      "sourceId": "NTS-IG",
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "titleKey": "금융재산 상속공제 신고서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "57e411ad2ac1be84c5b49260dfd413adb3ba73385ae64b583447fa526f8c068c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IG-07",
+      "sourceId": "NTS-IG",
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "titleKey": "재해손실 공제신고서(상속세, 증여세)",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "57e411ad2ac1be84c5b49260dfd413adb3ba73385ae64b583447fa526f8c068c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IG-08",
+      "sourceId": "NTS-IG",
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "titleKey": "동거주택상속공제신고서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "57e411ad2ac1be84c5b49260dfd413adb3ba73385ae64b583447fa526f8c068c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IG-09",
+      "sourceId": "NTS-IG",
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "titleKey": "외국납부세액공제신청서(상속세, 증여세)",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "57e411ad2ac1be84c5b49260dfd413adb3ba73385ae64b583447fa526f8c068c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IG-10",
+      "sourceId": "NTS-IG",
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "titleKey": "상속세과세표준신고 및 자진납부계산서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "57e411ad2ac1be84c5b49260dfd413adb3ba73385ae64b583447fa526f8c068c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IG-11",
+      "sourceId": "NTS-IG",
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "titleKey": "증여세과세표준신고 및 자진납부계산서(기본세율 적용 증여재산 신고용)",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "57e411ad2ac1be84c5b49260dfd413adb3ba73385ae64b583447fa526f8c068c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IG-12",
+      "sourceId": "NTS-IG",
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "titleKey": "증여세과세표준신고 및 자진납부계산서(창업자금 및 가업승계주식",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "57e411ad2ac1be84c5b49260dfd413adb3ba73385ae64b583447fa526f8c068c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IG-13",
+      "sourceId": "NTS-IG",
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "titleKey": "상속세(증여세) 연부연납허가(변경, 철회) 신청서·연부연납세액 계산명세",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "57e411ad2ac1be84c5b49260dfd413adb3ba73385ae64b583447fa526f8c068c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IG-14",
+      "sourceId": "NTS-IG",
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "titleKey": "가업상속 납부유예 신청서·가업상속재산명세서·가업용 자산 명세",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "57e411ad2ac1be84c5b49260dfd413adb3ba73385ae64b583447fa526f8c068c",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-01",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "양도소득세과세표준 신고 및 납부계산서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-02",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "양도소득금액 계산명세서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-03",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "취득가액 및 필요경비 상세명세서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-04",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "양도소득세 간편신고서(소명자료제출서)",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-05",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "주식",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-06",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "파생상품등 양도소득금액 계산명세서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-07",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "주식",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-08",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "농어촌주택 소유자 1세대1주택 특례적용신고서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-09",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "주택임대사업자의 거주주택 1세대1주택 특례적용신고서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-10",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "이월과세적용신청서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-11",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "과세이연신청서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-12",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "현물출자",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-13",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "개발제한구역 지정에 따른 매수대상 토지",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-14",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "영수증서(납세자용)납부서(수납기관용)",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CG-15",
+      "sourceId": "NTS-CG",
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "titleKey": "개인지방소득세 납부서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "1223ebc239198b0e6045b4f678fe212f97f57f496240cf208a1c75b061de72a1",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IE-01",
+      "sourceId": "NTS-IE",
+      "url": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=30021&mi=2334",
+      "titleKey": "사례01_피상속인이 비거주자인 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "353c91e86db2cb7f96e86967036d2c4e7aa8bfe15cd7ed9f360849b8a84c8beb",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IE-02",
+      "sourceId": "NTS-IE",
+      "url": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=30021&mi=2334",
+      "titleKey": "사례02_피상속인이 거주자로 과세미달인 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "353c91e86db2cb7f96e86967036d2c4e7aa8bfe15cd7ed9f360849b8a84c8beb",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-IE-03",
+      "sourceId": "NTS-IE",
+      "url": "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=30021&mi=2334",
+      "titleKey": "사례03_피상속인이 거주자로 과세인 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "353c91e86db2cb7f96e86967036d2c4e7aa8bfe15cd7ed9f360849b8a84c8beb",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "NTS-CE-01",
+      "sourceId": "NTS-CE",
+      "url": "https://www.nts.go.kr/tax/sub/1.3.3.1.%EB%B9%84%EC%83%81%EC%9E%A5%20%EC%A3%BC%EC%8B%9D%EC%9D%84%20%EC%96%91%EB%8F%84%ED%95%9C%20%EA%B2%BD%EC%9A%B0.html",
+      "titleKey": "비상장 대기업 주식을 양도한 경우로서 실지거래가액이 있는 경우",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "ed35e17893459c32cb77dd675eae79906216972d098e71198cb8822472f4916a",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "REG-I-01",
+      "sourceId": "REG-I",
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=3&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "titleKey": "상속에 의한 소유권 이전등기 신청서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "39b9f11cdc9113fb5c817bb380e2e0bab75f76d3db09ca5f4a60d560d72a1063",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "REG-I-02",
+      "sourceId": "REG-I",
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=3&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "titleKey": "상속에 의한 소유권 이전등기 신청서(구분건물)",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "39b9f11cdc9113fb5c817bb380e2e0bab75f76d3db09ca5f4a60d560d72a1063",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "REG-I-03",
+      "sourceId": "REG-I",
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=3&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "titleKey": "협의분할에 의한 상속을 원인으로 한 소유권 이전등기 신청서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "39b9f11cdc9113fb5c817bb380e2e0bab75f76d3db09ca5f4a60d560d72a1063",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "REG-I-04",
+      "sourceId": "REG-I",
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=3&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "titleKey": "협의분할에 의한 상속을 원인으로 한 소유권 이전등기 신청서(구분건물)",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "39b9f11cdc9113fb5c817bb380e2e0bab75f76d3db09ca5f4a60d560d72a1063",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "REG-G-01",
+      "sourceId": "REG-G",
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=2&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "titleKey": "증여에 의한 소유권 이전등기 신청서",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "38b1790e95866fc4da3cd90b149b276086967147b1cce4e57ef042dae241d8fa",
+      "binaryVerifiedByThisAudit": false
+    },
+    {
+      "id": "REG-G-02",
+      "sourceId": "REG-G",
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=2&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "titleKey": "증여에 의한 소유권 이전등기 신청서(구분건물)",
+      "titleFoundInOfficialPage": true,
+      "pageTextSha256": "38b1790e95866fc4da3cd90b149b276086967147b1cce4e57ef042dae241d8fa",
+      "binaryVerifiedByThisAudit": false
+    }
+  ]
+}

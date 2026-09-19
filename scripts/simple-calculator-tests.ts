@@ -38,9 +38,11 @@ test("gift tax calculates a current single recipient case", () => {
     amountWon: 100_000_000,
     debtAssumedWon: 0,
     priorGiftWon: 0,
-    usedDeductionWon: 0,
+    priorGiftDeductionWon: 0,
+    otherGiftDeductionWon: 0,
     appraisalFeeWon: 0,
     marriageBirthDeductionWon: 0,
+    marriageBirthPreviouslyUsedWon: 0, marriageBirthEvent: null, marriageBirthEventDate: null,
     previousTaxPaidWon: 0,
     generationSkip: false,
     minorOverTwoBillion: false,
@@ -62,9 +64,15 @@ test("capital gains separates national and local taxes", () => {
     necessaryExpenseWon: 30_000_000,
     otherCapitalGainWon: 0,
     basicDeductionUsedWon: 0,
+    annualAggregation: false, otherGainsGeneralRate: null, previousNationalTaxWon: 0, previousLocalTaxWon: 0,
     residenceYears: 0,
     homeCount: 0,
     regulatedArea: false,
+    resident: "yes",
+    homeOwnership: null,
+    householdOtherRights: null,
+    regulatedAtAcquisition: null,
+    homeSpecialConditions: null,
   });
   assert.equal(result.status, "ready");
   assert.equal(result.taxableBaseWon, 213_500_000);
@@ -84,6 +92,7 @@ test("inheritance uses the entered current condition, not a comparison baseline"
     disabledDeductionWon: 0,
     realEstateWon: 1_200_000_000,
     financialAssetsWon: 200_000_000,
+    financialExclusionsWon: 0,
     otherAssetsWon: 100_000_000,
     deemedAssetsWon: 0,
     nonTaxableWon: 0,
@@ -91,6 +100,7 @@ test("inheritance uses the entered current condition, not a comparison baseline"
     priorGiftHeirsWon: 0,
     priorGiftOthersWon: 0,
     debtWon: 100_000_000,
+    financialDebtWon: 0,
     publicChargesWon: 0,
     funeralWon: 8_000_000,
     burialWon: 0,
@@ -98,6 +108,7 @@ test("inheritance uses the entered current condition, not a comparison baseline"
     statutoryShareNumerator: 3,
     statutoryShareDenominator: 7,
     spousePriorGiftTaxableWon: 0,
+    priorGifts: [],
   });
   assert.equal(result.status, "ready");
   assert.equal(result.taxableBaseWon, 352_000_000);

@@ -12,7 +12,7 @@
 .intro h1 { margin: 0; font-family: var(--paper-serif); font-size: clamp(28px, 3vw, 40px); font-weight: 700; letter-spacing: -.055em; line-height: 1.5; }
 .intro > p:last-child { margin: 12px 0 0; font-size: 16px; line-height: 1.7; color: var(--contact-muted); }
 .card { display: grid; grid-template-columns: .95fr 1.05fr; border: 1px solid var(--contact-line); background: #f8f4ea; }
-.professional { padding: 34px 30px; border-right: 1px solid var(--contact-line); }
+.professional { padding: 34px 0; border-top: 1px solid var(--contact-line); }
 .sectionLabel { margin: 0 0 14px; font-size: 13px; color: var(--contact-muted); }
 .professional h2 { margin: 0; font-family: var(--paper-serif); font-size: 28px; font-weight: 700; letter-spacing: -.04em; }
 .professional h2 span { font-size: 17px; font-weight: 500; }
