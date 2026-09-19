@@ -118,17 +118,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000008&guideCd=0000008006&guideYn=Y",
+    "checked_at": "2026-09-19T15:02:50Z",
     "form_no": null,
     "revised_at": null,
-    "deadline": null,
-    "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "deadline": "1개월",
+    "deadline_basis": "신고의무자가 사망사실을 안 날",
+    "license": "대법원 제공 원본 확보 · 재배포 조건 미확인으로 공식 제공처만 연결",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "HTTPSConnectionPool(host='efamily.scourt.go.kr', port=443): Max retries exceeded with url: /cs/CsBltnWrtListAjax.do (Caused by ConnectTimeoutError(<HTTPSConnection(host='efamily.scourt.go.kr', port=443) at 0x7fedd8f755e0>, 'Connection to efamily.scourt.go.kr timed out. (connect timeout=9)'))",
     "attempts": [
       {
         "checked_at": "2026-09-17T09:31:41Z",
@@ -150,7 +149,36 @@
         "url": null,
         "result": "HTTPSConnectionPool(host='efamily.scourt.go.kr', port=443): Max retries exceeded with url: /cs/CsBltnWrtListAjax.do (Caused by ConnectTimeoutError(<HTTPSConnection(host='efamily.scourt.go.kr', port=443) at 0x7fedd8f755e0>, 'Connection to efamily.scourt.go.kr timed out. (connect timeout=9)'))"
       }
-    ]
+    ],
+    "inspected_original": {
+      "name": "사망신고서",
+      "url": "https://efamily.scourt.go.kr/downloads/guide/%EC%82%AC%EB%A7%9D%EC%8B%A0%EA%B3%A0%EC%84%9C.hwp",
+      "bytes": 24064,
+      "sha256": "8993b145dab51dd39d88a044bc352d17088cdce5bf66b8c1611908802118f8ba",
+      "format": "hwp",
+      "role": "original",
+      "http_status": 200,
+      "checked_at": "2026-09-19T15:02:50Z",
+      "title_verified": true,
+      "artifact_path": "originals/P0-05_8993b145dab5.hwp",
+      "rehosting": "not permitted/verified; official source only"
+    },
+    "institution": "대법원 전자가족관계등록시스템",
+    "source_evidence": {
+      "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000008&guideCd=0000008006&guideYn=Y",
+      "http_status": 200,
+      "checked_at": "2026-09-19T14:54:43Z",
+      "response_sha256": "09b5cc1e01e40d0d70c8c0ce585882c4ded686600ed81e59d82135f579df741f",
+      "verified_terms": [
+        "사망신고서",
+        "사망사실을 안 날부터 1개월",
+        "신고장소"
+      ],
+      "content_text": "사망 신고 신고안내 사망 신고 안내 신고방법 방문 신고자격 1. 사망자와 동거하는 친족이나 비동거친족 · 동거자 또는 사망장소를 관리하는 사람, 사망장소의 동장 또는 통 · 이장 동거자란 사망자의 가족관계등록부상의 가족뿐만 아니라 사실상 동거하는 사람을 말하는 것이며, 가족이 아니더라도 세대를 같이 하는 사람도 신고를 할 수 있습니다. 2. 병원, 교도소, 그 밖의 시설에서 사망이 있었을 경우에 신고의무자가 신고를 할 수 없는 때에는 당해 시설의 장 또는 관리인이 신고를 하여야 합니다. 신고기간 1. 사망신고의무자가 이 사망사실을 안 날부터 1개월 이내 과태료 안내 2. 가족관계등록불명자 또는 인식불능자에 대한 통보가 있은 후에 사망신고의무자가 사망자의 신원을 안 때에는 그 날부터 10일 이내 신고장소 신고사건 본인의 등록기준지 또는 신고인의 주소지나 현재지 시(구) · 읍 · 면 사무소 신고사건 본인의 주민등록 관할 동 사무소 외국에 거주하고 있는 한국인은 그 지역을 관할하는 대한민국 재외공관 또는 재외국민 가족관계등록사무소에서도 할 수 있습니다. 신고서 사망신고서 다운로드 첨부서류 1. 사망자에 대한 진단서 또는 검안서 2. 진단서나 검안서를 첨부할 수 없을 때 사망의 사실을 증명할 만한 서면(아래 중 하나) 1 국내 또는 외국의 권한 있는 기관에서 발행한 사망사실을 증명하는 서면 예시 관공서의 사망증명서 또는 매장인허증, 진실화해위원회의 진실규명결정문, 정부기록보관소 보존중인 재무부 작성의 피수용자사망자연명부, 외국 관공서 등에서 발행한 그 나라 방식에 의해 사망신고한 사실을 증명하는 서면 2 군인이 전투 그 밖의 사변으로 사망한 경우에 부대장 등이 사망 사실을 확인하여 그 명의로 작성한 전사확인서 3 기타 : 증명서 다운로드 증명인이 동 · 리 · 통장일 경우 : 1명의 증명으로 족하고, 원칙적으로 동 · 리 · 통장임을 증명하는 서면을 첨부하여야 합니다. 증명인이 인우인일 경우 : 2명 이상의 증명이 있어야 하고, 증명인의 인감증명서, 주민등록증사본, 운전면허증사본, 여권사본 중 1부를 첨부하여야 합니다. 3. 주민등록증 등 신분증명서 신고인이 출석한 경우 : 신고인의 신분증명서 제출인이 출석한 경우 : 신고인의 신분증명서 사본 및 제출인의 신분증명서 우편제출의 경우 : 신고인의 신분증명서 사본 4. 신고인이 성년후견인인 경우 후견등기사항증명서 5. 사망자가 외국인인 경우 국적 증명 서면(여권 또는 외국인등록증) 사본",
+      "extraction": "JSON string literal supplied by the official page for #contentSpan; no generated content",
+      "evidence_file": "docs/forms-expansion-109/evidence/round11/ef-death-guide.json"
+    },
+    "note": "대법원이 게시한 사망신고 안내와 실제 사망신고서 HWP 원본의 본문을 확인했습니다. 사망신고의무자의 일반 신고기간은 사망사실을 안 날부터 1개월입니다. 가족관계등록불명자 등의 예외와 구비서류는 원문을 확인하세요. 문서 재배포 조건은 미확인으로 기관 제공처에서 받도록 연결합니다."
   },
   {
     "id": "P0-06",
@@ -159,17 +187,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y",
+    "checked_at": "2026-09-19T15:02:48Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 링크 · 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "세 종류 발급 안내 중 0개만 확인",
     "attempts": [
       {
         "checked_at": "2026-09-17T09:31:41Z",
@@ -191,7 +218,67 @@
         "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y",
         "result": "세 종류 발급 안내 중 0개만 확인"
       }
-    ]
+    ],
+    "supplementary_sources": [
+      {
+        "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:54:43Z",
+        "response_sha256": "78877476db1328105677557d1216abbb8da2a3da30ce9355280bd322f3da579f",
+        "verified_terms": [
+          "가족관계증명서",
+          "상세",
+          "발급"
+        ],
+        "content_text": "가족관계증명서 기재사항 견본보기 가족관계증명서(일반, 상세, 특정)의 공통 기재사항과 개별기재사항에 대한 정보를 제공합니다. 공통 사항 본인의 등록기준지, 성명, 성별, 본, 출생연월일, 주민등록번호 특정증명서는 등록기준지, 본 포함여부를 선택할 수 있음 개별 사항 일반 본인과 부모, 배우자, 생존한 현재의 혼인 중의 자녀에 관한 사항 상세 본인과 부모, 배우자, 모든 자녀에 관한 사항 특정 본인과 신청인이 선택한 부, 모, 배우자 및 자녀에 관한 사항 교부청구안내 가족관계증명서의 신청방법별 신청 자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청방법 인터넷 발급하기 발급방법 안내 무인발급기 위치조회 방문 (시(구) · 읍 · 면 · 동 사무소) 신청자격 1) 본인, 부모, 배우자, 자녀 본인 본인, 배우자, 직계혈족 및 그 대리인 수수료 무료 500원 / 1통 1,000원 / 1통 수수료면제 안내 이용시간 2) 365일 24시간 발급기에 따라 다름 평일 09:00~18:00 필요사항 인증서 인증서 안내 지문 주민등록증 등 신분증명서 신청서 작성예시 위임한 사람의 주민등록증 등 신분증명서 인터넷 발급하기 발급방법 안내 인터넷으로 신청 시 신청자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청자격 1) 본인, 부모, 배우자, 자녀 수수료 무료 이용시간 2) 365일 24시간 필요사항 인증서 인증서 안내 무인발급기 위치조회 무인발급기 사용 시 신청자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청자격 1) 본인 수수료 500원 / 1통 이용시간 2) 발급기에 따라 다름 필요사항 지문 방문 (시(구) · 읍 · 면 · 동 사무소) 방문 신청 시 신청자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청자격 1) 본인, 배우자, 직계혈족 및 그 대리인 수수료 1,000원 / 1통 수수료면제 안내 이용시간 2) 평일 09:00~18:00 필요사항 주민등록증 등 신분증명서 신청서 작성예시 위임한 사람의 주민등록증 등 신분증명서 1) 신청자격 다음 각 항에 해당하여 소명자료를 제출하는 경우에는 본인 등이 아닌 경우에도 본인 등의 위임 없이 증명서의 교부를 방문 신청할 수 있습니다. 1 국가, 지방자치단체가 직무상 필요 및 법령상 근거에 따라 문서로 신청하는 경우 2 소송, 비송, 민사집행, 보전 등의 각 절차에서 필요한 경우 3 다른 법령에서 본인 등에 관한 증명서를 제출하도록 요구하는 경우 4 민법상의 법정대리인(후견인, 유언집행자, 상속재산관리인, 부재자재산관리인) 5 채권 · 채무 등 재산권의 상속과 관련하여 상속인의 범위를 확인하기 위한 경우 6 보험금 또는 연금의 수급권자를 결정하기 위하여 필요한 때 7 제주4ㆍ3사건 진상규명 및 희생자 명예회복에 관한 특별법 제2조제3호의 희생자 본인의 유족에 해당함을 소명하는 자료와 신청인의 신분증명서를 첨부한 때 8 공익사업을 위한 토지 등의 취득 및 보상에 관한 법률 에 따른 공익사업을 수행하는 때에 토지 등의 소유자의 상속인을 확인할 필요가 있는 때 2) 이용시간 장애가 발생하거나 기타 부득이한 사정이 있을 때에는 서비스가 일시적으로 중단될 수 있습니다. 자주하는질문 전체보기",
+        "extraction": "JSON string literal supplied by the official page for #contentSpan; no generated content",
+        "evidence_file": "docs/forms-expansion-109/evidence/round11/ef-family.json"
+      },
+      {
+        "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007002&guideYn=Y",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:54:44Z",
+        "response_sha256": "8499e716ea80d6a6e8422512d7b017671183bb7be6a4a8d8bb864c385127c27b",
+        "verified_terms": [
+          "기본증명서",
+          "상세",
+          "발급"
+        ],
+        "content_text": "기본증명서 기재사항 견본보기 기본증명서(일반, 상세, 특정)의 공통 기재사항과 개별기재사항에 대한 정보를 제공합니다. 공통 사항 본인의 등록기준지, 성명, 성별, 본, 출생연월일, 주민등록번호 특정증명서는 등록기준지, 본 포함여부를 선택할 수 있음 개별 사항 일반 본인의 출생, 사망, 국적상실에 관한 사항 상세 본인의 출생, 사망, 인지, 친권, 국적, 개명, 성별 등에 관한 사항 특정 출생·사망·실종 본인의 출생, 사망, 실종선고, 주민등록번호 · 출생연월일 정정 등에 관한 사항 인지·친생자관계정정 본인의 인지, 친생부인 등에 관한 사항 친권·미성년후견 전부) 본인의 친권, 후견, 미성년후견에 관한 모든 사항 현재) 본인의 현재 유효한 친권, 후견, 미성년후견에 관한 사항 개명·성본변경 본인의 개명, 성·본창설, 성·본변경 등에 관한 사항 국적 취득·상실 본인의 귀화, 국적상실, 국적회복 등에 관한 사항 성별정정 본인의 성별정정, 주민등록번호 성별부분 정정 등에 관한 사항 교부청구안내 기본증명서의 신청방법별 신청 자격, 수수료, 이용시간, 필요사항에 대한 정보 신청방법 인터넷 발급하기 발급방법 안내 무인발급기 위치조회 방문 (시(구) · 읍 · 면 · 동 사무소) 신청자격 1) 본인, 부모, 배우자, 자녀 본인 본인, 배우자, 직계혈족 및 그 대리인 수수료 무료 500원 / 1통 1,000원 / 1통 수수료면제 안내 이용시간 2) 365일 24시간 발급기에 따라 다름 평일 09:00~18:00 필요사항 인증서 인증서 안내 지문 주민등록증 등 신분증명서 신청서 작성예시 위임한 사람의 주민등록증 등 신분증명서 인터넷 발급하기 발급방법 안내 인터넷으로 신청 시 신청자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청자격 1) 본인, 부모, 배우자, 자녀 수수료 무료 이용시간 2) 365일 24시간 필요사항 인증서 인증서 안내 무인발급기 위치조회 무인발급기 사용 시 신청자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청자격 1) 본인 수수료 500원 / 1통 이용시간 2) 발급기에 따라 다름 필요사항 지문 방문 (시(구) · 읍 · 면 · 동 사무소) 방문 신청 시 신청자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청자격 1) 본인, 배우자, 직계혈족 및 그 대리인 수수료 1,000원 / 1통 수수료면제 안내 이용시간 2) 평일 09:00~18:00 필요사항 주민등록증 등 신분증명서 신청서 작성예시 위임한 사람의 주민등록증 등 신분증명서 1) 신청자격 다음 각 항에 해당하여 소명자료를 제출하는 경우에는 본인 등이 아닌 경우에도 본인 등의 위임 없이 증명서의 교부를 방문 신청할 수 있습니다. 1 국가, 지방자치단체가 직무상 필요 및 법령상 근거에 따라 문서로 신청하는 경우 2 소송, 비송, 민사집행, 보전 등의 각 절차에서 필요한 경우 3 다른 법령에서 본인 등에 관한 증명서를 제출하도록 요구하는 경우 4 민법상의 법정대리인(후견인, 유언집행자, 상속재산관리인, 부재자재산관리인) 5 채권 · 채무 등 재산권의 상속과 관련하여 상속인의 범위를 확인하기 위한 경우 6 보험금 또는 연금의 수급권자를 결정하기 위하여 필요한 때 7 제주4ㆍ3사건 진상규명 및 희생자 명예회복에 관한 특별법 제2조제3호의 희생자 본인의 유족에 해당함을 소명하는 자료와 신청인의 신분증명서를 첨부한 때 8 공익사업을 위한 토지 등의 취득 및 보상에 관한 법률 에 따른 공익사업을 수행하는 때에 토지 등의 소유자의 상속인을 확인할 필요가 있는 때 2) 이용시간 장애가 발생하거나 기타 부득이한 사정이 있을 때에는 서비스가 일시적으로 중단될 수 있습니다. 자주하는질문 전체보기",
+        "extraction": "JSON string literal supplied by the official page for #contentSpan; no generated content",
+        "evidence_file": "docs/forms-expansion-109/evidence/round11/ef-basic.json"
+      },
+      {
+        "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007007&guideYn=Y",
+        "http_status": 200,
+        "checked_at": "2026-09-19T14:54:45Z",
+        "response_sha256": "d0b5a24b5ef1eb58577231aee551c0488c964469e8c5c061416df41ccdc4e122",
+        "verified_terms": [
+          "제적",
+          "등본",
+          "발급"
+        ],
+        "content_text": "제적 등 · 초본 민원개요 제적부란 종전 호적제도 하에서의 호적부로부터 분리하여 편철 · 보존하는 장부를 말하는데, 이때 제적이란 호주승계, 무후, 기타의 사유로 호주와 가족이 모두 제적되거나 말소된 호적을 의미합니다. 2003. 10. 20.부터 호적사무는 원칙적으로 정보처리시스템에 의하여 처리하도록 함에 따라 전산제적부로 보관 · 관리하게 되었습니다. 기재사항 견본보기 제적등초본 기재사항에 대한 정보를 제공합니다. 제적등본 본적 등의 호적사항과 호주 및 모든 구성원의 성명, 부모 성명, 출생, 혼인, 사망 등의 신분사항 제적초본 본적 등의 호적사항과 호주 및 본인의 성명, 부모 성명, 출생, 혼인, 사망 등의 신분사항 교부청구안내 제적 등초본의 신청방법별 신청 자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청방법 인터넷 발급하기 발급방법 안내 무인발급기 위치조회 방문 (시(구) · 읍 · 면 · 동 사무소) 신청자격 1) 해당 제적부에 기록되어 있는 사람 본인 본인, 배우자, 직계혈족 및 그 대리인 수수료 무료 제적등본 : 500원 / 1통 제적초본 : 300원 / 1통 제적등본 :  1,000원 / 1통 제적초본 :    500원 / 1통 제적부열람 :  200원 / 1건 수수료면제 안내 이용시간 2) 365일 24시간 발급기에 따라 다름 평일 09:00~18:00 필요사항 인증서 인증서 안내 지문 주민등록증 등 신분증명서 신청서 작성예시 위임한 사람의 주민등록증 등 신분증명서 인터넷 발급방법 안내 인터넷으로 신청 시 신청자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청자격 1) 해당 제적부에 기록되어 있는 사람 수수료 무료 이용시간 2) 365일 24시간 필요사항 인증서 인증서 안내 무인발급기 위치조회 무인발급기 사용 시 신청자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청자격 1) 본인 수수료 제적등본 : 500원 / 1통 제적등본 : 300원 / 1통 이용시간 2) 발급기에 따라 다름 필요사항 지문 방문 (시(구) · 읍 · 면 · 동 사무소) 방문 신청 시 신청자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청자격 1) 본인, 배우자, 직계혈족 및 그 대리인 수수료 제적등본 :  1,000원 / 1통 제적초본 :    500원 / 1통 제적부열람 :   200원 / 1건 수수료면제 안내 이용시간 2) 평일 09:00~18:00 필요사항 주민등록증 등 신분증명서 신청서 작성예시 위임한 사람의 주민등록증 등 신분증명서 1) 신청자격 다음 각 항에 해당하여 소명자료를 제출하는 경우에는 본인 등이 아닌 경우에도 본인 등의 위임 없이 증명서의 교부를 방문 신청할 수 있습니다. 1 국가, 지방자치단체가 직무상 필요 및 법령상 근거에 따라 문서로 신청하는 경우 2 소송, 비송, 민사집행, 보전 등의 각 절차에서 필요한 경우 3 다른 법령에서 본인 등에 관한 증명서를 제출하도록 요구하는 경우 4 민법상의 법정대리인(후견인, 유언집행자, 상속재산관리인, 부재자재산관리인) 5 채권 · 채무 등 재산권의 상속과 관련하여 상속인의 범위를 확인하기 위한 경우 6 보험금 또는 연금의 수급권자를 결정하기 위하여 필요한 때 7 제주4ㆍ3사건 진상규명 및 희생자 명예회복에 관한 특별법 제2조제3호의 희생자 본인의 유족에 해당함을 소명하는 자료와 신청인의 신분증명서를 첨부한 때 8 공익사업을 위한 토지 등의 취득 및 보상에 관한 법률 에 따른 공익사업을 수행하는 때에 토지 등의 소유자의 상속인을 확인할 필요가 있는 때 2) 이용시간 장애가 발생하거나 기타 부득이한 사정이 있을 때에는 서비스가 일시적으로 중단될 수 있습니다. 자주하는질문 전체보기",
+        "extraction": "JSON string literal supplied by the official page for #contentSpan; no generated content",
+        "evidence_file": "docs/forms-expansion-109/evidence/round11/ef-removed.json"
+      }
+    ],
+    "institution": "대법원 전자가족관계등록시스템",
+    "source_evidence": {
+      "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y",
+      "http_status": 200,
+      "checked_at": "2026-09-19T14:54:43Z",
+      "response_sha256": "78877476db1328105677557d1216abbb8da2a3da30ce9355280bd322f3da579f",
+      "verified_terms": [
+        "가족관계증명서",
+        "상세",
+        "발급"
+      ],
+      "content_text": "가족관계증명서 기재사항 견본보기 가족관계증명서(일반, 상세, 특정)의 공통 기재사항과 개별기재사항에 대한 정보를 제공합니다. 공통 사항 본인의 등록기준지, 성명, 성별, 본, 출생연월일, 주민등록번호 특정증명서는 등록기준지, 본 포함여부를 선택할 수 있음 개별 사항 일반 본인과 부모, 배우자, 생존한 현재의 혼인 중의 자녀에 관한 사항 상세 본인과 부모, 배우자, 모든 자녀에 관한 사항 특정 본인과 신청인이 선택한 부, 모, 배우자 및 자녀에 관한 사항 교부청구안내 가족관계증명서의 신청방법별 신청 자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청방법 인터넷 발급하기 발급방법 안내 무인발급기 위치조회 방문 (시(구) · 읍 · 면 · 동 사무소) 신청자격 1) 본인, 부모, 배우자, 자녀 본인 본인, 배우자, 직계혈족 및 그 대리인 수수료 무료 500원 / 1통 1,000원 / 1통 수수료면제 안내 이용시간 2) 365일 24시간 발급기에 따라 다름 평일 09:00~18:00 필요사항 인증서 인증서 안내 지문 주민등록증 등 신분증명서 신청서 작성예시 위임한 사람의 주민등록증 등 신분증명서 인터넷 발급하기 발급방법 안내 인터넷으로 신청 시 신청자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청자격 1) 본인, 부모, 배우자, 자녀 수수료 무료 이용시간 2) 365일 24시간 필요사항 인증서 인증서 안내 무인발급기 위치조회 무인발급기 사용 시 신청자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청자격 1) 본인 수수료 500원 / 1통 이용시간 2) 발급기에 따라 다름 필요사항 지문 방문 (시(구) · 읍 · 면 · 동 사무소) 방문 신청 시 신청자격, 수수료, 이용시간, 필요사항에 대한 정보를 제공합니다. 신청자격 1) 본인, 배우자, 직계혈족 및 그 대리인 수수료 1,000원 / 1통 수수료면제 안내 이용시간 2) 평일 09:00~18:00 필요사항 주민등록증 등 신분증명서 신청서 작성예시 위임한 사람의 주민등록증 등 신분증명서 1) 신청자격 다음 각 항에 해당하여 소명자료를 제출하는 경우에는 본인 등이 아닌 경우에도 본인 등의 위임 없이 증명서의 교부를 방문 신청할 수 있습니다. 1 국가, 지방자치단체가 직무상 필요 및 법령상 근거에 따라 문서로 신청하는 경우 2 소송, 비송, 민사집행, 보전 등의 각 절차에서 필요한 경우 3 다른 법령에서 본인 등에 관한 증명서를 제출하도록 요구하는 경우 4 민법상의 법정대리인(후견인, 유언집행자, 상속재산관리인, 부재자재산관리인) 5 채권 · 채무 등 재산권의 상속과 관련하여 상속인의 범위를 확인하기 위한 경우 6 보험금 또는 연금의 수급권자를 결정하기 위하여 필요한 때 7 제주4ㆍ3사건 진상규명 및 희생자 명예회복에 관한 특별법 제2조제3호의 희생자 본인의 유족에 해당함을 소명하는 자료와 신청인의 신분증명서를 첨부한 때 8 공익사업을 위한 토지 등의 취득 및 보상에 관한 법률 에 따른 공익사업을 수행하는 때에 토지 등의 소유자의 상속인을 확인할 필요가 있는 때 2) 이용시간 장애가 발생하거나 기타 부득이한 사정이 있을 때에는 서비스가 일시적으로 중단될 수 있습니다. 자주하는질문 전체보기",
+      "extraction": "JSON string literal supplied by the official page for #contentSpan; no generated content",
+      "evidence_file": "docs/forms-expansion-109/evidence/round11/ef-family.json"
+    },
+    "note": "가족관계증명서 상세, 기본증명서 상세, 제적등본의 기재사항·발급방법을 각 공식 안내에서 확인했습니다. 신청 자격과 제출기관이 요구하는 증명서 유형을 확인하여 발급하세요. 실제 개인 증명서는 수집하지 않았습니다."
   },
   {
     "id": "P0-07",
@@ -2318,17 +2405,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://ems.nts.go.kr/tax_inquiry/guide_01.html",
+    "checked_at": "2026-09-19T15:02:53Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 연결 · 개별 원본 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "",
     "attempts": [
       {
         "checked_at": "2026-09-19T14:29:15Z",
@@ -2341,7 +2427,19 @@
         "result": ""
       }
     ],
-    "alternative_official_source": true
+    "alternative_official_source": true,
+    "institution": "국세청",
+    "source_evidence": {
+      "http_status": 200,
+      "checked_at": "2026-09-19T15:02:51Z",
+      "matched_terms": [
+        "심사청구서",
+        "심판청구서",
+        "전체서식"
+      ],
+      "evidence_file": "docs/forms-expansion-109/evidence/round12/nts-ems.json"
+    },
+    "note": "국세청 세무조사 가이드북의 심사청구서와 심판청구서 제공 안내를 확인했습니다. 요청한 조세심판원 게시물 대신 확인한 국세청 공식 대체 출처입니다. 두 불복 절차와 제출기관을 구분하여 사용하세요."
   },
   {
     "id": "P2-15",
@@ -2528,17 +2626,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://ems.nts.go.kr/tax_inquiry/guide_01.html",
+    "checked_at": "2026-09-19T15:02:53Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 연결 · 개별 원본 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "",
     "attempts": [
       {
         "checked_at": "2026-09-19T14:29:15Z",
@@ -2551,7 +2648,18 @@
         "result": ""
       }
     ],
-    "alternative_official_source": true
+    "alternative_official_source": true,
+    "institution": "국세청",
+    "source_evidence": {
+      "http_status": 200,
+      "checked_at": "2026-09-19T15:02:51Z",
+      "matched_terms": [
+        "세무대리인 위임장",
+        "전체서식"
+      ],
+      "evidence_file": "docs/forms-expansion-109/evidence/round12/nts-ems.json"
+    },
+    "note": "국세청 세무조사 가이드북의 세무대리인 위임장입니다. 요청한 한국세무사회 서식 대신 확인한 국세청 공식 대체 출처이며 세무조사 관련 위임을 위한 양식입니다. 일반 기장·신고 위임 계약서로 확대하지 않습니다."
   },
   {
     "id": "P3-05",
@@ -3392,17 +3500,52 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://ta.ksd.or.kr/index.jsp",
+    "checked_at": "2026-09-19T15:02:50Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 링크 · 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "institution": "한국예탁결제원",
+    "source_evidence": {
+      "url": "https://ta.ksd.or.kr/index.jsp",
+      "http_status": 200,
+      "checked_at": "2026-09-19T14:55:32Z",
+      "body_sha256": "7cb3ca72ac465b90188b6cbdc53a7eeaeb91ebd1cbddcb5661f05831251792e6",
+      "matched_terms": [
+        "주식 찾기",
+        "미수령 주식",
+        "현금배당금 조회 신청"
+      ],
+      "navigation": [
+        {
+          "text": "현금배당금조회 신청",
+          "url": "javascript:menuMove('shrMenu004','20');",
+          "onclick": null
+        },
+        {
+          "text": "주식 찾기",
+          "url": "javascript:menuMove('shrMenu009','25');",
+          "onclick": null
+        },
+        {
+          "text": "현금배당금조회 신청",
+          "url": "javascript:menuMove('shrMenu004','20');",
+          "onclick": null
+        },
+        {
+          "text": "주식 찾기",
+          "url": "javascript:menuMove('shrMenu009','25');",
+          "onclick": null
+        }
+      ],
+      "evidence_file": "docs/forms-expansion-109/evidence/round11/ksd-loaded.json"
+    },
+    "note": "한국예탁결제원 증권대행 주주서비스의 주식 찾기와 현금배당금 조회 신청 경로입니다. 첫 화면의 주주 서비스에서 선택할 수 있습니다. 미수령 주식·종이 주권과 현금배당금 조회를 구분하고, 조회 가능 범위와 신청인 자격은 기관 안내에 따릅니다. 개인 조회나 인증을 대신 수행하지 않았습니다."
   },
   {
     "id": "P6-06",
