@@ -8,9 +8,9 @@
   "hostedInstitutionalExampleCount": 39,
   "deliveryCounts": {
     "hosted": 105,
-    "provider": 56,
+    "provider": 57,
     "direct": 0,
-    "pending": 16
+    "pending": 15
   },
   "documents": [
     {
@@ -9546,30 +9546,104 @@
       "catalogTitle": "상속 보험금 청구 안내",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "생명보험협회 안내자료의 보험금 청구·수령 절차를 확인하는 링크입니다(책자 발행 2017년 5월). 사망보험금은 먼저 계약의 수익자를 확인하고 해당 보험사에 청구서·사망증명 자료와 추가서류를 문의하세요. 수익자 미지정 또는 여러 법정상속인 중 대표 수령 시 상속관계·위임 관련 서류가 추가될 수 있습니다. 오래된 책자의 금액·기한을 현재의 전 보험사 공통 기준으로 적용하지 않습니다. 보험금을 받을 권리와 상속세상 간주상속재산 판단은 별개이며, 국세청 안내에 따라 계약자 및 보험료 실질 납부자를 함께 확인해야 합니다.",
       "tags": "P6-03 · 재산조회",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+      "institution": "생명보험협회",
+      "checkedOn": "2026-09-19",
+      "license": "생명보험협회·보험회사·국세청 공식 안내 링크 · 원본 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+      "verification": "공식 안내 본문과 요청 절차·서류의 존재를 확인했습니다. 바이너리 원본은 재배포하지 않습니다.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-19T15:40:52Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "url": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+        "checked_at": "2026-09-19T15:40:52Z",
+        "method": "공식 페이지 web 열람 + urllib GET으로 실제 PDF 다운로드 후 pdftotext 본문 확인; 보완자료는 web 본문 열람",
+        "verified_terms": [
+          "보험금 청구 및 수령 단계",
+          "보험수익자",
+          "사망진단서",
+          "상속관계 확인서류",
+          "보험료를 납부"
+        ],
+        "sources": [
+          {
+            "url": "https://www.klia.or.kr/",
+            "title": "생명보험협회",
+            "observed_facts": [
+              "협회 공식 홈페이지의 소비자포털 링크가 consumer.insure.or.kr로 연결되는 것을 확인함."
+            ]
+          },
+          {
+            "url": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+            "title": "알기쉬운 생명보험 안내자료",
+            "observed_facts": [
+              "협회가 가입·유지·보험금 청구 단계의 참고자료로 소개하며 PDF 다운로드 버튼을 제공함.",
+              "페이지 버튼 gfn_fileDown(84,5)와 공식 commonUtil.js의 파일 경로 조합으로 아래 PDF URL을 확인함."
+            ]
+          },
+          {
+            "url": "https://consumer.insure.or.kr/FileDown.do?fileNo=84&seq=5",
+            "title": "알기쉬운 생명보험 안내자료 PDF",
+            "http_status": 200,
+            "byte_length": 28099409,
+            "body_sha256": "9d0f7396b080f03ba0a38c6bb6b105f924500c53d849c540aefa597ae76f3184",
+            "publication_date": "2017-05",
+            "relevant_printed_pages": [
+              "42",
+              "43",
+              "44",
+              "45",
+              "75"
+            ],
+            "observed_facts": [
+              "43쪽: 청구서류가 사고 내용 및 보험사별로 달라 담당자에게 회사 양식과 필요한 서류를 확인하도록 안내함.",
+              "44쪽: 청구서·동의서·신분증·계좌정보는 보험수익자 기준이며, 미성년 수익자는 친권자 또는 후견인이 청구하는 방식이 제시됨.",
+              "45쪽: 사망진단서 원본 제출 시 기본증명서를 제외하는 간소화 사례가 실려 있어 43쪽의 과거 서류 예시를 그대로 현재 필수서류로 복제하면 안 됨.",
+              "75쪽: 보험수익자는 보험계약의 사고가 발생했을 때 보험금을 지급받을 권리가 있는 사람으로 설명됨.",
+              "말미 발행일은 2017년 5월이고, 사전 허락 없는 전재·복사를 금지하므로 원본 PDF를 서비스에 재배포하지 않음."
+            ]
+          },
+          {
+            "url": "https://www.kbinsure.co.kr/CG205020001.ec",
+            "title": "KB손해보험 필요서류 안내(일반상해)",
+            "observed_facts": [
+              "사망 항목은 사망진단서 원본 또는 사본과 사망사실 기재 기본증명서를 안내함.",
+              "수익자 미지정이면 상속관계 확인서류가 필요하며, 여러 법정상속인 중 대표 수령 시 위임장·인감증명서 또는 본인서명사실확인서·각 상속인의 상세동의서를 안내함.",
+              "이는 KB손해보험의 구체적 보완 예시로만 사용하며 다른 회사의 공통 필수서류로 단정하지 않음."
+            ]
+          },
+          {
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7950&mi=6522",
+            "title": "국세청 상속재산가액 — 상속재산으로 보는 보험금·신탁재산·퇴직금 등",
+            "observed_facts": [
+              "피상속인 사망에 따른 생명·손해보험금 중 피상속인이 계약자이거나 다른 계약자 명의라도 실제 보험료를 낸 계약의 보험금을 간주상속재산으로 설명함.",
+              "따라서 보험금 청구권자 확인과 상속세상 보험료 실질 부담자 검토를 구분해 안내함."
+            ]
+          }
+        ],
+        "limitations": [
+          "2017년 책자를 2026년 최신 개정본으로 표시하지 않음.",
+          "보험회사별 청구 구비서류·계약내용·접수방식은 해당 보험사의 현재 안내로 확인해야 함.",
+          "손해보험협회 소비자포털은 web에서 본문을 얻지 못하여 완료 근거로 사용하지 않음.",
+          "모든 보험금을 무조건 상속재산 또는 상속세 비과세로 단정하지 않음."
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round15/P6-03.json"
+      },
       "task_id": "P6-03",
       "related_ids": []
     },
@@ -14753,17 +14827,93 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+      "checked_at": "2026-09-19T15:40:52Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "생명보험협회·보험회사·국세청 공식 안내 링크 · 원본 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+      "institution": "생명보험협회",
+      "note": "생명보험협회 안내자료의 보험금 청구·수령 절차를 확인하는 링크입니다(책자 발행 2017년 5월). 사망보험금은 먼저 계약의 수익자를 확인하고 해당 보험사에 청구서·사망증명 자료와 추가서류를 문의하세요. 수익자 미지정 또는 여러 법정상속인 중 대표 수령 시 상속관계·위임 관련 서류가 추가될 수 있습니다. 오래된 책자의 금액·기한을 현재의 전 보험사 공통 기준으로 적용하지 않습니다. 보험금을 받을 권리와 상속세상 간주상속재산 판단은 별개이며, 국세청 안내에 따라 계약자 및 보험료 실질 납부자를 함께 확인해야 합니다.",
+      "source_evidence": {
+        "url": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+        "checked_at": "2026-09-19T15:40:52Z",
+        "method": "공식 페이지 web 열람 + urllib GET으로 실제 PDF 다운로드 후 pdftotext 본문 확인; 보완자료는 web 본문 열람",
+        "verified_terms": [
+          "보험금 청구 및 수령 단계",
+          "보험수익자",
+          "사망진단서",
+          "상속관계 확인서류",
+          "보험료를 납부"
+        ],
+        "sources": [
+          {
+            "url": "https://www.klia.or.kr/",
+            "title": "생명보험협회",
+            "observed_facts": [
+              "협회 공식 홈페이지의 소비자포털 링크가 consumer.insure.or.kr로 연결되는 것을 확인함."
+            ]
+          },
+          {
+            "url": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+            "title": "알기쉬운 생명보험 안내자료",
+            "observed_facts": [
+              "협회가 가입·유지·보험금 청구 단계의 참고자료로 소개하며 PDF 다운로드 버튼을 제공함.",
+              "페이지 버튼 gfn_fileDown(84,5)와 공식 commonUtil.js의 파일 경로 조합으로 아래 PDF URL을 확인함."
+            ]
+          },
+          {
+            "url": "https://consumer.insure.or.kr/FileDown.do?fileNo=84&seq=5",
+            "title": "알기쉬운 생명보험 안내자료 PDF",
+            "http_status": 200,
+            "byte_length": 28099409,
+            "body_sha256": "9d0f7396b080f03ba0a38c6bb6b105f924500c53d849c540aefa597ae76f3184",
+            "publication_date": "2017-05",
+            "relevant_printed_pages": [
+              "42",
+              "43",
+              "44",
+              "45",
+              "75"
+            ],
+            "observed_facts": [
+              "43쪽: 청구서류가 사고 내용 및 보험사별로 달라 담당자에게 회사 양식과 필요한 서류를 확인하도록 안내함.",
+              "44쪽: 청구서·동의서·신분증·계좌정보는 보험수익자 기준이며, 미성년 수익자는 친권자 또는 후견인이 청구하는 방식이 제시됨.",
+              "45쪽: 사망진단서 원본 제출 시 기본증명서를 제외하는 간소화 사례가 실려 있어 43쪽의 과거 서류 예시를 그대로 현재 필수서류로 복제하면 안 됨.",
+              "75쪽: 보험수익자는 보험계약의 사고가 발생했을 때 보험금을 지급받을 권리가 있는 사람으로 설명됨.",
+              "말미 발행일은 2017년 5월이고, 사전 허락 없는 전재·복사를 금지하므로 원본 PDF를 서비스에 재배포하지 않음."
+            ]
+          },
+          {
+            "url": "https://www.kbinsure.co.kr/CG205020001.ec",
+            "title": "KB손해보험 필요서류 안내(일반상해)",
+            "observed_facts": [
+              "사망 항목은 사망진단서 원본 또는 사본과 사망사실 기재 기본증명서를 안내함.",
+              "수익자 미지정이면 상속관계 확인서류가 필요하며, 여러 법정상속인 중 대표 수령 시 위임장·인감증명서 또는 본인서명사실확인서·각 상속인의 상세동의서를 안내함.",
+              "이는 KB손해보험의 구체적 보완 예시로만 사용하며 다른 회사의 공통 필수서류로 단정하지 않음."
+            ]
+          },
+          {
+            "url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7950&mi=6522",
+            "title": "국세청 상속재산가액 — 상속재산으로 보는 보험금·신탁재산·퇴직금 등",
+            "observed_facts": [
+              "피상속인 사망에 따른 생명·손해보험금 중 피상속인이 계약자이거나 다른 계약자 명의라도 실제 보험료를 낸 계약의 보험금을 간주상속재산으로 설명함.",
+              "따라서 보험금 청구권자 확인과 상속세상 보험료 실질 부담자 검토를 구분해 안내함."
+            ]
+          }
+        ],
+        "limitations": [
+          "2017년 책자를 2026년 최신 개정본으로 표시하지 않음.",
+          "보험회사별 청구 구비서류·계약내용·접수방식은 해당 보험사의 현재 안내로 확인해야 함.",
+          "손해보험협회 소비자포털은 web에서 본문을 얻지 못하여 완료 근거로 사용하지 않음.",
+          "모든 보험금을 무조건 상속재산 또는 상속세 비과세로 단정하지 않음."
+        ],
+        "evidence_file": "docs/forms-expansion-109/evidence/round15/P6-03.json"
+      }
     },
     {
       "id": "P6-04",
