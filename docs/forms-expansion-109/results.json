@@ -195,17 +195,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+    "checked_at": "2026-09-17T11:35:13Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 연결 · 개별 첨부 재배포 조건 미확인",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
     "search_attempts": [
       {
         "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
@@ -261,7 +260,33 @@
         "checked_at": "2026-09-17T11:07:10Z",
         "url": null,
         "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+      },
+      {
+        "checked_at": "2026-09-19T13:23:03Z",
+        "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+        "result": "보존된 실제 HTTP 200 및 서식 목록 응답을 재검토하여 등록; 개별 원본 바이너리 다운로드 완료를 의미하지 않음",
+        "source_retrieved_at": "2026-09-17T11:35:13Z"
       }
+    ],
+    "reviewed_at": "2026-09-19T13:23:03Z",
+    "institution": "대한민국 법원 전자소송포털",
+    "source_evidence": {
+      "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "http_status": 200,
+      "checked_at": "2026-09-17T11:35:13Z",
+      "search_query": "상속",
+      "matched_rows": [
+        "6\t\t[가사] 상속재산포기심판청구"
+      ],
+      "response_body_sha256": "c6043b14409a01c252fdad5b5d4d38949999a1dbfb8e2dc378fd5f07867e0524",
+      "evidence_file": "docs/forms-expansion-109/evidence/round4/court-query-상속.json",
+      "evidence_file_sha256": "839114800591bcf8f82586321befa32c910cccde975f53a40c22676cc9af88c1",
+      "verification_method": "review_of_preserved_successful_http_and_rendered_form_table",
+      "recheck_note": "2026-09-19 재접속은 연결시간 초과. 아래 HTTP 200과 서식 목록 증거는 2026-09-17에 실제 수집한 응답입니다."
+    },
+    "note": "대한민국 법원 전자소송포털의 양식모음에서 검색어 «상속»로 «상속재산포기심판청구» 항목을 확인했습니다. 공식 제공처에서 사건에 맞는 양식과 작성안내를 선택하세요. 원본 파일을 이 사이트에서 재배포하는 항목은 아닙니다.",
+    "related_ids": [
+      "P8-01"
     ]
   },
   {
@@ -271,17 +296,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+    "checked_at": "2026-09-17T11:35:29Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 연결 · 개별 첨부 재배포 조건 미확인",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
     "search_attempts": [
       {
         "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
@@ -337,7 +361,34 @@
         "checked_at": "2026-09-17T11:07:10Z",
         "url": null,
         "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+      },
+      {
+        "checked_at": "2026-09-19T13:23:03Z",
+        "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+        "result": "보존된 실제 HTTP 200 및 서식 목록 응답을 재검토하여 등록; 개별 원본 바이너리 다운로드 완료를 의미하지 않음",
+        "source_retrieved_at": "2026-09-17T11:35:29Z"
       }
+    ],
+    "reviewed_at": "2026-09-19T13:23:03Z",
+    "institution": "대한민국 법원 전자소송포털",
+    "source_evidence": {
+      "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "http_status": 200,
+      "checked_at": "2026-09-17T11:35:29Z",
+      "search_query": "한정승인",
+      "matched_rows": [
+        "2\t\t[가사] 상속한정승인 심판청구서"
+      ],
+      "response_body_sha256": "a6015cec78fbe2debe9dfbb948f9fc3ec2328b106e4285bb21181eb4c0aee350",
+      "evidence_file": "docs/forms-expansion-109/evidence/round4/court-query-한정승인.json",
+      "evidence_file_sha256": "11f222bd497709db3ef1b47f9455e25e8f69f3542f0f13cbf60adbf10f3c31e7",
+      "verification_method": "review_of_preserved_successful_http_and_rendered_form_table",
+      "recheck_note": "2026-09-19 재접속은 연결시간 초과. 아래 HTTP 200과 서식 목록 증거는 2026-09-17에 실제 수집한 응답입니다."
+    },
+    "note": "대한민국 법원 전자소송포털의 양식모음에서 검색어 «한정승인»로 «상속한정승인 심판청구서» 항목을 확인했습니다. 공식 제공처에서 사건에 맞는 양식과 작성안내를 선택하세요. 원본 파일을 이 사이트에서 재배포하는 항목은 아닙니다.",
+    "related_ids": [
+      "P0-09",
+      "P8-05"
     ]
   },
   {
@@ -1033,17 +1084,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+    "checked_at": "2026-09-17T11:35:15Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 연결 · 개별 첨부 재배포 조건 미확인",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
     "search_attempts": [
       {
         "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
@@ -1099,7 +1149,33 @@
         "checked_at": "2026-09-17T11:07:10Z",
         "url": null,
         "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+      },
+      {
+        "checked_at": "2026-09-19T13:23:04Z",
+        "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+        "result": "보존된 실제 HTTP 200 및 서식 목록 응답을 재검토하여 등록; 개별 원본 바이너리 다운로드 완료를 의미하지 않음",
+        "source_retrieved_at": "2026-09-17T11:35:15Z"
       }
+    ],
+    "reviewed_at": "2026-09-19T13:23:04Z",
+    "institution": "대한민국 법원 전자소송포털",
+    "source_evidence": {
+      "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "http_status": 200,
+      "checked_at": "2026-09-17T11:35:15Z",
+      "search_query": "유언",
+      "matched_rows": [
+        "1\t\t[가사] 유언증서검인 심판청구서"
+      ],
+      "response_body_sha256": "91f52d189a814666671a137ba0c15111c4d76c2d12cfa5a830948a3e3f9a125f",
+      "evidence_file": "docs/forms-expansion-109/evidence/round4/court-query-유언.json",
+      "evidence_file_sha256": "4442170dba6bd35070adb76b0a932f782a3ea72539fc3dcc249b47fe0704747b",
+      "verification_method": "review_of_preserved_successful_http_and_rendered_form_table",
+      "recheck_note": "2026-09-19 재접속은 연결시간 초과. 아래 HTTP 200과 서식 목록 증거는 2026-09-17에 실제 수집한 응답입니다."
+    },
+    "note": "대한민국 법원 전자소송포털의 양식모음에서 검색어 «유언»로 «유언증서검인 심판청구서» 항목을 확인했습니다. 공식 제공처에서 사건에 맞는 양식과 작성안내를 선택하세요. 원본 파일을 이 사이트에서 재배포하는 항목은 아닙니다.",
+    "related_ids": [
+      "P1-14"
     ]
   },
   {
@@ -1216,17 +1292,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+    "checked_at": "2026-09-17T11:35:13Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 연결 · 개별 첨부 재배포 조건 미확인",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
     "search_attempts": [
       {
         "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
@@ -1282,7 +1357,34 @@
         "checked_at": "2026-09-17T11:07:10Z",
         "url": null,
         "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+      },
+      {
+        "checked_at": "2026-09-19T13:23:04Z",
+        "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+        "result": "보존된 실제 HTTP 200 및 서식 목록 응답을 재검토하여 등록; 개별 원본 바이너리 다운로드 완료를 의미하지 않음",
+        "source_retrieved_at": "2026-09-17T11:35:13Z"
       }
+    ],
+    "reviewed_at": "2026-09-19T13:23:04Z",
+    "institution": "대한민국 법원 전자소송포털",
+    "source_evidence": {
+      "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "http_status": 200,
+      "checked_at": "2026-09-17T11:35:13Z",
+      "search_query": "상속",
+      "matched_rows": [
+        "5\t\t[가사] 상속재산의 분할 심판청구서"
+      ],
+      "response_body_sha256": "c6043b14409a01c252fdad5b5d4d38949999a1dbfb8e2dc378fd5f07867e0524",
+      "evidence_file": "docs/forms-expansion-109/evidence/round4/court-query-상속.json",
+      "evidence_file_sha256": "839114800591bcf8f82586321befa32c910cccde975f53a40c22676cc9af88c1",
+      "verification_method": "review_of_preserved_successful_http_and_rendered_form_table",
+      "recheck_note": "2026-09-19 재접속은 연결시간 초과. 아래 HTTP 200과 서식 목록 증거는 2026-09-17에 실제 수집한 응답입니다."
+    },
+    "note": "대한민국 법원 전자소송포털의 양식모음에서 검색어 «상속»로 «상속재산의 분할 심판청구서» 항목을 확인했습니다. 공식 제공처에서 사건에 맞는 양식과 작성안내를 선택하세요. 원본 파일을 이 사이트에서 재배포하는 항목은 아닙니다.",
+    "related_ids": [
+      "BP-I-01",
+      "P8-01"
     ]
   },
   {
@@ -1444,17 +1546,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+    "checked_at": "2026-09-17T11:35:13Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 연결 · 개별 첨부 재배포 조건 미확인",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
     "search_attempts": [
       {
         "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
@@ -1510,7 +1611,33 @@
         "checked_at": "2026-09-17T11:07:10Z",
         "url": null,
         "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+      },
+      {
+        "checked_at": "2026-09-19T13:23:04Z",
+        "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+        "result": "보존된 실제 HTTP 200 및 서식 목록 응답을 재검토하여 등록; 개별 원본 바이너리 다운로드 완료를 의미하지 않음",
+        "source_retrieved_at": "2026-09-17T11:35:13Z"
       }
+    ],
+    "reviewed_at": "2026-09-19T13:23:04Z",
+    "institution": "대한민국 법원 전자소송포털",
+    "source_evidence": {
+      "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "http_status": 200,
+      "checked_at": "2026-09-17T11:35:13Z",
+      "search_query": "상속",
+      "matched_rows": [
+        "4\t\t[가사] 상속재산관리인선임 청구서 및 안내"
+      ],
+      "response_body_sha256": "c6043b14409a01c252fdad5b5d4d38949999a1dbfb8e2dc378fd5f07867e0524",
+      "evidence_file": "docs/forms-expansion-109/evidence/round4/court-query-상속.json",
+      "evidence_file_sha256": "839114800591bcf8f82586321befa32c910cccde975f53a40c22676cc9af88c1",
+      "verification_method": "review_of_preserved_successful_http_and_rendered_form_table",
+      "recheck_note": "2026-09-19 재접속은 연결시간 초과. 아래 HTTP 200과 서식 목록 증거는 2026-09-17에 실제 수집한 응답입니다."
+    },
+    "note": "대한민국 법원 전자소송포털의 양식모음에서 검색어 «상속»로 «상속재산관리인선임 청구서 및 안내» 항목을 확인했습니다. 공식 제공처에서 사건에 맞는 양식과 작성안내를 선택하세요. 원본 파일을 이 사이트에서 재배포하는 항목은 아닙니다. 기관이 게시한 서식 명칭을 그대로 기록했습니다. 현재 사건에서 관리인·청산인 중 필요한 신청과 관할법원의 서식 요구를 확인하세요.",
+    "related_ids": [
+      "P8-06"
     ]
   },
   {
@@ -1556,17 +1683,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+    "checked_at": "2026-09-17T11:35:25Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 연결 · 개별 첨부 재배포 조건 미확인",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
     "search_attempts": [
       {
         "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
@@ -1622,8 +1748,57 @@
         "checked_at": "2026-09-17T11:07:10Z",
         "url": null,
         "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+      },
+      {
+        "checked_at": "2026-09-19T13:23:04Z",
+        "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+        "result": "보존된 실제 HTTP 200 및 서식 목록 응답을 재검토하여 등록; 개별 원본 바이너리 다운로드 완료를 의미하지 않음",
+        "source_retrieved_at": "2026-09-17T11:35:25Z"
       }
-    ]
+    ],
+    "reviewed_at": "2026-09-19T13:23:04Z",
+    "institution": "대한민국 법원 전자소송포털",
+    "source_evidence": {
+      "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "http_status": 200,
+      "checked_at": "2026-09-17T11:35:25Z",
+      "pages": [
+        {
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:35:25Z",
+          "search_query": "부재자",
+          "matched_rows": [
+            "2\t\t[가사] 부재자재산관리인선임 심판청구서 및 안내"
+          ],
+          "response_body_sha256": "ba8c723f94b1b637e0073f32ba53e1df404bb0050a9b41783c20b8f647ce5369",
+          "evidence_file": "docs/forms-expansion-109/evidence/round4/court-query-부재자.json",
+          "evidence_file_sha256": "04d107a86b06cc4740ad72c2b7460c848d1c697a56875154dfd7484b67a13d0a",
+          "verification_method": "review_of_preserved_successful_http_and_rendered_form_table",
+          "recheck_note": "2026-09-19 재접속은 연결시간 초과. 아래 HTTP 200과 서식 목록 증거는 2026-09-17에 실제 수집한 응답입니다."
+        },
+        {
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:35:27Z",
+          "search_query": "실종",
+          "matched_rows": [
+            "1\t\t[가사] 실종선고 심판청구서"
+          ],
+          "response_body_sha256": "64a029ded9a1e46192e0f20b4c81bf4867f61b765ae34354a0946841b0a16506",
+          "evidence_file": "docs/forms-expansion-109/evidence/round4/court-query-실종.json",
+          "evidence_file_sha256": "a4958f422555457bf759cf92fdcce0f9466b587002920abb3e9d602df0c4c623",
+          "verification_method": "review_of_preserved_successful_http_and_rendered_form_table",
+          "recheck_note": "2026-09-19 재접속은 연결시간 초과. 아래 HTTP 200과 서식 목록 증거는 2026-09-17에 실제 수집한 응답입니다."
+        }
+      ],
+      "matched_rows": [
+        "2\t\t[가사] 부재자재산관리인선임 심판청구서 및 안내",
+        "1\t\t[가사] 실종선고 심판청구서"
+      ],
+      "verification_method": "review_of_preserved_successful_http_and_rendered_form_tables"
+    },
+    "note": "공식 양식모음에서 «부재자재산관리인선임 심판청구서 및 안내»와 «실종선고 심판청구서»를 각각 확인했습니다. 검색어 «부재자», «실종»으로 찾을 수 있습니다. 두 절차를 같은 신청으로 취급하지 말고 사건에 맞게 선택하세요."
   },
   {
     "id": "P1-24",
@@ -3215,17 +3390,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://www.mps.mil.kr/info/deceIncmAplcForm.do",
+    "checked_at": "2026-09-17T11:34:51Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 연결 · 개별 첨부 재배포 조건 미확인",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "HTTPSConnectionPool(host='www.mps.mil.kr', port=443): Max retries exceeded with url: /info/deceIncmAplcForm.do (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.mps.mil.kr', port=443) at 0x7ff5fb39eae0>, 'Connection to www.mps.mil.kr timed out. (connect timeout=9)'))",
     "attempts": [
       {
         "checked_at": "2026-09-17T09:51:09Z",
@@ -3236,8 +3410,80 @@
         "checked_at": "2026-09-19T13:12:10Z",
         "url": "https://www.mps.mil.kr/info/deceIncmAplcForm.do",
         "result": "HTTPSConnectionPool(host='www.mps.mil.kr', port=443): Max retries exceeded with url: /info/deceIncmAplcForm.do (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.mps.mil.kr', port=443) at 0x7ff5fb39eae0>, 'Connection to www.mps.mil.kr timed out. (connect timeout=9)'))"
+      },
+      {
+        "checked_at": "2026-09-19T13:23:04Z",
+        "url": "https://www.mps.mil.kr/info/deceIncmAplcForm.do",
+        "result": "보존된 실제 HTTP 200 및 서식 목록 응답을 재검토하여 등록; 개별 원본 바이너리 다운로드 완료를 의미하지 않음",
+        "source_retrieved_at": "2026-09-17T11:34:51Z"
       }
-    ]
+    ],
+    "reviewed_at": "2026-09-19T13:23:04Z",
+    "institution": "국방부 군인연금",
+    "source_evidence": {
+      "url": "https://www.mps.mil.kr/info/deceIncmAplcForm.do",
+      "http_status": 200,
+      "checked_at": "2026-09-17T11:34:51Z",
+      "sha256": "20b97487b0be43567a22515f50d03cf87bebbb5343e84d235ba87a981e6bc4d8",
+      "matched_titles": [
+        "퇴역유족연금 청구서",
+        "상이유족연금 청구서",
+        "유족대표자 선정서",
+        "퇴직유족급여 등분 청구서"
+      ],
+      "attachment_links": [
+        {
+          "text": "서식 다운로드",
+          "url": "https://www.mps.mil.kr/downloadLocal.do?fileName=[별지 제3호] 청구서 v1.pdf",
+          "onclick": null
+        },
+        {
+          "text": "▶ 서식 다운로드",
+          "url": "https://www.mps.mil.kr/downloadLocal.do?fileName=[별지 제3호] 청구서 v1.pdf",
+          "onclick": null
+        },
+        {
+          "text": "서식 다운로드",
+          "url": "https://www.mps.mil.kr/downloadLocal.do?fileName=재해보상법 시행규칙 별지 제2호.hwp",
+          "onclick": null
+        },
+        {
+          "text": "▶ 서식 다운로드",
+          "url": "https://www.mps.mil.kr/downloadLocal.do?fileName=재해보상법 시행규칙 별지 제2호.hwp",
+          "onclick": null
+        },
+        {
+          "text": "서식 다운로드",
+          "url": "https://www.mps.mil.kr/downloadLocal.do?fileName=[별지 제4호] 유족대표자 선정서,유족대표자 변경선정서,유족대표자 선정 해제서.hwp",
+          "onclick": null
+        },
+        {
+          "text": "▶ 서식 다운로드",
+          "url": "https://www.mps.mil.kr/downloadLocal.do?fileName=[별지 제4호] 유족대표자 선정서,유족대표자 변경선정서,유족대표자 선정 해제서.hwp",
+          "onclick": null
+        },
+        {
+          "text": "서식 다운로드",
+          "url": "https://www.mps.mil.kr/downloadLocal.do?fileName=[별지 제6호] 퇴직유족급여 등분 청구서.hwp",
+          "onclick": null
+        },
+        {
+          "text": "▶ 서식 다운로드",
+          "url": "https://www.mps.mil.kr/downloadLocal.do?fileName=[별지 제6호] 퇴직유족급여 등분 청구서.hwp",
+          "onclick": null
+        },
+        {
+          "text": "홈페이지 사용자가이드",
+          "url": "https://www.mps.mil.kr/downloadLocal.do?fileName=군인연금홈페이지사용자가이드.hwp",
+          "onclick": null
+        }
+      ],
+      "evidence_file": "docs/forms-expansion-109/evidence/round4/military-root.json",
+      "evidence_file_sha256": "3970f595cdce27d3ef1a68db29464409d36c98fe209be82d2894b5decb5922ac",
+      "verification_method": "review_of_preserved_successful_http_with_form_download_anchors",
+      "recheck_note": "2026-09-19 재접속은 연결시간 초과. HTTP 200 및 서식 링크 확인은 2026-09-17 수집 응답에 근거합니다."
+    },
+    "note": "국방부 군인연금의 유족연금 신청안내입니다. 퇴역유족연금·상이유족연금 청구서와 유족대표자 선정서·등분 청구서 및 제출서류 안내를 제공합니다. 해당 급여와 유족관계에 맞는 원문 서식을 선택하세요. 개별 첨부 재배포 조건과 파일 열림은 확인 전이므로 공식 제공처로 연결합니다."
   },
   {
     "id": "P7-04",
@@ -3356,17 +3602,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+    "checked_at": "2026-09-17T11:35:20Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 연결 · 개별 첨부 재배포 조건 미확인",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
     "search_attempts": [
       {
         "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
@@ -3422,7 +3667,35 @@
         "checked_at": "2026-09-17T11:07:10Z",
         "url": null,
         "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+      },
+      {
+        "checked_at": "2026-09-19T13:23:04Z",
+        "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+        "result": "보존된 실제 HTTP 200 및 서식 목록 응답을 재검토하여 등록; 개별 원본 바이너리 다운로드 완료를 의미하지 않음",
+        "source_retrieved_at": "2026-09-17T11:35:20Z"
       }
+    ],
+    "reviewed_at": "2026-09-19T13:23:04Z",
+    "institution": "대한민국 법원 전자소송포털",
+    "source_evidence": {
+      "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "http_status": 200,
+      "checked_at": "2026-09-17T11:35:20Z",
+      "search_query": "특별대리인",
+      "matched_rows": [
+        "3\t\t[가사] 특별대리인선임 심판청구서(상속재산 협의분할)",
+        "5\t\t[가사] 특별대리인선임 심판청구서(이해상반)"
+      ],
+      "response_body_sha256": "719578e0783cd741d1681ed02fd1594dff8a488d75a239c582e47bb3ee6a8fae",
+      "evidence_file": "docs/forms-expansion-109/evidence/round4/court-query-특별대리인.json",
+      "evidence_file_sha256": "4549e508b498b9933cd3840c6ec60bcf4015e218774a9cb5af27bde6511f1c61",
+      "verification_method": "review_of_preserved_successful_http_and_rendered_form_table",
+      "recheck_note": "2026-09-19 재접속은 연결시간 초과. 아래 HTTP 200과 서식 목록 증거는 2026-09-17에 실제 수집한 응답입니다."
+    },
+    "note": "대한민국 법원 전자소송포털의 양식모음에서 검색어 «특별대리인»로 «특별대리인선임 심판청구서(상속재산 협의분할) 및 (이해상반)» 항목을 확인했습니다. 공식 제공처에서 사건에 맞는 양식과 작성안내를 선택하세요. 원본 파일을 이 사이트에서 재배포하는 항목은 아닙니다. 상속포기 등에서 특별대리인이 필요한지는 각 사건의 이해상반 여부를 별도로 확인해야 하며, 모든 경우에 필수라는 의미는 아닙니다.",
+    "related_ids": [
+      "P0-07",
+      "P1-18"
     ]
   },
   {
@@ -3508,17 +3781,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+    "checked_at": "2026-09-17T11:35:22Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 연결 · 개별 첨부 재배포 조건 미확인",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
     "search_attempts": [
       {
         "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
@@ -3574,8 +3846,59 @@
         "checked_at": "2026-09-17T11:07:10Z",
         "url": null,
         "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+      },
+      {
+        "checked_at": "2026-09-19T13:23:04Z",
+        "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+        "result": "보존된 실제 HTTP 200 및 서식 목록 응답을 재검토하여 등록; 개별 원본 바이너리 다운로드 완료를 의미하지 않음",
+        "source_retrieved_at": "2026-09-17T11:35:22Z"
       }
-    ]
+    ],
+    "reviewed_at": "2026-09-19T13:23:04Z",
+    "institution": "대한민국 법원 전자소송포털",
+    "source_evidence": {
+      "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "http_status": 200,
+      "checked_at": "2026-09-17T11:35:22Z",
+      "pages": [
+        {
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:35:22Z",
+          "search_query": "친생자",
+          "matched_rows": [
+            "1\t\t[가사] 친생자관계부존재확인의소",
+            "2\t\t[가사] 친생자관계존재확인의 소"
+          ],
+          "response_body_sha256": "217c426edbadfb3d5ac12e30b192ded3defc52475a510e46cfc08f751bff8f7a",
+          "evidence_file": "docs/forms-expansion-109/evidence/round4/court-query-친생자.json",
+          "evidence_file_sha256": "a64119ca28d44f3a8a64d3086ef9b3c5ed0814498084b8ace33eff29a68ba132",
+          "verification_method": "review_of_preserved_successful_http_and_rendered_form_table",
+          "recheck_note": "2026-09-19 재접속은 연결시간 초과. 아래 HTTP 200과 서식 목록 증거는 2026-09-17에 실제 수집한 응답입니다."
+        },
+        {
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+          "http_status": 200,
+          "checked_at": "2026-09-17T11:35:23Z",
+          "search_query": "인지청구",
+          "matched_rows": [
+            "1\t\t[가사] 인지청구의소"
+          ],
+          "response_body_sha256": "acc731d7c368f8957fd983d3ae4864c7cd60ba07b9d407444915eaaa0213b178",
+          "evidence_file": "docs/forms-expansion-109/evidence/round4/court-query-인지청구.json",
+          "evidence_file_sha256": "0dcf756a1b5f5353b83ea33106741d3c9c2f47b99bc8749a98433026f5343901",
+          "verification_method": "review_of_preserved_successful_http_and_rendered_form_table",
+          "recheck_note": "2026-09-19 재접속은 연결시간 초과. 아래 HTTP 200과 서식 목록 증거는 2026-09-17에 실제 수집한 응답입니다."
+        }
+      ],
+      "matched_rows": [
+        "1\t\t[가사] 친생자관계부존재확인의소",
+        "2\t\t[가사] 친생자관계존재확인의 소",
+        "1\t\t[가사] 인지청구의소"
+      ],
+      "verification_method": "review_of_preserved_successful_http_and_rendered_form_tables"
+    },
+    "note": "공식 양식모음에서 친생자관계 존재·부존재 확인과 인지청구 양식을 각각 확인했습니다. 검색어 «친생자», «인지청구»를 사용하세요. 원고·피고·제소 요건은 사건별로 검토해야 합니다."
   },
   {
     "id": "P8-04",
