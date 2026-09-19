@@ -20,3 +20,6 @@ issue1-*.png
 
 .vercel
 .env*
+
+__pycache__/
+*.pyc

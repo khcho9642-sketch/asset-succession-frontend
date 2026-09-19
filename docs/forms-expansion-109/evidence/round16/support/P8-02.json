@@ -1,0 +1,39 @@
+{
+  "id": "P8-02",
+  "title": "상속회복청구 관련 소장 예시(인지 후 진정명의회복)",
+  "institution": "대한법률구조공단",
+  "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%A7%84%EC%A0%95%EB%AA%85%EC%9D%98%ED%9A%8C%EB%B3%B5&scdFolderId=",
+  "checked_at": "2026-09-19T17:41:18.254014+00:00",
+  "retention": "검증 메타데이터와 짧은 발췌만 보존. 원본·전체 텍스트·화면·쿠키·임시 경로는 포함하지 않음.",
+  "records": [
+    {
+      "capture_name": "candidate-328-1.hwp.meta.json",
+      "capture_sha256": "85a2ceb88f470287da177c5e28c4130213c6dcfc26e9e10cb288c85d6bac4510",
+      "url": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f01%2f29%2f14%2f05%2f91279566-0d9e-474a-a803-0e12e1197e34&filename=328-1+%ec%86%8c%ec%9c%a0%ea%b6%8c%ec%9d%b4%ec%a0%84%eb%93%b1%ea%b8%b0%ec%b2%ad%ea%b5%ac%ec%9d%98_%ec%86%8c(%ec%a7%84%ec%a0%95%eb%aa%85%ec%9d%98%ed%9a%8c%eb%b3%b5%ec%9d%84_%ec%9b%90%ec%9d%b8%ec%9c%bc%eb%a1%9c).hwp",
+      "status": 200,
+      "sha256": "82b91ab5993284c2bba0ed4dc2da7e0cb75e3368b34a6ab75b732ac16405dcdc",
+      "bytes": 81920,
+      "content_type": "application/x-msdownload",
+      "name": "candidate-328-1.hwp",
+      "signature": "d0cf11e0a1b11ae10000000000000000",
+      "text_sha256": "8247f29b9f843bd35f878ec44e62af65aaae1856c12c6d9342b6460564b30a83",
+      "excerpt": [
+        "소유권이전등기청구의 소",
+        "후순위 상속인에 대한 등기이전청구권은 상속회복청구권의 성질을 가질 것"
+      ],
+      "download_verified": true,
+      "scope": "인지 후 진정명의회복 관련 소장 예시. 일반 상속회복청구 표준서식 아님.",
+      "binary_included_in_support": false
+    },
+    {
+      "capture_name": "klac-진정명의회복.json",
+      "capture_sha256": "f8bc4b00e661c459e4ebcd73cee817f9c064955531caa74068ab8d63407084b7",
+      "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%A7%84%EC%A0%95%EB%AA%85%EC%9D%98%ED%9A%8C%EB%B3%B5&scdFolderId=",
+      "final_url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%A7%84%EC%A0%95%EB%AA%85%EC%9D%98%ED%9A%8C%EB%B3%B5&scdFolderId=",
+      "status": 200,
+      "sha256": "2868c44e2ba3a0647e739caac7a166fc540f1ff00af6294e899858fb69027305",
+      "bytes": 139277,
+      "finding": "원문 다운로드와 사례 범위는 위 파일 검증 기록으로 확인. 목록 페이지 응답 메타데이터는 보조 근거."
+    }
+  ]
+}

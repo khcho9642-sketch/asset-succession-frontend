@@ -1,0 +1,69 @@
+{
+  "id": "P9-07",
+  "title": "임대사업자 지위 승계 신고",
+  "institution": "국민권익위원회",
+  "source_url": "https://www.acrc.go.kr/board.es?act=view&bid=1010&list_no=50286&mid=a10504010000&nPage=&tag=",
+  "checked_at": "2026-09-19T17:37:43Z",
+  "retention": "검증 메타데이터와 짧은 발췌만 보존. 원본·전체 텍스트·화면·쿠키·임시 경로는 포함하지 않음.",
+  "records": [
+    {
+      "capture_name": "P9-07-acrc-case-page.json",
+      "capture_sha256": "c434ff13caf080d6f861cd908b87335589473771acd082caa25ce58f02b3cac3",
+      "url": "https://www.acrc.go.kr/board.es?act=view&bid=1010&list_no=50286&mid=a10504010000&nPage=&tag=",
+      "final_url": "https://www.acrc.go.kr/board.es?act=view&bid=1010&list_no=50286&mid=a10504010000&nPage=&tag=",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:37:43Z",
+      "sha256": "684c58c0f3642e350ecab8a73b0a8634dcf5a61fe02a1b540675a75bb64cfd47",
+      "bytes": 117883,
+      "content_type": "text/html;charset=UTF-8"
+    },
+    {
+      "capture_name": "P9-07-acrc-2026-page.json",
+      "capture_sha256": "9a7f8311d937bc7c9a4eaa75d7a5c880fa4938a277b1ed30f5c00c1bdee0bf83",
+      "url": "https://www.acrc.go.kr/board.es?act=view&bid=1010&list_no=116734&mid=a10504010000&nPage=1&tag=",
+      "final_url": "https://www.acrc.go.kr/board.es?act=view&bid=1010&list_no=116734&mid=a10504010000&nPage=1&tag=",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:37:43Z",
+      "sha256": "da677ec3eacbe549bb734338789aefa3ecbe919b669d9ee39adeb64f10283fd6",
+      "bytes": 118153,
+      "content_type": "text/html;charset=UTF-8"
+    },
+    {
+      "capture_name": "P9-07-acrc-decision.json",
+      "capture_sha256": "75d5ab189024ebe22cb38c6f8878e9288f288f86901ec103c8c0685181b6215e",
+      "url": "https://www.acrc.go.kr/boardDownload.es?bid=1010&list_no=50286&seq=2",
+      "final_url": "https://www.acrc.go.kr/boardDownload.es?bid=1010&list_no=50286&seq=2",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:34:29Z",
+      "sha256": "74a0d3eb3a7bfaec40464dd2103b0a1dcb0da0c6c9c6078d3dbdfdf9ec1a7b32",
+      "bytes": 198697,
+      "content_type": "application/pdf; charset=UTF-8",
+      "text_sha256": "128bce905565ecbf8c735973070e9c4341d1aba69c972031d6fed0ae2c921834",
+      "excerpt": [
+        "상속"
+      ],
+      "download_verified": true,
+      "document_type": "의결사례 · 신청서 아님",
+      "binary_included_in_support": false
+    },
+    {
+      "capture_name": "P9-07-acrc-2026-decision.json",
+      "capture_sha256": "4d5a9a2d9d28a0cfe23680f90c39fde5f8699ec5e8e331b609cad9facc631fae",
+      "url": "https://www.acrc.go.kr/boardDownload.es?bid=1010&list_no=116734&seq=2",
+      "final_url": "https://www.acrc.go.kr/boardDownload.es?bid=1010&list_no=116734&seq=2",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:38:24Z",
+      "sha256": "1345cdb7978d610912f77a76ae303fa812895be8a2b7ba724b7c026d75c77f6a",
+      "bytes": 552358,
+      "content_type": "application/pdf; charset=UTF-8",
+      "text_sha256": "0fe00767c2f891a0ed116636ef739b88d4e92a9e91544f1c195f7fa8658940d3",
+      "excerpt": [
+        "상속으로 인한 임대사업자 명의 변경",
+        "변경할 것을 의견표명한다."
+      ],
+      "download_verified": true,
+      "document_type": "의결사례 · 신청서 아님",
+      "binary_included_in_support": false
+    }
+  ]
+}

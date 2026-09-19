@@ -1,0 +1,39 @@
+{
+  "id": "P1-19",
+  "title": "기여분 결정 청구서",
+  "institution": "대한민국 법원",
+  "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSPA14M01",
+  "checked_at": "2026-09-19T17:37:54.293159Z",
+  "retention": "검증 메타데이터와 짧은 발췌만 보존. 원본·전체 텍스트·화면·쿠키·임시 경로는 포함하지 않음.",
+  "records": [
+    {
+      "capture_name": "ecfs-family-provider-evidence.json",
+      "capture_sha256": "73ae57bd9477d30f4a04ea374269b26b9f5a4803acfc1244c8529f366faa7f01",
+      "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSPA14M01",
+      "checked_at": "2026-09-19T17:37:53.102Z",
+      "method": "live_browser_rendered_dom",
+      "excerpt": [
+        "기여분에 관한 사건",
+        "표준화된 입력항목을 직접 작성하는 전자문서"
+      ],
+      "navigation": "서류제출 → 가사서류 → 가사소송·비송 → 마류 가사비송사건 → 기여분에 관한 사건",
+      "download_verified": false,
+      "limitation": "로그인 전 제공 메뉴 확인. 로그인·전자문서 작성·제출 미수행."
+    },
+    {
+      "capture_name": "klac-browser-evidence.json",
+      "capture_sha256": "26b970720540a6099b21996a18391d96c1c3faae220f0321c5af806905c003e7",
+      "evidence_key": "court-contribution-broad",
+      "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+      "captured_at": "2026-09-19T17:30:39.196Z",
+      "method": "live_browser_rendered_dom",
+      "observed_rows": [
+        {
+          "text": "내용이 없습니다.",
+          "download_urls": []
+        }
+      ],
+      "download_verified": false
+    }
+  ]
+}

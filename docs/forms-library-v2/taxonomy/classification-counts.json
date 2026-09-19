@@ -1,0 +1,67 @@
+{
+  "planning_slots": 180,
+  "canonical_resources_before": 177,
+  "source_url_update_tasks": 3,
+  "alias_tasks_already_deduplicated": 3,
+  "source_input_rows_including_aliases": 183,
+  "archive_proposal": 9,
+  "presentation_group_count": 19,
+  "group_member_resources": 62,
+  "cards_reduced_by_grouping": 43,
+  "formal_subform_or_verified_combined_schedule": 9,
+  "other_child_resources": 13,
+  "standalone_cards": 84,
+  "representative_cards_after": 103,
+  "planned_editorial_resources": 6,
+  "counts_by_stage": [
+    {
+      "stage_id": "S1",
+      "stage": "현황 정리",
+      "canonical_resources_before": 10,
+      "representative_cards_after": 5,
+      "source_update_tasks": 0
+    },
+    {
+      "stage_id": "S2",
+      "stage": "방법·재원 설계",
+      "canonical_resources_before": 1,
+      "representative_cards_after": 1,
+      "source_update_tasks": 0
+    },
+    {
+      "stage_id": "S3",
+      "stage": "의사·계약 확정",
+      "canonical_resources_before": 50,
+      "representative_cards_after": 20,
+      "source_update_tasks": 0
+    },
+    {
+      "stage_id": "S4",
+      "stage": "권리 이전·수령",
+      "canonical_resources_before": 33,
+      "representative_cards_after": 17,
+      "source_update_tasks": 3
+    },
+    {
+      "stage_id": "S5",
+      "stage": "신고·납부",
+      "canonical_resources_before": 55,
+      "representative_cards_after": 43,
+      "source_update_tasks": 0
+    },
+    {
+      "stage_id": "S6",
+      "stage": "유지·사후관리",
+      "canonical_resources_before": 12,
+      "representative_cards_after": 7,
+      "source_update_tasks": 0
+    },
+    {
+      "stage_id": "S7",
+      "stage": "정정·분쟁 대응",
+      "canonical_resources_before": 16,
+      "representative_cards_after": 10,
+      "source_update_tasks": 0
+    }
+  ]
+}

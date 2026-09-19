@@ -1,0 +1,76 @@
+{
+  "required_original": false,
+  "checked_at": "2026-09-19T17:36:34.782912Z",
+  "files": [],
+  "redistribution": "official_provider_link_only",
+  "legal_deadline_values_added": false,
+  "id": "P1-20",
+  "title": "유류분반환청구 소장",
+  "status": "확인 완료",
+  "completion_basis": "official_form_provider_verified",
+  "institution": "대한법률구조공단",
+  "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+  "source_title": "법률서식 · 461 유류분반환청구의 소",
+  "navigation": "서식제목에서 유류분 검색 → 461 유류분반환청구의 소",
+  "official_download_urls": [
+    "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f06%2f10%2f13%2f21%2ff149e66f-fcf3-42cb-b2a2-4b16528c76a0&filename=%ec%9c%a0%eb%a5%98%eb%b6%84%eb%b0%98%ed%99%98%ec%b2%ad%ea%b5%ac%ec%9d%98+%ec%86%8c.hwp"
+  ],
+  "formats_offered": [
+    "HWP"
+  ],
+  "evidence": [
+    {
+      "kind": "live_browser_rendered_dom",
+      "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-20.json",
+      "evidence_key": "court-reserve",
+      "quote": "461 유류분반환청구의 소",
+      "finding": "해당 제목의 서식 행과 실제 공식 HWP 다운로드·바로보기 링크 확인"
+    },
+    {
+      "kind": "official_provider_page_web_read",
+      "source_url": "https://support.klac.or.kr/front/main.do",
+      "quote": "유류분반환청구의 소",
+      "finding": "주요서식 바로가기의 가사소송(소장 등) 구역에서도 한글다운로드 및 서식 작성 버튼 제공 확인"
+    }
+  ],
+  "limitations": [
+    "바이너리 원문은 확보하지 않았으며 공식 제공 링크를 확인했다."
+  ],
+  "source_type": "공식제공처",
+  "license": "공식 제공처 링크 · 원본 재배포하지 않음",
+  "source_evidence": {
+    "sources": [
+      {
+        "kind": "live_browser_rendered_dom",
+        "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+        "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-20.json",
+        "evidence_key": "court-reserve",
+        "quote": "461 유류분반환청구의 소",
+        "finding": "해당 제목의 서식 행과 실제 공식 HWP 다운로드·바로보기 링크 확인"
+      },
+      {
+        "kind": "official_provider_page_web_read",
+        "source_url": "https://support.klac.or.kr/front/main.do",
+        "quote": "유류분반환청구의 소",
+        "finding": "주요서식 바로가기의 가사소송(소장 등) 구역에서도 한글다운로드 및 서식 작성 버튼 제공 확인"
+      }
+    ],
+    "download_urls": [
+      "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f06%2f10%2f13%2f21%2ff149e66f-fcf3-42cb-b2a2-4b16528c76a0&filename=%ec%9c%a0%eb%a5%98%eb%b6%84%eb%b0%98%ed%99%98%ec%b2%ad%ea%b5%ac%ec%9d%98+%ec%86%8c.hwp"
+    ],
+    "completion_basis": "official_form_provider_verified",
+    "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-20.json",
+    "evidence_sha256": "f2638b6f0bda8d8b9435a8de709a8ce6020daddc2b88adf79f44c472367bd98a"
+  },
+  "note": "서식제목에서 유류분 검색 → 461 유류분반환청구의 소에서 확인할 수 있습니다. 현재 공식 제공처의 서식 제목과 다운로드 링크를 확인했습니다. 원본 파일은 제공처에서 받으세요.",
+  "candidate_reviewed_at": "2026-09-19T17:37:35.690800+00:00",
+  "task_operation": "add",
+  "target_id": null,
+  "evidence_retention": {
+    "representation": "metadata_and_short_excerpts",
+    "support_file": "docs/forms-expansion-109/evidence/round16/support/P1-20.json",
+    "new_original_binaries_included": false,
+    "private_local_paths_included": false
+  }
+}

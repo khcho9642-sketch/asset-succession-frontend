@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "status": "implementation_navigation_contract",
+  "primary_axis": "current_task",
+  "stage_order": [
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S6",
+    "S7"
+  ],
+  "default_entry": {
+    "context_id": "all",
+    "timing_filter": null,
+    "stage_id": null,
+    "purpose_filter": null,
+    "asset_filter": null
+  },
+  "entry_contexts": [
+    {
+      "id": "before_death",
+      "label": "생전 준비·실행",
+      "timing_filter": [
+        "before_death"
+      ]
+    },
+    {
+      "id": "after_death",
+      "label": "상속 발생 후",
+      "timing_filter": [
+        "after_death"
+      ]
+    },
+    {
+      "id": "all",
+      "label": "전체 자료",
+      "timing_filter": null
+    }
+  ],
+  "context_role": "preset_of_timing_facet_not_an_additional_classification_axis",
+  "featured_stage_order": [
+    "S1",
+    "S2",
+    "S3"
+  ],
+  "content_gate": "verified_content_and_reviewed_timing_only",
+  "unknown_timing": {
+    "show_in_all": true,
+    "include_in_before_or_after_by_inference": false,
+    "label": "적용 시점 확인 필요"
+  },
+  "initial_inputs": {
+    "require_death_date": false,
+    "require_inheritance_purpose": false
+  },
+  "explicit_navigation": {
+    "preserve_direct_resource_link": true,
+    "respect_url_context_and_stage": true,
+    "respect_user_selected_context": true,
+    "reset_action": "reset_to_all",
+    "reuse_precheck_only_when_explicitly_linked": true,
+    "silently_restore_saved_context": false
+  },
+  "empty_state": {
+    "label": "이 단계의 자료를 확인하고 있습니다.",
+    "show_unproduced_editorial_resources_as_available": false,
+    "silently_fall_back_to_after_death": false
+  },
+  "precheck_handoff": {
+    "require_new_entry_screen": false,
+    "purpose_only_does_not_infer_timing": true,
+    "inheritance_timing": "reuse_existing_answers",
+    "business_succession_timing": "reuse_existing_answers",
+    "unknown_timing": "all",
+    "explicit_url_filters_take_precedence": true
+  },
+  "direct_entry": {
+    "require_questions": false,
+    "show_all_resources": true,
+    "lifetime_priority": "featured_recommendations_only"
+  }
+}

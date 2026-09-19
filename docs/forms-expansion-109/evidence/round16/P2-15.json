@@ -1,0 +1,56 @@
+{
+  "id": "P2-15",
+  "title": "재산 평가심의위원회 심의신청서",
+  "status": "확인 완료",
+  "source_url": "https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000281898",
+  "institution": "국가법령정보센터 · 국세청",
+  "checked_at": "2026-09-19T17:22:34Z",
+  "source_type": "원본",
+  "form_no": "평가심의위원회 운영 규정 별지 제6호 서식",
+  "revised_at": null,
+  "deadline": null,
+  "deadline_basis": null,
+  "license": "행정규칙 별지서식 · 원본 무수정·출처 표시",
+  "note": "요청명에 대응하는 납세자용 서식은 평가심의위원회 운영 규정의 재산의 매매 등 가액의 시가인정 심의 신청서입니다. 과세관청용 심의 의뢰서와 구분합니다. 관련 검토서 부표가 포함된 공식 PDF 원본입니다.",
+  "verified": [
+    "법제처 현행 운영 규정 본문에서 별지 제6호 신청서 및 PDF 다운로드 링크 확인",
+    "다운로드 PDF 파일 서명·전체 페이지 텍스트·납세자/신고인란·SHA-256 확인"
+  ],
+  "evidence_refs": [
+    "docs/forms-expansion-109/evidence/round16/support/P2-15.json"
+  ],
+  "files": [
+    {
+      "name": "재산의 매매 등 가액의 시가인정 심의 신청서.pdf",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=166788129&flNm=%5B%EB%B3%84%EC%A7%80+6%5D+%EC%9E%AC%EC%82%B0%EC%9D%98+%EB%A7%A4%EB%A7%A4+%EB%93%B1+%EA%B0%80%EC%95%A1%EC%9D%98+%EC%8B%9C%EA%B0%80%EC%9D%B8%EC%A0%95+%EC%8B%AC%EC%9D%98+%EC%8B%A0%EC%B2%AD%EC%84%9C&bylClsCd=200203",
+      "bytes": 137687,
+      "sha256": "3aa19105978665a9c579afd3a3ff2107e64dc03307db706ac036974ab65d7d0b",
+      "format": "pdf",
+      "role": "original",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:22:34Z",
+      "title_verified": true,
+      "path": "public/downloads/official-forms/expansion/P2-15_3aa191059786.pdf",
+      "local_url": "/downloads/official-forms/expansion/P2-15_3aa191059786.pdf"
+    }
+  ],
+  "source_evidence": {
+    "url": "https://www.law.go.kr/LSW/admRulLsInfoR.do?admRulSeq=2100000281898&admRulId=21044&joTpYn=Y&languageType=KO&chrClsCd=010202",
+    "http_status": 200,
+    "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P2-15.json",
+    "matched_terms": [
+      "재산의 매매 등 가액의 시가인정 심의 신청서",
+      "별지 6"
+    ],
+    "evidence_sha256": "e9002c2764f05f6767c45c552fc79b07b5b7ae7e42415ddad6f377b22a1c53e2"
+  },
+  "candidate_reviewed_at": "2026-09-19T17:31:52.362304+00:00",
+  "task_operation": "add",
+  "target_id": null,
+  "evidence_retention": {
+    "representation": "metadata_and_short_excerpts",
+    "support_file": "docs/forms-expansion-109/evidence/round16/support/P2-15.json",
+    "new_original_binaries_included": false,
+    "private_local_paths_included": false
+  }
+}
