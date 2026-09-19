@@ -900,17 +900,47 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=1&cnpClsNo=4&csmSeq=566&popMenu=ov",
+    "checked_at": "2026-09-19T15:08:47Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "법제처 공식 제공처의 첨부 원본 확인 · 자체 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "alternative_official_source": true,
+    "requested_provider": "대한민국 법원 인터넷등기소",
+    "inspected_originals": [
+      {
+        "name": "매매로인한소유권이전등기신청",
+        "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1776585303527",
+        "bytes": 54784,
+        "sha256": "2f11eda48a5c6234064cba2d054cd0f80f0fec271bec133755711090957290c7",
+        "format": "hwp",
+        "role": "original",
+        "http_status": 200,
+        "checked_at": "2026-09-19T15:08:47Z",
+        "title_verified": true,
+        "artifact_path": "originals/P1-01_2f11eda48a5c.hwp"
+      }
+    ],
+    "institution": "법제처 찾기쉬운 생활법령정보",
+    "source_evidence": {
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=1&cnpClsNo=4&csmSeq=566&popMenu=ov",
+      "http_status": 200,
+      "checked_at": "2026-09-19T15:08:45Z",
+      "matched_terms": [
+        "소유권이전",
+        "매매"
+      ],
+      "evidence_file": "docs/forms-expansion-109/evidence/round13/P1-01-page.json",
+      "download_sha256": [
+        "2f11eda48a5c6234064cba2d054cd0f80f0fec271bec133755711090957290c7"
+      ]
+    },
+    "note": "인터넷등기소 작성방법을 참조하여 법제처 생활법령정보가 제공하는 해당 신청서와 작성 안내를 확인했습니다. 인터넷등기소의 개별 파일 직링크를 확보한 것으로 표기하지 않습니다. 실제 제공 파일의 제목·본문을 검사했으며 재배포 조건 미확인으로 기관 제공처에서 받도록 연결합니다. 제출 전 관할 등기소의 현행 요구사항을 확인하세요."
   },
   {
     "id": "P1-02",
@@ -995,17 +1025,47 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=4&cnpClsNo=3&csmSeq=566&popMenu=ov",
+    "checked_at": "2026-09-19T15:08:48Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "법제처 공식 제공처의 첨부 원본 확인 · 자체 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "alternative_official_source": true,
+    "requested_provider": "대한민국 법원 인터넷등기소",
+    "inspected_originals": [
+      {
+        "name": "공유물분할로인한소유권이전등기신청",
+        "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1776996998793",
+        "bytes": 32768,
+        "sha256": "66cbbcda97145a16a9d7af5b088e4921b8335b49f0a729da73060e87f3bf1dc3",
+        "format": "hwp",
+        "role": "original",
+        "http_status": 200,
+        "checked_at": "2026-09-19T15:08:48Z",
+        "title_verified": true,
+        "artifact_path": "originals/P1-06_66cbbcda9714.hwp"
+      }
+    ],
+    "institution": "법제처 찾기쉬운 생활법령정보",
+    "source_evidence": {
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=4&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "http_status": 200,
+      "checked_at": "2026-09-19T15:08:45Z",
+      "matched_terms": [
+        "소유권이전",
+        "공유물분할"
+      ],
+      "evidence_file": "docs/forms-expansion-109/evidence/round13/P1-06-page.json",
+      "download_sha256": [
+        "66cbbcda97145a16a9d7af5b088e4921b8335b49f0a729da73060e87f3bf1dc3"
+      ]
+    },
+    "note": "인터넷등기소 작성방법을 참조하여 법제처 생활법령정보가 제공하는 해당 신청서와 작성 안내를 확인했습니다. 인터넷등기소의 개별 파일 직링크를 확보한 것으로 표기하지 않습니다. 실제 제공 파일의 제목·본문을 검사했으며 재배포 조건 미확인으로 기관 제공처에서 받도록 연결합니다. 제출 전 관할 등기소의 현행 요구사항을 확인하세요."
   },
   {
     "id": "P1-07",
@@ -1014,17 +1074,48 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=2&cnpClsNo=3&csmSeq=566&popMenu=ov",
+    "checked_at": "2026-09-19T15:08:49Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "법제처 공식 제공처의 첨부 원본 확인 · 자체 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "alternative_official_source": true,
+    "requested_provider": "대한민국 법원 인터넷등기소",
+    "inspected_originals": [
+      {
+        "name": "근저당권설정등기신청",
+        "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1777014900684",
+        "bytes": 31744,
+        "sha256": "8929955b5ab37517597fe62c1244107964eb5c71c2ae6cf88691cd6018aa438d",
+        "format": "hwp",
+        "role": "original",
+        "http_status": 200,
+        "checked_at": "2026-09-19T15:08:49Z",
+        "title_verified": true,
+        "artifact_path": "originals/P1-07_8929955b5ab3.hwp"
+      }
+    ],
+    "institution": "법제처 찾기쉬운 생활법령정보",
+    "source_evidence": {
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=2&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "http_status": 200,
+      "checked_at": "2026-09-19T15:08:44Z",
+      "matched_terms": [
+        "근저당권",
+        "설정",
+        "신청"
+      ],
+      "evidence_file": "docs/forms-expansion-109/evidence/round13/P1-07-page.json",
+      "download_sha256": [
+        "8929955b5ab37517597fe62c1244107964eb5c71c2ae6cf88691cd6018aa438d"
+      ]
+    },
+    "note": "인터넷등기소 작성방법을 참조하여 법제처 생활법령정보가 제공하는 해당 신청서와 작성 안내를 확인했습니다. 인터넷등기소의 개별 파일 직링크를 확보한 것으로 표기하지 않습니다. 실제 제공 파일의 제목·본문을 검사했으며 재배포 조건 미확인으로 기관 제공처에서 받도록 연결합니다. 제출 전 관할 등기소의 현행 요구사항을 확인하세요."
   },
   {
     "id": "P1-08",
@@ -1033,17 +1124,48 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=4&cnpClsNo=3&csmSeq=566&popMenu=ov",
+    "checked_at": "2026-09-19T15:08:50Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "법제처 공식 제공처의 첨부 원본 확인 · 자체 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "alternative_official_source": true,
+    "requested_provider": "대한민국 법원 인터넷등기소",
+    "inspected_originals": [
+      {
+        "name": "일부포기에의한근저당권말소등기신청",
+        "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1777024287063",
+        "bytes": 29184,
+        "sha256": "3a1d6965dbf9ee44432ad2348e36356451556ae9b1b9766b786a4f4917b22570",
+        "format": "hwp",
+        "role": "original",
+        "http_status": 200,
+        "checked_at": "2026-09-19T15:08:50Z",
+        "title_verified": true,
+        "artifact_path": "originals/P1-08_3a1d6965dbf9.hwp"
+      }
+    ],
+    "institution": "법제처 찾기쉬운 생활법령정보",
+    "source_evidence": {
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=4&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "http_status": 200,
+      "checked_at": "2026-09-19T15:08:46Z",
+      "matched_terms": [
+        "근저당권",
+        "말소",
+        "신청"
+      ],
+      "evidence_file": "docs/forms-expansion-109/evidence/round13/P1-08-page.json",
+      "download_sha256": [
+        "3a1d6965dbf9ee44432ad2348e36356451556ae9b1b9766b786a4f4917b22570"
+      ]
+    },
+    "note": "인터넷등기소 작성방법을 참조하여 법제처 생활법령정보가 제공하는 해당 신청서와 작성 안내를 확인했습니다. 인터넷등기소의 개별 파일 직링크를 확보한 것으로 표기하지 않습니다. 실제 제공 파일의 제목·본문을 검사했으며 재배포 조건 미확인으로 기관 제공처에서 받도록 연결합니다. 제출 전 관할 등기소의 현행 요구사항을 확인하세요."
   },
   {
     "id": "P1-09",
@@ -1052,17 +1174,48 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=3&csmSeq=566&popMenu=ov",
+    "checked_at": "2026-09-19T15:08:51Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "법제처 공식 제공처의 첨부 원본 확인 · 자체 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "alternative_official_source": true,
+    "requested_provider": "대한민국 법원 인터넷등기소",
+    "inspected_originals": [
+      {
+        "name": "전세권설정등기신청",
+        "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1777271874081",
+        "bytes": 31232,
+        "sha256": "e096a35728eafce006ce569cb9139ff85bf86e160eee4534742e746bf6e1afd1",
+        "format": "hwp",
+        "role": "original",
+        "http_status": 200,
+        "checked_at": "2026-09-19T15:08:51Z",
+        "title_verified": true,
+        "artifact_path": "originals/P1-09_e096a35728ea.hwp"
+      }
+    ],
+    "institution": "법제처 찾기쉬운 생활법령정보",
+    "source_evidence": {
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "http_status": 200,
+      "checked_at": "2026-09-19T15:08:46Z",
+      "matched_terms": [
+        "전세권",
+        "설정",
+        "신청"
+      ],
+      "evidence_file": "docs/forms-expansion-109/evidence/round13/P1-09-page.json",
+      "download_sha256": [
+        "e096a35728eafce006ce569cb9139ff85bf86e160eee4534742e746bf6e1afd1"
+      ]
+    },
+    "note": "인터넷등기소 작성방법을 참조하여 법제처 생활법령정보가 제공하는 해당 신청서와 작성 안내를 확인했습니다. 인터넷등기소의 개별 파일 직링크를 확보한 것으로 표기하지 않습니다. 실제 제공 파일의 제목·본문을 검사했으며 재배포 조건 미확인으로 기관 제공처에서 받도록 연결합니다. 제출 전 관할 등기소의 현행 요구사항을 확인하세요."
   },
   {
     "id": "P1-10",
@@ -1109,17 +1262,48 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=9&cciNo=1&cnpClsNo=3&csmSeq=566&popMenu=ov",
+    "checked_at": "2026-09-19T15:08:52Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "법제처 공식 제공처의 첨부 원본 확인 · 자체 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "alternative_official_source": true,
+    "requested_provider": "대한민국 법원 인터넷등기소",
+    "inspected_originals": [
+      {
+        "name": "소유권이전청구권가등기신청",
+        "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1777548443065",
+        "bytes": 29696,
+        "sha256": "e0310de63372633f0f68983323051c6fbd02812be57d492cfe643c37588ba89a",
+        "format": "hwp",
+        "role": "original",
+        "http_status": 200,
+        "checked_at": "2026-09-19T15:08:52Z",
+        "title_verified": true,
+        "artifact_path": "originals/P1-12_e0310de63372.hwp"
+      }
+    ],
+    "institution": "법제처 찾기쉬운 생활법령정보",
+    "source_evidence": {
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=9&cciNo=1&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "http_status": 200,
+      "checked_at": "2026-09-19T15:08:47Z",
+      "matched_terms": [
+        "소유권이전청구권",
+        "가등기",
+        "신청"
+      ],
+      "evidence_file": "docs/forms-expansion-109/evidence/round13/P1-12-page.json",
+      "download_sha256": [
+        "e0310de63372633f0f68983323051c6fbd02812be57d492cfe643c37588ba89a"
+      ]
+    },
+    "note": "인터넷등기소 작성방법을 참조하여 법제처 생활법령정보가 제공하는 해당 신청서와 작성 안내를 확인했습니다. 인터넷등기소의 개별 파일 직링크를 확보한 것으로 표기하지 않습니다. 실제 제공 파일의 제목·본문을 검사했으며 재배포 조건 미확인으로 기관 제공처에서 받도록 연결합니다. 제출 전 관할 등기소의 현행 요구사항을 확인하세요."
   },
   {
     "id": "P1-13",
