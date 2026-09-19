@@ -128,7 +128,7 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005\", waiting until \"domcontentloaded\"\n",
+    "failure_reason": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005\", waiting until \"commit\"\n",
     "attempts": [
       {
         "checked_at": "2026-09-17T09:31:41Z",
@@ -139,6 +139,11 @@
         "checked_at": "2026-09-17T09:51:45Z",
         "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005",
         "result": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005\", waiting until \"domcontentloaded\"\n"
+      },
+      {
+        "checked_at": "2026-09-19T12:56:21Z",
+        "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005",
+        "result": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005\", waiting until \"commit\"\n"
       }
     ]
   },
@@ -159,7 +164,7 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "가족·기본·제적 안내 3종 중 확인된 페이지 1개",
+    "failure_reason": "세 종류 발급 안내 중 0개만 확인",
     "attempts": [
       {
         "checked_at": "2026-09-17T09:31:41Z",
@@ -175,6 +180,11 @@
         "checked_at": "2026-09-17T11:07:12Z",
         "url": null,
         "result": "가족·기본·제적 안내 3종 중 확인된 페이지 1개"
+      },
+      {
+        "checked_at": "2026-09-19T12:57:36Z",
+        "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y",
+        "result": "세 종류 발급 안내 중 0개만 확인"
       }
     ]
   },
@@ -3665,7 +3675,13 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
+    "attempts": [
+      {
+        "checked_at": "2026-09-19T12:55:19Z",
+        "result": "Rechecking attached diagnostic and property forms; not assuming target alone completes extension."
+      }
+    ]
   },
   {
     "id": "P8-08",
