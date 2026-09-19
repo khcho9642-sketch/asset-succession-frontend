@@ -1,0 +1,106 @@
+{
+  "url": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open",
+  "links": [
+    {
+      "text": "본문 바로가기",
+      "url": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open#section",
+      "onclick": null,
+      "origin": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open"
+    },
+    {
+      "text": "등록민간임대주택 렌트홈",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": null,
+      "origin": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open"
+    },
+    {
+      "text": "품질오류신고 및 확인",
+      "url": "https://data.molit.go.kr/systemQuality/list?system_id=S0015",
+      "onclick": null,
+      "origin": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open"
+    }
+  ],
+  "scripts": [
+    {
+      "url": "https://www.renthome.go.kr/resources/js/jquery/jquery-1.12.3.min.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/resources/js/jquery/jquery.form.min.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/resources/js/jquery/jquery.tmpl.min.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/resources/js/jquery/jquery.twbsPagination.min.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/resources/js/ui/ui.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/resources/js/ui/zoom.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/resources/js/ui/mouseEvent.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/resources/js/common/common.js?ver=20260721190000",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/resources/plugin/ax5ui/ax5core/ax5core.min.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/resources/plugin/ax5ui/ax5ui-grid/ax5grid.min.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/resources/plugin/ax5ui/ax5ui-calendar/ax5calendar.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/resources/plugin/ax5ui/ax5ui-picker/ax5picker.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/resources/plugin/ax5ui/ax5ui-formatter/ax5formatter.min.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/resources/solution/nProtect/nppfs.query-1.11.3.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/resources/solution/nProtect/pluginfree/js/nppfs-1.13.0.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open",
+      "text": "\r\n\r\n\tvar url = \"\";\r\n\tvar gPathName = $(location).attr(\"pathname\");\r\n\t\r\n\t$(document).ready(function(){\r\n\t\t\r\n\t\t\t $.ajax({\r\n\t\t\t\turl: '/webportal/main/selectAllMenuList.open',\r\n\t\t\t\tasync: false,\r\n\t\t\t\tsuccess: function(res) {\r\n\t\t\t\t\tvar str = \"\";\r\n\t\t\t\t\tvar depthNum = 1;\r\n\t\t\t\t\t$.each(res, function( index, value ) {\r\n\t\t\t\t\t\tif(value.usAt == 'Y'){\r\n\t\t\t\t\t\t\t//1레벨 메뉴\r\n\t\t\t\t\t\t\tif(value.level == 1){\r\n\t\t\t\t\t\t\t\tstr = \"\";\r\n\t\t\t\t\t\t\t\tstr += \"<li id=\\\"li-\"+value.grp+\"\\\" >\";\r\n\t\t\t\t\t\t\t\tif(value.grp == \"1\" || value.grp == \"2\" || value.grp == \"5\" || value.grp == \"6\"){\r\n\t\t\t\t\t\t\t\t\tif(value.menuBsUrlAdrs == gPathName) {\r\n\t\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\" title=\\\"바로가기\\\">\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t\t\tstr += \"<ul class='depth\"+depthNum+\"' id='grp\"+value.grp+\"'>\";\r\n\t\t\t\t\t\t\t\t\t\tstr += \"</ul>\";\r\n\t\t\t\t\t\t\t\t\t\tstr += \"<i class='on'></i>\";\r\n\t\t\t\t\t\t\t\t\t\tstr += \"</li>\";\r\n\t\t\t\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\" title=\\\"바로가기\\\">\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t\t\tstr += \"<ul class='depth\"+depthNum+\"' id='grp\"+value.grp+\"'>\";\r\n\t\t\t\t\t\t\t\t\t\tstr += \"</ul>\";\r\n\t\t\t\t\t\t\t\t\t\tstr += \"<i></i>\";\r\n\t\t\t\t\t\t\t\t\t\tstr += \"</li>\";\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t//하위 메뉴가 있을 경우에만 depth값 상승 \r\n\t\t\t\t\t\t\t\t\tdepthNum++;\r\n\t\t\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t\t\t\tif(value.menuSn == \"20000494\"){\r\n\t\t\t\t\t\t\t\t\t\turl = value.menuBsUrlAdrs;\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\t\tstr += \"<a href='/webportal/usr/login/memberLogin.open'>\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\t\t\tstr += \"</li>\";\r\n\t\t\t\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t\t\t\t\tif(value.menuBsUrlAdrs == gPathName) {\r\n\t\t\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\" title=\\\"바로가기\\\">\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t\t\t\tstr += \"<i class=''></i>\";\r\n\t\t\t\t\t\t\t\t\t\t\tstr += \"</li>\";\r\n\t\t\t\t\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\" title=\\\"바로가기\\\">\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t\t\t\tstr += \"<i></i>\";\r\n\t\t\t\t\t\t\t\t\t\t\tstr += \"</li>\";\r\n\t\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t$(\"#nav > ul\").append(str);\r\n\t\t\t\t\t\t\t//2레벨 메뉴\r\n\t\t\t\t\t\t\t}else if(value.level == 2){\r\n\t\t\t\t\t\t\t\tstr = \"\";\r\n\t\t\t\t\t\t\t\tstr += \"<li id='topMenu\"+value.menuSn+\"'>\";\r\n\t\t\t\t\t\t\t\tif(value.menuBsUrlAdrs != null && value.menuBsUrlAdrs != \"\"){\r\n\t\t\t\t\t\t\t\t\tif(value.menuBsUrlAdrs == gPathName) {\r\n\t\t\t\t\t\t\t\t\t\tif(value.menuBsUrlAdrs == \"/webportal/bbs/rntgtnUngvbkRntBizmn/selectPbRntgtnUngvbkRntBizmnList.open\"){\r\n\t\t\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\" style='letter-spacing:-2px;'>\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t\t\t\t$(\"#li-\" + value.grp).find('i').eq(0).addClass('on');\r\n\t\t\t\t\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\">\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t\t\t\t$(\"#li-\" + value.grp).find('i').eq(0).addClass('on');\r\n\t\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t\t\t\t\tif(value.menuBsUrlAdrs == \"/webportal/bbs/rntgtnUngvbkRntBizmn/selectPbRntgtnUngvbkRntBizmnList.open\"){\r\n\t\t\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\" style='letter-spacing:-2px;'>\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\">\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"#\\\" title=\\\"바로가기\\\">\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\tstr += \"<ul>\";\r\n\t\t\t\t\t\t\t\tstr += \"</ul>\";\r\n\t\t\t\t\t\t\t\tstr += \"</li>\";\r\n\t\t\t\t\t\t\t\t$(\"#grp\"+value.grp).append(str);\r\n\t\t\t\t\t\t\t//3레벨 메뉴\r\n\t\t\t\t\t\t\t}else if(value.level == 3){\r\n\t\t\t\t\t\t\t\tif(value.menuBsUrlAdrs == gPathName) {\r\n\t\t\t\t\t\t\t\t\tstr = \"\";\r\n\t\t\t\t\t\t\t\t\tstr += \"<li>\";\r\n\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\">\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t\tstr += \"</li>\";\r\n\t\t\t\t\t\t\t\t\t$(\"#li-\" + value.grp).find('i').eq(0).addClass('on');\r\n\t\t\t\t\t\t\t\t\t$(\"#topMenu\"+value.upprMenuSn+\" > ul\").append(str);\r\n\t\t\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t\t\t\tstr = \"\";\r\n\t\t\t\t\t\t\t\t\tstr += \"<li>\";\r\n\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\">\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t\tstr += \"</li>\";\r\n\t\t\t\t\t\t\t\t\t$(\"#topMenu\"+value.upprMenuSn+\" > ul\").append(str);\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t\tif(value.menuBsUrlAdrs == gPathName) {\r\n\t\t\t\t\t\t\t$(\"#li-\" + value.grp).find('i').eq(0).addClass('on');\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t});\r\n\t\t\t\t\tfn_topMenuUI();\r\n\t\t\t\t}\r\n\t\t\t}); \r\n\t\t\t\r\n\t\t})\r\n\t\t\r\n\tfunction fn_link(){\r\n\t\twindow.open(url, '임대주택찾기', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=no, width=1280, height=980, modal=yes');\r\n\t}\r\n\t\r\n\t \r\n"
+    },
+    {
+      "url": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open",
+      "text": "\r\n\t\r\n\tvar gPathName = $(location).attr(\"pathname\");\r\n\t\r\n\t$(document).ready(function(){\r\n\t\t\t$.ajax({\r\n\t\t\t\turl: '/webportal/main/selectLeftMenuList.open',\r\n\t\t\t\tdata: JSON.stringify({\r\n\t\t\t\t\turl: gPathName\r\n\t\t\t\t}),\r\n\t\t\t\tsuccess: function(res) {\r\n\t\t\t\t\tvar str = \"\";\r\n\t\t\t\t\t$.each(res, function( index, value ) {\r\n\t\t\t\t\t\tif(value.level == 1){\r\n\t\t\t\t\t\t\tstr = \"\";\r\n\t\t\t\t\t\t\tstr += \"<p><span>\"+value.menuNm+\"</span></p>\";\r\n\t\t\t\t\t\t\tstr += \"<ul>\";\r\n\t\t\t\t\t\t\tstr += \"</ul>\";\r\n\t\t\t\t\t\t\t$(\".lnb\").append(str);\r\n\t\t\t\t\t\t}else if(value.level == 2 && value.usAt == 'Y'){\r\n\t\t\t\t\t\t\tstr = \"\";\r\n\t\t\t\t\t\t\tstr += \"<li id='menu\"+value.menuSn+\"'>\";\r\n\t\t\t\t\t\t\tif(value.menuBsUrlAdrs != null && value.menuBsUrlAdrs != \"\"){\r\n\t\t\t\t\t\t\t\tif(value.menuBsUrlAdrs==\"/webportal/cont/ilgActStmntView.open\"){\r\n\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\" style='letter-spacing: -3px;'>\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t}else if(value.menuBsUrlAdrs == \"/webportal/bbs/rntgtnUngvbkRntBizmn/selectPbRntgtnUngvbkRntBizmnList.open\"){\r\n\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\" style='letter-spacing: -4px;'>\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\">\"+value.menuNm+\"</a>\";\t\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t\t\tstr += \"<a href=\\\"#\\\" title=\\\"바로가기\\\">\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\tif(value.grp == 1){\r\n\t\t\t\t\t\t\t\tstr += \"<ul>\";\r\n\t\t\t\t\t\t\t\tstr += \"</ul>\";\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\tstr += \"</li>\";\r\n\t\t\t\t\t\t\t$(\".lnb > ul\").append(str);\r\n\t\t\t\t\t\t\tif(value.grp != 1 && value.menuBsUrlAdrs == gPathName) {\r\n\t\t\t\t\t\t\t\t$(\"#menu\" + value.menuSn).addClass('on');\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t}else if(value.level == 3){\r\n\t\t\t\t\t\t\tif(value.usAt == 'Y'){\r\n\t\t\t\t\t\t\tstr = \"\";\r\n\t\t\t\t\t\t\t\tif(value.menuBsUrlAdrs == gPathName) {\r\n\t\t\t\t\t\t\t\t\tstr += \"<li id='menu\"+value.menuSn+\"' class='on'>\";\r\n\t\t\t\t\t\t\t\t\t$(\"#menu\" + value.upprMenuSn).find('a').eq(0).addClass('on');\r\n\t\t\t\t\t\t\t\t\t$(\"#menu\" + value.upprMenuSn).find('a').eq(0).css({'position':'relative','color':'#2774ba'});\r\n\t\t\t\t\t\t\t\t} else {\r\n\t\t\t\t\t\t\t\t\tstr += \"<li id='menu\"+value.menuSn+\"'>\";\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\tif(value.menuBsUrlAdrs == \"/webportal/minwon/rqs/rntCntrctStmntHist/rntCntrctStmntHistRgstView.do\"){\r\n\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\" style='padding: 9px 6px 5px 10px;' >\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t\t\t\tstr += \"<a href=\\\"\"+value.menuBsUrlAdrs+\"\\\">\"+value.menuNm+\"</a>\";\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t\tstr += \"</li>\";\r\n\t\t\t\t\t\t\t\t$(\"#menu\"+value.upprMenuSn+\" > ul\").append(str);\r\n\t\t\t\t\t\t\t}else{\r\n\t\t\t\t\t\t\t\tif(value.menuBsUrlAdrs == gPathName) $(\"#menu\"+value.upprMenuSn).addClass('on');\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t}else if(value.level == 4){\r\n\t\t\t\t\t\t\tif( value.menuBsUrlAdrs == gPathName ) {\r\n\t\t\t\t\t\t\t\t$(\"#menu\" + value.upprMenuSn).addClass('on');\r\n\t\t\t\t\t\t\t\t$(\"#menu\" + value.upprMenuSn).parents().children('a').addClass('on');\r\n\t\t\t\t\t\t\t\t$(\"#menu\" + value.upprMenuSn).parents().children('a').css({'position':'relative','color':'#2774ba'});\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t});\r\n\t\t\t\t\t\r\n\t\t\t\t\tif(gPathName == '/webportal/minwon/rqs/rntcntrctcngstmnt/openRntCntrctCngStmntInsert.do'){\r\n\t\t\t\t\t\t$(\"#menu20000347\").addClass('on');\r\n\t\t\t\t\t\t$(\"#menu20000346\").find('a').eq(0).addClass('on');\r\n\t\t\t\t\t}\r\n\t\t\t\t\t \r\n\t\t\t\t\tstr = \"\";\r\n\t\t\t\t\tstr += \"<div class='banner'>\";\r\n\t\t\t        str += \"<ul>\";\r\n\t\t\t        str += \"<li><a href='/webportal/cont/cvplInfGdncView.open' title='바로가기'><img src='/resources/images/@sample_banner.png' width='216' height='70' alt='임대등록시스템 이용안내'></a></li>\";\r\n\t\t\t        str += \"<li><a href='/webportal/cont/rgstBenefitGdncView.open' title='바로가기'><img src='/resources/images/@sample_banner2.png' width='216' height='70' alt='임대등록의 다양한 혜택'></a></li>\";\r\n\t\t\t        str += \"</ul>\";\r\n\t\t\t        str += \"</div>\";\r\n\t\t\t        $(\".lnb\").append(str);\r\n\t\t\t\t\t\r\n\t\t\t    \t$(\".lnb > ul > li > a\").on('click',function() {\r\n\t\t\t    \t\tif($(this).parent().children(\"ul\").length) {\r\n\t\t\t    \t\t\t$(this).parent().siblings().children(\"a\").removeClass(\"on\");\r\n\t\t\t    \t\t\t$(this).addClass(\"on\");\r\n\t\t\t    \t\t}\r\n\t\t\t    \t});\r\n\t\t\t\t}\r\n\t\t\t});\r\n\t\t});\r\n\t \r\n"
+    },
+    {
+      "url": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open",
+      "text": "\n\t\n\t$(document).ready(function(){\t\t\n\t\tif($('#parameters').val()){\n\t\t\tvar o = JSON.parse($('#parameters').val().replace(/&amp;quot;/g, '\"'));\n\n\t\t\t$(\"#frmList\").initParameters(o);\n\n\t\t\tfn_selectList(o.currentPage);\n\t\t}else{\n\t\t\tfn_selectList(1);\n\t\t}\t\t\n\t})\n\n\t// 민원법정서식 목록을 가져오는 함수\n\tfunction fn_selectList(page) {\t\n\t\n\t\t$(\"#page\").val(page);\n\t\t\n\t\t$.ajax({\n\t\t\turl: '/webportal/bbs/frmtDownload/selectFrmtDownloadList.open',\n\t\t\tdata: JSON.stringify($(\"#frmList\").serializeFormJSON()),\n\t\t\tsuccess:function(res){\n\t\n\t\t\t\t$('#selectFrmtDownloadListTotalCnt').html(res.selectFrmtDownloadListTotalCnt); \n\t\t\t\t\n\t\t\t\t/* 민원법정서식의 가져온 내용을 테이블에 담음*/\n\t\t\t\t$('#mytable > tbody').empty();\n\t\t\t\tif(res.selectFrmtDownloadListTotalCnt==0){\n\t\t\t\t\t$(\"#frmtDownloadTemplate1\").tmpl().appendTo(\"#mytable > tbody\");\n\t\t\t\t}else{\n\t\t\t\t\t$(\"#frmtDownloadTemplate\").tmpl(res.list).appendTo(\"#mytable > tbody\");\n\t\t\t\t}\n\t\t\t\t\n\t\t\t\t$('#pagination').twbsPagination('destroy');\n\t\t\t\t $('#pagination').twbsPagination({\n\t\t\t\t\t \ttotalPages: res.totalPage,\n\t\t\t\t\t  \tstartPage: page,\n\t\t\t            onPageClick: function (event, page) {\n\t\t\t           \n\t\t\t               fn_selectList(page);\n\t\t\t           \t}\n\t\t\t       });\n\t\t\t\t\tif(parseInt(res.totalPage) <= 10){\n\t\t\t\t\t\t$(\"li.page-item.next, li.page-item.prev, li.page-item.last, li.page-item.first\").hide();\n\t\t\t\t\t}else{\n\t\t\t\t\t\t$(\"li.page-item.next, li.page-item.prev, li.page-item.last, li.page-item.first\").show();\n\t\t\t\t\t}\n\t\t\t}\n\t\t});\n\t\t\n\t}\n\t\n\t\n\t//파일 다운로드\n\tfunction fn_frmtDownloadFile(extsnNm, atchFilNo) {\n\t\t$.ajax({\n\t\t\tmethod : \"POST\",\n\t\t\tasync : false,\n\t\t\turl: '/webportal/bbs/frmtDownload/selectFrmtExtsn.open',\n\t\t\tdata: JSON.stringify({atchFilNo : atchFilNo, extsnNm : extsnNm}),\n\t\t\tsuccess:function(res){\n\t\t\t\t\n\t\t\t\tif(atchFilNo==null){\n\t\t\t\t\talert(\"파일이 없습니다!\");\n\t\t\t\t}else{\n\t\t\t\t\tvar filSrno = res.downloadExtsn.filSrno;\n\t\t\t\t\tif(filSrno != null){\n\t\t\t\t\t\tdownloadFile(atchFilNo,filSrno);\n\t\t\t\t\t}else{\n\t\t\t\t\t\tif(extsnNm == \"hwp\"){\n\t\t\t\t\t\t\talert(\"hwp 파일이 존재하지 않습니다.\");\n\t\t\t\t\t\t}else if(extsnNm == \"pdf\"){\n\t\t\t\t\t\t\talert(\"pdf 파일이 존재하지 않습니다.\");\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t},\n\t\t});\n\t}\n\t\n\t//민원법정서식 상세화면으로 이동\n\tfunction fn_frmtDownloadDetail(lglFrmtNo,atchFilNo){\n\t\tvar Params = {\"lglFrmtNo\":lglFrmtNo, \"atchFilNo\":atchFilNo};\n\t\tvar returnParams ={\n\t\t\t\t\t\t\ttxtSubjectSearch: $('#txtSubjectSearch').val(),\n\t\t\t\t\t\t\tcurrentPage: $('#pagination').twbsPagination('getCurrentPage')}\n\t\t\n\t\tpost('frmtDownloadDetail.open',Params,returnParams);\n\t\t//frmDetail.submit();\n\t}\n"
+    },
+    {
+      "url": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open",
+      "text": "\n\t<tr align=\"center\">\t\t\n\t\t<td>{{= rnum}}</td>\n\t\t<td class=\"align-left ellipsis\"><a href=\"javascript:fn_frmtDownloadDetail('{{= lglFrmtNo}}','{{= atchFilNo}}')\">{{= sjNm}}</td>\n\t\t<td><a href=\"javascript:fn_frmtDownloadFile('hwp', '{{= atchFilNoDec}}')\"><i class=\"sp-ico ico-file\" style=\"margin: 3px 0 0 15px !important; width:23px !important;\"><em class=\"hide\">파일</em></i></a>\n\t\t\t<a href=\"javascript:fn_frmtDownloadFile('pdf', '{{= atchFilNoDec1}}')\"><i class=\"sp-ico ico-file\" style=\"margin: 3px 0 0 15px !important; width:23px !important;\"><em class=\"hide\">파일</em></i></a>\n\t\t</td>\n\t</tr>\n"
+    },
+    {
+      "url": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open",
+      "text": "\n\t<tr align=\"center\">\t\t\n\t\t<td colspan=3 align=\"center\">등록된 데이터가 없습니다.</td>\n\t</tr>\n"
+    }
+  ],
+  "rows": []
+}

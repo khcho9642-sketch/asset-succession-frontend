@@ -1,0 +1,5 @@
+{
+  "url": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255",
+  "error": "HTTPSConnectionPool(host='www.easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.easylaw.go.kr', port=443) at 0x7ff5fb3495b0>, 'Connection to www.easylaw.go.kr timed out. (connect timeout=9)'))",
+  "checked_at": "2026-09-19T13:12:01Z"
+}

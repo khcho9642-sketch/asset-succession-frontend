@@ -1,0 +1,293 @@
+{
+  "url": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp",
+  "links": [
+    {
+      "text": "서식자료실",
+      "url": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxform_n.asp",
+      "onclick": null,
+      "origin": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp"
+    },
+    {
+      "text": "세무서식",
+      "url": "http://www.kacpta.or.kr/license_view/tax_publication/taxInfo/taxform_n.asp",
+      "onclick": null,
+      "origin": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp"
+    },
+    {
+      "text": "세무사 등록사항변경(사무소, 자택이전, 재개업)",
+      "url": "https://www.kacta.or.kr/kacpta/kac_register/file/세무사등록사항변경신고서.hwp",
+      "onclick": null,
+      "origin": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp"
+    },
+    {
+      "text": "세무사 휴업신고서",
+      "url": "https://www.kacta.or.kr/kacpta/kac_register/file/세무사휴업신고서.hwp",
+      "onclick": null,
+      "origin": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp"
+    },
+    {
+      "text": "세무사 폐업신고서",
+      "url": "https://www.kacta.or.kr/kacpta/kac_register/file/세무사폐업신고서.hwp",
+      "onclick": null,
+      "origin": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp"
+    },
+    {
+      "text": "세무사 개업신고서",
+      "url": "https://www.kacta.or.kr/kacpta/kac_register/file/세무사개업신고서.hwp",
+      "onclick": null,
+      "origin": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp"
+    },
+    {
+      "text": "퇴회신고서",
+      "url": "https://www.kacta.or.kr/kacpta/kac_register/file/퇴회신고서.hwp",
+      "onclick": null,
+      "origin": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp"
+    },
+    {
+      "text": "세무법인 구성원 현황신고서",
+      "url": "https://www.kacta.or.kr/kacpta/kac_register/file/세무법인구성원현황신고서.hwp",
+      "onclick": null,
+      "origin": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp"
+    },
+    {
+      "text": "세무법인정관변경신고서",
+      "url": "https://www.kacta.or.kr/kacpta/kac_register/file/세무법인정관변경신고서식.hwp?v=2",
+      "onclick": null,
+      "origin": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp"
+    },
+    {
+      "text": "경조금 지급신청서",
+      "url": "https://www.kacta.or.kr/data/Download/경조금지급신청서.hwp",
+      "onclick": null,
+      "origin": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp"
+    },
+    {
+      "text": "(노령)공제금 및 일시지급금 신청서",
+      "url": "https://www.kacta.or.kr/data/Download/공제금일시지급금지급신청서.hwp",
+      "onclick": null,
+      "origin": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp"
+    },
+    {
+      "text": "",
+      "url": "https://www.hancom.com/cs_center/csDownload.do?gnb0=25&gnb1=80",
+      "onclick": null,
+      "origin": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp"
+    }
+  ],
+  "scripts": [
+    {
+      "url": "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js",
+      "text": ""
+    },
+    {
+      "url": "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp",
+      "text": "\r\n$(document).ready(function() {\r\n\t$(\"#allmenu\").hover(\r\n\t\tfunction() {\r\n\t\t\t$(\"#allsubmenu\").stop().slideDown(200);\r\n\t\t},\r\n\t\tfunction() {\r\n\t\t\t$(\"#allsubmenu\").stop().slideUp(200);\r\n\t\t}\r\n\t);\r\n\r\n\t$(\"#allsubmenu\").hover(\r\n\t\tfunction() {\r\n\t\t\t$(\"#allsubmenu\").stop().slideDown(200);\r\n\t\t},\r\n\t\tfunction() {\r\n\t\t\t$(\"#allsubmenu\").stop().slideUp(200);\r\n\t\t}\r\n\t);\r\n});\r\n\r\n$(document).ready(function() {\r\n\t$(\"#gnbmenu\").hover(\r\n\t\tfunction() {\r\n\t\t\t$(\"#submenu\").stop().slideDown(200);\r\n\t\t},\r\n\t\tfunction() {\r\n\t\t\t$(\"#submenu\").stop().slideUp(200);\r\n\t\t}\r\n\t);\r\n\r\n\t$(\"#submenu\").hover(\r\n\t\tfunction() {\r\n\t\t\t$(\"#submenu\").stop().slideDown(200);\r\n\t\t},\r\n\t\tfunction() {\r\n\t\t\t$(\"#submenu\").stop().slideUp(200);\r\n\t\t}\r\n\t);\r\n});\r\n$(document).ready(function(){\r\n\t$(\".menu>a\").click(function(){\r\n\t\tvar submenu = $(this).next(\"ul\");\r\n\t\tif( submenu.is(\":visible\") ){\r\n\t\t\tsubmenu.slideUp();\r\n\t\t}else{\r\n\t\t\tsubmenu.slideDown();\r\n\t\t}\r\n\t});\r\n});\r\n"
+    },
+    {
+      "url": "https://www.kacta.or.kr/new_new/asset/jquery-3.6.0.slim.min.js",
+      "text": ""
+    },
+    {
+      "url": "http://code.jquery.com/jquery-1.12.4.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.kacta.or.kr/new_new/asset/jquery-3.6.0.slim.min.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp",
+      "text": "\r\n  import {allMenusSiteMap} from '/new_new/component/site-map/data.js'\r\n\r\n  const $gnbMenus = $('#gnbMenus')\r\n  $gnbMenus\r\n    .find('div')\r\n    .html(\r\n      ['한국세무사회', '알림마당', '정보마당', '신문·간행', '연구·상담', '세무사 전용']\r\n        .map((sectionTitle) => allMenusSiteMap.renderSectionToString(allMenusSiteMap.getSection(sectionTitle)))\r\n        .join(''),\r\n    )\r\n"
+    },
+    {
+      "url": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp",
+      "text": "\r\n      // 메인 메뉴 보이기/감추기\r\n      const $gnbMenuGroupTitles = $('.gnb-menus__group-title')\r\n      const $gnbMenuSections = $('.gnb-menus .site-map__section')\r\n\r\n\t\t$gnbMenuGroupTitles.hover(\r\n\t\t\tfunction () {\r\n\t\t\t\t// \"세무사 전용\" 메뉴에 마우스를 올렸을 때 alert 띄우기\r\n\t\t\t\tif ($(this).text() === \"세무사 전용\") {\r\n\t\t\t\t\tconst $section = $gnbMenuSections.eq($(this).index());\r\n\t\t\t\t\tconsole.log('Before clearing section content:', $section.html()); \r\n\t\t\t\t\t$section.empty(); // 섹션 내용 비우기\r\n\t\t\t\t\t$section.append(`\r\n\t\t\t\t\t<div class=\"site-map__section-title-box\">\r\n\t\t\t\t\t\t<h2 class=\"site-map__section-title\">세무사 전용</h2>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"site-map__section-body\">\r\n\t\t\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t\t\t<div class=\"site-map__group\">\r\n\t\t\t\t\t\t\t\t<h3 class=\"site-map__group-title\">회무정보센터</h3>\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__group-body\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_notice/notice_n.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원공지사항</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_archives/archives_n.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">최근발송공문</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_notice/tax_notice.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무정보알리미</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_semuinfo/semuinfo.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무뉴스알리미</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_resolution/resolution_n.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">상임이사회/이사회의결정보</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t\t\t<div class=\"site-map__group\">\r\n\t\t\t\t\t\t\t\t<h3 class=\"site-map__group-title\">회원의목소리</h3>\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__group-body\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_suggest/Suggest_List.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원신문고</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_board_new/fBoard_List.asp?cate=07\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원게시판</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_board_new/fBoard_List.asp?cate=01\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세정세법 게시판</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_proposal/proposal_n.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세법개정 건의함</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_pds/pds_n.asp?bbs_idx=31&mode=list\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원자료실</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_chingchan/chingchan_n.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">칭찬합시다</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t\t\t<div class=\"site-map__group\">\r\n\t\t\t\t\t\t\t\t<h3 class=\"site-map__group-title\">회원지원센터</h3>\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__group-body\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_expertCoun/expertList_n1.asp?bunlu=11\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">전문세무상담센터</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_board_new/semusarang_intro.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회계프로그램 지원센터</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_board_new/platformsemusa_intro.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">플랫폼세무사회 지원센터</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_gindan/expertList_n2.asp?bunlu=41\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">기업진단 지원센터</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_4insure_s/4insure_n.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">보험사무대행 지원센터</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_sechul/sechul.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세출검증 지원센터</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_consulting/consulting_intro_n.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무컨설팅 지원센터</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_bulbok/bulbok_intro_n.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">조세불복 지원센터</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_global/global_intro.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">국제조세 지원센터</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_law/law_summary.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원법률 지원센터</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_agscenter/agscenter_intro.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">성년후견 지원센터</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_ctahonor/ctahonor_intro.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무사명예승계 지원센터 </div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t\t\t<div class=\"site-map__group\">\r\n\t\t\t\t\t\t\t\t<h3 class=\"site-map__group-title\">회원민원센터</h3>\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__group-body\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"/kacpta_view/kac_register/join_n.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">등록 및 갱신</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_minwon/minwon.asp?no=2\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">공제금 신청 및 문의</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_minwon/minwon.asp?no=3\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">경조금 신청 및 문의</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/license_view/tax_law/kacptaRules_n.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무사법 & 회규</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_advertcase/advertcase_board.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무사 광고에 대한 규정 위반 사례</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_list/index.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">전자회원명부</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_minwon/osmanagement.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">사무직원 관리</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"site-map__section-title-box\">\r\n\t\t\t\t\t\t<h2 class=\"site-map__section-title\">세무사 전용</h2>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"site-map__section-body\">\r\n\t\t\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t\t\t<div class=\"site-map__group\">\r\n\t\t\t\t\t\t\t\t<h3 class=\"site-map__group-title\">회무복지센터</h3>\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__group-body\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_health/health_intro.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원건강지원</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_news/memEvent_List_n.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원경조사지원</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_leisure/mainmap.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">숙박 및 레저</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_group/group_n.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">지역세무사회</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_club/community_n.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">동호회 카페</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/shop/index.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무사랑몰</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_noran/noran_mainpage.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">노란우산공제 가입대행</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t\t\t<div class=\"site-map__group\">\r\n\t\t\t\t\t\t\t\t<h3 class=\"site-map__group-title\">사업현장 안내</h3>\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__group-body\">\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_dcscenter/dcscenter_notice.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원사업현장 리스크 점검</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_time/time_n2.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무대리 업무기준 및 체크리스트</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t<a href=\"/members_view/mem_bosuedu/bosuedu_intro.asp\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원보수교육 인정이수제도</div>\r\n\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t\t\t<div class=\"site-map__group\"></div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t\t\t<div class=\"site-map__group\"></div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t`); // 새 HTML 코드 삽입\r\n\t\t\t\t}\r\n\t\t\t\t// 메뉴 보여주기\r\n\t\t\t\t$('.site-map._gnb-menus').css('visibility', 'visible');\r\n\t\t\t\t$gnbMenuSections.eq($(this).index()).show();\r\n\t\t\t},\r\n\t\t\tfunction () {\r\n\t\t\t\t// 메뉴 숨기기\r\n\t\t\t\t$gnbMenuSections.eq($(this).index()).hide();\r\n\t\t\t}\r\n\t\t);\r\n\r\n      $gnbMenuSections.hover(\r\n        function () {\r\n          $(this).show()\r\n          $gnbMenuGroupTitles.eq($(this).index()).addClass('_current')\r\n        },\r\n        function () {\r\n          $(this).hide()\r\n          $gnbMenuGroupTitles.eq($(this).index()).removeClass('_current')\r\n        },\r\n      )\r\n\r\n\tconst specialPaths = [\r\n\t\t\"/members_view/mem_board_new/semusarang_intro.asp\",\r\n\t\t\"/members_view/mem_gindan/expertList_n1.asp\",\r\n\t\t\"/members_view/mem_gindan/expertList_n2.asp\",\r\n\t\t\"/members_view/mem_gindan/expertList_n3.asp\",\r\n\t\t\"/members_view/mem_4insure_s/4insure_n.asp\",\r\n\t\t\"/members_view/mem_4insure_s/4insure_List_n.asp\",\r\n\t\t\"/members_view/mem_4insure_s/4insure_2n.asp\",\r\n\t\t\"/members_view/mem_sechul/sechul.asp\",\r\n\t\t\"/members_view/mem_sechul/sechul_list.asp\",\r\n\t\t\"/members_view/mem_sechul/sechul_pds.asp\",\r\n\t\t\"/members_view/mem_bulbok/bulbok_intro_n.asp\",\r\n\t\t\"/members_view/mem_global/global_intro.asp\",\r\n\t\t\"/members_view/mem_law/law_summary.asp\",\r\n\t\t\"/members_view/mem_minwon/minwon.asp\",\r\n\t\t\"/members_view/mem_advertcase/advertcase_board.asp\",\r\n\t\t\"/members_view/mem_health/health_intro.asp\",\r\n\t\t\"/members_view/mem_group/group_n.asp\",\r\n\t\t\"/members_view/mem_dcscenter/dcscenter_notice.asp\"\r\n\t];\r\n\r\n\t// 현재 페이지에 해당하는 메인 메뉴 표시\r\n\tconst $currentAnchor = $(`a[href*='${location.pathname}']`)\r\n\tif ($currentAnchor) {\r\n\t\t$currentAnchor.addClass('_current')\r\n\t\tconst index = $currentAnchor.closest('.site-map__section').index()\r\n\t\tif (specialPaths.includes(location.pathname)) {\r\n\t\t\t$('.gnb-menus__group-title').eq(5).addClass('_current')\r\n\t\t} else {\r\n\t\t\tif (index >= 0) {\r\n\t\t\t\t$('.gnb-menus__group-title').eq(index).addClass('_current')\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n    "
+    },
+    {
+      "url": "https://www.kacta.or.kr/new_new/asset/jquery-3.6.0.slim.min.js",
+      "text": ""
+    },
+    {
+      "url": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp",
+      "text": "\r\n  import {allMenusSiteMap} from '/new_new/component/site-map/data.js'\r\n\r\n  const $allMenus = $('#allMenus')\r\n  $allMenus.html(\r\n    allMenusSiteMap.renderToString({\r\n      sections: ['한국세무사회', '알림마당', '정보마당', '신문·간행', '연구·상담', '세무사 전용', '추가메뉴'].map(\r\n        (sectionTitle) => allMenusSiteMap.getSection(sectionTitle),\r\n      ),\r\n      title: '전체메뉴',\r\n    }),\r\n  )\r\n\r\n  $('h3:contains(\"PC원격지원 바로가기\")').css('color', '#eb6262')\r\n\r\n  const $allMenusOpen = $('#allMenusOpen')\r\n  $allMenusOpen.click(() => {\r\n    $('body').css('overflow', 'hidden')\r\n    $allMenus.css('visibility', 'visible')\r\n  })\r\n\r\n\t$allMenus.find('.site-map__section-title').each(function() {\r\n\tif ($(this).text().includes('세무사 전용')) {\r\n        let $section = $(this).closest('section');\r\n        $section.html('');\r\n        $section.html(`\r\n\t\t\t<div class=\"site-map__section-title-box\">\r\n\t\t\t\t<h2 class=\"site-map__section-title\">세무사 전용</h2>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"site-map__section-body\">\r\n\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t<div class=\"site-map__group\">\r\n\t\t\t\t\t\t<h3 class=\"site-map__group-title\">회무정보센터</h3>\r\n\t\t\t\t\t\t<div class=\"site-map__group-body\">\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_notice/notice_n.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원공지사항</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_archives/archives_n.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">최근발송공문</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_notice/tax_notice.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무정보알리미</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_semuinfo/semuinfo.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무뉴스알리미</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_resolution/resolution_n.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">상임이사회/이사회의결정보</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t<div class=\"site-map__group\">\r\n\t\t\t\t\t\t<h3 class=\"site-map__group-title\">회원의목소리</h3>\r\n\t\t\t\t\t\t<div class=\"site-map__group-body\">\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_suggest/Suggest_List.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원신문고</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_board_new/fBoard_List.asp?cate=07\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원게시판</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_board_new/fBoard_List.asp?cate=01\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세정세법 게시판</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_proposal/proposal_n.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세법개정 건의함</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_pds/pds_n.asp?bbs_idx=31&mode=list\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원자료실</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_chingchan/chingchan_n.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">칭찬합시다</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t<div class=\"site-map__group\">\r\n\t\t\t\t\t\t<h3 class=\"site-map__group-title\">회원지원센터</h3>\r\n\t\t\t\t\t\t<div class=\"site-map__group-body\">\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_expertCoun/expertList_n1.asp?bunlu=11\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">전문세무상담센터</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_board_new/semusarang_intro.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회계프로그램 지원센터</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_board_new/platformsemusa_intro.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">플랫폼세무사회 지원센터</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_gindan/expertList_n2.asp?bunlu=41\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">기업진단 지원센터</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_4insure_s/4insure_n.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">보험사무대행 지원센터</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_sechul/sechul.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세출검증 지원센터</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_consulting/consulting_intro_n.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무컨설팅 지원센터</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_bulbok/bulbok_intro_n.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">조세불복 지원센터</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_global/global_intro.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">국제조세 지원센터</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_law/law_summary.asp\" class=\"\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원법률 지원센터</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t<div class=\"site-map__group\">\r\n\t\t\t\t\t\t<h3 class=\"site-map__group-title\">회원민원센터</h3>\r\n\t\t\t\t\t\t<div class=\"site-map__group-body\">\r\n\t\t\t\t\t\t\t<a href=\"/kacpta_view/kac_register/join_n.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">등록 및 갱신</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_minwon/minwon.asp?no=2\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">공제금 신청 및 문의</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_minwon/minwon.asp?no=3\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">경조금 신청 및 문의</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/license_view/tax_law/kacptaRules_n.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무사법 & 회규</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_advertcase/advertcase_board.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무사 광고 위반 사례(부당광고 제보)</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_list/index.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">전자회원명부</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"site-map__section-body\">\r\n\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t<div class=\"site-map__group\">\r\n\t\t\t\t\t\t<h3 class=\"site-map__group-title\">회무복지센터</h3>\r\n\t\t\t\t\t\t<div class=\"site-map__group-body\">\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_health/health_intro.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원건강지원</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_news/memEvent_List_n.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원경조사지원</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_group/group_n.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">지역세무사회</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_club/community_n.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">동호회 카페</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/shop/index.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무사랑몰</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_noran/noran_mainpage.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">노란우산공제 가입대행</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t<div class=\"site-map__group\">\r\n\t\t\t\t\t\t<h3 class=\"site-map__group-title\">사업현장 안내</h3>\r\n\t\t\t\t\t\t<div class=\"site-map__group-body\">\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_dcscenter/dcscenter_notice.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원사업현장 리스크 점검</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_time/time_n2.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">세무대리 업무기준 및 체크리스트</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t<a href=\"/members_view/mem_bosuedu/bosuedu_intro.asp\">\r\n\t\t\t\t\t\t\t\t<div class=\"site-map__item\">회원보수교육 인정이수제도</div>\r\n\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t<div class=\"site-map__group\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"site-map__panel\">\r\n\t\t\t\t\t<div class=\"site-map__group\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n        `);\r\n\t}\r\n\t});\r\n\r\n\r\n\tconst $allMenusClose = $('#allMenus .site-map__close')\r\n\t$allMenusClose.click(() => {\r\n\t\t$allMenus.css('visibility', 'hidden')\r\n\t\t$('body').css('overflow', 'auto')\r\n\t})\r\n"
+    },
+    {
+      "url": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp",
+      "text": "\r\n  // ID저장 기능\r\n  const LOCAL_STORAGE_KEY_SAVED_ID = 'saveId:id'\r\n  const LOCAL_STORAGE_KEY_EXPIRES_AT = 'saveId:expiresAt'\r\n\r\n  function clearSavedId() {\r\n    window.localStorage.removeItem(LOCAL_STORAGE_KEY_SAVED_ID)\r\n    window.localStorage.removeItem(LOCAL_STORAGE_KEY_EXPIRES_AT)\r\n  }\r\n\r\n  function saveId(id) {\r\n    window.localStorage.setItem(LOCAL_STORAGE_KEY_SAVED_ID, id)\r\n    window.localStorage.setItem(LOCAL_STORAGE_KEY_EXPIRES_AT, Date.now() + 1000 * 3600 * 24 * 30) // 30일\r\n  }\r\n\r\n  const loginForm = document.querySelector('#loginForm')\r\n  const saveIdCheckbox = loginForm.querySelector('#saveId')\r\n  const idInput = loginForm.querySelector('#id')\r\n\r\n  const expiresAt = window.localStorage.getItem(LOCAL_STORAGE_KEY_EXPIRES_AT)\r\n  if (Date.now() > expiresAt) {\r\n    clearSavedId()\r\n  } else {\r\n    const savedId = window.localStorage.getItem(LOCAL_STORAGE_KEY_SAVED_ID)\r\n    saveIdCheckbox.checked = Boolean(savedId)\r\n    idInput.value = savedId\r\n  }\r\n\r\n  saveIdCheckbox.addEventListener('input', () => {\r\n    if (!saveIdCheckbox.checked) {\r\n      clearSavedId()\r\n    }\r\n  })\r\n\r\n  loginForm.addEventListener('submit', () => {\r\n    saveIdCheckbox.checked ? saveId(idInput.value) : clearSavedId()\r\n  })\r\n\r\n  // 라디오버튼 선택에 따라 input placeholder 변경\r\n  const loginTypeRadios = loginForm.querySelectorAll('[name=\"m_type\"]')\r\n  loginTypeRadios.forEach((elem) => {\r\n    elem.addEventListener('input', (e) => {\r\n      if (e.target.value === '1') {\r\n        idInput.placeholder = '아이디'\r\n      } else {\r\n        idInput.placeholder = 'ID@이메일'\r\n      }\r\n    })\r\n  })\r\n"
+    },
+    {
+      "url": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp",
+      "text": "\r\n  // 현재 페이지에 해당하는 최상단 링크 메뉴 표시\r\n  const buttonActivationCondition = {\r\n    '.row-1__home': /^\\/$|kacpta22\\.asp$/,\r\n    '.row-1__login': /mem_log|members_view\\/login/,\r\n    '.row-1__sign-up': /mem_guide/,\r\n    '.row-1__modify': /mem(_s)?_modify/,\r\n    '.row-1__my-page': /mem_dues|mem_workresult|mem_exempt|memvers_view2/,\r\n    '.row-1__site-map': /sitemap/,\r\n  }\r\n\r\n  for (const [selector, regex] of Object.entries(buttonActivationCondition)) {\r\n    if (window.location.pathname.match(regex)) {\r\n      $(selector).addClass('_selected')\r\n    }\r\n  }\r\n"
+    },
+    {
+      "url": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp",
+      "text": "\r\n  // 로그인 영역 보이기/감추기\r\n  const $row1Login = $('.row-1__login')\r\n  const $row2 = $('.header__row-2')\r\n  $row1Login.click(() => {\r\n    $row1Login.toggleClass('_selected')\r\n    $row2.toggleClass('_open')\r\n  })\r\n\r\n  $('.row-2__close').click(() => {\r\n    $row1Login.removeClass('_selected')\r\n    $row2.removeClass('_open')\r\n  })\r\n"
+    },
+    {
+      "url": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp",
+      "text": "\r\n  // 다른 페이지에서 사용되는 전역 함수들\r\n\r\n  function law() {\r\n    window.open(\r\n      'http://www.law.go.kr/lsInfoP.do?lsiSeq=131387&lsId=000639&chrClsCd=010202&urlMode=lsEfInfoR&viewCls=thdCmpNewScP#0000',\r\n      '',\r\n      'resizable=0,scrollbars=0,status=0,width=1020,height=600,left=100,top=100',\r\n    )\r\n  }\r\n  function seek() {\r\n    window.open(\r\n      'https://www.etaxkorea.net/sub_insa/sub_page_etc.php',\r\n      '',\r\n      'resizable=1,scrollbars=1,status=1,width=1600,height=1600,left=400,top=100',\r\n    )\r\n  }\r\n  function bank() {\r\n    window.open('/new_new/inc/bank.htm', '', 'resizable=0,scrollbars=0,status=0,width=690,height=415,left=400,top=300')\r\n  }\r\n  function cal_vir() {\r\n    window.open(\r\n      '/new_new/inc/cal_vir.htm',\r\n      '',\r\n      'resizable=0,scrollbars=0,status=0,width=361,height=130,left=800,top=450',\r\n    )\r\n  }\r\n  function card() {\r\n    window.open('/new_new/inc/card.htm', '', 'resizable=0,scrollbars=0,status=0,width=690,height=275,left=400,top=300')\r\n  }\r\n  function avi() {\r\n    window.open('/banner/avi/avi0_n.asp', '', 'resizable=0,scrollbars=0,status=0,width=830,height=480,left=400,top=150')\r\n  }\r\n  // 추모팝업\r\n  function bang_p() {\r\n    window.open('/m/popup.asp', '', 'resizable=0,scrollbars=0,status=0,width=630,height=540,left=200,top=100')\r\n  }\r\n"
+    },
+    {
+      "url": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp",
+      "text": "\r\n\r\n$(document).ready(function(){\r\n\r\n\t$(\".gm3\").css({\"background\":\"url(/new_new/common/images/gnb/gmenu_03.gif) 0 -45px\", 'background-repeat' : 'no-repeat'}); \r\n\r\n});\r\n\r\n"
+    },
+    {
+      "url": "https://www.kacta.or.kr/license_view/tax_publication/taxInfo/taxDoc_down.asp",
+      "text": "\r\n  function no_email() {\r\n    window.open(\r\n      '/kacpta_view/kac_login/no_email.htm',\r\n      '',\r\n      'resizable=0,scrollbars=0,status=0,width=500,height=155,left=400,top=300',\r\n    )\r\n  }\r\n"
+    }
+  ],
+  "rows": [
+    {
+      "text": "",
+      "html": "<tr>\n<td><img border=\"0\" height=\"77\" src=\"./semu_form.gif\" width=\"730\"/></td>\n</tr>"
+    },
+    {
+      "text": "서식제목 제출방법 제출처 소요기간",
+      "html": "<tr>\n<th class=\"date\" scope=\"col\">서식제목</th>\n<th class=\"place\" scope=\"col\">제출방법</th>\n<th class=\"place\" scope=\"col\">제출처</th>\n<th class=\"place\" scope=\"col\">소요기간</th>\n</tr>"
+    },
+    {
+      "text": "세무사 등록신청서 -서울지방회:방문 -그외지방회:방문,우편 소속지방회 14일",
+      "html": "<tr>\n<td class=\"t3\"><a href=\"/kacpta/kac_register/file/세무사등록신청서.hwp\">세무사 등록신청서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t3\" rowspan=\"4\">-서울지방회:방문   <br/>-그외지방회:방문,우편</td>\n<td class=\"t3\" rowspan=\"4\">소속지방회</td>\n<td class=\"t3\" rowspan=\"4\">14일</td>\n</tr>"
+    },
+    {
+      "text": "입회신청서",
+      "html": "<tr>\n<td class=\"t3\"><a href=\"/kacpta/kac_register/file/입회신청서.hwp\">입회신청서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n</tr>"
+    },
+    {
+      "text": "신규입회/전입회원에 대한 의견서",
+      "html": "<tr>\n<td class=\"t3\"><a href=\"/kacpta/kac_register/file/신규입회전입회원에대한의견서.hwp\">신규입회/전입회원에 대한 의견서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n</tr>"
+    },
+    {
+      "text": "확인서",
+      "html": "<tr>\n<td class=\"t3\"><a href=\"/kacpta/kac_register/file/확인서.hwp?v=2\">확인서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n</tr>"
+    },
+    {
+      "text": "서식제목 제출방법 제출처 소요기간",
+      "html": "<tr>\n<th class=\"date\" scope=\"col\">서식제목</th>\n<th class=\"place\" scope=\"col\">제출방법</th>\n<th class=\"place\" scope=\"col\">제출처</th>\n<th class=\"place\" scope=\"col\">소요기간</th>\n</tr>"
+    },
+    {
+      "text": "세무사 등록사항변경(사무소, 자택이전, 재개업) 우편/팩스 소속지방회 5일",
+      "html": "<tr>\n<td class=\"t2\"><a href=\"/kacpta/kac_register/file/세무사등록사항변경신고서.hwp\">세무사 등록사항변경(사무소, 자택이전, 재개업)    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t2\">우편/팩스</td>\n<td class=\"t2\">소속지방회</td>\n<td class=\"t2\">5일</td>\n</tr>"
+    },
+    {
+      "text": "등록갱신신청서 우편 소속지방회 14일",
+      "html": "<tr>\n<td class=\"t2\"><a href=\"/kacpta/kac_register/file/세무사등록갱신신청서.hwp\">등록갱신신청서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t2\">우편</td>\n<td class=\"t2\">소속지방회</td>\n<td class=\"t2\">14일</td>\n</tr>"
+    },
+    {
+      "text": "세무사 휴업신고서 우편/팩스 소속지방회 5일",
+      "html": "<tr>\n<td class=\"t2\"><a href=\"/kacpta/kac_register/file/세무사휴업신고서.hwp\">세무사 휴업신고서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t2\">우편/팩스</td>\n<td class=\"t2\">소속지방회</td>\n<td class=\"t2\">5일</td>\n</tr>"
+    },
+    {
+      "text": "세무사 폐업신고서 우편 소속지방회 5일",
+      "html": "<tr>\n<td class=\"t2\"><a href=\"/kacpta/kac_register/file/세무사폐업신고서.hwp\">세무사 폐업신고서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t2\">우편</td>\n<td class=\"t2\">소속지방회</td>\n<td class=\"t2\">5일</td>\n</tr>"
+    },
+    {
+      "text": "세무사 개업신고서 우편/팩스 소속지방회 5일",
+      "html": "<tr>\n<td class=\"t3\"><a href=\"/kacpta/kac_register/file/세무사개업신고서.hwp\">세무사 개업신고서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t3\">우편/팩스</td>\n<td class=\"t3\">소속지방회</td>\n<td class=\"t3\">5일</td>\n</tr>"
+    },
+    {
+      "text": "조정반(지정/변경지정) 신청서 우편 소속지방회 -",
+      "html": "<tr>\n<td class=\"t3\"><a href=\"/kacpta/kac_register/file/조정반(지정변경지정) 신청서.hwp\">조정반(지정/변경지정) 신청서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t3\">우편</td>\n<td class=\"t3\">소속지방회</td>\n<td class=\"t3\">-</td>\n</tr>"
+    },
+    {
+      "text": "회원증/신분증/회원증명서 교부신청서 우편/팩스 소속지방회 3일",
+      "html": "<tr>\n<td class=\"t3\"><a href=\"/kacpta/kac_register/file/회원증_회원신분증_회원증명서신청서.hwp\">회원증/신분증/회원증명서 교부신청서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t3\">우편/팩스</td>\n<td class=\"t3\">소속지방회</td>\n<td class=\"t3\">3일</td>\n</tr>"
+    },
+    {
+      "text": "신규입회/전입회원에 대한 의견서 우편/팩스 소속지방회 5일",
+      "html": "<tr>\n<td class=\"t3\"><a href=\"/kacpta/kac_register/file/신규입회전입회원에대한의견서.hwp\">신규입회/전입회원에 대한 의견서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t3\">우편/팩스</td>\n<td class=\"t3\">소속지방회</td>\n<td class=\"t3\">5일</td>\n</tr>"
+    },
+    {
+      "text": "세무사등록증 재발급신청서 우편/팩스 소속지방회 5일",
+      "html": "<tr>\n<td class=\"t4\"><a href=\"/kacpta/kac_register/file/세무사등록증재발급신청서.hwp\">세무사등록증 재발급신청서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t4\">우편/팩스</td>\n<td class=\"t4\">소속지방회</td>\n<td class=\"t4\">5일</td>\n</tr>"
+    },
+    {
+      "text": "세무사등록취소청구서 우편/팩스 소속지방회 5일",
+      "html": "<tr>\n<td class=\"t4\"><a href=\"/kacpta/kac_register/file/세무사등록취소청구서.hwp\">세무사등록취소청구서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t4\">우편/팩스</td>\n<td class=\"t4\">소속지방회</td>\n<td class=\"t4\">5일</td>\n</tr>"
+    },
+    {
+      "text": "퇴회신고서 우편/팩스 소속지방회 10일",
+      "html": "<tr>\n<td class=\"t4\"><a href=\"/kacpta/kac_register/file/퇴회신고서.hwp\">퇴회신고서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t4\">우편/팩스</td>\n<td class=\"t4\">소속지방회</td>\n<td class=\"t4\">10일</td>\n</tr>"
+    },
+    {
+      "text": "징계사실확인서발급요청서 우편/팩스 소속지방회/본회 1일",
+      "html": "<tr>\n<td class=\"t4\"><a href=\"/kacpta/kac_register/file/징계사실확인서발급요청서.hwp\">징계사실확인서발급요청서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t4\">우편/팩스</td>\n<td class=\"t4\">소속지방회/본회</td>\n<td class=\"t4\">1일</td>\n</tr>"
+    },
+    {
+      "text": "후견계약공정증서",
+      "html": "<tr>\n<td class=\"t4\"><a href=\"/kacpta/kac_register/file/후견계약공정증서.hwp\">후견계약공정증서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t4\"></td>\n<td class=\"t4\"></td>\n<td class=\"t4\"></td>\n</tr>"
+    },
+    {
+      "text": "서식제목 제출방법 제출처 소요기간",
+      "html": "<tr>\n<th class=\"date\" scope=\"col\">서식제목</th>\n<th class=\"place\" scope=\"col\">제출방법</th>\n<th class=\"place\" scope=\"col\">제출처</th>\n<th class=\"place\" scope=\"col\">소요기간</th>\n</tr>"
+    },
+    {
+      "text": "세무법인 등록 신청서 우편 소속지방회 25일",
+      "html": "<tr>\n<td class=\"t2\"><a href=\"/kacpta/kac_register/file/세무법인 등록신청서.hwp?v=2\">세무법인 등록 신청서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t2\">우편</td>\n<td class=\"t2\">소속지방회</td>\n<td class=\"t2\">25일</td>\n</tr>"
+    },
+    {
+      "text": "세무법인 구성원 현황신고서 우편 소속지방회 -",
+      "html": "<tr>\n<td class=\"t2\"><a href=\"/kacpta/kac_register/file/세무법인구성원현황신고서.hwp\">세무법인 구성원 현황신고서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t2\">우편</td>\n<td class=\"t2\">소속지방회</td>\n<td class=\"t2\">-</td>\n</tr>"
+    },
+    {
+      "text": "세무법인정관변경신고서 우편 소속지방회 10일",
+      "html": "<tr>\n<td class=\"t2\"><a href=\"/kacpta/kac_register/file/세무법인정관변경신고서식.hwp?v=2\">세무법인정관변경신고서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t2\">우편</td>\n<td class=\"t2\">소속지방회</td>\n<td class=\"t2\">10일</td>\n</tr>"
+    },
+    {
+      "text": "손해배상준비금예치신청서 우편 소속지방회 -",
+      "html": "<tr>\n<td class=\"t2\"><a href=\"/kacpta/kac_register/file/손해배상준비금예치신청서.hwp\">손해배상준비금예치신청서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t2\">우편</td>\n<td class=\"t2\">소속지방회</td>\n<td class=\"t2\">-</td>\n</tr>"
+    },
+    {
+      "text": "세무법인해산사유통보서 우편 소속지방회 14일",
+      "html": "<tr>\n<td class=\"t2\"><a href=\"/kacpta/kac_register/file/세무법인해산사유통보서.hwp?v=2\">세무법인해산사유통보서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t2\">우편</td>\n<td class=\"t2\">소속지방회</td>\n<td class=\"t2\">14일</td>\n</tr>"
+    },
+    {
+      "text": "서식제목 제출방법 제출처 소요기간",
+      "html": "<tr>\n<th class=\"date\" scope=\"col\">서식제목</th>\n<th class=\"place\" scope=\"col\">제출방법</th>\n<th class=\"place\" scope=\"col\">제출처</th>\n<th class=\"place\" scope=\"col\">소요기간</th>\n</tr>"
+    },
+    {
+      "text": "경조금 지급신청서 우편/팩스 소속지방회 신청일 다음달 말일",
+      "html": "<tr>\n<td class=\"t1\">\n<a href=\"/data/Download/경조금지급신청서.hwp\">경조금 지급신청서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n\n<td class=\"t1\">우편/팩스</td>\n<td class=\"t1\">소속지방회\r\n\t\t\t\t</td>\n<td class=\"t1\">신청일 다음달 말일</td>\n</tr>"
+    },
+    {
+      "text": "서식제목 제출방법 제출처 소요기간",
+      "html": "<tr>\n<th class=\"date\" scope=\"col\">서식제목</th>\n<th class=\"place\" scope=\"col\">제출방법</th>\n<th class=\"place\" scope=\"col\">제출처</th>\n<th class=\"place\" scope=\"col\">소요기간</th>\n</tr>"
+    },
+    {
+      "text": "(노령)공제금 및 일시지급금 신청서 우편 소속지방회 신청일 다음달 말일",
+      "html": "<tr>\n<td class=\"t2\"><a href=\"/data/Download/공제금일시지급금지급신청서.hwp\">(노령)공제금 및 일시지급금 신청서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n<td class=\"t2\">우편</td>\n<td class=\"t2\">소속지방회</td>\n<td class=\"t2\">신청일 다음달 말일</td>\n</tr>"
+    },
+    {
+      "text": "서식제목 제출방법 제출처 소요기간",
+      "html": "<tr>\n<th class=\"date\" scope=\"col\">서식제목</th>\n<th class=\"place\" scope=\"col\">제출방법</th>\n<th class=\"place\" scope=\"col\">제출처</th>\n<th class=\"place\" scope=\"col\">소요기간</th>\n</tr>"
+    },
+    {
+      "text": "사무장 등록 신청서 우편/팩스 소속지방회 7일",
+      "html": "<tr>\n<td class=\"t4\"><a href=\"/kacpta/kac_register/file/사무장등록신청서.hwp\">사무장 등록 신청서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a> </td>\n<td class=\"t4\" rowspan=\"2\">우편/팩스</td>\n<td class=\"t4\" rowspan=\"2\">소속지방회</td>\n<td class=\"t4\" rowspan=\"2\">7일</td>\n</tr>"
+    },
+    {
+      "text": "사무장 해임 신청서",
+      "html": "<tr>\n<td class=\"t4\"><a href=\"/kacpta/kac_register/file/사무장해임신청서.hwp\">사무장 해임 신청서    <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n</tr>"
+    },
+    {
+      "text": "서식 제목 서식 내려받기",
+      "html": "<tr>\n<th class=\"date\" scope=\"col\">서식 제목</th>\n<th class=\"place\" scope=\"col\">서식 내려받기</th>\n</tr>"
+    },
+    {
+      "text": "지역세무사회 총회 승인 신청서 서식 내려받기",
+      "html": "<tr>\n<td class=\"t4\">지역세무사회 총회 승인 신청서</td>\n<td class=\"t4\"><a href=\"/kacpta/kac_register/file/지역세무사회 총회 승인 신청서.hwp\">서식 내려받기 <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n</tr>"
+    },
+    {
+      "text": "지역세무사회 총회 개최 및 임원 선임 결과 보고서 서식 내려받기",
+      "html": "<tr>\n<td class=\"t4\">지역세무사회 총회 개최 및 임원 선임 결과 보고서</td>\n<td class=\"t4\"><a href=\"/kacpta/kac_register/file/지역세무사회 총회 개최 및 임원 선임 결과 보고서.hwp\">서식 내려받기 <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n</tr>"
+    },
+    {
+      "text": "지역세무사회 회의 등 보고 양식 서식 내려받기",
+      "html": "<tr>\n<td class=\"t4\">지역세무사회 회의 등 보고 양식</td>\n<td class=\"t4\"><a href=\"/kacpta/kac_register/file/지역세무사회 회의 등 보고 양식.hwp\">서식 내려받기 <img align=\"bottom\" height=\"20\" src=\"./img/ic_hwp.gif\" width=\"16\"/></a></td>\n</tr>"
+    }
+  ]
+}

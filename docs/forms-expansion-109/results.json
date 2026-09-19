@@ -2307,7 +2307,14 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "failure_reason": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+    "attempts": [
+      {
+        "checked_at": "2026-09-19T13:12:10Z",
+        "url": "https://edi.nhis.or.kr/webedi/file_sy/all_sangsil.html",
+        "result": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+      }
+    ]
   },
   {
     "id": "P3-04",
@@ -2364,7 +2371,14 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "failure_reason": "HTTPSConnectionPool(host='easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=2&cnpClsNo=2&csmSeq=1259&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='easylaw.go.kr', port=443) at 0x7ff5fb3414c0>, 'Connection to easylaw.go.kr timed out. (connect timeout=9)'))",
+    "attempts": [
+      {
+        "checked_at": "2026-09-19T13:12:10Z",
+        "url": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=2&cnpClsNo=2&csmSeq=1259&popMenu=ov",
+        "result": "HTTPSConnectionPool(host='easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=2&cnpClsNo=2&csmSeq=1259&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='easylaw.go.kr', port=443) at 0x7ff5fb3414c0>, 'Connection to easylaw.go.kr timed out. (connect timeout=9)'))"
+      }
+    ]
   },
   {
     "id": "P4-01",
@@ -2917,7 +2931,14 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "failure_reason": "HTTPSConnectionPool(host='easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=1&cnpClsNo=2&csmSeq=916&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='easylaw.go.kr', port=443) at 0x7ff5fb3410d0>, 'Connection to easylaw.go.kr timed out. (connect timeout=9)'))",
+    "attempts": [
+      {
+        "checked_at": "2026-09-19T13:12:10Z",
+        "url": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=1&cnpClsNo=2&csmSeq=916&popMenu=ov",
+        "result": "HTTPSConnectionPool(host='easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=1&cnpClsNo=2&csmSeq=916&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='easylaw.go.kr', port=443) at 0x7ff5fb3410d0>, 'Connection to easylaw.go.kr timed out. (connect timeout=9)'))"
+      }
+    ]
   },
   {
     "id": "P5-07",
@@ -3204,12 +3225,17 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.mps.mil.kr/info/deceIncmAplcForm.do\", waiting until \"domcontentloaded\"\n",
+    "failure_reason": "HTTPSConnectionPool(host='www.mps.mil.kr', port=443): Max retries exceeded with url: /info/deceIncmAplcForm.do (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.mps.mil.kr', port=443) at 0x7ff5fb39eae0>, 'Connection to www.mps.mil.kr timed out. (connect timeout=9)'))",
     "attempts": [
       {
         "checked_at": "2026-09-17T09:51:09Z",
         "url": "https://www.mps.mil.kr/info/deceIncmAplcForm.do",
         "result": "공식 제공처 확인 실패: Page.goto: Timeout 22000ms exceeded.\nCall log:\n  - navigating to \"https://www.mps.mil.kr/info/deceIncmAplcForm.do\", waiting until \"domcontentloaded\"\n"
+      },
+      {
+        "checked_at": "2026-09-19T13:12:10Z",
+        "url": "https://www.mps.mil.kr/info/deceIncmAplcForm.do",
+        "result": "HTTPSConnectionPool(host='www.mps.mil.kr', port=443): Max retries exceeded with url: /info/deceIncmAplcForm.do (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.mps.mil.kr', port=443) at 0x7ff5fb39eae0>, 'Connection to www.mps.mil.kr timed out. (connect timeout=9)'))"
       }
     ]
   },
@@ -3314,7 +3340,14 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "failure_reason": "자격상실 기본 안내의 확인을 먼저 완료해야 합니다.",
+    "attempts": [
+      {
+        "checked_at": "2026-09-19T13:12:10Z",
+        "url": "https://www.nhis.or.kr/static/alim/paper/oldpaper/202302/sub/23.html",
+        "result": "자격상실 기본 안내의 확인을 먼저 완료해야 합니다."
+      }
+    ]
   },
   {
     "id": "P8-01",
@@ -3637,7 +3670,14 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "failure_reason": "HTTPSConnectionPool(host='www.easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.easylaw.go.kr', port=443) at 0x7ff5fb33f920>, 'Connection to www.easylaw.go.kr timed out. (connect timeout=9)'))",
+    "attempts": [
+      {
+        "checked_at": "2026-09-19T13:12:10Z",
+        "url": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255",
+        "result": "HTTPSConnectionPool(host='www.easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.easylaw.go.kr', port=443) at 0x7ff5fb33f920>, 'Connection to www.easylaw.go.kr timed out. (connect timeout=9)'))"
+      }
+    ]
   },
   {
     "id": "P8-06",
@@ -3656,7 +3696,14 @@
     "license": "미확인",
     "source_type": null,
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "failure_reason": "HTTPSConnectionPool(host='www.easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=1&csmSeq=255&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.easylaw.go.kr', port=443) at 0x7ff5fb3408c0>, 'Connection to www.easylaw.go.kr timed out. (connect timeout=9)'))",
+    "attempts": [
+      {
+        "checked_at": "2026-09-19T13:12:10Z",
+        "url": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=1&csmSeq=255&popMenu=ov",
+        "result": "HTTPSConnectionPool(host='www.easylaw.go.kr', port=443): Max retries exceeded with url: /CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=1&csmSeq=255&popMenu=ov (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.easylaw.go.kr', port=443) at 0x7ff5fb3408c0>, 'Connection to www.easylaw.go.kr timed out. (connect timeout=9)'))"
+      }
+    ]
   },
   {
     "id": "P8-07",
