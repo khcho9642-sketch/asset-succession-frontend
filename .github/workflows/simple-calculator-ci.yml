@@ -59,6 +59,7 @@ jobs:
           for i in $(seq 1 40); do curl -fsS http://127.0.0.1:4191/calculator > /dev/null && break; sleep 2; done
           curl -fsS http://127.0.0.1:4191/calculator > /dev/null
           python scripts/simple-calculator-ui-audit.py
+          python scripts/simple-calculator-final-ui.py
           FORM_LIBRARY_BASE_URL=http://127.0.0.1:4191 python scripts/forms-library-ui-audit.py
           git rev-parse HEAD > .tmp/simple-calculator-proof/commit.txt
       - uses: actions/upload-artifact@v4

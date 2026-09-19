@@ -191,27 +191,64 @@ function anniversary(value: string, years: number): string {
   return `${year + years}-${String(month).padStart(2, "0")}-${String(Math.min(day, lastDay)).padStart(2, "0")}`;
 }
 
+function deemedAssetTotals(input: InheritanceInput, result: SimpleCalculationResult) {
+  const parts = input.deemedAssetBreakdown;
+  const m = result.missing;
+  let estate = 0;
+  let financial = 0;
+  if (!Array.isArray(parts)) {
+    if (parts === undefined && input.deemedAssetsWon === 0) return { estate, financial };
+    m.push("퇴직금·보험금·신탁재산 등: 종류별 상속재산 포함액과 금융공제 대상액을 확인해 주세요.");
+    return { estate, financial };
+  }
+  if (parts.length > 4) m.push("퇴직금·보험금·신탁재산 등: 종류별 합계로 4개 이내 입력해 주세요.");
+  const ids = new Set<string>();
+  for (const part of parts) {
+    if (!part || typeof part !== "object") { m.push("퇴직금·보험금·신탁재산 등: 재산 분류를 확인해 주세요."); continue; }
+    const label = { insurance: "보험금", retirement: "사망 후 퇴직급여", moneyTrust: "금전신탁", other: "기타 간주상속재산" }[part.kind];
+    if (!label || !part.id || ids.has(part.id)) m.push("퇴직금·보험금·신탁재산 등: 종류 또는 식별자가 올바르지 않습니다.");
+    ids.add(part.id);
+    const included = requireMoney(part.estateIncludedWon, `${label} 상속재산 포함액`, m);
+    const eligible = requireMoney(part.financialEligibleWon, `${label} 금융공제 대상액`, m);
+    if (part.classification !== "confirmed" && part.classification !== "unsupported") m.push(`${label} 분류 확인: 상속재산 포함 범위와 금융공제 성격을 확인해 주세요.`);
+    addUnsupported(result.unsupported, part.classification === "unsupported" || (part.classification === "confirmed" && part.kind === "other"), `${label} 분류 확인`, "특수 계약·기타 간주재산은 포함 범위와 금융공제 성격의 별도 검토가 필요합니다.");
+    const supportedSubtype = { insurance: "financial_institution_death_insurance", retirement: "post_death_retirement_benefit_not_eligible", moneyTrust: "financial_institution_money_trust", other: "" }[part.kind];
+    if (part.classification === "confirmed" && part.subtype !== supportedSubtype) m.push(`${label} 분류 확인: 지원하는 재산 유형인지 확인해 주세요.`);
+    if (included !== null && eligible !== null) {
+      if (eligible > included) m.push(`${label} 금융공제 대상액: 상속재산 포함액을 초과할 수 없습니다.`);
+      if (part.kind === "retirement" && eligible !== 0) m.push("사망 후 퇴직급여 금융공제 대상액: 지원하는 사망 후 지급 퇴직급여는 금융공제에서 제외됩니다.");
+      estate += included;
+      financial += eligible;
+    }
+  }
+  requireMoney(estate, "간주상속재산 합계", m);
+  if (input.deemedAssetsWon !== undefined && input.deemedAssetsWon !== estate) m.push("퇴직금·보험금·신탁재산 등: 기존 합계와 종류별 포함액이 일치하지 않습니다.");
+  return { estate, financial };
+}
+
 export function calculateInheritanceTax(input: InheritanceInput): SimpleCalculationResult {
   const result = base("inheritance", "상속세 간편계산", "상속세");
   result.references = [
     { label: "국세청 사전증여 증여세액공제·신고세액공제", url: "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7959&mi=6531" },
-    { label: "상증세법 시행령 제3조 상속인별 과세표준 상당액 (2026-09-18 시행)", url: "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsJoLnkSeq=900410489" },
-    { label: "국세청 금융재산공제 대상·제외 및 공제액 (2026-09-18 확인)", url: "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7956&mi=6528" },
-    { label: "상속세 및 증여세법 제22조 (2026-01-02 시행)", url: "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1032161999" },
-    { label: "손택스 상속세 간편계산 입력 항목", url: "https://mob.tbht.hometax.go.kr/jsonAction.do?actionId=UTBRNAAM02F001" },
-    { label: "상속세 및 증여세법 제25조~제27조", url: "https://taxlaw.nts.go.kr/st/USESTA002P.do?ntstBscId=100000000000001561&ntstEnfrDt=2019.02.25.&ntstSysClCd=01&ntstTlawClCd=109" },
+    { label: "국세청 상속공제 항목별 설명", url: "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7956&mi=6528" },
+    { label: "상속세 및 증여세법 제22조 (2025-10-01 시행 판본)", url: "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0022&lsiSeq=276123&urlMode=lsScJoRltInfoR" },
+    { label: "국세청 보험금의 금융재산 상속공제 (재산세과-843, 2009-11-24)", url: "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=010000000000137520" },
+    { label: "국세청 사망 후 퇴직연금의 금융공제 제외 (상속증여세과-615, 2013-12-10)", url: "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=010000000000152375" },
     { label: "상속세 및 증여세법 제69조 신고세액공제", url: "https://www.law.go.kr/LSW//lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0069&lsiSeq=276123&urlMode=lsScJoRltInfoR" },
   ];
 
   const m = result.missing;
   checkCalculationDate(input.deathDate, "상속개시일", "2023-01-01", result);
+  if (input.spouse !== "yes" && input.spouse !== "no") m.push("배우자 여부: 확인해 주세요.");
+  if (typeof input.spouseSoleHeir !== "boolean") m.push("가족관계: 배우자 단독 상속인 여부를 확인해 주세요.");
   const childrenCount = requireCount(input.childrenCount, "자녀 수", m, 0, 20);
   const seniorCount = requireCount(input.seniorCount, "연로자 수", m, 0, 20);
   const realEstate = requireMoney(input.realEstateWon, "부동산가액", m);
   const financialAssets = requireMoney(input.financialAssetsWon, "금융재산가액", m);
   const financialExclusions = requireMoney(input.financialExclusionsWon, "금융재산 중 공제 제외 금액", m);
   const otherAssets = requireMoney(input.otherAssetsWon, "기타재산가액", m);
-  const deemedAssets = requireMoney(input.deemedAssetsWon, "퇴직금·보험금·신탁재산 등", m);
+  const deemed = deemedAssetTotals(input, result);
+  const deemedAssets = deemed.estate;
   const nonTaxable = requireMoney(input.nonTaxableWon, "비과세·과세가액 불산입액", m);
   const priorGiftSpouse = requireMoney(input.priorGiftSpouseWon, "10년 이내 배우자 사전증여", m);
   const priorGiftHeirs = requireMoney(input.priorGiftHeirsWon, "10년 이내 배우자 외 상속인 사전증여", m);
@@ -225,6 +262,10 @@ export function calculateInheritanceTax(input: InheritanceInput): SimpleCalculat
   const spousePriorTaxable = requireMoney(input.spousePriorGiftTaxableWon, "10년 이내 배우자 사전증여 과세표준", m);
   const minorDeduction = requireMoney(input.minorDeductionWon, "미성년자 공제액", m);
   const disabledDeduction = requireMoney(input.disabledDeductionWon, "장애인 공제액", m);
+  if (nonTaxable !== null && nonTaxable > 0 && (deemed.financial > 0 || (financialAssets ?? 0) > 0)) {
+    if (input.nonTaxableFinancialOverlap !== "no" && input.nonTaxableFinancialOverlap !== "yes") m.push("비과세 재산과 금융공제 중복 여부: 불산입액이 공제 대상 금융재산에 포함되는지 확인해 주세요.");
+    addUnsupported(result.unsupported, input.nonTaxableFinancialOverlap === "yes", "비과세 재산과 금융공제 중복 여부", "비과세·불산입 금융재산의 배분 계산은 별도 검토가 필요합니다.");
+  }
   if (input.spouse === "yes" && (!input.statutoryShareNumerator || !input.statutoryShareDenominator)) {
     m.push("배우자 법정지분율의 분자와 분모를 입력해 주세요.");
   }
@@ -241,8 +282,8 @@ export function calculateInheritanceTax(input: InheritanceInput): SimpleCalculat
       const amount = requireMoney(gift.amountWon, `${label} 증여재산가액`, m);
       const taxable = requireMoney(gift.taxableBaseWon, `${label} 신고 과세표준`, m);
       const calculatedTax = requireMoney(gift.calculatedTaxWon, `${label} 신고 산출세액`, m);
-      if (!gift.recipient) m.push(`${label} 수증자: 관계를 선택해 주세요.`);
-      if (!gift.propertyKind) m.push(`${label} 재산 종류: 현금 증여 여부를 확인해 주세요.`);
+      if (!["spouse", "child", "other"].includes(gift.recipient ?? "")) m.push(`${label} 수증자: 관계를 선택해 주세요.`);
+      if (!["cash", "other"].includes(gift.propertyKind ?? "")) m.push(`${label} 재산 종류: 현금 증여 여부를 확인해 주세요.`);
       addUnsupported(result.unsupported, gift.propertyKind === "other", `${label} 재산 종류`, "사전증여 세액공제는 별도 평가비용·부담부채무가 없는 일반 현금증여 신고 내역부터 지원합니다. 부동산·주식 등은 별도 검토가 필요합니다.");
       addUnsupported(result.unsupported, gift.recipient === "other", `${label} 수증자`, "상속인 외 수증자·손자녀·과세특례가 섞인 사전증여는 수증자별 별도 계산이 필요합니다. 현재는 배우자와 자녀의 일반 증여 신고 내역만 지원합니다.");
       if (gift.creditEligible !== "yes" && gift.creditEligible !== "no") m.push(`${label} 공제요건 확인: 신고 내역과 부과제척기간 만료 여부를 확인해 주세요.`);
@@ -270,7 +311,7 @@ export function calculateInheritanceTax(input: InheritanceInput): SimpleCalculat
   const burialDeduction = Math.min(5_000_000, burial!);
   const taxableEstate = Math.max(0, taxableEstateBeforeDeductions - debt! - publicCharges! - funeralDeduction - burialDeduction);
   // Excluded property stays in totalAssets; it only reduces financial deduction eligibility.
-  const eligibleFinancialAssets = financialAssets! - financialExclusions!;
+  const eligibleFinancialAssets = financialAssets! - financialExclusions! + deemed.financial;
   const netFinancial = Math.max(0, eligibleFinancialAssets - financialDebt!);
   const financialDeduction = netFinancial <= 20_000_000
     ? netFinancial
@@ -311,7 +352,12 @@ export function calculateInheritanceTax(input: InheritanceInput): SimpleCalculat
     { label: "상속세 과세가액", amountWon: taxableEstate },
     { label: "인적공제 또는 일괄공제", amountWon: -personalDeduction },
     { label: "배우자 상속공제", amountWon: -spouseDeduction, note: input.spouse === "yes" ? `입력 상속액·법정지분 한도·30억원 한도 기준` : "배우자 없음" },
-    { label: "금융재산 상속공제", amountWon: -financialDeduction, note: `금융재산 ${formatWon(financialAssets!)} - 공제 제외 재산 ${formatWon(financialExclusions!)} - 금융채무 ${formatWon(financialDebt!)} = 공제 대상 순금융재산 ${formatWon(netFinancial)}. 공제 제외 재산은 총 상속재산에 남고, 금융채무는 총채무에 포함되어 한 번만 차감됩니다.` },
+    { label: "별도 금융재산", amountWon: financialAssets! },
+    { label: "간주상속재산 중 금융공제 대상액", amountWon: deemed.financial },
+    { label: "금융공제 제외 재산", amountWon: -financialExclusions! },
+    { label: "금융채무", amountWon: -financialDebt!, note: "총채무에 포함된 금액입니다. 과세가액에서는 총채무로 한 번만 차감됩니다." },
+    { label: "공제 대상 순금융재산", amountWon: netFinancial },
+    { label: "금융재산 상속공제", amountWon: -financialDeduction, note: "별도 금융재산 - 공제 제외액 + 확인된 보험금·금전신탁 대상액 - 금융채무. 사전증여 금융재산은 포함하지 않습니다." },
     { label: "상속공제 적용 합계", amountWon: -appliedDeductions, note: `공제 한도 ${formatWon(deductionLimit)}. 과세가액 5억원 초과 시 합산 사전증여 과세표준을 한도에서 차감합니다.` },
     { label: "과세표준", amountWon: taxableBaseWon },
     { label: `산출세액 (${tax.rateLabel})`, amountWon: tax.grossTaxWon },
@@ -344,12 +390,10 @@ const GIFT_DEDUCTIONS: Record<GiftInput["relationship"], { label: string; deduct
 export function calculateGiftTax(input: GiftInput): SimpleCalculationResult {
   const result = base("gift", "증여세 간편계산", "증여세");
   result.references = [
-    { label: "혼인·출산 공제 사용액 및 잔여 한도 명세서 (2026-03-20 개정)", url: "https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110202&flSeq=162626013&gubun=" },
-    { label: "상속세 및 증여세법 제53·55·58조 (2026-01-02 시행)", url: "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1026647923" },
-    { label: "국세청 재차증여 납부세액공제 한도 해석", url: "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000001535" },
-    { label: "국세청 증여세 세액계산 흐름도", url: "https://g.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7728&mi=2340" },
-    { label: "국세청 증여재산공제·세율", url: "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7960&mi=6538" },
-    { label: "국세청 증여세 신고 작성 안내", url: "https://www.nts.go.kr/webtv/na/ntt/selectNttList.do?bbsId=50839&nttSn=1346300" },
+    { label: "상증세법 제53조의2 혼인·출산 공제 (2025-10-01 시행 판본)", url: "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=02&joNo=0053&lsiSeq=276123&urlMode=lsScJoRltInfoR" },
+    { label: "상증세법 제55조 과세표준 (2025-10-01 시행 판본)", url: "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0055&lsiSeq=276123&urlMode=lsScJoRltInfoR" },
+    { label: "상증세법 제58조 납부세액공제 (2025-10-01 시행 판본)", url: "https://www.law.go.kr/LSW/lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0058&lsiSeq=276123&urlMode=lsScJoRltInfoR" },
+    { label: "국세청 증여재산공제·세율·납부세액공제", url: "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7960&mi=6533" },
   ];
   const m = result.missing;
   checkCalculationDate(input.giftDate, "증여일", "2023-01-01", result);
@@ -365,7 +409,8 @@ export function calculateGiftTax(input: GiftInput): SimpleCalculationResult {
   const otherDeduction = requireMoney(input.otherGiftDeductionWon, "그 밖의 증여에서 사용한 같은 구분의 공제", m);
   const appraisal = requireMoney(input.appraisalFeeWon, "감정평가수수료", m);
   const marriageBirth = requireMoney(input.marriageBirthDeductionWon, "혼인·출산 추가 공제", m);
-  const marriageBirthUsed = (marriageBirth ?? 0) > 0 ? requireMoney(input.marriageBirthPreviouslyUsedWon, "이미 사용한 혼인·출산 공제", m) : 0;
+  const hasPastSpecial = (priorGift ?? 0) > 0 && input.priorGiftMarriageBirthStatus === "yes";
+  const marriageBirthUsed = (marriageBirth ?? 0) > 0 || hasPastSpecial ? requireMoney(input.marriageBirthPreviouslyUsedWon, "이미 사용한 혼인·출산 공제", m) : 0;
   if (marriageBirthUsed !== null && marriageBirthUsed > 100_000_000) m.push("이미 사용한 혼인·출산 공제: 통합 1억원 한도를 초과할 수 없습니다.");
   if ((marriageBirth ?? 0) > 0) {
     addUnsupported(result.unsupported, !["linealAscendantAdult", "linealAscendantMinor"].includes(input.relationship), "혼인·출산 증여재산공제", "직계존속으로부터 받은 증여에만 적용됩니다.");
@@ -379,15 +424,47 @@ export function calculateGiftTax(input: GiftInput): SimpleCalculationResult {
     }
   }
   const previousTax = requireMoney(input.previousTaxPaidWon, "종전 증여재산 산출세액", m);
-  const relation = GIFT_DEDUCTIONS[input.relationship];
+  let preservedMarriageBirth = 0;
+  let confirmedPriorBase: number | null = null;
+  if (typeof input.generationSkip !== "boolean" || typeof input.minorOverTwoBillion !== "boolean") m.push("세대생략 할증 여부: 해당 여부를 확인해 주세요.");
+  if ((priorGift ?? 0) > 0 && input.priorGiftMarriageBirthStatus !== "yes" && input.priorGiftMarriageBirthStatus !== "no") m.push("과거 혼인·출산 공제 이력: 합산하는 과거 증여의 공제 여부를 확인해 주세요.");
+  if (!hasPastSpecial && (input.priorGiftMarriageBirthAppliedWon ?? 0) !== 0) m.push("과거 혼인·출산 공제액: 공제 이력 및 과거 증여 금액과 일치하지 않습니다.");
+  if (hasPastSpecial) {
+    const applied = requireMoney(input.priorGiftMarriageBirthAppliedWon ?? null, "과거 혼인·출산 공제액", m);
+    confirmedPriorBase = requireMoney(input.priorGiftTaxableBaseWon ?? null, "과거 신고 과세표준", m);
+    if (input.priorGiftHistoryConfirmed !== true && input.priorGiftHistoryConfirmed !== false) m.push("과거 신고·공제 유효성: 신고 내역과 공제의 유효성을 확인해 주세요.");
+    if (input.ordinaryCashHistory !== true && input.ordinaryCashHistory !== false) m.push("일반 현금증여 이력: 단순 현금증여 여부를 확인해 주세요.");
+    if (input.priorGiftDonor !== "sameFather" && input.priorGiftDonor !== "other") m.push("과거 증여자: 동일한 아버지의 증여인지 확인해 주세요.");
+    addUnsupported(result.unsupported, input.priorGiftHistoryConfirmed === false || input.ordinaryCashHistory === false || input.priorGiftDonor === "other" || (Object.hasOwn(GIFT_DEDUCTIONS, input.relationship) && input.relationship !== "linealAscendantAdult") || (debt ?? 0) > 0 || (appraisal ?? 0) > 0,
+      "과거 혼인·출산 공제 이력", "이번 지원 범위는 동일한 아버지에게 받은 성년 자녀의 유효한 일반 현금증여 신고입니다. 다른 증여자·중복 신고·부담부·평가비용·특례·공제 취소·수정 내역은 별도 검토가 필요합니다.");
+    const date = input.priorGiftDate;
+    const event = input.priorGiftMarriageBirthEvent;
+    const eventDate = input.priorGiftMarriageBirthEventDate;
+    if (!date || !validDate(date)) m.push("과거 증여일: 올바른 날짜를 입력해 주세요.");
+    else if (validDate(input.giftDate)) {
+      addUnsupported(result.unsupported, date < "2024-01-01" || date >= input.giftDate || date < anniversary(input.giftDate, -10), "과거 증여일", "2024-01-01 이후, 이번 증여 전 10년 내의 과거 증여만 지원합니다.");
+    }
+    if (event !== "marriage" && event !== "birth") m.push("과거 혼인·출산 구분: 공제 사유를 확인해 주세요.");
+    if (!eventDate || !validDate(eventDate)) m.push("과거 혼인·출산 기준일: 올바른 날짜를 입력해 주세요.");
+    else if (date && validDate(date) && validDate(input.giftDate)) {
+      addUnsupported(result.unsupported, eventDate > input.giftDate || date > anniversary(eventDate, 2) || date < (event === "marriage" ? anniversary(eventDate, -2) : eventDate), "과거 혼인·출산 기준일", "유효한 혼인 전후 2년 또는 출생·입양 후 2년의 과거 증여만 지원합니다. 미혼인·취소·수정신고는 별도 확인이 필요합니다.");
+    }
+    if (applied !== null && priorGift !== null && priorDeduction !== null) {
+      if (applied === 0 || applied > 100_000_000 || applied + priorDeduction > priorGift || (marriageBirthUsed !== null && applied > marriageBirthUsed)) m.push("과거 혼인·출산 공제액: 과거 재산·전체 사용액·1억원 한도를 확인해 주세요.");
+      if (confirmedPriorBase !== null && confirmedPriorBase !== priorGift - priorDeduction - applied) m.push("과거 신고 과세표준: 과거 재산에서 일반공제와 혼인·출산 공제를 뺀 신고 내역과 다릅니다.");
+      preservedMarriageBirth = priorGift >= 10_000_000 ? applied : 0;
+    }
+    if (confirmedPriorBase !== null && previousTax !== null && previousTax !== ordinaryInheritanceGiftTax(confirmedPriorBase, false).grossTaxWon) m.push("종전 증여재산 산출세액: 과거 신고 과세표준의 일반 산출세액과 다릅니다. 납부 영수증 금액·특례·중복 신고 여부를 확인해 주세요.");
+  }
+  const relation = Object.hasOwn(GIFT_DEDUCTIONS, input.relationship) ? GIFT_DEDUCTIONS[input.relationship] : undefined;
   if (!relation) m.push("증여자와 수증자의 관계를 선택해 주세요.");
   if (priorDeduction !== null && priorGift !== null && priorDeduction > priorGift) m.push("같은 증여자의 과거 증여에 적용한 공제: 과거 증여재산가액을 초과할 수 없습니다.");
   if (relation && priorDeduction !== null && otherDeduction !== null && priorDeduction + otherDeduction > relation.deductionWon) m.push("그 밖의 증여에서 사용한 같은 구분의 공제: 과거 사용 공제 합계가 관계별 10년 한도를 초과합니다.");
   addUnsupported(result.unsupported, (priorGift ?? 0) > 0 && (input.generationSkip || (marriageBirth ?? 0) > 0),
-    "재차증여와 특수 공제·할증", "혼인·출산 공제 또는 세대생략 할증이 섞인 과거 증여는 별도 확인이 필요합니다.");
+    "재차증여와 특수 공제·할증", "과거 증여와 이번 신규 혼인·출산 공제 또는 세대생략 할증을 결합한 계산은 별도 검토가 필요합니다.");
   addUnsupported(result.unsupported, (marriageBirth ?? 0) > 0 && input.giftDate < "2024-01-01", "혼인·출산 증여재산공제", "2024-01-01 이후 증여분부터 적용합니다.");
   if (result.unsupported.length) result.status = "unsupported";
-  if (m.length || result.unsupported.length) return result;
+  if (m.length || result.unsupported.length || !relation) return result;
   if (debt! > amount!) result.missing.push("수증자 인수 채무는 증여재산가액 이하여야 합니다.");
   const netGift = Math.max(0, amount! - debt!);
   const aggregatedPriorGift = priorGift! >= 10_000_000 ? priorGift! : 0;
@@ -396,12 +473,12 @@ export function calculateGiftTax(input: GiftInput): SimpleCalculationResult {
   const currentDeduction = Math.min(netGift, remainingBasicDeduction);
   const appliedBasicDeduction = (aggregatedPriorGift ? priorDeduction! : 0) + currentDeduction;
   const remainingMarriageBirth = Math.max(0, 100_000_000 - marriageBirthUsed!);
-  const appliedMarriageBirth = Math.min(Math.max(0, aggregateGift - appliedBasicDeduction), marriageBirth!, remainingMarriageBirth);
-  const taxableBaseWon = Math.max(0, aggregateGift - appliedBasicDeduction - appliedMarriageBirth - appraisal!);
+  const appliedMarriageBirth = Math.min(Math.max(0, aggregateGift - appliedBasicDeduction - preservedMarriageBirth), marriageBirth!, remainingMarriageBirth);
+  const taxableBaseWon = Math.max(0, aggregateGift - appliedBasicDeduction - preservedMarriageBirth - appliedMarriageBirth - appraisal!);
   const aggregateTax = ordinaryInheritanceGiftTax(taxableBaseWon, false);
   const priorDeductionForCredit = priorDeduction! > 0 ? priorDeduction!
     : ratio(appliedBasicDeduction, aggregatedPriorGift, aggregateGift);
-  const priorTaxable = Math.max(0, aggregatedPriorGift - priorDeductionForCredit);
+  const priorTaxable = hasPastSpecial ? (aggregatedPriorGift ? confirmedPriorBase! : 0) : Math.max(0, aggregatedPriorGift - priorDeductionForCredit);
   const previousCreditLimit = ratio(aggregateTax.grossTaxWon, priorTaxable, taxableBaseWon);
   const appliedPreviousTax = Math.min(previousTax!, previousCreditLimit);
   const currentGrossTax = Math.max(0, aggregateTax.grossTaxWon - appliedPreviousTax);
@@ -419,8 +496,10 @@ export function calculateGiftTax(input: GiftInput): SimpleCalculationResult {
     { label: "이번 증여재산가액", amountWon: amount! },
     { label: "수증자 인수 채무 차감", amountWon: -debt!, note: "부담부증여는 양도소득세 등 별도 검토가 필요합니다." },
     { label: "최근 10년 동일인 관련 증여 가산", amountWon: aggregatedPriorGift, note: "동일인(직계존속은 그 배우자 포함)에게 받은 금액 합계 1천만원 이상일 때 합산" },
+    { label: "합산 증여 과세가액", amountWon: aggregateGift },
     { label: `${relation.label} 증여재산공제 적용`, amountWon: -appliedBasicDeduction, note: `합산된 과거 재산의 공제 ${formatWon(aggregatedPriorGift ? priorDeduction! : 0)} + 이번 공제 ${formatWon(currentDeduction)}. 다른 증여의 사용 공제 ${formatWon(otherDeduction!)}는 한도에서 차감합니다.` },
-    { label: "혼인·출산 추가 공제", amountWon: -appliedMarriageBirth, note: marriageBirth! > 0 ? `통합 1억원 - 이전 사용액 ${formatWon(marriageBirthUsed!)} = 남은 한도 ${formatWon(remainingMarriageBirth)}` : "해당 없음" },
+    { label: "합산 과거 혼인·출산 공제 보존", amountWon: -preservedMarriageBirth, note: "합산 대상 과거 재산에서 유효하게 적용한 금액입니다. 이번에 새로 부여한 공제가 아닙니다." },
+    { label: "혼인·출산 추가 공제", amountWon: -appliedMarriageBirth, note: marriageBirth! > 0 ? `이번 신규 적용분. 통합 1억원 - 모든 증여자 이전 사용액 ${formatWon(marriageBirthUsed!)} = 남은 한도 ${formatWon(remainingMarriageBirth)}` : "이번 신규 적용 없음" },
     { label: "감정평가수수료", amountWon: -appraisal! },
     { label: "과세표준", amountWon: taxableBaseWon },
     { label: `합산 산출세액 (${aggregateTax.rateLabel})`, amountWon: aggregateTax.grossTaxWon },
@@ -469,7 +548,7 @@ export function calculateCapitalGainsTax(input: CapitalGainsInput): SimpleCalcul
     { label: "국세청 양도소득세 확정신고·합산 신고 안내", url: "https://www.nts.go.kr/nts/na/ntt/selectNttList.do?bbsId=131041&mi=2307" },
     { label: "국세청 1세대 1주택 비과세 요건", url: "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7707&mi=2308" },
     { label: "국세청 고가주택 안분 산식·공개 계산사례", url: "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=8799&mi=12271" },
-    { label: "국세청 양도소득세 세액계산 흐름도", url: "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7709&mi=2446" },
+    { label: "국세청 양도소득세 세액계산 흐름도", url: "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7709&mi=2310" },
     { label: "국세청 양도소득세 세율", url: "https://b.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7711&mi=2312" },
     { label: "국세청 양도소득 기본공제 신고서식 안내", url: "https://www.nts.go.kr/tax/sub/1.2.3.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%20%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C.html" },
   ];
@@ -495,6 +574,7 @@ export function calculateCapitalGainsTax(input: CapitalGainsInput): SimpleCalcul
     m.push("같은 해 다른 양도소득금액: 사용 공제나 납부세액이 있으면 해당 거래 소득까지 합산해 주세요.");
   }
   const isHome = input.assetType === "oneHome";
+  if (!["generalBuilding", "land", "oneHome", "otherUnsupported"].includes(input.assetType)) m.push("자산 종류: 지원 자산 종류를 선택해 주세요.");
   addUnsupported(result.unsupported, isHome && input.annualAggregation, "같은 해 다른 양도소득금액", "주택 비과세·고가주택 안분과 연간 합산을 결합한 계산은 추가 검증이 필요합니다. 이번 연간 합산은 일반 건물·토지를 지원합니다.");
   const homeCount = isHome ? requireCount(input.homeCount, "세대 기준 보유 주택 수", m, 1, 20) : 0;
   const residence = isHome ? requireCount(input.residenceYears, "거주 연수", m, 0, 99) : 0;
@@ -502,7 +582,7 @@ export function calculateCapitalGainsTax(input: CapitalGainsInput): SimpleCalcul
   addUnsupported(result.unsupported, isHome && homeCount !== null && homeCount > 1, "세대 기준 보유 주택 수", "다주택·일시적 2주택의 중과·특례는 미지원입니다.");
   if (usedBasic !== null && usedBasic > BASIC_CAPITAL_DEDUCTION) m.push("이미 사용한 양도소득 기본공제: 연 250만원을 초과할 수 없습니다.");
   if (isHome) {
-    if (!input.homeOwnership) m.push("주택 소유·취득 형태를 선택해 주세요.");
+    if (input.homeOwnership !== "solePurchased" && input.homeOwnership !== "other") m.push("주택 소유·취득 형태를 선택해 주세요.");
     addUnsupported(result.unsupported, input.homeOwnership === "other", "주택 소유·취득 형태", "공동명의·상속·증여 취득 등은 취득가액·지분별 별도 계산이 필요합니다.");
     for (const [value, label] of [
       [input.householdOtherRights, "세대의 입주권·분양권"],
@@ -562,9 +642,11 @@ export function calculateCapitalGainsTax(input: CapitalGainsInput): SimpleCalcul
     ] : []),
     { label: `장기보유특별공제 ${rate}%`, amountWon: -longTermDeduction, note: `만 ${heldYears}년 보유 기준` },
     { label: "같은 해 다른 양도소득금액", amountWon: otherGain! },
+    { label: "공제 후 양도소득금액", amountWon: capitalIncome },
     { label: "양도소득 기본공제", amountWon: -appliedBasicDeduction, note: input.annualAggregation ? `연간 합산 소득에서 250만원 한 번 적용. 앞선 신고의 사용 공제 ${formatWon(usedBasic!)}를 중복 차감하지 않습니다.` : "연 250만원 한도" },
     { label: "과세표준", amountWon: taxableBaseWon },
     { label: `양도소득세 산출세액 (${rateLabel})`, amountWon: grossTaxWon },
+    { label: "기납부 차감 전 국세", amountWon: annualNationalTax },
     { label: "개인지방소득세 산출세액", amountWon: annualLocalTax, note: "일반세율의 10% 수준으로 별도 표시" },
     ...(input.annualAggregation ? [
       { label: "기납부 양도소득세 차감", amountWon: -paidNational! },

@@ -622,6 +622,11 @@
 }
 
 @media (max-width: 359px) {
+  .page :global([data-public-header-inner]) {
+    width: calc(100% - 8px);
+    column-gap: 4px;
+  }
+
   .shell {
     width: min(100% - 16px, 1320px);
   }

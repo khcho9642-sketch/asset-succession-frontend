@@ -322,6 +322,7 @@ with sync_playwright() as p:
         page.get_by_label("같은 증여자의 과거 증여에 적용한 공제", exact=True).fill("50,000,000")
         choose(page, "종전 증여 산출세액 확인", "있음")
         page.get_by_label("종전 증여 산출세액", exact=True).fill("0")
+        choose(page, "과거 혼인·출산 공제 이력", "없음")
         page.get_by_role("button", name="계산하기").click()
         expect(page.get_by_text("4,850,000원").first).to_be_visible()
         choose(page, "최근 10년 동일인 관련 증여", "없음")

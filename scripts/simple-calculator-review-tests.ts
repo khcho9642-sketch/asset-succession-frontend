@@ -14,6 +14,7 @@ const I: InheritanceInput = {
   priorGifts: [],
 };
 const G: GiftInput = {
+  priorGiftMarriageBirthStatus: "no",
   giftDate: "2026-09-16", resident: "yes", relationship: "linealAscendantAdult",
   amountWon: 50_000_000, debtAssumedWon: 0, priorGiftWon: 50_000_000,
   priorGiftDeductionWon: 50_000_000, otherGiftDeductionWon: 0, appraisalFeeWon: 0,
@@ -274,6 +275,7 @@ test("2026-09-19 inheritance gift taxable base limits estate deductions", () => 
 });
 test("2026-09-19 spouse legal cap includes heir gifts and excludes nontaxable assets", () => {
   const r = inh({ ...IWithGift, priorGiftHeirsWon: 350_000_000, nonTaxableWon: 50_000_000,
+    nonTaxableFinancialOverlap: "no",
     spouseActualInheritanceWon: 900_000_000,
     priorGifts: [{ ...priorChildGift, amountWon: 350_000_000, taxableBaseWon: 300_000_000, calculatedTaxWon: 50_000_000 }] });
   assert.equal(r.status, "ready");

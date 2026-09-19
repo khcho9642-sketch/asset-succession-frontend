@@ -43,6 +43,15 @@ export type InheritancePriorGift = {
   creditEligible: "yes" | "no" | "unknown" | null;
 };
 
+export type DeemedAssetPart = {
+  id: string;
+  kind: "insurance" | "retirement" | "moneyTrust" | "other";
+  estateIncludedWon: MoneyInput;
+  financialEligibleWon: MoneyInput;
+  classification: "confirmed" | "unknown" | "unsupported" | null;
+  subtype?: string;
+};
+
 export type InheritanceInput = {
   deathDate: string;
   spouse: "yes" | "no";
@@ -55,7 +64,10 @@ export type InheritanceInput = {
   financialAssetsWon: MoneyInput;
   financialExclusionsWon: MoneyInput;
   otherAssetsWon: MoneyInput;
-  deemedAssetsWon: MoneyInput;
+  // Legacy total is only a consistency check when a breakdown is supplied.
+  deemedAssetsWon?: MoneyInput;
+  deemedAssetBreakdown?: DeemedAssetPart[] | null;
+  nonTaxableFinancialOverlap?: "no" | "yes" | "unknown" | null;
   nonTaxableWon: MoneyInput;
   priorGiftSpouseWon: MoneyInput;
   priorGiftHeirsWon: MoneyInput;
@@ -80,6 +92,15 @@ export type GiftInput = {
   debtAssumedWon: MoneyInput;
   priorGiftWon: MoneyInput;
   priorGiftDeductionWon: MoneyInput;
+  priorGiftMarriageBirthStatus?: "yes" | "no" | "unknown" | null;
+  priorGiftMarriageBirthAppliedWon?: MoneyInput;
+  priorGiftTaxableBaseWon?: MoneyInput;
+  priorGiftHistoryConfirmed?: boolean | null;
+  ordinaryCashHistory?: boolean | null;
+  priorGiftDate?: string | null;
+  priorGiftMarriageBirthEvent?: "marriage" | "birth" | null;
+  priorGiftMarriageBirthEventDate?: string | null;
+  priorGiftDonor?: "sameFather" | "other" | null;
   otherGiftDeductionWon: MoneyInput;
   appraisalFeeWon: MoneyInput;
   marriageBirthDeductionWon: MoneyInput;

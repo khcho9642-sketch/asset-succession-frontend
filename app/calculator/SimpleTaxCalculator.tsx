@@ -17,6 +17,7 @@ import {
 } from "@/lib/simple-calculator";
 import type {
   CapitalGainsInput,
+  DeemedAssetPart,
   GiftInput,
   InheritanceInput,
   InheritancePriorGift,
@@ -182,6 +183,13 @@ const conditionOptions: Array<{ value: ConditionValue; label: string }> = [
 function text(values: FormValues, key: string): string {
   return String(values[key] ?? "");
 }
+
+const deemedKinds = [
+  { kind: "insurance", label: "보험금", subtype: "financial_institution_death_insurance", hint: "금융기관 사망보험금 중 보험료 부담자와 상속재산 포함 범위가 이미 확인된 금액만 입력합니다. 수령 총액과 다를 수 있습니다." },
+  { kind: "retirement", label: "사망 후 퇴직급여", subtype: "post_death_retirement_benefit_not_eligible", hint: "사망 후 지급받은 퇴직급여 중 상속재산 포함 및 금융공제 제외가 확인된 금액입니다. 사망 전부터 보유한 예금은 별도 금융재산에 입력합니다." },
+  { kind: "moneyTrust", label: "금전신탁", subtype: "financial_institution_money_trust", hint: "금융기관 금전신탁 중 상속재산 포함액과 금융공제 대상액이 확인된 범위만 지원합니다." },
+  { kind: "other", label: "기타 간주상속재산", subtype: "", hint: "기타 간주재산·특수 계약은 별도 검토가 필요합니다." },
+] as const;
 
 function parseMoneyText(raw: string): { status: "blank" | "invalid" | "overflow" | "valid"; value: number | null } {
   const trimmed = raw.trim();
@@ -356,6 +364,8 @@ function buildInheritanceInput(values: FormValues): { input: InheritanceInput | 
   const giftTotal = (recipient: InheritancePriorGift["recipient"], key: "amountWon" | "taxableBaseWon") => priorGifts === null ? null
     : priorGifts.filter(gift => gift.recipient === recipient).reduce((total, gift) => total + (gift[key] ?? 0), 0);
   const input: InheritanceInput = {
+    deemedAssetBreakdown: buildDeemedParts(values, missing),
+    nonTaxableFinancialOverlap: condition(values, "nonTaxableStatus") === "no" ? "no" : condition(values, "nonTaxableFinancialOverlap") || null,
     deathDate: text(values, "deathDate"),
     spouse,
     spouseSoleHeir,
@@ -367,7 +377,6 @@ function buildInheritanceInput(values: FormValues): { input: InheritanceInput | 
     financialAssetsWon,
     financialExclusionsWon,
     otherAssetsWon: requiredMoney(values, "otherAssetsWon", "기타재산가액", missing),
-    deemedAssetsWon: optionalMoney(values, "deemedAssetsStatus", "deemedAssetsWon", "퇴직금·보험금·신탁재산 등", missing),
     nonTaxableWon: optionalMoney(values, "nonTaxableStatus", "nonTaxableWon", "비과세·과세가액 불산입액", missing),
     priorGiftSpouseWon: giftTotal("spouse", "amountWon"),
     priorGiftHeirsWon: giftTotal("child", "amountWon"),
@@ -385,6 +394,29 @@ function buildInheritanceInput(values: FormValues): { input: InheritanceInput | 
     spousePriorGiftTaxableWon: giftTotal("spouse", "taxableBaseWon"),
   };
   return { input: missing.length || unsupported.length ? null : input, missing, unsupported, derived };
+}
+
+function buildDeemedParts(values: FormValues, missing: string[]): DeemedAssetPart[] {
+  const parts: DeemedAssetPart[] = [];
+  if (condition(values, "deemedAssetsStatus") === "no") return parts;
+  if (condition(values, "deemedAssetsStatus") !== "yes") {
+    missing.push("퇴직금·보험금·신탁재산 등: 없음·있음·모름 중 하나를 선택해 주세요.");
+    return parts;
+  }
+  for (const { kind, label, subtype } of deemedKinds) {
+    const status = condition(values, `${kind}Status`);
+    if (status === "no") continue;
+    if (status !== "yes") { missing.push(`${label} 여부: 없음·있음·모름 중 하나를 선택해 주세요.`); continue; }
+    const classification = text(values, `${kind}Classification`);
+    parts.push({
+      id: kind, kind, subtype,
+      classification: (classification || null) as DeemedAssetPart["classification"],
+      estateIncludedWon: requiredMoney(values, `${kind}Included`, `${label} 상속재산 포함액`, missing),
+      financialEligibleWon: kind === "retirement" ? 0 : requiredMoney(values, `${kind}Eligible`, `${label} 금융공제 대상액`, missing),
+    });
+  }
+  if (!parts.length) missing.push("퇴직금·보험금·신탁재산 등: 해당 재산 종류를 선택해 주세요.");
+  return parts;
 }
 
 function buildGiftInput(values: FormValues): { input: GiftInput | null; missing: string[]; unsupported: UnsupportedItem[]; derived: string[] } {
@@ -410,6 +442,7 @@ function buildGiftInput(values: FormValues): { input: GiftInput | null; missing:
     ? requiredMoney(values, "priorGiftDeductionWon", "같은 증여자의 과거 증여에 적용한 공제", missing) : null;
   const otherGiftDeductionWon = optionalMoney(values, "otherGiftDeductionStatus", "otherGiftDeductionWon", "그 밖의 증여에서 사용한 같은 구분의 공제", missing);
   const appraisalFeeWon = optionalMoney(values, "appraisalStatus", "appraisalFeeWon", "감정평가수수료", missing);
+  const pastSpecial = priorGiftStatus === "yes" && condition(values, "priorGiftMarriageBirthStatus") === "yes";
   let marriageBirthDeductionWon = 0;
   let marriageBirthPreviouslyUsedWon: number | null = 0;
   if (condition(values, "marriageBirthStatus") === "yes") {
@@ -417,15 +450,24 @@ function buildGiftInput(values: FormValues): { input: GiftInput | null; missing:
       unsupported.push({ label: "혼인·출산 증여재산공제", reason: "현재 화면은 직계존속 증여에서 요건 충족을 선택한 경우에만 최대 1억원 한도를 적용합니다." });
     } else {
       marriageBirthDeductionWon = 100_000_000;
-      marriageBirthPreviouslyUsedWon = optionalMoney(values, "marriageBirthUsedStatus", "marriageBirthPreviouslyUsedWon", "이미 사용한 혼인·출산 공제", missing);
     }
   } else if (condition(values, "marriageBirthStatus") !== "no") {
     missing.push("혼인·출산 증여재산공제: 없음·있음·모름 중 하나를 선택해 주세요.");
   }
   const generationSkipStatus = condition(values, "generationSkipStatus");
+  if (condition(values, "marriageBirthStatus") === "yes" || pastSpecial) marriageBirthPreviouslyUsedWon = optionalMoney(values, "marriageBirthUsedStatus", "marriageBirthPreviouslyUsedWon", "이미 사용한 혼인·출산 공제", missing);
   if (generationSkipStatus === "unknown" || generationSkipStatus === "") missing.push("세대생략 할증 여부를 선택해 주세요.");
 
   const input: GiftInput = {
+    priorGiftMarriageBirthStatus: priorGiftStatus === "no" ? "no" : condition(values, "priorGiftMarriageBirthStatus") || null,
+    priorGiftMarriageBirthAppliedWon: pastSpecial ? requiredMoney(values, "priorGiftMarriageBirthAppliedWon", "과거 혼인·출산 공제액", missing) : 0,
+    priorGiftTaxableBaseWon: pastSpecial ? requiredMoney(values, "priorGiftTaxableBaseWon", "과거 신고 과세표준", missing) : null,
+    priorGiftHistoryConfirmed: pastSpecial ? (text(values, "priorGiftHistoryConfirmed") === "yes" ? true : text(values, "priorGiftHistoryConfirmed") === "no" ? false : null) : null,
+    ordinaryCashHistory: pastSpecial ? (text(values, "ordinaryCashHistory") === "yes" ? true : text(values, "ordinaryCashHistory") === "no" ? false : null) : null,
+    priorGiftDate: pastSpecial ? text(values, "priorGiftDate") || null : null,
+    priorGiftMarriageBirthEvent: pastSpecial ? (text(values, "priorGiftMarriageBirthEvent") || null) as GiftInput["priorGiftMarriageBirthEvent"] : null,
+    priorGiftMarriageBirthEventDate: pastSpecial ? text(values, "priorGiftMarriageBirthEventDate") || null : null,
+    priorGiftDonor: pastSpecial ? (text(values, "priorGiftDonor") || null) as GiftInput["priorGiftDonor"] : null,
     giftDate: text(values, "giftDate"),
     resident: resident === "no" ? "no" : "yes",
     relationship,
@@ -720,7 +762,7 @@ function InheritanceFields({ values, setValue }: { values: FormValues; setValue:
         <h2>재산·거래금액</h2>
         <div className={styles.grid}>
           <MoneyField values={values} name="realEstateWon" label="부동산가액" onChange={setValue} />
-          <MoneyField values={values} name="financialAssetsWon" label="금융재산가액" onChange={setValue} />
+          <MoneyField values={values} name="financialAssetsWon" label="금융재산가액" hint="아래에서 별도로 입력하는 보험금·금전신탁은 중복 포함하지 않습니다." onChange={setValue} />
           <MoneyField values={values} name="otherAssetsWon" label="기타재산가액" onChange={setValue} />
         </div>
         {hasFinancialAssets ? (
@@ -737,9 +779,19 @@ function InheritanceFields({ values, setValue }: { values: FormValues; setValue:
         <h2>추가 조건</h2>
         <div className={styles.conditionGrid}>
           <ConditionField values={values} name="deemedAssetsStatus" label="퇴직금·보험금·신탁재산 등" onChange={setValue} />
-          {condition(values, "deemedAssetsStatus") === "yes" ? <MoneyField values={values} name="deemedAssetsWon" label="해당 재산가액" onChange={setValue} /> : null}
+          {condition(values, "deemedAssetsStatus") === "yes" ? deemedKinds.map(({ kind, label, hint }) => <div key={kind}>
+            <ConditionField values={values} name={`${kind}Status`} label={`${label} 여부`} onChange={setValue} />
+            {condition(values, `${kind}Status`) === "yes" ? <div className={styles.grid}>
+              <SelectField values={values} name={`${kind}Classification`} label={`${label} 분류 확인`} options={[
+                { value: "confirmed", label: "포함 범위·공제 성격 확인" }, { value: "unknown", label: "모름·미확인" }, { value: "unsupported", label: "특수 계약·별도 검토 필요" },
+              ]} onChange={setValue} />
+              <MoneyField values={values} name={`${kind}Included`} label={`${label} 상속재산 포함액`} hint={hint} onChange={setValue} />
+              {kind !== "retirement" ? <MoneyField values={values} name={`${kind}Eligible`} label={`${label} 금융공제 대상액`} hint="위 포함액 중 확인된 금융공제 대상 금액. 공제에서 제외되는 부분은 빼고 입력합니다." onChange={setValue} /> : <p className={styles.inlineHelp}>지원하는 사망 후 퇴직급여의 금융공제 대상액은 0원입니다.</p>}
+            </div> : null}
+          </div>) : null}
           <ConditionField values={values} name="nonTaxableStatus" label="비과세·과세가액 불산입액" onChange={setValue} />
           {condition(values, "nonTaxableStatus") === "yes" ? <MoneyField values={values} name="nonTaxableWon" label="불산입액" onChange={setValue} /> : null}
+          {condition(values, "nonTaxableStatus") === "yes" && (hasFinancialAssets || condition(values, "deemedAssetsStatus") === "yes") ? <ConditionField values={values} name="nonTaxableFinancialOverlap" label="비과세 재산과 금융공제 중복 여부" onChange={setValue} /> : null}
           <ConditionField values={values} name="debtStatus" label="채무" onChange={setValue} />
           {condition(values, "debtStatus") === "yes" ? <>
             <MoneyField values={values} name="debtWon" label="총채무 금액" onChange={setValue} />
@@ -814,7 +866,19 @@ function GiftFields({ values, setValue }: { values: FormValues; setValue: (name:
               <MoneyField values={values} name="priorGiftWon" label="최근 10년 증여재산가액" onChange={setValue} />
               <MoneyField values={values} name="priorGiftDeductionWon" label="같은 증여자의 과거 증여에 적용한 공제" hint="위 과거 증여에서 실제 적용한 일반 증여재산공제. 직계존속은 그 배우자 포함." onChange={setValue} />
               <ConditionField values={values} name="previousTaxKnown" label="종전 증여 산출세액 확인" onChange={setValue} />
-              {condition(values, "previousTaxKnown") === "yes" ? <MoneyField values={values} name="previousTaxPaidWon" label="종전 증여 산출세액" onChange={setValue} /> : null}
+              {condition(values, "previousTaxKnown") === "yes" ? <MoneyField values={values} name="previousTaxPaidWon" label="종전 증여 산출세액" hint="과거 신고서의 산출세액입니다. 신고세액공제 후 실제 납부액이나 영수증 금액과 다릅니다." onChange={setValue} /> : null}
+              <ConditionField values={values} name="priorGiftMarriageBirthStatus" label="과거 혼인·출산 공제 이력" onChange={setValue} />
+              <p className={styles.inlineHelp}>이번에 합산하는 과거 증여에 적용한 공제가 있나요? 이번 신규 공제 여부와 별도로 확인합니다.</p>
+              {condition(values, "priorGiftMarriageBirthStatus") === "yes" ? <>
+                <SelectField values={values} name="priorGiftDonor" label="과거 증여자" options={[{ value: "sameFather", label: "이번과 동일한 아버지" }, { value: "other", label: "다른 관계·여러 증여자 (별도 검토)" }]} onChange={setValue} />
+                <InputField values={values} name="priorGiftDate" label="과거 증여일" type="date" onChange={setValue} />
+                <SelectField values={values} name="priorGiftMarriageBirthEvent" label="과거 혼인·출산 구분" options={[{ value: "marriage", label: "혼인" }, { value: "birth", label: "출산·입양" }]} onChange={setValue} />
+                <InputField values={values} name="priorGiftMarriageBirthEventDate" label="과거 혼인·출산 기준일" type="date" onChange={setValue} />
+                <MoneyField values={values} name="priorGiftMarriageBirthAppliedWon" label="과거 혼인·출산 공제액" hint="합산하는 과거 증여에 적용한 특별공제만 입력합니다. 다른 증여자의 사용액은 포함하지 않습니다." onChange={setValue} />
+                <MoneyField values={values} name="priorGiftTaxableBaseWon" label="과거 신고 과세표준" onChange={setValue} />
+                <SelectField values={values} name="priorGiftHistoryConfirmed" label="과거 신고·공제 유효성" options={[{ value: "yes", label: "유효한 신고·공제 확인" }, { value: "unknown", label: "모름" }, { value: "no", label: "취소·수정·중복 신고·특례 있음" }]} onChange={setValue} />
+                <SelectField values={values} name="ordinaryCashHistory" label="일반 현금증여 이력" options={[{ value: "yes", label: "합산 대상만 있는 단순 현금증여" }, { value: "unknown", label: "모름" }, { value: "no", label: "비현금·부담부·특례·다른 내역 포함" }]} onChange={setValue} />
+              </> : null}
             </>
           ) : null}
           <ConditionField values={values} name="otherGiftDeductionStatus" label="그 밖의 증여에서 사용한 같은 구분의 공제" onChange={setValue} />
@@ -825,6 +889,8 @@ function GiftFields({ values, setValue }: { values: FormValues; setValue: (name:
           {condition(values, "marriageBirthStatus") === "yes" ? <>
             <SelectField values={values} name="marriageBirthEvent" label="혼인·출산 구분" options={[{ value: "marriage", label: "혼인" }, { value: "birth", label: "출산·입양" }]} onChange={setValue} />
             <InputField values={values} name="marriageBirthEventDate" label="혼인·출산 기준일" type="date" hint="혼인신고일(예정일 포함), 출생일 또는 입양신고일" onChange={setValue} />
+          </> : null}
+          {condition(values, "marriageBirthStatus") === "yes" || (condition(values, "priorGiftStatus") === "yes" && condition(values, "priorGiftMarriageBirthStatus") === "yes") ? <>
             <ConditionField values={values} name="marriageBirthUsedStatus" label="이미 사용한 혼인·출산 공제" onChange={setValue} />
             {condition(values, "marriageBirthUsedStatus") === "yes" ? <MoneyField values={values} name="marriageBirthPreviouslyUsedWon" label="이미 사용한 혼인·출산 공제 금액" hint="부모·조부모 등 모든 직계존속의 혼인·출산 공제를 합한 평생 사용액" onChange={setValue} /> : null}
           </> : null}
@@ -1078,6 +1144,7 @@ export function SimpleTaxCalculator() {
         <p>자산승계 360 · 자체 참고 초안</p>
         <h1>간편 세금계산</h1>
         <span>날짜·가족관계·금액을 입력하면 같은 화면에서 예상 세액을 확인합니다. 확정 신고 전에는 전문가 검토가 필요합니다.</span>
+        <p>지원일: {kind === "capitalGains" ? "2021-12-08" : "2023-01-01"} ~ {SIMPLE_CALCULATOR_CHECKED_ON} · 계산 기준 검토일: {SIMPLE_CALCULATOR_CHECKED_ON}</p>
       </section>
       <div className={styles.layout}>
         <section ref={formRef} className={styles.formPanel}>
