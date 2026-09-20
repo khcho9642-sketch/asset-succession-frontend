@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ChevronRight, Download, FileText, Info, Search, X } from "lucide-react";
 import styles from "./FormsLibrary.module.css";
+import { AdditionalFormMetadata } from "./AdditionalFormMetadata";
 import { OfficialRegistrationGuides } from "./OfficialRegistrationGuides";
 
 export type LibraryDocument = {
@@ -15,18 +16,21 @@ export type LibraryDocument = {
   originalCategory: string; catalogTitle: string; exampleVerification: string;
   licenseUrl: string;
   primaryArtifactType?: string;
-  preview: {
+  preview?: {
     method: string; sourceRole: string; width: number; height: number; lowResolution: boolean;
   };
+  form_no?: string | null; revised_at?: string | null; deadline?: string | null; deadline_basis?: string | null;
+  source_type?: string | null; checked_at?: string | null; status?: string; task_id?: string;
   files: { name: string; path: string; format: string; role: string; bytes: number; delivery: string }[];
 };
 type Props = {
   documents: LibraryDocument[];
 };
-const categories = ["전체", "재산분배·상속", "증여", "매매·임대차", "차용·상환", "양도", "가업승계", "공제·납부", "등기"];
-const deliveryLabels: Record<string, string> = { hosted: "사이트에서 다운로드", direct: "국세청 파일 바로 받기", pending: "파일 미확보" };
-const actionLabel = (item: LibraryDocument) => item.primaryArtifactType === "derived-image-compilation" ? "사례 PDF 받기" : item.delivery === "direct" ? "국세청 파일 받기" : "기관 원본 받기";
-const previewLabel = (item: LibraryDocument) => item.preview.method === "institution-image" ? "웹 사례 원본 이미지"
+const categories = ["전체", "재산분배·상속", "증여", "매매·임대차", "차용·상환", "양도", "가업승계", "공제·납부", "등기", "재산조회", "유언", "후견", "불복·정정"];
+const deliveryLabels: Record<string, string> = { hosted: "사이트에서 다운로드", direct: "국세청 파일 바로 받기", provider: "공식 제공처", pending: "확인 중" };
+const actionLabel = (item: LibraryDocument) => item.delivery === "provider" ? "공식 제공처" : item.primaryArtifactType === "derived-image-compilation" ? "사례 PDF 받기" : item.delivery === "direct" ? "국세청 파일 받기" : "기관 원본 받기";
+const previewLabel = (item: LibraryDocument) => !item.preview ? "자료 정보"
+  : item.preview.method === "institution-image" ? "웹 사례 원본 이미지"
   : item.preview.sourceRole === "example" ? "기관 작성 예시"
   : item.preview.sourceRole === "combined" ? "기관 합본 첫 페이지" : "기관 원본 양식";
 const normalize = (text: string) => text.normalize("NFKC").toLocaleLowerCase("ko-KR").replace(/\s+/g, "");
@@ -43,7 +47,7 @@ export function FormsLibrary({ documents }: Props) {
     && (delivery === "all" || item.delivery === delivery)
     && normalize(`${item.title} ${item.catalogTitle} ${item.originalCategory} ${item.category} ${item.description} ${item.tags} ${item.format} ${item.institution}`).includes(normalize(query)));
   const counts = Object.fromEntries(Object.keys(deliveryLabels).map(key => [key, documents.filter(item => item.delivery === key).length]));
-  const hostedFileCount = documents.filter(item => item.delivery === "hosted").reduce((sum, item) => sum + item.files.length, 0);
+  const hostedFileCount = documents.filter(item => item.delivery === "hosted" && !item.task_id).reduce((sum, item) => sum + item.files.length, 0);
 
   useEffect(() => {
     const element = dialog.current;
@@ -80,16 +84,16 @@ export function FormsLibrary({ documents }: Props) {
         <p className={styles.eyebrow}>자산승계 360 · 서류 자료실</p>
         <h1 id="library-title">생각을 정리하고,<br />필요한 서류를 준비하세요.</h1>
         <p className={styles.description}>재산을 나누고, 증여를 약속하고, 상담을 준비할 때.<br />빈 양식과 작성 예시를 함께 살펴보세요.</p>
-        <p className={styles.catalogSummary} data-catalog-summary><strong>전체 {documents.length}개 자료</strong><span>사이트에서 {counts.hosted}개 개별·전체 다운로드</span></p>
+        <p className={styles.catalogSummary} data-catalog-summary><strong>전체 {documents.length}개 자료</strong><span>개별 다운로드 {counts.hosted} · 공식 제공처 {counts.provider} · 확인 중 {counts.pending}</span></p>
       </div>
       <div className={styles.bundle} data-forms-bundle>
         <p className={styles.bundleOverline}>기관 원본 모아 받기</p>
-        <p className={styles.bundleCount}><strong>{counts.hosted}</strong>개 자료</p>
+        <p className={styles.bundleCount}><strong>74</strong>개 기존 자료</p>
         <p className={styles.bundleDescription}>원본·예시·형식별 파일 {hostedFileCount}개</p>
         <a className={styles.bundleButton} href="/downloads/official-forms/official-forms.zip" download data-bundle-download>
-          {counts.hosted}개 자료 한번에 받기<Download size={18} aria-hidden="true" />
+          기존 74개 자료 한번에 받기<Download size={18} aria-hidden="true" />
         </a>
-        <p className={styles.bundleExclusions}>전체 {counts.hosted}개 자료 포함 · 웹 사례 1개는 원본 이미지와 사이트 변환 PDF로 제공합니다.</p>
+        <p className={styles.bundleExclusions}>기존 74개 묶음입니다. 새로 확보한 원본은 각 카드에서 별도로 받습니다. 웹 사례 1개는 사이트 변환 PDF를 포함합니다.</p>
       </div>
     </section>
     <aside className={styles.notice} aria-label="양식 이용 안내">
@@ -126,29 +130,30 @@ export function FormsLibrary({ documents }: Props) {
       <div className={styles.grid}>
         {filtered.map(item => <article className={styles.card} key={item.id} data-form-id={item.id} data-delivery={item.delivery}>
           <div className={styles.cardTop}><span>{item.originalCategory}</span><span className={styles.format}><FileText size={13} aria-hidden="true" />{item.format}</span></div>
-          <a href={item.example ?? item.sourceUrl} target="_blank" rel="noopener noreferrer" className={styles.visual}
+          <a href={item.example || item.sourceUrl || "#forms-usage"} target="_blank" rel="noopener noreferrer" className={styles.visual}
             onClick={event => openPreview(event, item)} aria-label={`${item.title} 자료 확인`} data-form-preview>
             <span className={styles.previewTag}>{previewLabel(item)}</span>
-            {item.thumbnail ? <Image src={item.thumbnail} width={item.preview.width} height={item.preview.height} alt={`${item.title} · ${previewLabel(item)} 미리보기`}
+            {item.thumbnail && item.preview ? <Image src={item.thumbnail} width={item.preview.width} height={item.preview.height} alt={`${item.title} · ${previewLabel(item)} 미리보기`}
               unoptimized className={styles.thumbnail} /> : <span className={styles.providerVisual}><FileText size={34} aria-hidden="true" />{item.institution}</span>}
             <span className={styles.previewOpen}><Search size={13} aria-hidden="true" />{item.thumbnail ? "미리보기" : "자료 정보"}</span>
           </a>
           <div className={styles.cardCopy}>
             <span className={styles.deliveryBadge} data-verification-status={item.delivery}>{deliveryLabels[item.delivery]}</span>
             <h3>{item.title}</h3><p>{item.description}</p><small>{item.tags}</small>
+            <AdditionalFormMetadata item={item} />
             {item.delivery === "pending" ? <p className={styles.pendingNote}>{item.verification}</p> : null}
           </div>
           <div className={styles.cardActions}>
-            {item.delivery !== "pending" ? <a className={styles.download} href={item.editable} download={item.delivery === "hosted"} rel="noopener noreferrer" data-form-download
+            {item.delivery !== "pending" ? <a className={styles.download} href={item.editable} target={item.delivery === "provider" ? "_blank" : undefined} download={item.delivery === "hosted"} rel="noopener noreferrer" data-form-download
               aria-label={`${item.title} ${actionLabel(item)}`}>
               <Download size={16} aria-hidden="true" />{actionLabel(item)}
             </a> : <span className={styles.download} aria-disabled="true">다운로드 미제공</span>}
             {item.example ? <a className={styles.example} href={item.example} target="_blank" rel="noopener noreferrer"
               onClick={event => openPreview(event, item)} aria-label={`${item.title} 기관 작성 예시 보기`}>
               기관 예시<ArrowRight size={15} aria-hidden="true" />
-            </a> : <a className={styles.example} href={item.editable || item.sourceUrl} onClick={event => openPreview(event, item)} aria-label={`${item.title} 파일·정보 보기`}>파일·정보<ArrowRight size={15} aria-hidden="true" /></a>}
+            </a> : <a className={styles.example} href={item.editable || item.sourceUrl || "#forms-usage"} onClick={event => openPreview(event, item)} aria-label={`${item.title} 파일·정보 보기`}>파일·정보<ArrowRight size={15} aria-hidden="true" /></a>}
           </div>
-          <div className={styles.cardFoot}><span>{item.sizeLabel}</span><a href={item.sourceUrl} target="_blank" rel="noopener noreferrer">{item.institution}</a></div>
+          <div className={styles.cardFoot}><span>{item.sizeLabel}</span><a href={item.sourceUrl || "#forms-usage"} target="_blank" rel="noopener noreferrer">{item.institution}</a></div>
         </article>)}
       </div>
       {filtered.length === 0 && <div className={styles.empty}>
@@ -185,12 +190,12 @@ export function FormsLibrary({ documents }: Props) {
           <button type="button" aria-label="미리보기 닫기" onClick={() => dialog.current?.close()}><X size={22} aria-hidden="true" /></button>
         </div>
         <div className={styles.dialogImage}>
-          {preview.preview.lowResolution && <p className={styles.previewNote} data-preview-resolution-note>문서에 포함된 작은 미리보기 이미지입니다. 자세한 내용은 원본 파일에서 확인해 주세요.</p>}
-          {preview.thumbnail ? <Image src={preview.thumbnail} width={preview.preview.width} height={preview.preview.height}
+          {preview.preview?.lowResolution && <p className={styles.previewNote} data-preview-resolution-note>문서에 포함된 작은 미리보기 이미지입니다. 자세한 내용은 원본 파일에서 확인해 주세요.</p>}
+          {preview.thumbnail && preview.preview ? <Image src={preview.thumbnail} width={preview.preview.width} height={preview.preview.height}
             style={{ width: Math.min(640, preview.preview.width) }} unoptimized alt={`${preview.title} · ${previewLabel(preview)} 미리보기`} /> : null}
           <p><strong>{deliveryLabels[preview.delivery]}</strong> · {preview.verification}</p><p>{preview.exampleVerification}</p><p>{preview.license} · 확인일 {preview.checkedOn}</p>
-          <a href={preview.sourceUrl} target="_blank" rel="noopener noreferrer">출처 게시물 확인</a>
-          {" · "}<a href={preview.licenseUrl} target="_blank" rel="noopener noreferrer">이용 조건 확인</a>
+          {preview.sourceUrl ? <a href={preview.sourceUrl} target="_blank" rel="noopener noreferrer">출처 게시물 확인</a> : <p>확인된 출처가 아직 없습니다.</p>}
+          {preview.licenseUrl ? <a href={preview.licenseUrl} target="_blank" rel="noopener noreferrer">이용 조건 확인</a> : null}
           {preview.files.length > 0 && <ul className={styles.fileList} aria-label="받을 수 있는 원본 파일">
             {preview.files.map(file => <li key={file.path}>
               <a href={file.path} download={file.delivery === "hosted"} rel="noopener noreferrer" data-file-download>

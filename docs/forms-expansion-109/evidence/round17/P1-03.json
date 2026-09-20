@@ -1,0 +1,75 @@
+{
+  "task_id": "P1-03",
+  "base_commit": "4c211a9fa669f44fab558ae709706d64c89234c3",
+  "inherited_from_commit": "28c1912f3a070924e6f61a03197b4dd717e174b4",
+  "integrated_at": "2026-09-20T09:09:24.513Z",
+  "operation": "source_url_update",
+  "target_id": "REG-I-01",
+  "retained_evidence": [
+    {
+      "path": "docs/forms-expansion-109/evidence/round16/P1-03.json",
+      "sha256": "4026bce73fa2818877b916898b1288959957d11dfecb2e1c5ed7e33d1dd01a85",
+      "copied_from_commit": "28c1912f3a070924e6f61a03197b4dd717e174b4"
+    },
+    {
+      "path": "docs/forms-expansion-109/evidence/round16/support/P1-03.json",
+      "sha256": "eb147a80db71c691a3453d4a1b9c8a593032d8be9629bbffbc25f1de989452eb",
+      "copied_from_commit": "28c1912f3a070924e6f61a03197b4dd717e174b4"
+    }
+  ],
+  "verification": {
+    "task_id": "P1-03",
+    "checked_at": "2026-09-20T09:08:36Z",
+    "method": "HTTP and existing HWP binary parser; not visual layout review",
+    "page": {
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=3&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "http_status": 200,
+      "bytes": 120524,
+      "sha256": "388ee07f95d2b27762af6f5748246b1e5f296cfaa12eb4adf88c8182fd8f6754",
+      "scope": "reachability only; form existence is evidenced by the retained round16 record"
+    },
+    "files": [
+      {
+        "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1776928547393",
+        "checked_at": "2026-09-20T09:08:37Z",
+        "http_status": 200,
+        "bytes": 29696,
+        "sha256": "52c55269052ae428f590a373eb5cefbfd94f6bcddb8337f2e988e200d3924dd6",
+        "format": "hwp",
+        "matched_terms": [
+          "소유권이전등기신청",
+          "상속"
+        ],
+        "title_verified": true,
+        "matches_previous_hash": true,
+        "matches_previous_bytes": true,
+        "local_review_file": ".tmp/round17-originals/P1-03_52c55269052a.hwp"
+      },
+      {
+        "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1776928582533",
+        "checked_at": "2026-09-20T09:08:38Z",
+        "http_status": 200,
+        "bytes": 30208,
+        "sha256": "0cc9ea72420abb26cfd1cfdb142e33570759aa897ec17d238a909a64b7acd395",
+        "format": "hwp",
+        "matched_terms": [
+          "소유권이전등기신청",
+          "상속"
+        ],
+        "title_verified": true,
+        "matches_previous_hash": true,
+        "matches_previous_bytes": true,
+        "local_review_file": ".tmp/round17-originals/P1-03_0cc9ea72420a.hwp"
+      }
+    ],
+    "public_binaries_added": false
+  },
+  "completion_scope": "기존 검증 인계 및 공식 HWP 재수신·제목·크기·SHA-256 대조. 인쇄 레이아웃과 현행 제출 적합성은 미검수.",
+  "publication": "공식 제공처 연결. 이번 커밋에서 원본 바이너리 재배포 없음.",
+  "completed_in_this_batch": [
+    "P0-10",
+    "P1-02",
+    "P1-03"
+  ],
+  "previously_completed_records_unchanged": 92
+}

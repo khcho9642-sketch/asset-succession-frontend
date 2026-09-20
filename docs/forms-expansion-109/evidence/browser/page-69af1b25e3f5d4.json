@@ -1,0 +1,76 @@
+{
+  "requested_url": "https://mmc.kinfa.or.kr/view/dmt/KFA_DMT_01010000",
+  "url": "https://mmc.kinfa.or.kr/view/dmt/KFA_DMT_01010000",
+  "checked_at": "2026-09-17T09:50:17Z",
+  "http_status": 200,
+  "events": [
+    {
+      "url": "https://mmc.kinfa.or.kr/view/dmt/KFA_DMT_01010000",
+      "http_status": 200
+    },
+    {
+      "url": "https://www.googletagmanager.com/ns.html?id=GTM-W59LJ52",
+      "http_status": 200
+    }
+  ],
+  "text": "휴면예금\n취소\n\n나도 몰랐던 내 돈을 찾을 수 있습니다.\n\n휴면예금 조회를 통해\n'24년 말까지 1조 9,617억 원을\n찾아갔어요.\n휴면예금이란\n고객이 오랫동안 찾아가지 않아 소멸시효(5년)가 완성된 예금, 적금, 자기앞수표 등 입니다.\n휴면보험금이란\n고객이 오랫동안 찾아가지 않아 소멸시효(3년)가 완성된 보험회사의 해지(실효)환급금, 만기보험금, 계약자배당금 등 입니다.\n\n소멸시효가 완성된 휴면예금은 법령에 따라\n\n서민금융진흥원에 출연되어\n통합 관리되고 있습니다.\n휴면예금을 한 번에 조회하고\n지급 신청해 보세요.\n휴면예금 조회\n조회는 24시간 365일 언제든지 가능해요.\n휴면예금 지급\n서민금융진흥원에 출연된 휴면예금\n\n평일 1시 ~ 23시 지급 신청 가능해요.\n\n(23시 ~ 1시는 은행 점검시간입니다.)\n\n휴면예금이 2천만원 이하인 경우에만 온라인에서 지급이 가능해요.\n\n2천만원 초과하는 경우에는 해당 금융회사 영업점 또는 가까운 서민금융통합지원센터로 방문해야 지급이 가능해요.\n\n쉽고 편리하게 이용이 가능합니다.\n온라인 신청(2천만 원 이하)\n휴면예금\n조회\n입금계좌\n선택\n지급 완료\n방문 신청(2천만 원 초과)\n방문 조회, 방문 지급 신청 시 본인, 대리인, 상속인의 구비 류를 확인할 수 있습니다.\n구분\t서민금융통합지원센터 방문 시 구비서류\n본인\t신분증\n대리인\t방문자(대리인)신분증,\n원권리자의 위임장 및 인감증명서 등\n상속인\t방문자(상속인)신분증,\n상속관계 증빙서류(가족관계증명서 등), 공동상속인 전원 위임장 및 인감증명서 등\n\n대리인 등이 방문하는 경우 출연금융회사 또는 서민금융콜센터 국번없이 1397로 문의해 주세요.\n\n휴면예금 조회하기\n",
+  "sha256": "e36b2f2bb2fabe747cfe0a101e9deac6ecabdbca0b64c95708fbd26a69627024",
+  "links": [
+    {
+      "text": "취소",
+      "url": "javascript:ComUtil.submit('/view/main');",
+      "onclick": null
+    },
+    {
+      "text": "휴면예금 조회하기",
+      "url": "https://mmc.kinfa.or.kr/view/dmt/KFA_DMT_01010000#!",
+      "onclick": null
+    },
+    {
+      "text": "이전",
+      "url": "https://mmc.kinfa.or.kr/view/dmt/KFA_DMT_01010000#!",
+      "onclick": null
+    },
+    {
+      "text": "취소",
+      "url": "",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "javascript:",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "javascript:",
+      "onclick": null
+    },
+    {
+      "text": "약관 동의",
+      "url": "https://mmc.kinfa.or.kr/view/dmt/KFA_DMT_01010000#",
+      "onclick": null
+    },
+    {
+      "text": "정상적인 초점 이동을 위해 자동으로 생성된 html입니다.",
+      "url": "javascript:;",
+      "onclick": null
+    },
+    {
+      "text": "이전",
+      "url": "https://mmc.kinfa.or.kr/view/dmt/KFA_DMT_01010000#!",
+      "onclick": null
+    },
+    {
+      "text": "정상적인 초점 이동을 위해 자동으로 생성된 html입니다.",
+      "url": "javascript:;",
+      "onclick": null
+    },
+    {
+      "text": "정상적인 초점 이동을 위해 자동으로 생성된 html입니다.",
+      "url": "javascript:;",
+      "onclick": null
+    }
+  ],
+  "forms": []
+}

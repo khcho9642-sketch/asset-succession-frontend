@@ -1,0 +1,22 @@
+{
+  "url": "https://www.nhis.or.kr/",
+  "http_status": 200,
+  "checked_at": "2026-09-17T11:34:51Z",
+  "sha256": "4b5d914f573b472168cf52824e54a439112f438d40b2305ac1e4348528184b24",
+  "text": "국민건강보험",
+  "links": [],
+  "forms": [
+    {
+      "action": "https://www.nhis.or.kr/nhis/minwon/retrieveStimmyInit.do",
+      "method": "post",
+      "inputs": [
+        {
+          "name": "netfunnelKey",
+          "id": null,
+          "type": "hidden",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "task_id": "P7-04",
+  "completed": 88,
+  "unchecked": 21,
+  "changed_task_ids_in_session": [
+    "P7-04"
+  ],
+  "existing_completed_records_unchanged": 87,
+  "existing_catalog_records_unchanged": 74,
+  "manifest_records": 177,
+  "tasks_summary_results_consistent": true,
+  "legacy_bundle_metadata_unchanged": true,
+  "binary_files_changed": false,
+  "scope": "Single provider card, matching result, evidence, guide, tasks, summary and optional new checkpoint."
+}

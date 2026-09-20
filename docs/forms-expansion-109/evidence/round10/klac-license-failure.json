@@ -1,0 +1,5 @@
+{
+  "url": "https://www.klac.or.kr/disclosure/cpyrhtManage.do",
+  "error": "HTTPSConnectionPool(host='www.klac.or.kr', port=443): Max retries exceeded with url: /disclosure/cpyrhtManage.do (Caused by NameResolutionError(\"HTTPSConnection(host='www.klac.or.kr', port=443): Failed to resolve 'www.klac.or.kr' ([Errno -3] Temporary failure in name resolution)\"))",
+  "checked_at": "2026-09-19T14:29:09Z"
+}

@@ -1,0 +1,3182 @@
+{
+  "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+  "checked_at": "2026-09-17T11:35:11Z",
+  "events": [
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/websquare/suffix.txt?postfix=17896448966273038.0421770450007",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/websquare/config.xml?postfix=17896448967676742.483877313979",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/websquare/externalJS/jquery/jquery-3.7.1.min.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/websquare/externalJS/es5-sham.mod.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/websquare/externalJS/papaparse.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/websquare/common.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/websquare/javascript.wq?w2xType=6&q=uiplugin/popup&postfix=NS4wXzQuNTI0NUIuMjAyNDA5MjcuMTE0NzMyXw==MS44&compression=true",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/websquare/commonScope.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/websquare/hotfix.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/websquare/blockscript.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/sccdo.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/sccorto.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/scdateo.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/scglblo.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/sclibo.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/scmsgo.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/scpolyfillo.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/scscrno.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/scutilo.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/psp.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspcdp.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspcom.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspetc.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspscrn.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspsoltn.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/psputils.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/ui/message/pspmsg.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspadmin.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspstng.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspschkey.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/ui/pspcom/PSPLayoutDefault.xml?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/websquare/serverTime.wq?pattern=yyyyMMddHHmmssSSS&idx=17896448997497818.070419453119",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/ui/pspcom/pfhead01.xml?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/ui/pspcom/pflocation.xml?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/ui/pspcom/pfmenu.xml?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/ui/pspcom/pfright.xml?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/ui/pspcom/pffooter.xml?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/pspmenu/allmenu.on",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/ui/psp700/PSP720M24.xml?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/view/etc/pspeuckr.on",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/ui/pspcom/pfmenu.xml?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/ui/pspcom/PSPLoading.html?param=%c1%b6%c8%b8%c1%df%c0%d4%b4%cf%b4%d9.&postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/pspcom/getFilePropVal.on",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/pspsess/getTmprSession.on",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/psp720/selectNboardList.on",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/AnySignPlus/AnySign4PC/AnySign4PC.js?version=20269171130",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/AnySignPlus/AnySign4PC/ext/AnySign.js",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/AnySignPlus/AnySign4PC/ext/anySignjQuery-3.5.1.js",
+      "status": 200
+    }
+  ],
+  "frames": [
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "text": "본문 바로가기\n주메뉴 바로가기\n서브메뉴 바로가기\n환영합니다사용자등록로그인English화면크기\n나의전자소송서류제출각종신청사건유형별 절차안내고객센터\n홈\n사건유형별 절차안내\n공통안내\n양식 및 작성안내\n사건유형별 절차안내\n공통안내\n전자소송안내\n전자소송의 개념\n전자소송준비\n전자소송이용안내\n전자소송 이용시간 및 사용환경\n영상재판안내\n재판지원안내\n소송구조제도\n가사 절차구조제도\n개인파산·회생 소송구조 지정변호사제도\n국선변호인 선정제도\n증인지원제도\n사법지원(편의제공)\n외국인 민원 통역서비스\n관할법원안내\n법률용어설명\n납부환급안내\n납부\n환급\n알림서비스안내\n민사 등 사건진행 알림서비스\n개인 회생 및 파산 진행 알림서비스\n양식 및 작성안내\n양식모음\n작성사례\n법원상담사례\n민사\n가사\n행정\n특허\n개인파산/회생\n강제집행\n형사\n가정보호\n소년보호\n가족관계등록비송\n가족관계등록\n공탁\n나홀로소송\n양식모음\n-전체-\n민사\n신청\n강제집행\n개인파산/면책\n가사\n행정\n가족관계등록\n형사\n정보공개청구\n개인회생\n소년·가정·아동보호\n특허\n후견등기\n일반회생\n법인회생\n법인파산\n독촉\n장애인 사법지원\n분야,색인 을(를) 나타낸 표\n분야\t\n전체\n민사\n개인파산/면책\n개인회생\n일반회생\n법인회생\n법인파산\n가사\n신청\n강제집행\n행정\n가족관계등록\n형사\n정보공개청구\n공탁\n소년ㆍ가정ㆍ아동보호\n특허\n후견등기\n독촉\n장애인 사법지원\n\n색인\t\n양식모음목록은(는) 제목,첨부 을(를) 나타낸 표\n번호\t\t제목\t첨부\n1\t\t[가사] (서울가정법원)인지의 허가청구\t \n2\t\t[가사] 관할변경 신청서\t \n3\t\t[가사] 기초조사표(소송용, 원고)\t \n4\t\t[가사] 기초조사표(소송용, 피고)\t \n5\t\t[가사] 기초조사표(조정용, 신청인)\t \n6\t\t[가사] 기초조사표(조정용, 피신청인)\t \n7\t\t[가사] 담보제공명령신청서\t \n8\t\t[가사] 담보취소(담보물변경)신청서\t \n9\t\t[가사] 답변서(갈등저감형 - 이혼 청구, 미성년자녀가 있는 경우)\t \n10\t\t[가사] 답변서(갈등저감형 - 이혼 청구, 위자료, 재산분할, 미성년자녀가 있는 경우)\t \n총\n984\n건\n12345678910\n10개씩 보기\n20개씩 보기\n30개씩 보기\nchat\n이용약관개인정보처리방침저작권보호정책링크시유의사항문제해결 안내고객의 소리원격지원 서비스\n관련사이트\n――――― 법원 ―――――\n대한민국 법원\n특허법원\n――― 대법원사이트 ―――\n종합법률정보\n전자가족관계등록시스템\n인터넷등기소\n법원경매정보\n등기정보광장\n전자공탁\n사법정보공개포털\n―――― 특허관련 ――――\n지식재산처\n지식재산처 특허로\n특허심판원\n한국특허정보원\n―――― 공공기관 ――――\n대한민국전자정부\n행정전자서명 인증관리센터\n대한법률구조공단\n대한변협법률구조재단\n대한변호사협회 변호사정보센터\n이용 및 장애 문의 02) 3480-1715 (평일 9시~18시)\nCOPYRIGHT Ⓒ 2025 SUPREME COURT OF KOREA. ALL RIGHTS RESERVED.",
+      "links": [
+        {
+          "text": "본문 바로가기",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#mf_pfwork",
+          "onclick": null,
+          "id": "mf_wq_uuid_4"
+        },
+        {
+          "text": "주메뉴 바로가기",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#mf_pfheader_depth1_menu5",
+          "onclick": null,
+          "id": "mf_wq_uuid_6"
+        },
+        {
+          "text": "서브메뉴 바로가기",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#mf_pfmenu_tbx_ltop_title",
+          "onclick": null,
+          "id": "mf_wq_uuid_8"
+        },
+        {
+          "text": "나의정보",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_myInfo"
+        },
+        {
+          "text": "",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_myInfoMob"
+        },
+        {
+          "text": "사용자등록",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_regUser"
+        },
+        {
+          "text": "로그인",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_login"
+        },
+        {
+          "text": "English",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_engh"
+        },
+        {
+          "text": "홍길동님",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_wq_uuid_50"
+        },
+        {
+          "text": "나의정보",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_wq_uuid_51"
+        },
+        {
+          "text": "로그아웃",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_wq_uuid_55"
+        },
+        {
+          "text": "",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on",
+          "onclick": null,
+          "id": "mf_pfheader_wq_uuid_63"
+        },
+        {
+          "text": "나의사건현황나의사건관리진행중사건관심사건확정된사건완료된사건사건진행재판일정대조형 쟁점요약사건별게시판문서송부서확인서증인부(문서송부)보정/미보정내역(독촉)엑셀 다운로드(독촉)증거의견입력나의문서함작성중서류제출서류미확인송달문서전체송달문서송달문서 정(등)본발급납부/환급관리소송비용납부상소비용예납전자납부내역가상계좌내역송달료 자동납부내역대표청구인 신고인지액환급청구과오납금반환청구기록 열람나의사건열람형사전자사본화사건열람전자소송사건등록전자소송사건등록형사전자사본화사건등록맞춤형문서함파산관재인 사건 관리제출문서 반려의견채권정보조회사실조회기관회신상담의견교환제3채무자오픈API 제출내역나의정보관리나의전자소송",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#",
+          "onclick": null,
+          "id": "mf_pfheader_depth1_menu5"
+        },
+        {
+          "text": "나의사건현황",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1501"
+        },
+        {
+          "text": "나의사건관리",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1502"
+        },
+        {
+          "text": "진행중사건",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150201"
+        },
+        {
+          "text": "관심사건",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150202"
+        },
+        {
+          "text": "확정된사건",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150203"
+        },
+        {
+          "text": "완료된사건",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150204"
+        },
+        {
+          "text": "사건진행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1504"
+        },
+        {
+          "text": "재판일정",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150403"
+        },
+        {
+          "text": "대조형 쟁점요약",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150402"
+        },
+        {
+          "text": "사건별게시판",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150404"
+        },
+        {
+          "text": "문서송부서확인",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150405"
+        },
+        {
+          "text": "서증인부(문서송부)",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150406"
+        },
+        {
+          "text": "보정/미보정내역(독촉)",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150401"
+        },
+        {
+          "text": "엑셀 다운로드(독촉)",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150407"
+        },
+        {
+          "text": "증거의견입력",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150410"
+        },
+        {
+          "text": "나의문서함",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1505"
+        },
+        {
+          "text": "작성중서류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150501"
+        },
+        {
+          "text": "제출서류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150502"
+        },
+        {
+          "text": "미확인송달문서",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150504"
+        },
+        {
+          "text": "전체송달문서",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150503"
+        },
+        {
+          "text": "송달문서 정(등)본발급",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150701"
+        },
+        {
+          "text": "납부/환급관리",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1508"
+        },
+        {
+          "text": "소송비용납부",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150801"
+        },
+        {
+          "text": "상소비용예납",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150805"
+        },
+        {
+          "text": "전자납부내역",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150802"
+        },
+        {
+          "text": "가상계좌내역",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150803"
+        },
+        {
+          "text": "송달료 자동납부내역",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150808"
+        },
+        {
+          "text": "대표청구인 신고",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150806"
+        },
+        {
+          "text": "인지액환급청구",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150804"
+        },
+        {
+          "text": "과오납금반환청구",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150807"
+        },
+        {
+          "text": "기록 열람",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1507"
+        },
+        {
+          "text": "나의사건열람",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150708"
+        },
+        {
+          "text": "형사전자사본화사건열람",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150707"
+        },
+        {
+          "text": "전자소송사건등록",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1503"
+        },
+        {
+          "text": "전자소송사건등록",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150301"
+        },
+        {
+          "text": "형사전자사본화사건등록",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150302"
+        },
+        {
+          "text": "맞춤형문서함",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1506"
+        },
+        {
+          "text": "파산관재인 사건 관리",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150601"
+        },
+        {
+          "text": "제출문서 반려의견",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150602"
+        },
+        {
+          "text": "채권정보조회",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150603"
+        },
+        {
+          "text": "사실조회기관회신",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150604"
+        },
+        {
+          "text": "상담의견교환",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150605"
+        },
+        {
+          "text": "제3채무자",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150606"
+        },
+        {
+          "text": "오픈API 제출내역",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150505"
+        },
+        {
+          "text": "나의정보관리",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1509"
+        },
+        {
+          "text": "서류검색민사서류민사본안민사신청지급명령(독촉)신청전체서류형사서류형사공판형사신청형사약식영장/즉결가사서류가사소송·비송가사조정가사신청과태료/감치가족관계등록비송전체서류보호서류소년보호가정아동성보호행정서류특허서류회생파산서류개인회생개인파산법인회생(간이회생 포함)법인파산일반회생(간이회생 포함)기타사건민사집행서류부동산 등 집행채권압류 등채권배당재산명시/감치재산조회/채무불이행자명부그 밖의 집행비송,과태료 서류회신서등 제출서류제출",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#",
+          "onclick": null,
+          "id": "mf_pfheader_depth1_menu1"
+        },
+        {
+          "text": "서류검색",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1101"
+        },
+        {
+          "text": "민사서류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1102"
+        },
+        {
+          "text": "민사본안",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110201"
+        },
+        {
+          "text": "민사신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110202"
+        },
+        {
+          "text": "지급명령(독촉)신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110203"
+        },
+        {
+          "text": "전체서류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110204"
+        },
+        {
+          "text": "형사서류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1110"
+        },
+        {
+          "text": "형사공판",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_111001"
+        },
+        {
+          "text": "형사신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_111002"
+        },
+        {
+          "text": "형사약식",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_111003"
+        },
+        {
+          "text": "영장/즉결",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_111004"
+        },
+        {
+          "text": "가사서류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1103"
+        },
+        {
+          "text": "가사소송·비송",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110301"
+        },
+        {
+          "text": "가사조정",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110302"
+        },
+        {
+          "text": "가사신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110303"
+        },
+        {
+          "text": "과태료/감치",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110304"
+        },
+        {
+          "text": "가족관계등록비송",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110305"
+        },
+        {
+          "text": "전체서류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110306"
+        },
+        {
+          "text": "보호서류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1111"
+        },
+        {
+          "text": "소년보호",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_111101"
+        },
+        {
+          "text": "가정아동성보호",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_111102"
+        },
+        {
+          "text": "행정서류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1104"
+        },
+        {
+          "text": "특허서류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1105"
+        },
+        {
+          "text": "회생파산서류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1106"
+        },
+        {
+          "text": "개인회생",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110601"
+        },
+        {
+          "text": "개인파산",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110602"
+        },
+        {
+          "text": "법인회생(간이회생 포함)",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110603"
+        },
+        {
+          "text": "법인파산",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110604"
+        },
+        {
+          "text": "일반회생(간이회생 포함)",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110605"
+        },
+        {
+          "text": "기타사건",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110606"
+        },
+        {
+          "text": "민사집행서류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1107"
+        },
+        {
+          "text": "부동산 등 집행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110701"
+        },
+        {
+          "text": "채권압류 등",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110702"
+        },
+        {
+          "text": "채권배당",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110703"
+        },
+        {
+          "text": "재산명시/감치",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110704"
+        },
+        {
+          "text": "재산조회/채무불이행자명부",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110705"
+        },
+        {
+          "text": "그 밖의 집행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_110706"
+        },
+        {
+          "text": "비송,과태료 서류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1108"
+        },
+        {
+          "text": "회신서등 제출",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1109"
+        },
+        {
+          "text": "판결문전자송달신청판결문전자송달신청판결문전자송달신청내역알림서비스신청송달료 자동납부신청제증명발급신청제증명발급신청제증명발급내역그림자배심 참가신청국민참여재판 일정그림자배심 참가신청기록 열람 신청열람제한문서 열람신청열람제한문서열람원심사건기록 열람신청원심사건기록열람각종신청",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#",
+          "onclick": null,
+          "id": "mf_pfheader_depth1_menu3"
+        },
+        {
+          "text": "판결문전자송달신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1301"
+        },
+        {
+          "text": "판결문전자송달신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_130101"
+        },
+        {
+          "text": "판결문전자송달신청내역",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_130102"
+        },
+        {
+          "text": "알림서비스신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1304"
+        },
+        {
+          "text": "송달료 자동납부신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1307"
+        },
+        {
+          "text": "제증명발급신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1302"
+        },
+        {
+          "text": "제증명발급신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_130201"
+        },
+        {
+          "text": "제증명발급내역",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150702"
+        },
+        {
+          "text": "그림자배심 참가신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1305"
+        },
+        {
+          "text": "국민참여재판 일정",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_130501"
+        },
+        {
+          "text": "그림자배심 참가신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_130502"
+        },
+        {
+          "text": "기록 열람 신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1303"
+        },
+        {
+          "text": "열람제한문서 열람신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_130301"
+        },
+        {
+          "text": "열람제한문서열람",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150703"
+        },
+        {
+          "text": "원심사건기록 열람신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_130302"
+        },
+        {
+          "text": "원심사건기록열람",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_150704"
+        },
+        {
+          "text": "공통안내전자소송안내영상재판안내재판지원안내관할법원안내법률용어설명납부환급안내알림서비스안내양식 및 작성안내법원상담사례민사민사소송의 개요민사소송의 진행민사소송의 종결일반소송 외 절차민사신청가사가사소송(조정)가사비송가사신청협의이혼행정행정소송의 개요행정소송의 진행특허특허소송의 개념특허소송의 진행개인파산/회생개인파산 및 면책개인회생강제집행강제집행의 개요부동산 강제집행채권에대한 강제집행동산에대한 강제집행기타집행절차강제집행정지형사형사소송국민참여재판인신보호제도안내(홍보)자료 모음가정보호가정보호재판의 개요보호처분 결정소년보호소년보호재판의 개요소년보호재판의 진행보호처분통고제도가족관계등록비송개명가족관계등록창설국적취득자의 성˙본 창설가족관계등록부 정정가족관계등록공탁나홀로소송사건유형별 절차안내",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#",
+          "onclick": null,
+          "id": "mf_pfheader_depth1_menu4"
+        },
+        {
+          "text": "공통안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1401"
+        },
+        {
+          "text": "전자소송안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140101"
+        },
+        {
+          "text": "영상재판안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140102"
+        },
+        {
+          "text": "재판지원안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140103"
+        },
+        {
+          "text": "관할법원안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140104"
+        },
+        {
+          "text": "법률용어설명",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140105"
+        },
+        {
+          "text": "납부환급안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140106"
+        },
+        {
+          "text": "알림서비스안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140107"
+        },
+        {
+          "text": "양식 및 작성안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140108"
+        },
+        {
+          "text": "법원상담사례",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140109"
+        },
+        {
+          "text": "민사",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1402"
+        },
+        {
+          "text": "민사소송의 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140201"
+        },
+        {
+          "text": "민사소송의 진행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140202"
+        },
+        {
+          "text": "민사소송의 종결",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140203"
+        },
+        {
+          "text": "일반소송 외 절차",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140204"
+        },
+        {
+          "text": "민사신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140205"
+        },
+        {
+          "text": "가사",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1403"
+        },
+        {
+          "text": "가사소송(조정)",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140301"
+        },
+        {
+          "text": "가사비송",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140302"
+        },
+        {
+          "text": "가사신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140303"
+        },
+        {
+          "text": "협의이혼",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140304"
+        },
+        {
+          "text": "행정",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1404"
+        },
+        {
+          "text": "행정소송의 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140401"
+        },
+        {
+          "text": "행정소송의 진행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140402"
+        },
+        {
+          "text": "특허",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1405"
+        },
+        {
+          "text": "특허소송의 개념",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140501"
+        },
+        {
+          "text": "특허소송의 진행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140502"
+        },
+        {
+          "text": "개인파산/회생",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1406"
+        },
+        {
+          "text": "개인파산 및 면책",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140601"
+        },
+        {
+          "text": "개인회생",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140602"
+        },
+        {
+          "text": "강제집행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1407"
+        },
+        {
+          "text": "강제집행의 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140701"
+        },
+        {
+          "text": "부동산 강제집행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140702"
+        },
+        {
+          "text": "채권에대한 강제집행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140703"
+        },
+        {
+          "text": "동산에대한 강제집행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140704"
+        },
+        {
+          "text": "기타집행절차",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140705"
+        },
+        {
+          "text": "강제집행정지",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140706"
+        },
+        {
+          "text": "형사",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1408"
+        },
+        {
+          "text": "형사소송",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140801"
+        },
+        {
+          "text": "국민참여재판",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140802"
+        },
+        {
+          "text": "인신보호제도",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140803"
+        },
+        {
+          "text": "안내(홍보)자료 모음",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140804"
+        },
+        {
+          "text": "가정보호",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1409"
+        },
+        {
+          "text": "가정보호재판의 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140901"
+        },
+        {
+          "text": "보호처분 결정",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_140902"
+        },
+        {
+          "text": "소년보호",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1410"
+        },
+        {
+          "text": "소년보호재판의 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_141001"
+        },
+        {
+          "text": "소년보호재판의 진행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_141002"
+        },
+        {
+          "text": "보호처분",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_141003"
+        },
+        {
+          "text": "통고제도",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_141004"
+        },
+        {
+          "text": "가족관계등록비송",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1411"
+        },
+        {
+          "text": "개명",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_141101"
+        },
+        {
+          "text": "가족관계등록창설",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_141102"
+        },
+        {
+          "text": "국적취득자의 성˙본 창설",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_141103"
+        },
+        {
+          "text": "가족관계등록부 정정",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_141104"
+        },
+        {
+          "text": "가족관계등록",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1412"
+        },
+        {
+          "text": "공탁",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1413"
+        },
+        {
+          "text": "나홀로소송",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1414"
+        },
+        {
+          "text": "나홀로소송 도움말소장 작성방법피고의 대응자주 묻는 질문소송서류작성소장답변서준비서면소취하서이의신청서주소보정서항소장개명허가신청서재산목록보고서후견사무보고서나홀로소송",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#",
+          "onclick": null,
+          "id": "mf_pfheader_depth1_menu2"
+        },
+        {
+          "text": "나홀로소송 도움말",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1211"
+        },
+        {
+          "text": "소장 작성방법",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_121101"
+        },
+        {
+          "text": "피고의 대응",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_121102"
+        },
+        {
+          "text": "자주 묻는 질문",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_121103"
+        },
+        {
+          "text": "소송서류작성",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1212"
+        },
+        {
+          "text": "소장",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_121201"
+        },
+        {
+          "text": "답변서",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_121202"
+        },
+        {
+          "text": "준비서면",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_121203"
+        },
+        {
+          "text": "소취하서",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_121204"
+        },
+        {
+          "text": "이의신청서",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_121205"
+        },
+        {
+          "text": "주소보정서",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_121206"
+        },
+        {
+          "text": "항소장",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_121207"
+        },
+        {
+          "text": "개명허가신청서",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_121208"
+        },
+        {
+          "text": "재산목록보고서",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_121209"
+        },
+        {
+          "text": "후견사무보고서",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_121210"
+        },
+        {
+          "text": "공지사항자주하는질문문제해결안내인증/보안 (프로그램설치)사이트이용안내이용약관개인정보처리방침저작권보호정책이용안내고객의소리링크시유의사항재판조력자게시판사이트맵고객센터",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#",
+          "onclick": null,
+          "id": "mf_pfheader_depth1_menu6"
+        },
+        {
+          "text": "공지사항",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1601"
+        },
+        {
+          "text": "자주하는질문",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1602"
+        },
+        {
+          "text": "문제해결안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1603"
+        },
+        {
+          "text": "인증/보안 (프로그램설치)",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1604"
+        },
+        {
+          "text": "사이트이용안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1605"
+        },
+        {
+          "text": "이용약관",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_160501"
+        },
+        {
+          "text": "개인정보처리방침",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_160502"
+        },
+        {
+          "text": "저작권보호정책",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_160503"
+        },
+        {
+          "text": "이용안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_160504"
+        },
+        {
+          "text": "고객의소리",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1606"
+        },
+        {
+          "text": "링크시유의사항",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1607"
+        },
+        {
+          "text": "재판조력자게시판",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1608"
+        },
+        {
+          "text": "사이트맵",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_anc_menuid_1610"
+        },
+        {
+          "text": "",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_btn_searchall"
+        },
+        {
+          "text": "",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfheader_btn_menuall"
+        },
+        {
+          "text": "공통안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v2_li_a_1401"
+        },
+        {
+          "text": "전자소송안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140101"
+        },
+        {
+          "text": "전자소송의 개념",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010101"
+        },
+        {
+          "text": "전자소송준비",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010102"
+        },
+        {
+          "text": "전자소송이용안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010103"
+        },
+        {
+          "text": "전자소송 이용시간 및 사용환경",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010104"
+        },
+        {
+          "text": "영상재판안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140102"
+        },
+        {
+          "text": "재판지원안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140103"
+        },
+        {
+          "text": "소송구조제도",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010301"
+        },
+        {
+          "text": "가사 절차구조제도",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010302"
+        },
+        {
+          "text": "개인파산·회생 소송구조 지정변호사제도",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010303"
+        },
+        {
+          "text": "국선변호인 선정제도",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010304"
+        },
+        {
+          "text": "증인지원제도",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010305"
+        },
+        {
+          "text": "사법지원(편의제공)",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010306"
+        },
+        {
+          "text": "외국인 민원 통역서비스",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010307"
+        },
+        {
+          "text": "관할법원안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140104"
+        },
+        {
+          "text": "법률용어설명",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140105"
+        },
+        {
+          "text": "납부환급안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140106"
+        },
+        {
+          "text": "납부",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010601"
+        },
+        {
+          "text": "환급",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010602"
+        },
+        {
+          "text": "알림서비스안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140107"
+        },
+        {
+          "text": "민사 등 사건진행  알림서비스",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010701"
+        },
+        {
+          "text": "개인 회생 및 파산  진행 알림서비스",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010702"
+        },
+        {
+          "text": "양식 및 작성안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140108"
+        },
+        {
+          "text": "양식모음",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010801"
+        },
+        {
+          "text": "작성사례",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14010802"
+        },
+        {
+          "text": "법원상담사례",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140109"
+        },
+        {
+          "text": "민사",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v2_li_a_1402"
+        },
+        {
+          "text": "민사소송의 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140201"
+        },
+        {
+          "text": "민사소송의 진행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140202"
+        },
+        {
+          "text": "소의제기",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020201"
+        },
+        {
+          "text": "소장부본 송달",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020202"
+        },
+        {
+          "text": "기일의 준비",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020203"
+        },
+        {
+          "text": "기일의 진행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020204"
+        },
+        {
+          "text": "민사소송의 종결",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140203"
+        },
+        {
+          "text": "판결선고",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020301"
+        },
+        {
+          "text": "판결에 대한 불복",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020302"
+        },
+        {
+          "text": "판결 외 종국",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020303"
+        },
+        {
+          "text": "소송비용의 청구",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020304"
+        },
+        {
+          "text": "일반소송 외 절차",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140204"
+        },
+        {
+          "text": "소액사건심판",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020401"
+        },
+        {
+          "text": "민사조정절차",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020402"
+        },
+        {
+          "text": "지급명령(독촉)절차",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020403"
+        },
+        {
+          "text": "제소전화해제도",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020404"
+        },
+        {
+          "text": "민사신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140205"
+        },
+        {
+          "text": "가압류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020501"
+        },
+        {
+          "text": "가처분",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020502"
+        },
+        {
+          "text": "가압류·가처분에 대한 불복",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020503"
+        },
+        {
+          "text": "공시최고",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14020504"
+        },
+        {
+          "text": "가사",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v2_li_a_1403"
+        },
+        {
+          "text": "가사소송(조정)",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140301"
+        },
+        {
+          "text": "가사소송(조정)의 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14030101"
+        },
+        {
+          "text": "사건의 종류",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14030102"
+        },
+        {
+          "text": "첨부서류 및 소송비용 안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14030103"
+        },
+        {
+          "text": "가사비송",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140302"
+        },
+        {
+          "text": "가사비송 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14030201"
+        },
+        {
+          "text": "성년후견제도",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14030202"
+        },
+        {
+          "text": "성과 본의 변경 등",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14030203"
+        },
+        {
+          "text": "친양자입양제도",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14030204"
+        },
+        {
+          "text": "가사신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140303"
+        },
+        {
+          "text": "가압류·가처분",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14030301"
+        },
+        {
+          "text": "재산명시·재산조회",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14030302"
+        },
+        {
+          "text": "양육비직접지급명령",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14030303"
+        },
+        {
+          "text": "담보제공명령",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14030304"
+        },
+        {
+          "text": "일시금지급명령",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14030305"
+        },
+        {
+          "text": "협의이혼",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140304"
+        },
+        {
+          "text": "행정",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v2_li_a_1404"
+        },
+        {
+          "text": "행정소송의 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140401"
+        },
+        {
+          "text": "행정소송의 진행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140402"
+        },
+        {
+          "text": "소장 및 답변서 제출",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14040201"
+        },
+        {
+          "text": "변론준비기일(쟁점정리)",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14040202"
+        },
+        {
+          "text": "변론기일(집중증거조사)",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14040203"
+        },
+        {
+          "text": "변론종결 및 판결선고",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14040204"
+        },
+        {
+          "text": "집행정지",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14040205"
+        },
+        {
+          "text": "특허",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v2_li_a_1405"
+        },
+        {
+          "text": "특허소송의 개념",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140501"
+        },
+        {
+          "text": "특허소송의 진행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140502"
+        },
+        {
+          "text": "개인파산/회생",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v2_li_a_1406"
+        },
+        {
+          "text": "개인파산 및 면책",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140601"
+        },
+        {
+          "text": "개인파산 및 면책 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14060101"
+        },
+        {
+          "text": "개인파산 및 면책 진행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14060102"
+        },
+        {
+          "text": "개인회생",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140602"
+        },
+        {
+          "text": "개인회생의 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14060201"
+        },
+        {
+          "text": "개인회생 진행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14060202"
+        },
+        {
+          "text": "강제집행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v2_li_a_1407"
+        },
+        {
+          "text": "강제집행의 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140701"
+        },
+        {
+          "text": "부동산 강제집행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140702"
+        },
+        {
+          "text": "절차안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14070201"
+        },
+        {
+          "text": "신청안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14070202"
+        },
+        {
+          "text": "채권에대한 강제집행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140703"
+        },
+        {
+          "text": "절차안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14070301"
+        },
+        {
+          "text": "압류금지채권",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14070302"
+        },
+        {
+          "text": "동산에대한 강제집행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140704"
+        },
+        {
+          "text": "기타집행절차",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140705"
+        },
+        {
+          "text": "재산명시",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14070501"
+        },
+        {
+          "text": "재산조회",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14070502"
+        },
+        {
+          "text": "채무불이행자명부등재",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14070503"
+        },
+        {
+          "text": "강제집행정지",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140706"
+        },
+        {
+          "text": "형사",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v2_li_a_1408"
+        },
+        {
+          "text": "형사소송",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140801"
+        },
+        {
+          "text": "형사소송의 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14080101"
+        },
+        {
+          "text": "형사소송 절차안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14080102"
+        },
+        {
+          "text": "국민참여재판",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140802"
+        },
+        {
+          "text": "국민참여재판 안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14080201"
+        },
+        {
+          "text": "국민참여재판 Q&A",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v4_li_a_14080202"
+        },
+        {
+          "text": "인신보호제도",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140803"
+        },
+        {
+          "text": "안내(홍보)자료 모음",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140804"
+        },
+        {
+          "text": "가정보호",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v2_li_a_1409"
+        },
+        {
+          "text": "가정보호재판의 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140901"
+        },
+        {
+          "text": "보호처분 결정",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_140902"
+        },
+        {
+          "text": "소년보호",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v2_li_a_1410"
+        },
+        {
+          "text": "소년보호재판의 개요",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_141001"
+        },
+        {
+          "text": "소년보호재판의 진행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_141002"
+        },
+        {
+          "text": "보호처분",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_141003"
+        },
+        {
+          "text": "통고제도",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_141004"
+        },
+        {
+          "text": "가족관계등록비송",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v2_li_a_1411"
+        },
+        {
+          "text": "개명",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_141101"
+        },
+        {
+          "text": "가족관계등록창설",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_141102"
+        },
+        {
+          "text": "국적취득자의 성˙본 창설",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_141103"
+        },
+        {
+          "text": "가족관계등록부 정정",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v3_li_a_141104"
+        },
+        {
+          "text": "가족관계등록",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v2_li_a_1412"
+        },
+        {
+          "text": "공탁",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v2_li_a_1413"
+        },
+        {
+          "text": "나홀로소송",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfmenu_v2_li_a_1414"
+        },
+        {
+          "text": "전체",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_btn_gbn1"
+        },
+        {
+          "text": "민사",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_284"
+        },
+        {
+          "text": "개인파산/면책",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_286"
+        },
+        {
+          "text": "개인회생",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_l"
+        },
+        {
+          "text": "일반회생",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_290"
+        },
+        {
+          "text": "법인회생",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_292"
+        },
+        {
+          "text": "법인파산",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_294"
+        },
+        {
+          "text": "가사",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_e"
+        },
+        {
+          "text": "신청",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_298"
+        },
+        {
+          "text": "강제집행",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_c"
+        },
+        {
+          "text": "행정",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_f"
+        },
+        {
+          "text": "가족관계등록",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_304"
+        },
+        {
+          "text": "형사",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_306"
+        },
+        {
+          "text": "정보공개청구",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_308"
+        },
+        {
+          "text": "공탁",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_310"
+        },
+        {
+          "text": "소년ㆍ가정ㆍ아동보호",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_312"
+        },
+        {
+          "text": "특허",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_314"
+        },
+        {
+          "text": "후견등기",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_316"
+        },
+        {
+          "text": "독촉",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_318"
+        },
+        {
+          "text": "장애인 사법지원",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfwork_wq_uuid_320"
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1671586920435_104200.hwp', '110_C2841 %EC%9D%B8%EC%A7%80%EC%9D%98 %ED%97%88%EA%B0%80%EC%B2%AD%EA%B5%AC %EC%96%91%EC%8B%9D(%EC%99%84%EB%A3%8C3).hwp');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1745888162988_095602.pdf', '110_C2841 %EC%9D%B8%EC%A7%80%EC%9D%98 %ED%97%88%EA%B0%80%EC%B2%AD%EA%B5%AC %EC%96%91%EC%8B%9D(%EC%99%84%EB%A3%8C3).pdf');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1671435307672_163507.hwp', '3 C2892 %EA%B4%80%ED%95%A0%EB%B3%80%EA%B2%BD%EC%8B%A0%EC%B2%AD%EC%84%9C(%EC%99%84%EB%A3%8C3).hwp');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1745888151185_095551.pdf', '3 C2892 %EA%B4%80%ED%95%A0%EB%B3%80%EA%B2%BD%EC%8B%A0%EC%B2%AD%EC%84%9C(%EC%99%84%EB%A3%8C3).pdf');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1671435376472_163616.hwp', '7_%EA%B8%B0%EC%B4%88%EC%A1%B0%EC%82%AC%ED%91%9C(%EC%86%8C%EC%86%A1%EC%9A%A9 %EC%9B%90%EA%B3%A0)(%EC%99%84%EB%A3%8C3).hwp');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1745885833152_091713.pdf', '7_%EA%B8%B0%EC%B4%88%EC%A1%B0%EC%82%AC%ED%91%9C(%EC%86%8C%EC%86%A1%EC%9A%A9 %EC%9B%90%EA%B3%A0)(%EC%99%84%EB%A3%8C3).pdf');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1671435344098_163544.hwp', '6_%EA%B8%B0%EC%B4%88%EC%A1%B0%EC%82%AC%ED%91%9C(%EC%86%8C%EC%86%A1%EC%9A%A9 - %ED%94%BC%EA%B3%A0)(%EC%99%84%EB%A3%8C3).hwp');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1745885822887_091702.pdf', '6_%EA%B8%B0%EC%B4%88%EC%A1%B0%EC%82%AC%ED%91%9C(%EC%86%8C%EC%86%A1%EC%9A%A9 - %ED%94%BC%EA%B3%A0)(%EC%99%84%EB%A3%8C3).pdf');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1671435405816_163645.hwp', '8_%EA%B8%B0%EC%B4%88%EC%A1%B0%EC%82%AC%ED%91%9C(%EC%A1%B0%EC%A0%95%EC%8B%A0%EC%B2%AD%EC%84%9C%EC%9A%A9 %EC%8B%A0%EC%B2%AD%EC%9D%B8)(%EC%99%84%EB%A3%8C3).hwp');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1745885814391_091654.pdf', '8_%EA%B8%B0%EC%B4%88%EC%A1%B0%EC%82%AC%ED%91%9C(%EC%A1%B0%EC%A0%95%EC%8B%A0%EC%B2%AD%EC%84%9C%EC%9A%A9 %EC%8B%A0%EC%B2%AD%EC%9D%B8)(%EC%99%84%EB%A3%8C3).pdf');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1671435430861_163710.hwp', '9_%EA%B8%B0%EC%B4%88%EC%A1%B0%EC%82%AC%ED%91%9C(%EC%A1%B0%EC%A0%95%EC%8B%A0%EC%B2%AD%EC%84%9C%EC%9A%A9-%ED%94%BC%EC%8B%A0%EC%B2%AD%EC%9D%B8(%EC%99%84%EB%A3%8C3).hwp');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1745885805868_091645.pdf', '9_%EA%B8%B0%EC%B4%88%EC%A1%B0%EC%82%AC%ED%91%9C(%EC%A1%B0%EC%A0%95%EC%8B%A0%EC%B2%AD%EC%84%9C%EC%9A%A9-%ED%94%BC%EC%8B%A0%EC%B2%AD%EC%9D%B8(%EC%99%84%EB%A3%8C3).pdf');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1671435454519_163734.hwp', '10_C2460 %EB%8B%B4%EB%B3%B4%EC%A0%9C%EA%B3%B5%EB%AA%85%EB%A0%B9%EC%8B%A0%EC%B2%AD%EC%84%9C(%EC%99%84%EB%A3%8C3)hwp_.hwp');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1745481510782_165830.pdf', '10_C2460 %EB%8B%B4%EB%B3%B4%EC%A0%9C%EA%B3%B5%EB%AA%85%EB%A0%B9%EC%8B%A0%EC%B2%AD%EC%84%9C(%EC%99%84%EB%A3%8C3).pdf');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1671435480406_163800.hwp', '11. C2461 %EB%8B%B4%EB%B3%B4%EC%B7%A8%EC%86%8C(%EB%8B%B4%EB%B3%B4%EB%AC%BC%EB%B3%80%EA%B2%BD)%EC%8B%A0%EC%B2%AD(%EC%99%84%EB%A3%8C3).hwp');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1745482140410_170900.pdf', '11. C2461 %EB%8B%B4%EB%B3%B4%EC%B7%A8%EC%86%8C(%EB%8B%B4%EB%B3%B4%EB%AC%BC%EB%B3%80%EA%B2%BD)%EC%8B%A0%EC%B2%AD(%EC%99%84%EB%A3%8C3).pdf');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1671435523487_163843.hwp', '12_%EB%8B%B5%EB%B3%80%EC%84%9C(%EA%B0%88%EB%93%B1%EC%A0%80%EA%B0%90%ED%98%95 - %EC%9D%B4%ED%98%BC,%EB%AF%B8%EC%84%B1%EB%85%84%EC%9E%90)(%EC%99%84%EB%A3%8C3).hwp');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1745886142444_092222.pdf', '12_%EB%8B%B5%EB%B3%80%EC%84%9C(%EA%B0%88%EB%93%B1%EC%A0%80%EA%B0%90%ED%98%95 - %EC%9D%B4%ED%98%BC,%EB%AF%B8%EC%84%B1%EB%85%84%EC%9E%90)(%EC%99%84%EB%A3%8C3).pdf');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1671435579413_163939.hwp', '13_%EB%8B%B5%EB%B3%80%EC%84%9C(%EA%B0%88%EB%93%B1%EC%A0%80%ED%98%95 - %EC%9D%B4%ED%98%BC,%EC%9C%84%EC%9E%90%EB%A3%8C,%EC%9E%AC%EC%82%B0%EB%B6%84%ED%95%A0,%EB%AF%B8%EC%84%B1%EB%85%84%EC%9E%90%EB%85%80(%EC%99%84%EB%A3%8C3).hwp');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "",
+          "url": "javascript:downdoc('1745886133594_092213.pdf', '13_%EB%8B%B5%EB%B3%80%EC%84%9C(%EA%B0%88%EB%93%B1%EC%A0%80%ED%98%95 - %EC%9D%B4%ED%98%BC,%EC%9C%84%EC%9E%90%EB%A3%8C,%EC%9E%AC%EC%82%B0%EB%B6%84%ED%95%A0,%EB%AF%B8%EC%84%B1%EB%85%84%EC%9E%90%EB%85%80(%EC%99%84%EB%A3%8C3).pdf');",
+          "onclick": null,
+          "id": ""
+        },
+        {
+          "text": "1",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#mf_pfwork_pgl_list_page_1",
+          "onclick": null,
+          "id": "mf_pfwork_pgl_list_page_1"
+        },
+        {
+          "text": "2",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#mf_pfwork_pgl_list_page_2",
+          "onclick": null,
+          "id": "mf_pfwork_pgl_list_page_2"
+        },
+        {
+          "text": "3",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#mf_pfwork_pgl_list_page_3",
+          "onclick": null,
+          "id": "mf_pfwork_pgl_list_page_3"
+        },
+        {
+          "text": "4",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#mf_pfwork_pgl_list_page_4",
+          "onclick": null,
+          "id": "mf_pfwork_pgl_list_page_4"
+        },
+        {
+          "text": "5",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#mf_pfwork_pgl_list_page_5",
+          "onclick": null,
+          "id": "mf_pfwork_pgl_list_page_5"
+        },
+        {
+          "text": "6",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#mf_pfwork_pgl_list_page_6",
+          "onclick": null,
+          "id": "mf_pfwork_pgl_list_page_6"
+        },
+        {
+          "text": "7",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#mf_pfwork_pgl_list_page_7",
+          "onclick": null,
+          "id": "mf_pfwork_pgl_list_page_7"
+        },
+        {
+          "text": "8",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#mf_pfwork_pgl_list_page_8",
+          "onclick": null,
+          "id": "mf_pfwork_pgl_list_page_8"
+        },
+        {
+          "text": "9",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#mf_pfwork_pgl_list_page_9",
+          "onclick": null,
+          "id": "mf_pfwork_pgl_list_page_9"
+        },
+        {
+          "text": "10",
+          "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24#mf_pfwork_pgl_list_page_10",
+          "onclick": null,
+          "id": "mf_pfwork_pgl_list_page_10"
+        },
+        {
+          "text": "열기",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfright_anc_oc"
+        },
+        {
+          "text": "",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfright_btn_close"
+        },
+        {
+          "text": "나의메뉴",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfright_tac_msf_tab_tab1_tabHTML"
+        },
+        {
+          "text": "나의소송",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfright_tac_msf_tab_tab2_tabHTML"
+        },
+        {
+          "text": "바로가기",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfright_tac_msf_tab_tab3_tabHTML"
+        },
+        {
+          "text": "chat",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfright_btnIssuReg_chat"
+        },
+        {
+          "text": "TOP",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pfright_btnGoTop"
+        },
+        {
+          "text": "이용약관",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pffooter_anc_clse"
+        },
+        {
+          "text": "개인정보처리방침",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pffooter_anc_prvcPlcy"
+        },
+        {
+          "text": "저작권보호정책",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pffooter_anc_copyright"
+        },
+        {
+          "text": "링크시유의사항",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pffooter_ant_lnkAttn"
+        },
+        {
+          "text": "문제해결 안내",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pffooter_anc_trbsht"
+        },
+        {
+          "text": "고객의 소리",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pffooter_anc_voc"
+        },
+        {
+          "text": "원격지원 서비스",
+          "url": "javascript:void(null);",
+          "onclick": null,
+          "id": "mf_pffooter_anc_remote"
+        }
+      ],
+      "inputs": [
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfheader_btn_extTime",
+          "name": "",
+          "value": "연장",
+          "text": "",
+          "placeholder": "",
+          "title": "로그인 시간연장"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfheader_btn_zoomUp",
+          "name": "",
+          "value": "",
+          "text": "",
+          "placeholder": "",
+          "title": "화면확대"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfheader_btn_zoomDown",
+          "name": "",
+          "value": "",
+          "text": "",
+          "placeholder": "",
+          "title": "화면축소"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfheader_wq_uuid_54",
+          "name": "",
+          "value": "연장",
+          "text": "",
+          "placeholder": "",
+          "title": ""
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "id": "mf_pfheader_wq_uuid_56",
+          "name": "",
+          "value": "English",
+          "text": "English",
+          "placeholder": null,
+          "title": "선택"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfheader_wq_uuid_59",
+          "name": "",
+          "value": "화면확대",
+          "text": "",
+          "placeholder": "",
+          "title": ""
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfheader_wq_uuid_60",
+          "name": "",
+          "value": "화면축소",
+          "text": "",
+          "placeholder": "",
+          "title": ""
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_266",
+          "name": "",
+          "value": "나의 메뉴 추가",
+          "text": "",
+          "placeholder": "",
+          "title": "나의 메뉴 추가"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_267",
+          "name": "",
+          "value": "출력",
+          "text": "",
+          "placeholder": "",
+          "title": "출력"
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "id": "mf_pfwork_sbx_minGubun",
+          "name": "",
+          "value": "-전체-",
+          "text": "-전체-민사신청강제집행개인파산/면책가사행정가족관계등록형사정보공개청구개인회생소년·가정·아동보호특허후견등기일반회생법인회생법인파산독촉장애인 사법지원",
+          "placeholder": null,
+          "title": "선택"
+        },
+        {
+          "tag": "INPUT",
+          "type": "text",
+          "id": "mf_pfwork_ibx_searchWord",
+          "name": "",
+          "value": "",
+          "text": "",
+          "placeholder": "",
+          "title": "검색어 입력"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_btn_search",
+          "name": "",
+          "value": "조회",
+          "text": "",
+          "placeholder": "",
+          "title": "조회"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_btn_gbn2",
+          "name": "",
+          "value": "전체",
+          "text": "",
+          "placeholder": "",
+          "title": "전체"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_326",
+          "name": "",
+          "value": "ㄱ",
+          "text": "",
+          "placeholder": "",
+          "title": "기역"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_327",
+          "name": "",
+          "value": "ㄴ",
+          "text": "",
+          "placeholder": "",
+          "title": "니은"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_328",
+          "name": "",
+          "value": "ㄷ",
+          "text": "",
+          "placeholder": "",
+          "title": "디귿"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_329",
+          "name": "",
+          "value": "ㄹ",
+          "text": "",
+          "placeholder": "",
+          "title": "리을"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_330",
+          "name": "",
+          "value": "ㅁ",
+          "text": "",
+          "placeholder": "",
+          "title": "미음"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_331",
+          "name": "",
+          "value": "ㅂ",
+          "text": "",
+          "placeholder": "",
+          "title": "비읍"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_332",
+          "name": "",
+          "value": "ㅅ",
+          "text": "",
+          "placeholder": "",
+          "title": "시옫"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_333",
+          "name": "",
+          "value": "ㅇ",
+          "text": "",
+          "placeholder": "",
+          "title": "이응"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_334",
+          "name": "",
+          "value": "ㅈ",
+          "text": "",
+          "placeholder": "",
+          "title": "지읒"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_335",
+          "name": "",
+          "value": "ㅊ",
+          "text": "",
+          "placeholder": "",
+          "title": "치읓"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_336",
+          "name": "",
+          "value": "ㅋ",
+          "text": "",
+          "placeholder": "",
+          "title": "키읔"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_337",
+          "name": "",
+          "value": "ㅌ",
+          "text": "",
+          "placeholder": "",
+          "title": "티읕"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_338",
+          "name": "",
+          "value": "ㅍ",
+          "text": "",
+          "placeholder": "",
+          "title": "피읖"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfwork_wq_uuid_339",
+          "name": "",
+          "value": "ㅎ",
+          "text": "",
+          "placeholder": "",
+          "title": "히읗"
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "id": "",
+          "name": "",
+          "value": "",
+          "text": "",
+          "placeholder": null,
+          "title": "첫 페이지"
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "id": "",
+          "name": "",
+          "value": "",
+          "text": "",
+          "placeholder": null,
+          "title": "이전 페이지 목록"
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "id": "",
+          "name": "",
+          "value": "",
+          "text": "",
+          "placeholder": null,
+          "title": "다음 페이지 목록"
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "id": "",
+          "name": "",
+          "value": "",
+          "text": "",
+          "placeholder": null,
+          "title": "마지막 페이지"
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "id": "mf_pfwork_sbx_rows",
+          "name": "",
+          "value": "10개씩 보기",
+          "text": "10개씩 보기20개씩 보기30개씩 보기",
+          "placeholder": null,
+          "title": "목록갯수"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btnHome",
+          "name": "",
+          "value": "HOME",
+          "text": "",
+          "placeholder": "",
+          "title": "HOME"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btnAlone",
+          "name": "",
+          "value": "나홀로소송",
+          "text": "",
+          "placeholder": "",
+          "title": "나홀로 소송"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btnSuitInfo",
+          "name": "",
+          "value": "소송안내마당",
+          "text": "",
+          "placeholder": "",
+          "title": ""
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_favs",
+          "name": "",
+          "value": "열기",
+          "text": "",
+          "placeholder": "",
+          "title": "열기"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_cfg",
+          "name": "",
+          "value": "설정",
+          "text": "",
+          "placeholder": "",
+          "title": "나의 메뉴 설정"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_cfgStartMenu",
+          "name": "",
+          "value": "시작메뉴",
+          "text": "",
+          "placeholder": "",
+          "title": "나의 시작 메뉴 설정"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_PSP221M01",
+          "name": "",
+          "value": "진행중사건",
+          "text": "",
+          "placeholder": "",
+          "title": "진행중 사건"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_wq_uuid_153",
+          "name": "",
+          "value": "나의문서함",
+          "text": "",
+          "placeholder": "",
+          "title": "나의 문서함"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_wq_uuid_178",
+          "name": "",
+          "value": "진행관리",
+          "text": "",
+          "placeholder": "",
+          "title": "진행관리"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_PSP22JM01",
+          "name": "",
+          "value": "보정/미보정 내역",
+          "text": "",
+          "placeholder": "",
+          "title": ""
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_PSP22HM01",
+          "name": "",
+          "value": "재판일정",
+          "text": "",
+          "placeholder": "",
+          "title": ""
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_wq_uuid_184",
+          "name": "",
+          "value": "열람/발급",
+          "text": "",
+          "placeholder": "",
+          "title": "열람/발급"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_PSP341M01",
+          "name": "",
+          "value": "정(등)본발급",
+          "text": "",
+          "placeholder": "",
+          "title": ""
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_PSP421M01",
+          "name": "",
+          "value": "제증명발급내역",
+          "text": "",
+          "placeholder": "",
+          "title": ""
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_PSP761M01",
+          "name": "",
+          "value": "전자소송도움말",
+          "text": "",
+          "placeholder": "",
+          "title": "전자소송도움말 새창 열기"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_PSP781M01",
+          "name": "",
+          "value": "문제해결안내",
+          "text": "",
+          "placeholder": "",
+          "title": "문제해결안내"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_PSP623M01",
+          "name": "",
+          "value": "자주하는 질문",
+          "text": "",
+          "placeholder": "",
+          "title": "자주하는 질문"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_remoteHelp",
+          "name": "",
+          "value": "원격지원 서비스",
+          "text": "",
+          "placeholder": "",
+          "title": "원격지원 서비스"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_cortSrch",
+          "name": "",
+          "value": "관할법원찾기",
+          "text": "",
+          "placeholder": "",
+          "title": "관할법원찾기 새창 열기"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_lwstCstCalc",
+          "name": "",
+          "value": "소송비용계산",
+          "text": "",
+          "placeholder": "",
+          "title": "소송비용계산 새창 열기"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_rlefEqval",
+          "name": "",
+          "value": "부동산가액 및 소가계산기",
+          "text": "",
+          "placeholder": "",
+          "title": "부동산가액 및 소가계산기 새창 열기"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_calcPgm",
+          "name": "",
+          "value": "손해배상등 계산 프로그램",
+          "text": "",
+          "placeholder": "",
+          "title": "손해배상 등 계산프로그램"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_csSrch",
+          "name": "",
+          "value": "사건검색",
+          "text": "",
+          "placeholder": "",
+          "title": "사건검색 새창 열기"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_csDvsGdnc",
+          "name": "",
+          "value": "사건구분안내",
+          "text": "",
+          "placeholder": "",
+          "title": "사건구분안내 새창 열기"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_ovrlLwInf",
+          "name": "",
+          "value": "종합법률정보",
+          "text": "",
+          "placeholder": "",
+          "title": "종합법률정보 새창 열기"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pfright_btn_PSP720M24",
+          "name": "",
+          "value": "양식모음",
+          "text": "",
+          "placeholder": "",
+          "title": "양식모음"
+        },
+        {
+          "tag": "SELECT",
+          "type": "select-one",
+          "id": "mf_pffooter_sbx_courts",
+          "name": "",
+          "value": "관련사이트",
+          "text": "관련사이트――――― 법원 ―――――대한민국 법원특허법원――― 대법원사이트 ―――종합법률정보전자가족관계등록시스템인터넷등기소법원경매정보등기정보광장전자공탁사법정보공개포털―――― 특허관련 ――――지식재산처지식재산처 특허로특허심판원한국특허정보원―――― 공공기관 ――――대한민국전자정부행정전자서명 인증관리센터대한법률구조공단대한변협법률구조재단대한변호사협회 변호사정보센터",
+          "placeholder": null,
+          "title": "관련사이트"
+        },
+        {
+          "tag": "INPUT",
+          "type": "button",
+          "id": "mf_pffooter_btn_urlGo",
+          "name": "",
+          "value": "바로가기",
+          "text": "",
+          "placeholder": "",
+          "title": "새창 열기"
+        }
+      ]
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/view/etc/pspeuckr.on",
+      "text": "",
+      "links": [],
+      "inputs": []
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/ui/pspcom/PSPLoading.html?param=%c1%b6%c8%b8%c1%df%c0%d4%b4%cf%b4%d9.&postfix=202609171800",
+      "text": "\n    \n        조회중입니다.\n        \n    \n\n",
+      "links": [],
+      "inputs": []
+    }
+  ]
+}

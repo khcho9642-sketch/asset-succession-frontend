@@ -1,0 +1,16 @@
+{
+  "url": "https://100lifeplan.fss.or.kr/static/site/site_01.html",
+  "http_status": 200,
+  "checked_at": "2026-09-19T14:29:07Z",
+  "sha256": "3d66a58392b553aa7d1448459d8f1aca76704c6e58addd5cdf3e2f4e4dc00073",
+  "text": "금융감독원 금융감독원 금융감독원 홈페이지 통합 개편에 따른 접속 도메인 변경 안내 본 홈페이지는 금융감독원 메인 홈페이지로 통합됨에 따라 현재의 주소로는 한시적으로만 접속이 가능합니다. \" 통합연금포탈 바로가기 \" 버튼을 클릭하시면, 통합된 금융감독원 메인 홈페이지 내 해당 메뉴로 바로 이동하실 수 있습니다. 통합연금포탈 바로가기",
+  "html": "<!DOCTYPE html>\r\n<html lang=\"ko\">\r\n\r\n<head>\r\n\t<meta charset=\"UTF-8\">\r\n\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n\t<title>금융감독원</title>\r\n\t<link rel=\"stylesheet\" href=\"/static/commons/css/font-dev.css\">\r\n\t<link rel=\"stylesheet\" href=\"/static/site/css/sitedefault.css\">\r\n</head>\r\n\r\n<body>\r\n\t<div class=\"wrap\">\r\n\t\t<div class=\"set\">\r\n\t\t\t<h1 class=\"logo\"><span class=\"sr-only\">금융감독원</span></h1>\r\n\t\t\t<p class=\"title-txt\">\r\n\t\t\t\t<em>금융감독원 홈페이지</em> 통합 개편에 따른\r\n\t\t\t\t<br>\r\n\t\t\t\t<strong>접속 도메인 변경 안내</strong>\r\n\t\t\t</p>\r\n\t\t\t<div class=\"txt-box\">\r\n\t\t\t\t<p>\r\n\t\t\t\t\t본 홈페이지는 금융감독원 메인 홈페이지로 통합됨에 따라 \r\n\t\t\t\t\t<br class=\"sm-hide\">\r\n\t\t\t\t\t현재의 주소로는 한시적으로만 접속이 가능합니다.\r\n\t\t\t\t</p>\r\n\t\t\t\t<p>\r\n\t\t\t\t\t\"<span class=\"point\">통합연금포탈 바로가기</span>\" 버튼을 클릭하시면, \r\n\t\t\t\t\t<br class=\"sm-hide\">\r\n\t\t\t\t\t통합된 금융감독원 메인 홈페이지 내 해당 메뉴로 바로 이동하실 수 있습니다.\r\n\t\t\t\t</p>\r\n                <div class=\"link\">\r\n                    <a href=\"https://www.fss.or.kr/fss/lifeplan/lifeplanIndex/index.do?menuNo=201101\"><span class=\"point\">통합연금포탈</span> 바로가기</a>\r\n                </div>\r\n\t\t\t</div>\r\n\t\t\t\r\n\t\t</div>\r\n\t</div>\r\n</body>\r\n\r\n</html>",
+  "links": [
+    {
+      "text": "통합연금포탈 바로가기",
+      "url": "https://www.fss.or.kr/fss/lifeplan/lifeplanIndex/index.do?menuNo=201101",
+      "onclick": null
+    }
+  ],
+  "scripts": []
+}
