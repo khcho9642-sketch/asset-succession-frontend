@@ -8,9 +8,9 @@
   "hostedInstitutionalExampleCount": 39,
   "deliveryCounts": {
     "hosted": 105,
-    "provider": 59,
+    "provider": 60,
     "direct": 0,
-    "pending": 13
+    "pending": 12
   },
   "documents": [
     {
@@ -6770,30 +6770,62 @@
       "catalogTitle": "특별한정승인 심판청구서",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "공식 출처 및 요청 서류를 확인하고 있습니다.",
+      "description": "양식모음에서 한정승인 검색 → 상속한정승인 심판청구서에서 확인할 수 있습니다. P0-08 일반 한정승인과 같은 공식 공용양식을 사용하되 특별한정승인 항목을 보존한다. 별도 전용양식을 만들어낸 것으로 표시하지 않는다.",
       "tags": "P0-10 · 재산분배·상속",
-      "format": "확인 중",
-      "editable": "",
+      "format": "공식 안내",
+      "editable": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
       "example": null,
       "thumbnail": null,
-      "sizeLabel": "확인 중",
-      "sourceUrl": "",
-      "institution": "공식 출처 확인 중",
-      "checkedOn": "",
-      "license": "미확인",
+      "sizeLabel": "공식 제공처",
+      "sourceUrl": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "institution": "대한민국 법원",
+      "checkedOn": "2026-09-19",
+      "license": "공식 제공처 링크 · 원본 재배포하지 않음",
       "licenseUrl": "",
-      "verification": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
+      "verification": "기존 검증 인계 및 공식 HWP 재수신·제목·크기·SHA-256 대조. 인쇄 레이아웃과 현행 제출 적합성은 미검수.",
       "exampleVerification": "기관 작성 예시 추가 확인 필요",
-      "delivery": "pending",
+      "delivery": "provider",
       "files": [],
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "source_type": null,
-      "checked_at": null,
-      "status": "확인 중",
-      "source_evidence": null,
+      "source_type": "공식제공처",
+      "checked_at": "2026-09-19T17:36:34.782912Z",
+      "status": "확인 완료",
+      "source_evidence": {
+        "sources": [
+          {
+            "kind": "existing_download_verification",
+            "source_url": "https://file.scourt.go.kr/AttachDownload?path=004&file=1671436629761_165709.hwp&downFile=53_%BB%F3%BC%D3%C7%D1%C1%A4%BD%C2%C0%CE%20%BD%C9%C6%C7%C3%BB%B1%B8(%BF%CF%B7%E13)-hwp.hwp",
+            "verified_at": "2026-09-19T15:18:25Z",
+            "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P0-10.json",
+            "quote": [
+              "상속한정승인 심판청구서",
+              "특별한정승인"
+            ],
+            "sha256": "ad23724e2a7250cfcec7e305607a542fc80b75cd88e3f09d7c9199e72071c2f7",
+            "bytes": 80896,
+            "format": "hwp",
+            "finding": "일반 한정승인과 특별한정승인을 구분하여 기재하는 공식 공용 청구서 원문 검증 기록을 확인했다."
+          },
+          {
+            "kind": "existing_official_catalog_response",
+            "source_url": "https://ecfs.scourt.go.kr/psp/psp720/selectNboardList.on",
+            "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P0-10.json",
+            "quote": "[가사] 상속한정승인 심판청구서",
+            "finding": "공식 포털 목록의 fileSysName이 원문 검증 파일과 일치한다."
+          }
+        ],
+        "download_urls": [
+          "https://file.scourt.go.kr/AttachDownload?path=004&file=1671436629761_165709.hwp&downFile=53_%BB%F3%BC%D3%C7%D1%C1%A4%BD%C2%C0%CE%20%BD%C9%C6%C7%C3%BB%B1%B8(%BF%CF%B7%E13)-hwp.hwp"
+        ],
+        "completion_basis": "existing_official_original_body_verification_reused",
+        "evidence_file": "docs/forms-expansion-109/evidence/round16/P0-10.json",
+        "evidence_sha256": "7a11f761053bd5b8c0b4dc1a5d898821193c5ce48c315896ec6d1ad1e1009ec1",
+        "support_evidence_file": "docs/forms-expansion-109/evidence/round16/support/P0-10.json",
+        "support_evidence_sha256": "374c500bef3f5bb1af19bad1bbd7901c3726c6ca5783559414d02c98464a289f"
+      },
       "task_id": "P0-10",
       "related_ids": []
     },
@@ -11967,17 +11999,16 @@
       "required_original": false,
       "operation": "add",
       "target_id": null,
-      "status": "확인 중",
-      "source_url": null,
-      "checked_at": null,
+      "status": "확인 완료",
+      "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "checked_at": "2026-09-19T17:36:34.782912Z",
       "form_no": null,
       "revised_at": null,
       "deadline": null,
       "deadline_basis": null,
-      "license": "미확인",
-      "source_type": null,
+      "license": "공식 제공처 링크 · 원본 재배포하지 않음",
+      "source_type": "공식제공처",
       "files": [],
-      "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
       "search_attempts": [
         {
           "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
@@ -12034,7 +12065,44 @@
           "url": null,
           "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
         }
-      ]
+      ],
+      "institution": "대한민국 법원",
+      "note": "양식모음에서 한정승인 검색 → 상속한정승인 심판청구서에서 확인할 수 있습니다. P0-08 일반 한정승인과 같은 공식 공용양식을 사용하되 특별한정승인 항목을 보존한다. 별도 전용양식을 만들어낸 것으로 표시하지 않는다.",
+      "source_evidence": {
+        "sources": [
+          {
+            "kind": "existing_download_verification",
+            "source_url": "https://file.scourt.go.kr/AttachDownload?path=004&file=1671436629761_165709.hwp&downFile=53_%BB%F3%BC%D3%C7%D1%C1%A4%BD%C2%C0%CE%20%BD%C9%C6%C7%C3%BB%B1%B8(%BF%CF%B7%E13)-hwp.hwp",
+            "verified_at": "2026-09-19T15:18:25Z",
+            "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P0-10.json",
+            "quote": [
+              "상속한정승인 심판청구서",
+              "특별한정승인"
+            ],
+            "sha256": "ad23724e2a7250cfcec7e305607a542fc80b75cd88e3f09d7c9199e72071c2f7",
+            "bytes": 80896,
+            "format": "hwp",
+            "finding": "일반 한정승인과 특별한정승인을 구분하여 기재하는 공식 공용 청구서 원문 검증 기록을 확인했다."
+          },
+          {
+            "kind": "existing_official_catalog_response",
+            "source_url": "https://ecfs.scourt.go.kr/psp/psp720/selectNboardList.on",
+            "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P0-10.json",
+            "quote": "[가사] 상속한정승인 심판청구서",
+            "finding": "공식 포털 목록의 fileSysName이 원문 검증 파일과 일치한다."
+          }
+        ],
+        "download_urls": [
+          "https://file.scourt.go.kr/AttachDownload?path=004&file=1671436629761_165709.hwp&downFile=53_%BB%F3%BC%D3%C7%D1%C1%A4%BD%C2%C0%CE%20%BD%C9%C6%C7%C3%BB%B1%B8(%BF%CF%B7%E13)-hwp.hwp"
+        ],
+        "completion_basis": "existing_official_original_body_verification_reused",
+        "evidence_file": "docs/forms-expansion-109/evidence/round16/P0-10.json",
+        "evidence_sha256": "7a11f761053bd5b8c0b4dc1a5d898821193c5ce48c315896ec6d1ad1e1009ec1",
+        "support_evidence_file": "docs/forms-expansion-109/evidence/round16/support/P0-10.json",
+        "support_evidence_sha256": "374c500bef3f5bb1af19bad1bbd7901c3726c6ca5783559414d02c98464a289f"
+      },
+      "integration_evidence": "docs/forms-expansion-109/evidence/round17/P0-10.json",
+      "guide_file": "docs/forms-expansion-109/guides/P0-10.md"
     },
     {
       "id": "P0-11",
