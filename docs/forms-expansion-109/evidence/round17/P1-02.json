@@ -1,0 +1,38 @@
+{
+  "task_id": "P1-02",
+  "base_commit": "4c211a9fa669f44fab558ae709706d64c89234c3",
+  "inherited_from_commit": "28c1912f3a070924e6f61a03197b4dd717e174b4",
+  "integrated_at": "2026-09-20T09:08:00.546Z",
+  "operation": "add",
+  "target_id": null,
+  "retained_evidence": [
+    {
+      "path": "docs/forms-expansion-109/evidence/round16/P1-02.json",
+      "sha256": "4130ebe8f785741e6b899b42da78bd5de91663b46a2104dcba745b9a2e325f0b",
+      "copied_from_commit": "28c1912f3a070924e6f61a03197b4dd717e174b4"
+    },
+    {
+      "path": "docs/forms-expansion-109/evidence/round16/support/P1-02.json",
+      "sha256": "1a5f0763f858bcaca526089ce9b9177c50da342f2390935ffe6d0a05e6e8a932",
+      "copied_from_commit": "28c1912f3a070924e6f61a03197b4dd717e174b4"
+    }
+  ],
+  "verification": {
+    "task_id": "P1-02",
+    "checked_at": "2026-09-20T09:07:53Z",
+    "method": "HTTP and existing HWP binary parser; not visual layout review",
+    "page": {
+      "url": "https://www.iros.go.kr/index.jsp",
+      "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+    },
+    "files": [],
+    "public_binaries_added": false
+  },
+  "completion_scope": "기존 공식 목록·첨부 표시 검증을 인계. 원본 바이너리 미확보.",
+  "publication": "공식 제공처 연결. 이번 커밋에서 원본 바이너리 재배포 없음.",
+  "completed_in_this_batch": [
+    "P0-10",
+    "P1-02"
+  ],
+  "previously_completed_records_unchanged": 92
+}
