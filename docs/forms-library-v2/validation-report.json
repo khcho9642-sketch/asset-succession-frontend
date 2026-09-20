@@ -74,6 +74,17 @@
     "existing_preview_observation": "Old category/status UI: 177 resources, 105 hosted, 61 providers, 11 pending. It does not include the redesign.",
     "reason": "Integrated preview has not been deployed because Vercel project access requires re-authentication. Existing preview browser checks do not validate this integration."
   },
+  "layout_revision": {
+    "scope": "Search-first library, responsive filter rail, compact resource cards, download-first detail, preparation index and readable summaries",
+    "catalog_and_download_data_changed": false,
+    "review_fixes": [
+      "Keep facet DOM stable when selecting or clearing filters to preserve keyboard focus",
+      "Allow both preparation timings to be selected on the same axis",
+      "Increase search placeholder and input boundary contrast",
+      "Keep card and detail member IDs distinct and focus the result heading after mobile filter collapse"
+    ],
+    "visual_browser_verification": "pending deployment; source review and automated checks are not visual verification"
+  },
   "scope_notes": [
     "P8-07 진단서는 의료기관 발급용 공통 법정양식 참고이며 후견전용·사건별 제출 적합성 검증이 아니다.",
     "P9-07은 상속 명의변경 공식 의결사례이며 상속 전용 공통신고서로 표시하지 않는다.",
