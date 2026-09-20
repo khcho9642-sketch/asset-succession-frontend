@@ -690,8 +690,8 @@
       "support_evidence_file": "docs/forms-expansion-109/evidence/round16/support/P0-10.json",
       "support_evidence_sha256": "374c500bef3f5bb1af19bad1bbd7901c3726c6ca5783559414d02c98464a289f"
     },
-    "integration_evidence": "docs/forms-expansion-109/evidence/round17/P0-10.json",
-    "guide_file": "docs/forms-expansion-109/guides/P0-10.md"
+    "guide_file": "docs/forms-expansion-109/guides/P0-10.md",
+    "integration_evidence": "docs/forms-expansion-109/evidence/round17/P0-10.json"
   },
   {
     "id": "P0-11",
@@ -1053,8 +1053,8 @@
       "support_evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-02.json",
       "support_evidence_sha256": "1a5f0763f858bcaca526089ce9b9177c50da342f2390935ffe6d0a05e6e8a932"
     },
-    "integration_evidence": "docs/forms-expansion-109/evidence/round17/P1-02.json",
-    "guide_file": "docs/forms-expansion-109/guides/P1-02.md"
+    "guide_file": "docs/forms-expansion-109/guides/P1-02.md",
+    "integration_evidence": "docs/forms-expansion-109/evidence/round17/P1-02.json"
   },
   {
     "id": "P1-03",
@@ -1097,8 +1097,8 @@
       "support_evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-03.json",
       "support_evidence_sha256": "eb147a80db71c691a3453d4a1b9c8a593032d8be9629bbffbc25f1de989452eb"
     },
-    "integration_evidence": "docs/forms-expansion-109/evidence/round17/P1-03.json",
-    "guide_file": "docs/forms-expansion-109/guides/P1-03.md"
+    "guide_file": "docs/forms-expansion-109/guides/P1-03.md",
+    "integration_evidence": "docs/forms-expansion-109/evidence/round17/P1-03.json"
   },
   {
     "id": "P1-04",
@@ -1141,8 +1141,8 @@
       "support_evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-04.json",
       "support_evidence_sha256": "c37cf7a6be70227420bc4d866460d7b2c9160b7285ccbd56c7512b3218c45f26"
     },
-    "integration_evidence": "docs/forms-expansion-109/evidence/round17/P1-04.json",
-    "guide_file": "docs/forms-expansion-109/guides/P1-04.md"
+    "guide_file": "docs/forms-expansion-109/guides/P1-04.md",
+    "integration_evidence": "docs/forms-expansion-109/evidence/round17/P1-04.json"
   },
   {
     "id": "P1-05",
@@ -1185,8 +1185,8 @@
       "support_evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-05.json",
       "support_evidence_sha256": "21d1a8cb4fac50e3177648c5ff1caf1fca4c4b076ffc76df89a042b7cbb403f0"
     },
-    "integration_evidence": "docs/forms-expansion-109/evidence/round17/P1-05.json",
-    "guide_file": "docs/forms-expansion-109/guides/P1-05.md"
+    "guide_file": "docs/forms-expansion-109/guides/P1-05.md",
+    "integration_evidence": "docs/forms-expansion-109/evidence/round17/P1-05.json"
   },
   {
     "id": "P1-06",
@@ -1394,17 +1394,49 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://www.iros.go.kr/index.jsp",
+    "checked_at": "2026-09-19T17:31:45.203Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "대한민국 법원 인터넷등기소 공식 제공처 연결 · 자체 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "institution": "대한민국 법원 인터넷등기소",
+    "note": "공식 제공처에서 고객센터 > 지원안내 > 등기신청양식으로 이동하여 ‘신탁’을 검색한 뒤 ‘06-1.신탁에의한소유권이전등기신청’을 선택하세요. 해당 공식 목록의 첨부 형식 표시를 확인했습니다. 화면이 단일 주소(index.jsp)를 사용하므로 검색 결과별 직접 URL은 제공되지 않습니다. 원본 파일 자체는 미확보입니다.",
+    "source_evidence": {
+      "url": "https://www.iros.go.kr/index.jsp",
+      "checked_at": "2026-09-19T17:31:45.203Z",
+      "verification_method": "official-browser-rendered-form-list",
+      "page_title": "인터넷등기소 - 등기신청양식",
+      "navigation": [
+        "고객센터",
+        "지원안내",
+        "등기신청양식"
+      ],
+      "search_term": "신탁",
+      "matched_terms": [
+        "06-1.신탁에의한소유권이전등기신청"
+      ],
+      "attachment_filenames": [
+        "06-1.신탁에의한소유권이전등기신청.hwp",
+        "06-1.신탁에의한소유권이전등기신청.pdf",
+        "06-1.신탁에의한소유권이전등기신청.docx",
+        "06-1.신탁에의한소유권이전등기신청.odt"
+      ],
+      "confirmed_observations": [
+        "공식 인터넷등기소 고객센터 > 지원안내 > 등기신청양식 검색 수행",
+        "대상 신청서의 제목과 부동산등기 분류 확인",
+        "같은 행의 HWP/PDF/DOCX/ODT 첨부 아이콘 및 첨부 파일명 확인"
+      ],
+      "download_verified": false,
+      "verification_limit": "공식 목록에 해당 서식과 첨부 표시가 존재함을 확인했습니다. 원본 바이트 수신 및 원본 내용은 확인하지 않았습니다.",
+      "captured_evidence_sha256": "cc1fad1f69d5b9cf256065e516aa919b443c8d675293b239f1e55903a1c7bfaf",
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/P1-10.json",
+      "evidence_sha256": "c208baff3755de3bd73d65d276b3ac6aa5f335f23743b9b478ace03191b45b40"
+    }
   },
   {
     "id": "P1-11",
@@ -1413,17 +1445,54 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://www.iros.go.kr/index.jsp",
+    "checked_at": "2026-09-19T17:32:13.831Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "대한민국 법원 인터넷등기소 공식 제공처 연결 · 자체 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "institution": "대한민국 법원 인터넷등기소",
+    "note": "공식 제공처에서 고객센터 > 지원안내 > 등기신청양식으로 이동하여 ‘소유권경정’을 검색한 뒤 ‘07-1.신청착오에의한소유권경정등기신청 / 07-2.협의분할로인한상속에의한소유권경정등기신청’을 선택하세요. 해당 공식 목록의 첨부 형식 표시를 확인했습니다. 화면이 단일 주소(index.jsp)를 사용하므로 검색 결과별 직접 URL은 제공되지 않습니다. 원본 파일 자체는 미확보입니다.",
+    "source_evidence": {
+      "url": "https://www.iros.go.kr/index.jsp",
+      "checked_at": "2026-09-19T17:32:13.831Z",
+      "verification_method": "official-browser-rendered-form-list",
+      "page_title": "인터넷등기소 - 등기신청양식",
+      "navigation": [
+        "고객센터",
+        "지원안내",
+        "등기신청양식"
+      ],
+      "search_term": "소유권경정",
+      "matched_terms": [
+        "07-1.신청착오에의한소유권경정등기신청 / 07-2.협의분할로인한상속에의한소유권경정등기신청"
+      ],
+      "attachment_filenames": [
+        "07-1.신청착오에의한소유권경정등기신청.hwp",
+        "07-1.신청착오에의한소유권경정등기신청.pdf",
+        "07-1.신청착오에의한소유권경정등기신청.docx",
+        "07-1.신청착오에의한소유권경정등기신청.odt",
+        "07-2.협의분할로인한상속에의한소유권경정등기신청.hwp",
+        "07-2.협의분할로인한상속에의한소유권경정등기신청.pdf",
+        "07-2.협의분할로인한상속에의한소유권경정등기신청.docx",
+        "07-2.협의분할로인한상속에의한소유권경정등기신청.odt"
+      ],
+      "confirmed_observations": [
+        "공식 인터넷등기소 고객센터 > 지원안내 > 등기신청양식 검색 수행",
+        "대상 신청서의 제목과 부동산등기 분류 확인",
+        "같은 행의 HWP/PDF/DOCX/ODT 첨부 아이콘 및 첨부 파일명 확인"
+      ],
+      "download_verified": false,
+      "verification_limit": "공식 목록에 해당 서식과 첨부 표시가 존재함을 확인했습니다. 원본 바이트 수신 및 원본 내용은 확인하지 않았습니다.",
+      "screenshot_sha256": "408d1a14e368bce9bd965c24f72e0194a0d5decaa998061731dd0715cda4ba2f",
+      "captured_evidence_sha256": "89dd8c724731c2824c1b94a251602e713cc35b4fba298c0c79f819bc24514ab9",
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/P1-11.json",
+      "evidence_sha256": "cc0812838ea26a5416dc2b854ab9e258962dad95be02f7e056584d330f97db62"
+    }
   },
   {
     "id": "P1-12",
@@ -1482,17 +1551,39 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=1&cnpClsNo=3&csmSeq=566&popMenu=ov",
+    "checked_at": "2026-09-19T17:22:27Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "법제처 공식 제공처의 첨부 원본 확인 · 자체 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "institution": "법제처 찾기쉬운 생활법령정보",
+    "note": "법제처 매매 소유권이전등기 제출서류 페이지에서 등기신청 위임장 원본과 등기신청수수료 안내를 함께 확인했습니다. 위임장 파일 제목 및 부동산 등기신청·취하 위임 본문을 검사했습니다. 금액·법정기한은 옮기지 않고 공식 페이지를 안내합니다.",
+    "source_evidence": {
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=1&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:22:27Z",
+      "page_sha256": "75fb2107a06b7187858fee06df71ee613ef38a9cd2bbb287ef0aaff5a38e059f",
+      "matched_terms": [
+        "위임장",
+        "등기신청수수료"
+      ],
+      "download_sha256": [
+        "c21ba114818cc058edaf4df662c75b38739481bdbd70a7c918f5a30d8a0b9ddb"
+      ],
+      "confirmed_observations": [
+        "본문의 해당 서식 다운로드 링크 확인",
+        "실제 HWP 파일의 HWP Document File 서명 확인",
+        "파일 내 신청서 제목 및 요청 목적 대조",
+        "같은 페이지 등기신청수수료 납부 안내 확인"
+      ],
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/P1-13.json",
+      "evidence_sha256": "b7503374fc9e19233589cef5d890f3df5fe2c194bdd1373df0c001dbe1fbb469"
+    }
   },
   {
     "id": "P1-14",
@@ -1631,17 +1722,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+    "checked_at": "2026-09-19T17:36:34.782912Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 링크 · 원본 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
     "search_attempts": [
       {
         "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
@@ -1698,7 +1788,27 @@
         "url": null,
         "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
       }
-    ]
+    ],
+    "institution": "대한법률구조공단",
+    "note": "서식제목에서 유언집행자 검색 → 1068 유언집행자 선임청구서에서 확인할 수 있습니다. 현재 공식 제공처의 서식 제목과 다운로드 링크를 확인했습니다. 원본 파일은 제공처에서 받으세요.",
+    "source_evidence": {
+      "sources": [
+        {
+          "kind": "live_browser_rendered_dom",
+          "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+          "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-16.json",
+          "evidence_key": "court-executor",
+          "quote": "1068 유언집행자 선임청구서",
+          "finding": "해당 제목의 서식 행과 실제 공식 HWP 다운로드·바로보기 링크 확인"
+        }
+      ],
+      "download_urls": [
+        "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2021%2f03%2f17%2f09%2f59%2f86ad830b-43c5-4c25-8cd7-9cfa3d72c76f&filename=1068+%ec%9c%a0%ec%96%b8%ec%a7%91%ed%96%89%ec%9e%90+%ec%84%a0%ec%9e%84%ec%b2%ad%ea%b5%ac%ec%84%9c.hwp"
+      ],
+      "completion_basis": "official_form_provider_verified",
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/P1-16.json",
+      "evidence_sha256": "6e7bc131d84958e3a50cb97dd7554ba4b29976c8d9b4e66179c56e0c298bac9c"
+    }
   },
   {
     "id": "P1-17",
@@ -1840,17 +1950,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSPA14M01",
+    "checked_at": "2026-09-19T17:37:54.293159Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 전자문서 제공처 링크 · 파일 재배포 없음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
     "search_attempts": [
       {
         "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
@@ -1907,7 +2016,40 @@
         "url": null,
         "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
       }
-    ]
+    ],
+    "institution": "대한민국 법원",
+    "note": "서류제출 → 가사서류 → 가사소송·비송 → 마류 가사비송사건 → 기여분에 관한 사건. 표준화된 전자문서 작성 메뉴입니다. 로그인 후 이용하며 내려받는 HWP/PDF를 확보한 자료는 아닙니다.",
+    "source_evidence": {
+      "sources": [
+        {
+          "kind": "live_browser_rendered_dom",
+          "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSPA14M01",
+          "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-19.json",
+          "quote": [
+            "기여분에 관한 사건",
+            "표준화된 입력항목을 직접 작성하는 전자문서"
+          ],
+          "finding": "마류 가사비송사건의 해당 전자문서 제공 링크와 설명을 실제 공식 메뉴에서 확인. 일반 안내 페이지가 아닌 서류제출 제공 화면이다."
+        },
+        {
+          "kind": "official_search_index",
+          "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSPA14M01",
+          "quote": "기여분에 관한 사건 표준화된 입력항목을 직접 작성하는 전자문서",
+          "finding": "공식 전자소송의 해당 제출 메뉴가 검색 결과에 인덱싱되어 있음. 서식 제공 경로 후보로 유효하나 직접 열린 페이지 본문은 SPA라 추출되지 않았다."
+        },
+        {
+          "kind": "live_browser_rendered_dom",
+          "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+          "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-19.json",
+          "evidence_key": "court-contribution-broad",
+          "quote": "내용이 없습니다.",
+          "finding": "서식제목 기여분/기여 검색 0건. 전자소송 양식모음 기존 기여분 검색도 0건."
+        }
+      ],
+      "completion_basis": "official_electronic_form_provider_verified",
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/P1-19.json",
+      "evidence_sha256": "53ab5e243e2f1ff88099a8d467d6a6e5412efb685215c5e80d4c7abf0714585a"
+    }
   },
   {
     "id": "P1-20",
@@ -1916,17 +2058,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+    "checked_at": "2026-09-19T17:36:34.782912Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공식 제공처 링크 · 원본 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
     "search_attempts": [
       {
         "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
@@ -1983,7 +2124,33 @@
         "url": null,
         "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
       }
-    ]
+    ],
+    "institution": "대한법률구조공단",
+    "note": "서식제목에서 유류분 검색 → 461 유류분반환청구의 소에서 확인할 수 있습니다. 현재 공식 제공처의 서식 제목과 다운로드 링크를 확인했습니다. 원본 파일은 제공처에서 받으세요.",
+    "source_evidence": {
+      "sources": [
+        {
+          "kind": "live_browser_rendered_dom",
+          "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+          "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-20.json",
+          "evidence_key": "court-reserve",
+          "quote": "461 유류분반환청구의 소",
+          "finding": "해당 제목의 서식 행과 실제 공식 HWP 다운로드·바로보기 링크 확인"
+        },
+        {
+          "kind": "official_provider_page_web_read",
+          "source_url": "https://support.klac.or.kr/front/main.do",
+          "quote": "유류분반환청구의 소",
+          "finding": "주요서식 바로가기의 가사소송(소장 등) 구역에서도 한글다운로드 및 서식 작성 버튼 제공 확인"
+        }
+      ],
+      "download_urls": [
+        "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f06%2f10%2f13%2f21%2ff149e66f-fcf3-42cb-b2a2-4b16528c76a0&filename=%ec%9c%a0%eb%a5%98%eb%b6%84%eb%b0%98%ed%99%98%ec%b2%ad%ea%b5%ac%ec%9d%98+%ec%86%8c.hwp"
+      ],
+      "completion_basis": "official_form_provider_verified",
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/P1-20.json",
+      "evidence_sha256": "f2638b6f0bda8d8b9435a8de709a8ce6020daddc2b88adf79f44c472367bd98a"
+    }
   },
   {
     "id": "P1-21",
@@ -2669,24 +2836,88 @@
     "required_original": true,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
-    "form_no": null,
+    "status": "확인 완료",
+    "source_url": "https://www.law.go.kr/법령/국세기본법시행령/제25조의4",
+    "checked_at": "2026-09-19T17:29:12Z",
+    "form_no": "상속세 및 증여세법 시행규칙 별지 제9호·제10호·제10호의2, 소득세법 시행규칙 별지 제84호",
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
-    "files": [],
-    "failure_reason": "현행 법령 서식 검색: 공식 검색 결과에 법령명과 요청 서식명 일치 없음",
+    "license": "법령 별지서식 · 원본 무수정·출처 표시",
+    "source_type": "원본",
+    "files": [
+      {
+        "name": "상속세과세표준신고 및 자진납부계산서.pdf",
+        "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162625975&bylClsCd=110202",
+        "bytes": 265841,
+        "sha256": "7f46b68911f46c6aa65265734c165d09f03ddf640dbb3248b4ac36866948ffd2",
+        "format": "pdf",
+        "role": "original",
+        "http_status": 200,
+        "checked_at": "2026-09-19T17:28:38Z",
+        "title_verified": true,
+        "path": "public/downloads/official-forms/expansion/P2-11_7f46b68911f4.pdf",
+        "local_url": "/downloads/official-forms/expansion/P2-11_7f46b68911f4.pdf"
+      },
+      {
+        "name": "증여세과세표준신고 및 자진납부계산서 · 기본세율.pdf",
+        "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162626013&bylClsCd=110202",
+        "bytes": 217314,
+        "sha256": "a5dd1e04db15869d5308ae69d1af35e4889e67b57e5354ab72882b0c1f6aa912",
+        "format": "pdf",
+        "role": "original",
+        "http_status": 200,
+        "checked_at": "2026-09-19T17:28:38Z",
+        "title_verified": true,
+        "path": "public/downloads/official-forms/expansion/P2-11_a5dd1e04db15.pdf",
+        "local_url": "/downloads/official-forms/expansion/P2-11_a5dd1e04db15.pdf"
+      },
+      {
+        "name": "증여세과세표준신고 및 자진납부계산서 · 창업자금·가업승계 특례.pdf",
+        "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162626039&bylClsCd=110202",
+        "bytes": 140673,
+        "sha256": "77a238390d4016a2d7b567fde0f85cfb06260fc8d40ea6083a43aa7f2689691b",
+        "format": "pdf",
+        "role": "original",
+        "http_status": 200,
+        "checked_at": "2026-09-19T17:28:38Z",
+        "title_verified": true,
+        "path": "public/downloads/official-forms/expansion/P2-11_77a238390d40.pdf",
+        "local_url": "/downloads/official-forms/expansion/P2-11_77a238390d40.pdf"
+      },
+      {
+        "name": "양도소득과세표준 신고 및 납부계산서.pdf",
+        "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=164445095&bylClsCd=110202",
+        "bytes": 267524,
+        "sha256": "4920658fe5222742246868ad5cf4f398422614dc6895ad55f39bb2db51d6ea1d",
+        "format": "pdf",
+        "role": "original",
+        "http_status": 200,
+        "checked_at": "2026-09-19T17:29:12Z",
+        "title_verified": true,
+        "path": "public/downloads/official-forms/expansion/P2-11_4920658fe522.pdf",
+        "local_url": "/downloads/official-forms/expansion/P2-11_4920658fe522.pdf"
+      }
+    ],
     "attempts": [
       {
         "checked_at": "2026-09-17T11:18:52Z",
         "url": "https://www.law.go.kr/lsBylSc.do?query=%EA%B8%B0%ED%95%9C%ED%9B%84",
         "result": "현행 법령 서식 검색: 공식 검색 결과에 법령명과 요청 서식명 일치 없음"
       }
-    ]
+    ],
+    "institution": "국가법령정보센터 · 국세청",
+    "note": "기한 후 신고는 하나의 공통 신고서가 아니라 해당 세목의 법정 신고서로 합니다. 이 묶음은 기한 후 신고 선택란이 실제 표시된 상속세·기본증여세·특례증여세·양도소득세 원본을 제공합니다. 국세기본법 시행령의 위임 규정과 각 현행 시행규칙의 서식을 확인했으며, 수정신고서나 세무서 발송용 안내문을 대신 수집하지 않았습니다. 세목과 적용요건에 맞는 원본을 선택하세요.",
+    "source_evidence": {
+      "url": "https://www.law.go.kr/LSW/lsSideInfoP.do?lsiSeq=283623&joNo=0025&joBrNo=04&docCls=jo&urlMode=lsScJoRltInfoR",
+      "http_status": 200,
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/P2-11.json",
+      "matched_terms": [
+        "기한 후 과세표준신고",
+        "기한후과세표준신고서는 세법에서 정하는 바에 따른다"
+      ],
+      "evidence_sha256": "403172db4698c2531b28b40bf651dfa95d31b50ab6599a7e759aa728fd4076c9"
+    }
   },
   {
     "id": "P2-12",
@@ -2802,17 +3033,30 @@
     "required_original": true,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
-    "form_no": null,
+    "status": "확인 완료",
+    "source_url": "https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000281898",
+    "checked_at": "2026-09-19T17:22:34Z",
+    "form_no": "평가심의위원회 운영 규정 별지 제6호 서식",
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
-    "files": [],
-    "failure_reason": "HWP/HWPX/DOCX/PDF 바이너리 확인 실패",
+    "license": "행정규칙 별지서식 · 원본 무수정·출처 표시",
+    "source_type": "원본",
+    "files": [
+      {
+        "name": "재산의 매매 등 가액의 시가인정 심의 신청서.pdf",
+        "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=166788129&flNm=%5B%EB%B3%84%EC%A7%80+6%5D+%EC%9E%AC%EC%82%B0%EC%9D%98+%EB%A7%A4%EB%A7%A4+%EB%93%B1+%EA%B0%80%EC%95%A1%EC%9D%98+%EC%8B%9C%EA%B0%80%EC%9D%B8%EC%A0%95+%EC%8B%AC%EC%9D%98+%EC%8B%A0%EC%B2%AD%EC%84%9C&bylClsCd=200203",
+        "bytes": 137687,
+        "sha256": "3aa19105978665a9c579afd3a3ff2107e64dc03307db706ac036974ab65d7d0b",
+        "format": "pdf",
+        "role": "original",
+        "http_status": 200,
+        "checked_at": "2026-09-19T17:22:34Z",
+        "title_verified": true,
+        "path": "public/downloads/official-forms/expansion/P2-15_3aa191059786.pdf",
+        "local_url": "/downloads/official-forms/expansion/P2-15_3aa191059786.pdf"
+      }
+    ],
     "attempts": [
       {
         "checked_at": "2026-09-17T11:18:58Z",
@@ -2829,7 +3073,19 @@
         "url": "https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000281898#AJAX",
         "result": "HWP/HWPX/DOCX/PDF 바이너리 확인 실패"
       }
-    ]
+    ],
+    "institution": "국가법령정보센터 · 국세청",
+    "note": "요청명에 대응하는 납세자용 서식은 평가심의위원회 운영 규정의 재산의 매매 등 가액의 시가인정 심의 신청서입니다. 과세관청용 심의 의뢰서와 구분합니다. 관련 검토서 부표가 포함된 공식 PDF 원본입니다.",
+    "source_evidence": {
+      "url": "https://www.law.go.kr/LSW/admRulLsInfoR.do?admRulSeq=2100000281898&admRulId=21044&joTpYn=Y&languageType=KO&chrClsCd=010202",
+      "http_status": 200,
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/P2-15.json",
+      "matched_terms": [
+        "재산의 매매 등 가액의 시가인정 심의 신청서",
+        "별지 6"
+      ],
+      "evidence_sha256": "e9002c2764f05f6767c45c552fc79b07b5b7ae7e42415ddad6f377b22a1c53e2"
+    }
   },
   {
     "id": "P3-01",
@@ -3032,17 +3288,31 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://www.taxwithgs.kr/board/view/sw5_2/420",
+    "checked_at": "2026-09-19T17:34:29Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "민간 제공기관 약관 적용 · 제공처 링크만 연결 · 재배포 금지",
+    "source_type": "민간제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "institution": "세무법인 위드",
+    "note": "세무법인 위드가 제공하는 민간 참고서식이며 정부 법정서식이 아닙니다. 현금(예금) 증여 목적과 계좌이체 방식을 명시한 실제 HWP 본문을 확인했습니다. 제공처 페이지에서 원본을 내려받도록 연결하며 파일은 사이트에 재배포하지 않습니다.",
+    "provider_origin": "private_institution",
+    "provider_authority": "private_terms",
+    "source_evidence": {
+      "url": "https://www.taxwithgs.kr/board/view/sw5_2/420",
+      "http_status": 200,
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/P3-05.json",
+      "matched_terms": [
+        "세무법인 위드",
+        "현금증여계약서",
+        "현금증여계약서.hwp"
+      ],
+      "evidence_sha256": "89139bc6dda6f9e9d9c1e2ad9d440d994ecdfb894a90d1c3d4793fdf46395d81"
+    }
   },
   {
     "id": "P3-06",
@@ -4711,17 +4981,16 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
-    "form_no": null,
+    "status": "확인 완료",
+    "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%A7%84%EC%A0%95%EB%AA%85%EC%9D%98%ED%9A%8C%EB%B3%B5&scdFolderId=",
+    "checked_at": "2026-09-19T17:41:18.254014+00:00",
+    "form_no": "328-1",
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공공누리 제2유형 안내 · 공식 제공처 링크 · 파일 재배포 없음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함",
     "search_attempts": [
       {
         "url": "https://help.scourt.go.kr/nm/minwon/doc/DocListAction.work?pageIndex=1&pageSize=5&min_gubun=&sName=&eName=&min_gubun_sel=&searchWord=%BB%F3%BC%D3",
@@ -4778,7 +5047,28 @@
         "url": null,
         "result": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
       }
-    ]
+    ],
+    "institution": "대한법률구조공단",
+    "note": "상속회복청구 관련 소장 예시(인지 후 진정명의회복). 공식 원문명: 328-1 소유권이전등기청구의 소(진정명의회복을 원인으로). 상속회복청구 일반에 사용하는 단일 법정 표준서식으로 표시하지 않습니다. 공식 문서명과 사례 범위를 공개 카드 상세에서 그대로 설명합니다. 기타 재산 반환 등 다른 사건에 그대로 사용할 수 있다고 안내하지 않습니다.",
+    "source_evidence": {
+      "original": {
+        "name": "candidate-328-1.hwp",
+        "url": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f01%2f29%2f14%2f05%2f91279566-0d9e-474a-a803-0e12e1197e34&filename=328-1+%ec%86%8c%ec%9c%a0%ea%b6%8c%ec%9d%b4%ec%a0%84%eb%93%b1%ea%b8%b0%ec%b2%ad%ea%b5%ac%ec%9d%98_%ec%86%8c(%ec%a7%84%ec%a0%95%eb%aa%85%ec%9d%98%ed%9a%8c%eb%b3%b5%ec%9d%84_%ec%9b%90%ec%9d%b8%ec%9c%bc%eb%a1%9c).hwp",
+        "status": 200,
+        "bytes": 81920,
+        "sha256": "82b91ab5993284c2bba0ed4dc2da7e0cb75e3368b34a6ab75b732ac16405dcdc",
+        "content_type": "application/x-msdownload",
+        "signature": "d0cf11e0a1b11ae10000000000000000"
+      },
+      "scope": [
+        "공식 KLAC 법률서식 검색 결과에 서식 번호와 다운로드 링크가 있습니다.",
+        "다운로드 응답은 정상 HWP이며 파일 헤더·본문 파싱 및 내장 미리보기 확인을 마쳤습니다.",
+        "청구원인은 인지판결 후 진정상속인이 후순위 상속인을 상대로 부동산 명의 회복을 구하는 사례입니다.",
+        "서식 설명은 해당 등기이전청구권이 상속회복청구권의 성질을 가진다고 명시합니다."
+      ],
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/P8-02.json",
+      "evidence_sha256": "38bb73cf9b2e701459832c81011e1bdc900917ad198d673c1d2b9d266326c954"
+    }
   },
   {
     "id": "P8-03",
@@ -5094,23 +5384,49 @@
     "required_original": false,
     "operation": "alias",
     "target_id": "P1-22",
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+    "checked_at": "2026-09-19T18:01:19.511190+00:00",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "제공처 링크 · 원본 재배포 없음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다.",
     "attempts": [
       {
         "checked_at": "2026-09-19T12:55:19Z",
         "result": "Rechecking attached diagnostic and property forms; not assuming target alone completes extension."
       }
-    ]
+    ],
+    "institution": "대한법률구조공단 / 보건복지부 / 국가법령정보센터",
+    "note": "청구서·사전현황설명서·재산목록 원문과 의료기관 발급용 공통 진단서 원문을 확인했습니다. 진단서는 의료법 시행규칙 별지 제5호의2서식의 참고자료이며, 후견전용 양식이나 이용자 직접 작성용이 아닙니다. 사건별 진단 내용과 제출 적합성은 법원 요구사항을 별도로 확인하세요.",
+    "source_evidence": {
+      "sources": [
+        {
+          "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=2&cnpClsNo=1&csmSeq=694&popMenu=ov",
+          "finding": "성년후견 개시 청구의 첨부서류 종류로 진단서를 안내함. 해당 페이지가 이 공통 빈양식을 후견전용으로 지정한 것은 아님."
+        },
+        {
+          "url": "https://law.go.kr/LSW/lumLsLinkPop.do?lspttninfSeq=61673",
+          "finding": "현행 의료법 시행규칙 제9조가 의료인이 발급하는 진단서의 공통 서식과 기재·서명 근거를 정하고 있음."
+        },
+        {
+          "url": "https://www.ncmh.go.kr/ncmh/board/boardView.do?bn=newsView&fno=106&gubun_no=9&menu_cd=04_02_02_04&no=10040&pageIndex=1&search_content=&search_item=",
+          "finding": "정신질환자 공공후견 지원사업에서 의료기관 진단서를 첨부자료로 명시한 보조근거. 이 지침의 특정 사업 요건을 모든 성년후견 신청에 일반화하지 않음."
+        }
+      ],
+      "petition_and_property_original_verified": true,
+      "diagnosis_blank_form_verified": true,
+      "diagnosis_form_scope": "common_medical_certificate_reference",
+      "guardianship_specific_blank_form_verified": false,
+      "individual_case_submission_sufficiency_verified": false,
+      "scope_review": "원요청은 진단서·재산목록 등 첨부서식 포함이며 후견전용 서식으로 한정하지 않는다. 실제 공통 법정 진단서 양식을 참고자료로 분리하여 연결하면 진단서라는 첨부자료 종류의 수집 범위를 충족할 수 있다. 법원이 이 빈양식을 특정 사건에서 충분하다고 수리한다는 결론은 도출하지 않는다.",
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/P8-07.json",
+      "evidence_sha256": "61b12ddb4a79d06bbd1b96e482dbcd4023380974f59bf17989634c354106712b"
+    },
+    "alias_verified": true
   },
   {
     "id": "P8-08",
@@ -5613,24 +5929,36 @@
     "required_original": false,
     "operation": "add",
     "target_id": null,
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://www.acrc.go.kr/board.es?act=view&bid=1010&list_no=50286&mid=a10504010000&nPage=&tag=",
+    "checked_at": "2026-09-19T17:37:43Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "공공누리 제3유형 · 출처 표시·변경 금지 · 제공처 링크 연결",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /%EB%B2%95%EB%A0%B9/%EB%AF%BC%EA%B0%84%EC%9E%84%EB%8C%80%EC%A3%BC%ED%83%9D%EC%97%90%EA%B4%80%ED%95%9C%ED%8A%B9%EB%B3%84%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f55d5b810d0>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
     "attempts": [
       {
         "checked_at": "2026-09-19T14:55:08Z",
         "url": null,
         "result": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /%EB%B2%95%EB%A0%B9/%EB%AF%BC%EA%B0%84%EC%9E%84%EB%8C%80%EC%A3%BC%ED%83%9D%EC%97%90%EA%B4%80%ED%95%9C%ED%8A%B9%EB%B3%84%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f55d5b810d0>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))"
       }
-    ]
+    ],
+    "institution": "국민권익위원회",
+    "note": "상속으로 임대사업자 명의변경을 검토한 공식 의결사례입니다. 개별사례이며 관할기관의 현행 처리 확인이 필요합니다. 이번 확인에서 상속 전용 공통서식은 확인되지 않았습니다. 양도신고서를 상속에 일률 적용한다고 안내하지 않습니다.",
+    "source_evidence": {
+      "url": "https://www.acrc.go.kr/board.es?act=view&bid=1010&list_no=50286&mid=a10504010000&nPage=&tag=",
+      "http_status": 200,
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/P9-07.json",
+      "matched_terms": [
+        "임대사업자 명의변경",
+        "의견표명",
+        "의결서_공개용.pdf"
+      ],
+      "evidence_sha256": "2d28c1ad496bc636043a3dc09a4ed52e8a07fc85c70b75c71365550e7b729814"
+    }
   },
   {
     "id": "P9-08",

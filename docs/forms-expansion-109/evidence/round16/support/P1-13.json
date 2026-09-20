@@ -1,0 +1,50 @@
+{
+  "id": "P1-13",
+  "title": "등기신청 위임장·등기신청수수료 안내",
+  "institution": "법제처 찾기쉬운 생활법령정보",
+  "source_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=1&cnpClsNo=3&csmSeq=566&popMenu=ov",
+  "checked_at": "2026-09-19T17:22:27Z",
+  "retention": "검증 메타데이터와 짧은 발췌만 보존. 원본·전체 텍스트·화면·쿠키·임시 경로는 포함하지 않음.",
+  "records": [
+    {
+      "capture_name": "P1-13-evidence.json",
+      "capture_sha256": "bd671da868831c0f70a2b42aa45fe70ecb42f6ee73f04036ece299a328557ba1",
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=1&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:22:27Z",
+      "page_sha256": "75fb2107a06b7187858fee06df71ee613ef38a9cd2bbb287ef0aaff5a38e059f",
+      "verification_method": "official_download_and_body",
+      "confirmed_observations": [
+        "본문의 해당 서식 다운로드 링크 확인",
+        "실제 HWP 파일의 HWP Document File 서명 확인",
+        "파일 내 신청서 제목 및 요청 목적 대조",
+        "같은 페이지 등기신청수수료 납부 안내 확인"
+      ],
+      "observed_download_links": [
+        {
+          "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1776590363784",
+          "label": "위임장 양식은"
+        }
+      ],
+      "download_verified": true
+    },
+    {
+      "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1776590363784",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:22:34Z",
+      "sha256": "c21ba114818cc058edaf4df662c75b38739481bdbd70a7c918f5a30d8a0b9ddb",
+      "bytes": 16896,
+      "format": "hwp",
+      "title_verified": true,
+      "name": "등기신청 위임장·등기신청수수료 안내",
+      "role": "original",
+      "text_sha256": "ef882d528c92328b0d2dd827c3e7fdbc47e5357c3921d34d928337acfae9df26",
+      "excerpt": [
+        "위 임 장",
+        "위 부동산 등기신청 및 취하에 관한 모든 권한을 위임한다."
+      ],
+      "download_verified": true,
+      "binary_included_in_support": false
+    }
+  ]
+}

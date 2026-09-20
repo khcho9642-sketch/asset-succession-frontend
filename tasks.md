@@ -42,17 +42,17 @@ P4-03/P7-07/P8-07은 각각 P3-02/P3-03/P1-22로 통합한다. 확장 안내·�
 - [x] P1-07 근저당권설정등기 신청서
 - [x] P1-08 근저당권말소등기 신청서
 - [x] P1-09 전세권설정등기 신청서
-- [ ] P1-10 신탁등기 신청서
-- [ ] P1-11 소유권경정등기 신청서
+- [x] P1-10 신탁등기 신청서
+- [x] P1-11 소유권경정등기 신청서
 - [x] P1-12 소유권이전청구권 가등기 신청서
-- [ ] P1-13 등기신청 위임장·등기신청수수료 안내
+- [x] P1-13 등기신청 위임장·등기신청수수료 안내
 - [x] P1-14 자필증서 유언 작성 안내
 - [x] P1-15 유언증서 검인 청구서
-- [ ] P1-16 유언집행자 선임 심판청구서
+- [x] P1-16 유언집행자 선임 심판청구서
 - [x] P1-17 공정증서 유언 안내
 - [x] P1-18 상속재산분할 심판청구서
-- [ ] P1-19 기여분 결정 청구서
-- [ ] P1-20 유류분반환청구 소장
+- [x] P1-19 기여분 결정 청구서
+- [x] P1-20 유류분반환청구 소장
 - [x] P1-21 상속재산관리인 선임 심판청구서
 - [x] P1-22 성년후견 개시 심판청구서
 - [x] P1-23 부재자 재산관리인 선임·실종선고 심판청구서
@@ -67,16 +67,16 @@ P4-03/P7-07/P8-07은 각각 P3-02/P3-03/P1-22로 통합한다. 확장 안내·�
 - [x] P2-08 납세담보 제공서 [원본]
 - [x] P2-09 분납 신청 안내
 - [x] P2-10 경정청구서 [원본]
-- [ ] P2-11 기한후과세표준신고서 [원본]
+- [x] P2-11 기한후과세표준신고서 [원본]
 - [x] P2-12 과세전적부심사 청구서 [원본]
 - [x] P2-13 이의신청서 [원본]
 - [x] P2-14 심사청구서/심판청구서
-- [ ] P2-15 재산 평가심의위원회 심의신청서 [원본]
+- [x] P2-15 재산 평가심의위원회 심의신청서 [원본]
 - [x] P3-01 농지취득자격증명 신청서 [원본]
 - [x] P3-02 부동산 거래계약 신고서 [원본]
 - [x] P3-03 국민건강보험 자격상실 안내
 - [x] P3-04 세무대리 위임장
-- [ ] P3-05 현금 증여계약서
+- [x] P3-05 현금 증여계약서
 - [x] P3-06 부담부증여 계약서 안내
 - [x] P4-01 주택취득자금 조달 및 입주계획서 [원본]
 - [x] P4-02 토지취득자금 조달계획서 [원본]
@@ -105,12 +105,12 @@ P4-03/P7-07/P8-07은 각각 P3-02/P3-03/P1-22로 통합한다. 확장 안내·�
 - [x] P7-06 대한지방행정공제회 급여 청구
 - [x] P7-07 국민건강보험 자격상실·임의계속 안내 — 통합: P3-03
 - [x] P8-01 미성년자 특별대리인 선임 청구서
-- [ ] P8-02 상속회복청구 소장
+- [x] P8-02 상속회복청구 소장
 - [x] P8-03 친생자관계존부확인의 소 / 인지청구의 소
 - [x] P8-04 상속재산 파산 신청서
 - [x] P8-05 한정승인 후 청산 절차 안내
 - [x] P8-06 상속인 부존재 시 상속재산 청산 공고 안내
-- [ ] P8-07 성년후견 개시 심판청구서 일체 — 통합: P1-22
+- [x] P8-07 성년후견 개시 심판청구서 일체 — 통합: P1-22
 - [x] P8-08 한정후견 / 특정후견 개시 심판청구서
 - [x] P8-09 임의후견(후견계약) 관련 양식
 - [x] P8-10 후견인 권한 초과행위 허가 청구서
@@ -122,7 +122,7 @@ P4-03/P7-07/P8-07은 각각 P3-02/P3-03/P1-22로 통합한다. 확장 안내·�
 - [x] P9-04 폐업신고서 [원본]
 - [x] P9-05 사업포괄양수도 관련 안내
 - [x] P9-06 주택임대사업자 등록·변경·말소 신청서
-- [ ] P9-07 임대사업자 지위 승계 신고
+- [x] P9-07 임대사업자 지위 승계 신고
 - [x] P9-08 해외금융계좌 신고서 [원본]
 - [x] P9-09 국외전출자 국내주식 양도소득세 신고 안내
 - [x] P9-10 개별공시지가·공동주택가격 조회 안내
@@ -141,21 +141,52 @@ P4-03/P7-07/P8-07은 각각 P3-02/P3-03/P1-22로 통합한다. 확장 안내·�
 
 - P4-05: 공식 출처·이용 안내 확인 완료. [증거](docs/forms-expansion-109/evidence/round15/P4-05.json) · [처리 파일](docs/forms-expansion-109/guides/P4-05.md). 원본 파일 재배포 없음.
 
-## 2026-09-20 요청 브랜치 5건 인계
+## 이번 17건 처리 기록
 
-시작: 최신 원격 4c211a9 기준 92/109 완료, 17건 미체크. 사용자 기재 87/109는 이전 기록입니다.
-다른 브랜치에서 확인된 자료를 중복 제작하지 않고 28c1912의 항목별 증거를 선별 인계합니다. UI·기능·기존 원본·ZIP은 가져오거나 변경하지 않습니다.
-대상은 P0-10, P1-02, P1-03, P1-04, P1-05의 5건뿐입니다. 완료는 출처·서류 존재 확인이며 원본 공개 재배포와 구분합니다.
+- P1-03: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P1-03.json)
 
-- P0-10: 기존 미완료 카드에 공식 제공처 연결. [증거](docs/forms-expansion-109/evidence/round17/P0-10.json) · [이용 안내](docs/forms-expansion-109/guides/P0-10.md). 기존 검증 인계 및 공식 HWP 재수신·제목·크기·SHA-256 대조. 인쇄 레이아웃과 현행 제출 적합성은 미검수.
+- P1-04: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P1-04.json)
 
-- P1-02: 기존 미완료 카드에 공식 제공처 연결. [증거](docs/forms-expansion-109/evidence/round17/P1-02.json) · [이용 안내](docs/forms-expansion-109/guides/P1-02.md). 기존 공식 목록·첨부 표시 검증을 인계. 원본 바이너리 미확보.
+- P1-05: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P1-05.json)
 
-- P1-03: REG-I-01의 출처 URL만 갱신. [증거](docs/forms-expansion-109/evidence/round17/P1-03.json) · [이용 안내](docs/forms-expansion-109/guides/P1-03.md). 기존 검증 인계 및 공식 HWP 재수신·제목·크기·SHA-256 대조. 인쇄 레이아웃과 현행 제출 적합성은 미검수.
+- P1-13: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P1-13.json)
 
-- P1-04: REG-I-03의 출처 URL만 갱신. [증거](docs/forms-expansion-109/evidence/round17/P1-04.json) · [이용 안내](docs/forms-expansion-109/guides/P1-04.md). 기존 검증 인계 및 공식 HWP 재수신·제목·크기·SHA-256 대조. 인쇄 레이아웃과 현행 제출 적합성은 미검수.
+- P2-11: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P2-11.json)
 
-- P1-05: REG-G-01의 출처 URL만 갱신. [증거](docs/forms-expansion-109/evidence/round17/P1-05.json) · [이용 안내](docs/forms-expansion-109/guides/P1-05.md). 기존 검증 인계 및 공식 HWP 재수신·제목·크기·SHA-256 대조. 인쇄 레이아웃과 현행 제출 적합성은 미검수.
+- P2-15: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P2-15.json)
+
+- P1-02: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P1-02.json)
+
+- P1-10: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P1-10.json)
+
+- P1-11: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P1-11.json)
+
+- P0-10: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P0-10.json)
+
+- P1-16: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P1-16.json)
+
+- P1-20: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P1-20.json)
+
+- P1-19: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P1-19.json)
+
+- P8-02: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P8-02.json)
+
+- P3-05: [민간 제공처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P3-05.json)
+
+- P9-07: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P9-07.json)
+
+- P8-07: [공식 출처·원본 확인 근거](docs/forms-expansion-109/evidence/round16/P8-07.json)
 
 ## 집계
-확인 완료 97/109 · 미체크 12. 원본 파일 확보·공개 재배포·출처 확인은 별도 기록합니다.
+확인 완료 109/109 · 미체크 0. 원본 파일 확보·공개 재배포·출처 확인은 별도 기록합니다.
+
+
+## 2026-09-20 최신 서비스 통합 근거
+
+109건 수집 완료와 177개 자료 분류를 유지하면서 최신 서비스의 74개 PNG 미리보기 및 아래 5건의 재확인·이용 안내를 함께 보존했습니다. 기준 스냅샷을 바꾸지 않고 [명시적 변경 목록](docs/forms-library-v2/evidence/production-overlays.json)으로 검증합니다.
+
+- P0-10: [추가 확인 근거](docs/forms-expansion-109/evidence/round17/P0-10.json) · [이용 안내](docs/forms-expansion-109/guides/P0-10.md)
+- P1-02: [추가 확인 근거](docs/forms-expansion-109/evidence/round17/P1-02.json) · [이용 안내](docs/forms-expansion-109/guides/P1-02.md)
+- P1-03: [추가 확인 근거](docs/forms-expansion-109/evidence/round17/P1-03.json) · [이용 안내](docs/forms-expansion-109/guides/P1-03.md)
+- P1-04: [추가 확인 근거](docs/forms-expansion-109/evidence/round17/P1-04.json) · [이용 안내](docs/forms-expansion-109/guides/P1-04.md)
+- P1-05: [추가 확인 근거](docs/forms-expansion-109/evidence/round17/P1-05.json) · [이용 안내](docs/forms-expansion-109/guides/P1-05.md)

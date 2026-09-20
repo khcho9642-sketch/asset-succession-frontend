@@ -1,0 +1,37 @@
+{
+  "schema_validated_resources": 177,
+  "schema_validated_navigation_groups": 19,
+  "canonical_resources": 177,
+  "representative_cards": 103,
+  "standalone_resources": 84,
+  "archived_resources": 9,
+  "group_members": 62,
+  "child_resources": 22,
+  "formal_or_combined_schedules": 9,
+  "other_children": 13,
+  "stage_counts": {
+    "S3": 50,
+    "S7": 16,
+    "S4": 33,
+    "S6": 12,
+    "S5": 55,
+    "S1": 10,
+    "S2": 1
+  },
+  "preserved_file_urls": 185,
+  "original_file_references": 185,
+  "legacy_manifest_fields_unchanged": false,
+  "legacy_files_and_zip_unchanged": false,
+  "legacy_manifest_core_preserved": true,
+  "legacy_original_files_unchanged": true,
+  "preview_overlay_verified": 74,
+  "collection_overlay_verified": 5,
+  "latest_service_zip_verified": true,
+  "migration_baselines_unchanged": true,
+  "classification_needs_review": 177,
+  "source_verification_counts": {
+    "verified": 177
+  },
+  "legal_applicability_pending": true,
+  "deadline_rules_activated": 0
+}

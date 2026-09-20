@@ -381,3 +381,18 @@
   .workspace[data-chat-stage="chat"] .progress { gap: 4px; font-size: 11px; }
   .workspace[data-chat-stage="chat"] .chatHeading h1 { font-size: 20px; }
 }
+.relatedForms {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 7px;
+  padding: 9px 12px;
+  margin-bottom: 10px;
+  border: 1px solid #d9cfc0;
+  border-radius: 8px;
+  color: #53452f;
+  font-size: 13px;
+  text-decoration: none;
+}
+.relatedForms:hover { background: #e7dfd1; }
+.relatedForms:focus-visible { outline: 2px solid #7a6139; outline-offset: 3px; }

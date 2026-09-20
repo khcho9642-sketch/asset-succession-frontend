@@ -1,0 +1,98 @@
+{
+  "reviewed_on": "2026-09-20",
+  "collection_tasks": {
+    "confirmed": 109,
+    "total": 109,
+    "original_file_acquisition_is_separate": true
+  },
+  "migration": {
+    "schema_validated_resources": 177,
+    "schema_validated_navigation_groups": 19,
+    "canonical_resources": 177,
+    "representative_cards": 103,
+    "standalone_resources": 84,
+    "archived_resources": 9,
+    "group_members": 62,
+    "child_resources": 22,
+    "formal_or_combined_schedules": 9,
+    "other_children": 13,
+    "stage_counts": {
+      "S3": 50,
+      "S7": 16,
+      "S4": 33,
+      "S6": 12,
+      "S5": 55,
+      "S1": 10,
+      "S2": 1
+    },
+    "preserved_file_urls": 185,
+    "original_file_references": 185,
+    "legacy_manifest_fields_unchanged": false,
+    "legacy_files_and_zip_unchanged": false,
+    "legacy_manifest_core_preserved": true,
+    "legacy_original_files_unchanged": true,
+    "preview_overlay_verified": 74,
+    "collection_overlay_verified": 5,
+    "latest_service_zip_verified": true,
+    "migration_baselines_unchanged": true,
+    "classification_needs_review": 177,
+    "source_verification_counts": {
+      "verified": 177
+    },
+    "legal_applicability_pending": true,
+    "deadline_rules_activated": 0
+  },
+  "checks": {
+    "forms_tests": {
+      "status": "passed",
+      "count": 42,
+      "components": {
+        "legacy_catalog_files_and_real_pngs": 20,
+        "preview_integration": 7,
+        "planning": 6,
+        "filter_engine_and_real_catalog": 9
+      }
+    },
+    "chat_domain_tests": {
+      "status": "passed",
+      "count": 112
+    },
+    "lint": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "http_routes_and_original_pdf": "passed",
+    "simple_calculator_tests": {
+      "status": "passed",
+      "count": 140
+    },
+    "total_automated_tests": 294,
+    "independent_code_review": "passed; no newly introduced filter, stage, dialog or download regression found"
+  },
+  "browser_review": {
+    "status": "pending_integrated_preview",
+    "existing_additions_preview": "https://frontend-prototype-4qyir88al-khcho98-6477s-projects.vercel.app/forms",
+    "existing_preview_observation": "Old category/status UI: 177 resources, 105 hosted, 61 providers, 11 pending. It does not include the redesign.",
+    "reason": "Integrated preview has not been deployed because Vercel project access requires re-authentication. Existing preview browser checks do not validate this integration."
+  },
+  "scope_notes": [
+    "P8-07 진단서는 의료기관 발급용 공통 법정양식 참고이며 후견전용·사건별 제출 적합성 검증이 아니다.",
+    "P9-07은 상속 명의변경 공식 의결사례이며 상속 전용 공통신고서로 표시하지 않는다.",
+    "P8-02는 인지 후 진정명의회복 관련 소장 예시로 범위를 명시한다.",
+    "P3-05는 민간 제공기관 참고서식이며 재배포하지 않는다.",
+    "법적 적용 가능성과 D-day는 검증 완료로 표시하지 않는다."
+  ],
+  "source_commits": {
+    "latest_service_preview": "f5ed67948e6e0e171e853dab3c618d4904f505e5",
+    "pr6_redesign": "28c1912f3a070924e6f61a03197b4dd717e174b4"
+  },
+  "review_branch": "codex/forms-redesign-preview-20260920",
+  "deployment": {
+    "target": "preview",
+    "project": "frontend-prototype",
+    "status": "blocked_authentication",
+    "connector": "403: re-authenticate to khcho98-6477s-projects scope",
+    "cli": "vercel whoami: loggedIn=false, login_required",
+    "production_changed": false,
+    "environment_variables_changed": false
+  }
+}

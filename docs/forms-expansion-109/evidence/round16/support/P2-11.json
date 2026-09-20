@@ -1,0 +1,134 @@
+{
+  "id": "P2-11",
+  "title": "기한후과세표준신고서",
+  "institution": "국가법령정보센터 · 국세청",
+  "source_url": "https://www.law.go.kr/법령/국세기본법시행령/제25조의4",
+  "checked_at": "2026-09-19T17:29:12Z",
+  "retention": "검증 메타데이터와 짧은 발췌만 보존. 원본·전체 텍스트·화면·쿠키·임시 경로는 포함하지 않음.",
+  "records": [
+    {
+      "capture_name": "late-law-body2.json",
+      "capture_sha256": "83a7a11e9d3efb093b96f1867d038bc674d1bf32ff58ebc7d465d85119a5ba22",
+      "url": "https://www.law.go.kr/LSW/lsSideInfoP.do?lsiSeq=283623&joNo=0025&joBrNo=04&docCls=jo&urlMode=lsScJoRltInfoR",
+      "final_url": "https://www.law.go.kr/LSW/lsSideInfoP.do?lsiSeq=283623&joNo=0025&joBrNo=04&docCls=jo&urlMode=lsScJoRltInfoR",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:25:55Z",
+      "sha256": "70033d8157d955e19442166e4362283394a40f56403ff6688140d524aee44916",
+      "bytes": 71889,
+      "content_type": "text/html;charset=UTF-8",
+      "excerpt": [
+        "기한후과세표준신고서는 세법에서 정하는 바에 따른다"
+      ]
+    },
+    {
+      "capture_name": "inheritance-rules-body.json",
+      "capture_sha256": "ee472fbc1c720d9edf4188c5abe37d580d5a226389b48b6b42c30ed5c64d97ff",
+      "url": "https://www.law.go.kr/LSW//lsInfoR.do?lsiSeq=284609&chrClsCd=010202&urlMode=lsInfoP&efYd=20260320&ancYnChk=0",
+      "final_url": "https://www.law.go.kr/LSW//lsInfoR.do?lsiSeq=284609&chrClsCd=010202&urlMode=lsInfoP&efYd=20260320&ancYnChk=0",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:27:42Z",
+      "sha256": "27566379f8210eea3e536337ee71f731b1fa86b19cf6593cbcec033a7919352d",
+      "bytes": 711890,
+      "content_type": "text/html;charset=UTF-8"
+    },
+    {
+      "capture_name": "income-rules-body.json",
+      "capture_sha256": "8e8dde8e5b96e0b372adda05993a1dad5d0146e34ddcc31103cfdf3bf0916e8c",
+      "url": "https://www.law.go.kr/LSW//lsInfoR.do?lsiSeq=286379&chrClsCd=010202&urlMode=lsInfoP&efYd=20260701&ancYnChk=0",
+      "final_url": "https://www.law.go.kr/LSW//lsInfoR.do?lsiSeq=286379&chrClsCd=010202&urlMode=lsInfoP&efYd=20260701&ancYnChk=0",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:27:44Z",
+      "sha256": "ab0d2b3d8579bf637cc1ef91b5fcb95c03d07557f80559fdb16d417b3aac1232",
+      "bytes": 2382523,
+      "content_type": "text/html;charset=UTF-8"
+    },
+    {
+      "capture_name": "P2-11-inheritance-validation.json",
+      "capture_sha256": "a8f1d9dbf913ab721db97c3c2cacecf3d031590365f59d652b352307c43371c7",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162625975&bylClsCd=110202",
+      "final_url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162625975&bylClsCd=110202",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:28:38Z",
+      "sha256": "7f46b68911f46c6aa65265734c165d09f03ddf640dbb3248b4ac36866948ffd2",
+      "bytes": 265841,
+      "content_type": "application/pdf;;charset=UTF-8",
+      "title": "상속세과세표준신고 및 자진납부계산서",
+      "title_verified": true,
+      "late_filing_checkbox_verified": true,
+      "unmodified_original": true,
+      "pages": 17,
+      "text_sha256": "6c787b3a2a6dc772df2337fc4ed42dd512cefb180cd8c1d38bb758c37d04fc1b",
+      "excerpt": [
+        "기한 후 신고"
+      ],
+      "download_verified": true,
+      "binary_included_in_support": false
+    },
+    {
+      "capture_name": "P2-11-gift-validation.json",
+      "capture_sha256": "6bf388dff17c8dd147a1131b2d605900be0c020a245cd1e8ef14e688f937d94b",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162626013&bylClsCd=110202",
+      "final_url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162626013&bylClsCd=110202",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:28:38Z",
+      "sha256": "a5dd1e04db15869d5308ae69d1af35e4889e67b57e5354ab72882b0c1f6aa912",
+      "bytes": 217314,
+      "content_type": "application/pdf;;charset=UTF-8",
+      "title": "증여세과세표준신고 및 자진납부계산서 · 기본세율",
+      "title_verified": true,
+      "late_filing_checkbox_verified": true,
+      "unmodified_original": true,
+      "pages": 11,
+      "text_sha256": "08f1dd10bbbd931d0546975e745ce58551291972271085d096a6ed3116d3b4a5",
+      "excerpt": [
+        "기한 후 신고"
+      ],
+      "download_verified": true,
+      "binary_included_in_support": false
+    },
+    {
+      "capture_name": "P2-11-special-gift-validation.json",
+      "capture_sha256": "ad5d824e9064aa95c39d9624ea1f93fc5172b031779d7619b31643ee8e2396e5",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162626039&bylClsCd=110202",
+      "final_url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162626039&bylClsCd=110202",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:28:38Z",
+      "sha256": "77a238390d4016a2d7b567fde0f85cfb06260fc8d40ea6083a43aa7f2689691b",
+      "bytes": 140673,
+      "content_type": "application/pdf;;charset=UTF-8",
+      "title": "증여세과세표준신고 및 자진납부계산서 · 창업자금·가업승계 특례",
+      "title_verified": true,
+      "late_filing_checkbox_verified": true,
+      "unmodified_original": true,
+      "pages": 6,
+      "text_sha256": "6648fde8fdafcf8b8ef7a2c05fa2a96f6842a13238161794eeebd4aafadefded",
+      "excerpt": [
+        "기한 후 신고"
+      ],
+      "download_verified": true,
+      "binary_included_in_support": false
+    },
+    {
+      "capture_name": "P2-11-transfer-validation.json",
+      "capture_sha256": "9d61079fff8e215cee15a8d6c9edd91b1a76dfb8624ee8807317710f8fe26db2",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=164445095&bylClsCd=110202",
+      "final_url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=164445095&bylClsCd=110202",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:29:12Z",
+      "sha256": "4920658fe5222742246868ad5cf4f398422614dc6895ad55f39bb2db51d6ea1d",
+      "bytes": 267524,
+      "content_type": "application/pdf;;charset=UTF-8",
+      "title": "양도소득과세표준 신고 및 납부계산서",
+      "title_verified": true,
+      "late_filing_checkbox_verified": true,
+      "unmodified_original": true,
+      "pages": 17,
+      "text_sha256": "73449620d9541032e8849a31697bb441f2b92d31ba6643f74f13265053b3ccde",
+      "excerpt": [
+        "기한 후 신고"
+      ],
+      "download_verified": true,
+      "binary_included_in_support": false
+    }
+  ]
+}
