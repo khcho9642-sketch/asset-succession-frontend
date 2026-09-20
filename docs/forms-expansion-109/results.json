@@ -1151,17 +1151,42 @@
     "required_original": false,
     "operation": "source_url_update",
     "target_id": "REG-G-01",
-    "status": "확인 중",
-    "source_url": null,
-    "checked_at": null,
+    "status": "확인 완료",
+    "source_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=2&cnpClsNo=3&csmSeq=566&popMenu=ov",
+    "checked_at": "2026-09-19T17:21:54Z",
     "form_no": null,
     "revised_at": null,
     "deadline": null,
     "deadline_basis": null,
-    "license": "미확인",
-    "source_type": null,
+    "license": "법제처 공식 제공처의 첨부 원본 확인 · 자체 재배포하지 않음",
+    "source_type": "공식제공처",
     "files": [],
-    "failure_reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    "institution": "법제처 찾기쉬운 생활법령정보",
+    "note": "법제처 공식 제공처에서 해당 신청서의 다운로드 링크와 실제 HWP 파일의 제목·본문을 대조했습니다. 인터넷등기소 직링크로 표기하지 않으며 법제처 공식 페이지로 연결합니다. 현행 제출 요건은 관할 등기소에 확인하세요.",
+    "source_evidence": {
+      "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=2&cnpClsNo=3&csmSeq=566&popMenu=ov",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:21:54Z",
+      "page_sha256": "67e730cbf755e297311a77990c5e6f629d247673ed553f881a2a0afe55f44b38",
+      "matched_terms": [
+        "증여 소유권이전등기 신청서"
+      ],
+      "download_sha256": [
+        "97eac6caa04f9b19c09fc2f8907a20f2d0d33bc5a1c7bb4d35c64e2628f185c6",
+        "6bdb23fb037dedc42c9717c2ec48ed1eccbd351d31f245e819bb116ca0b8440e"
+      ],
+      "confirmed_observations": [
+        "본문의 해당 서식 다운로드 링크 확인",
+        "실제 HWP 파일의 HWP Document File 서명 확인",
+        "파일 내 신청서 제목 및 요청 목적 대조"
+      ],
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/P1-05.json",
+      "evidence_sha256": "4bd9df0b0548550dc43b924fcbfb9ebe86a999b7e3d1943a80c41bad25e55848",
+      "support_evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-05.json",
+      "support_evidence_sha256": "21d1a8cb4fac50e3177648c5ff1caf1fca4c4b076ffc76df89a042b7cbb403f0"
+    },
+    "integration_evidence": "docs/forms-expansion-109/evidence/round17/P1-05.json",
+    "guide_file": "docs/forms-expansion-109/guides/P1-05.md"
   },
   {
     "id": "P1-06",

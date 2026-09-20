@@ -12,6 +12,8 @@ const doc = 'docs/forms-expansion-109';
 const read = path => JSON.parse(readFileSync(path, 'utf8'));
 const gitBytes = (ref, path) => execFileSync('git', ['show', `${ref}:${path}`], {maxBuffer: 20_000_000});
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+// Evidence hashes identify UTF-8 Git blobs; Windows checkouts may use CRLF.
+const evidenceBytes = path => Buffer.from(readFileSync(path, 'utf8').replace(/\r\n/g, '\n'));
 const rows = read(`${doc}/results.json`);
 const before = JSON.parse(gitBytes(base, `${doc}/results.json`));
 const manifest = read('public/downloads/official-forms/manifest.json');
@@ -70,12 +72,12 @@ test('inherited evidence bytes and both evidence hashes have verifiable provenan
     const evidence = read(row.integration_evidence);
     assert.equal(evidence.inherited_from_commit, donor);
     for (const retained of evidence.retained_evidence) {
-      const bytes = readFileSync(retained.path);
+      const bytes = evidenceBytes(retained.path);
       assert.deepEqual(bytes, gitBytes(donor, retained.path));
       assert.equal(hash(bytes), retained.sha256);
     }
     for (const [file, digest] of [['evidence_file', 'evidence_sha256'], ['support_evidence_file', 'support_evidence_sha256']]) {
-      assert.equal(hash(readFileSync(row.source_evidence[file])), row.source_evidence[digest]);
+      assert.equal(hash(evidenceBytes(row.source_evidence[file])), row.source_evidence[digest]);
     }
     assert.ok(existsSync(row.guide_file));
   }

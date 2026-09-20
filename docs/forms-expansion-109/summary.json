@@ -5,8 +5,8 @@
   "existing_records": 74,
   "new_unique_records": 103,
   "manifest_records": 177,
-  "completed": 96,
-  "unchecked": 13,
+  "completed": 97,
+  "unchecked": 12,
   "completed_ids": [
     "P0-01",
     "P0-02",
@@ -28,6 +28,7 @@
     "P1-02",
     "P1-03",
     "P1-04",
+    "P1-05",
     "P1-06",
     "P1-07",
     "P1-08",
@@ -106,7 +107,6 @@
     "P9-10"
   ],
   "pending_ids": [
-    "P1-05",
     "P1-10",
     "P1-11",
     "P1-13",
