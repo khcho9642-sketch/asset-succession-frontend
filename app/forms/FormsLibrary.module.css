@@ -316,7 +316,9 @@
   .search > svg { width: 21px; }
   .search input { min-height: 52px; font-size: 16px; }
   .search input::placeholder { font-size: 14px; }
-  .catalogSummary { display: none; }
+  .catalogSummary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px 12px; margin-top: 8px; }
+  .catalogSummary strong { font-size: 13px; }
+  .catalogSummary span { margin-top: 0; }
   .timingRow { gap: 9px; padding: 12px 0; }
   .controlLabel { display: none; }
   .timing { width: 100%; padding: 2px; gap: 2px; }

@@ -202,7 +202,7 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
           <span className={styles.srOnly}>서류명·용도로 찾기</span><input ref={search} type="search" value={filters.q}
             onChange={event => update({ q: event.target.value }, true)} placeholder="어떤 서류를 찾으세요? 서류명·용도·기관 검색" maxLength={100} autoComplete="off" />
         </label>
-        <p className={styles.catalogSummary} data-catalog-summary><strong>{index.cards.length}개 대표 자료</strong><span>원자료 {documents.length}개</span></p>
+        <p className={styles.catalogSummary} data-catalog-summary><strong>{index.cards.length}개 대표 자료</strong><span>원자료 {documents.length}개</span><span>자체 준비자료 {planning.length}개 별도</span></p>
       </div>
       <div className={styles.timingRow}>
         <span className={styles.controlLabel}>준비 상황</span>
@@ -244,6 +244,7 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
         <div className={styles.resultsToolbar}>
           <div><h2 id="documents-title" tabIndex={-1}>{active ? "검색 결과" : "전체 자료"}<span>{filtered.length === 0 && matchingPlanning.length > 0 ? `준비자료 ${matchingPlanning.length}개` : filtered.length}</span></h2>
             <p role="status" aria-live="polite" data-result-count>대표 자료 {filtered.length}개 · 원자료 {originalsCount}개{active ? " 일치" : " 포함"}
+              {!active && archived.length > 0 ? ` · 보관 ${archived.length}개 별도` : ""}
               {active && matchingPlanning.length > 0 ? ` · 자체 준비자료 ${matchingPlanning.length}개 별도` : ""}</p></div>
           {active && <button type="button" onClick={reset}>전체 자료 보기<X size={14} aria-hidden="true" /></button>}
         </div>
