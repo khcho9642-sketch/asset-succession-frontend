@@ -2,6 +2,8 @@
 
 기준 브랜치: `codex/forms-redesign-preview-20260920` (`8014a2986a3cb85c617be40e8024c585cb4854b3`).
 
+작업 중 추가된 자료 건수·모바일 표시 수정 `c11b34ab6769191bf18ff7257d1deac8f1943f42`도 통합했다. 두 작업의 테스트를 함께 유지한다.
+
 ## 사용자 흐름
 
 1. 자료실에서 생전 준비 또는 상속 발생 후 가이드로 이동한다.
@@ -23,7 +25,7 @@
 
 ## 검증
 
-- `npm run test:forms`: 48개 테스트 및 177건 스키마·원본 보존 검사 통과.
+- `npm run test:forms`: 50개 테스트 및 177건 스키마·원본 보존 검사 통과.
 - `npm run lint`: 통과.
 - `npm run build`: 프로덕션 빌드와 TypeScript 검사 통과.
 - `npm run test:forms-routes`: 자료실·준비자료 6종·가이드 3페이지·잘못된 경로 404·원본 PDF 응답 통과.
