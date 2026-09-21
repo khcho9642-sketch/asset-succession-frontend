@@ -33,19 +33,36 @@ try {
     assert.ok(page.text.includes(resource.title), resource.id);
     assert.match(page.text, /요약/);
     assert.match(page.text, /자동 전송되지 않습니다/);
+    if (resource.id === 'PLAN-01') {
+      for (const id of ['family_context', 'asset_notes', 'debt_notes']) {
+        assert.ok(page.text.includes(`id="${id}"`), `PLAN-01/${id}: input anchor exists`);
+        assert.ok(page.text.includes(`data-lookup-field="${id}"`), `PLAN-01/${id}: lookup instructions available`);
+      }
+      assert.ok(page.text.includes('/forms/guides/after-death#estate-inquiry'), 'post-death applicants use their own inquiry route');
+    }
+    if (resource.id === 'PLAN-04') assert.ok(page.text.includes('data-lookup-field="income_notes"'), 'pension lookup connects to living-income notes');
   }
   assert.equal((await request('/forms/planning/PLAN-99')).status, 404);
   for (const route of ['/forms/guides', '/forms/guides/before-death', '/forms/guides/after-death']) {
     const page = await request(route);
     assert.equal(page.status, 200, route);
     assert.match(page.text, /가이드/);
+    if (route.endsWith('/before-death')) {
+      for (const id of ['accounts', 'insurance', 'debts', 'pension', 'registry', 'property-prices', 'family', 'dormant-deposits', 'unclaimed-shares']) {
+        assert.ok(page.text.includes(`id="lookup-${id}"`), `${id}: visible navigation anchor`);
+      }
+      assert.ok(page.text.includes('/forms/planning/PLAN-01#asset_notes'), 'asset lookup links directly to record field');
+      assert.ok(page.text.includes('/forms/planning/PLAN-04#income_notes'), 'pension lookup links directly to income notes');
+      assert.match(page.text, /href="https:[^"]+" target="_blank" rel="noopener noreferrer"/);
+    }
+    if (route.endsWith('/after-death')) assert.ok(!page.text.includes('id="lookup-accounts"'), 'self-authenticated lifetime account lookup stays out of post-death instructions');
   }
   assert.equal((await request('/forms/guides/unknown')).status, 404);
   assert.equal((await request('/precheck?purpose=inheritance')).status, 200);
   const original = await fetch(host + '/downloads/official-forms/expansion/P2-15_3aa191059786.pdf');
   assert.equal(original.status, 200);
   assert.equal(Buffer.from(await original.arrayBuffer()).subarray(0, 5).toString(), '%PDF-');
-  console.log('Forms route smoke: catalog, six worksheets, three guide pages, invalid routes, precheck and original PDF passed.');
+  console.log('Forms route smoke: catalog, six worksheets, three guides, nine lifetime lookup anchors and note fields, invalid routes, precheck and original PDF passed.');
 } catch (error) {
   console.error(logs);
   throw error;

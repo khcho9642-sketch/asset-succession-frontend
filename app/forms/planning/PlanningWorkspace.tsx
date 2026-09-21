@@ -2,12 +2,32 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, Copy, Download, FileText, Printer } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Copy, Download, ExternalLink, FileText, Printer } from "lucide-react";
 import { clearPlanningDraft, collectPlanningSummaries, getPlanningDraft, planningNumberError, planningSummary, savePlanningDraft, type PlanningAnswers, type PlanningResource } from "@/lib/forms/planning";
 import styles from "./PlanningWorkspace.module.css";
 import { PLANNING_GUIDANCE } from "@/lib/forms/planning-guidance";
 import { resourceUrl } from "@/lib/forms/catalog";
 import { guidesForResource } from "@/lib/forms/guides";
+import { LOOKUP_SERVICES } from "@/lib/forms/lookup-services";
+
+function LookupFieldHelp({ resourceId, questionId }: { resourceId: string; questionId: string }) {
+  const entries = LOOKUP_SERVICES.flatMap(service => service.targets
+    .filter(target => target.resourceId === resourceId && target.questionId === questionId)
+    .map(target => ({ service, target })));
+  if (!entries.length) return null;
+  return <details className={styles.lookupHelp} data-lookup-field={questionId}>
+    <summary>생전 조회사이트와 기록 예시 <span>{entries.length}개</span></summary>
+    <ul>{entries.map(({ service, target }) => <li key={service.id}>
+      <strong>{service.title}</strong><p>{target.record}</p>
+      <p className={styles.lookupExample}>기록 예시: {target.example}</p>
+      <p className={styles.lookupAuth}>{service.authentication.text}</p>
+      <div className={styles.lookupActions}>
+        <a href={service.url} target="_blank" rel="noopener noreferrer">{service.provider} 열기 <ExternalLink size={14} aria-hidden="true" /><span> (새 창)</span></a>
+        <Link href={`/forms/guides/before-death#lookup-${service.id}`}>확인할 항목·조회 범위 보기 <ArrowRight size={14} aria-hidden="true" /></Link>
+      </div>
+    </li>)}</ul>
+  </details>;
+}
 
 function ReadableSummary({ resource, answers, imported }: { resource: PlanningResource; answers: PlanningAnswers; imported: string }) {
   // Use the existing formatter and the exact authored placeholders. User text,
@@ -106,6 +126,10 @@ export function PlanningWorkspace({ resource, resources }: { resource: PlanningR
       <p>모든 질문은 선택 입력입니다. 작성 내용은 이 탭에서만 이어지며, <strong>새로고침하거나 탭을 닫으면 지워집니다.</strong></p>
       <details><summary>민감정보 입력 금지 · 보관 안내</summary><p>주민등록번호·계좌번호·연락처·상세 주소는 적지 마세요. 다른 준비자료로 이동해도 작성 내용은 이어집니다. 필요한 요약은 저장해 주세요. 상담 신청 시 자동 전송되지 않습니다.</p></details>
     </div>
+    {LOOKUP_SERVICES.some(service => service.targets.some(target => target.resourceId === resource.id)) && <aside className={styles.lookupIntro} aria-label="조회 결과 기록 안내">
+      <strong>조회 결과로 채우고 싶다면</strong><p>아래 질문 옆의 ‘생전 조회사이트와 기록 예시’를 펼쳐 보세요. 공식 사이트는 새 창으로 열리며, 조회 결과는 직접 필요한 내용만 적습니다. 본인인증 정보나 원본 증명서를 이 화면에 입력하지 마세요.</p>
+      <p>상속이 발생한 경우에는 <Link href="/forms/guides/after-death#estate-inquiry">상속인의 재산·채무 조회 안내</Link>를 확인하세요.</p>
+    </aside>}
     <div className={styles.workspaceTools} id="planning-questions">
       <div className={styles.progress} aria-live="polite"><strong>{completed}</strong><span> / {questions.length}문항 작성</span><small>빈칸은 ‘미입력’으로 남습니다.</small></div>
       <button className={styles.summaryButton} disabled={!ready} onClick={viewSummary}><FileText size={17} aria-hidden="true" /> 요약 보기</button>
@@ -127,6 +151,7 @@ export function PlanningWorkspace({ resource, resources }: { resource: PlanningR
                 <input disabled={!ready} id={question.id} aria-describedby={`help-${question.id}${question.type === "number" && planningNumberError(answers[question.id]) ? ` error-${question.id}` : ""}`} aria-invalid={question.type === "number" && Boolean(planningNumberError(answers[question.id])) || undefined} type={question.type === "number" ? "number" : "text"} min={question.type === "number" ? 0 : undefined} max={question.type === "number" ? 1e12 : undefined} step={question.type === "number" ? "0.01" : undefined} maxLength={2000} value={String(answers[question.id] ?? "")} onChange={event => update(question.id, event.target.value)} />}
               {question.type === "number" && planningNumberError(answers[question.id]) && <p id={`error-${question.id}`} className={styles.fieldError}>{planningNumberError(answers[question.id])}</p>}
             </>}
+            <LookupFieldHelp resourceId={resource.id} questionId={question.id} />
             {resource.id === "PLAN-06" && question.id === "available_summaries" && <div className={styles.importHint}><p>선택한 자료 중 이 탭에서 작성한 내용만 요약에 더합니다.</p><button className={styles.secondary} type="button" disabled={!ready} onClick={importPrepared}>선택한 준비자료 모으기</button></div>}
           </div>)}
         </section>)}

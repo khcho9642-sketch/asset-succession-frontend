@@ -13,7 +13,7 @@ const usage = read('lib/forms/resource-usage.json').documents;
 const output = path.resolve('.tmp/forms-life-guides-tests');
 mkdirSync(output, { recursive: true });
 writeFileSync(path.join(output, 'package.json'), '{"type":"commonjs"}');
-for (const name of ['catalog', 'guides', 'planning-guidance']) {
+for (const name of ['catalog', 'guides', 'planning-guidance', 'lookup-services']) {
   writeFileSync(path.join(output, name + '.js'), ts.transpileModule(readFileSync(`lib/forms/${name}.ts`, 'utf8'), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
   }).outputText);
@@ -22,6 +22,7 @@ const require = createRequire(import.meta.url);
 const { buildCatalog, filterCatalog, emptyFilters, matchesResource, parseCatalogFilters } = require(path.join(output, 'catalog.js'));
 const { GUIDES, guidesForResource, guideResourceUrl, guideCatalogUrl, getGuide } = require(path.join(output, 'guides.js'));
 const { PLANNING_GUIDANCE } = require(path.join(output, 'planning-guidance.js'));
+const { LOOKUP_SERVICES } = require(path.join(output, 'lookup-services.js'));
 const ids = new Set([...documents, ...planning].map(item => item.id));
 const byId = new Map(documents.map(item => [item.id, item]));
 const selected = timing => ({ ...emptyFilters(), timing: [timing] });
@@ -106,4 +107,39 @@ test('timing filters still keep archived originals out of the public card list',
     const shown = new Set(filterCatalog(index, selected(timing)).flatMap(item => item.matchedIds));
     for (const item of archived) assert.ok(!shown.has(item.id), item.id);
   }
+});
+
+test('nine lookup services link to real note fields and official providers without inflating original counts', () => {
+  const expected = ['accounts', 'insurance', 'debts', 'pension', 'registry', 'property-prices', 'family', 'dormant-deposits', 'unclaimed-shares'];
+  assert.deepEqual(LOOKUP_SERVICES.map(service => service.id).sort(), expected.sort());
+  const officialDomains = ['payinfo.or.kr', 'accountinfo.or.kr', 'credit4u.or.kr', 'insure.or.kr', 'fss.or.kr', 'scourt.go.kr', 'iros.go.kr', 'realtyprice.kr', 'kinfa.or.kr', 'ksd.or.kr'];
+  for (const service of LOOKUP_SERVICES) {
+    const url = new URL(service.url);
+    assert.equal(url.protocol, 'https:', service.id);
+    assert.ok(officialDomains.some(domain => url.hostname === domain || url.hostname.endsWith('.' + domain)), service.id);
+    assert.ok(service.menu.trim() && service.authentication.text.trim() && service.limitation.trim(), service.id);
+    assert.ok(service.checks.length > 0 && service.targets.length > 0 && service.evidenceUrls.length > 0, service.id);
+    for (const target of service.targets) {
+      const resource = planning.find(item => item.id === target.resourceId);
+      const question = resource?.sections.flatMap(section => section.questions).find(item => item.id === target.questionId);
+      assert.ok(question, `${service.id}: real worksheet field ${target.resourceId}/${target.questionId}`);
+      assert.ok(['text', 'textarea'].includes(question.type), `${service.id}: narrative examples must not target amount inputs`);
+      assert.equal(target.label, question.label, service.id);
+      assert.ok(target.record.trim() && target.example.trim(), service.id);
+    }
+    for (const id of service.relatedResourceIds) assert.ok(byId.has(id), `${service.id}: ${id}`);
+  }
+  assert.equal(documents.length, 177);
+  for (const id of ['P6-02', 'P6-05']) assert.ok(guidesForResource(id).some(link => link.timing === 'before-death'), `${id}: accessible before death`);
+});
+
+test('financial lookups require owner authentication and pension income stays separate from estate totals', () => {
+  for (const id of ['accounts', 'insurance', 'debts', 'pension', 'dormant-deposits', 'unclaimed-shares']) {
+    const service = LOOKUP_SERVICES.find(item => item.id === id);
+    assert.equal(service.authentication.kind, 'self', id);
+    assert.match(service.authentication.text, /본인|인증/, id);
+  }
+  const pension = LOOKUP_SERVICES.find(item => item.id === 'pension');
+  assert.ok(pension.targets.some(target => target.resourceId === 'PLAN-04' && target.questionId === 'income_notes'));
+  assert.ok(pension.targets.every(target => target.questionId !== 'estimated_assets'));
 });

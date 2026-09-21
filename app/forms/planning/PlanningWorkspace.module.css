@@ -157,9 +157,26 @@
 .referenceLinks a { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 0; font-size: 14px; line-height: 1.65; text-decoration: none; color: inherit; }
 .referenceLinks a:hover { color: #ae3d2e; text-decoration: underline; }
 .referenceLinks svg { flex-shrink: 0; }
+.lookupIntro { margin: 18px 0 24px; padding: 16px 18px; border-left: 3px solid #ad8953; background: #f3ecdf; font-size: 15px; line-height: 1.8; }
+.lookupIntro p { margin: 6px 0 0; }
+.lookupIntro a { color: #913d31; text-underline-offset: 3px; }
+.lookupHelp { margin-top: 12px; border: 1px solid #d8cfc0; border-radius: 6px; background: #fffcf6; }
+.lookupHelp summary { padding: 12px 14px; cursor: pointer; font-size: 15px; font-weight: 650; line-height: 1.7; }
+.lookupHelp summary > span { margin-left: 6px; color: #766852; font-weight: 400; white-space: nowrap; }
+.lookupHelp > ul { list-style: none; padding: 0 14px; margin: 0; }
+.lookupHelp li { padding: 15px 0; border-top: 1px solid #e3dacb; font-size: 15px; line-height: 1.8; overflow-wrap: anywhere; }
+.lookupHelp li > strong { font-size: 16px; }
+.lookupHelp p { margin: 7px 0; }
+.lookupExample { padding: 8px 10px; background: #f0e9dd; border-radius: 4px; color: #514737; }
+.lookupAuth { color: #645c4f; }
+.lookupActions { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 10px; }
+.lookupActions a { display: inline-flex; gap: 5px; align-items: center; padding: 6px 0; color: #913d31; text-underline-offset: 3px; }
+.lookupActions svg { flex-shrink: 0; }
+.lookupHelp summary:focus-visible,.lookupActions a:focus-visible { outline: 2px solid #ae3d2e; outline-offset: 3px; }
+.field :is(input, textarea, select) { scroll-margin-top: 100px; }
 @media(max-width: 760px) { .readFirst { padding: 16px; } }
 @media print {
-  .readFirst { display: none!important; }
+  .readFirst,.lookupIntro { display: none!important; }
   :global(header[role=banner]),.back,.privacy,.workspaceTools,.sectionNav,.layout,.notice,.actions,.bottomNote { display: none!important; }
   .canvas { background: white; min-height: 0; }
   .page { max-width: none; padding: 0; }

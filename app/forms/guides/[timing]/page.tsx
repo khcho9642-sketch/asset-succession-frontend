@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ExternalLink, FileText, NotebookPen } from "lucide-react";
 import { PublicNav } from "@/components/PublicNav";
 import { GUIDES, getGuide, guideCatalogUrl, guideResourceUrl, guideUrl } from "@/lib/forms/guides";
+import { LookupServices } from "../LookupServices";
 import shell from "../../FormsHeader.module.css";
 import styles from "../Guides.module.css";
 
@@ -45,6 +46,8 @@ export default async function GuidePage({ params }: { params: Promise<{ timing: 
         <p className={styles.why}>{step.why}</p>
         <ul className={styles.actions}>{step.actions.map(action => <li key={action}>{action}</li>)}</ul>
         {step.note && <div className={styles.stepNote}><strong>{step.note.title}</strong><p>{step.note.body}</p></div>}
+        {guide.timing === "before-death" && step.id === "inventory" && <LookupServices />}
+        {guide.timing === "before-death" && step.id === "funding" && <a className={styles.textLink} href="#lookup-pension">연금 조회·기록 안내 보기 <ArrowRight size={15} aria-hidden="true" /></a>}
         <div className={styles.materials}><h3>필요한 자료 선택</h3><div className={styles.resourceGrid}>{step.resources.map(resource => {
           const Icon = resource.id.startsWith("PLAN") ? NotebookPen : FileText;
           return <Link href={guideResourceUrl(resource.id)} key={resource.id} className={styles.resource}>
