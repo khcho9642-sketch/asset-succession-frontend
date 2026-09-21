@@ -1,0 +1,14 @@
+{
+  "source_commit": "4c211a9fa669f44fab558ae709706d64c89234c3",
+  "source_branch": "assistant/forms-additions-109",
+  "review_branch": "codex/forms-library-complete",
+  "entry_policy": "direct=all; explicit precheck context; no additional question",
+  "phases": [
+    "complete collection",
+    "add resource namespace and schemas",
+    "retag and relationships",
+    "cards and facets",
+    "precheck and planning content",
+    "verify and review"
+  ]
+}

@@ -22,12 +22,13 @@ import type { TaxComparisonInput } from "@/lib/tax-comparison";
 import { TaxComparisonEditor } from "./TaxComparisonEditor";
 import styles from "./DiagnosisChat.module.css";
 import { useDiagnosisViewport } from "./useDiagnosisViewport";
+import { formsHrefFromPrecheck } from "@/lib/forms/entry";
 
 const DRAFT_KEY = "as360.chat.draft.v1";
 // Retain the current tab's draft during client navigation if sessionStorage is blocked.
 let volatileDraft: string | null = null;
 const TOPICS: Record<string, string> = {
-  inheritance: "상속", gift: "증여", capital_gains: "양도", business_succession: "가업상속", business_inheritance: "가업상속",
+  inheritance: "상속", gift: "증여", capital_gains: "양도", "capital-gains": "양도", business: "가업상속", business_succession: "가업상속", business_inheritance: "가업상속",
   "상속": "상속", "증여": "증여", "양도": "양도", "가업승계": "가업상속", "가업상속": "가업상속",
 };
 const START_TOPICS = ["상속", "증여", "양도", "가업상속"] as const;
@@ -385,6 +386,9 @@ export function DiagnosisChat() {
             <span className={styles.statusDot} aria-hidden="true" />
             {configured === null ? "연결 상태 확인 중" : configured ? "AI와 대화 중" : "AI 연결 전 · 입력 정리 모드"}
           </div>
+          <Link href={formsHrefFromPrecheck(state)} className={styles.relatedForms} data-related-forms>
+            <FileText size={16} aria-hidden="true" /> 관련 서류 보기 <ArrowRight size={15} aria-hidden="true" />
+          </Link>
 
           <div className={styles.chatSurface}>
             {stage === "chat" ? <div ref={transcriptRef} className={`${styles.transcript} ${!hasMessages ? styles.openingTranscript : ""}`} role="log" aria-label="대화 내용" aria-live="polite" aria-relevant="additions text" onScroll={event => { const node = event.currentTarget; shouldFollow.current = node.scrollHeight - node.scrollTop - node.clientHeight < 100; if (shouldFollow.current) setHasNewText(false); }}>

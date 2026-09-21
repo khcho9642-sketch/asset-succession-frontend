@@ -1,0 +1,94 @@
+{
+  "required_original": false,
+  "checked_at": "2026-09-19T17:37:54.293159Z",
+  "files": [],
+  "redistribution": "official_provider_link_only",
+  "legal_deadline_values_added": false,
+  "id": "P1-19",
+  "title": "기여분 결정 청구서",
+  "status": "확인 완료",
+  "completion_basis": "official_electronic_form_provider_verified",
+  "institution": "대한민국 법원",
+  "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSPA14M01",
+  "candidate_source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSPA14M01",
+  "source_title": "가사소송·비송 · 서류제출",
+  "evidence": [
+    {
+      "kind": "live_browser_rendered_dom",
+      "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSPA14M01",
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-19.json",
+      "quote": [
+        "기여분에 관한 사건",
+        "표준화된 입력항목을 직접 작성하는 전자문서"
+      ],
+      "finding": "마류 가사비송사건의 해당 전자문서 제공 링크와 설명을 실제 공식 메뉴에서 확인. 일반 안내 페이지가 아닌 서류제출 제공 화면이다."
+    },
+    {
+      "kind": "official_search_index",
+      "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSPA14M01",
+      "quote": "기여분에 관한 사건 표준화된 입력항목을 직접 작성하는 전자문서",
+      "finding": "공식 전자소송의 해당 제출 메뉴가 검색 결과에 인덱싱되어 있음. 서식 제공 경로 후보로 유효하나 직접 열린 페이지 본문은 SPA라 추출되지 않았다."
+    },
+    {
+      "kind": "live_browser_rendered_dom",
+      "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+      "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-19.json",
+      "evidence_key": "court-contribution-broad",
+      "quote": "내용이 없습니다.",
+      "finding": "서식제목 기여분/기여 검색 0건. 전자소송 양식모음 기존 기여분 검색도 0건."
+    }
+  ],
+  "remaining": [],
+  "limitations": [
+    "HWP/PDF를 내려받은 것이 아니라 공식 기여분 전자문서 작성 제공 경로를 확인했다.",
+    "작성에는 사용자 로그인이 필요하며 로그인·청구서 작성·제출은 수행하지 않았다."
+  ],
+  "navigation": "서류제출 → 가사서류 → 가사소송·비송 → 마류 가사비송사건 → 기여분에 관한 사건",
+  "formats_offered": [
+    "전자문서"
+  ],
+  "source_type": "공식제공처",
+  "license": "공식 전자문서 제공처 링크 · 파일 재배포 없음",
+  "note": "서류제출 → 가사서류 → 가사소송·비송 → 마류 가사비송사건 → 기여분에 관한 사건. 표준화된 전자문서 작성 메뉴입니다. 로그인 후 이용하며 내려받는 HWP/PDF를 확보한 자료는 아닙니다.",
+  "source_evidence": {
+    "sources": [
+      {
+        "kind": "live_browser_rendered_dom",
+        "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSPA14M01",
+        "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-19.json",
+        "quote": [
+          "기여분에 관한 사건",
+          "표준화된 입력항목을 직접 작성하는 전자문서"
+        ],
+        "finding": "마류 가사비송사건의 해당 전자문서 제공 링크와 설명을 실제 공식 메뉴에서 확인. 일반 안내 페이지가 아닌 서류제출 제공 화면이다."
+      },
+      {
+        "kind": "official_search_index",
+        "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSPA14M01",
+        "quote": "기여분에 관한 사건 표준화된 입력항목을 직접 작성하는 전자문서",
+        "finding": "공식 전자소송의 해당 제출 메뉴가 검색 결과에 인덱싱되어 있음. 서식 제공 경로 후보로 유효하나 직접 열린 페이지 본문은 SPA라 추출되지 않았다."
+      },
+      {
+        "kind": "live_browser_rendered_dom",
+        "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+        "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-19.json",
+        "evidence_key": "court-contribution-broad",
+        "quote": "내용이 없습니다.",
+        "finding": "서식제목 기여분/기여 검색 0건. 전자소송 양식모음 기존 기여분 검색도 0건."
+      }
+    ],
+    "completion_basis": "official_electronic_form_provider_verified",
+    "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-19.json",
+    "evidence_sha256": "53ab5e243e2f1ff88099a8d467d6a6e5412efb685215c5e80d4c7abf0714585a"
+  },
+  "verified_provider_files": [],
+  "candidate_reviewed_at": "2026-09-19T17:43:42.416400+00:00",
+  "task_operation": "add",
+  "target_id": null,
+  "evidence_retention": {
+    "representation": "metadata_and_short_excerpts",
+    "support_file": "docs/forms-expansion-109/evidence/round16/support/P1-19.json",
+    "new_original_binaries_included": false,
+    "private_local_paths_included": false
+  }
+}

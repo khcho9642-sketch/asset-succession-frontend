@@ -1,0 +1,63 @@
+{
+  "id": "P3-05",
+  "title": "현금 증여계약서",
+  "status": "확인 완료",
+  "source_url": "https://www.taxwithgs.kr/board/view/sw5_2/420",
+  "institution": "세무법인 위드",
+  "checked_at": "2026-09-19T17:34:29Z",
+  "source_type": "민간제공처",
+  "origin": "private_institution",
+  "authority": "private_terms",
+  "revised_at": null,
+  "deadline": null,
+  "deadline_basis": null,
+  "license": "민간 제공기관 약관 적용 · 제공처 링크만 연결 · 재배포 금지",
+  "note": "세무법인 위드가 제공하는 민간 참고서식이며 정부 법정서식이 아닙니다. 현금(예금) 증여 목적과 계좌이체 방식을 명시한 실제 HWP 본문을 확인했습니다. 제공처 페이지에서 원본을 내려받도록 연결하며 파일은 사이트에 재배포하지 않습니다.",
+  "verified": [
+    "제공처 자체 자료실 제목과 HWP 첨부명 확인",
+    "실제 첨부파일 다운로드 HTTP 200",
+    "OLE 컨테이너와 HWP Document File 서명 확인",
+    "압축된 BodyText/Section0 본문을 해제하여 현금 증여계약서 및 현금(예금) 목적 확인",
+    "원본 파일의 SHA-256 검증"
+  ],
+  "files": [],
+  "evidence_refs": [
+    "docs/forms-expansion-109/evidence/round16/support/P3-05.json"
+  ],
+  "source_evidence": {
+    "url": "https://www.taxwithgs.kr/board/view/sw5_2/420",
+    "http_status": 200,
+    "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P3-05.json",
+    "matched_terms": [
+      "세무법인 위드",
+      "현금증여계약서",
+      "현금증여계약서.hwp"
+    ],
+    "evidence_sha256": "89139bc6dda6f9e9d9c1e2ad9d440d994ecdfb894a90d1c3d4793fdf46395d81"
+  },
+  "display_badge": "민간 참고서식 · 법정서식 아님",
+  "verified_provider_files": [
+    {
+      "name": "현금증여계약서.hwp",
+      "format": "hwp",
+      "role": "original",
+      "url": "https://www.taxwithgs.kr/board/file/download?file_number=221&is_cnt=Y&is_down=Y",
+      "bytes": 16384,
+      "sha256": "be71f97f5b743afd6b8352321a553394f9a3c615420858e9e4b9ed8d740bffc2",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:34:29Z",
+      "title_verified": true,
+      "redistribution_allowed": false,
+      "delivery": "provider_page"
+    }
+  ],
+  "candidate_reviewed_at": "2026-09-19T17:43:42.622947+00:00",
+  "task_operation": "add",
+  "target_id": null,
+  "evidence_retention": {
+    "representation": "metadata_and_short_excerpts",
+    "support_file": "docs/forms-expansion-109/evidence/round16/support/P3-05.json",
+    "new_original_binaries_included": false,
+    "private_local_paths_included": false
+  }
+}

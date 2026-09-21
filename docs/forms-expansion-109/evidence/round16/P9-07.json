@@ -1,0 +1,86 @@
+{
+  "id": "P9-07",
+  "title": "임대사업자 지위 승계 신고",
+  "backlog_scope": "상속 시",
+  "status": "확인 완료",
+  "source_url": "https://www.acrc.go.kr/board.es?act=view&bid=1010&list_no=50286&mid=a10504010000&nPage=&tag=",
+  "institution": "국민권익위원회",
+  "checked_at": "2026-09-19T17:37:43Z",
+  "source_type": "공식제공처",
+  "form_no": null,
+  "revised_at": null,
+  "deadline": null,
+  "deadline_basis": null,
+  "license": "공공누리 제3유형 · 출처 표시·변경 금지 · 제공처 링크 연결",
+  "note": "상속으로 임대사업자 명의변경을 검토한 공식 의결사례입니다. 개별사례이며 관할기관의 현행 처리 확인이 필요합니다. 이번 확인에서 상속 전용 공통서식은 확인되지 않았습니다. 양도신고서를 상속에 일률 적용한다고 안내하지 않습니다.",
+  "files": [],
+  "verified": [
+    "국민권익위원회 공식 의결 게시글 HTTP 200과 의결명·상속 사안 확인",
+    "해당 게시글의 실제 첨부 PDF 다운로드 및 형식·본문·SHA-256 확인",
+    "상속에 따른 명의변경 허용 의견표명 사례와 법적 공백 검토 확인",
+    "추가 확인한 공식 게시글의 상속 명의변경 의결과 PDF 본문에서 같은 쟁점 확인 · 공개본은 개별 날짜 익명화"
+  ],
+  "verification_scope": {
+    "source_exists": true,
+    "inheritance_case_scope_confirmed": true,
+    "dedicated_inheritance_form_verified": false,
+    "general_applicability_verified": false,
+    "current_local_application_requirements_verified": false
+  },
+  "evidence_refs": [
+    "docs/forms-expansion-109/evidence/round16/support/P9-07.json"
+  ],
+  "source_evidence": {
+    "url": "https://www.acrc.go.kr/board.es?act=view&bid=1010&list_no=50286&mid=a10504010000&nPage=&tag=",
+    "http_status": 200,
+    "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P9-07.json",
+    "matched_terms": [
+      "임대사업자 명의변경",
+      "의견표명",
+      "의결서_공개용.pdf"
+    ],
+    "evidence_sha256": "2d28c1ad496bc636043a3dc09a4ed52e8a07fc85c70b75c71365550e7b729814"
+  },
+  "reference_documents": [
+    {
+      "name": "임대사업자 명의변경 의결서 · 공개용",
+      "document_type": "의결사례 · 신청서 아님",
+      "document_date": "2023-11-06",
+      "published_at": "2023-11-13",
+      "url": "https://www.acrc.go.kr/boardDownload.es?bid=1010&list_no=50286&seq=2",
+      "bytes": 198697,
+      "sha256": "74a0d3eb3a7bfaec40464dd2103b0a1dcb0da0c6c9c6078d3dbdfdf9ec1a7b32",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:34:29Z"
+    },
+    {
+      "name": "상속으로 인한 임대사업자 명의 변경",
+      "document_type": "의결사례 · 신청서 아님",
+      "document_date": null,
+      "document_date_as_published": "2026. 00. 00.",
+      "published_at": "2026-08-12",
+      "provider_page": "https://www.acrc.go.kr/board.es?act=view&bid=1010&list_no=116734&mid=a10504010000&nPage=1&tag=",
+      "url": "https://www.acrc.go.kr/boardDownload.es?bid=1010&list_no=116734&seq=2",
+      "bytes": 552358,
+      "sha256": "1345cdb7978d610912f77a76ae303fa812895be8a2b7ba724b7c026d75c77f6a",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:38:24Z",
+      "pages": 13
+    }
+  ],
+  "excluded_from_completion": [
+    "양도 전용 신고서 원본은 상속 신청서로 연결하지 않음",
+    "발의안·시행 예정 개정안은 현행 적용 근거로 사용하지 않음"
+  ],
+  "display_badge": "상속 명의변경 · 공식 의결사례",
+  "verified_provider_files": [],
+  "candidate_reviewed_at": "2026-09-19T17:43:42.731596+00:00",
+  "task_operation": "add",
+  "target_id": null,
+  "evidence_retention": {
+    "representation": "metadata_and_short_excerpts",
+    "support_file": "docs/forms-expansion-109/evidence/round16/support/P9-07.json",
+    "new_original_binaries_included": false,
+    "private_local_paths_included": false
+  }
+}

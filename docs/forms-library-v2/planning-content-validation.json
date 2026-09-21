@@ -1,0 +1,62 @@
+{
+  "status": "pass",
+  "checks": [
+    "6 resources with unique IDs",
+    "6–12 questions per resource",
+    "all questions optional",
+    "summary tokens match each question exactly once",
+    "unique nonempty choice values",
+    "amount units and lower bound explicit",
+    "planning-window required keys/enums match shared schema",
+    "no window marked legally verified"
+  ],
+  "resources": [
+    {
+      "id": "PLAN-01",
+      "sections": 3,
+      "questions": 10,
+      "amount_questions": 1,
+      "template_tokens": 10
+    },
+    {
+      "id": "PLAN-02",
+      "sections": 3,
+      "questions": 10,
+      "amount_questions": 0,
+      "template_tokens": 10
+    },
+    {
+      "id": "PLAN-03",
+      "sections": 3,
+      "questions": 10,
+      "amount_questions": 0,
+      "template_tokens": 10
+    },
+    {
+      "id": "PLAN-04",
+      "sections": 3,
+      "questions": 10,
+      "amount_questions": 4,
+      "template_tokens": 10
+    },
+    {
+      "id": "PLAN-05",
+      "sections": 3,
+      "questions": 10,
+      "amount_questions": 0,
+      "template_tokens": 10
+    },
+    {
+      "id": "PLAN-06",
+      "sections": 3,
+      "questions": 10,
+      "amount_questions": 0,
+      "template_tokens": 10
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Not a full JSON Schema engine run.",
+    "Legal rules, product terms and personal applicability not verified; no numerical rules included."
+  ]
+}

@@ -4,61 +4,98 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 
-const production = '13328ef2cb8ecaef01b2820398a66df2a1774d8c';
-const expansion = 'ce31385b7c855c413a9360007a42e75c16c425d3';
-const path = 'public/downloads/official-forms/manifest.json';
-const git = (...args) => execFileSync('git', args, { maxBuffer: 30_000_000 });
-const read = path => JSON.parse(readFileSync(path, 'utf8'));
+// Independent commit snapshots protect both sides of this integration. CI must
+// fetch history; replacing the historical migration baseline would hide a loss.
+const production = 'f5ed67948e6e0e171e853dab3c618d4904f505e5';
+const redesign = '28c1912f3a070924e6f61a03197b4dd717e174b4';
+const manifestPath = 'public/downloads/official-forms/manifest.json';
+const git = (...args) => execFileSync('git', args, { maxBuffer: 40_000_000 });
+const read = path => JSON.parse(readFileSync(path, 'utf8').replace(/^\uFEFF/, ''));
 const source = (ref, path) => JSON.parse(git('show', `${ref}:${path}`));
-const manifest = read(path);
-const prior = source(production, path);
-const additions = source(expansion, path);
 const hash = data => createHash('sha256').update(data).digest('hex');
+const manifest = read(manifestPath);
+const prior = source(production, manifestPath);
+const completed = source(redesign, manifestPath);
+const previewRecords = prior.documents.filter(item => item.preview);
+const evidenceOverlayIds = ['P0-10', 'P1-02', 'P1-03', 'P1-04', 'P1-05'];
+const evidenceOverlayFields = ['source_evidence', 'guide_file', 'integration_evidence'];
 
-test('177 unique cards retain every expansion field and all 74 current production previews', () => {
-  const expected = structuredClone(additions);
-  for (const item of prior.documents) {
+function withLatestEvidence(rows, latestRows) {
+  const result = structuredClone(rows);
+  for (const id of evidenceOverlayIds) {
+    const current = result.find(row => row.id === id);
+    const latest = latestRows.find(row => row.id === id);
+    assert.ok(current && latest, id);
+    for (const key of evidenceOverlayFields) {
+      assert.ok(Object.hasOwn(latest, key), `${id}.${key}`);
+      current[key] = structuredClone(latest[key]);
+    }
+  }
+  return result;
+}
+
+test('177 resources retain the completed redesign and the 74 latest production previews', () => {
+  const expected = structuredClone(completed);
+  for (const item of previewRecords) {
     Object.assign(expected.documents.find(row => row.id === item.id), {
       thumbnail: item.thumbnail, preview: item.preview,
     });
-    assert.deepEqual(manifest.documents.find(row => row.id === item.id), item);
   }
+  for (const id of ['P0-10', 'P1-02']) {
+    expected.documents.find(row => row.id === id).source_evidence = structuredClone(prior.documents.find(row => row.id === id).source_evidence);
+  }
+  expected.additionRequests = withLatestEvidence(completed.additionRequests, prior.additionRequests);
   assert.deepEqual(manifest, expected);
   assert.equal(manifest.documents.length, 177);
   assert.equal(new Set(manifest.documents.map(item => item.id)).size, 177);
   assert.equal(manifest.publishedCount, 177);
-  assert.deepEqual(manifest.deliveryCounts, { hosted: 105, provider: 61, direct: 0, pending: 11 });
-  for (const [status, count] of Object.entries(manifest.deliveryCounts)) {
-    assert.equal(manifest.documents.filter(item => item.delivery === status).length, count);
+  assert.deepEqual(manifest.deliveryCounts, { hosted: 107, provider: 70, direct: 0, pending: 0 });
+  assert.equal(previewRecords.length, 74);
+  for (const item of completed.documents) {
+    const current = manifest.documents.find(row => row.id === item.id);
+    assert.deepEqual(current.resource, item.resource, `${item.id}: stages, facets, relations and presentation`);
   }
+  assert.deepEqual(read('public/downloads/official-forms/presentation-groups.json'), source(redesign, 'public/downloads/official-forms/presentation-groups.json'));
 });
 
-test('all 109 task records and the latest five completions survive without claiming the remaining 12', () => {
+test('109 completed requests retain the latest evidence pointers and original-required acquisitions', () => {
   const rows = read('docs/forms-expansion-109/results.json');
   const summary = read('docs/forms-expansion-109/summary.json');
-  assert.deepEqual(rows, source(expansion, 'docs/forms-expansion-109/results.json'));
+  const expected = withLatestEvidence(source(redesign, 'docs/forms-expansion-109/results.json'), source(production, 'docs/forms-expansion-109/results.json'));
+  assert.deepEqual(rows, expected);
   assert.deepEqual(manifest.additionRequests, rows);
+  assert.deepEqual(summary, source(redesign, 'docs/forms-expansion-109/summary.json'));
   assert.equal(rows.length, 109);
-  assert.equal(summary.completed, 97);
-  assert.equal(summary.unchecked, 12);
-  for (const id of ['P0-10', 'P1-02', 'P1-03', 'P1-04', 'P1-05']) {
-    assert.equal(rows.find(row => row.id === id).status, '확인 완료');
+  assert.equal(new Set(rows.map(row => row.id)).size, 109);
+  assert.ok(rows.every(row => row.status === '확인 완료'));
+  assert.equal(summary.completed, 109);
+  assert.equal(summary.unchecked, 0);
+  assert.deepEqual(summary.failed_original_ids, []);
+  assert.deepEqual(summary.original_acquired_ids, summary.original_required_ids);
+  for (const id of evidenceOverlayIds) {
+    const row = rows.find(row => row.id === id);
+    for (const [pathKey, hashKey] of [['evidence_file', 'evidence_sha256'], ['support_evidence_file', 'support_evidence_sha256']]) {
+      assert.equal(hash(readFileSync(row.source_evidence[pathKey])), row.source_evidence[hashKey], `${id}.${pathKey}`);
+    }
+    for (const path of [row.guide_file, row.integration_evidence]) {
+      assert.equal(hash(readFileSync(path)), hash(git('show', `${production}:${path}`)), path);
+    }
   }
 });
 
-test('every hosted expansion file has its recorded bytes and SHA-256, no provider links disguised as downloads', () => {
+test('all 33 hosted expansion records retain real binaries and providers do not acquire fictitious downloads', () => {
   const newRows = manifest.documents.filter(item => item.task_id);
   assert.equal(newRows.length, 103);
-  const hosted = newRows.filter(item => item.delivery === 'hosted');
-  assert.equal(hosted.length, 31);
+  assert.equal(newRows.filter(item => item.delivery === 'hosted').length, 33);
   for (const item of newRows) {
     if (item.delivery !== 'hosted') {
       assert.equal(item.files.length, 0, item.id);
-      assert.equal(item.thumbnail, null);
+      assert.equal(item.thumbnail, null, item.id);
       continue;
     }
     assert.ok(item.files.length > 0, item.id);
     for (const file of item.files) {
+      assert.equal(file.delivery, 'hosted', item.id);
       const bytes = readFileSync(new URL(`../public${file.path}`, import.meta.url));
       const evidence = manifest.additionRequests.flatMap(row => row.files)
         .find(row => row.local_url === file.path || row.path === `public${decodeURIComponent(file.path)}`);
@@ -69,7 +106,16 @@ test('every hosted expansion file has its recorded bytes and SHA-256, no provide
   }
 });
 
-test('production originals, all real preview PNGs and the 74-member ZIP remain byte-identical', () => {
+test('all 182 unique hosted file paths preserve the redesign original bytes', () => {
+  const originals = new Set(completed.documents.flatMap(item => item.files)
+    .filter(file => file.delivery === 'hosted').map(file => `public${decodeURIComponent(file.path)}`));
+  assert.equal(originals.size, 182);
+  for (const path of originals) {
+    assert.equal(hash(readFileSync(path)), hash(git('show', `${redesign}:${path}`)), path);
+  }
+});
+
+test('latest production binaries, all 74 real preview PNGs and the 74-member ZIP remain byte-identical', () => {
   const entries = git('ls-tree', '-r', '-z', production, 'public/downloads').toString('utf8').split('\0').filter(Boolean);
   for (const entry of entries) {
     const [metadata, path] = entry.split('\t');
@@ -77,9 +123,37 @@ test('production originals, all real preview PNGs and the 74-member ZIP remain b
     const objectId = metadata.split(' ')[2];
     assert.equal(hash(readFileSync(path)), hash(git('cat-file', 'blob', objectId)), path);
   }
+  assert.deepEqual(manifest.bundle, prior.bundle);
+  assert.equal(manifest.bundle.recordCount, 74);
+  assert.equal(manifest.bundle.fileCount, 148);
+  for (const item of previewRecords) {
+    const current = manifest.documents.find(row => row.id === item.id);
+    assert.equal(current.thumbnail, item.thumbnail, item.id);
+    assert.deepEqual(current.preview, item.preview, item.id);
+  }
 });
 
-test('non-forms service code is identical to the latest production calculator release', () => {
-  const paths = git('diff', '--name-only', '-z', production, '--', 'app', 'components', 'lib', 'package.json', 'package-lock.json', 'next.config.ts', 'vercel.json').toString('utf8').split('\0').filter(Boolean);
-  assert.deepEqual(paths.sort(), ['app/forms/AdditionalFormMetadata.tsx', 'app/forms/FormsLibrary.tsx']);
+test('latest calculator and service code survive outside the forms pages and precheck link', () => {
+  const changes = git('diff', '--name-only', '-z', production, '--', 'app', 'components', 'lib', 'package-lock.json', 'next.config.ts', 'vercel.json').toString('utf8').split('\0').filter(Boolean);
+  const allowed = path => path.startsWith('app/forms/') || path.startsWith('lib/forms/')
+    || ['components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css'].includes(path);
+  assert.deepEqual(changes.filter(path => !allowed(path)), []);
+  const calculators = git('ls-tree', '-r', '--name-only', '-z', production, 'app/calculator', 'lib/simple-calculator').toString('utf8').split('\0').filter(Boolean);
+  assert.ok(calculators.length > 0);
+  for (const path of calculators) assert.equal(hash(readFileSync(path)), hash(git('show', `${production}:${path}`)), path);
+  const currentPackage = read('package.json');
+  const priorPackage = source(production, 'package.json');
+  const { scripts: currentScripts, ...currentRuntime } = currentPackage;
+  const { scripts: priorScripts, ...priorRuntime } = priorPackage;
+  assert.deepEqual(currentRuntime, priorRuntime);
+  for (const [name, command] of Object.entries(priorScripts)) assert.equal(currentScripts[name], command, name);
+  assert.deepEqual(Object.keys(currentScripts).filter(name => !Object.hasOwn(priorScripts, name)).sort(), ['test:forms', 'test:forms-integration', 'test:forms-routes']);
+});
+
+test('historical migration evidence remains unchanged when production overlays are recorded', () => {
+  for (const path of [
+    'docs/forms-library-v2/implementation-baseline.json',
+    'docs/forms-library-v2/evidence/pre-migration-manifest.json',
+    'docs/forms-library-v2/evidence/pre-migration-files.json',
+  ]) assert.equal(hash(readFileSync(path)), hash(git('show', `${redesign}:${path}`)), path);
 });
