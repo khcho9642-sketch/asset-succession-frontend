@@ -49,6 +49,36 @@
 .header p { margin: 0; color: var(--lib-muted); font-size: 15px; }
 .bundleLink { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13px; white-space: nowrap; color: var(--lib-muted) !important; }
 .bundleLink:hover { text-decoration: underline; text-underline-offset: 4px; }
+.guideEntrances { display: grid; grid-template-columns: .9fr 1fr 1fr; gap: 16px; align-items: center; margin-bottom: 24px; padding: 18px 20px; border: 1px solid var(--lib-line); border-radius: 6px; background: var(--lib-card); }
+.guideEntrances > div strong, .guideEntrances > div span { display: block; }
+.guideEntrances > div strong { font-size: 16px; }
+.guideEntrances > div span { color: var(--lib-muted); font-size: 14px; margin-top: 3px; }
+.guideEntrances > a { display: flex; gap: 14px; align-items: center; justify-content: space-between; min-height: 58px; border-left: 1px solid var(--lib-line); padding-left: 20px; font-weight: 650; font-size: 16px; }
+.guideEntrances > a:hover { color: var(--lib-red); }
+.guideEntrances small { display: block; font-weight: 400; font-size: 14px; color: var(--lib-muted); margin-top: 2px; }
+.usageGuide { margin: 24px 0; padding: 22px; background: var(--lib-card); border: 1px solid var(--lib-line); border-radius: 6px; font-size: 16px; }
+.usageGuide h3, .relatedGuides h3 { margin: 0 0 16px; font-size: 18px; }
+.usageGuide dl { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 10px 16px; margin: 0; }
+.usageGuide dt { font-weight: 650; }
+.usageGuide dd { margin: 0; overflow-wrap: anywhere; }
+.usageColumns { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 20px; }
+.usageColumns h4 { margin: 0 0 8px; font-size: 16px; }
+.usageColumns ul, .usageColumns ol { padding-left: 22px; margin: 0; }
+.usageColumns li + li { margin-top: 7px; }
+.usageNote { margin: 20px 0 0; border-left: 3px solid var(--lib-red); padding-left: 12px; }
+.timingExplanation { font-size: 14px; color: var(--lib-muted); margin: 14px 0 0; }
+.relatedGuides { padding: 0 0 22px; }
+.relatedGuides a { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--lib-line); font-size: 16px; }
+.relatedGuides a:hover { color: var(--lib-red); }
+.relatedGuides small { display: block; color: var(--lib-muted); font-size: 14px; margin-top: 3px; }
+@media (max-width: 760px) {
+  .guideEntrances { grid-template-columns: 1fr; padding: 16px; gap: 12px; }
+  .guideEntrances > a { border-left: 0; border-top: 1px solid var(--lib-line); padding: 12px 0 0; }
+  .usageGuide { padding: 16px; }
+  .usageGuide dl, .usageColumns { grid-template-columns: 1fr; gap: 8px; }
+  .usageGuide dd { margin-bottom: 10px; }
+  .usageColumns { gap: 20px; }
+}
 .searchWorkspace { padding-bottom: 0; }
 .searchRow { display: flex; gap: 24px; align-items: center; }
 .search { display: flex; align-items: center; flex: 1; gap: 14px; min-width: 0; min-height: 62px; padding: 0 20px; border: 1px solid #ad9d82; border-radius: 6px; background: var(--lib-card); color: var(--lib-brass); }

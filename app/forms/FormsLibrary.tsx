@@ -10,6 +10,8 @@ import {
   type CatalogCard, type CatalogFilters, type FacetKey, type LibraryDocument, type PresentationGroup, type PlanningCatalogResource,
 } from "@/lib/forms/catalog";
 import styles from "./FormsLibrary.module.css";
+import { guideUrl, guidesForResource } from "@/lib/forms/guides";
+import { getResourceUsage } from "@/lib/forms/resource-usage";
 export type { LibraryDocument } from "@/lib/forms/catalog";
 
 type Props = { documents: LibraryDocument[]; groups: PresentationGroup[]; planning: PlanningCatalogResource[] };
@@ -53,6 +55,8 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
   const visibleCount = pageLimit.key === listKey ? pageLimit.count : 18;
   const visible = filtered.slice(0, visibleCount);
   const selected = index.documents.get(filters.resource);
+  const selectedUsage = selected ? getResourceUsage(selected.id) : undefined;
+  const guideContexts = selected ? guidesForResource(selected.id, selected.resource?.presentation.visibility === "archived" ? undefined : selected.resource) : [];
   const selectedPreview = selected ? documentPreview(selected) : null;
   const selectedGroup = index.cards.find(card => card.id === filters.resource && card.group);
   const isDetailOpen = Boolean(filters.resource);
@@ -196,6 +200,12 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
         title="기존 74개 자료의 원본·예시 묶음입니다. 추가 자료는 목록에서 개별 확인하세요." aria-label="기존 74개 자료 묶음 받기"><Download size={17} aria-hidden="true" /><span>기존 74개 자료 묶음 받기</span></a>
     </header>
 
+    <section className={styles.guideEntrances} aria-label="상속 상황별 가이드">
+      <div><strong>무엇부터 해야 할지 궁금하다면</strong><span>할 일과 필요한 자료를 함께 확인하세요.</span></div>
+      <Link href={guideUrl("before-death")}><span>미리 준비하고 있어요<small>재산 정리 · 방법 비교 · 실행 준비</small></span><ArrowRight size={19} aria-hidden="true" /></Link>
+      <Link href={guideUrl("after-death")}><span>상속이 발생했어요<small>재산·채무 확인 · 선택 · 신고와 수령</small></span><ArrowRight size={19} aria-hidden="true" /></Link>
+    </section>
+
     <section className={styles.searchWorkspace} aria-label="자료 검색과 단계 선택">
       <div className={styles.searchRow}>
         <label className={styles.search}><Search size={23} strokeWidth={1.8} aria-hidden="true" />
@@ -211,7 +221,7 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
           <button type="button" aria-pressed={filters.timing.includes("before_death")} onClick={() => toggle("timing", "before_death")}>생전 준비</button>
           <button type="button" aria-pressed={filters.timing.includes("after_death")} onClick={() => toggle("timing", "after_death")}>상속 발생 후</button>
         </div>
-        <span className={styles.timingHint}>지금 하려는 일에 맞춰 찾아보세요.</span>
+        <span className={styles.timingHint}>함께 쓰는 자료는 두 시점에서 찾을 수 있어요.</span>
       </div>
       <nav className={styles.stages} aria-label="지금 할 일">
         <button type="button" aria-pressed={!filters.stage} onClick={() => update({ stage: "" })}><span>전체</span><strong>모든 단계</strong></button>
@@ -303,6 +313,17 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
         </section>
         <div className={styles.originBadges}><span data-origin={selected.resource?.facets.origin}>{originLabel(selected)}</span><span>{authorityLabel(selected)}</span></div>
         <p className={styles.detailDescription}>{selected.description}</p>
+        {selectedUsage && <section className={styles.usageGuide} aria-label="자료 사용 안내">
+          <h3>이 자료는 이렇게 사용하세요</h3>
+          <dl><dt>누가 사용하나요?</dt><dd>{selectedUsage.who}</dd><dt>언제 필요한가요?</dt><dd>{selectedUsage.when}</dd></dl>
+          <div className={styles.usageColumns}><div><h4>먼저 준비할 것</h4><ul>{selectedUsage.prepare.map(item => <li key={item}>{item}</li>)}</ul></div>
+            <div><h4>사용 순서</h4><ol>{selectedUsage.steps.map(item => <li key={item}>{item}</li>)}</ol></div></div>
+          {selectedUsage.note && <p className={styles.usageNote}>{selectedUsage.note}</p>}
+          {selected.resource?.facets.timing.length === 2 && <p className={styles.timingExplanation}>생전·사후 모두 연결되는 이유: {selectedUsage.timingRationale}</p>}
+        </section>}
+        {guideContexts.length > 0 && <nav className={styles.relatedGuides} aria-label="이 자료를 사용하는 가이드"><h3>전체 진행 과정에서 보기</h3>
+          {guideContexts.map(context => <Link key={context.href} href={context.href}><span>{context.guideTitle}<small>{context.stepTitle}</small></span><ArrowRight size={16} aria-hidden="true" /></Link>)}
+        </nav>}
         {selectedPreview?.lowResolution && <p className={styles.previewNote} data-preview-resolution-note>문서에 포함된 작은 미리보기 이미지입니다. 자세한 내용은 원본 파일에서 확인해 주세요.</p>}
         <div className={styles.detailLayout}>
           {selected.thumbnail && selectedPreview && <div className={styles.detailPreview}>

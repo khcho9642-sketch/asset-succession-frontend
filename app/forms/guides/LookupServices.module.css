@@ -1,0 +1,74 @@
+.panel { margin-top: 24px; padding-top: 22px; border-top: 1px solid #dfd5c6; color: #29261f; }
+.heading { display: flex; align-items: flex-start; gap: 11px; }
+.headingIcon { flex: 0 0 35px; display: flex; align-items: center; justify-content: center; height: 35px; border-radius: 8px; background: #eee4d4; color: #806744; }
+.heading h3 { margin: 0 0 5px; font-size: 19px; line-height: 1.55; letter-spacing: -.035em; }
+.heading p { margin: 0; font-size: 15px; line-height: 1.8; color: #665d50; }
+.intro { margin: 15px 0 17px; color: #665d50; font-size: 14px; line-height: 1.85; }
+.intro p { margin: 6px 0; }
+.services { display: grid; gap: 8px; }
+.heading + .services { margin-top: 16px; }
+.anchor { scroll-margin-top: 100px; border-radius: 7px; }
+.anchor:target { outline: 2px solid #ae3d2e; outline-offset: 3px; }
+.service { border: 1px solid #dfd5c6; border-radius: 7px; background: #fffdf8; }
+.service > summary { display: flex; align-items: center; gap: 12px; padding: 13px 15px; min-height: 67px; cursor: pointer; list-style: none; }
+.service > summary::-webkit-details-marker { display: none; }
+.service > summary:hover { background: #f5eedf; border-radius: 7px; }
+.summaryCopy { flex: 1; min-width: 0; }
+.summaryCopy > strong { display: block; font-size: 16px; font-weight: 650; line-height: 1.7; }
+.summaryCopy > span { display: block; margin-top: 2px; color: #75634c; font-size: 14px; line-height: 1.7; }
+.authentication { flex-shrink: 0; border: 1px solid #e0d4c0; border-radius: 4px; padding: 4px 6px; font-size: 12px; color: #78613e; line-height: 1.5; }
+.authentication[data-kind=public] { border-color: #d7dfd1; color: #566448; background: #f3f6ef; }
+.authentication[data-kind=heir] { border-color: #d8bbaa; color: #88452d; background: #fbf1e9; }
+.chevron { color: #947b55; flex-shrink: 0; transition: transform 160ms ease; }
+.service[open] > summary { background: #f5eedf; border-bottom: 1px solid #e0d5c3; border-radius: 7px 7px 0 0; }
+.service[open] .chevron { transform: rotate(180deg); }
+.body { padding: 18px; }
+.purpose { margin: 0 0 16px; font-size: 15px; line-height: 1.8; color: #584f43; }
+.visit { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+.miniLabel { margin: 0 0 5px; color: #806744; font-size: 14px; line-height: 1.7; font-weight: 600; }
+.menu { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.85; }
+.providerLink { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 12px; border: 1px solid #a84636; border-radius: 5px; background: #ae3d2e; color: #fff; font-size: 15px; font-weight: 600; }
+.providerLink span { font-size: 14px; font-weight: 400; opacity: .9; }
+.providerLink:hover { background: #973226; }
+.authDetail { margin: 12px 0 18px; color: #665d50; font-size: 15px; line-height: 1.85; }
+.application { margin: 20px 0; padding: 16px 0; border-block: 1px solid #e7dece; }
+.application h4 { margin: 0 0 14px; font-size: 15px; line-height: 1.7; }
+.application dl { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 12px 15px; margin: 0; font-size: 15px; line-height: 1.85; }
+.application dt { color: #806744; font-size: 14px; font-weight: 650; }
+.application dd { margin: 0; color: #584f43; overflow-wrap: anywhere; }
+.application ul { margin: 0; padding-left: 18px; }
+.application li + li { margin-top: 5px; }
+.checks h4, .recording h4 { margin: 0 0 9px; font-size: 15px; line-height: 1.65; font-weight: 650; }
+.checks ul { margin: 0; padding-left: 18px; color: #584f43; font-size: 15px; line-height: 1.9; }
+.checks li { margin: 4px 0; padding-left: 2px; }
+.checks li::marker { color: #a58a66; }
+.recording { margin-top: 19px; padding-top: 16px; border-top: 1px solid #e7dece; }
+.target + .target { margin-top: 13px; padding-top: 12px; border-top: 1px dashed #ddd2bf; }
+.record { margin: 0 0 8px; color: #584f43; font-size: 15px; line-height: 1.9; }
+.example { margin: 0; padding: 10px 12px; background: #f4eee4; color: #665d50; font-size: 15px; line-height: 1.85; overflow-wrap: anywhere; }
+.example > span { display: block; color: #806744; font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.targetLink { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0 4px; min-height: 44px; color: #806744; font-size: 15px; font-weight: 650; line-height: 1.7; }
+.targetLink small { display: block; color: #786b58; font-size: 14px; font-weight: 400; margin-top: 2px; }
+.targetLink > svg { flex-shrink: 0; }
+.targetLink:hover > span { text-decoration: underline; text-underline-offset: 3px; }
+.limitation { margin: 18px 0 0; padding-left: 10px; border-left: 2px solid #bca57f; font-size: 14px; color: #786b58; line-height: 1.85; }
+.panel a:focus-visible, .panel summary:focus-visible { outline: 2px solid #806744; outline-offset: 3px; }
+@media (max-width: 1000px) {
+  .visit { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+@media (max-width: 560px) {
+  .panel { padding-top: 18px; }
+  .heading h3 { font-size: 17px; }
+  .heading p { font-size: 14px; }
+  .headingIcon { flex-basis: 30px; height: 30px; }
+  .service > summary { flex-wrap: wrap; gap: 6px 9px; padding: 12px; }
+  .summaryCopy { flex-basis: calc(100% - 30px); }
+  .summaryCopy > strong { font-size: 16px; }
+  .summaryCopy > span { font-size: 14px; }
+  .authentication { order: 3; margin-top: 1px; }
+  .body { padding: 15px 13px; }
+  .intro { font-size: 14px; }
+  .application dl { grid-template-columns: minmax(0, 1fr); gap: 5px; }
+  .application dd:not(:last-child) { margin-bottom: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .chevron { transition: none; } }

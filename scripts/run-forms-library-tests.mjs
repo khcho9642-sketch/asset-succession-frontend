@@ -9,6 +9,7 @@ try {
   run(process.execPath, ['scripts/forms-catalog-tests.mjs']);
   run(process.execPath, ['scripts/forms-preview-integration-tests.mjs']);
   run(process.execPath, ['scripts/forms-planning-tests.mjs']);
+  run(process.execPath, ['scripts/forms-life-guides-tests.mjs']);
   run(process.execPath, ['scripts/forms-preview-counts-tests.mjs']);
   run(process.execPath, ['node_modules/typescript/bin/tsc', 'lib/forms/catalog.ts', 'lib/forms/catalog.test.ts', '--outDir', out, '--target', 'es2022', '--module', 'commonjs', '--esModuleInterop', '--skipLibCheck']);
   writeFileSync(join(out, 'package.json'), '{"type":"commonjs"}');
