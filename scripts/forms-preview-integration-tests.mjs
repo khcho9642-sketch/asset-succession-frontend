@@ -14,6 +14,7 @@ const read = path => JSON.parse(readFileSync(path, 'utf8').replace(/^\uFEFF/, ''
 const source = (ref, path) => JSON.parse(git('show', `${ref}:${path}`));
 const hash = data => createHash('sha256').update(data).digest('hex');
 const manifest = read(manifestPath);
+const usage = read('lib/forms/resource-usage.json').documents;
 const prior = source(production, manifestPath);
 const completed = source(redesign, manifestPath);
 const previewRecords = prior.documents.filter(item => item.preview);
@@ -45,14 +46,24 @@ test('177 resources retain the completed redesign and the 74 latest production p
     expected.documents.find(row => row.id === id).source_evidence = structuredClone(prior.documents.find(row => row.id === id).source_evidence);
   }
   expected.additionRequests = withLatestEvidence(completed.additionRequests, prior.additionRequests);
-  assert.deepEqual(manifest, expected);
+  const normalized = structuredClone(manifest);
+  for (const current of normalized.documents) {
+    const original = expected.documents.find(item => item.id === current.id);
+    assert.equal(current.description, usage[current.id].description, `${current.id}: authored usage description`);
+    assert.deepEqual(current.resource.facets.timing, usage[current.id].timing, `${current.id}: reviewed timing`);
+    current.description = original.description;
+    current.resource.facets.timing = original.resource.facets.timing;
+  }
+  // Only the two requested editorial fields differ; all files, provenance,
+  // applicability, deadlines, relations and collection records remain pinned.
+  assert.deepEqual(normalized, expected);
   assert.equal(manifest.documents.length, 177);
   assert.equal(new Set(manifest.documents.map(item => item.id)).size, 177);
   assert.equal(manifest.publishedCount, 177);
   assert.deepEqual(manifest.deliveryCounts, { hosted: 107, provider: 70, direct: 0, pending: 0 });
   assert.equal(previewRecords.length, 74);
   for (const item of completed.documents) {
-    const current = manifest.documents.find(row => row.id === item.id);
+    const current = normalized.documents.find(row => row.id === item.id);
     assert.deepEqual(current.resource, item.resource, `${item.id}: stages, facets, relations and presentation`);
   }
   assert.deepEqual(read('public/downloads/official-forms/presentation-groups.json'), source(redesign, 'public/downloads/official-forms/presentation-groups.json'));

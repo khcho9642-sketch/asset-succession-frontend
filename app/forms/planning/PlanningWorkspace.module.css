@@ -142,7 +142,24 @@
   .actions button,.actions a { padding: 10px 13px; }
   .actions a { flex-basis: 100%; }
 }
+.readFirst { margin: 0 0 24px; padding: 22px; border: 1px solid #d8cfc0; border-radius: 6px; background: #fffcf6; }
+.readFirst h2 { font-size: 20px; margin: 0 0 12px; }
+.readFirst > p { font-size: 16px; line-height: 1.8; margin: 10px 0; }
+.outcome { color: #645c4f; }
+.comparisonScroll { max-width: 100%; overflow-x: auto; margin: 20px 0; }
+.comparisonScroll:focus-visible { outline: 2px solid #ae3d2e; outline-offset: 3px; }
+.comparisonScroll table { border-collapse: collapse; width: 100%; min-width: 530px; font-size: 15px; line-height: 1.75; }
+.comparisonScroll :is(th, td) { text-align: left; vertical-align: top; padding: 13px 14px; border-bottom: 1px solid #d8cfc0; }
+.comparisonScroll thead { background: #eee6d9; }
+.comparisonScroll th[scope=row] { width: 20%; font-weight: 650; }
+.referenceLinks { margin-top: 22px; border-top: 1px solid #d8cfc0; padding-top: 15px; }
+.referenceLinks h3 { font-size: 16px; margin: 0 0 8px; }
+.referenceLinks a { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 0; font-size: 14px; line-height: 1.65; text-decoration: none; color: inherit; }
+.referenceLinks a:hover { color: #ae3d2e; text-decoration: underline; }
+.referenceLinks svg { flex-shrink: 0; }
+@media(max-width: 760px) { .readFirst { padding: 16px; } }
 @media print {
+  .readFirst { display: none!important; }
   :global(header[role=banner]),.back,.privacy,.workspaceTools,.sectionNav,.layout,.notice,.actions,.bottomNote { display: none!important; }
   .canvas { background: white; min-height: 0; }
   .page { max-width: none; padding: 0; }

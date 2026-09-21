@@ -20,7 +20,7 @@
       "originalCategory": "재산분할·상속",
       "catalogTitle": "상속재산분할협의서 + 기관 작성 예시",
       "sourceId": "BP-I",
-      "description": "부평구청이 제공하는 분할협의서와 기관 작성 예시입니다.",
+      "description": "상속인들이 합의한 재산별 귀속과 지분을 기록하는 협의서입니다. 부평구청 작성 예시를 함께 참고할 수 있습니다.",
       "tags": "분할 협의 · 상속 취득세",
       "format": "HWP",
       "editable": "/downloads/official-forms/%EC%83%81%EC%86%8D%EC%9E%AC%EC%82%B0%EB%B6%84%ED%95%A0%ED%98%91%EC%9D%98%EC%84%9C.hwp",
@@ -233,7 +233,7 @@
       "originalCategory": "증여",
       "catalogTitle": "증여계약서 + 기관 작성 예시",
       "sourceId": "BP-G",
-      "description": "부평구청의 증여 취득세 안내와 함께 제공되는 계약서입니다.",
+      "description": "부동산을 무상으로 줄 사람과 받을 사람이 대상 부동산·지분·증여 조건을 정하는 계약서입니다.",
       "tags": "부동산 표시 · 증여 계약",
       "format": "HWP",
       "editable": "/downloads/official-forms/%EC%A6%9D%EC%97%AC%EA%B3%84%EC%95%BD%EC%84%9C.hwp",
@@ -465,7 +465,7 @@
       "originalCategory": "증여",
       "catalogTitle": "증여계약서 일반·복수 + 기관 샘플",
       "sourceId": "DD-G",
-      "description": "부동산 증여계약서 일반·복수 양식과 기관 샘플입니다. 관할 기관의 검인 요건을 확인하세요.",
+      "description": "단일·복수 부동산 증여계약 작성에 사용하는 양식과 기관 샘플입니다. 관할 기관의 검인 요건을 확인하세요.",
       "tags": "증여 · DD-G-01",
       "format": "HWP",
       "editable": "/downloads/official-forms/DD-G-01/%EC%A6%9D%EC%97%AC%EA%B3%84%EC%95%BD%EC%84%9C.hwp",
@@ -731,7 +731,7 @@
       "originalCategory": "재산분할·상속",
       "catalogTitle": "상속재산명세표 빈칸용 + 예시용",
       "sourceId": "FAMILY-I",
-      "description": "상속재산분할사건 제출용 명세표입니다. 2016년 게시 자료로, 분할협의서와는 다른 문서입니다.",
+      "description": "상속재산분할사건에서 법원에 낼 재산의 종류·가액·귀속 주장을 정리하는 명세표입니다. 분할협의서와는 다른 문서입니다.",
       "tags": "재산분할·상속 · FAMILY-I-01",
       "format": "HWP",
       "editable": "/downloads/official-forms/FAMILY-I-01/%EC%83%81%EC%86%8D%EC%9E%AC%EC%82%B0_%EB%AA%85%EC%84%B8%ED%91%9C(%EC%84%9C%EC%9A%B8%EA%B0%80%EC%A0%95%2C_%EB%B9%84%EC%86%A1%ED%95%A9%EC%9D%98%EB%B6%80)-%EB%B9%88%EC%B9%B8%EC%9A%A9_%EC%88%98%EC%A0%95%ED%8C%90(160317)_1.hwp",
@@ -982,7 +982,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [단독주택] 간이하게 작성하는 경우",
       "sourceId": "SC1",
-      "description": "서울중앙지방법원 생활속의 계약서 1번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "단독주택 매매에서 간이 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-01",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-01/%EB%A7%A4%EB%A7%A41-1_%EB%8B%A8%EB%8F%85%EC%A3%BC%ED%83%9D_%EA%B0%84%EC%9D%B4.pdf",
@@ -1108,7 +1108,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -1274,7 +1277,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [아파트,연립주택] 간이하게 작성하는 경우",
       "sourceId": "SC1",
-      "description": "서울중앙지방법원 생활속의 계약서 2번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "아파트·연립주택 매매에서 간이 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-02",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-02/%EB%A7%A4%EB%A7%A41-2_%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC_%EA%B0%84%EC%9D%B4.pdf",
@@ -1400,7 +1403,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -1566,7 +1572,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [토지] 간이하게 작성하는 경우",
       "sourceId": "SC1",
-      "description": "서울중앙지방법원 생활속의 계약서 3번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "토지 매매에서 간이 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-03",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-03/%EB%A7%A4%EB%A7%A41-3_%ED%86%A0%EC%A7%80_%EA%B0%84%EC%9D%B4.pdf",
@@ -1692,7 +1698,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -1858,7 +1867,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [단독주택] 일반적인 경우",
       "sourceId": "SC1",
-      "description": "서울중앙지방법원 생활속의 계약서 4번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "단독주택 매매에서 일반 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-04",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-04/%EB%A7%A4%EB%A7%A42-1_%EB%8B%A8%EB%8F%85%EC%A3%BC%ED%83%9D_%EC%9D%BC%EB%B0%98.pdf",
@@ -1984,7 +1993,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -2150,7 +2162,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [단독주택] 저당권이 있는 경우",
       "sourceId": "SC1",
-      "description": "서울중앙지방법원 생활속의 계약서 5번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "단독주택 매매에서 저당권 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-05",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-05/%EB%A7%A4%EB%A7%A42-2_%EB%8B%A8%EB%8F%85%EC%A3%BC%ED%83%9D_%EC%A0%80%EB%8B%B9%EC%9D%B8%EC%88%98.pdf",
@@ -2276,7 +2288,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -2442,7 +2457,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [단독주택] 전세를 안고 사는 경우",
       "sourceId": "SC1",
-      "description": "서울중앙지방법원 생활속의 계약서 6번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "단독주택 매매에서 전세 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-06",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-06/%EB%A7%A4%EB%A7%A42-3_%EB%8B%A8%EB%8F%85%EC%A3%BC%ED%83%9D_%EB%B3%B4%EC%A6%9D%EA%B8%88%EC%9D%B8%EC%88%98.pdf",
@@ -2568,7 +2583,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -2734,7 +2752,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [단독주택] 저당권도 있고 전세도 안고 사는 경우",
       "sourceId": "SC1",
-      "description": "서울중앙지방법원 생활속의 계약서 7번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "단독주택 매매에서 저당권·전세 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-07",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-07/%EB%A7%A4%EB%A7%A42-4_%EB%8B%A8%EB%8F%85%EC%A3%BC%ED%83%9D_%EC%A0%80%EB%8B%B9%EA%B3%BC%EB%B3%B4%EC%A6%9D%EA%B8%88%EC%9D%B8%EC%88%98.pdf",
@@ -2860,7 +2878,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -3026,7 +3047,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [아파트,연립주택] 일반적인 경우",
       "sourceId": "SC1",
-      "description": "서울중앙지방법원 생활속의 계약서 8번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "아파트·연립주택 매매에서 일반 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-08",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-08/%EB%A7%A4%EB%A7%A43-1_%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC_%EC%9D%BC%EB%B0%98.pdf",
@@ -3152,7 +3173,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -3318,7 +3342,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [아파트,연립주택] 저당권이 있는 경우",
       "sourceId": "SC1",
-      "description": "서울중앙지방법원 생활속의 계약서 9번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "아파트·연립주택 매매에서 저당권 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-09",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-09/%EB%A7%A4%EB%A7%A43-2_%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC_%EC%A0%80%EB%8B%B9%EC%9D%B8%EC%88%98.pdf",
@@ -3444,7 +3468,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -3610,7 +3637,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [아파트,연립주택] 전세를 안고 사는 경우",
       "sourceId": "SC1",
-      "description": "서울중앙지방법원 생활속의 계약서 10번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "아파트·연립주택 매매에서 전세 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-10",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-10/%EB%A7%A4%EB%A7%A43-3_%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC_%EB%B3%B4%EC%A6%9D%EA%B8%88%EC%9D%B8%EC%88%98.pdf",
@@ -3736,7 +3763,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -3902,7 +3932,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [아파트,연립주택] 저당권도 있고 전세도 안고 사는 경우",
       "sourceId": "SC2",
-      "description": "서울중앙지방법원 생활속의 계약서 11번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "아파트·연립주택 매매에서 저당권·전세 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-11",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-11/%EB%A7%A4%EB%A7%A43-4_%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC_%EC%A0%80%EB%8B%B9%EA%B3%BC%EB%B3%B4%EC%A6%9D%EA%B8%88%EC%9D%B8%EC%88%98.pdf",
@@ -4028,7 +4058,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -4194,7 +4227,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [토지] 일반적인 경우",
       "sourceId": "SC2",
-      "description": "서울중앙지방법원 생활속의 계약서 12번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "토지 매매에서 일반 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-12",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-12/%EB%A7%A4%EB%A7%A44-1_%ED%86%A0%EC%A7%80_%EC%9D%BC%EB%B0%98.pdf",
@@ -4320,7 +4353,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -4486,7 +4522,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [토지] 저당권이 있는 경우",
       "sourceId": "SC2",
-      "description": "서울중앙지방법원 생활속의 계약서 13번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "토지 매매에서 저당권 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-13",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-13/%EB%A7%A4%EB%A7%A44-2_%ED%86%A0%EC%A7%80_%EC%A0%80%EB%8B%B9%EC%9D%B8%EC%88%98.pdf",
@@ -4612,7 +4648,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -4778,7 +4817,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [토지] 전세를 안고 사는 경우",
       "sourceId": "SC2",
-      "description": "서울중앙지방법원 생활속의 계약서 14번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "토지 매매에서 전세 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-14",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-14/%EB%A7%A4%EB%A7%A44-3_%ED%86%A0%EC%A7%80_%EB%B3%B4%EC%A6%9D%EA%B8%88%EC%9D%B8%EC%88%98.pdf",
@@ -4904,7 +4943,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -5070,7 +5112,7 @@
       "originalCategory": "매매",
       "catalogTitle": "매매 — [토지] 저당권도 있고 전세도 안고 사는 경우",
       "sourceId": "SC2",
-      "description": "서울중앙지방법원 생활속의 계약서 15번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "토지 매매에서 저당권·전세 조건에 맞춰 대금·권리 이전 약정을 작성하는 계약서 예시입니다.",
       "tags": "매매 · SC-15",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-15/%EB%A7%A4%EB%A7%A44-4_%ED%86%A0%EC%A7%80_%EC%A0%80%EB%8B%B9%EA%B3%BC%EB%B3%B4%EC%A6%9D%EA%B8%88%20%EC%9D%B8%EC%88%98.pdf",
@@ -5196,7 +5238,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -5362,7 +5407,7 @@
       "originalCategory": "임대차",
       "catalogTitle": "임대차 — [일반건물] 간이하게 작성하는 경우",
       "sourceId": "SC2",
-      "description": "서울중앙지방법원 생활속의 계약서 16번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "일반건물을 빌려주거나 빌릴 때 보증금·차임·사용기간을 정하는 간이 임대차계약서 예시입니다.",
       "tags": "임대차 · SC-16",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-16/%EC%9E%84%EB%8C%80%EC%B0%A81-1_%EC%9D%BC%EB%B0%98%EA%B1%B4%EB%AC%BC_%EA%B0%84%EC%9D%B4.pdf",
@@ -5485,7 +5530,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -5630,7 +5678,7 @@
       "originalCategory": "임대차",
       "catalogTitle": "임대차 — [아파트,연립주택] 간이하게 작성하는 경우",
       "sourceId": "SC2",
-      "description": "서울중앙지방법원 생활속의 계약서 17번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "아파트·연립주택을 빌려주거나 빌릴 때 보증금·차임·사용기간을 정하는 간이 임대차계약서 예시입니다.",
       "tags": "임대차 · SC-17",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-17/%EC%9E%84%EB%8C%80%EC%B0%A82-1_%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC_%EA%B0%84%EC%9D%B4.pdf",
@@ -5753,7 +5801,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -5898,7 +5949,7 @@
       "originalCategory": "임대차",
       "catalogTitle": "임대차 — [상가건물] 간이하게 작성하는 경우",
       "sourceId": "SC2",
-      "description": "서울중앙지방법원 생활속의 계약서 18번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "상가건물을 빌려주거나 빌릴 때 보증금·차임·사용기간을 정하는 간이 임대차계약서 예시입니다.",
       "tags": "임대차 · SC-18",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-18/%EC%9E%84%EB%8C%80%EC%B0%A83-1_%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC_%EA%B0%84%EC%9D%B4.pdf",
@@ -6021,7 +6072,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -6166,7 +6220,7 @@
       "originalCategory": "임대차",
       "catalogTitle": "임대차 — [일반건물] 일반적인 경우",
       "sourceId": "SC2",
-      "description": "서울중앙지방법원 생활속의 계약서 19번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "일반건물을 빌려주거나 빌릴 때 보증금·차임·사용기간을 정하는 임대차계약서 예시입니다.",
       "tags": "임대차 · SC-19",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-19/%EC%9E%84%EB%8C%80%EC%B0%A81-2_%EC%9D%BC%EB%B0%98%EA%B1%B4%EB%AC%BC_%EC%9D%BC%EB%B0%98.pdf",
@@ -6289,7 +6343,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -6434,7 +6491,7 @@
       "originalCategory": "임대차",
       "catalogTitle": "임대차 — [아파트,연립주택] 일반적인 경우",
       "sourceId": "SC2",
-      "description": "서울중앙지방법원 생활속의 계약서 20번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "아파트·연립주택을 빌려주거나 빌릴 때 보증금·차임·사용기간을 정하는 임대차계약서 예시입니다.",
       "tags": "임대차 · SC-20",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-20/%EC%9E%84%EB%8C%80%EC%B0%A82-2_%EC%A7%91%ED%95%A9%EA%B1%B4%EB%AC%BC_%EC%9D%BC%EB%B0%98.pdf",
@@ -6557,7 +6614,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -6702,7 +6762,7 @@
       "originalCategory": "임대차",
       "catalogTitle": "임대차 — [상가건물] 일반적인 경우",
       "sourceId": "SC3",
-      "description": "서울중앙지방법원 생활속의 계약서 21번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "상가건물을 빌려주거나 빌릴 때 보증금·차임·사용기간을 정하는 임대차계약서 예시입니다.",
       "tags": "임대차 · SC-21",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-21/%EC%9E%84%EB%8C%80%EC%B0%A83-2_%EC%83%81%EA%B0%80%EA%B1%B4%EB%AC%BC_%EC%9D%BC%EB%B0%98.pdf",
@@ -6825,7 +6885,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -6970,7 +7033,7 @@
       "originalCategory": "금전대차",
       "catalogTitle": "금전대차 — 일반적인 경우",
       "sourceId": "SC3",
-      "description": "서울중앙지방법원 생활속의 계약서 22번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "일반 금전대차 조건을 문서로 남기는 예시입니다. 가족 간 자금거래나 납부재원 차입의 실제 내용을 정리할 때 참고합니다.",
       "tags": "금전대차 · SC-22 · 금전소비대차계약서",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-22/%EA%B8%88%EC%A0%84%EB%8C%80%EC%B0%A81_%EC%9D%BC%EB%B0%98.pdf",
@@ -7093,7 +7156,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "cash_deposit"
           ],
@@ -7256,7 +7322,7 @@
       "originalCategory": "금전대차",
       "catalogTitle": "금전대차 — 연대보증인이 있는 경우",
       "sourceId": "SC3",
-      "description": "서울중앙지방법원 생활속의 계약서 23번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "연대보증이 있는 금전대차 조건을 문서로 남기는 예시입니다. 가족 간 자금거래나 납부재원 차입의 실제 내용을 정리할 때 참고합니다.",
       "tags": "금전대차 · SC-23",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-23/%EA%B8%88%EC%A0%84%EB%8C%80%EC%B0%A82_%EC%97%B0%EB%8C%80%EB%B3%B4%EC%A6%9D%EC%9D%B8%EC%9D%B4%EC%9E%88%EB%8A%94%EA%B2%BD%EC%9A%B0.pdf",
@@ -7379,7 +7445,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "cash_deposit"
           ],
@@ -7542,7 +7611,7 @@
       "originalCategory": "금전대차",
       "catalogTitle": "금전대차 — 차용인 부동산에 저당권 설정하는 경우",
       "sourceId": "SC3",
-      "description": "서울중앙지방법원 생활속의 계약서 24번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "차용인 부동산을 담보로 하는 금전대차 조건을 문서로 남기는 예시입니다. 가족 간 자금거래나 납부재원 차입의 실제 내용을 정리할 때 참고합니다.",
       "tags": "금전대차 · SC-24",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-24/%EA%B8%88%EC%A0%84%EB%8C%80%EC%B0%A83_%EC%B0%A8%EC%9A%A9%EC%9D%B8%EC%86%8C%EC%9C%A0%EC%9D%98%EB%B6%80%EB%8F%99%EC%82%B0%EC%97%90%EC%A0%80%EB%8B%B9%EA%B6%8C%EC%84%A4%EC%A0%95%ED%95%98%EB%8A%94%EA%B2%BD%EC%9A%B0.pdf",
@@ -7665,7 +7734,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate",
             "cash_deposit"
@@ -7829,7 +7901,7 @@
       "originalCategory": "금전대차",
       "catalogTitle": "금전대차 — 제3자 부동산에 저당권 설정하는 경우",
       "sourceId": "SC3",
-      "description": "서울중앙지방법원 생활속의 계약서 25번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "제3자 부동산을 담보로 하는 금전대차 조건을 문서로 남기는 예시입니다. 가족 간 자금거래나 납부재원 차입의 실제 내용을 정리할 때 참고합니다.",
       "tags": "금전대차 · SC-25",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-25/%EA%B8%88%EC%A0%84%EB%8C%80%EC%B0%A84_%EC%A0%9C3%EC%9E%90%EC%86%8C%EC%9C%A0%EC%9D%98%EB%B6%80%EB%8F%99%EC%82%B0%EC%97%90%EC%A0%80%EB%8B%B9%EA%B6%8C%EC%84%A4%EC%A0%95%ED%95%98%EB%8A%94%EA%B2%BD%EC%9A%B0.pdf",
@@ -7952,7 +8024,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate",
             "cash_deposit"
@@ -8116,7 +8191,7 @@
       "originalCategory": "차용·영수증",
       "catalogTitle": "차용·영수증 — [영수증] 매매대금을 받는 경우",
       "sourceId": "SC3",
-      "description": "서울중앙지방법원 생활속의 계약서 26번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "매매대금을 실제로 받았다는 사실과 금액·일자를 남기는 영수증 예시입니다.",
       "tags": "차용·영수증 · SC-26",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-26/%EC%98%81%EC%88%98%EC%A6%9D1_%EB%A7%A4%EB%A7%A4%EB%8C%80%EA%B8%88.pdf",
@@ -8242,7 +8317,10 @@
             "capital_transfer",
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -8388,7 +8466,7 @@
       "originalCategory": "차용·영수증",
       "catalogTitle": "차용·영수증 — [영수증] 전세금을 받는 경우",
       "sourceId": "SC3",
-      "description": "서울중앙지방법원 생활속의 계약서 27번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "전세금을 실제로 받았다는 사실과 금액·일자를 남기는 영수증 예시입니다.",
       "tags": "차용·영수증 · SC-27",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-27/%EC%98%81%EC%88%98%EC%A6%9D2_%EC%9E%84%EB%8C%80%EC%B0%A8%EB%B3%B4%EC%A6%9D%EA%B8%88.pdf",
@@ -8511,7 +8589,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -8656,7 +8737,7 @@
       "originalCategory": "차용·영수증",
       "catalogTitle": "차용·영수증 — [영수증] 대여금을 전부 돌려받는 경우",
       "sourceId": "SC3",
-      "description": "서울중앙지방법원 생활속의 계약서 28번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "대여금 전액 상환을 실제로 받았다는 사실과 금액·일자를 남기는 영수증 예시입니다.",
       "tags": "차용·영수증 · SC-28",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-28/%EC%98%81%EC%88%98%EC%A6%9D3_%EC%B0%A8%EC%9A%A9%EA%B8%88%EC%A0%84%EB%B6%80%EB%B3%80%EC%A0%9C.pdf",
@@ -8779,7 +8860,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "cash_deposit"
           ],
@@ -8942,7 +9026,7 @@
       "originalCategory": "차용·영수증",
       "catalogTitle": "차용·영수증 — [영수증] 대여금을 일부 돌려받는 경우",
       "sourceId": "SC3",
-      "description": "서울중앙지방법원 생활속의 계약서 29번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "대여금 일부 상환을 실제로 받았다는 사실과 금액·일자를 남기는 영수증 예시입니다.",
       "tags": "차용·영수증 · SC-29",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-29/%EC%98%81%EC%88%98%EC%A6%9D4_%EC%B0%A8%EC%9A%A9%EA%B8%88%EC%9D%BC%EB%B6%80%EB%B3%80%EC%A0%9C.pdf",
@@ -9065,7 +9149,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "cash_deposit"
           ],
@@ -9228,7 +9315,7 @@
       "originalCategory": "차용·영수증",
       "catalogTitle": "차용·영수증 — [차용증] 일반적인 경우",
       "sourceId": "SC3",
-      "description": "서울중앙지방법원 생활속의 계약서 30번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "일반 차용증 조건을 문서로 남기는 예시입니다. 가족 간 자금거래나 납부재원 차입의 실제 내용을 정리할 때 참고합니다.",
       "tags": "차용·영수증 · SC-30",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-30/%EC%B0%A8%EC%9A%A9%EC%A6%9D1_%EC%9D%BC%EB%B0%98.pdf",
@@ -9351,7 +9438,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "cash_deposit"
           ],
@@ -9514,7 +9604,7 @@
       "originalCategory": "차용·영수증",
       "catalogTitle": "차용·영수증 — [차용증] 연대보증인이 있는 경우",
       "sourceId": "SC4",
-      "description": "서울중앙지방법원 생활속의 계약서 31번. 양식·작성방법·예시문을 기관 제공처에서 확인하세요.",
+      "description": "연대보증인이 있는 차용증 조건을 문서로 남기는 예시입니다. 가족 간 자금거래나 납부재원 차입의 실제 내용을 정리할 때 참고합니다.",
       "tags": "차용·영수증 · SC-31",
       "format": "HWP · DOC · PDF",
       "editable": "/downloads/official-forms/SC-31/%EC%B0%A8%EC%9A%A9%EC%A6%9D2_%EC%97%B0%EB%8C%80%EB%B3%B4%EC%A6%9D%EC%9D%B8%EC%9E%88%EB%8A%94%EA%B2%BD%EC%9A%B0.pdf",
@@ -9637,7 +9727,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "cash_deposit"
           ],
@@ -9800,7 +9893,7 @@
       "originalCategory": "가업승계",
       "catalogTitle": "가업상속공제신고서·가업상속재산명세서·가업용 자산 명세",
       "sourceId": "NTS-IG",
-      "description": "기관 목록의 서식 1. 적용 대상과 제출 시점의 최신 법령서식을 확인하세요.",
+      "description": "가업을 상속한 뒤 가업상속공제를 신청할 때 사업·주식·가업용 자산과 공제액을 정리하는 서식 묶음입니다.",
       "tags": "가업승계 · NTS-IG-01",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-01/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C1%ED%98%B8%EC%84%9C%EC%8B%9D%5D%20%EA%B0%80%EC%97%85%EC%83%81%EC%86%8D%EA%B3%B5%EC%A0%9C%EC%8B%A0%EA%B3%A0%EC%84%9C%C2%B8%20%EA%B0%80%EC%97%85%EC%83%81%EC%86%8D%EC%9E%AC%EC%82%B0%EB%AA%85%EC%84%B8%EC%84%9C%C2%B8%20%EA%B0%80%EC%97%85%EC%9A%A9%20%EC%9E%90%EC%82%B0%20%EB%AA%85%EC%84%B8(%EC%83%81%EC%86%8D%EC%84%B8%20%EB%B0%8F%20%EC%A6%9D%EC%97%AC%EC%84%B8%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99).hwp",
@@ -9859,7 +9952,9 @@
             "inheritance",
             "business_succession"
           ],
-          "timing": [],
+          "timing": [
+            "after_death"
+          ],
           "assets": [
             "business"
           ],
@@ -9986,7 +10081,7 @@
       "originalCategory": "재산분할·상속",
       "catalogTitle": "영농상속공제신고서",
       "sourceId": "NTS-IG",
-      "description": "기관 목록의 서식 2. 적용 대상과 제출 시점의 최신 법령서식을 확인하세요.",
+      "description": "농지 등 영농재산을 상속한 사람이 영농상속공제 대상과 금액을 신고하는 서식입니다.",
       "tags": "재산분할·상속 · NTS-IG-02",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-02/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C2%ED%98%B8%EC%84%9C%EC%8B%9D%5D%20%EC%98%81%EB%86%8D%EC%83%81%EC%86%8D%EA%B3%B5%EC%A0%9C%EC%8B%A0%EA%B3%A0%EC%84%9C(%EC%83%81%EC%86%8D%EC%84%B8%20%EB%B0%8F%20%EC%A6%9D%EC%97%AC%EC%84%B8%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99).hwp",
@@ -10044,7 +10139,9 @@
           "purposes": [
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -10169,7 +10266,7 @@
       "originalCategory": "재산분할·상속",
       "catalogTitle": "배우자 상속재산 미분할 신고서",
       "sourceId": "NTS-IG",
-      "description": "기관 목록의 서식 3. 적용 대상과 제출 시점의 최신 법령서식을 확인하세요.",
+      "description": "배우자 상속재산의 분할이 완료되지 않은 사유와 관련 내용을 세무서에 알리는 신고서입니다.",
       "tags": "재산분할·상속 · NTS-IG-03",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-03/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C3%ED%98%B8%EC%84%9C%EC%8B%9D%5D%20%EB%B0%B0%EC%9A%B0%EC%9E%90%20%EC%83%81%EC%86%8D%EC%9E%AC%EC%82%B0%20%EB%AF%B8%EB%B6%84%ED%95%A0%20%EC%8B%A0%EA%B3%A0%EC%84%9C(%EC%83%81%EC%86%8D%EC%84%B8%20%EB%B0%8F%20%EC%A6%9D%EC%97%AC%EC%84%B8%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99).hwp",
@@ -10227,7 +10324,9 @@
           "purposes": [
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -10352,7 +10451,7 @@
       "originalCategory": "상속·증여 공제",
       "catalogTitle": "임신사실확인서",
       "sourceId": "NTS-IG",
-      "description": "기관 목록의 서식 3의2. 적용 대상과 제출 시점의 최신 법령서식을 확인하세요.",
+      "description": "상속세 신고에서 태아와 관련한 상속공제를 검토할 때 임신 사실을 증명하는 서식입니다.",
       "tags": "상속·증여 공제 · NTS-IG-04",
       "format": "PDF · HWP",
       "editable": "/downloads/official-forms/NTS-IG-04/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C3%ED%98%B8%EC%9D%982%EC%84%9C%EC%8B%9D%5D%20%EC%9E%84%EC%8B%A0%EC%82%AC%EC%8B%A4%ED%99%95%EC%9D%B8%EC%84%9C(%EC%83%81%EC%86%8D%EC%84%B8%20%EB%B0%8F%20%EC%A6%9D%EC%97%AC%EC%84%B8%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99).hwp",
@@ -10434,7 +10533,9 @@
             "inheritance",
             "gift"
           ],
-          "timing": [],
+          "timing": [
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -10570,7 +10671,7 @@
       "originalCategory": "상속·증여 공제",
       "catalogTitle": "장애인증명서",
       "sourceId": "NTS-IG",
-      "description": "기관 목록의 서식 4. 적용 대상과 제출 시점의 최신 법령서식을 확인하세요.",
+      "description": "상속·증여세상 장애인 관련 공제나 과세가액 불산입을 검토할 때 필요한 장애 사실을 증명하는 서식입니다.",
       "tags": "상속·증여 공제 · NTS-IG-05",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-05/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C4%ED%98%B8%EC%84%9C%EC%8B%9D%5D%20%EC%9E%A5%EC%95%A0%EC%9D%B8%EC%A6%9D%EB%AA%85%EC%84%9C(%EC%83%81%EC%86%8D%EC%84%B8%20%EB%B0%8F%20%EC%A6%9D%EC%97%AC%EC%84%B8%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99).hwp",
@@ -10629,7 +10730,10 @@
             "inheritance",
             "gift"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -10755,7 +10859,7 @@
       "originalCategory": "재산분할·상속",
       "catalogTitle": "금융재산 상속공제 신고서",
       "sourceId": "NTS-IG",
-      "description": "기관 목록의 서식 5. 적용 대상과 제출 시점의 최신 법령서식을 확인하세요.",
+      "description": "상속받은 금융재산과 금융채무를 정리해 금융재산 상속공제액을 계산·신고하는 서식입니다.",
       "tags": "재산분할·상속 · NTS-IG-06",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-06/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C5%ED%98%B8%EC%84%9C%EC%8B%9D%5D%20%EA%B8%88%EC%9C%B5%EC%9E%AC%EC%82%B0%20%EC%83%81%EC%86%8D%EA%B3%B5%EC%A0%9C%20%EC%8B%A0%EA%B3%A0%EC%84%9C(%EC%83%81%EC%86%8D%EC%84%B8%20%EB%B0%8F%20%EC%A6%9D%EC%97%AC%EC%84%B8%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99).hwp",
@@ -10813,7 +10917,9 @@
           "purposes": [
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -10938,7 +11044,7 @@
       "originalCategory": "상속·증여 공제",
       "catalogTitle": "재해손실 공제신고서(상속세, 증여세)",
       "sourceId": "NTS-IG",
-      "description": "기관 목록의 서식 6. 적용 대상과 제출 시점의 최신 법령서식을 확인하세요.",
+      "description": "상속·증여받은 재산에 재해손실이 생겼을 때 대상 손실과 공제액을 신고하는 서식입니다.",
       "tags": "상속·증여 공제 · NTS-IG-07",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-07/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C6%ED%98%B8%EC%84%9C%EC%8B%9D%5D%20%EC%9E%AC%ED%95%B4%EC%86%90%EC%8B%A4%20%EA%B3%B5%EC%A0%9C%EC%8B%A0%EA%B3%A0%EC%84%9C(%EC%83%81%EC%86%8D%EC%84%B8%C2%B8%20%EC%A6%9D%EC%97%AC%EC%84%B8)(%EC%83%81%EC%86%8D%EC%84%B8%20%EB%B0%8F%20%EC%A6%9D%EC%97%AC%EC%84%B8%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99).hwp",
@@ -10997,7 +11103,10 @@
             "inheritance",
             "gift"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -11123,7 +11232,7 @@
       "originalCategory": "재산분할·상속",
       "catalogTitle": "동거주택상속공제신고서",
       "sourceId": "NTS-IG",
-      "description": "기관 목록의 서식 6의2. 적용 대상과 제출 시점의 최신 법령서식을 확인하세요.",
+      "description": "함께 거주하던 주택을 상속한 경우 동거주택 상속공제 요건과 해당 주택을 신고하는 서식입니다.",
       "tags": "재산분할·상속 · NTS-IG-08",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-08/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C6%ED%98%B8%EC%9D%982%EC%84%9C%EC%8B%9D%5D%20%EB%8F%99%EA%B1%B0%EC%A3%BC%ED%83%9D%EC%83%81%EC%86%8D%EA%B3%B5%EC%A0%9C%EC%8B%A0%EA%B3%A0%EC%84%9C(%EC%83%81%EC%86%8D%EC%84%B8%20%EB%B0%8F%20%EC%A6%9D%EC%97%AC%EC%84%B8%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99).hwp",
@@ -11181,7 +11290,9 @@
           "purposes": [
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -11308,7 +11419,7 @@
       "originalCategory": "상속·증여 공제",
       "catalogTitle": "외국납부세액공제신청서(상속세, 증여세)",
       "sourceId": "NTS-IG",
-      "description": "기관 목록의 서식 7. 적용 대상과 제출 시점의 최신 법령서식을 확인하세요.",
+      "description": "국외재산에 납부한 외국의 상속세·증여세를 국내 신고에서 공제받을 수 있는지 검토하는 신청서입니다.",
       "tags": "상속·증여 공제 · NTS-IG-09",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-09/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C7%ED%98%B8%EC%84%9C%EC%8B%9D%5D%20%EC%99%B8%EA%B5%AD%EB%82%A9%EB%B6%80%EC%84%B8%EC%95%A1%EA%B3%B5%EC%A0%9C%EC%8B%A0%EC%B2%AD%EC%84%9C(%EC%83%81%EC%86%8D%EC%84%B8%C2%B8%20%EC%A6%9D%EC%97%AC%EC%84%B8)(%EC%83%81%EC%86%8D%EC%84%B8%20%EB%B0%8F%20%EC%A6%9D%EC%97%AC%EC%84%B8%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99).hwp",
@@ -11367,7 +11478,10 @@
             "inheritance",
             "gift"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -11493,7 +11607,7 @@
       "originalCategory": "상속세 신고",
       "catalogTitle": "상속세과세표준신고 및 자진납부계산서 등 — 서식9 묶음",
       "sourceId": "NTS-IG",
-      "description": "기관 목록의 서식 9. 적용 대상과 제출 시점의 최신 법령서식을 확인하세요.",
+      "description": "상속재산·채무·공제·기납부세액을 종합해 상속세 과세표준과 납부세액을 신고하는 서식 묶음입니다.",
       "tags": "상속세 신고 · NTS-IG-10",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-10/%EC%83%81%EC%86%8D%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C%20%EB%93%B1%20%C2%B7%20%EC%84%9C%EC%8B%9D9%20%EB%AC%B6%EC%9D%8C.hwp",
@@ -11551,7 +11665,9 @@
           "purposes": [
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -11676,7 +11792,7 @@
       "originalCategory": "증여세 신고",
       "catalogTitle": "증여세과세표준신고 및 자진납부계산서(기본세율 적용 증여재산 신고용) 등 — 서식10 묶음",
       "sourceId": "NTS-IG",
-      "description": "기관 목록의 서식 10. 적용 대상과 제출 시점의 최신 법령서식을 확인하세요.",
+      "description": "일반 증여재산의 평가액·공제·과세표준과 납부세액을 작성하는 기본세율 증여세 신고서 묶음입니다.",
       "tags": "증여세 신고 · NTS-IG-11",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-11/%EC%A6%9D%EC%97%AC%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C(%EA%B8%B0%EB%B3%B8%EC%84%B8%EC%9C%A8%20%EC%A0%81%EC%9A%A9%20%EC%A6%9D%EC%97%AC%EC%9E%AC%EC%82%B0%20%EC%8B%A0%EA%B3%A0%EC%9A%A9)%20%EB%93%B1%20%C2%B7%20%EC%84%9C%EC%8B%9D.hwp",
@@ -11734,7 +11850,9 @@
           "purposes": [
             "gift"
           ],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -11859,7 +11977,7 @@
       "originalCategory": "가업승계",
       "catalogTitle": "증여세과세표준신고 및 자진납부계산서(창업자금 및 가업승계주식 등 특례세율 적용 증여재산 신고용) 등",
       "sourceId": "NTS-IG",
-      "description": "기관 목록의 서식 10의2. 적용 대상과 제출 시점의 최신 법령서식을 확인하세요.",
+      "description": "창업자금·가업승계 주식 등 특례세율을 적용하는 생전 증여의 과세표준과 세액을 신고하는 서식입니다.",
       "tags": "가업승계 · NTS-IG-12",
       "format": "PDF · HWP",
       "editable": "/downloads/official-forms/NTS-IG-12/%EC%A6%9D%EC%97%AC%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C(%EC%B0%BD%EC%97%85%EC%9E%90%EA%B8%88%20%EB%B0%8F%20%EA%B0%80%EC%97%85%EC%8A%B9%EA%B3%84%EC%A3%BC%EC%8B%9D%20%EB%93%B1%20%ED%8A%B9%EB%A1%80%EC%84%B8%EC%9C%A8%20%EC%A0%81%EC%9A%A9%20.hwp",
@@ -11941,7 +12059,9 @@
             "gift",
             "business_succession"
           ],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [
             "securities",
             "business"
@@ -12079,7 +12199,7 @@
       "originalCategory": "납부·유예",
       "catalogTitle": "상속세(증여세) 연부연납허가(변경, 철회) 신청서·연부연납세액 계산명세",
       "sourceId": "NTS-IG",
-      "description": "기관 목록의 서식 11. 적용 대상과 제출 시점의 최신 법령서식을 확인하세요.",
+      "description": "상속세·증여세를 여러 회차로 나누어 납부하도록 허가받거나 기존 허가를 변경·철회할 때 쓰는 서식입니다.",
       "tags": "납부·유예 · NTS-IG-13",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-13/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C11%ED%98%B8%EC%84%9C%EC%8B%9D%5D%20%EC%83%81%EC%86%8D%EC%84%B8(%EC%A6%9D%EC%97%AC%EC%84%B8)%20%EC%97%B0%EB%B6%80%EC%97%B0%EB%82%A9%ED%97%88%EA%B0%80(%EB%B3%80%EA%B2%BD%C2%B8%20%EC%B2%A0%ED%9A%8C)%20%EC%8B%A0%EC%B2%AD%EC%84%9C%C2%B8%20%EC%97%B0%EB%B6%80%EC%97%B0%EB%82%A9%EC%84%B8%EC%95%A1%20%EA%B3%84%EC%82%B0%EB%AA%85%EC%84%B8(%EC%83%81%EC%86%8D%EC%84%B8%20%EB%B0%8F%20%EC%A6%9D%EC%97%AC%EC%84%B8%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99).hwp",
@@ -12138,7 +12258,10 @@
             "inheritance",
             "gift"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -12264,7 +12387,7 @@
       "originalCategory": "가업승계",
       "catalogTitle": "가업상속 납부유예 신청서·가업상속재산명세서·가업용 자산 명세",
       "sourceId": "NTS-IG",
-      "description": "기관 목록의 서식 12의2. 적용 대상과 제출 시점의 최신 법령서식을 확인하세요.",
+      "description": "가업을 상속받은 사람이 가업상속 납부유예 대상 재산과 세액을 정리해 신청하는 서식입니다.",
       "tags": "가업승계 · NTS-IG-14",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-14/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C12%ED%98%B8%EC%9D%982%EC%84%9C%EC%8B%9D%5D%20%EA%B0%80%EC%97%85%EC%83%81%EC%86%8D%20%EB%82%A9%EB%B6%80%EC%9C%A0%EC%98%88%20%EC%8B%A0%EC%B2%AD%EC%84%9C%C2%B8%20%EA%B0%80%EC%97%85%EC%83%81%EC%86%8D%EC%9E%AC%EC%82%B0%EB%AA%85%EC%84%B8%EC%84%9C%C2%B8%20%EA%B0%80%EC%97%85%EC%9A%A9%20%EC%9E%90%EC%82%B0%20%EB%AA%85%EC%84%B8(%EC%83%81%EC%86%8D%EC%84%B8%20%EB%B0%8F%20%EC%A6%9D%EC%97%AC%EC%84%B8%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99).hwp",
@@ -12323,7 +12446,9 @@
             "inheritance",
             "business_succession"
           ],
-          "timing": [],
+          "timing": [
+            "after_death"
+          ],
           "assets": [
             "business"
           ],
@@ -12450,7 +12575,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "양도소득세과세표준 신고 및 납부계산서",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 1번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "자산을 양도한 사람이 양도소득세 과세표준과 납부세액을 신고하는 본 서식입니다.",
       "tags": "양도세 신고 · NTS-CG-01",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-01/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C84%ED%98%B8%5D%20%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%20%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C.hwp",
@@ -12508,7 +12633,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -12633,7 +12761,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "양도소득금액 계산명세서",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 2번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "양도가액에서 취득가액·필요경비 등을 반영해 자산별 양도소득을 계산하는 첨부서식입니다.",
       "tags": "양도세 신고 · NTS-CG-02",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-02/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C84%ED%98%B8%20%EB%B6%80%ED%91%9C1%5D%20%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EA%B8%88%EC%95%A1%20%EA%B3%84%EC%82%B0%EB%AA%85%EC%84%B8%EC%84%9C.hwp",
@@ -12691,7 +12819,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -12839,7 +12970,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "취득가액 및 필요경비 상세명세서",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 3번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "양도세 계산에 반영할 취득가액과 필요경비를 항목별 증빙으로 정리하는 상세명세서입니다.",
       "tags": "양도세 신고 · NTS-CG-03",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-03/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C84%ED%98%B8%20%EB%B6%80%ED%91%9C3%5D%20%EC%B7%A8%EB%93%9D%EA%B0%80%EC%95%A1%20%EB%B0%8F%20%ED%95%84%EC%9A%94%EA%B2%BD%EB%B9%84%20%EC%83%81%EC%84%B8%EB%AA%85%EC%84%B8%EC%84%9C.hwp",
@@ -12897,7 +13028,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -13045,7 +13179,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "양도소득세 간편신고서(소명자료제출서)",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 4번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "간편신고 대상자의 양도소득세 신고 또는 안내받은 거래의 소명자료 제출에 사용하는 서식입니다.",
       "tags": "양도세 신고 · NTS-CG-04",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-04/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C84%ED%98%B8%EC%9D%984%EC%84%9C%EC%8B%9D%5D%20%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EA%B0%84%ED%8E%B8%EC%8B%A0%EA%B3%A0%EC%84%9C(%EC%86%8C%EB%AA%85%EC%9E%90%EB%A3%8C%20%EC%A0%9C%EC%B6%9C%EC%84%9C)(%EC%98%88%EC%A0%95%EC%8B%A0%EA%B3%A0%C2%B8%20%ED%99%95%EC%A0%95%EC%8B%A0%EA%B3%A0%C2%B8%20%EA%B8%B0%ED%95%9C%20%ED%9B%84%20%EC%8B%A0%EA%B3%A0%C2%B8%20%EC%86%8C%EB%AA%85%EC%9E%90%EB%A3%8C%20%EC%A0%9C%EC%B6%9C%EC%84%9C).hwp",
@@ -13103,7 +13237,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -13228,7 +13365,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "주식 등 양도소득 계산명세서",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 5번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "양도한 주식의 종목·수량·거래가액과 취득원가를 정리하는 계산명세서입니다.",
       "tags": "양도세 신고 · NTS-CG-05",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-05/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C84%ED%98%B8%20%EB%B6%80%ED%91%9C2%5D%20%EC%A3%BC%EC%8B%9D%EB%93%B1%20%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EA%B8%88%EC%95%A1%20%EA%B3%84%EC%82%B0%EB%AA%85%EC%84%B8%EC%84%9C.hwp",
@@ -13286,7 +13423,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "securities"
           ],
@@ -13436,7 +13576,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "파생상품등 양도소득금액 계산명세서",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 6번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "과세대상 파생상품 거래의 손익을 구분해 양도소득금액을 계산하는 명세서입니다.",
       "tags": "양도세 신고 · NTS-CG-06",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-06/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C84%ED%98%B8%20%EB%B6%80%ED%91%9C2%EC%9D%982%5D%20%ED%8C%8C%EC%83%9D%EC%83%81%ED%92%88%EB%93%B1%20%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EA%B8%88%EC%95%A1%20%EA%B3%84%EC%82%B0%EB%AA%85%EC%84%B8%EC%84%9C.hwp",
@@ -13494,7 +13634,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "securities"
           ],
@@ -13644,7 +13787,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "주식 등 양도소득세 간편신고서",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 7번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "대상 주식 거래를 간편 양식으로 신고할 때 종목·거래가액·세액을 작성하는 서식입니다.",
       "tags": "양도세 신고 · NTS-CG-07",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-07/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C84%ED%98%B8%EC%9D%985%EC%84%9C%EC%8B%9D%5D%20%EC%A3%BC%EC%8B%9D%EB%93%B1%20%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EA%B0%84%ED%8E%B8%EC%8B%A0%EA%B3%A0%EC%84%9C(%EC%86%8C%EB%AA%85%EC%9E%90%EB%A3%8C%20%EC%A0%9C%EC%B6%9C%EC%84%9C)(%20%EC%98%88%EC%A0%95%EC%8B%A0%EA%B3%A0%C2%B8%20%ED%99%95%EC%A0%95%EC%8B%A0%EA%B3%A0%C2%B8%20%EA%B8%B0%ED%95%9C%20%ED%9B%84%20%EC%8B%A0%EA%B3%A0%C2%B8%20%EC%86%8C%EB%AA%85%EC%9E%90%EB%A3%8C%20%EC%A0%9C%EC%B6%9C%EC%84%9C%20).hwp",
@@ -13702,7 +13845,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "securities"
           ],
@@ -13829,7 +13975,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "농어촌주택 소유자 1세대1주택 특례적용신고서",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 8번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "농어촌주택 보유자가 주택 매각 시 1세대1주택 특례 적용을 검토·신고하는 서식입니다.",
       "tags": "양도세 신고 · NTS-CG-08",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-08/1%EC%84%B8%EB%8C%801%EC%A3%BC%ED%83%9D%20%ED%8A%B9%EB%A1%80%EC%A0%81%EC%9A%A9%EC%8B%A0%EA%B3%A0%EC%84%9C.hwp",
@@ -13887,7 +14033,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -14014,7 +14163,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "주택임대사업자의 거주주택 1세대1주택 특례적용신고서",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 9번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "주택임대사업자가 거주주택을 매각할 때 1세대1주택 특례 적용 내용을 신고하는 서식입니다.",
       "tags": "양도세 신고 · NTS-CG-09",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-09/%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C83%ED%98%B8%EC%9D%982%EC%84%9C%EC%8B%9D%5D%20%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%82%AC%EC%97%85%EC%9E%90%EC%9D%98%20%EA%B1%B0%EC%A3%BC%EC%A3%BC%ED%83%9D%201%EC%84%B8%EB%8C%80%201%EC%A3%BC%ED%83%9D%20%ED%8A%B9%EB%A1%80%EC%A0%81%EC%9A%A9%EC%8B%A0%EA%B3%A0%EC%84%9C.hwp",
@@ -14072,7 +14221,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate",
             "securities",
@@ -14201,7 +14353,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "이월과세적용신청서",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 10번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "해당 법령의 이월과세를 신청할 때 거래와 대상 자산·세액을 기재하는 서식입니다.",
       "tags": "양도세 신고 · NTS-CG-10",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-10/%EC%9D%B4%EC%9B%94%EA%B3%BC%EC%84%B8%EC%A0%81%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
@@ -14259,7 +14411,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -14384,7 +14539,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "과세이연신청서",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 11번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "사업전환·대토보상 등 원서식에 정한 거래의 과세이연 요건과 대상 자산·금액을 신고하는 신청서입니다.",
       "tags": "양도세 신고 · NTS-CG-11",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-11/%EA%B3%BC%EC%84%B8%EC%9D%B4%EC%97%B0%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
@@ -14442,7 +14597,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -14567,7 +14725,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "현물출자 등에 대한 세액감면(면제)신청서",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 12번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "현물출자·자경농지·농지대토·공익사업 등 원서식에 정한 거래의 양도세 감면·면제를 신청하는 서식입니다.",
       "tags": "양도세 신고 · NTS-CG-12",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-12/%ED%98%84%EB%AC%BC%EC%B6%9C%EC%9E%90%20%EB%93%B1%EC%97%90%20%EB%8C%80%ED%95%9C%20%EC%84%B8%EC%95%A1%EA%B0%90%EB%A9%B4(%EB%A9%B4%EC%A0%9C)%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
@@ -14625,7 +14783,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -14750,7 +14911,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "개발제한구역 지정에 따른 매수대상 토지 등에 대한 세액감면신청서",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 13번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "개발제한구역 관련 매수대상 토지 등의 양도에 대한 세액감면을 신청하는 서식입니다.",
       "tags": "양도세 신고 · NTS-CG-13",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-13/%EA%B0%9C%EB%B0%9C%EC%A0%9C%ED%95%9C%EA%B5%AC%EC%97%AD%20%EC%A7%80%EC%A0%95%EC%97%90%20%EB%94%B0%EB%A5%B8%20%EB%A7%A4%EC%88%98%EB%8C%80%EC%83%81%20%ED%86%A0%EC%A7%80%20%EB%93%B1%EC%97%90%20%EB%8C%80%ED%95%9C%20%EC%84%B8%EC%95%A1%EA%B0%90%EB%A9%B4%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
@@ -14808,7 +14969,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -14935,7 +15099,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "영수증서(납세자용)납부서(수납기관용)",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 14번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "신고·고지된 국세를 납부하고 납부 사실을 보관할 때 사용하는 납부서·영수증서입니다.",
       "tags": "양도세 신고 · NTS-CG-14",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-14/%EC%98%81%EC%88%98%EC%A6%9D%EC%84%9C(%EB%82%A9%EC%84%B8%EC%9E%90%EC%9A%A9)%EB%82%A9%EB%B6%80%EC%84%9C(%EC%88%98%EB%82%A9%EA%B8%B0%EA%B4%80%EC%9A%A9).hwp",
@@ -14993,7 +15157,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -15118,7 +15285,7 @@
       "originalCategory": "양도세 신고",
       "catalogTitle": "개인지방소득세 납부서",
       "sourceId": "NTS-CG",
-      "description": "국세청 양도소득세 신고서식 목록 15번. 신고 대상과 최신 서식을 확인하세요.",
+      "description": "양도소득에 대한 개인지방소득세를 납부하기 위한 서식입니다.",
       "tags": "양도세 신고 · NTS-CG-15",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-CG-15/44.%20%5B%EB%B3%84%EC%A7%80%20%EC%A0%9C40%ED%98%B8%EC%84%9C%EC%8B%9D%5D%20%EA%B0%9C%EC%9D%B8%EC%A7%80%EB%B0%A9%EC%86%8C%EB%93%9D%EC%84%B8%20%EB%82%A9%EB%B6%80%EC%84%9C(%EC%8B%9C%2C%EA%B5%B0%2C%EA%B5%AC%20%EB%B3%B4%EA%B4%80%EC%9A%A9).hwp",
@@ -15178,7 +15345,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -15303,7 +15473,7 @@
       "originalCategory": "상속세 작성사례",
       "catalogTitle": "사례01_피상속인이 비거주자인 경우",
       "sourceId": "NTS-IE",
-      "description": "국세청이 공개한 작성사례입니다. 사례의 과세연도와 전제조건을 확인하세요.",
+      "description": "피상속인이 비거주자인 상속세 신고의 국세청 작성사례입니다. 사례의 과세연도와 가정을 확인하며 읽으세요.",
       "tags": "상속세 작성사례 · NTS-IE-01",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IE-01/210427_8.%EC%A3%BC%EC%9A%94%EC%84%9C%EC%8B%9D%20%EC%9E%91%EC%84%B1%EC%9A%94%EB%A0%B9%EC%82%AC%EB%A1%80_%EC%82%AC%EB%A1%8001_%ED%94%BC%EC%83%81%EC%86%8D%EC%9D%B8%EC%9D%B4%20%EB%B9%84%EA%B1%B0%EC%A3%BC%EC%9E%90%EC%9D%B8%20%EA%B2%BD%EC%9A%B0.hwp",
@@ -15517,7 +15687,7 @@
       "originalCategory": "상속세 작성사례",
       "catalogTitle": "사례02_피상속인이 거주자로 과세미달인 경우",
       "sourceId": "NTS-IE",
-      "description": "국세청이 공개한 작성사례입니다. 사례의 과세연도와 전제조건을 확인하세요.",
+      "description": "피상속인이 거주자이고 과세미달인 상속세 신고의 국세청 작성사례입니다. 사례의 과세연도와 가정을 확인하며 읽으세요.",
       "tags": "상속세 작성사례 · NTS-IE-02",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IE-02/210427_8.%EC%A3%BC%EC%9A%94%EC%84%9C%EC%8B%9D%20%EC%9E%91%EC%84%B1%EC%9A%94%EB%A0%B9%EC%82%AC%EB%A1%80_%EC%82%AC%EB%A1%8002_%ED%94%BC%EC%83%81%EC%86%8D%EC%9D%B8%EC%9D%B4%20%EA%B1%B0%EC%A3%BC%EC%9E%90%EB%A1%9C%20%EA%B3%BC%EC%84%B8%EB%AF%B8%EB%8B%AC%EC%9D%B8%20%EA%B2%BD%EC%9A%B0.hwp",
@@ -15731,7 +15901,7 @@
       "originalCategory": "상속세 작성사례",
       "catalogTitle": "사례03_피상속인이 거주자로 과세인 경우",
       "sourceId": "NTS-IE",
-      "description": "국세청이 공개한 작성사례입니다. 사례의 과세연도와 전제조건을 확인하세요.",
+      "description": "피상속인이 거주자이고 납부세액 발생인 상속세 신고의 국세청 작성사례입니다. 사례의 과세연도와 가정을 확인하며 읽으세요.",
       "tags": "상속세 작성사례 · NTS-IE-03",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IE-03/210427_8.%EC%A3%BC%EC%9A%94%EC%84%9C%EC%8B%9D%20%EC%9E%91%EC%84%B1%EC%9A%94%EB%A0%B9%EC%82%AC%EB%A1%80_%EC%82%AC%EB%A1%8003_%ED%94%BC%EC%83%81%EC%86%8D%EC%9D%B8%EC%9D%B4%20%EA%B1%B0%EC%A3%BC%EC%9E%90%EB%A1%9C%20%EA%B3%BC%EC%84%B8%EC%9D%B8%20%EA%B2%BD%EC%9A%B0.hwp",
@@ -15945,7 +16115,7 @@
       "originalCategory": "양도세 작성사례",
       "catalogTitle": "비상장 대기업 주식 양도 — 실지거래가액이 있는 경우",
       "sourceId": "NTS-CE",
-      "description": "국세청 웹 사례 본문과 원본 이미지 5장을 묶은 PDF입니다. 기관 제공 PDF가 아닌 사이트 변환본입니다.",
+      "description": "비상장 대기업 주식 양도의 신고 흐름을 살펴보는 2020년 국세청 사례입니다. 웹 본문·이미지를 묶었으며 기관 제공 PDF가 아닌 사이트 변환본입니다.",
       "tags": "양도세 작성사례 · NTS-CE-01",
       "format": "PDF · 원본 이미지",
       "editable": "/downloads/official-forms/NTS-CE-01/%EA%B5%AD%EC%84%B8%EC%B2%AD_%EB%B9%84%EC%83%81%EC%9E%A5%EC%A3%BC%EC%8B%9D_%EC%9E%91%EC%84%B1%EC%82%AC%EB%A1%80_%EC%9B%B9%EC%9D%B4%EB%AF%B8%EC%A7%80%EB%AC%B6%EC%9D%8C_%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%B3%80%ED%99%98%EB%B3%B8.pdf",
@@ -16187,7 +16357,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "securities",
             "business"
@@ -16369,7 +16542,7 @@
       "originalCategory": "상속 등기",
       "catalogTitle": "상속에 의한 소유권 이전등기 신청서",
       "sourceId": "REG-I",
-      "description": "상속·협의분할과 구분건물 여부에 맞는 등기신청서입니다. 관련 작성 예시는 기관 페이지에서 확인하세요.",
+      "description": "토지·일반건물을 상속에 따라 상속인 명의로 이전등기할 때 사용하는 신청서입니다.",
       "tags": "상속 등기 · REG-I-01",
       "format": "HWP",
       "editable": "/downloads/official-forms/REG-I-01/03-1.%EC%83%81%EC%86%8D%EC%9C%BC%EB%A1%9C%EC%9D%B8%ED%95%9C%EC%86%8C%EC%9C%A0%EA%B6%8C%EC%9D%B4%EC%A0%84%EB%93%B1%EA%B8%B0%EC%8B%A0%EC%B2%AD.hwp",
@@ -16572,7 +16745,7 @@
       "originalCategory": "상속 등기",
       "catalogTitle": "상속에 의한 소유권 이전등기 신청서(구분건물)",
       "sourceId": "REG-I",
-      "description": "상속·협의분할과 구분건물 여부에 맞는 등기신청서입니다. 관련 작성 예시는 기관 페이지에서 확인하세요.",
+      "description": "아파트 등 구분건물을 상속에 따라 상속인 명의로 이전등기할 때 사용하는 신청서입니다.",
       "tags": "상속 등기 · REG-I-02",
       "format": "HWP",
       "editable": "/downloads/official-forms/REG-I-02/03-2.%EC%83%81%EC%86%8D%EC%9C%BC%EB%A1%9C%EC%9D%B8%ED%95%9C%EC%86%8C%EC%9C%A0%EA%B6%8C%EC%9D%B4%EC%A0%84%EB%93%B1%EA%B8%B0%EC%8B%A0%EC%B2%AD(%EA%B5%AC%EB%B6%84%EA%B1%B4%EB%AC%BC).hwp",
@@ -16777,7 +16950,7 @@
       "originalCategory": "상속 등기",
       "catalogTitle": "협의분할에 의한 상속을 원인으로 한 소유권 이전등기 신청서",
       "sourceId": "REG-I",
-      "description": "상속·협의분할과 구분건물 여부에 맞는 등기신청서입니다. 관련 작성 예시는 기관 페이지에서 확인하세요.",
+      "description": "토지·일반건물을 협의분할에 따라 상속인 명의로 이전등기할 때 사용하는 신청서입니다.",
       "tags": "상속 등기 · REG-I-03",
       "format": "HWP",
       "editable": "/downloads/official-forms/REG-I-03/03-3.%ED%98%91%EC%9D%98%EB%B6%84%ED%95%A0%EC%97%90%EC%9D%98%ED%95%9C%EC%83%81%EC%86%8D%EC%9C%BC%EB%A1%9C%EC%9D%B8%ED%95%9C%EC%86%8C%EC%9C%A0%EA%B6%8C%EC%9D%B4%EC%A0%84%EB%93%B1%EA%B8%B0%EC%8B%A0%EC%B2%AD.hwp",
@@ -16980,7 +17153,7 @@
       "originalCategory": "상속 등기",
       "catalogTitle": "협의분할에 의한 상속을 원인으로 한 소유권 이전등기 신청서(구분건물)",
       "sourceId": "REG-I",
-      "description": "상속·협의분할과 구분건물 여부에 맞는 등기신청서입니다. 관련 작성 예시는 기관 페이지에서 확인하세요.",
+      "description": "아파트 등 구분건물을 협의분할에 따라 상속인 명의로 이전등기할 때 사용하는 신청서입니다.",
       "tags": "상속 등기 · REG-I-04",
       "format": "HWP",
       "editable": "/downloads/official-forms/REG-I-04/03-4.%ED%98%91%EC%9D%98%EB%B6%84%ED%95%A0%EC%97%90%EC%9D%98%ED%95%9C%EC%83%81%EC%86%8D%EC%9C%BC%EB%A1%9C%EC%9D%B8%ED%95%9C%EC%86%8C%EC%9C%A0%EA%B6%8C%EC%9D%B4%EC%A0%84%EB%93%B1%EA%B8%B0%EC%8B%A0%EC%B2%AD(%EA%B5%AC%EB%B6%84%EA%B1%B4%EB%AC%BC).hwp",
@@ -17185,7 +17358,7 @@
       "originalCategory": "증여 등기",
       "catalogTitle": "증여에 의한 소유권 이전등기 신청서",
       "sourceId": "REG-G",
-      "description": "증여계약서와 별개의 등기신청서입니다. 지분권 이전 작성 안내와 예시는 기관 페이지에서 확인하세요.",
+      "description": "토지·일반건물의 생전 증여계약에 따라 수증자에게 소유권을 이전등기하는 신청서입니다.",
       "tags": "증여 등기 · REG-G-01",
       "format": "HWP",
       "editable": "/downloads/official-forms/REG-G-01/04-4.%EC%A6%9D%EC%97%AC%EB%A1%9C%EC%9D%B8%ED%95%9C%EC%86%8C%EC%9C%A0%EA%B6%8C%EC%9D%B4%EC%A0%84%EB%93%B1%EA%B8%B0%EC%8B%A0%EC%B2%AD.hwp",
@@ -17243,7 +17416,9 @@
           "purposes": [
             "gift"
           ],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -17386,7 +17561,7 @@
       "originalCategory": "증여 등기",
       "catalogTitle": "증여에 의한 소유권 이전등기 신청서(구분건물)",
       "sourceId": "REG-G",
-      "description": "증여계약서와 별개의 등기신청서입니다. 지분권 이전 작성 안내와 예시는 기관 페이지에서 확인하세요.",
+      "description": "아파트 등 구분건물의 생전 증여계약에 따라 수증자에게 소유권을 이전등기하는 신청서입니다.",
       "tags": "증여 등기 · REG-G-02",
       "format": "HWP",
       "editable": "/downloads/official-forms/REG-G-02/04-5.%EC%A6%9D%EC%97%AC%EB%A1%9C%EC%9D%B8%ED%95%9C%EC%86%8C%EC%9C%A0%EA%B6%8C%EC%9D%B4%EC%A0%84%EB%93%B1%EA%B8%B0%EC%8B%A0%EC%B2%AD(%EA%B5%AC%EB%B6%84%EA%B1%B4%EB%AC%BC).hwp",
@@ -17444,7 +17619,9 @@
           "purposes": [
             "gift"
           ],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -17588,7 +17765,7 @@
       "catalogTitle": "사망자 등 재산조회 통합처리 신청서(안심상속)",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "기관 원문에서 서식·준비자료·이용방법을 확인하세요.",
+      "description": "상속인은 사망자의 재산·채무를, 성년후견인·한정후견인은 피후견인의 재산을 통합 조회할 때 이용합니다.",
       "tags": "P0-01 · 재산조회",
       "format": "공식 안내",
       "editable": "https://www.gov.kr/mw/AA020InfoCappView.do?CappBizCD=17400000001",
@@ -17628,6 +17805,7 @@
             "inheritance"
           ],
           "timing": [
+            "before_death",
             "after_death"
           ],
           "assets": [],
@@ -17762,7 +17940,7 @@
       "catalogTitle": "상속인 금융거래조회 신청서",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "기관 원문에서 서식·준비자료·이용방법을 확인하세요.",
+      "description": "상속인이 고인의 금융재산과 채무가 있는 금융기관을 찾고 후속 조회를 준비할 때 쓰는 신청 안내입니다.",
       "tags": "P0-02 · 재산조회",
       "format": "공식 안내",
       "editable": "https://fine.fss.or.kr/fine/main/contents.do?menuNo=900208",
@@ -17922,7 +18100,7 @@
       "catalogTitle": "상속인 금융거래조회 위임장",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "기관 원문에서 서식·준비자료·이용방법을 확인하세요.",
+      "description": "상속인이 직접 금융거래조회를 신청하기 어려워 대리인을 정할 때 사용하는 위임장 안내입니다.",
       "tags": "P0-03 · 재산조회",
       "format": "공식 안내",
       "editable": "https://fine.fss.or.kr/fine/main/contents.do?menuNo=900208",
@@ -18082,7 +18260,7 @@
       "catalogTitle": "외국인 사망자 조회 안내문",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "기관 원문에서 서식·준비자료·이용방법을 확인하세요.",
+      "description": "외국 국적 사망자의 국내 금융거래를 조회하려는 유족이 신분·상속관계 증빙과 접수방법을 확인할 때 이용합니다.",
       "tags": "P0-04 · 재산조회",
       "format": "공식 안내",
       "editable": "https://fine.fss.or.kr/fine/main/contents.do?menuNo=900208",
@@ -18240,7 +18418,7 @@
       "catalogTitle": "사망신고서",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "대법원이 게시한 사망신고 안내와 실제 사망신고서 HWP 원본의 본문을 확인했습니다. 사망신고의무자의 일반 신고기간은 사망사실을 안 날부터 1개월입니다. 가족관계등록불명자 등의 예외와 구비서류는 원문을 확인하세요. 문서 재배포 조건은 미확인으로 기관 제공처에서 받도록 연결합니다.",
+      "description": "신고의무자 등 자격을 갖춘 사람이 사망사실을 가족관계등록에 반영할 때 사용하는 사망신고서 안내입니다.",
       "tags": "P0-05 · 재산분배·상속",
       "format": "공식 안내",
       "editable": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000008&guideCd=0000008006&guideYn=Y",
@@ -18395,7 +18573,7 @@
       "catalogTitle": "가족관계증명서(상세)·기본증명서(상세)·제적등본 발급 안내",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "가족관계증명서 상세, 기본증명서 상세, 제적등본의 기재사항·발급방법을 각 공식 안내에서 확인했습니다. 신청 자격과 제출기관이 요구하는 증명서 유형을 확인하여 발급하세요. 실제 개인 증명서는 수집하지 않았습니다.",
+      "description": "가족·신분관계를 정리하거나 상속인 범위를 확인할 때 필요한 증명서의 상세·일반 구분과 발급방법을 안내합니다.",
       "tags": "P0-06 · 재산분배·상속",
       "format": "공식 안내",
       "editable": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y",
@@ -18447,7 +18625,10 @@
           "purposes": [
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "guide",
           "origin": "official_institution",
@@ -18546,7 +18727,7 @@
       "catalogTitle": "상속포기 심판청구서",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "대한민국 법원 전자소송포털의 양식모음에서 검색어 «상속»로 «상속재산포기심판청구» 항목을 확인했습니다. 공식 제공처에서 사건에 맞는 양식과 작성안내를 선택하세요. 원본 파일을 이 사이트에서 재배포하는 항목은 아닙니다.",
+      "description": "상속인이 재산과 채무를 확인한 뒤 상속포기를 선택하려는 경우 법원 청구를 준비하는 자료입니다.",
       "tags": "P0-07 · 재산분배·상속",
       "format": "공식 안내",
       "editable": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
@@ -18721,7 +18902,7 @@
       "catalogTitle": "상속한정승인 심판청구서",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "대한민국 법원 전자소송포털의 양식모음에서 검색어 «한정승인»로 «상속한정승인 심판청구서» 항목을 확인했습니다. 공식 제공처에서 사건에 맞는 양식과 작성안내를 선택하세요. 원본 파일을 이 사이트에서 재배포하는 항목은 아닙니다.",
+      "description": "상속인이 채무 문제를 검토하면서 한정승인을 선택할 경우 청구서와 재산목록을 준비하는 자료입니다.",
       "tags": "P0-08 · 재산분배·상속",
       "format": "공식 안내",
       "editable": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
@@ -18897,7 +19078,7 @@
       "catalogTitle": "상속재산목록(한정승인 첨부)",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "법원 상속한정승인 심판청구서 원본에 포함된 상속재산목록을 확인했습니다. 독립 서식 파일로 분리·재작성하지 않고 공식 합본을 받는 경로로 연결합니다. 적극재산과 채무 내역은 실제 증빙에 따라 작성하세요.",
+      "description": "한정승인 청구인이 고인의 재산과 채무를 빠짐없이 정리하여 청구서에 첨부할 때 쓰는 목록입니다.",
       "tags": "P0-09 · 재산분배·상속",
       "format": "공식 안내",
       "editable": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
@@ -19072,7 +19253,7 @@
       "catalogTitle": "특별한정승인 심판청구서",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "양식모음에서 한정승인 검색 → 상속한정승인 심판청구서에서 확인할 수 있습니다. P0-08 일반 한정승인과 같은 공식 공용양식을 사용하되 특별한정승인 항목을 보존한다. 별도 전용양식을 만들어낸 것으로 표시하지 않는다.",
+      "description": "상속인이 뒤늦게 채무초과 사실을 알게 된 경우 특별한정승인 요건과 청구 내용을 검토할 때 이용합니다.",
       "tags": "P0-10 · 재산분배·상속",
       "format": "공식 안내",
       "editable": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
@@ -19264,7 +19445,7 @@
       "catalogTitle": "취득세(기한내/기한후) 신고서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
+      "description": "부동산 등 취득세 과세대상 재산을 취득한 사람이 취득 원인과 기한내·기한후 구분에 맞추어 신고할 때 사용합니다.",
       "tags": "P0-11 · 공제·납부",
       "format": "HWP",
       "editable": "/downloads/official-forms/additions/P0-11_%EC%B7%A8%EB%93%9D%EC%84%B8_%EA%B8%B0%ED%95%9C%EB%82%B4_%EA%B8%B0%ED%95%9C%ED%9B%84__%EC%8B%A0%EA%B3%A0%EC%84%9C.hwp",
@@ -19315,7 +19496,10 @@
             "gift",
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -19430,7 +19614,7 @@
       "catalogTitle": "주택(무상·유상거래) 취득 상세 명세서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "공식 합본 서식은 분리·재작성하지 않고 원본 전체를 제공합니다.",
+      "description": "주택 취득세 신고인이 거래 종류와 주택 관련 세부사항을 정리하여 해당 신고서에 첨부할 때 검토하는 명세서입니다.",
       "tags": "P0-12 · 공제·납부",
       "format": "HWP",
       "editable": "/downloads/official-forms/additions/P0-12_%EC%A3%BC%ED%83%9D_%EB%AC%B4%EC%83%81_%EC%9C%A0%EC%83%81%EA%B1%B0%EB%9E%98__%EC%B7%A8%EB%93%9D_%EC%83%81%EC%84%B8_%EB%AA%85%EC%84%B8%EC%84%9C.hwp",
@@ -19476,7 +19660,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -19589,7 +19776,7 @@
       "catalogTitle": "취득세 납부서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
+      "description": "취득세 신고 또는 부과 내용에 따라 세금을 납부하는 사람이 납부정보를 확인할 때 사용하는 자료입니다.",
       "tags": "P0-13 · 공제·납부",
       "format": "HWP",
       "editable": "/downloads/official-forms/additions/P0-13_%EC%B7%A8%EB%93%9D%EC%84%B8_%EB%82%A9%EB%B6%80%EC%84%9C.hwp",
@@ -19635,7 +19822,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -19746,7 +19936,7 @@
       "catalogTitle": "지방세 감면 신청서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "기관 원문에서 서식·준비자료·이용방법을 확인하세요.",
+      "description": "지방세 납세자가 자신에게 해당하는 감면 근거와 요건을 확인한 뒤 감면을 신청할 때 사용하는 자료입니다.",
       "tags": "P0-14 · 공제·납부",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P0-14_bee29f142de4.hwp",
@@ -19797,7 +19987,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -19908,7 +20101,7 @@
       "catalogTitle": "취득세 비과세 확인서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
+      "description": "취득자가 취득세 비과세에 해당하는지 확인받아야 할 때 취득원인과 비과세 근거를 정리하는 자료입니다.",
       "tags": "P0-15 · 공제·납부",
       "format": "HWP",
       "editable": "/downloads/official-forms/additions/P0-15_%EC%B7%A8%EB%93%9D%EC%84%B8_%EB%B9%84%EA%B3%BC%EC%84%B8_%ED%99%95%EC%9D%B8%EC%84%9C.hwp",
@@ -19954,7 +20147,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -20065,7 +20261,7 @@
       "catalogTitle": "유족연금/반환일시금·사망일시금 지급 청구서",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "유족연금 청구서 및 반환일시금·사망일시금 청구서를 함께 확보했습니다. 지급 종류와 대상에 맞는 서식을 선택하세요.",
+      "description": "유족이 국민연금 사망 관련 급여의 지급 대상과 급여 종류를 확인한 뒤 맞는 청구서를 선택할 때 이용합니다.",
       "tags": "P0-16 · 재산분배·상속",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P0-16_0a1df0831a20.hwp",
@@ -20281,7 +20477,7 @@
       "catalogTitle": "매매 소유권이전등기 신청서",
       "category": "등기",
       "originalCategory": "등기",
-      "description": "인터넷등기소 작성방법을 참조하여 법제처 생활법령정보가 제공하는 해당 신청서와 작성 안내를 확인했습니다. 인터넷등기소의 개별 파일 직링크를 확보한 것으로 표기하지 않습니다. 실제 제공 파일의 제목·본문을 검사했으며 재배포 조건 미확인으로 기관 제공처에서 받도록 연결합니다. 제출 전 관할 등기소의 현행 요구사항을 확인하세요.",
+      "description": "부동산을 매수한 사람이 매매계약에 따른 소유권이전등기를 준비할 때 신청서 작성방법과 첨부자료를 확인합니다.",
       "tags": "P1-01 · 등기",
       "format": "공식 안내",
       "editable": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=1&cnpClsNo=4&csmSeq=566&popMenu=ov",
@@ -20332,7 +20528,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -20451,7 +20650,7 @@
       "catalogTitle": "매매 소유권이전등기 신청서(구분건물)",
       "category": "등기",
       "originalCategory": "등기",
-      "description": "공식 제공처에서 고객센터 > 지원안내 > 등기신청양식으로 이동하여 ‘매매’을 검색한 뒤 ‘04-2.매매로인한소유권이전등기신청(구분건물)’을 선택하세요. 해당 공식 목록의 첨부 형식 표시를 확인했습니다. 화면이 단일 주소(index.jsp)를 사용하므로 검색 결과별 직접 URL은 제공되지 않습니다. 원본 파일 자체는 미확보입니다.",
+      "description": "아파트 등 구분건물을 매매한 당사자가 구분건물용 소유권이전등기 신청서를 찾을 때 이용합니다.",
       "tags": "P1-02 · 등기",
       "format": "공식 안내",
       "editable": "https://www.iros.go.kr/index.jsp",
@@ -20523,7 +20722,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -20644,7 +20846,7 @@
       "catalogTitle": "공유물분할 소유권이전등기 신청서",
       "category": "등기",
       "originalCategory": "등기",
-      "description": "인터넷등기소 작성방법을 참조하여 법제처 생활법령정보가 제공하는 해당 신청서와 작성 안내를 확인했습니다. 인터넷등기소의 개별 파일 직링크를 확보한 것으로 표기하지 않습니다. 실제 제공 파일의 제목·본문을 검사했으며 재배포 조건 미확인으로 기관 제공처에서 받도록 연결합니다. 제출 전 관할 등기소의 현행 요구사항을 확인하세요.",
+      "description": "부동산 공유자들이 공유물을 분할하여 소유관계를 변경할 때 등기 신청과 첨부자료를 준비하는 안내입니다.",
       "tags": "P1-06 · 등기",
       "format": "공식 안내",
       "editable": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=4&cnpClsNo=3&csmSeq=566&popMenu=ov",
@@ -20693,7 +20895,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -20792,7 +20997,7 @@
       "catalogTitle": "근저당권설정등기 신청서",
       "category": "등기",
       "originalCategory": "등기",
-      "description": "인터넷등기소 작성방법을 참조하여 법제처 생활법령정보가 제공하는 해당 신청서와 작성 안내를 확인했습니다. 인터넷등기소의 개별 파일 직링크를 확보한 것으로 표기하지 않습니다. 실제 제공 파일의 제목·본문을 검사했으며 재배포 조건 미확인으로 기관 제공처에서 받도록 연결합니다. 제출 전 관할 등기소의 현행 요구사항을 확인하세요.",
+      "description": "부동산 소유자와 채권자가 대출 등 채무를 담보하기 위해 근저당권 설정등기를 준비할 때 이용합니다.",
       "tags": "P1-07 · 등기",
       "format": "공식 안내",
       "editable": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=2&cnpClsNo=3&csmSeq=566&popMenu=ov",
@@ -20842,7 +21047,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -20961,7 +21169,7 @@
       "catalogTitle": "근저당권말소등기 신청서",
       "category": "등기",
       "originalCategory": "등기",
-      "description": "인터넷등기소 작성방법을 참조하여 법제처 생활법령정보가 제공하는 해당 신청서와 작성 안내를 확인했습니다. 인터넷등기소의 개별 파일 직링크를 확보한 것으로 표기하지 않습니다. 실제 제공 파일의 제목·본문을 검사했으며 재배포 조건 미확인으로 기관 제공처에서 받도록 연결합니다. 제출 전 관할 등기소의 현행 요구사항을 확인하세요.",
+      "description": "담보채무 정리 후 부동산 등기부의 근저당권을 말소하려는 당사자가 신청자료를 준비할 때 이용합니다.",
       "tags": "P1-08 · 등기",
       "format": "공식 안내",
       "editable": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=4&cnpClsNo=3&csmSeq=566&popMenu=ov",
@@ -21011,7 +21219,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -21130,7 +21341,7 @@
       "catalogTitle": "전세권설정등기 신청서",
       "category": "등기",
       "originalCategory": "등기",
-      "description": "인터넷등기소 작성방법을 참조하여 법제처 생활법령정보가 제공하는 해당 신청서와 작성 안내를 확인했습니다. 인터넷등기소의 개별 파일 직링크를 확보한 것으로 표기하지 않습니다. 실제 제공 파일의 제목·본문을 검사했으며 재배포 조건 미확인으로 기관 제공처에서 받도록 연결합니다. 제출 전 관할 등기소의 현행 요구사항을 확인하세요.",
+      "description": "부동산 소유자와 전세권자가 전세권 설정계약을 등기에 반영하려는 경우 신청방법을 확인하는 자료입니다.",
       "tags": "P1-09 · 등기",
       "format": "공식 안내",
       "editable": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=3&csmSeq=566&popMenu=ov",
@@ -21180,7 +21391,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -21281,7 +21495,7 @@
       "catalogTitle": "신탁등기 신청서",
       "category": "등기",
       "originalCategory": "등기",
-      "description": "공식 제공처에서 고객센터 > 지원안내 > 등기신청양식으로 이동하여 ‘신탁’을 검색한 뒤 ‘06-1.신탁에의한소유권이전등기신청’을 선택하세요. 해당 공식 목록의 첨부 형식 표시를 확인했습니다. 화면이 단일 주소(index.jsp)를 사용하므로 검색 결과별 직접 URL은 제공되지 않습니다. 원본 파일 자체는 미확보입니다.",
+      "description": "부동산을 신탁에 이전하는 당사자가 신탁에 의한 소유권이전등기 양식을 찾을 때 이용합니다.",
       "tags": "P1-10 · 등기",
       "format": "공식 안내",
       "editable": "https://www.iros.go.kr/index.jsp",
@@ -21348,7 +21562,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -21447,7 +21664,7 @@
       "catalogTitle": "소유권경정등기 신청서",
       "category": "등기",
       "originalCategory": "등기",
-      "description": "공식 제공처에서 고객센터 > 지원안내 > 등기신청양식으로 이동하여 ‘소유권경정’을 검색한 뒤 ‘07-1.신청착오에의한소유권경정등기신청 / 07-2.협의분할로인한상속에의한소유권경정등기신청’을 선택하세요. 해당 공식 목록의 첨부 형식 표시를 확인했습니다. 화면이 단일 주소(index.jsp)를 사용하므로 검색 결과별 직접 URL은 제공되지 않습니다. 원본 파일 자체는 미확보입니다.",
+      "description": "기존 소유권등기를 바로잡거나 상속등기 후 협의분할 내용을 반영하려는 사람이 원인에 맞는 경정등기 양식을 찾는 안내입니다.",
       "tags": "P1-11 · 등기",
       "format": "공식 안내",
       "editable": "https://www.iros.go.kr/index.jsp",
@@ -21519,7 +21736,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -21618,7 +21838,7 @@
       "catalogTitle": "소유권이전청구권 가등기 신청서",
       "category": "등기",
       "originalCategory": "등기",
-      "description": "인터넷등기소 작성방법을 참조하여 법제처 생활법령정보가 제공하는 해당 신청서와 작성 안내를 확인했습니다. 인터넷등기소의 개별 파일 직링크를 확보한 것으로 표기하지 않습니다. 실제 제공 파일의 제목·본문을 검사했으며 재배포 조건 미확인으로 기관 제공처에서 받도록 연결합니다. 제출 전 관할 등기소의 현행 요구사항을 확인하세요.",
+      "description": "소유권이전청구권을 가진 사람이 해당 청구권을 보전하는 가등기를 준비할 때 신청방법을 확인합니다.",
       "tags": "P1-12 · 등기",
       "format": "공식 안내",
       "editable": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=9&cciNo=1&cnpClsNo=3&csmSeq=566&popMenu=ov",
@@ -21668,7 +21888,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -21767,7 +21990,7 @@
       "catalogTitle": "등기신청 위임장·등기신청수수료 안내",
       "category": "등기",
       "originalCategory": "등기",
-      "description": "법제처 매매 소유권이전등기 제출서류 페이지에서 등기신청 위임장 원본과 등기신청수수료 안내를 함께 확인했습니다. 위임장 파일 제목 및 부동산 등기신청·취하 위임 본문을 검사했습니다. 금액·법정기한은 옮기지 않고 공식 페이지를 안내합니다.",
+      "description": "등기 신청을 다른 사람에게 맡기거나 신청수수료를 준비할 때 위임 범위와 납부방법을 확인하는 자료입니다.",
       "tags": "P1-13 · 등기",
       "format": "공식 안내",
       "editable": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=1&cnpClsNo=3&csmSeq=566&popMenu=ov",
@@ -21824,7 +22047,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "guide",
           "origin": "official_institution",
@@ -21973,7 +22199,7 @@
       "catalogTitle": "자필증서 유언 작성 안내",
       "category": "유언",
       "originalCategory": "유언",
-      "description": "자필증서 유언의 작성방법·주의사항 안내이며, 출력 후 서명만 하는 계약서 양식이 아닙니다.",
+      "description": "유언을 직접 작성하려는 사람이 자필증서 방식의 작성요건과 보관 시 주의사항을 살펴보는 안내입니다.",
       "tags": "P1-14 · 유언",
       "format": "공식 안내",
       "editable": "https://www.easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=2&cciNo=1&cnpClsNo=1&csmSeq=234&menuType=cnpcls&popMenu=ov",
@@ -22139,7 +22365,7 @@
       "catalogTitle": "유언증서 검인 청구서",
       "category": "유언",
       "originalCategory": "유언",
-      "description": "대한민국 법원 전자소송포털의 양식모음에서 검색어 «유언»로 «유언증서검인 심판청구서» 항목을 확인했습니다. 공식 제공처에서 사건에 맞는 양식과 작성안내를 선택하세요. 원본 파일을 이 사이트에서 재배포하는 항목은 아닙니다.",
+      "description": "유언자 사망 후 유언증서를 보관하거나 발견한 사람이 검인이 필요한지 확인하고 법원 청구를 준비할 때 이용합니다.",
       "tags": "P1-15 · 유언",
       "format": "공식 안내",
       "editable": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
@@ -22314,7 +22540,7 @@
       "catalogTitle": "유언집행자 선임 심판청구서",
       "category": "유언",
       "originalCategory": "유언",
-      "description": "서식제목에서 유언집행자 검색 → 1068 유언집행자 선임청구서에서 확인할 수 있습니다. 현재 공식 제공처의 서식 제목과 다운로드 링크를 확인했습니다. 원본 파일은 제공처에서 받으세요.",
+      "description": "유언자 사망 후 유언 집행을 맡을 사람의 선임이 필요한 경우 법원 청구를 준비하는 자료입니다.",
       "tags": "P1-16 · 유언",
       "format": "공식 안내",
       "editable": "https://www.klac.or.kr/legalinfo/legalFrm.do",
@@ -22491,7 +22717,7 @@
       "catalogTitle": "공정증서 유언 안내",
       "category": "유언",
       "originalCategory": "유언",
-      "description": "법무부 공증인 제도 안내와 법제처의 공정증서 유언 안내를 구분해 제공합니다.",
+      "description": "유언을 공정증서 방식으로 남기려는 사람이 공증인과 상담하기 전 작성 절차와 준비사항을 확인하는 안내입니다.",
       "tags": "P1-17 · 유언",
       "format": "공식 안내",
       "editable": "https://www.easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=2&cciNo=3&cnpClsNo=1&csmSeq=234&popMenu=ov",
@@ -22657,7 +22883,7 @@
       "catalogTitle": "상속재산분할 심판청구서",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "대한민국 법원 전자소송포털의 양식모음에서 검색어 «상속»로 «상속재산의 분할 심판청구서» 항목을 확인했습니다. 공식 제공처에서 사건에 맞는 양식과 작성안내를 선택하세요. 원본 파일을 이 사이트에서 재배포하는 항목은 아닙니다.",
+      "description": "공동상속인 사이에 재산분할 합의가 이루어지지 않는 경우 법원에 분할을 청구할 준비자료입니다.",
       "tags": "P1-18 · 재산분배·상속",
       "format": "공식 안내",
       "editable": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
@@ -22815,7 +23041,7 @@
       "catalogTitle": "기여분 결정 청구서",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "서류제출 → 가사서류 → 가사소송·비송 → 마류 가사비송사건 → 기여분에 관한 사건. 표준화된 전자문서 작성 메뉴입니다. 로그인 후 이용하며 내려받는 HWP/PDF를 확보한 자료는 아닙니다.",
+      "description": "상속인이 고인에 대한 특별한 기여를 분할에 반영하려는 경우 기여 내용과 증빙을 정리하는 법원 전자문서 안내입니다.",
       "tags": "P1-19 · 재산분배·상속",
       "format": "공식 안내",
       "editable": "https://ecfs.scourt.go.kr/psp/index.on?m=PSPA14M01",
@@ -22987,7 +23213,7 @@
       "catalogTitle": "유류분반환청구 소장",
       "category": "불복·정정",
       "originalCategory": "불복·정정",
-      "description": "서식제목에서 유류분 검색 → 461 유류분반환청구의 소에서 확인할 수 있습니다. 현재 공식 제공처의 서식 제목과 다운로드 링크를 확인했습니다. 원본 파일은 제공처에서 받으세요.",
+      "description": "증여·유언 등으로 자신의 유류분이 침해되었다고 보는 사람이 청구 가능성과 사실관계를 정리할 때 참고하는 소장입니다.",
       "tags": "P1-20 · 불복·정정",
       "format": "공식 안내",
       "editable": "https://www.klac.or.kr/legalinfo/legalFrm.do",
@@ -23152,7 +23378,7 @@
       "catalogTitle": "상속재산관리인 선임 심판청구서",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "대한민국 법원 전자소송포털의 양식모음에서 검색어 «상속»로 «상속재산관리인선임 청구서 및 안내» 항목을 확인했습니다. 공식 제공처에서 사건에 맞는 양식과 작성안내를 선택하세요. 원본 파일을 이 사이트에서 재배포하는 항목은 아닙니다. 기관이 게시한 서식 명칭을 그대로 기록했습니다. 현재 사건에서 관리인·청산인 중 필요한 신청과 관할법원의 서식 요구를 확인하세요.",
+      "description": "상속재산의 관리·청산을 맡을 사람이 필요한 사건에서 법원 선임절차와 적합한 서식을 확인하는 자료입니다.",
       "tags": "P1-21 · 재산분배·상속",
       "format": "공식 안내",
       "editable": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
@@ -23309,7 +23535,7 @@
       "catalogTitle": "성년후견 개시 심판청구서",
       "category": "후견",
       "originalCategory": "후견",
-      "description": "서울가정법원 공식 양식 목록에서 해당 문서명을 확인했습니다. 개별 신청서 파일을 재호스팅한 항목이 아니라 공식 제공처 안내입니다.",
+      "description": "판단능력에 어려움이 있는 성인의 법률행위·재산관리를 지원할 후견이 필요한 경우 법원 청구를 준비하는 안내입니다.",
       "tags": "P1-22 · 후견",
       "format": "공식 안내",
       "editable": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
@@ -23396,7 +23622,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -23513,7 +23742,7 @@
       "catalogTitle": "부재자 재산관리인 선임·실종선고 심판청구서",
       "category": "후견",
       "originalCategory": "후견",
-      "description": "공식 양식모음에서 «부재자재산관리인선임 심판청구서 및 안내»와 «실종선고 심판청구서»를 각각 확인했습니다. 검색어 «부재자», «실종»으로 찾을 수 있습니다. 두 절차를 같은 신청으로 취급하지 말고 사건에 맞게 선택하세요.",
+      "description": "행방을 알 수 없는 사람의 재산관리 또는 실종선고가 필요한 경우 두 법원 절차를 구분하여 준비하는 자료입니다.",
       "tags": "P1-23 · 후견",
       "format": "공식 안내",
       "editable": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
@@ -23589,7 +23818,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -23688,7 +23920,7 @@
       "catalogTitle": "자동차 이전등록 신청서(상속)",
       "category": "등기",
       "originalCategory": "등기",
-      "description": "부산시가 2026-04-28 시행 개정서식으로 게시한 이전등록 신청서입니다. 상속 원인 항목을 포함한 원본 본문을 확인했습니다.",
+      "description": "자동차를 상속받는 사람이 차량 명의를 이전할 때 상속 원인의 이전등록 신청을 준비하는 자료입니다.",
       "tags": "P1-24 · 등기",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P1-24_a864f9815e1f.hwp",
@@ -23856,7 +24088,7 @@
       "catalogTitle": "창업자금 증여세 과세특례 적용신청서",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
+      "description": "창업자금을 증여받는 사람이 창업자금 증여세 과세특례 요건을 검토하고 적용신청을 준비할 때 사용합니다.",
       "tags": "P2-01 · 가업승계",
       "format": "HWP",
       "editable": "/downloads/official-forms/additions/P2-01_%EC%B0%BD%EC%97%85%EC%9E%90%EA%B8%88_%EC%A6%9D%EC%97%AC%EC%84%B8_%EA%B3%BC%EC%84%B8%ED%8A%B9%EB%A1%80_%EC%A0%81%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
@@ -23905,7 +24137,9 @@
             "gift",
             "business_succession"
           ],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [
             "business"
           ],
@@ -24021,7 +24255,7 @@
       "catalogTitle": "가업승계 주식 증여세 과세특례 적용신청서",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
+      "description": "가업승계를 위해 주식을 증여받는 사람이 증여세 과세특례 요건과 신청자료를 정리할 때 사용합니다.",
       "tags": "P2-02 · 가업승계",
       "format": "HWP",
       "editable": "/downloads/official-forms/additions/P2-02_%EA%B0%80%EC%97%85%EC%8A%B9%EA%B3%84_%EC%A3%BC%EC%8B%9D_%EC%A6%9D%EC%97%AC%EC%84%B8_%EA%B3%BC%EC%84%B8%ED%8A%B9%EB%A1%80_%EC%A0%81%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
@@ -24070,7 +24304,9 @@
             "gift",
             "business_succession"
           ],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [
             "securities",
             "business"
@@ -24187,7 +24423,7 @@
       "catalogTitle": "주식등변동상황명세서",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "현행 별표·서식 검색 결과의 법령명과 서식명을 대조한 후 원본 파일 본문을 확인했습니다.",
+      "description": "법인이 사업연도 중 주주와 지분 변동을 정리하여 해당 세무신고 자료를 작성할 때 사용하는 명세서입니다.",
       "tags": "P2-03 · 가업승계",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P2-03_0f40b731275a.hwp",
@@ -24243,7 +24479,10 @@
           "purposes": [
             "business_succession"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "securities"
           ],
@@ -24358,7 +24597,7 @@
       "catalogTitle": "사업자등록 정정신고서(상속 대표자 변경)",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "사용자 목록의 제9호와 달리 실제 공식 서식은 제11호입니다. 원문 기준으로 기록했습니다.",
+      "description": "개인사업을 상속받아 계속 운영하는 사람이 사업자등록의 대표자 등 변경사항을 신고할 때 검토하는 서식입니다.",
       "tags": "P2-04 · 가업승계",
       "format": "HWP",
       "editable": "/downloads/official-forms/additions/P2-04_%EC%82%AC%EC%97%85%EC%9E%90%EB%93%B1%EB%A1%9D_%EC%A0%95%EC%A0%95%EC%8B%A0%EA%B3%A0%EC%84%9C_%EC%83%81%EC%86%8D_%EB%8C%80%ED%91%9C%EC%9E%90_%EB%B3%80%EA%B2%BD_.hwp",
@@ -24525,7 +24764,7 @@
       "catalogTitle": "가업상속공제 사후관리 위반 신고서",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "공식 합본 서식은 분리·재작성하지 않고 원본 전체를 제공합니다.",
+      "description": "가업상속공제를 적용받은 뒤 사후관리 위반 여부가 발생한 상속인이 추가 세액 신고를 검토할 때 쓰는 자료입니다.",
       "tags": "P2-05 · 가업승계",
       "format": "HWP",
       "editable": "/downloads/official-forms/additions/P2-05_%EA%B0%80%EC%97%85%EC%83%81%EC%86%8D%EA%B3%B5%EC%A0%9C_%EC%82%AC%ED%9B%84%EA%B4%80%EB%A6%AC_%EC%9C%84%EB%B0%98_%EC%8B%A0%EA%B3%A0%EC%84%9C.hwp",
@@ -24574,7 +24813,9 @@
             "inheritance",
             "business_succession"
           ],
-          "timing": [],
+          "timing": [
+            "after_death"
+          ],
           "assets": [
             "business"
           ],
@@ -24690,7 +24931,7 @@
       "catalogTitle": "명문장수기업 확인 신청",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "2026년 모집공고와 첨부 신청자료입니다. 해당 공고의 모집기간이 종료되었으므로 현재 접수 중이라고 표시하지 않습니다.",
+      "description": "장기간 사업을 영위한 기업이 명문장수기업 제도의 신청 준비사항을 참고할 수 있는 종료된 2026년 모집자료입니다.",
       "tags": "P2-06 · 가업승계",
       "format": "공식 안내",
       "editable": "https://www.mss.go.kr/site/daegu/ex/bbs/View.do?bcIdx=1067075&cbIdx=253",
@@ -24736,7 +24977,10 @@
           "purposes": [
             "business_succession"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "business"
           ],
@@ -24837,7 +25081,7 @@
       "catalogTitle": "상속세 물납 신청서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
+      "description": "상속세를 금전으로 납부하기 어려운 납세자가 물납 요건과 대상 재산을 검토하여 허가신청을 준비할 때 사용합니다.",
       "tags": "P2-07 · 공제·납부",
       "format": "HWP",
       "editable": "/downloads/official-forms/additions/P2-07_%EC%83%81%EC%86%8D%EC%84%B8_%EB%AC%BC%EB%82%A9_%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
@@ -24885,7 +25129,9 @@
           "purposes": [
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -24998,7 +25244,7 @@
       "catalogTitle": "납세담보 제공서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "현행 별표·서식 검색 결과의 법령명과 서식명을 대조한 후 원본 파일 본문을 확인했습니다.",
+      "description": "연부연납 등 납세담보가 필요한 신청에서 납세자가 제공할 담보의 종류·가액과 권리관계를 정리할 때 사용합니다.",
       "tags": "P2-08 · 공제·납부",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P2-08_a9c49543fda1.hwp",
@@ -25052,7 +25298,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -25163,7 +25412,7 @@
       "catalogTitle": "분납 신청 안내",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "상속세 분납과 연부연납의 공식 안내입니다. 두 제도를 동일한 신청서로 취급하지 않습니다.",
+      "description": "상속세 납세자가 납부재원에 맞추어 분납과 연부연납의 차이 및 신청 절차를 비교할 때 보는 국세청 안내입니다.",
       "tags": "P2-09 · 공제·납부",
       "format": "공식 안내",
       "editable": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7724&mi=2331",
@@ -25207,7 +25456,9 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "after_death"
+          ],
           "assets": [],
           "kind": "guide",
           "origin": "official_institution",
@@ -25304,7 +25555,7 @@
       "catalogTitle": "경정청구서",
       "category": "불복·정정",
       "originalCategory": "불복·정정",
-      "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
+      "description": "신고한 세액이 과다한 사유 등이 있는 납세자가 감액 또는 환급을 위한 경정청구를 준비할 때 사용하는 서식입니다.",
       "tags": "P2-10 · 불복·정정",
       "format": "HWP",
       "editable": "/downloads/official-forms/additions/P2-10_%EA%B2%BD%EC%A0%95%EC%B2%AD%EA%B5%AC%EC%84%9C.hwp",
@@ -25350,7 +25601,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -25479,7 +25733,7 @@
       "catalogTitle": "기한후과세표준신고서",
       "category": "불복·정정",
       "originalCategory": "불복·정정",
-      "description": "기한 후 신고는 하나의 공통 신고서가 아니라 해당 세목의 법정 신고서로 합니다. 이 묶음은 기한 후 신고 선택란이 실제 표시된 상속세·기본증여세·특례증여세·양도소득세 원본을 제공합니다. 국세기본법 시행령의 위임 규정과 각 현행 시행규칙의 서식을 확인했으며, 수정신고서나 세무서 발송용 안내문을 대신 수집하지 않았습니다. 세목과 적용요건에 맞는 원본을 선택하세요.",
+      "description": "법정 신고기한을 놓친 납세자가 해당 세목의 기한후신고용 원본을 선택하여 신고를 준비하는 묶음입니다.",
       "tags": "P2-11 · 불복·정정",
       "format": "PDF",
       "editable": "/downloads/official-forms/expansion/P2-11_7f46b68911f4.pdf",
@@ -25574,7 +25828,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -25733,7 +25990,7 @@
       "catalogTitle": "과세전적부심사 청구서",
       "category": "불복·정정",
       "originalCategory": "불복·정정",
-      "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
+      "description": "과세예고 등 법정 대상 통지를 받은 납세자가 과세 전에 사실관계와 법 적용의 적정성을 다투려 할 때 쓰는 서식입니다.",
       "tags": "P2-12 · 불복·정정",
       "format": "HWP",
       "editable": "/downloads/official-forms/additions/P2-12_%EA%B3%BC%EC%84%B8%EC%A0%84%EC%A0%81%EB%B6%80%EC%8B%AC%EC%82%AC_%EC%B2%AD%EA%B5%AC%EC%84%9C.hwp",
@@ -25779,7 +26036,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -25908,7 +26168,7 @@
       "catalogTitle": "이의신청서",
       "category": "불복·정정",
       "originalCategory": "불복·정정",
-      "description": "기관 원본 문구·조항·표를 변경하지 않았습니다.",
+      "description": "세금 부과 등 처분에 이의가 있는 납세자가 처분내용과 불복 사유를 정리해 이의신청을 준비할 때 사용합니다.",
       "tags": "P2-13 · 불복·정정",
       "format": "HWP",
       "editable": "/downloads/official-forms/additions/P2-13_%EC%9D%B4%EC%9D%98%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
@@ -25954,7 +26214,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -26083,7 +26346,7 @@
       "catalogTitle": "심사청구서/심판청구서",
       "category": "불복·정정",
       "originalCategory": "불복·정정",
-      "description": "국세청 세무조사 가이드북의 심사청구서와 심판청구서 제공 안내를 확인했습니다. 요청한 조세심판원 게시물 대신 확인한 국세청 공식 대체 출처입니다. 두 불복 절차와 제출기관을 구분하여 사용하세요.",
+      "description": "국세 처분에 불복하려는 납세자가 심사청구와 심판청구 중 적용 절차와 제출기관을 확인하는 서식 안내입니다.",
       "tags": "P2-14 · 불복·정정",
       "format": "공식 안내",
       "editable": "https://ems.nts.go.kr/tax_inquiry/guide_01.html",
@@ -26129,7 +26392,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -26246,7 +26512,7 @@
       "catalogTitle": "재산 평가심의위원회 심의신청서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "요청명에 대응하는 납세자용 서식은 평가심의위원회 운영 규정의 재산의 매매 등 가액의 시가인정 심의 신청서입니다. 과세관청용 심의 의뢰서와 구분합니다. 관련 검토서 부표가 포함된 공식 PDF 원본입니다.",
+      "description": "상속·증여재산의 매매 등 가액에 대해 시가인정 심의가 필요한 납세자가 심의 신청과 근거자료를 준비할 때 사용합니다.",
       "tags": "P2-15 · 공제·납부",
       "format": "PDF",
       "editable": "/downloads/official-forms/expansion/P2-15_3aa191059786.pdf",
@@ -26306,7 +26572,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -26417,7 +26686,7 @@
       "catalogTitle": "농지취득자격증명 신청서",
       "category": "매매·임대차",
       "originalCategory": "매매·임대차",
-      "description": "현행 별표·서식 검색 결과의 법령명과 서식명을 대조한 후 원본 파일 본문을 확인했습니다.",
+      "description": "농지를 매매·증여 등으로 취득하려는 사람이 취득자격증명 필요 여부와 신청자료를 확인할 때 사용하는 서식입니다.",
       "tags": "P3-01 · 매매·임대차",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P3-01_bc2c5c720468.hwp",
@@ -26473,7 +26742,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -26588,7 +26860,7 @@
       "catalogTitle": "부동산 거래계약 신고서",
       "category": "매매·임대차",
       "originalCategory": "매매·임대차",
-      "description": "공식 기관이 첨부한 법령 별지서식의 원본 파일입니다. 본문을 수정하지 않았습니다. 서식의 개정일과 대상 거래를 확인해 사용하세요.",
+      "description": "부동산 매매계약의 당사자가 계약 내용과 거래금액 등을 신고할 때 쓰는 서식입니다. 생전 재산 매각 또는 상속받은 부동산의 별도 매매에 활용하며, 상속 자체를 신고하는 서식은 아닙니다.",
       "tags": "P3-02 · 매매·임대차",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P3-02_e9da36973d1e.hwp",
@@ -26645,7 +26917,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -26760,7 +27035,7 @@
       "catalogTitle": "국민건강보험 자격상실 안내",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "국민건강보험공단의 사업장 가입자 자격상실 신고 작성안내입니다. 사망 관련 상실 사유와 작성 항목을 확인하세요. 지역가입자·피부양자 처리는 자격 유형에 맞는 공단 안내를 별도로 확인해야 합니다.",
+      "description": "사망한 직장가입자의 건강보험 자격상실 신고를 준비하는 사업장 담당자가 확인할 작성안내입니다. 지역가입자·피부양자는 자격 유형에 맞는 공단 절차를 별도로 확인하세요.",
       "tags": "P3-03 · 재산조회",
       "format": "공식 안내",
       "editable": "https://edi.nhis.or.kr/webedi/file_sy/all_sangsil.html",
@@ -26928,7 +27203,7 @@
       "catalogTitle": "세무대리 위임장",
       "category": "불복·정정",
       "originalCategory": "불복·정정",
-      "description": "국세청 세무조사 가이드북의 세무대리인 위임장입니다. 요청한 한국세무사회 서식 대신 확인한 국세청 공식 대체 출처이며 세무조사 관련 위임을 위한 양식입니다. 일반 기장·신고 위임 계약서로 확대하지 않습니다.",
+      "description": "세무조사를 받는 납세자가 조사 대응을 세무대리인에게 맡길 때 참고하는 국세청 위임장입니다. 생전 증여·양도 관련 조사 또는 사망 후 상속 관련 조사에서 위임 주체와 범위를 확인해 사용하세요.",
       "tags": "P3-04 · 불복·정정",
       "format": "공식 안내",
       "editable": "https://ems.nts.go.kr/tax_inquiry/guide_01.html",
@@ -26973,7 +27248,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -27072,7 +27350,7 @@
       "catalogTitle": "현금 증여계약서",
       "category": "증여",
       "originalCategory": "증여",
-      "description": "세무법인 위드가 제공하는 민간 참고서식이며 정부 법정서식이 아닙니다. 현금(예금) 증여 목적과 계좌이체 방식을 명시한 실제 HWP 본문을 확인했습니다. 제공처 페이지에서 원본을 내려받도록 연결하며 파일은 사이트에 재배포하지 않습니다.",
+      "description": "현금·예금을 생전에 증여하려는 당사자가 증여금액과 계좌이체 방식을 정리할 때 참고하는 계약서입니다. 세무법인 위드의 민간 참고서식이며 정부 법정서식은 아닙니다.",
       "tags": "P3-05 · 증여",
       "format": "민간 참고서식",
       "editable": "https://www.taxwithgs.kr/board/view/sw5_2/420",
@@ -27228,7 +27506,7 @@
       "catalogTitle": "부담부증여 계약서 안내",
       "category": "증여",
       "originalCategory": "증여",
-      "description": "채무를 함께 인수하는 부담부증여의 안내입니다. 채무인수 부분의 양도소득세와 증여 부분의 증여세를 구분하여 확인하세요. 새 계약서를 작성하거나 이 안내를 계약서 원본으로 제공하지 않습니다.",
+      "description": "재산과 함께 채무도 넘기려는 증여자·수증자가 부담부증여의 세금과 채무인수 조건을 검토하는 안내입니다. 채무인수 부분의 양도소득세와 증여 부분의 증여세를 나누어 살펴보세요.",
       "tags": "P3-06 · 증여",
       "format": "공식 안내",
       "editable": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=2&cnpClsNo=2&csmSeq=1259&popMenu=ov",
@@ -27379,7 +27657,7 @@
       "catalogTitle": "주택취득자금 조달 및 입주계획서",
       "category": "증여",
       "originalCategory": "증여",
-      "description": "공식 기관이 첨부한 법령 별지서식의 원본 파일입니다. 본문을 수정하지 않았습니다. 서식의 개정일과 대상 거래를 확인해 사용하세요.",
+      "description": "주택을 매수하는 사람이 자기자금·차입금 등 취득자금과 입주계획을 정리하는 서식입니다. 생전 자금증여를 받아 주택을 취득하는 경우에도 거래별 제출 대상 여부를 먼저 확인하세요.",
       "tags": "P4-01 · 증여",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P4-01_45fed591ebc7.hwp",
@@ -27439,7 +27717,9 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -27554,7 +27834,7 @@
       "catalogTitle": "토지취득자금 조달계획서",
       "category": "증여",
       "originalCategory": "증여",
-      "description": "공식 기관이 첨부한 법령 별지서식의 원본 파일입니다. 본문을 수정하지 않았습니다. 서식의 개정일과 대상 거래를 확인해 사용하세요.",
+      "description": "토지를 매수하는 사람이 취득자금의 출처와 이용계획을 정리할 때 참고하는 서식입니다. 자기자금·증여금·차입금 등을 구분하고 해당 거래의 제출 대상 여부를 확인하세요.",
       "tags": "P4-02 · 증여",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P4-02_e633d8ed7d2e.hwp",
@@ -27612,7 +27892,9 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -27727,7 +28009,7 @@
       "catalogTitle": "부동산거래계약 해제등 신고서 / 변경 신고서",
       "category": "증여",
       "originalCategory": "증여",
-      "description": "변경 신고서와 해제등 신고서 원본을 각각 제공합니다. 변경과 해제는 서로 다른 신청입니다.",
+      "description": "이미 신고한 부동산 매매계약을 변경하거나 해제한 당사자가 사용하는 서식 묶음입니다. 생전 매매 또는 상속재산을 처분한 매매에서 변경과 해제를 구분해 해당 서식을 선택하세요.",
       "tags": "P4-04 · 증여",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P4-04_c2098c514832.hwp",
@@ -27796,7 +28078,10 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -27921,7 +28206,7 @@
       "catalogTitle": "증여추정 해명자료 제출 안내",
       "category": "증여",
       "originalCategory": "증여",
-      "description": "재산취득자금·채무상환자금의 증여추정 관련 해명자료를 준비할 때 참고하는 공식 안내입니다. 현행 국세청 훈령의 별지 제5호 「상속세(증여세) 해명자료 제출 안내」와 별지 제30호 「납세자 해명자료 제출」을 확인했습니다. 수령한 안내문에 적힌 해명요구사항·제출자료·담당 세무서·제출기한을 확인하고, 제30호 서식에 문서번호, 제출자·대상자, 의견과 증빙목록을 정리하세요. 자금출처 입증대상은 관련 법령상 신고·과세된 소득, 상속·증여재산, 재산 처분대금 및 실제 취득·상환에 사용한 차입금 등을 확인합니다. 안내문에 기재된 30일은 세무서의 검토결과 통지기간이며 공통 제출기한으로 표시하지 않습니다.",
+      "description": "상속·증여 관련 해명자료 제출 안내를 받은 사람이 자금출처와 거래증빙을 정리할 때 활용합니다. 수령한 안내문의 해명요구사항·담당 세무서·제출기한에 맞춰 의견과 증빙목록을 작성하세요.",
       "tags": "P4-05 · 증여",
       "format": "공식 안내",
       "editable": "https://law.go.kr/LSW/admRulLsInfoP.do?admRulId=37077&efYd=0",
@@ -28073,7 +28358,10 @@
           "purposes": [
             "gift"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "guide",
           "origin": "official_institution",
@@ -28172,7 +28460,7 @@
       "catalogTitle": "영농자녀가 증여받은 농지 등에 대한 증여세 감면신청서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "공식 법령 페이지에서 발견한 첨부를 실제 다운로드하고 본문·서식명을 확인했습니다. 원본의 조항과 부표를 수정하지 않았습니다.",
+      "description": "농지 등을 증여받는 영농자녀가 증여세 감면 적용을 검토하고 신청할 때 사용하는 서식입니다. 영농과 재산 관련 요건 및 증여 이후 관리 의무를 함께 확인하세요.",
       "tags": "P5-01 · 공제·납부",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P5-01_51d2d4c74230.hwp",
@@ -28230,7 +28518,9 @@
             "gift",
             "business_succession"
           ],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [
             "real_estate"
           ],
@@ -28346,7 +28636,7 @@
       "catalogTitle": "창업자금 증여재산평가 및 과세가액 계산명세서",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "공식 합본 안에 요청한 별지·부표가 들어 있습니다. 필요한 부표 제목을 확인해 사용하며, 원본 전체를 변경 없이 제공합니다.",
+      "description": "창업자금을 증여받은 사람이 증여재산 평가액과 과세가액을 계산할 때 쓰는 부표입니다. 창업자금 과세특례의 적용조건을 먼저 확인하고 공식 합본에서 해당 명세서를 찾아 사용하세요.",
       "tags": "P5-02 · 가업승계",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-12/%EC%A6%9D%EC%97%AC%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C(%EC%B0%BD%EC%97%85%EC%9E%90%EA%B8%88%20%EB%B0%8F%20%EA%B0%80%EC%97%85%EC%8A%B9%EA%B3%84%EC%A3%BC%EC%8B%9D%20%EB%93%B1%20%ED%8A%B9%EB%A1%80%EC%84%B8%EC%9C%A8%20%EC%A0%81%EC%9A%A9%20.hwp",
@@ -28407,7 +28697,9 @@
             "gift",
             "business_succession"
           ],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [
             "business"
           ],
@@ -28546,7 +28838,7 @@
       "catalogTitle": "가업승계 주식 등 증여재산평가 및 과세가액 계산명세서",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "공식 합본 안에 요청한 별지·부표가 들어 있습니다. 필요한 부표 제목을 확인해 사용하며, 원본 전체를 변경 없이 제공합니다.",
+      "description": "가업승계 목적으로 주식 등을 증여받는 사람이 주식 평가액과 증여세 과세가액을 정리하는 부표입니다. 기업·증여자·수증자별 특례 요건을 검토한 뒤 공식 합본에서 사용하세요.",
       "tags": "P5-03 · 가업승계",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-12/%EC%A6%9D%EC%97%AC%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C(%EC%B0%BD%EC%97%85%EC%9E%90%EA%B8%88%20%EB%B0%8F%20%EA%B0%80%EC%97%85%EC%8A%B9%EA%B3%84%EC%A3%BC%EC%8B%9D%20%EB%93%B1%20%ED%8A%B9%EB%A1%80%EC%84%B8%EC%9C%A8%20%EC%A0%81%EC%9A%A9%20.hwp",
@@ -28607,7 +28899,9 @@
             "gift",
             "business_succession"
           ],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [
             "securities",
             "business"
@@ -28747,7 +29041,7 @@
       "catalogTitle": "증여재산 및 평가명세서",
       "category": "증여",
       "originalCategory": "증여",
-      "description": "공식 합본 안에 요청한 별지·부표가 들어 있습니다. 필요한 부표 제목을 확인해 사용하며, 원본 전체를 변경 없이 제공합니다.",
+      "description": "재산을 증여받은 사람이 증여재산의 종류·수량·평가액을 신고서와 맞춰 정리하는 명세서입니다. 현금·부동산·주식별 평가 근거를 함께 준비하세요.",
       "tags": "P5-04 · 증여",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-11/%EC%A6%9D%EC%97%AC%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C(%EA%B8%B0%EB%B3%B8%EC%84%B8%EC%9C%A8%20%EC%A0%81%EC%9A%A9%20%EC%A6%9D%EC%97%AC%EC%9E%AC%EC%82%B0%20%EC%8B%A0%EA%B3%A0%EC%9A%A9)%20%EB%93%B1%20%C2%B7%20%EC%84%9C%EC%8B%9D.hwp",
@@ -28805,7 +29099,9 @@
           "purposes": [
             "gift"
           ],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -28941,7 +29237,7 @@
       "catalogTitle": "상속재산 및 평가명세서",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "기존 공식 상속세 신고서 합본의 상속인별 재산·평가명세 부표를 확인했습니다. 새 계약서나 별도 예시를 만든 것이 아닙니다.",
+      "description": "상속인이 사망으로 물려받은 재산의 내역과 평가액을 상속세 신고자료로 정리하는 부표입니다. 공식 상속세 신고서 합본에서 상속인별 재산·평가명세 부분을 확인하세요.",
       "tags": "P5-05 · 재산분배·상속",
       "format": "HWP",
       "editable": "/downloads/official-forms/NTS-IG-10/%EC%83%81%EC%86%8D%EC%84%B8%EA%B3%BC%EC%84%B8%ED%91%9C%EC%A4%80%EC%8B%A0%EA%B3%A0%20%EB%B0%8F%20%EC%9E%90%EC%A7%84%EB%82%A9%EB%B6%80%EA%B3%84%EC%82%B0%EC%84%9C%20%EB%93%B1%20%C2%B7%20%EC%84%9C%EC%8B%9D9%20%EB%AC%B6%EC%9D%8C.hwp",
@@ -29132,7 +29428,7 @@
       "catalogTitle": "장애인 신탁 증여세 과세가액 불산입 안내",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "장애인에게 증여한 재산을 신탁하는 경우의 과세가액 불산입 요건과 사후관리 안내입니다. 신탁계약·장애인 증명·신고서 등 원문에 제시된 서류를 확인하세요. 모든 장애인 증여에 자동 적용된다는 뜻은 아닙니다.",
+      "description": "장애인에게 재산을 증여하고 신탁하려는 가족이 증여세 과세가액 불산입 요건을 검토하는 안내입니다. 신탁계약·장애인 증명·신고자료와 사후관리 사항을 함께 확인하세요.",
       "tags": "P5-06 · 공제·납부",
       "format": "공식 안내",
       "editable": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=4&cciNo=1&cnpClsNo=2&csmSeq=916&popMenu=ov",
@@ -29286,7 +29582,7 @@
       "catalogTitle": "공익법인 출연재산 보고서 / 출연재산 명세서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "공식 법령 페이지에서 발견한 첨부를 실제 다운로드하고 본문·서식명을 확인했습니다. 원본의 조항과 부표를 수정하지 않았습니다.",
+      "description": "공익법인이 출연받은 재산과 관련 내역을 보고할 때 사용하는 서식입니다. 생전 출연 또는 사후 유증 등으로 재산을 받은 법인의 보고 대상 여부를 확인하세요.",
       "tags": "P5-07 · 공제·납부",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P5-07_542e40bac06c.hwp",
@@ -29341,7 +29637,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -29452,7 +29751,7 @@
       "catalogTitle": "상속재산 협의분할 후 재분할 안내",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "상속등기 후 신고기한을 경과하여 재분할하는 경우의 증여세 과세 여부를 다룬 국세청 회신(2024-09-26)입니다. 최초 협의분할과 재분할을 구분하고 원문의 적용 요건·예외를 확인하세요. 특정 질의회신이며 모든 재분할에 증여세가 발생한다는 뜻은 아닙니다.",
+      "description": "상속재산을 나눈 뒤 다시 배분하려는 상속인이 증여세 쟁점을 검토할 때 참고하는 국세청 회신입니다. 최초 분할과 재분할의 시점·내용을 구분해 살펴보세요.",
       "tags": "P5-08 · 재산분배·상속",
       "format": "공식 안내",
       "editable": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=200000000000009274",
@@ -29628,7 +29927,7 @@
       "catalogTitle": "상속예금 지급 청구 안내",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "하나은행이 게시한 상속예금 지급 신청 시 필요서류 안내(2015-01-08)입니다. 가족관계 및 지급 동의 관련 자료를 확인하는 참고 출처로 연결합니다. 오래된 게시물의 소액 기준을 현재 기준이나 전 은행 공통 기준으로 사용하지 말고, 청구 시 거래 은행에 최신 서류와 간편지급 요건을 확인하세요.",
+      "description": "상속인이 사망자의 예금을 지급받기 전에 가족관계와 지급 동의 관련 서류를 점검하는 안내입니다. 하나은행의 2015년 1월 8일 게시물을 참고하되 현재 제출서류와 간편지급 요건은 실제 거래 은행에 확인하세요.",
       "tags": "P6-01 · 재산조회",
       "format": "공식 안내",
       "editable": "https://www.kebhana.com/cont/news/news01/news0101/1424358_118324.jsp",
@@ -29776,7 +30075,7 @@
       "catalogTitle": "휴면예금·미청구 보험금 조회",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "휴면예금·보험금 조회와 상속인의 지급 신청 안내입니다. 다른 기관의 전체 미청구 보험금 조회와 범위가 같다고 가정하지 않습니다.",
+      "description": "본인은 생전에 휴면예금·보험금을 점검하고, 상속인은 사망 후 누락된 금융재산과 지급 신청방법을 확인할 수 있는 경로입니다. 서민금융진흥원의 조회·지급 범위와 신청자격을 먼저 확인하세요.",
       "tags": "P6-02 · 재산조회",
       "format": "공식 안내",
       "editable": "https://mmc.kinfa.or.kr/view/dmt/KFA_DMT_01010000",
@@ -29825,7 +30124,10 @@
           "purposes": [
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "cash_deposit",
             "insurance_pension"
@@ -29945,7 +30247,7 @@
       "catalogTitle": "상속 보험금 청구 안내",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "생명보험협회 안내자료의 보험금 청구·수령 절차를 확인하는 링크입니다(책자 발행 2017년 5월). 사망보험금은 먼저 계약의 수익자를 확인하고 해당 보험사에 청구서·사망증명 자료와 추가서류를 문의하세요. 수익자 미지정 또는 여러 법정상속인 중 대표 수령 시 상속관계·위임 관련 서류가 추가될 수 있습니다. 오래된 책자의 금액·기한을 현재의 전 보험사 공통 기준으로 적용하지 않습니다. 보험금을 받을 권리와 상속세상 간주상속재산 판단은 별개이며, 국세청 안내에 따라 계약자 및 보험료 실질 납부자를 함께 확인해야 합니다.",
+      "description": "사망보험금을 청구하려는 사람이 계약의 보험수익자와 필요한 서류를 확인하는 안내입니다. 생명보험협회 2017년 5월 책자를 참고하고, 현재 청구서·사망증명·추가서류는 해당 보험사에 확인하세요.",
       "tags": "P6-03 · 재산조회",
       "format": "공식 안내",
       "editable": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
@@ -30161,7 +30463,7 @@
       "catalogTitle": "상속 주식 명의개서 / 계좌 이전 안내",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "한국예탁결제원 증권대행의 양식/서식에서 상속재산 지급 동의서와 주식·대금 상속 수령 안내를 확인했습니다. 양식/서식에서 상속으로 검색할 수 있습니다. 대표상속인 지정·인감 관련 자료 및 평가금액별 구비서류는 명의개서팀에 확인하세요. 예탁결제원 증권대행 대상 주식의 절차이며, 증권사 계좌의 주식 이전은 해당 증권사의 별도 요건을 확인해야 합니다. 모든 증권사에 적용되는 통합 양식으로 표시하지 않습니다.",
+      "description": "상속인이 한국예탁결제원 증권대행 대상 주식·대금을 수령하거나 명의개서 절차를 준비할 때 보는 안내입니다. 증권사 계좌의 주식 이전은 해당 증권사의 별도 절차를 확인하세요.",
       "tags": "P6-04 · 재산조회",
       "format": "공식 안내",
       "editable": "https://ta.ksd.or.kr/",
@@ -30330,7 +30632,7 @@
       "catalogTitle": "미수령 주식·배당금 조회",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "한국예탁결제원 증권대행 주주서비스의 주식 찾기와 현금배당금 조회 신청 경로입니다. 첫 화면의 주주 서비스에서 선택할 수 있습니다. 미수령 주식·종이 주권과 현금배당금 조회를 구분하고, 조회 가능 범위와 신청인 자격은 기관 안내에 따릅니다. 개인 조회나 인증을 대신 수행하지 않았습니다.",
+      "description": "미수령 주식과 현금배당금을 확인하려는 본인·상속인이 이용 경로를 찾을 때 보는 안내입니다. 한국예탁결제원 주주서비스에서 주식 찾기와 현금배당금 조회 신청을 구분하세요.",
       "tags": "P6-05 · 재산조회",
       "format": "공식 안내",
       "editable": "https://ta.ksd.or.kr/index.jsp",
@@ -30402,7 +30704,10 @@
           "purposes": [
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "securities"
           ],
@@ -30521,7 +30826,7 @@
       "catalogTitle": "퇴직연금(DB·DC·IRP) 상속 수령 안내",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "고용노동부 「근로자퇴직급여보장법 질의회시집」의 사망 상속 청구 안내입니다. DB는 사전 확정 급여를 회사·퇴직연금사업자와 확인하고, DC는 개인별 적립금과 운용손익을 확인합니다. 책자 825쪽은 DB·DC 가입자 사망 시 상속 법리에 따른 일시금 지급을, 824쪽은 기존 IRP 적립금 상속 청구를 설명합니다. IRP 청구 시 사망사실확인서·가족관계증명서·위임 시 위임장 등을 준비해 가입 금융기관을 방문합니다. DB·DC의 지급신청서와 추가 제출서류, 공동상속인 분할·대표청구 방식은 회사 및 가입 금융기관에 확인하세요. 610쪽에는 회사가 DB 급여 전액을 직접 지급한 사례도 수록되어 있습니다. 2024년 발간 자료(2022년 1월까지의 질의회시)이며, 배우자 연금계좌 승계·과세 특례는 별도 확인이 필요합니다.",
+      "description": "DB·DC 퇴직연금 또는 IRP 가입자의 상속인이 회사·금융기관에 급여와 적립금 청구방법을 확인하는 안내입니다. 2024년 발간 고용노동부 질의회시집은 2022년 1월까지의 사례를 담고 있습니다.",
       "tags": "P6-06 · 재산조회",
       "format": "공식 안내",
       "editable": "https://www.moel.go.kr/info/publicdata/majorpublish/majorPublishView.do?bbs_seq=20240600297",
@@ -30781,7 +31086,7 @@
       "catalogTitle": "공무원연금 유족급여 청구서",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "기관의 지급·청구 또는 신고 안내 원문입니다. 개별 대상·신청방법과 해당 서류를 원문에서 확인하세요.",
+      "description": "공무원연금 가입자·수급자의 사망 후 유족이 급여 종류와 청구자격을 확인할 때 이용하는 공단 안내입니다. 재직·퇴직 상태와 유족관계에 맞는 청구서·구비서류를 확인하세요.",
       "tags": "P7-01 · 재산조회",
       "format": "공식 안내",
       "editable": "https://www.geps.or.kr/bizInformation_pensionBiz_retirementClaim",
@@ -30949,7 +31254,7 @@
       "catalogTitle": "사학연금 유족급여 청구서",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "재직 중 발생한 유족급여의 제203호 퇴직유족급여·퇴직수당 청구서와 청구 방법을 안내합니다. 퇴직 후 사망 사례는 해당 수급자 절차를 추가 확인하세요.",
+      "description": "재직 중 사망한 사학연금 가입자의 유족이 퇴직유족급여·퇴직수당 청구서와 신청방법을 확인하는 안내입니다. 퇴직 후 사망한 수급자의 경우 별도 절차를 확인하세요.",
       "tags": "P7-02 · 재산조회",
       "format": "공식 안내",
       "editable": "https://www.tp.or.kr/tp-kr/cntnts/i-219/web.do",
@@ -31121,7 +31426,7 @@
       "catalogTitle": "군인연금 유족급여 청구서",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "국방부 군인연금의 유족연금 신청안내입니다. 퇴역유족연금·상이유족연금 청구서와 유족대표자 선정서·등분 청구서 및 제출서류 안내를 제공합니다. 해당 급여와 유족관계에 맞는 원문 서식을 선택하세요. 개별 첨부 재배포 조건과 파일 열림은 확인 전이므로 공식 제공처로 연결합니다.",
+      "description": "군인연금 수급자의 유족이 퇴역유족연금·상이유족연금 등 해당 급여의 청구서를 찾는 안내입니다. 유족대표자 선정서와 등분 청구서는 실제 수급관계에 맞춰 확인하세요.",
       "tags": "P7-03 · 재산조회",
       "format": "공식 안내",
       "editable": "https://www.mps.mil.kr/info/deceIncmAplcForm.do",
@@ -31345,7 +31650,7 @@
       "catalogTitle": "산재 유족급여·장의비 청구서",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "업무상 사망에 따른 유족급여청구서와 장례비청구서의 제출 안내입니다. 유족급여는 사망진단서·사체검안서와 주민등록등본·가족관계 증명 등 수급권 확인자료를 준비해 근로복지공단에 청구합니다. 장례비는 실제 장례를 지낸 사람이 청구하며, 유족 외 청구자는 지출 증빙이 필요합니다. 공식 안내의 현행 용어는 ‘장례비’입니다. 수급권자·지급방식·추가서류는 공단에 확인하고, 제공처 목차의 ‘장례비’ 안내도 함께 확인하세요.",
+      "description": "업무상 사망한 근로자의 유족은 유족급여를, 실제 장례를 지낸 사람은 장례비를 청구할 때 보는 안내입니다. 각각의 청구주체와 구비서류를 근로복지공단에 확인하세요.",
       "tags": "P7-04 · 재산조회",
       "format": "공식 안내",
       "editable": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=5&cciNo=1&cnpClsNo=2&csmSeq=575&popMenu=ov",
@@ -31543,7 +31848,7 @@
       "catalogTitle": "건설근로자 퇴직공제금 청구",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "사망한 건설근로자의 퇴직공제금을 청구할 유족 순위와 준비서류·청구 방법을 안내합니다.",
+      "description": "사망한 건설근로자의 유족이 퇴직공제금 청구순위와 필요한 서류를 확인하는 안내입니다. 고인의 공제 가입내역과 청구인의 자격을 먼저 확인하세요.",
       "tags": "P7-05 · 재산조회",
       "format": "공식 안내",
       "editable": "https://eum.cw.or.kr/web/fir/WEBFIR090M00",
@@ -31713,7 +32018,7 @@
       "catalogTitle": "대한지방행정공제회 급여 청구",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "기관의 지급·청구 또는 신고 안내 원문입니다. 개별 대상·신청방법과 해당 서류를 원문에서 확인하세요.",
+      "description": "대한지방행정공제회 회원이 사망한 뒤 가족이 급여 청구 가능 여부와 신청방법을 확인할 때 보는 안내입니다. 가입 상품과 지급사유에 맞는 청구권자·서류를 공제회에 확인하세요.",
       "tags": "P7-06 · 재산조회",
       "format": "공식 안내",
       "editable": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
@@ -31877,7 +32182,7 @@
       "catalogTitle": "미성년자 특별대리인 선임 청구서",
       "category": "후견",
       "originalCategory": "후견",
-      "description": "대한민국 법원 전자소송포털의 양식모음에서 검색어 «특별대리인»로 «특별대리인선임 심판청구서(상속재산 협의분할) 및 (이해상반)» 항목을 확인했습니다. 공식 제공처에서 사건에 맞는 양식과 작성안내를 선택하세요. 원본 파일을 이 사이트에서 재배포하는 항목은 아닙니다. 상속포기 등에서 특별대리인이 필요한지는 각 사건의 이해상반 여부를 별도로 확인해야 하며, 모든 경우에 필수라는 의미는 아닙니다.",
+      "description": "부모와 미성년 자녀가 함께 상속받는 등 이해가 충돌할 수 있는 사건에서 특별대리인 선임을 검토할 때 찾는 법원 양식입니다. 상속재산 협의분할과 이해상반 양식을 구분하세요.",
       "tags": "P8-01 · 후견",
       "format": "공식 안내",
       "editable": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
@@ -31933,7 +32238,9 @@
           "purposes": [
             "inheritance"
           ],
-          "timing": [],
+          "timing": [
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -32034,7 +32341,7 @@
       "catalogTitle": "상속회복청구 소장",
       "category": "불복·정정",
       "originalCategory": "불복·정정",
-      "description": "상속회복청구 관련 소장 예시(인지 후 진정명의회복). 공식 원문명: 328-1 소유권이전등기청구의 소(진정명의회복을 원인으로). 상속회복청구 일반에 사용하는 단일 법정 표준서식으로 표시하지 않습니다. 공식 문서명과 사례 범위를 공개 카드 상세에서 그대로 설명합니다. 기타 재산 반환 등 다른 사건에 그대로 사용할 수 있다고 안내하지 않습니다.",
+      "description": "인지판결 후 진정상속인이 다른 사람 명의로 된 상속 부동산의 회복을 구하는 사례를 살펴볼 때 쓰는 소장 예시입니다. 자신의 청구원인·재산 종류와 같은 사건인지 먼저 확인하세요.",
       "tags": "P8-02 · 불복·정정",
       "format": "공식 안내",
       "editable": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%A7%84%EC%A0%95%EB%AA%85%EC%9D%98%ED%9A%8C%EB%B3%B5&scdFolderId=",
@@ -32193,7 +32500,7 @@
       "catalogTitle": "친생자관계존부확인의 소 / 인지청구의 소",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "공식 양식모음에서 친생자관계 존재·부존재 확인과 인지청구 양식을 각각 확인했습니다. 검색어 «친생자», «인지청구»를 사용하세요. 원고·피고·제소 요건은 사건별로 검토해야 합니다.",
+      "description": "부모·자녀 관계의 확인이나 인지가 필요한 사람이 사건에 맞는 소장을 찾는 법원 양식 안내입니다. 생전 가족관계 정리 또는 사망 후 상속인 범위 다툼에서 소송 종류를 구분하세요.",
       "tags": "P8-03 · 재산분배·상속",
       "format": "공식 안내",
       "editable": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
@@ -32274,6 +32581,7 @@
             "inheritance"
           ],
           "timing": [
+            "before_death",
             "after_death"
           ],
           "assets": [],
@@ -32374,7 +32682,7 @@
       "catalogTitle": "상속재산 파산 신청서",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "법원 양식모음에서 상속재산파산신청서(상속인)와 상속재산파산신청서(상속인외)의 제목 및 실제 첨부파일 정보를 확인했습니다. 양식모음에서 상속재산으로 검색하여 신청 자격에 맞는 서식을 선택하세요. 상속인 개인의 파산과 상속재산 자체의 파산을 구분합니다. 개별 첨부의 전체 인쇄 레이아웃은 미검수입니다.",
+      "description": "상속재산의 채무 정리를 위해 상속재산 자체의 파산을 검토하는 사람이 신청자격별 양식을 찾는 안내입니다. 상속인용과 상속인 외 신청인용 서식을 구분하세요.",
       "tags": "P8-04 · 재산분배·상속",
       "format": "공식 안내",
       "editable": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
@@ -32539,7 +32847,7 @@
       "catalogTitle": "한정승인 후 청산 절차 안내",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "한정승인 이후 상속채권자에 대한 공고·최고와 변제 등 청산 절차를 안내합니다. 법원 심판 수리와 청산 완료는 구분해야 합니다.",
+      "description": "한정승인 심판이 수리된 상속인이 이후 채권자 공고·최고와 변제 절차를 준비할 때 보는 안내입니다. 법원의 한정승인 수리 이후에도 청산 절차를 확인해야 합니다.",
       "tags": "P8-05 · 재산분배·상속",
       "format": "공식 안내",
       "editable": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=3&cnpClsNo=1&csmSeq=255",
@@ -32709,7 +33017,7 @@
       "catalogTitle": "상속인 부존재 시 상속재산 청산 공고 안내",
       "category": "재산분배·상속",
       "originalCategory": "재산분배·상속",
-      "description": "상속인이 없는 경우의 상속재산귀속에 관한 공식 안내입니다. 상속재산관리인 선임 공고, 채권자 등에 대한 공고와 최고, 상속인 수색·특별연고자 분여 등 원문에 안내된 절차를 확인하세요. 기관의 현재 게시 명칭을 보존하며 실제 사건의 청산인·관리인 명칭과 적용 절차는 관할법원에서 확인해야 합니다.",
+      "description": "상속인의 존재가 분명하지 않은 재산에 대해 법원 절차와 공고·최고를 확인하는 안내입니다. 관리인·청산인 관련 명칭과 해당 사건의 적용 절차를 관할법원에 확인하세요.",
       "tags": "P8-06 · 재산분배·상속",
       "format": "공식 안내",
       "editable": "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=5&cciNo=2&cnpClsNo=1&csmSeq=255&popMenu=ov",
@@ -32855,7 +33163,7 @@
       "catalogTitle": "한정후견 / 특정후견 개시 심판청구서",
       "category": "후견",
       "originalCategory": "후견",
-      "description": "서울가정법원 공식 양식 목록에서 해당 문서명을 확인했습니다. 개별 신청서 파일을 재호스팅한 항목이 아니라 공식 제공처 안내입니다.",
+      "description": "판단능력의 어려움으로 재산관리 등의 지원이 필요한 사람을 위해 한정후견 또는 특정후견을 검토하는 법원 양식 안내입니다. 필요한 지원 범위와 청구자격에 맞는 서식을 선택하세요.",
       "tags": "P8-08 · 후견",
       "format": "공식 안내",
       "editable": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
@@ -32901,7 +33209,9 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -33018,7 +33328,7 @@
       "catalogTitle": "임의후견(후견계약) 관련 양식",
       "category": "후견",
       "originalCategory": "후견",
-      "description": "서울가정법원 공식 양식 목록에서 해당 문서명을 확인했습니다. 개별 신청서 파일을 재호스팅한 항목이 아니라 공식 제공처 안내입니다.",
+      "description": "앞으로 판단능력이 약해질 때를 대비해 후견계약을 준비하는 사람이 등기·감독인 선임 관련 양식을 찾는 안내입니다. 계약 준비와 실제 후견 개시 단계의 요건을 구분하세요.",
       "tags": "P8-09 · 후견",
       "format": "공식 안내",
       "editable": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
@@ -33192,7 +33502,7 @@
       "catalogTitle": "후견인 권한 초과행위 허가 청구서",
       "category": "후견",
       "originalCategory": "후견",
-      "description": "법원은 거주 건물·대지 매도허가와 법정대리권 범위변경 양식을 별도로 제공합니다. 모든 매각·증여에 동일한 허가가 필수라는 뜻은 아니며 후견 종류·권한·거주 여부를 확인하세요.",
+      "description": "후견인이 피후견인의 거주 부동산 매도나 대리권 범위 변경을 검토할 때 법원 양식을 찾는 안내입니다. 후견 종류와 현재 권한, 대상 재산의 거주 여부를 먼저 확인하세요.",
       "tags": "P8-10 · 후견",
       "format": "공식 안내",
       "editable": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
@@ -33238,7 +33548,9 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -33337,7 +33649,7 @@
       "catalogTitle": "후견사무보고서 / 재산목록보고서",
       "category": "후견",
       "originalCategory": "후견",
-      "description": "서울가정법원 공식 양식 목록에서 해당 문서명을 확인했습니다. 개별 신청서 파일을 재호스팅한 항목이 아니라 공식 제공처 안내입니다.",
+      "description": "후견인이 관리하는 재산과 후견사무의 수행내역을 법원에 보고할 때 사용하는 양식 안내입니다. 재산목록과 기간 중 수입·지출, 주요 처리사항을 증빙에 맞춰 정리하세요.",
       "tags": "P8-11 · 후견",
       "format": "공식 안내",
       "editable": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
@@ -33383,7 +33695,9 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [],
           "kind": "service_link",
           "origin": "official_institution",
@@ -33480,7 +33794,7 @@
       "catalogTitle": "후견등기사항증명서·부존재증명서 발급 안내",
       "category": "후견",
       "originalCategory": "후견",
-      "description": "서울가정법원 공식 양식 목록에서 해당 문서명을 확인했습니다. 개별 신청서 파일을 재호스팅한 항목이 아니라 공식 제공처 안내입니다.",
+      "description": "후견 여부나 후견인의 권한을 확인해야 하는 사람이 등기사항증명서·부존재증명서의 발급 경로를 찾는 안내입니다. 제출기관이 요구하는 증명서 종류와 표시 범위를 먼저 확인하세요.",
       "tags": "P8-12 · 후견",
       "format": "공식 안내",
       "editable": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
@@ -33526,7 +33840,9 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [],
           "kind": "guide",
           "origin": "official_institution",
@@ -33623,7 +33939,7 @@
       "catalogTitle": "등록면허세 신고서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "공식 법령 페이지에서 발견한 첨부를 실제 다운로드하고 본문·서식명을 확인했습니다. 원본의 조항과 부표를 수정하지 않았습니다.",
+      "description": "등록면허세 과세 대상인 등기·등록 등을 준비하는 사람이 사용하는 신고서입니다. 생전 재산관리나 사후 상속 관련 후속 등기 중 실제 과세되는 등록행위에 한해 적용 여부를 확인하세요.",
       "tags": "P9-01 · 공제·납부",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P9-01_706627025a13.hwp",
@@ -33678,7 +33994,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -33789,7 +34108,7 @@
       "catalogTitle": "계약서 검인 신청 안내",
       "category": "등기",
       "originalCategory": "등기",
-      "description": "증여에 의한 부동산 소유권 이전등기의 제출서류 중 증여계약서 검인 절차를 안내합니다. 기존 부평구청 증여계약서와 함께 확인하세요.",
+      "description": "부동산을 증여받아 소유권 이전등기를 준비하는 사람이 증여계약서의 검인 절차를 확인하는 안내입니다. 작성한 증여계약서와 관할기관의 제출요건을 함께 확인하세요.",
       "tags": "P9-02 · 등기",
       "format": "공식 안내",
       "editable": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=2&cnpClsNo=2&csmSeq=566&popMenu=ov",
@@ -33836,7 +34155,9 @@
           "purposes": [
             "gift"
           ],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [],
           "kind": "guide",
           "origin": "official_institution",
@@ -33953,7 +34274,7 @@
       "catalogTitle": "금전소비대차 공정증서 / 확정일자 안내",
       "category": "차용·상환",
       "originalCategory": "차용·상환",
-      "description": "금전소비대차 공정증서는 강제집행인낙이 기재되고 집행문 부여 등 요건을 갖추면 별도 판결 없이 강제집행의 근거가 될 수 있습니다. 사서증서 인증은 서명·날인의 진정성을 확인하는 절차이며, 확정일자는 부여일에 문서가 존재했음을 증명하는 절차입니다. 단순 인증이나 확정일자만으로 집행력이 생기는 것은 아닙니다. 차용증 작성은 기존 SC-30 일반 차용증, SC-31 연대보증인이 있는 차용증을 함께 참고하고, 공정증서 작성·집행문 요건은 공증사무소에서 확인하세요.",
+      "description": "가족 간 금전대차 등을 문서로 남기려는 사람이 공정증서·사서증서 인증·확정일자의 차이를 확인하는 안내입니다. 차용내용과 필요한 법적 효과를 정한 후 공증사무소에 절차를 확인하세요.",
       "tags": "P9-03 · 차용·상환",
       "format": "공식 안내",
       "editable": "https://gwangju.scourt.go.kr/gjfaq/new/GJFaqView.work?seqnum=300",
@@ -34054,7 +34375,9 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [
             "cash_deposit"
           ],
@@ -34188,7 +34511,7 @@
       "catalogTitle": "폐업신고서",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "공식 법령 페이지에서 발견한 첨부를 실제 다운로드하고 본문·서식명을 확인했습니다. 원본의 조항과 부표를 수정하지 않았습니다.",
+      "description": "사업을 계속하지 않기로 한 사업자 또는 사망자의 사업 정리를 담당하는 상속인이 폐업신고를 준비할 때 사용하는 서식입니다. 상속 후 사업을 이어갈지 먼저 확인하세요.",
       "tags": "P9-04 · 가업승계",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P9-04_7dfc62cf3951.hwp",
@@ -34246,7 +34569,10 @@
           "purposes": [
             "business_succession"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "form",
           "origin": "official_institution",
@@ -34359,7 +34685,7 @@
       "catalogTitle": "사업포괄양수도 관련 안내",
       "category": "가업승계",
       "originalCategory": "가업승계",
-      "description": "사업용 건물의 매각이 사업의 포괄양도로 인정되지 않은 사례와 관련 법령을 확인할 수 있는 국세청 판례 자료(2022-04-15)입니다. 단순 자산 매각과 사업의 동일성을 유지한 권리·의무의 포괄승계를 구분하여 검토하는 참고자료이며, 현재 거래의 비과세 여부를 확정하는 안내는 아닙니다.",
+      "description": "사업을 넘기거나 상속받은 사업을 다시 양도하려는 사람이 포괄양수도 해당 여부를 검토할 때 참고하는 판례 안내입니다. 자산 매각과 사업의 권리·의무 승계를 구분해 살펴보세요.",
       "tags": "P9-05 · 가업승계",
       "format": "공식 안내",
       "editable": "https://taxlaw.nts.go.kr/qt/USEQTA002P.do?ntstDcmId=000000000000574762",
@@ -34415,7 +34741,10 @@
           "purposes": [
             "business_succession"
           ],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [],
           "kind": "guide",
           "origin": "official_institution",
@@ -34514,7 +34843,7 @@
       "catalogTitle": "주택임대사업자 등록·변경·말소 신청서",
       "category": "매매·임대차",
       "originalCategory": "매매·임대차",
-      "description": "렌트홈 민원법정서식 목록에서 임대사업자 등록신청서, 등록사항 변경신고서와 등록 전부·일부 말소 신청서를 확인했습니다. 목록의 서식명과 개정 표시를 확인하고 해당 HWP 또는 PDF를 선택하세요. 등록·변경과 말소는 서로 다른 신청입니다. 기존 주택임대사업자 거주주택 특례 자료와 함께 검토할 수 있습니다.",
+      "description": "주택임대사업자가 등록·등록사항 변경·말소 중 필요한 민원을 고를 때 보는 서식 목록입니다. 생전 임대관리 또는 상속 후 임대사업 정리에서는 사유에 맞는 신청을 확인하세요.",
       "tags": "P9-06 · 매매·임대차",
       "format": "공식 안내",
       "editable": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open",
@@ -34563,7 +34892,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate",
             "business"
@@ -34683,7 +35015,7 @@
       "catalogTitle": "임대사업자 지위 승계 신고",
       "category": "매매·임대차",
       "originalCategory": "매매·임대차",
-      "description": "상속으로 임대사업자 명의변경을 검토한 공식 의결사례입니다. 개별사례이며 관할기관의 현행 처리 확인이 필요합니다. 이번 확인에서 상속 전용 공통서식은 확인되지 않았습니다. 양도신고서를 상속에 일률 적용한다고 안내하지 않습니다.",
+      "description": "임대주택을 상속받은 사람이 임대사업자 명의변경 절차를 관할기관에 문의할 때 참고하는 국민권익위원회 의결사례입니다. 개별사례의 사실관계와 현행 처리방법을 확인하세요.",
       "tags": "P9-07 · 매매·임대차",
       "format": "공식 안내",
       "editable": "https://www.acrc.go.kr/board.es?act=view&bid=1010&list_no=50286&mid=a10504010000&nPage=&tag=",
@@ -34734,7 +35066,9 @@
             "inheritance",
             "business_succession"
           ],
-          "timing": [],
+          "timing": [
+            "after_death"
+          ],
           "assets": [
             "business"
           ],
@@ -34854,7 +35188,7 @@
       "catalogTitle": "해외금융계좌 신고서",
       "category": "공제·납부",
       "originalCategory": "공제·납부",
-      "description": "현행 별표·서식 검색 결과의 법령명과 서식명을 대조한 후 원본 파일 본문을 확인했습니다.",
+      "description": "해외금융계좌 보유자가 신고의무를 검토하고 계좌·잔액·관련자 내역을 정리하는 서식입니다. 생전 해외자산 점검과 사후 해외계좌를 상속받은 사람의 별도 신고의무 검토에 활용하세요.",
       "tags": "P9-08 · 공제·납부",
       "format": "HWP",
       "editable": "/downloads/official-forms/expansion/P9-08_477984df961b.hwp",
@@ -34908,7 +35242,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "cash_deposit"
           ],
@@ -35021,7 +35358,7 @@
       "catalogTitle": "국외전출자 국내주식 양도소득세 신고 안내",
       "category": "양도",
       "originalCategory": "양도",
-      "description": "기관의 지급·청구 또는 신고 안내 원문입니다. 개별 대상·신청방법과 해당 서류를 원문에서 확인하세요.",
+      "description": "국외로 주소·거소를 이전하려는 국내주식 보유자가 출국 시 보유 국내주식 등의 과세와 신고 여부를 확인하는 국세청 안내입니다. 출국 전후 필요한 신고와 보유주식 자료를 미리 점검하세요.",
       "tags": "P9-09 · 양도",
       "format": "공식 안내",
       "editable": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2515&cntntsId=7821",
@@ -35066,7 +35403,9 @@
           "purposes": [
             "capital_transfer"
           ],
-          "timing": [],
+          "timing": [
+            "before_death"
+          ],
           "assets": [
             "securities"
           ],
@@ -35167,7 +35506,7 @@
       "catalogTitle": "개별공시지가·공동주택가격 조회 안내",
       "category": "재산조회",
       "originalCategory": "재산조회",
-      "description": "기관 원문에서 대상·준비자료·신청방법을 확인하세요. 서식 다운로드와 안내 페이지를 구분합니다.",
+      "description": "토지·공동주택의 공시가격을 확인해 재산 목록과 평가 검토의 기초자료를 준비하는 조회 경로입니다. 생전 자산정리나 사후 상속재산 검토 시 대상 주소와 조회 연도를 맞추세요.",
       "tags": "P9-10 · 재산조회",
       "format": "공식 안내",
       "editable": "https://www.realtyprice.kr/",
@@ -35213,7 +35552,10 @@
         ],
         "facets": {
           "purposes": [],
-          "timing": [],
+          "timing": [
+            "before_death",
+            "after_death"
+          ],
           "assets": [
             "real_estate"
           ],

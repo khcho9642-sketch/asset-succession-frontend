@@ -35,11 +35,17 @@ try {
     assert.match(page.text, /자동 전송되지 않습니다/);
   }
   assert.equal((await request('/forms/planning/PLAN-99')).status, 404);
+  for (const route of ['/forms/guides', '/forms/guides/before-death', '/forms/guides/after-death']) {
+    const page = await request(route);
+    assert.equal(page.status, 200, route);
+    assert.match(page.text, /가이드/);
+  }
+  assert.equal((await request('/forms/guides/unknown')).status, 404);
   assert.equal((await request('/precheck?purpose=inheritance')).status, 200);
   const original = await fetch(host + '/downloads/official-forms/expansion/P2-15_3aa191059786.pdf');
   assert.equal(original.status, 200);
   assert.equal(Buffer.from(await original.arrayBuffer()).subarray(0, 5).toString(), '%PDF-');
-  console.log('Forms route smoke: 10 pages and original PDF passed. Client browser interaction is a separate review.');
+  console.log('Forms route smoke: catalog, six worksheets, three guide pages, invalid routes, precheck and original PDF passed.');
 } catch (error) {
   console.error(logs);
   throw error;

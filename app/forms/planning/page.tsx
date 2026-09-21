@@ -5,16 +5,17 @@ import { PublicNav } from "@/components/PublicNav";
 import content from "@/lib/forms/planning-content.json";
 import styles from "./PlanningWorkspace.module.css";
 
-export const metadata: Metadata = { title: "생전 준비자료 | 자산승계 360", description: "가족과 재산의 현황부터 이전 방법과 상담 질문까지, 여섯 가지 준비자료로 정리하세요." };
+export const metadata: Metadata = { title: "승계 준비자료 | 자산승계 360", description: "생전 준비와 상속 발생 후, 가족과 재산 현황부터 납부재원과 상담 질문까지 필요한 주제만 골라 정리하세요." };
 const topics = ["가족", "이력", "방법", "재원", "질문", "모으기"];
 
 export default function PlanningIndex() {
   return <><PublicNav /><div className={styles.canvas}><main className={styles.page}>
     <Link className={styles.back} href="/forms"><ArrowLeft size={16} aria-hidden="true" /> 서류양식으로</Link>
     <header className={`${styles.heading} ${styles.indexHeading}`}>
-      <div><p className={styles.eyebrow}>내 상황 정리 · 상담 준비</p><h1>생전 준비자료</h1><p>필요한 주제부터 골라 보세요. 아는 내용만 적으면 상담 준비 요약으로 정리됩니다.</p></div>
+      <div><p className={styles.eyebrow}>내 상황 정리 · 상담 준비</p><h1>승계 준비자료</h1><p>필요한 주제부터 골라 보세요. 아는 내용만 적으면 상담 준비 요약으로 정리됩니다.</p></div>
       <span className={styles.origin}>자산승계 360 자체 제작<br /> 기관 제출용 서식과 별도 제공</span>
     </header>
+    <p className={styles.indexGuide}><Link href="/forms/guides">생전 준비·상속 발생 후 가이드에서 필요한 주제 찾기 <ArrowRight size={16} aria-hidden="true" /></Link></p>
     <p className={styles.indexGuide}><FileText size={17} aria-hidden="true" /><span>각 자료는 <strong>선택 질문 10개 · 3개 구역</strong>으로 구성됩니다. 결과 요약은 복사·저장·인쇄할 수 있습니다.</span></p>
     <div className={styles.indexGrid}>{content.resources.map((resource, index) => <Link href={`/forms/planning/${resource.id}`} key={resource.id} className={styles.indexCard}>
       <div className={styles.cardHeading}><span className={styles.number}>{String(index + 1).padStart(2, "0")}</span><h2>{topics[index]}</h2><ArrowRight size={19} aria-hidden="true" /></div>

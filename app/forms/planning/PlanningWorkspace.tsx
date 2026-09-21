@@ -5,6 +5,9 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, Copy, Download, FileText, Printer } from "lucide-react";
 import { clearPlanningDraft, collectPlanningSummaries, getPlanningDraft, planningNumberError, planningSummary, savePlanningDraft, type PlanningAnswers, type PlanningResource } from "@/lib/forms/planning";
 import styles from "./PlanningWorkspace.module.css";
+import { PLANNING_GUIDANCE } from "@/lib/forms/planning-guidance";
+import { resourceUrl } from "@/lib/forms/catalog";
+import { guidesForResource } from "@/lib/forms/guides";
 
 function ReadableSummary({ resource, answers, imported }: { resource: PlanningResource; answers: PlanningAnswers; imported: string }) {
   // Use the existing formatter and the exact authored placeholders. User text,
@@ -21,6 +24,8 @@ function ReadableSummary({ resource, answers, imported }: { resource: PlanningRe
 }
 
 export function PlanningWorkspace({ resource, resources }: { resource: PlanningResource; resources: PlanningResource[] }) {
+  const guidance = PLANNING_GUIDANCE[resource.id];
+  const guideContexts = guidesForResource(resource.id);
   const [answers, setAnswers] = useState<PlanningAnswers>({});
   const [ready, setReady] = useState(false);
   const [notice, setNotice] = useState("");
@@ -87,13 +92,21 @@ export function PlanningWorkspace({ resource, resources }: { resource: PlanningR
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
   return <div className={styles.canvas}><main className={styles.page}>
-    <Link className={styles.back} href="/forms/planning"><ArrowLeft size={16} aria-hidden="true" /> 생전 준비자료 전체</Link>
+    <Link className={styles.back} href="/forms/planning"><ArrowLeft size={16} aria-hidden="true" /> 승계 준비자료 전체</Link>
     <header className={styles.heading}><p className={styles.eyebrow}>자산승계 360 자체 제작 · 상담 준비용</p><h1>{resource.title}</h1><p>{resource.description}</p></header>
+    {guidance && <section className={styles.readFirst} aria-label="작성 전 사용 안내">
+      <h2>이렇게 활용하세요</h2><p>{guidance.start}</p><p className={styles.outcome}>{guidance.outcome}</p>
+      {guidance.table && <div className={styles.comparisonScroll} tabIndex={0} role="region" aria-label="방법별 비교 안내"><table>
+        <thead><tr>{guidance.table.headings.map(heading => <th scope="col" key={heading}>{heading}</th>)}</tr></thead>
+        <tbody>{guidance.table.rows.map(row => <tr key={row[0]}>{row.map((cell, index) => index === 0 ? <th scope="row" key={index}>{cell}</th> : <td key={index}>{cell}</td>)}</tr>)}</tbody>
+      </table></div>}
+      <a className={styles.textLink} href="#planning-questions">필요한 질문부터 정리하기 <ArrowRight size={15} aria-hidden="true" /></a>
+    </section>}
     <div className={styles.privacy}>
       <p>모든 질문은 선택 입력입니다. 작성 내용은 이 탭에서만 이어지며, <strong>새로고침하거나 탭을 닫으면 지워집니다.</strong></p>
       <details><summary>민감정보 입력 금지 · 보관 안내</summary><p>주민등록번호·계좌번호·연락처·상세 주소는 적지 마세요. 다른 준비자료로 이동해도 작성 내용은 이어집니다. 필요한 요약은 저장해 주세요. 상담 신청 시 자동 전송되지 않습니다.</p></details>
     </div>
-    <div className={styles.workspaceTools}>
+    <div className={styles.workspaceTools} id="planning-questions">
       <div className={styles.progress} aria-live="polite"><strong>{completed}</strong><span> / {questions.length}문항 작성</span><small>빈칸은 ‘미입력’으로 남습니다.</small></div>
       <button className={styles.summaryButton} disabled={!ready} onClick={viewSummary}><FileText size={17} aria-hidden="true" /> 요약 보기</button>
     </div>
@@ -127,6 +140,12 @@ export function PlanningWorkspace({ resource, resources }: { resource: PlanningR
         <div className={styles.sideNote}><Check size={18} aria-hidden="true" /><p>요약을 확인하고, 필요한 내용만 상담할 때 전달하세요.</p></div>
         <button className={styles.clearButton} disabled={!ready || completed === 0 && !imported} onClick={clearAnswers}>이 준비자료의 작성 내용 지우기</button>
         {resource.planning_windows?.map(window => <details className={styles.preparation} key={window.label}><summary>{window.label}</summary><ul>{window.availability_conditions.map(condition => <li key={condition}>{condition}</li>)}{window.closing_events.map(condition => <li key={condition}>{condition}</li>)}</ul></details>)}
+        {guidance && <nav className={styles.referenceLinks} aria-label="함께 확인할 서류"><h3>함께 확인할 서류</h3>
+          {guidance.resources.map(item => <Link key={item.id} href={resourceUrl(item.id)}>{item.title}<ArrowRight size={14} aria-hidden="true" /></Link>)}
+        </nav>}
+        {guideContexts.length > 0 && <nav className={styles.referenceLinks} aria-label="관련 진행 가이드"><h3>전체 과정에서 보기</h3>
+          {guideContexts.map(context => <Link key={context.href} href={context.href}>{context.guideTitle} · {context.stepTitle}<ArrowRight size={14} aria-hidden="true" /></Link>)}
+        </nav>}
       </aside>
     </div>
     {notice && <p className={styles.notice} role="status">{notice}</p>}

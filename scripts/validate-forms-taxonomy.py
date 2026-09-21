@@ -156,8 +156,14 @@ def production_overlays(root, baseline, integrity):
 def check_preservation(root, manifest, baseline, integrity):
     expected, expected_files, overlay = production_overlays(root, baseline, integrity)
     stripped = copy.deepcopy(manifest)
+    usage_file = root / "lib/forms/resource-usage.json"
+    usage = read_json(usage_file)["documents"] if usage_file.exists() else {}
+    originals = {doc["id"]: doc for doc in expected["documents"]}
     for doc in stripped["documents"]:
         doc.pop("resource", None)
+        if doc["id"] in usage:
+            require(doc["description"] == usage[doc["id"]]["description"], f"Usage description differs: {doc['id']}")
+            doc["description"] = originals[doc["id"]]["description"]
     require(stripped == expected, "Existing manifest fields changed outside resource metadata and explicit production overlays")
     require(all("resource" not in x for x in baseline["documents"]), "Baseline already contains taxonomy")
     for url, expected in expected_files.items():
@@ -165,8 +171,9 @@ def check_preservation(root, manifest, baseline, integrity):
         require(path.is_relative_to((root / "public/downloads").resolve()), f"Unsafe integrity path: {url}")
         require(path.is_file(), f"Legacy original/preview/ZIP missing: {url}")
         require(path.stat().st_size == expected["bytes"] and sha256(path) == expected["sha256"], f"Legacy file changed: {url}")
-    return {"legacy_manifest_fields_unchanged": overlay is None, "legacy_files_and_zip_unchanged": overlay is None,
+    return {"legacy_manifest_fields_unchanged": overlay is None and not usage, "legacy_files_and_zip_unchanged": overlay is None,
             "legacy_manifest_core_preserved": True, "legacy_original_files_unchanged": True,
+            "editorial_usage_descriptions_checked": len(usage),
             "preview_overlay_verified": 74 if overlay else 0, "collection_overlay_verified": 5 if overlay else 0,
             "latest_service_zip_verified": overlay is not None, "migration_baselines_unchanged": True}
 
@@ -183,6 +190,17 @@ def validate(root: Path, manifest: dict, groups: list, baseline: dict, integrity
     mapping = read_json(root / DOCS / "taxonomy/resource-mapping.json")
     rows = {x["id"]: x for x in mapping["canonical_resources"]}
     docs = {x["id"]: x for x in manifest["documents"]}
+    usage_file = root / "lib/forms/resource-usage.json"
+    usage = read_json(usage_file)["documents"] if usage_file.exists() else {}
+    if usage:
+        require(set(usage) == set(docs), "Usage instructions must cover every original resource exactly once")
+        for rid, entry in usage.items():
+            require(entry.get("timing") and set(entry["timing"]) <= {"before_death", "after_death"}, f"Invalid usage timing: {rid}")
+            require(len(entry["timing"]) == len(set(entry["timing"])), f"Duplicate timing: {rid}")
+            for key in ("who", "when", "description", "timingRationale"):
+                require(isinstance(entry.get(key), str) and entry[key].strip(), f"Missing usage {key}: {rid}")
+            for key in ("prepare", "steps", "sourceUrls"):
+                require(entry.get(key) and all(isinstance(value, str) and value.strip() for value in entry[key]), f"Missing usage {key}: {rid}")
     require(len(docs) == len(manifest["documents"]) == len(rows) == 177, "Expected 177 unique canonical resources")
     require(set(docs) == set(rows), "Canonical ID set differs from approved mapping")
     group_ids = {x["id"] for x in groups}
@@ -225,7 +243,9 @@ def validate(root: Path, manifest: dict, groups: list, baseline: dict, integrity
             require(resource["resource_id"] == docs[rid]["id"] and resource["title"] == docs[rid]["title"], f"Legacy identity mismatch: {rid}")
             row = rows[rid]
             require(resource["stage_ids"] == row["stage_ids"] and resource["primary_stage_id"] == row["primary_stage_id"], f"Stage mapping mismatch: {rid}")
-            require(resource["facets"]["purposes"] == row["purpose_ids"] and resource["facets"]["timing"] == row["timing_ids"], f"Facet mapping mismatch: {rid}")
+            require(resource["facets"]["purposes"] == row["purpose_ids"], f"Purpose mapping mismatch: {rid}")
+            expected_timing = usage[rid]["timing"] if rid in usage else row["timing_ids"]
+            require(resource["facets"]["timing"] == expected_timing, f"Timing review mismatch: {rid}")
             for legacy_key, facet_key in (("provider_origin", "origin"), ("provider_authority", "authority"), ("provider_kind", "kind")):
                 if docs[rid].get(legacy_key):
                     require(resource["facets"][facet_key] == docs[rid][legacy_key], f"Explicit provider provenance lost: {rid}/{legacy_key}")
