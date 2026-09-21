@@ -7,26 +7,35 @@ import { clearPlanningDraft, collectPlanningSummaries, getPlanningDraft, plannin
 import styles from "./PlanningWorkspace.module.css";
 import { PLANNING_GUIDANCE } from "@/lib/forms/planning-guidance";
 import { resourceUrl } from "@/lib/forms/catalog";
-import { guidesForResource } from "@/lib/forms/guides";
-import { LOOKUP_SERVICES } from "@/lib/forms/lookup-services";
+import { guidesForResource, type GuideTiming } from "@/lib/forms/guides";
+import { LOOKUP_SERVICES, type LookupService } from "@/lib/forms/lookup-services";
+import { POST_DEATH_LOOKUP_SERVICES, type PostDeathLookupService } from "@/lib/forms/post-death-lookup-services";
+
+const lookupGroups: readonly { timing: GuideTiming; title: string; services: readonly (LookupService | PostDeathLookupService)[] }[] = [
+  { timing: "before-death", title: "생전 조회사이트와 기록 예시", services: LOOKUP_SERVICES },
+  { timing: "after-death", title: "상속 후 조회사이트와 기록 예시", services: POST_DEATH_LOOKUP_SERVICES },
+];
 
 function LookupFieldHelp({ resourceId, questionId }: { resourceId: string; questionId: string }) {
-  const entries = LOOKUP_SERVICES.flatMap(service => service.targets
-    .filter(target => target.resourceId === resourceId && target.questionId === questionId)
-    .map(target => ({ service, target })));
-  if (!entries.length) return null;
-  return <details className={styles.lookupHelp} data-lookup-field={questionId}>
-    <summary>생전 조회사이트와 기록 예시 <span>{entries.length}개</span></summary>
-    <ul>{entries.map(({ service, target }) => <li key={service.id}>
-      <strong>{service.title}</strong><p>{target.record}</p>
-      <p className={styles.lookupExample}>기록 예시: {target.example}</p>
-      <p className={styles.lookupAuth}>{service.authentication.text}</p>
-      <div className={styles.lookupActions}>
-        <a href={service.url} target="_blank" rel="noopener noreferrer">{service.provider} 열기 <ExternalLink size={14} aria-hidden="true" /><span> (새 창)</span></a>
-        <Link href={`/forms/guides/before-death#lookup-${service.id}`}>확인할 항목·조회 범위 보기 <ArrowRight size={14} aria-hidden="true" /></Link>
-      </div>
-    </li>)}</ul>
-  </details>;
+  return <>{lookupGroups.map(group => {
+    const entries = group.services.flatMap(service => service.targets
+      .filter(target => target.resourceId === resourceId && target.questionId === questionId)
+      .map(target => ({ service, target })));
+    if (!entries.length) return null;
+    return <details key={group.timing} className={styles.lookupHelp} data-lookup-field={questionId} data-lookup-timing={group.timing}>
+      <summary>{group.title} <span>{entries.length}개</span></summary>
+      <ul>{entries.map(({ service, target }) => <li key={service.id}>
+        <strong>{service.title}</strong><p>{target.record}</p>
+        <p className={styles.lookupExample}>기록 예시: {target.example}</p>
+        <p className={styles.lookupAuth}>{service.authentication.text}</p>
+        {"application" in service && <p className={styles.lookupAuth}>신청 대상: {service.application.eligibility}<br />이용 방법: {service.application.channel}</p>}
+        <div className={styles.lookupActions}>
+          <a href={service.url} target="_blank" rel="noopener noreferrer">{service.provider} 열기 <ExternalLink size={14} aria-hidden="true" /><span> (새 창)</span></a>
+          <Link href={`/forms/guides/${group.timing}#lookup-${service.id}`}>{group.timing === "after-death" ? "신청 자격·준비서류·확인 항목 보기" : "확인할 항목·조회 범위 보기"} <ArrowRight size={14} aria-hidden="true" /></Link>
+        </div>
+      </li>)}</ul>
+    </details>;
+  })}</>;
 }
 
 function ReadableSummary({ resource, answers, imported }: { resource: PlanningResource; answers: PlanningAnswers; imported: string }) {
@@ -126,9 +135,9 @@ export function PlanningWorkspace({ resource, resources }: { resource: PlanningR
       <p>모든 질문은 선택 입력입니다. 작성 내용은 이 탭에서만 이어지며, <strong>새로고침하거나 탭을 닫으면 지워집니다.</strong></p>
       <details><summary>민감정보 입력 금지 · 보관 안내</summary><p>주민등록번호·계좌번호·연락처·상세 주소는 적지 마세요. 다른 준비자료로 이동해도 작성 내용은 이어집니다. 필요한 요약은 저장해 주세요. 상담 신청 시 자동 전송되지 않습니다.</p></details>
     </div>
-    {LOOKUP_SERVICES.some(service => service.targets.some(target => target.resourceId === resource.id)) && <aside className={styles.lookupIntro} aria-label="조회 결과 기록 안내">
-      <strong>조회 결과로 채우고 싶다면</strong><p>아래 질문 옆의 ‘생전 조회사이트와 기록 예시’를 펼쳐 보세요. 공식 사이트는 새 창으로 열리며, 조회 결과는 직접 필요한 내용만 적습니다. 본인인증 정보나 원본 증명서를 이 화면에 입력하지 마세요.</p>
-      <p>상속이 발생한 경우에는 <Link href="/forms/guides/after-death#estate-inquiry">상속인의 재산·채무 조회 안내</Link>를 확인하세요.</p>
+    {lookupGroups.some(group => group.services.some(service => service.targets.some(target => target.resourceId === resource.id))) && <aside className={styles.lookupIntro} aria-label="조회 결과 기록 안내">
+      <strong>조회 결과로 채우고 싶다면</strong><p>아래 질문 옆에서 ‘생전’ 또는 ‘상속 후’ 조회 안내를 펼쳐 보세요. 공식 사이트는 새 창으로 열리며, 조회 결과는 직접 필요한 내용만 적습니다. 본인인증 정보나 원본 증명서를 이 화면에 입력하지 마세요.</p>
+      <p>상속 후에는 신청인 본인의 인증과 상속관계 증빙 등 기관별 절차를 따릅니다. 사망자의 로그인·인증수단을 대신 사용하지 마세요. <Link href="/forms/guides/after-death#estate-inquiry">상속인의 재산·채무 조회 안내</Link></p>
     </aside>}
     <div className={styles.workspaceTools} id="planning-questions">
       <div className={styles.progress} aria-live="polite"><strong>{completed}</strong><span> / {questions.length}문항 작성</span><small>빈칸은 ‘미입력’으로 남습니다.</small></div>

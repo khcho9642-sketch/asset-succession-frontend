@@ -13,7 +13,7 @@ const usage = read('lib/forms/resource-usage.json').documents;
 const output = path.resolve('.tmp/forms-life-guides-tests');
 mkdirSync(output, { recursive: true });
 writeFileSync(path.join(output, 'package.json'), '{"type":"commonjs"}');
-for (const name of ['catalog', 'guides', 'planning-guidance', 'lookup-services']) {
+for (const name of ['catalog', 'guides', 'planning-guidance', 'lookup-services', 'post-death-lookup-services']) {
   writeFileSync(path.join(output, name + '.js'), ts.transpileModule(readFileSync(`lib/forms/${name}.ts`, 'utf8'), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
   }).outputText);
@@ -23,6 +23,7 @@ const { buildCatalog, filterCatalog, emptyFilters, matchesResource, parseCatalog
 const { GUIDES, guidesForResource, guideResourceUrl, guideCatalogUrl, getGuide } = require(path.join(output, 'guides.js'));
 const { PLANNING_GUIDANCE } = require(path.join(output, 'planning-guidance.js'));
 const { LOOKUP_SERVICES } = require(path.join(output, 'lookup-services.js'));
+const { POST_DEATH_LOOKUP_SERVICES } = require(path.join(output, 'post-death-lookup-services.js'));
 const ids = new Set([...documents, ...planning].map(item => item.id));
 const byId = new Map(documents.map(item => [item.id, item]));
 const selected = timing => ({ ...emptyFilters(), timing: [timing] });
@@ -142,4 +143,61 @@ test('financial lookups require owner authentication and pension income stays se
   const pension = LOOKUP_SERVICES.find(item => item.id === 'pension');
   assert.ok(pension.targets.some(target => target.resourceId === 'PLAN-04' && target.questionId === 'income_notes'));
   assert.ok(pension.targets.every(target => target.questionId !== 'estimated_assets'));
+});
+
+test('nine post-death services use official applicant routes and belong to the correct guide steps', () => {
+  const expected = {
+    'estate-family': ['first-actions', 'scourt.go.kr'],
+    'inheritance-one-stop': ['estate-inquiry', 'gov.kr'],
+    'heirs-finance': ['estate-inquiry', 'fss.or.kr'],
+    'estate-insurance': ['estate-inquiry', 'insure.or.kr'],
+    'estate-registry': ['estate-inquiry', 'iros.go.kr'],
+    'estate-prices': ['estate-inquiry', 'realtyprice.kr'],
+    'estate-dormant': ['estate-inquiry', 'kinfa.or.kr'],
+    'estate-shares': ['estate-inquiry', 'ksd.or.kr'],
+    'survivors-pension': ['transfer', 'nps.or.kr'],
+  };
+  assert.deepEqual(POST_DEATH_LOOKUP_SERVICES.map(service => service.id).sort(), Object.keys(expected).sort());
+  const lifetimeIds = new Set(LOOKUP_SERVICES.map(service => service.id));
+  const stepIds = new Set(getGuide('after-death').steps.map(step => step.id));
+  for (const service of POST_DEATH_LOOKUP_SERVICES) {
+    const [stepId, officialDomain] = expected[service.id];
+    assert.equal(service.stepId, stepId, service.id);
+    assert.ok(stepIds.has(service.stepId), `${service.id}: existing guide step`);
+    assert.ok(!lifetimeIds.has(service.id), `${service.id}: separate lifetime and post-death routes`);
+    const url = new URL(service.url);
+    assert.equal(url.protocol, 'https:', service.id);
+    assert.ok(url.hostname === officialDomain || url.hostname.endsWith('.' + officialDomain), service.id);
+    assert.ok(['heir', 'public', 'certificate'].includes(service.authentication.kind), `${service.id}: no deceased-owner login`);
+    for (const value of [service.menu, service.authentication.text, service.limitation]) assert.ok(value.trim(), service.id);
+    for (const key of ['eligibility', 'representative', 'channel']) {
+      assert.ok(service.application[key].trim(), `${service.id}: applicant guidance ${key}`);
+    }
+    assert.ok(service.application.documents.length > 0 && service.application.documents.every(document => document.trim()), `${service.id}: required-document guidance`);
+    assert.ok(service.checks.length > 0 && service.targets.length > 0 && service.evidenceUrls.length > 0, service.id);
+    for (const target of service.targets) {
+      const resource = planning.find(item => item.id === target.resourceId);
+      const question = resource?.sections.flatMap(section => section.questions).find(item => item.id === target.questionId);
+      assert.ok(question, `${service.id}: real worksheet field ${target.resourceId}/${target.questionId}`);
+      assert.ok(['text', 'textarea'].includes(question.type), `${service.id}: inquiry notes must not overwrite a numeric total`);
+      assert.equal(target.label, question.label, service.id);
+      assert.ok(target.record.trim() && target.example.trim(), service.id);
+    }
+    for (const id of service.relatedResourceIds) assert.ok(byId.has(id), `${service.id}: existing related original ${id}`);
+  }
+  assert.equal(LOOKUP_SERVICES.length, 9, 'lifetime service coverage is preserved');
+  assert.equal(documents.length, 177, 'service instructions do not become extra original forms');
+});
+
+test('post-death financial services require applicant eligibility and survivor income goes into income notes', () => {
+  for (const id of ['inheritance-one-stop', 'heirs-finance', 'estate-insurance', 'estate-dormant', 'estate-shares', 'survivors-pension']) {
+    const service = POST_DEATH_LOOKUP_SERVICES.find(item => item.id === id);
+    assert.equal(service.authentication.kind, 'heir', id);
+    assert.match(service.application.eligibility, /상속|수급|유족/, `${id}: applicant eligibility is explained`);
+  }
+  const finance = POST_DEATH_LOOKUP_SERVICES.find(item => item.id === 'heirs-finance');
+  assert.ok(finance.targets.some(target => target.resourceId === 'PLAN-01' && target.questionId === 'debt_notes'), 'financial inquiry records debts as well as assets');
+  const pension = POST_DEATH_LOOKUP_SERVICES.find(item => item.id === 'survivors-pension');
+  assert.ok(pension.targets.some(target => target.resourceId === 'PLAN-04' && target.questionId === 'income_notes'), 'survivor benefits feed living-income planning');
+  assert.ok(pension.targets.every(target => target.questionId !== 'estimated_assets'), 'periodic benefits are not added to estate totals');
 });

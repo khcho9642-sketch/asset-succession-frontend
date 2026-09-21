@@ -6,6 +6,7 @@
 .intro { margin: 15px 0 17px; color: #665d50; font-size: 14px; line-height: 1.85; }
 .intro p { margin: 6px 0; }
 .services { display: grid; gap: 8px; }
+.heading + .services { margin-top: 16px; }
 .anchor { scroll-margin-top: 100px; border-radius: 7px; }
 .anchor:target { outline: 2px solid #ae3d2e; outline-offset: 3px; }
 .service { border: 1px solid #dfd5c6; border-radius: 7px; background: #fffdf8; }
@@ -17,6 +18,7 @@
 .summaryCopy > span { display: block; margin-top: 2px; color: #75634c; font-size: 14px; line-height: 1.7; }
 .authentication { flex-shrink: 0; border: 1px solid #e0d4c0; border-radius: 4px; padding: 4px 6px; font-size: 12px; color: #78613e; line-height: 1.5; }
 .authentication[data-kind=public] { border-color: #d7dfd1; color: #566448; background: #f3f6ef; }
+.authentication[data-kind=heir] { border-color: #d8bbaa; color: #88452d; background: #fbf1e9; }
 .chevron { color: #947b55; flex-shrink: 0; transition: transform 160ms ease; }
 .service[open] > summary { background: #f5eedf; border-bottom: 1px solid #e0d5c3; border-radius: 7px 7px 0 0; }
 .service[open] .chevron { transform: rotate(180deg); }
@@ -29,6 +31,13 @@
 .providerLink span { font-size: 14px; font-weight: 400; opacity: .9; }
 .providerLink:hover { background: #973226; }
 .authDetail { margin: 12px 0 18px; color: #665d50; font-size: 15px; line-height: 1.85; }
+.application { margin: 20px 0; padding: 16px 0; border-block: 1px solid #e7dece; }
+.application h4 { margin: 0 0 14px; font-size: 15px; line-height: 1.7; }
+.application dl { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 12px 15px; margin: 0; font-size: 15px; line-height: 1.85; }
+.application dt { color: #806744; font-size: 14px; font-weight: 650; }
+.application dd { margin: 0; color: #584f43; overflow-wrap: anywhere; }
+.application ul { margin: 0; padding-left: 18px; }
+.application li + li { margin-top: 5px; }
 .checks h4, .recording h4 { margin: 0 0 9px; font-size: 15px; line-height: 1.65; font-weight: 650; }
 .checks ul { margin: 0; padding-left: 18px; color: #584f43; font-size: 15px; line-height: 1.9; }
 .checks li { margin: 4px 0; padding-left: 2px; }
@@ -59,5 +68,7 @@
   .authentication { order: 3; margin-top: 1px; }
   .body { padding: 15px 13px; }
   .intro { font-size: 14px; }
+  .application dl { grid-template-columns: minmax(0, 1fr); gap: 5px; }
+  .application dd:not(:last-child) { margin-bottom: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { .chevron { transition: none; } }

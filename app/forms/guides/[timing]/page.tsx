@@ -47,6 +47,7 @@ export default async function GuidePage({ params }: { params: Promise<{ timing: 
         <ul className={styles.actions}>{step.actions.map(action => <li key={action}>{action}</li>)}</ul>
         {step.note && <div className={styles.stepNote}><strong>{step.note.title}</strong><p>{step.note.body}</p></div>}
         {guide.timing === "before-death" && step.id === "inventory" && <LookupServices />}
+        {guide.timing === "after-death" && <LookupServices timing="after-death" stepId={step.id} />}
         {guide.timing === "before-death" && step.id === "funding" && <a className={styles.textLink} href="#lookup-pension">연금 조회·기록 안내 보기 <ArrowRight size={15} aria-hidden="true" /></a>}
         <div className={styles.materials}><h3>필요한 자료 선택</h3><div className={styles.resourceGrid}>{step.resources.map(resource => {
           const Icon = resource.id.startsWith("PLAN") ? NotebookPen : FileText;

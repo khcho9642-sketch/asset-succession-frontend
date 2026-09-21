@@ -13,7 +13,7 @@ export type LookupService = {
   url: string;
   menu: string;
   purpose: string;
-  authentication: { kind: 'self' | 'public' | 'certificate'; text: string };
+  authentication: { kind: 'self' | 'heir' | 'public' | 'certificate'; text: string };
   checks: string[];
   targets: LookupTarget[];
   limitation: string;
