@@ -2,14 +2,15 @@
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type MouseEvent } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowDown, ArrowRight, Check, ChevronDown, ChevronRight, Download, ExternalLink, FileText, FolderOpen, Info, Search, SlidersHorizontal, X } from "lucide-react";
 import {
-  availableFiles, authorityLabel, buildCatalog, catalogUrl, documentPreview, emptyFilters, FACETS, filterCatalog, filterPlanningResources, hasFilters, originLabel, previewLabel, providerLabel,
+  availableFiles, authorityLabel, buildCatalog, catalogUrl, emptyFilters, FACETS, filterCatalog, filterPlanningResources, hasFilters, originLabel, providerLabel,
   parseCatalogFilters, relationLabel, resourceUrl, STAGES, TIMINGS,
   type CatalogCard, type CatalogFilters, type FacetKey, type LibraryDocument, type PresentationGroup, type PlanningCatalogResource,
 } from "@/lib/forms/catalog";
 import styles from "./FormsLibrary.module.css";
+import { DocumentPreview, GroupDocumentPreview, PreviewCoverage, PreviewThumbnail } from "./DocumentPreview";
+import { resolvePreview } from "@/lib/forms/preview";
 import { guideUrl, guidesForResource } from "@/lib/forms/guides";
 import { getResourceUsage } from "@/lib/forms/resource-usage";
 export type { LibraryDocument } from "@/lib/forms/catalog";
@@ -57,7 +58,6 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
   const selected = index.documents.get(filters.resource);
   const selectedUsage = selected ? getResourceUsage(selected.id) : undefined;
   const guideContexts = selected ? guidesForResource(selected.id, selected.resource?.presentation.visibility === "archived" ? undefined : selected.resource) : [];
-  const selectedPreview = selected ? documentPreview(selected) : null;
   const selectedGroup = index.cards.find(card => card.id === filters.resource && card.group);
   const isDetailOpen = Boolean(filters.resource);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -67,6 +67,7 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
   const active = hasFilters(filters);
   const archived = documents.filter(item => item.resource?.presentation.visibility === "archived");
   const originalsCount = new Set(filtered.flatMap(card => card.matchedIds)).size;
+  const previewResources = filtered.flatMap(card => card.resources.filter(item => card.matchedIds.includes(item.id)));
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const selectedFacetCount = filters.purpose.length + filters.asset.length + filters.kind.length + filters.delivery.length;
   const selectedFacetKeys = (Object.keys(FACETS) as FacetKey[]).filter(key => filters[key].length > 0).join(",");
@@ -130,9 +131,8 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
   }
   function cardView(card: CatalogCard) {
     const representative = card.document
-      || card.resources.find(item => card.matchedIds.includes(item.id) && documentPreview(item))
-      || card.resources.find(item => documentPreview(item)) || card.resources[0];
-    const imagePreview = documentPreview(representative);
+      || card.resources.find(item => card.matchedIds.includes(item.id) && ["image", "pdf"].includes(resolvePreview(item).kind))
+      || card.resources.find(item => ["image", "pdf"].includes(resolvePreview(item).kind)) || card.resources[0];
     const formats = [...new Set(card.resources.flatMap(item => availableFiles(item).map(file => file.format)))];
     const providers = [...new Set(card.resources.map(item => item.institution).filter(Boolean))];
     const childHit = active && card.matchedIds.some(id => id !== card.document?.id)
@@ -141,13 +141,7 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
       <div className={styles.cardBody}>
         <a className={styles.visual} href={resourceUrl(card.id)} onClick={event => openDetail(event, card.id)}
           aria-label={`${card.title} 자료 상세`} data-form-preview>
-          {representative.thumbnail && imagePreview
-            ? <Image className={styles.thumbnail} src={representative.thumbnail} width={imagePreview.width}
-              height={imagePreview.height} style={{ maxWidth: imagePreview.width }} unoptimized
-              alt={`${representative.title} · ${previewLabel(representative)} 미리보기`} />
-            : <span className={styles.providerVisual}>{card.group
-              ? <FolderOpen size={30} strokeWidth={1.25} aria-hidden="true" />
-              : <FileText size={30} strokeWidth={1.25} aria-hidden="true" />}<span>{card.group ? "자료 묶음" : kindLabel(representative)}</span></span>}
+          <PreviewThumbnail item={representative} key={representative.id} />
         </a>
         <div className={styles.cardCopy}>
           <p className={styles.cardCategory}>{card.group ? "자료 묶음" : kindLabel(representative)}<span>·</span>{stageLabel(card.stage)}</p>
@@ -258,6 +252,7 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
               {active && matchingPlanning.length > 0 ? ` · 자체 준비자료 ${matchingPlanning.length}개 별도` : ""}</p></div>
           {active && <button type="button" onClick={reset}>전체 자료 보기<X size={14} aria-hidden="true" /></button>}
         </div>
+        <PreviewCoverage items={previewResources} />
         {active && <div className={styles.appliedFilters} aria-label="적용한 조건">
           {filters.stage && <button onClick={() => update({ stage: "" })} aria-label="단계 조건 해제">{stageLabel(filters.stage)}<X size={13} aria-hidden="true" /></button>}
           {([...Object.keys(FACETS), "timing"] as (FacetKey | "timing")[]).flatMap(key => filters[key].map(value => <button key={`${key}-${value}`}
@@ -313,6 +308,7 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
         </section>
         <div className={styles.originBadges}><span data-origin={selected.resource?.facets.origin}>{originLabel(selected)}</span><span>{authorityLabel(selected)}</span></div>
         <p className={styles.detailDescription}>{selected.description}</p>
+        <DocumentPreview item={selected} key={selected.id} />
         {selectedUsage && <section className={styles.usageGuide} aria-label="자료 사용 안내">
           <h3>이 자료는 이렇게 사용하세요</h3>
           <dl><dt>누가 사용하나요?</dt><dd>{selectedUsage.who}</dd><dt>언제 필요한가요?</dt><dd>{selectedUsage.when}</dd></dl>
@@ -324,14 +320,7 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
         {guideContexts.length > 0 && <nav className={styles.relatedGuides} aria-label="이 자료를 사용하는 가이드"><h3>전체 진행 과정에서 보기</h3>
           {guideContexts.map(context => <Link key={context.href} href={context.href}><span>{context.guideTitle}<small>{context.stepTitle}</small></span><ArrowRight size={16} aria-hidden="true" /></Link>)}
         </nav>}
-        {selectedPreview?.lowResolution && <p className={styles.previewNote} data-preview-resolution-note>문서에 포함된 작은 미리보기 이미지입니다. 자세한 내용은 원본 파일에서 확인해 주세요.</p>}
-        <div className={styles.detailLayout}>
-          {selected.thumbnail && selectedPreview && <div className={styles.detailPreview}>
-            <Image src={selected.thumbnail} width={selectedPreview.width} height={selectedPreview.height}
-              style={{ width: Math.min(640, selectedPreview.width), maxWidth: "100%", height: "auto" }} unoptimized
-              alt={`${selected.title} · ${previewLabel(selected)} 미리보기`} />
-            <p>{previewLabel(selected)}</p><a className={styles.previewImageLink} href={selected.thumbnail} target="_blank" rel="noopener noreferrer">미리보기 이미지 열기<ExternalLink size={14} aria-hidden="true" /></a>
-          </div>}
+        <div className={styles.detailLayout} style={{ gridTemplateColumns: "minmax(0, 1fr)" }}>
           <div className={styles.detailInfo}><h3>자료 정보</h3><dl className={styles.metadata}>
             <dt>제공처</dt><dd>{selected.institution}</dd><dt>이용 방식</dt><dd>{deliveryLabel(selected)}</dd>
             <dt>서식번호</dt><dd>{selected.form_no || "기관 안내 확인"}</dd><dt>확인일</dt><dd>{selected.checkedOn || selected.checked_at?.slice(0, 10) || "확인 필요"}</dd>
@@ -358,6 +347,7 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
         </section>)}
         {(() => { const card = index.cards.find(item => item.id === selected.id); return card ? members(card, true, "detail") : null; })()}
       </> : selectedGroup ? <><p className={styles.detailDescription}>제공처와 상황별로 자료를 비교해 선택하세요. 각 자료의 신청 대상과 제출 절차는 개별로 확인합니다.</p>
+        <GroupDocumentPreview key={selectedGroup.id} items={selectedGroup.resources} matchedIds={filtered.find(card => card.id === selectedGroup.id)?.matchedIds || []} />
         {members({ ...selectedGroup, matchedIds: [] }, true, "detail")}</> : <div className={styles.empty}><p>주소의 자료 ID를 확인하거나 전체 목록에서 다시 찾아보세요.</p><button onClick={reset}>전체 자료 보기</button></div>}</div>
       <div className={styles.dialogFooter}>
         <button className={styles.dialogBack} type="button" onClick={closeDetail}>목록으로</button>

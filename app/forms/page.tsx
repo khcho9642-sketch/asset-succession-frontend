@@ -4,6 +4,7 @@ import { FormsLibrary } from "./FormsLibrary";
 import manifest from "@/public/downloads/official-forms/manifest.json";
 import planning from "@/lib/forms/planning-content.json";
 import groups from "@/public/downloads/official-forms/presentation-groups.json";
+import { mergeGeneratedPreviews } from "@/lib/forms/preview-index";
 import styles from "./FormsLibrary.module.css";
 import shell from "./FormsHeader.module.css";
 
@@ -13,5 +14,5 @@ export const metadata: Metadata = {
 };
 export const dynamic = "force-static";
 export default function FormsPage() {
-  return <div className={`${styles.page} ${shell.root}`}><PublicNav /><FormsLibrary documents={manifest.documents} groups={groups} planning={planning.resources.map(({ id, title, description, stage_ids, primary_stage_id, facets }) => ({ id, title, description, stage_ids, primary_stage_id, facets }))} /></div>;
+  return <div className={`${styles.page} ${shell.root}`}><PublicNav /><FormsLibrary documents={mergeGeneratedPreviews(manifest.documents)} groups={groups} planning={planning.resources.map(({ id, title, description, stage_ids, primary_stage_id, facets }) => ({ id, title, description, stage_ids, primary_stage_id, facets }))} /></div>;
 }

@@ -1,0 +1,32 @@
+.panel { margin: 22px 0; border: 1px solid #d8cebe; border-radius: 10px; overflow: hidden; background: #fffdf8; color: #26221b; }
+.header { padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid #e5dccd; }
+.header h3 { margin: 0; font-size: 16px; line-height: 1.5; }
+.tools { display: flex; gap: 8px; flex-wrap: wrap; }
+.tools button, .tools a, .link { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 8px 12px; border: 1px solid #cabea8; border-radius: 6px; background: #fffdf8; color: #58432d; text-decoration: none; font: inherit; font-size: 13px; cursor: pointer; }
+.tools button[aria-pressed=true] { background: #eee4d2; border-color: #947a53; }
+.tools button:focus-visible, .tools a:focus-visible, .link:focus-visible, .select:focus-visible { outline: 3px solid #b23a2a; outline-offset: 3px; }
+.frame { padding: 16px; overflow: auto; max-height: 70vh; background: #eee8dd; overscroll-behavior: contain; }
+.frame img { display: block; height: auto; margin: 0 auto; object-fit: contain; }
+.pdf { display: block; width: 100%; height: 65vh; min-height: 320px; border: 0; background: #fff; }
+.caption, .notice { padding: 12px 16px; margin: 0; font-size: 13px; line-height: 1.85; color: #655946; overflow-wrap: anywhere; }
+.notice strong { display: block; color: #403424; font-size: 15px; margin-bottom: 6px; }
+.notice p { margin: 0 0 12px; }
+.notice ol { margin: 0 0 14px; padding-left: 22px; }
+.notice li + li { margin-top: 6px; }
+.pending { border-left: 4px solid #b23a2a; }
+.coverage { display: flex; flex-wrap: wrap; gap: 6px 14px; color: #71624c; font-size: 12px; line-height: 1.7; margin: 10px 0 18px; }
+.coverage [data-pending=true] { color: #9a3428; font-weight: 650; }
+.thumbnail { display: block; width: auto; max-width: 100%; max-height: 100%; height: auto; object-fit: contain; }
+.cardState { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; text-align: center; min-height: 90px; padding: 10px; font-size: 12px; line-height: 1.55; }
+.cardState strong { font-size: 14px; }
+.group { margin: 22px 0; }
+.group label { display: block; font-size: 14px; line-height: 1.7; font-weight: 600; }
+.select { display: block; width: 100%; min-height: 44px; padding: 10px; border: 1px solid #cabea8; border-radius: 6px; margin-top: 6px; font: inherit; background: #fffdf8; color: #26221b; }
+@media (max-width: 600px) {
+  .header { padding: 12px; }
+  .frame { padding: 8px; }
+  .tools { width: 100%; }
+  .tools button, .tools a { min-height: 44px; flex-grow: 1; }
+  .pdf { height: 56vh; }
+  .caption, .notice { padding: 12px; }
+}

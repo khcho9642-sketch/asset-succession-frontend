@@ -1,0 +1,20 @@
+test_actual_pdf_raster_and_original_manifest_preserved (__main__.PreviewGeneratorTests.test_actual_pdf_raster_and_original_manifest_preserved) ... ok
+test_archives_are_separate_and_not_generated (__main__.PreviewGeneratorTests.test_archives_are_separate_and_not_generated) ... ok
+test_changed_original_invalidates_old_generated_preview (__main__.PreviewGeneratorTests.test_changed_original_invalidates_old_generated_preview) ... ok
+test_check_does_not_create_unverified_previews (__main__.PreviewGeneratorTests.test_check_does_not_create_unverified_previews) ... ok
+test_cli_returns_failure_when_preview_is_missing (__main__.PreviewGeneratorTests.test_cli_returns_failure_when_preview_is_missing) ... ok
+test_corrupt_generated_thumbnail_invalidates_readiness (__main__.PreviewGeneratorTests.test_corrupt_generated_thumbnail_invalidates_readiness) ... ok
+test_duplicate_resource_ids_refuse_processing (__main__.PreviewGeneratorTests.test_duplicate_resource_ids_refuse_processing) ... ok
+test_hwp_without_converter_stays_pending (__main__.PreviewGeneratorTests.test_hwp_without_converter_stays_pending) ... ok
+test_invalid_pdf_is_pending (__main__.PreviewGeneratorTests.test_invalid_pdf_is_pending) ... ok
+test_missing_provider_url_is_pending (__main__.PreviewGeneratorTests.test_missing_provider_url_is_pending) ... ok
+test_more_than_74_documents_are_all_processed (__main__.PreviewGeneratorTests.test_more_than_74_documents_are_all_processed) ... ok
+test_provider_is_guidance_not_fake_download (__main__.PreviewGeneratorTests.test_provider_is_guidance_not_fake_download) ... ok
+test_small_real_image_is_not_upscaled (__main__.PreviewGeneratorTests.test_small_real_image_is_not_upscaled) ... ok
+test_unsafe_input_path_is_reported_not_read (__main__.PreviewGeneratorTests.test_unsafe_input_path_is_reported_not_read) ... ok
+test_unsafe_resource_id_refuses_processing (__main__.PreviewGeneratorTests.test_unsafe_resource_id_refuses_processing) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 1.355s
+
+OK
