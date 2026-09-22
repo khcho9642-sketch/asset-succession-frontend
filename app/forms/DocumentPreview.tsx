@@ -1,6 +1,6 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element -- Official images use intrinsic dimensions; no stretching or third-party image proxy. */
+// Official images use intrinsic dimensions; no stretching or third-party image proxy.
 import { useEffect, useId, useState } from "react";
 import { previewCoverage, previewRoleLabel, resolvePreview, type PreviewDocument } from "@/lib/forms/preview";
 import styles from "./DocumentPreview.module.css";
@@ -46,7 +46,7 @@ function PdfPreview({ path, title }: { path: string; title: string }) {
     {state === "loading" && <p className={styles.notice} role="status">PDF 파일을 확인하고 있습니다.</p>}
     {state === "ready" && <iframe className={styles.pdf} src={`${path}#page=1&view=FitH`} title={`${title} PDF 미리보기`} loading="lazy" />}
     {state === "error" && <p className={`${styles.notice} ${styles.pending}`} role="status">미리보기 파일을 불러오지 못했습니다. 아래 새 창 링크 또는 원본 다운로드를 이용하세요.</p>}
-    <p className={styles.caption}>브라우저에서 PDF가 표시되지 않으면 <a href={path} target="_blank" rel="noopener noreferrer">PDF를 새 창에서 여세요.</a> 원본 다운로드는 아래 제공 파일에서 이용할 수 있습니다.</p>
+    <p className={styles.caption}>브라우저에서 PDF가 표시되지 않으면 <a href={path} target="_blank" rel="noopener noreferrer">PDF를 새 창에서 여세요.</a> 원본 다운로드는 위 제공 파일에서 이용할 수 있습니다.</p>
   </>;
 }
 
@@ -91,25 +91,9 @@ export function DocumentPreview({ item }: Props) {
     </div>}
     {unavailable && <div className={`${styles.notice} ${styles.pending}`} role="status">
       <strong>{imageFailed ? "문서 이미지를 불러오지 못했습니다." : "이 자료의 문서 미리보기가 아직 준비되지 않았습니다."}</strong>
-      <p>미리보기가 없는 항목은 완료로 표시하지 않습니다. 아래 제공 파일에서 원본을 받거나 제공처를 확인하세요.</p>
+      <p>미리보기가 없는 항목은 완료로 표시하지 않습니다. 위 제공 파일에서 원본을 받거나 제공처를 확인하세요.</p>
       {preview.originalPath && <a className={styles.link} href={preview.originalPath} download>원본 파일 받기</a>}
       {!preview.originalPath && preview.providerUrl && <a className={styles.link} href={preview.providerUrl} target="_blank" rel="noopener noreferrer">제공처에서 확인</a>}
     </div>}
-  </section>;
-}
-
-export function GroupDocumentPreview({ items, matchedIds = [] }: { items: PreviewDocument[]; matchedIds?: string[] }) {
-  const labelId = useId();
-  const initial = items.find(item => matchedIds.includes(item.id) && ["image", "pdf"].includes(resolvePreview(item).kind))
-    || items.find(item => ["image", "pdf"].includes(resolvePreview(item).kind)) || items[0];
-  const [selectedId, setSelectedId] = useState(initial?.id || "");
-  const selected = items.find(item => item.id === selectedId) || initial;
-  if (!selected) return null;
-  return <section className={styles.group} aria-label="묶음 자료 문서 미리보기">
-    <label htmlFor={labelId}>미리 볼 자료 선택</label>
-    <select className={styles.select} id={labelId} value={selected.id} onChange={event => setSelectedId(event.target.value)}>
-      {items.map(item => <option value={item.id} key={item.id}>{item.title} · {resolvePreview(item).label}</option>)}
-    </select>
-    <DocumentPreview item={selected} key={selected.id} />
   </section>;
 }
