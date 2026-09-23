@@ -237,6 +237,15 @@ export function FormsLibrary({ documents, groups }: Props) {
     </footer>
 
     <dialog ref={dialog} className={styles.dialog} aria-labelledby="form-preview-title"
+      onKeyDown={event => {
+        if (event.key !== "Tab") return;
+        const targets = [...event.currentTarget.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), summary, [tabindex="0"]')].filter(element => element.getClientRects().length > 0);
+        const edge = event.shiftKey ? targets[0] : targets.at(-1);
+        if (document.activeElement === edge || !event.currentTarget.contains(document.activeElement)) {
+          event.preventDefault();
+          (event.shiftKey ? targets.at(-1) : targets[0])?.focus();
+        }
+      }}
       onCancel={event => { event.preventDefault(); closeDetail(); }} onClick={event => {
         if (event.target !== event.currentTarget) return;
         const rect = event.currentTarget.getBoundingClientRect();
