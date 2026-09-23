@@ -14,7 +14,7 @@ import { DocumentPreview, PreviewThumbnail } from "./DocumentPreview";
 import { resolvePreview } from "@/lib/forms/preview";
 import { guidesForResource } from "@/lib/forms/guides";
 import { getResourceUsage } from "@/lib/forms/resource-usage";
-import { SERVICE_CONTEXTS } from "@/lib/forms/library-editorial";
+import { SERVICE_CONTEXTS, serviceContexts } from "@/lib/forms/library-editorial";
 import { LookupServices } from "./guides/LookupServices";
 import { GuideEntrances } from "./GuideEntrances";
 export type { LibraryDocument } from "@/lib/forms/catalog";
@@ -62,7 +62,7 @@ export function FormsLibrary({ documents, groups }: Props) {
   const visibleCount = pageLimit.key === listKey ? pageLimit.count : 18;
   const visible = filtered.slice(0, visibleCount);
   const selected = index.documents.get(filters.resource);
-  const selectedUsage = selected ? selected.usage || getResourceUsage(selected.id) : undefined;
+  const selectedUsage = selected && !SERVICE_CONTEXTS[selected.id] ? selected.usage || getResourceUsage(selected.id) : undefined;
   const related = selected ? relatedDocuments(index, selected.id) : [];
   const guideContexts = selected && isPublicResource(selected) ? guidesForResource(selected.id, selected.resource) : [];
   const legacyGroup = !selected ? index.groups.get(filters.resource) : undefined;
@@ -136,7 +136,7 @@ export function FormsLibrary({ documents, groups }: Props) {
         <div className={styles.cardCopy}>
           <p className={styles.cardCategory}>{kindLabel(item)}<span>·</span>{stageLabel(card.stage)}</p>
           <h3><a href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)}>{item.title}</a></h3>
-          <p className={styles.cardDescription}>{item.description}</p>
+          <p className={styles.cardDescription}>{describe(item)}</p>
         </div>
       </div>
       <div className={styles.cardMeta}>
@@ -148,6 +148,11 @@ export function FormsLibrary({ documents, groups }: Props) {
         <FileAction item={item} onOpen={openDetail} />
       </div>
     </article>;
+  }
+
+  function describe(item: LibraryDocument) {
+    const contexts = serviceContexts(item.id, filters.timing);
+    return contexts.length ? contexts.map(context => `${context.timing === "before-death" ? "생전" : "상속 후"}: ${context.service.purpose}`).join(" ") : item.description;
   }
 
   function facetControls(key: FacetKey) {
@@ -258,8 +263,8 @@ export function FormsLibrary({ documents, groups }: Props) {
       <div className={styles.dialogBody}>{selected?.resource?.presentation.visibility === "excluded" ? <section><p className={styles.contextNote}>현재 자료실의 기본 제공 범위에서 제외된 자료입니다</p><p>{selected.title}</p><a className={styles.providerLink} href={selected.sourceUrl} target="_blank" rel="noopener noreferrer">기존 출처 확인 (새 창)<ExternalLink size={15} aria-hidden="true" /></a></section> : selected ? <>
         {selected.resource?.presentation.visibility === "archived" && <p className={styles.contextNote}>기본 목록에서 보관한 자료입니다. 기존 원본과 출처를 확인할 수 있습니다.</p>}
         {filters.guide && <p className={styles.contextNote}>상황별 안내에서 선택한 자료입니다. 닫으면 보던 안내 위치로 돌아갑니다.</p>}
-        <div className={styles.originBadges}><span data-origin={selected.resource?.facets.origin}>{originLabel(selected)}</span><span>{authorityLabel(selected)}</span></div>
-        <p className={styles.detailDescription}>{selected.description}</p>
+        <div className={styles.originBadges}><span data-origin={selected.resource?.facets.origin}>{useCategory(selected) === "service" ? "제공기관 서비스" : originLabel(selected)}</span><span>{useCategory(selected) === "service" ? "조회·발급 안내" : authorityLabel(selected)}</span></div>
+        <p className={styles.detailDescription}>{describe(selected)}</p>
         {selectedUsage && <dl className={styles.metadata}><dt>사용 대상</dt><dd>{selectedUsage.who}</dd><dt>쓰는 경우</dt><dd>{selectedUsage.when}</dd></dl>}
         <section className={styles.downloadSection} id="detail-downloads" aria-label="제공 파일과 이용 방법">
           <div className={styles.downloadHeading}><h3>{USE_CATEGORIES[useCategory(selected)]}</h3></div>
