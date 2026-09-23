@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import ts from 'typescript';
+import { publicDocuments } from './load-current-forms.mjs';
 
 const read = name => JSON.parse(readFileSync(name, 'utf8'));
 const documents = read('public/downloads/official-forms/manifest.json').documents;
@@ -12,7 +13,7 @@ const usage = read('lib/forms/resource-usage.json').documents;
 const output = path.resolve('.tmp/forms-life-guides-tests');
 mkdirSync(output, { recursive: true });
 writeFileSync(path.join(output, 'package.json'), '{"type":"commonjs"}');
-for (const name of ['catalog', 'guides', 'lookup-services', 'post-death-lookup-services']) {
+for (const name of ['catalog', 'guides', 'purpose-guides', 'lookup-services', 'post-death-lookup-services']) {
   writeFileSync(path.join(output, name + '.js'), ts.transpileModule(readFileSync(`lib/forms/${name}.ts`, 'utf8'), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
   }).outputText);
@@ -67,18 +68,19 @@ test('preparation, post-death execution and shared administrative forms stay dis
 });
 
 test('every guide link reaches a real canonical document and has a working reverse anchor', () => {
-  assert.deepEqual(GUIDES.map(guide => guide.timing), ['before-death', 'after-death']);
+  assert.deepEqual(GUIDES.map(guide => guide.timing), ['before-death', 'after-death', 'gift', 'transfer', 'business-succession']);
   assert.equal(getGuide('unknown'), undefined);
   for (const guide of GUIDES) {
     assert.equal(new Set(guide.steps.map(step => step.id)).size, guide.steps.length);
     const filters = parseCatalogFilters(new URL(guideCatalogUrl(guide.timing), 'https://example.test').search);
-    assert.deepEqual(filters.timing, [guide.timing.replace('-', '_')]);
-    assert.deepEqual(filters.purpose, [], 'guide catalog includes gift and shared-purpose materials');
-    if (guide.timing === 'before-death') for (const id of ['BP-G-01', 'P3-05', 'P3-06', 'REG-G-01', 'NTS-IG-11', 'P1-10', 'P3-04']) {
+    const inheritance = ['before-death', 'after-death'].includes(guide.timing);
+    assert.deepEqual(filters.timing, inheritance ? [guide.timing.replace('-', '_')] : []);
+    assert.deepEqual(filters.purpose, inheritance ? [] : [guide.timing === 'transfer' ? 'capital_transfer' : guide.timing === 'business-succession' ? 'business_succession' : 'gift']);
+    if (guide.timing === 'before-death') for (const id of ['BP-G-01', 'P3-05', 'P3-06', 'REG-G-01', 'NTS-IG-11', 'P1-10']) {
       assert.ok(matchesResource(byId.get(id), filters), `before-death catalog retains ${id}`);
     }
     for (const step of guide.steps) for (const resource of step.resources) {
-      assert.ok(ids.has(resource.id), `${guide.timing}/${step.id}: ${resource.id}`);
+      assert.ok(publicDocuments.some(item => item.id === resource.id && item.resource.presentation.visibility !== 'excluded'), `${guide.timing}/${step.id}: ${resource.id}`);
       const target = new URL(guideResourceUrl(resource.id), 'https://example.test');
       assert.equal(target.searchParams.get('resource'), resource.id, resource.id);
       const links = guidesForResource(resource.id, byId.get(resource.id)?.resource);

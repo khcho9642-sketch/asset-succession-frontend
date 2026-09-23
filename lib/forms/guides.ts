@@ -1,6 +1,7 @@
 import { canonicalResourceId, catalogUrl, emptyFilters, resourceUrl, type ResourceMetadata } from "./catalog";
+import { PURPOSE_GUIDES } from "./purpose-guides";
 
-export type GuideTiming = "before-death" | "after-death";
+export type GuideTiming = "before-death" | "after-death" | "gift" | "transfer" | "business-succession";
 export type GuideResource = { id: string; label: string; use: string };
 export type GuideSource = { title: string; url: string };
 export type GuideStep = {
@@ -45,9 +46,9 @@ export const GUIDES: readonly InheritanceGuide[] = [
   {
     timing: "before-death",
     title: "생전 준비",
-    question: "가족을 위해 무엇부터 준비할까요?",
+    question: "상속을 미리 준비할 때 어떤 자료가 필요할까요?",
     description: "가족과 재산을 정리하고, 이전 방법과 생활비를 함께 살펴보세요. 필요한 주제부터 시작할 수 있습니다.",
-    overview: ["가족·재산 정리", "이전 방법·재원 비교", "의사 확인·실행 준비"],
+    overview: ["가족관계", "재산과 채무", "본인의 이전 의사와 검토 중인 방법"],
     startLabel: "생전 준비 가이드 보기",
     notice: {
       title: "필요한 서류부터 확인하세요",
@@ -107,7 +108,6 @@ export const GUIDES: readonly InheritanceGuide[] = [
         resources: [
           { id: "REG-G-01", label: "증여 소유권 이전등기 신청서", use: "부동산 증여 실행 시" },
           { id: "NTS-IG-11", label: "증여세 신고서 묶음", use: "증여 후 신고 자료를 준비할 때" },
-          { id: "P3-04", label: "세무대리 위임장", use: "세무 업무를 위임하기로 한 경우" },
         ],
       },
     ],
@@ -115,9 +115,9 @@ export const GUIDES: readonly InheritanceGuide[] = [
   {
     timing: "after-death",
     title: "상속 발생 후",
-    question: "상속이 발생했어요. 무엇부터 해야 하나요?",
+    question: "상속이 발생했을 때 어떤 자료부터 확인할까요?",
     description: "신고와 조회, 상속받을지에 대한 판단, 재산 정리와 세금까지 필요한 일을 찾아보세요.",
-    overview: ["신고·기한 확인", "재산·채무 조회와 선택", "분할·이전·신고납부"],
+    overview: ["사망일과 가족관계", "확인된 재산·채무와 아직 모르는 항목", "신고·선택 기한과 진행 중인 절차"],
     startLabel: "상속 발생 후 가이드 보기",
     notice: {
       title: "기한 확인과 재산조회는 함께 시작하세요",
@@ -212,14 +212,15 @@ export const GUIDES: readonly InheritanceGuide[] = [
       },
     ],
   },
+  ...PURPOSE_GUIDES,
 ];
 
 export const getGuide = (timing: string) => GUIDES.find(guide => guide.timing === timing);
 export const guideUrl = (timing: GuideTiming, stepId?: string) => `/forms/guides/${timing}${stepId ? `#${stepId}` : ""}`;
-export const guideResourceUrl = resourceUrl;
-export const guideCatalogUrl = (timing: GuideTiming) => catalogUrl({ ...emptyFilters(), timing: [timing.replace("-", "_")] });
+export const guideResourceUrl = (id: string, guide?: GuideTiming, step?: string) => guide ? catalogUrl({ ...emptyFilters(), resource: canonicalResourceId(id), guide, step }) : resourceUrl(id);
+export const guideCatalogUrl = (timing: GuideTiming) => catalogUrl({ ...emptyFilters(), ...(["before-death", "after-death"].includes(timing) ? { timing: [timing.replace("-", "_")] } : { purpose: [timing === "transfer" ? "capital_transfer" : timing === "business-succession" ? "business_succession" : "gift"] }) });
 
-const stageFallbacks: Record<GuideTiming, Record<string, string>> = {
+const stageFallbacks: Partial<Record<GuideTiming, Record<string, string>>> = {
   "before-death": { S1: "inventory", S2: "options", S3: "intent", S4: "prepare", S5: "prepare", S6: "prepare", S7: "prepare" },
   "after-death": { S1: "estate-inquiry", S2: "acceptance", S3: "transfer", S4: "transfer", S5: "tax-payment", S6: "follow-up", S7: "follow-up" },
 };
@@ -230,7 +231,7 @@ export function guidesForResource(id: string, metadata?: Pick<ResourceMetadata, 
   return GUIDES.flatMap(guide => {
     let steps = guide.steps.filter(step => step.resources.some(resource => canonicalResourceId(resource.id) === canonicalId));
     if (!steps.length && metadata?.facets.purposes.includes("inheritance") && metadata.facets.timing.includes(guide.timing.replace("-", "_"))) {
-      const stepId = metadata.stage_ids.map(stage => stageFallbacks[guide.timing][stage]).find(Boolean);
+      const stepId = metadata.stage_ids.map(stage => stageFallbacks[guide.timing]?.[stage]).find(Boolean);
       steps = guide.steps.filter(step => step.id === stepId);
     }
     return steps.map(step => ({ timing: guide.timing, guideTitle: guide.title, stepId: step.id, stepTitle: step.title, href: guideUrl(guide.timing, step.id) }));

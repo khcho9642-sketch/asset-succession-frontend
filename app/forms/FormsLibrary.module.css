@@ -45,7 +45,7 @@
 .breadcrumb { display: flex; align-items: center; gap: 8px; padding-top: 13px; color: var(--lib-muted); font-size: 12px; }
 .breadcrumb a { display: flex; align-items: center; min-height: 34px; }
 .header { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 12px 0 25px; }
-.header h1 { margin: 0 0 7px; font-size: 32px; font-weight: 650; line-height: 1.35; letter-spacing: -1.15px; }
+.header h1 { margin: 0 0 7px; font-size: 32px; font-weight: 650; line-height: 1.35; letter-spacing: 0; }
 .header p { margin: 0; color: var(--lib-muted); font-size: 15px; }
 .bundleLink { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13px; white-space: nowrap; color: var(--lib-muted) !important; }
 .bundleLink:hover { text-decoration: underline; text-underline-offset: 4px; }
@@ -80,6 +80,26 @@
   .usageColumns { gap: 20px; }
 }
 .searchWorkspace { padding-bottom: 0; }
+.purposeGuides { margin: 18px 0; }
+.purposeGuides h2 { margin: 0 0 6px; font-size: 14px; font-weight: 600; color: var(--lib-muted); }
+.purposeGuides > div { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px 20px; }
+.purposeGuides :is(a, summary) { display: flex; gap: 8px; justify-content: space-between; align-items: center; min-height: 44px; font-size: 15px; border-bottom: 1px solid var(--lib-line); }
+.purposeGuides nav { padding-left: 12px; }
+.purposeGuides :is(a, summary):hover { color: var(--lib-red); }
+.useTabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid var(--lib-line); }
+.useTabs button { min-height: 48px; padding: 8px 4px; border: 0; border-bottom: 3px solid transparent; font-weight: 600; font-size: 15px; }
+.useTabs button[aria-pressed="true"] { border-bottom-color: var(--lib-red); color: var(--lib-red); }
+.serviceVisual { display: flex; height: 100%; min-height: 90px; align-items: center; justify-content: center; flex-direction: column; gap: 8px; background: #e8eeec; color: #3a6260; }
+.serviceVisual span { font-size: 12px; }
+.usageSources { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 16px; }
+.usageSources a { display: inline-flex; align-items: center; gap: 6px; text-decoration: underline; }
+.usageGuide { border: 0; border-radius: 0; padding: 12px 0; background: none; }
+@media (max-width: 760px) {
+  .purposeGuides > div { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 14px; }
+  .purposeGuides :is(a, summary) { font-size: 14px; }
+  .useTabs button { font-size: 13px; }
+  .search input { font-size: 15px; }
+}
 .searchRow { display: flex; gap: 24px; align-items: center; }
 .search { display: flex; align-items: center; flex: 1; gap: 14px; min-width: 0; min-height: 62px; padding: 0 20px; border: 1px solid #ad9d82; border-radius: 6px; background: var(--lib-card); color: var(--lib-brass); }
 .search:focus-within { border-color: var(--lib-red); box-shadow: 0 0 0 2px #ae3d2e0d; }
@@ -124,7 +144,7 @@
 .mobileFilterToggle, .mobileApplyFilters { display: none; }
 .results { min-width: 0; }
 .resultsToolbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin: 4px 0 18px; }
-.resultsToolbar h2 { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 20px; line-height: 1.5; font-weight: 650; letter-spacing: -.5px; scroll-margin-top: 95px; }
+.resultsToolbar h2 { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 20px; line-height: 1.5; font-weight: 650; letter-spacing: 0; scroll-margin-top: 95px; }
 .resultsToolbar h2 > span { color: var(--lib-brass); font-size: 19px; font-weight: 500; }
 .resultsToolbar p { margin: 4px 0 0; color: var(--lib-muted); font-size: 12px; }
 .resultsToolbar > button { display: flex; align-items: center; gap: 7px; min-height: 44px; padding: 5px 0 5px 8px; border: 0; color: var(--lib-muted); font-size: 12px; white-space: nowrap; }
@@ -145,7 +165,7 @@
 .cardCopy { min-width: 0; }
 .cardCategory { display: flex; flex-wrap: wrap; gap: 5px; margin: 0 0 5px; color: var(--lib-brass); font-size: 12px; line-height: 1.6; }
 .cardCategory > span { color: #aa9c84; }
-.cardCopy h3 { min-height: 53px; margin: 0 0 7px; font-size: 18px; font-weight: 600; line-height: 1.5; letter-spacing: -.5px; word-break: keep-all; overflow-wrap: anywhere; }
+.cardCopy h3 { min-height: 53px; margin: 0 0 7px; font-size: 18px; font-weight: 600; line-height: 1.5; letter-spacing: 0; word-break: keep-all; overflow-wrap: anywhere; }
 .cardCopy h3 a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .cardDescription { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; min-height: 44px; margin: 0; color: var(--lib-muted); font-size: 13px; line-height: 1.7; word-break: keep-all; }
 .cardMeta { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 18px 14px; color: var(--lib-muted); font-size: 12px; }
@@ -208,7 +228,7 @@
 .dialog::backdrop { background: #201c17b8; backdrop-filter: blur(3px); }
 .dialogHead { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-shrink: 0; padding: 22px 26px; border-bottom: 1px solid var(--lib-line); }
 .dialogHead p { margin: 0 0 4px; color: var(--lib-brass); font-size: 12px; }
-.dialogHead h2 { margin: 0; font-size: 23px; font-weight: 600; line-height: 1.5; letter-spacing: -.5px; word-break: keep-all; overflow-wrap: anywhere; }
+.dialogHead h2 { margin: 0; font-size: 23px; font-weight: 600; line-height: 1.5; letter-spacing: 0; word-break: keep-all; overflow-wrap: anywhere; }
 .dialogHead > button { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 44px; height: 44px; border: 1px solid #cdbfa7; border-radius: 3px; background: #f6f0e5; }
 .dialogBody { min-height: 0; padding: 25px 26px; overflow-y: auto; overscroll-behavior: contain; }
 .downloadSection { scroll-margin-top: 8px; margin-bottom: 22px; padding: 18px; border: 1px solid #cab797; border-radius: 4px; background: #f5ede0; }
@@ -318,7 +338,7 @@
   .breadcrumb { padding-top: 8px; font-size: 12px; }
   .breadcrumb a { min-height: 30px; }
   .header { align-items: flex-start; gap: 8px; padding: 8px 0 17px; }
-  .header h1 { font-size: 27px; margin-bottom: 5px; letter-spacing: -.8px; }
+  .header h1 { font-size: 27px; margin-bottom: 5px; letter-spacing: 0; }
   .header p { max-width: 275px; font-size: 14px; line-height: 1.65; word-break: keep-all; }
   .bundleLink { display: flex; justify-content: center; flex-shrink: 0; width: 44px; min-height: 44px; margin-top: 1px; border: 1px solid #c9baa0; border-radius: 4px; background: #fcf8ef; }
   .bundleLink > span { display: none; }
@@ -360,7 +380,7 @@
   .cardBody { grid-template-columns: 76px minmax(0, 1fr); gap: 13px; padding: 16px 15px 0; }
   .visual { width: 76px; height: 100px; padding: 6px; }
   .cardCategory { font-size: 12px; gap: 4px; margin-bottom: 4px; }
-  .cardCopy h3 { min-height: 0; font-size: 18px; line-height: 1.5; letter-spacing: -.5px; margin-bottom: 6px; }
+  .cardCopy h3 { min-height: 0; font-size: 18px; line-height: 1.5; letter-spacing: 0; margin-bottom: 6px; }
   .cardDescription { min-height: 0; font-size: 13px; line-height: 1.75; }
   .cardMeta { padding: 13px 15px 12px; font-size: 12px; gap: 7px; }
   .cardActions { padding: 0 15px 14px; gap: 9px; }

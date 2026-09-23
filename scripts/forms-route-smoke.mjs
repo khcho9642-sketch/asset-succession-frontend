@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import ts from 'typescript';
-import { current } from './load-current-forms.mjs';
+import { publicCatalog as current } from './load-current-forms.mjs';
 
 const compiled = path.resolve('.tmp/forms-route-smoke');
 mkdirSync(compiled, { recursive: true });
@@ -64,7 +64,7 @@ try {
     assert.equal(page.location, '/forms', route);
   }
   assert.equal((await request('/forms/planning/PLAN-99')).status, 404);
-  for (const route of ['/forms/guides', '/forms/guides/before-death', '/forms/guides/after-death']) {
+  for (const route of ['/forms/guides', '/forms/guides/before-death', '/forms/guides/after-death', '/forms/guides/gift', '/forms/guides/transfer', '/forms/guides/business-succession']) {
     const page = await request(route);
     const html = renderedHtml(page.text);
     assert.equal(page.status, 200, route);
@@ -104,7 +104,7 @@ try {
   const original = await fetch(host + '/downloads/official-forms/expansion/P2-15_3aa191059786.pdf');
   assert.equal(original.status, 200);
   assert.equal(Buffer.from(await original.arrayBuffer()).subarray(0, 5).toString(), '%PDF-');
-  console.log('Forms route smoke: individual catalog, seven retired worksheet redirects, three guides, eighteen lookup services, applicant guidance, invalid routes, precheck and original PDF passed.');
+  console.log('Forms route smoke: public individual catalog, seven retired worksheet redirects, guide index + five guides, eighteen lookup services, applicant guidance, invalid routes, precheck and original PDF passed.');
 } catch (error) {
   console.error(logs);
   throw error;
