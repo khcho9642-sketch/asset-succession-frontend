@@ -8,7 +8,7 @@ import {
   parseCatalogFilters, resourceUrl, STAGES, TIMINGS,
   type CatalogCard, type CatalogFilters, type FacetKey, type LibraryDocument, type PresentationGroup, type PlanningCatalogResource,
 } from "@/lib/forms/catalog";
-import { buildIndividualCatalog, legacyGroupDocuments } from "@/lib/forms/individual-catalog";
+import { buildIndividualCatalog, legacyGroupDocuments, relatedDocuments } from "@/lib/forms/individual-catalog";
 import styles from "./FormsLibrary.module.css";
 import { DocumentPreview, PreviewCoverage, PreviewThumbnail } from "./DocumentPreview";
 import { resolvePreview } from "@/lib/forms/preview";
@@ -28,7 +28,7 @@ const serverSnapshot = () => "";
 const kindLabel = (item: LibraryDocument) => (FACETS.kind.values as Record<string, string>)[item.resource?.facets.kind || ""] || "분류 확인 필요";
 const deliveryLabel = (item: LibraryDocument) => item.resource?.facets.delivery === "official_link" ? `${providerLabel(item)}에서 확인` : (FACETS.delivery.values as Record<string, string>)[item.resource?.facets.delivery || ""] || "이용 방식 확인 필요";
 const stageLabel = (stage: string | null) => STAGES.find(([id]) => id === stage)?.[1] || "단계 확인 필요";
-const fileRole = (role: string) => ({ original: "원본", example: "작성 예시", combined: "양식·설명 합본", "image-compilation": "웹 사례 변환본", "web-example-image": "기관 사례 이미지" }[role] || "제공 파일");
+const fileRole = (role: string) => ({ original: "원본", example: "작성 예시", extracted: "원본 페이지 발췌", combined: "양식·설명 합본", "image-compilation": "웹 사례 변환본", "web-example-image": "기관 사례 이미지" }[role] || "제공 파일");
 
 function Files({ item }: { item: LibraryDocument }) {
   const files = availableFiles(item);
@@ -57,7 +57,8 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
   const visibleCount = pageLimit.key === listKey ? pageLimit.count : 18;
   const visible = filtered.slice(0, visibleCount);
   const selected = index.documents.get(filters.resource);
-  const selectedUsage = selected ? getResourceUsage(selected.id) : undefined;
+  const selectedUsage = selected ? getResourceUsage(selected.sourceRecordId || selected.id) : undefined;
+  const related = selected ? relatedDocuments(index, selected.id) : [];
   const guideContexts = selected ? guidesForResource(selected.id, selected.resource?.presentation.visibility === "archived" ? undefined : selected.resource) : [];
   const legacyGroup = !selected ? index.groups.get(filters.resource) : undefined;
   const legacyItems = legacyGroup ? legacyGroupDocuments(index, legacyGroup.id) : [];
@@ -282,6 +283,11 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
         <div className={styles.originBadges}><span data-origin={selected.resource?.facets.origin}>{originLabel(selected)}</span><span>{authorityLabel(selected)}</span></div>
         <p className={styles.detailDescription}>{selected.description}</p>
         <DocumentPreview item={selected} key={selected.id} />
+        {related.length > 0 && <nav className={styles.relatedGuides} aria-label="관련 서류" data-related-documents><h3>관련 서류</h3>
+          {related.map(item => <a key={item.id} href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)}>
+            <span>{item.title}<small>{kindLabel(item)}</small></span><ArrowRight size={16} aria-hidden="true" />
+          </a>)}
+        </nav>}
         {selectedUsage && <section className={styles.usageGuide} aria-label="자료 사용 안내">
           <h3>이 자료는 이렇게 사용하세요</h3>
           <dl><dt>누가 사용하나요?</dt><dd>{selectedUsage.who}</dd><dt>언제 필요한가요?</dt><dd>{selectedUsage.when}</dd></dl>

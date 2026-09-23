@@ -10,7 +10,7 @@ type GeneratedRecord = {
   thumbnail: string;
   preview: NonNullable<LibraryDocument["preview"]> & {
     sourcePath: string; sourceSha256: string; imageSha256: string; thumbnailSha256: string;
-    pdfPath?: string; pdfSha256?: string; editorialRedraw: false;
+    pdfPath?: string; pdfSha256?: string; pdfBytes?: number; sourcePages?: number[]; editorialRedraw: false;
   };
 };
 
@@ -40,6 +40,12 @@ export function mergeGeneratedPreviews(documents: LibraryDocument[]): LibraryDoc
     verifiedFile(entry.example, preview.imageSha256);
     verifiedFile(entry.thumbnail, preview.thumbnailSha256);
     if (preview.pdfPath) verifiedFile(preview.pdfPath, preview.pdfSha256 || "");
-    return { ...item, example: entry.example, thumbnail: entry.thumbnail, preview };
+    if (item.documentSection && (preview.sourcePath !== item.documentSection.sourcePath
+      || JSON.stringify(preview.sourcePages) !== JSON.stringify(item.documentSection.pages))) throw new Error(`Stale section preview: ${item.id}`);
+    const files = item.documentSection && preview.pdfPath ? [{
+      name: `${item.title}.pdf (원본 ${item.documentSection.pages.join("~")}쪽 추출)`,
+      path: preview.pdfPath, format: "PDF", role: "extracted", bytes: preview.pdfBytes || 0, delivery: "hosted",
+    }, ...item.files] : item.files;
+    return { ...item, files, example: entry.example, thumbnail: entry.thumbnail, preview };
   });
 }

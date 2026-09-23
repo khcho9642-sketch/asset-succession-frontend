@@ -18,7 +18,10 @@ export type LibraryDocument = {
   license: string; verification: string; delivery: string;
   originalCategory: string; catalogTitle: string; exampleVerification: string; licenseUrl: string;
   primaryArtifactType?: string;
-  preview?: { method: string; sourceRole: string; width: number; height: number; lowResolution: boolean };
+  sourceRecordId?: string;
+  documentSection?: { sourcePath: string; pages: number[]; match: string };
+  preview?: { method: string; sourceRole: string; width: number; height: number; lowResolution: boolean;
+    sourcePath?: string; sourceSha256?: string; pdfPath?: string; pageCount?: number; editorialRedraw?: boolean };
   form_no?: string | null; revised_at?: string | null; deadline?: string | null; deadline_basis?: string | null;
   source_type?: string | null; checked_at?: string | null; status?: string; task_id?: string;
   files: LibraryFile[];

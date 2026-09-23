@@ -9,9 +9,11 @@ test('catalog totals keep original resources and preparation worksheets separate
   const summary = component.match(/data-catalog-summary>(.*?)<\/p>/s)?.[1];
   assert.ok(summary);
   assert.ok(summary.includes('{index.cards.length}'));
-  assert.ok(summary.includes('{documents.length}'));
+  // The UI now counts independent documents; historical source-record totals are
+  // verified separately in forms-current-preview-tests and integration tests.
+  assert.ok(summary.includes('개별 자료'));
   assert.ok(summary.includes('{planning.length}'));
-  assert.ok(component.includes('!active && archived.length > 0'));
+  assert.ok(component.includes('archived.length > 0'));
 });
 
 test('mobile catalog totals stay visible without forcing a single overflowing row', () => {

@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import ts from 'typescript';
+import { current } from './load-current-forms.mjs';
 
 const compiled = path.resolve('.tmp/forms-route-smoke');
 mkdirSync(compiled, { recursive: true });
@@ -52,9 +53,8 @@ try {
   }
   assert.ok(ready, logs);
   const main = await request('/forms');
-  assert.match(main.text, /data-forms-library="stages-v2"/);
-  assert.match(main.text, /103/);
-  assert.match(main.text, /177/);
+  assert.match(main.text, /data-forms-library="individual-v3"/);
+  assert.ok(textContent(renderedHtml(main.text)).includes(`개별 자료 ${current.cards.length}개`));
   assert.match(main.text, /카카오 상담 \(새 창\)/);
   assert.match(main.text, /서류양식/);
   assert.equal((main.text.match(/data-form-id="/g) || []).length, 18);

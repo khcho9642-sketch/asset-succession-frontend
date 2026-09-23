@@ -44,3 +44,18 @@ export function legacyGroupDocuments(index: CatalogIndex, groupId: string): Libr
   }
   return index.cards.flatMap(card => card.document && ids.has(card.id) ? [card.document] : []);
 }
+
+/** Relations are navigation, never a reason to hide or merge a document card. */
+export function relatedDocuments(index: CatalogIndex, id: string): LibraryDocument[] {
+  const item = index.documents.get(id);
+  if (!item) return [];
+  const links = new Set(item.resource?.relations.map(relation => relation.target_resource_id));
+  for (const group of index.groups.values()) {
+    if (group.member_resource_ids.includes(id) || links.has(group.id))
+      for (const member of group.member_resource_ids) links.add(member);
+  }
+  return [...index.documents.values()].filter(other => other.id !== id && (
+    links.has(other.id) || other.resource?.relations.some(relation => relation.target_resource_id === id)
+    || (item.sourceRecordId && other.sourceRecordId === item.sourceRecordId)
+  ));
+}

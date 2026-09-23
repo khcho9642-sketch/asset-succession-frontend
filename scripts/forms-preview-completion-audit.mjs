@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
+import { documents, current, read } from './load-current-forms.mjs';
 
 const base = process.env.BASE_URL || 'http://127.0.0.1:3000';
 const output = process.env.PREVIEW_AUDIT_DIR || 'artifacts/forms-preview-completion';
@@ -22,6 +23,13 @@ try {
     await page.setViewportSize({ width, height: 1000 });
     await page.goto(new URL(filter, base).href, { waitUntil: 'networkidle' });
     await page.locator('[data-form-id]').first().waitFor();
+    await page.getByRole('button', { name: '전체 자료 보기', exact: true }).click();
+    while (await page.getByRole('button', { name: '자료 더 보기' }).count()) {
+      await page.getByRole('button', { name: '자료 더 보기' }).click();
+    }
+    assert.deepEqual((await page.locator('[data-form-id]').evaluateAll(nodes => nodes.map(node => node.getAttribute('data-form-id')))).sort(),
+      current.cards.map(card => card.id).sort(), 'Every active individual document must be reachable');
+    await page.goto(new URL(filter, base).href, { waitUntil: 'networkidle' });
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false, `${width}: horizontal overflow`);
     await page.screenshot({ path: path.join(output, `gift-S5-${width}.png`), fullPage: true });
     await page.locator('[data-form-preview]').first().click();
@@ -34,8 +42,13 @@ try {
   const manifestResponse = await context.request.get(new URL('/downloads/official-forms/manifest.json', base).href);
   assert.ok(manifestResponse.ok(), 'Cannot read the real served catalogue');
   const manifest = await manifestResponse.json();
-  assert.ok(Array.isArray(manifest.documents) && manifest.documents.length > 0);
-  for (const item of manifest.documents) {
+  assert.deepEqual(manifest, read('public/downloads/official-forms/manifest.json'));
+  for (const name of ['document-parts.json', 'document-sections.json', 'preview-index.json']) {
+    const response = await context.request.get(new URL('/downloads/official-forms/' + name, base).href);
+    assert.ok(response.ok());
+    assert.deepEqual(await response.json(), read('public/downloads/official-forms/' + name));
+  }
+  for (const item of documents) {
     if (item.resource?.presentation?.visibility === 'archived') continue;
     await page.goto(new URL(`/forms?resource=${encodeURIComponent(item.id)}`, base).href, { waitUntil: 'domcontentloaded' });
     const preview = page.locator('dialog[open] [data-document-preview]');

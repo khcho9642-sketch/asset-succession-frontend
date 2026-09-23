@@ -78,6 +78,7 @@ export function DocumentPreview({ item }: Props) {
           onError={() => setImageFailed(true)} />
       </div>
       <p className={styles.caption}>{previewRoleLabel(preview.role)}{preview.width && preview.height ? ` · ${preview.width} × ${preview.height}px` : ""}
+        {preview.sourcePages ? ` · 기관 원본 ${preview.sourcePages.join("~")}쪽 발췌 (내용 변경 없음)` : ""}
         {preview.pageCount ? ` · 전체 ${preview.pageCount}쪽 중 첫 페이지` : ""}
         {preview.lowResolution ? " · 저해상도 원본은 화질을 높여 재작성하지 않았습니다. 원본 파일도 함께 확인하세요." : " · 제공 파일을 바탕으로 표시한 문서이며, 임의로 그린 견본이 아닙니다."}
       </p>

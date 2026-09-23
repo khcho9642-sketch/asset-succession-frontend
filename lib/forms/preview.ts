@@ -18,6 +18,7 @@ export type PreviewDocument = {
     height?: number;
     lowResolution?: boolean;
     pageCount?: number;
+    sourcePages?: number[];
     editorialRedraw?: boolean;
   };
   files: { path: string; format: string; role: string; delivery: string; name?: string }[];
@@ -39,6 +40,7 @@ export type ResolvedPreview = {
   height?: number;
   lowResolution: boolean;
   pageCount?: number;
+  sourcePages?: number[];
   role?: string;
   method?: string;
 };
@@ -98,6 +100,7 @@ export function resolvePreview(item: PreviewDocument): ResolvedPreview {
     width: generatedImage ? meta?.width : undefined,
     height: generatedImage ? meta?.height : undefined,
     pageCount: traced && finiteSize(meta?.pageCount) ? meta?.pageCount : undefined,
+    sourcePages: traced && Array.isArray(meta?.sourcePages) ? meta.sourcePages : undefined,
     role, method: generatedImage ? meta?.method : imagePath ? "institution-image" : "original-pdf",
   };
   // Hosted but unsupported/broken files must never disappear into the provider category.

@@ -110,10 +110,12 @@ class PreviewGeneratorTests(unittest.TestCase):
         report=builder.build(self.root)
         self.assertEqual((report['catalogueCount'],report['ready'],report['pending']),(75,75,0))
         self.assertEqual(len(self.index()['documents']),75)
-    def test_archives_are_separate_and_not_generated(self):
+    def test_archives_are_separate_but_their_existing_detail_remains_previewable(self):
         item=self.hosted('png');item['resource']={'presentation':{'visibility':'archived'}}
         self.write([item]); report=builder.build(self.root)
         self.assertEqual((report['archived'],report['ready'],report['pending']),(1,0,0))
+        self.assertEqual(report['items'][0]['previewStatus'], 'ready')
+        self.assertIn('A', self.index()['documents'])
     def test_duplicate_resource_ids_refuse_processing(self):
         item=self.hosted('png');self.write([item,item])
         with self.assertRaisesRegex(ValueError,'duplicate'):
