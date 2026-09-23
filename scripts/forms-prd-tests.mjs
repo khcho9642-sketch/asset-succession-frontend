@@ -102,6 +102,7 @@ test('explicit common evidence matches assets; empty unreviewed facets do not ma
   assert.ok(!catalog.matchesResource(empty, { ...catalog.emptyFilters(), purpose: ['inheritance'] }));
 });
 test('split schedules have document-specific business purpose, assets, usage and stage', () => {
+  assert.equal(byId.get('BP-I-01').usage, undefined, 'main form keeps its existing specific usage, not generic section instructions');
   assert.ok(ids({ purpose: ['business_succession'], stage: 'S6' }).includes('NTS-IG-10-S7'));
   assert.ok(ids({ purpose: ['business_succession'], stage: 'S5' }).includes('NTS-IG-11-S2'));
   assert.match(byId.get('NTS-IG-10-S7').description, /추징/);
