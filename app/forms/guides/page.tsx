@@ -7,8 +7,8 @@ import shell from "../FormsHeader.module.css";
 import styles from "./Guides.module.css";
 
 export const metadata: Metadata = {
-  title: "생전 준비·상속 발생 후 가이드 | 자산승계 360",
-  description: "생전 준비와 상속 발생 후 필요한 일을 살펴보고, 각 단계에 맞는 설명과 서류를 확인하세요.",
+  title: "상속·증여·양도·가업승계 가이드 | 자산승계 360",
+  description: "상황에 필요한 자료와 공식 이용 경로를 확인하세요.",
 };
 export const dynamic = "force-static";
 
@@ -25,7 +25,7 @@ export default function GuidesPage() {
       return <Link href={guideUrl(guide.timing)} className={styles.entry} key={guide.timing}>
         <span className={styles.entryIcon}><Icon size={24} aria-hidden="true" /></span>
         <p className={styles.eyebrow}>{guide.title}</p>
-        <h2>{guide.timing === "before-death" ? "미리 준비하고 있어요" : "상속이 발생했어요"}</h2>
+        <h2>{guide.question}</h2>
         <p className={styles.entryDescription}>{guide.description}</p>
         <ul>{guide.overview.map(item => <li key={item}>{item}</li>)}</ul>
         <span className={styles.entryAction}>{guide.startLabel}<ArrowRight size={18} aria-hidden="true" /></span>

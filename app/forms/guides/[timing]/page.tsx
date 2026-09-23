@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ExternalLink, FileText } from "lucide-react";
 import { PublicNav } from "@/components/PublicNav";
 import { GUIDES, getGuide, guideCatalogUrl, guideResourceUrl, guideUrl } from "@/lib/forms/guides";
+import { libraryDocuments } from "@/lib/forms/server-catalog";
+import { isPublicResource, useCategory, USE_CATEGORIES } from "@/lib/forms/catalog";
 import { LookupServices } from "../LookupServices";
 import shell from "../../FormsHeader.module.css";
 import styles from "../Guides.module.css";
@@ -35,6 +37,7 @@ export default async function GuidePage({ params }: { params: Promise<{ timing: 
         <a href="#acceptance">받을지·포기할지 검토 <ArrowRight size={15} aria-hidden="true" /></a>
       </div>}
     </aside>
+    <section className={styles.stepNote} aria-label="먼저 확인할 사항"><h2>먼저 확인할 것</h2><ul>{guide.overview.map(item => <li key={item}>{item}</li>)}</ul></section>
     <div className={styles.guideLayout}>
       <aside className={styles.contents}>
         <p>필요한 일 바로 찾기</p>
@@ -50,14 +53,17 @@ export default async function GuidePage({ params }: { params: Promise<{ timing: 
         {guide.timing === "after-death" && <LookupServices timing="after-death" stepId={step.id} />}
         {guide.timing === "before-death" && step.id === "funding" && <a className={styles.textLink} href="#lookup-pension">연금 조회 안내 보기 <ArrowRight size={15} aria-hidden="true" /></a>}
         <div className={styles.materials}><h3>필요한 자료 선택</h3><div className={styles.resourceGrid}>{step.resources.map(resource => {
-          return <Link href={guideResourceUrl(resource.id)} key={resource.id} className={styles.resource}>
-            <FileText size={18} aria-hidden="true" /><span><strong>{resource.label}</strong><small>{resource.use}</small></span><ArrowRight size={15} aria-hidden="true" />
+          const document = libraryDocuments.find(item => item.id === resource.id);
+          if (!document || !isPublicResource(document)) return null;
+          return <Link href={guideResourceUrl(resource.id, guide.timing, step.id)} key={resource.id} className={styles.resource}>
+            <FileText size={18} aria-hidden="true" /><span><small>{USE_CATEGORIES[useCategory(document)]}</small><strong>{document.title}</strong><small>{resource.use}</small></span><ArrowRight size={15} aria-hidden="true" />
           </Link>;
         })}</div></div>
+        {guide.timing === "before-death" && step.id === "options" && <Link className={styles.textLink} href={guideUrl("gift")}>생전 증여를 검토한다면 증여 안내 보기<ArrowRight size={15} aria-hidden="true" /></Link>}
         {step.sources && <div className={styles.sources}><span>공식 안내 확인</span>{step.sources.map(source => <a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer">{source.title}<ExternalLink size={12} aria-hidden="true" /><span className={styles.srOnly}> (새 창)</span></a>)}</div>}
       </section>)}</div>
     </div>
     <footer className={styles.guideFooter}><div><h2>내 상황에 맞는 자료를 더 찾아보세요</h2><p>자산 종류와 필요한 업무로 좁혀서 확인할 수 있습니다.</p></div><Link className={styles.primaryButton} href={guideCatalogUrl(guide.timing)}>관련 자료 찾기 <ArrowRight size={17} aria-hidden="true" /></Link></footer>
-    <div className={styles.switchGuide}><Link className={styles.textLink} href={guideUrl(other.timing)}>{other.title} 가이드 보기 <ArrowRight size={15} aria-hidden="true" /></Link><Link className={styles.textLink} href="/consultation">전문가 상담 <ArrowRight size={15} aria-hidden="true" /></Link></div>
+    <div className={styles.switchGuide}><Link className={styles.textLink} href={guideUrl(other.timing)}>{other.title} 가이드 보기 <ArrowRight size={15} aria-hidden="true" /></Link><Link className={styles.textLink} href="/forms/guides">다른 목적의 안내 보기<ArrowRight size={15} aria-hidden="true" /></Link><Link className={styles.textLink} href="/consultation">전문가 상담 <ArrowRight size={15} aria-hidden="true" /></Link></div>
   </main></div></div>;
 }

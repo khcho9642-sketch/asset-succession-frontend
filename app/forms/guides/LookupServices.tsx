@@ -19,11 +19,12 @@ const postDeathHeadings: Record<string, { title: string; description: string }> 
 };
 
 /** The provider handles authentication; this panel only explains what to check and record. */
-export function LookupServices({ timing = "before-death", stepId }: { timing?: GuideTiming; stepId?: string }) {
+export function LookupServices({ timing = "before-death", stepId, serviceIds }: { timing?: GuideTiming; stepId?: string; serviceIds?: string[] }) {
   const isPostDeath = timing === "after-death";
-  const services: readonly (LookupService | PostDeathService)[] = isPostDeath
+  const candidates: readonly (LookupService | PostDeathService)[] = isPostDeath
     ? POST_DEATH_LOOKUP_SERVICES.filter(service => !stepId || service.stepId === stepId)
     : LOOKUP_SERVICES;
+  const services = candidates.filter(service => !serviceIds || serviceIds.includes(service.id));
   if (!services.length) return null;
   const heading = isPostDeath
     ? postDeathHeadings[stepId ?? "estate-inquiry"] ?? postDeathHeadings["estate-inquiry"]

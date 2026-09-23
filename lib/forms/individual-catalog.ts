@@ -1,4 +1,5 @@
 import type { CatalogIndex, LibraryDocument, PresentationGroup } from "./catalog";
+import { isPublicResource } from "./catalog";
 
 /** One record, one card. Group membership never hides a document or supplies its preview. */
 export function buildIndividualCatalog(documents: LibraryDocument[], groups: PresentationGroup[]): CatalogIndex {
@@ -7,7 +8,7 @@ export function buildIndividualCatalog(documents: LibraryDocument[], groups: Pre
     if (docs.has(item.id)) throw new Error(`Duplicate library resource: ${item.id}`);
     docs.set(item.id, item);
   }
-  const visible = documents.filter(item => item.resource?.presentation.visibility !== "archived");
+  const visible = documents.filter(isPublicResource);
   const cards = visible.map(document => ({
     id: document.id, title: document.title, stage: document.resource?.primary_stage_id || null,
     document, resources: [document], matchedIds: [document.id],
@@ -18,7 +19,7 @@ export function buildIndividualCatalog(documents: LibraryDocument[], groups: Pre
     // Keep old group bookmarks resolvable; groups are not list cards or search aliases.
     groups: new Map(groups.map(group => [group.id, group])),
     rootsByResource: new Map(documents.map(item => [item.id,
-      item.resource?.presentation.visibility === "archived" ? [] : [item.id]])),
+      isPublicResource(item) ? [item.id] : []])),
   };
 }
 
@@ -54,7 +55,7 @@ export function relatedDocuments(index: CatalogIndex, id: string): LibraryDocume
     if (group.member_resource_ids.includes(id) || links.has(group.id))
       for (const member of group.member_resource_ids) links.add(member);
   }
-  return [...index.documents.values()].filter(other => other.id !== id && (
+  return [...index.documents.values()].filter(other => isPublicResource(other) && other.id !== id && (
     links.has(other.id) || other.resource?.relations.some(relation => relation.target_resource_id === id)
     || (item.sourceRecordId && other.sourceRecordId === item.sourceRecordId)
   ));

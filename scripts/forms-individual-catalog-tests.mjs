@@ -18,10 +18,10 @@ try {
       compilerOptions: { target: ts.ScriptTarget.ES2020, module: ts.ModuleKind.CommonJS },
     });
     assert.equal((code.diagnostics || []).filter(d => d.category === ts.DiagnosticCategory.Error).length, 0);
-    fs.writeFileSync(path.join(temp, `${name}.cjs`), code.outputText);
+    fs.writeFileSync(path.join(temp, `${name}.js`), code.outputText);
   }
-  const { emptyFilters, filterCatalog, matchesResource, parseCatalogFilters, catalogUrl, availableFiles } = require(path.join(temp, 'catalog.cjs'));
-  const { buildIndividualCatalog, legacyGroupDocuments } = require(path.join(temp, 'individual-catalog.cjs'));
+  const { emptyFilters, filterCatalog, matchesResource, parseCatalogFilters, catalogUrl, availableFiles } = require(path.join(temp, 'catalog.js'));
+  const { buildIndividualCatalog, legacyGroupDocuments } = require(path.join(temp, 'individual-catalog.js'));
   const document = (id, overrides = {}) => ({
     id, title: id, category: '', description: '', tags: '', format: 'PDF', editable: '', example: null, thumbnail: null,
     sizeLabel: '', institution: '테스트 기관', sourceUrl: 'https://example.org', checkedOn: '', license: '', verification: '',

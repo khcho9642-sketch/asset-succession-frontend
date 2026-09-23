@@ -2,18 +2,21 @@
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type MouseEvent } from "react";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, Check, ChevronDown, ChevronRight, Download, ExternalLink, Info, Search, SlidersHorizontal, X } from "lucide-react";
+import { ArrowDown, ArrowRight, Check, ChevronDown, ChevronRight, Download, ExternalLink, Info, Search, SlidersHorizontal, X, Landmark, BookOpen } from "lucide-react";
 import {
   availableFiles, authorityLabel, catalogUrl, emptyFilters, FACETS, filterCatalog, hasFilters, originLabel, providerLabel,
-  parseCatalogFilters, resourceUrl, STAGES, TIMINGS,
+  parseCatalogFilters, resourceUrl, STAGES, TIMINGS, USE_CATEGORIES, useCategory, isPublicResource,
   type CatalogCard, type CatalogFilters, type FacetKey, type LibraryDocument, type PresentationGroup,
 } from "@/lib/forms/catalog";
 import { buildIndividualCatalog, legacyGroupDocuments, relatedDocuments } from "@/lib/forms/individual-catalog";
 import styles from "./FormsLibrary.module.css";
-import { DocumentPreview, PreviewCoverage, PreviewThumbnail } from "./DocumentPreview";
+import { DocumentPreview, PreviewThumbnail } from "./DocumentPreview";
 import { resolvePreview } from "@/lib/forms/preview";
-import { guideUrl, guidesForResource } from "@/lib/forms/guides";
+import { guidesForResource } from "@/lib/forms/guides";
 import { getResourceUsage } from "@/lib/forms/resource-usage";
+import { SERVICE_CONTEXTS } from "@/lib/forms/library-editorial";
+import { LookupServices } from "./guides/LookupServices";
+import { GuideEntrances } from "./GuideEntrances";
 export type { LibraryDocument } from "@/lib/forms/catalog";
 
 type Props = { documents: LibraryDocument[]; groups: PresentationGroup[] };
@@ -29,20 +32,23 @@ const kindLabel = (item: LibraryDocument) => (FACETS.kind.values as Record<strin
 const deliveryLabel = (item: LibraryDocument) => item.resource?.facets.delivery === "official_link" ? `${providerLabel(item)}에서 확인` : (FACETS.delivery.values as Record<string, string>)[item.resource?.facets.delivery || ""] || "이용 방식 확인 필요";
 const stageLabel = (stage: string | null) => STAGES.find(([id]) => id === stage)?.[1] || "단계 확인 필요";
 const fileRole = (role: string) => ({ original: "원본", example: "작성 예시", extracted: "원본 페이지 발췌", combined: "양식·설명 합본", "image-compilation": "웹 사례 변환본", "web-example-image": "기관 사례 이미지" }[role] || "제공 파일");
+const providerActionLabel = (item: LibraryDocument) => item.primaryAction?.label || (useCategory(item) === "service" ? "제공처 이용 안내" : useCategory(item) === "guide" ? "안내 보기" : item.resource?.facets.origin === "official_institution" ? "공식 서식 목록 열기" : "제공처 서식 열기");
 
 function Files({ item }: { item: LibraryDocument }) {
   const files = availableFiles(item);
   if (!files.length) return item.sourceUrl ? <a className={styles.providerLink} href={item.sourceUrl} target="_blank" rel="noopener noreferrer">{providerLabel(item)}에서 확인<ExternalLink size={14} aria-hidden="true" /></a> : <p className={styles.muted}>제공 파일을 확인하고 있습니다.</p>;
   return <ul className={styles.fileList} aria-label={`${item.title} 제공 파일`}>{files.map(file => <li key={file.path}>
     <a href={file.path} download={file.delivery === "hosted"} target={file.delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer" data-file-download>
-      <span className={styles.fileFormat}>{file.format}</span><span>{file.name}<small>{fileRole(file.role)}{file.bytes > 0 ? ` · ${Math.ceil(file.bytes / 1024).toLocaleString("ko-KR")} KB` : ""}</small></span><Download size={15} aria-hidden="true" />
+      <span className={styles.fileFormat}>{file.format}</span><span>{file.name}<small>{fileRole(file.role)}{file.delivery === "hosted" ? "" : " · 공식 파일 (새 창)"}{file.bytes > 0 ? ` · ${Math.ceil(file.bytes / 1024).toLocaleString("ko-KR")} KB` : ""}</small></span>{file.delivery === "hosted" ? <Download size={15} aria-hidden="true" /> : <ExternalLink size={15} aria-hidden="true" />}
     </a>
   </li>)}</ul>;
 }
-function FileAction({ item }: { item: LibraryDocument }) {
+function FileAction({ item, onOpen }: { item: LibraryDocument; onOpen?: (event: MouseEvent<HTMLAnchorElement>, id: string) => void }) {
   const files = availableFiles(item);
-  if (!files.length) return item.sourceUrl ? <a className={styles.fileAction} href={item.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`${item.title} ${providerLabel(item)}`}>{providerLabel(item)}<ExternalLink size={14} aria-hidden="true" /></a> : <span className={styles.unavailable}>파일 확인 중</span>;
-  if (files.length === 1) return <a className={styles.fileAction} href={files[0].path} download={files[0].delivery === "hosted"} target={files[0].delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer" aria-label={`${item.title} ${files[0].format} ${fileRole(files[0].role)} 받기`} data-form-download>{files[0].format} 받기<Download size={14} aria-hidden="true" /></a>;
+  if (SERVICE_CONTEXTS[item.id]) return <a className={styles.fileAction} href={resourceUrl(item.id)} onClick={event => onOpen?.(event, item.id)}>조회·발급 안내<ArrowRight size={14} aria-hidden="true" /></a>;
+  if (useCategory(item) === "service" || !files.length) return item.sourceUrl ? <a className={styles.fileAction} href={item.primaryAction?.url || item.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`${item.title} ${providerActionLabel(item)} (새 창)`}>{providerActionLabel(item)}<ExternalLink size={14} aria-hidden="true" /></a> : <span className={styles.unavailable}>제공처 확인 필요</span>;
+  if (useCategory(item) === "guide") return <a className={styles.fileAction} href={resourceUrl(item.id)} onClick={event => onOpen?.(event, item.id)}>안내 보기<BookOpen size={14} aria-hidden="true" /></a>;
+  if (files.length === 1) return <a className={styles.fileAction} href={files[0].path} download={files[0].delivery === "hosted"} target={files[0].delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer" aria-label={`${item.title} ${files[0].format} ${fileRole(files[0].role)} ${files[0].delivery === "hosted" ? "받기" : "공식 파일 열기 (새 창)"}`} data-form-download>{files[0].format} {files[0].delivery === "hosted" ? "받기" : "열기"}{files[0].delivery === "hosted" ? <Download size={14} aria-hidden="true" /> : <ExternalLink size={14} aria-hidden="true" />}</a>;
   return <details className={styles.filePicker}><summary aria-label={`${item.title} 파일 형식 선택`}>형식·파일 선택<ChevronDown size={14} aria-hidden="true" /></summary><Files item={item} /></details>;
 }
 
@@ -56,9 +62,9 @@ export function FormsLibrary({ documents, groups }: Props) {
   const visibleCount = pageLimit.key === listKey ? pageLimit.count : 18;
   const visible = filtered.slice(0, visibleCount);
   const selected = index.documents.get(filters.resource);
-  const selectedUsage = selected ? getResourceUsage(selected.sourceRecordId || selected.id) : undefined;
+  const selectedUsage = selected ? selected.usage || getResourceUsage(selected.id) : undefined;
   const related = selected ? relatedDocuments(index, selected.id) : [];
-  const guideContexts = selected ? guidesForResource(selected.id, selected.resource?.presentation.visibility === "archived" ? undefined : selected.resource) : [];
+  const guideContexts = selected && isPublicResource(selected) ? guidesForResource(selected.id, selected.resource) : [];
   const legacyGroup = !selected ? index.groups.get(filters.resource) : undefined;
   const legacyItems = legacyGroup ? legacyGroupDocuments(index, legacyGroup.id) : [];
   const isDetailOpen = Boolean(filters.resource);
@@ -68,9 +74,8 @@ export function FormsLibrary({ documents, groups }: Props) {
   const priorFocus = useRef<HTMLElement | null>(null);
   const active = hasFilters(filters);
   const archived = documents.filter(item => item.resource?.presentation.visibility === "archived");
-  const previewResources = filtered.flatMap(card => card.resources);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  const selectedFacetCount = filters.purpose.length + filters.asset.length + filters.kind.length + filters.delivery.length;
+  const selectedFacetCount = filters.purpose.length + filters.asset.length + filters.kind.length + filters.timing.length + Number(Boolean(filters.stage));
   const selectedFacetKeys = (Object.keys(FACETS) as FacetKey[]).filter(key => filters[key].length > 0).join(",");
   function navigate(next: CatalogFilters, replace = false) {
     const href = catalogUrl(next);
@@ -83,7 +88,10 @@ export function FormsLibrary({ documents, groups }: Props) {
     event.preventDefault(); if (!filters.resource) priorFocus.current = event.currentTarget;
     navigate({ ...filters, resource: id });
   }
-  function closeDetail() { navigate({ ...filters, resource: "" }); }
+  function closeDetail() {
+    if (filters.guide) { window.location.assign(`/forms/guides/${filters.guide}${filters.step ? `#${filters.step}` : ""}`); return; }
+    navigate({ ...filters, resource: "" });
+  }
   function reset() { navigate(emptyFilters()); search.current?.focus(); }
   function toggle(key: FacetKey | "timing", value: string) {
     update({ [key]: filters[key].includes(value) ? filters[key].filter(item => item !== value) : [...filters[key], value] });
@@ -123,7 +131,7 @@ export function FormsLibrary({ documents, groups }: Props) {
       <div className={styles.cardBody}>
         <a className={styles.visual} href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)}
           aria-label={`${item.title} 자료 상세`} data-form-preview>
-          <PreviewThumbnail item={item} key={item.id} />
+          {preview.kind === "provider" && useCategory(item) !== "form" ? <span className={styles.serviceVisual}>{useCategory(item) === "service" ? <Landmark size={30} aria-hidden="true" /> : <BookOpen size={30} aria-hidden="true" />}<span>{USE_CATEGORIES[useCategory(item)]}</span></span> : <PreviewThumbnail item={item} key={item.id} />}
         </a>
         <div className={styles.cardCopy}>
           <p className={styles.cardCategory}>{kindLabel(item)}<span>·</span>{stageLabel(card.stage)}</p>
@@ -137,7 +145,7 @@ export function FormsLibrary({ documents, groups }: Props) {
       </div>
       <div className={styles.cardActions}>
         <a className={styles.detailAction} href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)}>{detailLabel}<ArrowRight size={16} aria-hidden="true" /></a>
-        <FileAction item={item} />
+        <FileAction item={item} onOpen={openDetail} />
       </div>
     </article>;
   }
@@ -146,7 +154,7 @@ export function FormsLibrary({ documents, groups }: Props) {
     return <details className={styles.facet} key={key} ref={element => { facetElements.current[key] = element; }} open={key === "purpose" || undefined}>
       <summary>{FACETS[key].label}{filters[key].length > 0 && <span className={styles.facetCount}>{filters[key].length}</span>}<ChevronDown size={16} aria-hidden="true" /></summary>
       <div className={styles.facetOptions} role="group" aria-label={FACETS[key].label}>
-        {Object.entries(FACETS[key].values).map(([value, label]) => <button type="button" key={value}
+        {Object.entries(FACETS[key].values).filter(([value]) => (key !== "asset" || index.cards.some(card => card.document?.resource?.facets.assets.includes(value))) && (key !== "kind" || !filters.use || index.cards.some(card => card.document && useCategory(card.document) === filters.use && card.document.resource?.facets.kind === value))).map(([value, label]) => <button type="button" key={value}
           aria-pressed={filters[key].includes(value)} onClick={() => toggle(key, value)}>
           <span className={styles.checkbox} aria-hidden="true">{filters[key].includes(value) && <Check size={13} strokeWidth={2.5} />}</span>{label}
         </button>)}
@@ -157,38 +165,21 @@ export function FormsLibrary({ documents, groups }: Props) {
   return <main className={styles.library} id="forms-library" data-forms-library="individual-v3">
     <nav className={styles.breadcrumb} aria-label="현재 위치"><Link href="/">홈</Link><ChevronRight size={13} aria-hidden="true" /><span aria-current="page">서류양식</span></nav>
     <header className={styles.header}>
-      <div><h1>서류 자료실</h1><p>서류별로 미리보기와 이용 방법을 확인하세요. 부표·작성사례도 각각 찾을 수 있습니다.</p></div>
+      <div><h1>서류 자료실</h1><p>필요한 서류를 찾고, 조회·발급 방법과 사용 안내를 확인하세요.</p></div>
     </header>
-
-    <section className={styles.guideEntrances} aria-label="상속 상황별 가이드">
-      <div><strong>무엇부터 해야 할지 궁금하다면</strong><span>할 일과 필요한 자료를 함께 확인하세요.</span></div>
-      <Link href={guideUrl("before-death")}><span>미리 준비하고 있어요<small>재산 정리 · 방법 비교 · 실행 준비</small></span><ArrowRight size={19} aria-hidden="true" /></Link>
-      <Link href={guideUrl("after-death")}><span>상속이 발생했어요<small>재산·채무 확인 · 선택 · 신고와 수령</small></span><ArrowRight size={19} aria-hidden="true" /></Link>
-    </section>
 
     <section className={styles.searchWorkspace} aria-label="자료 검색과 단계 선택">
       <div className={styles.searchRow}>
         <label className={styles.search}><Search size={23} strokeWidth={1.8} aria-hidden="true" />
-          <span className={styles.srOnly}>서류명·용도로 찾기</span><input ref={search} type="search" value={filters.q}
-            onChange={event => update({ q: event.target.value }, true)} placeholder="어떤 서류를 찾으세요? 서류명·용도·기관 검색" maxLength={100} autoComplete="off" />
+          <span className={styles.srOnly}>서류명·하고 싶은 일·기관으로 검색</span><input ref={search} type="search" value={filters.q}
+            onChange={event => update({ q: event.target.value }, true)} placeholder="서류명·하고 싶은 일·기관으로 검색" maxLength={100} autoComplete="off" />
         </label>
-        <p className={styles.catalogSummary} data-catalog-summary><strong>개별 자료 {index.cards.length}개</strong><span>서류 1개당 카드 1개</span></p>
       </div>
-      <div className={styles.timingRow}>
-        <span className={styles.controlLabel}>준비 상황</span>
-        <div className={styles.timing} role="group" aria-label="준비 시점">
-          <button type="button" aria-pressed={filters.timing.length === 0} onClick={() => update({ timing: [] })}>전체</button>
-          <button type="button" aria-pressed={filters.timing.includes("before_death")} onClick={() => toggle("timing", "before_death")}>생전 준비</button>
-          <button type="button" aria-pressed={filters.timing.includes("after_death")} onClick={() => toggle("timing", "after_death")}>상속 발생 후</button>
-        </div>
-        <span className={styles.timingHint}>함께 쓰는 자료는 두 시점에서 찾을 수 있어요.</span>
-      </div>
-      <nav className={styles.stages} aria-label="지금 할 일">
-        <button type="button" aria-pressed={!filters.stage} onClick={() => update({ stage: "" })}><span>전체</span><strong>모든 단계</strong></button>
-        {STAGES.map(([id, label]) => <button type="button" key={id} aria-pressed={filters.stage === id}
-          onClick={() => update({ stage: filters.stage === id ? "" : id })}><span>{id}</span><strong>{label}</strong></button>)}
-      </nav>
     </section>
+    <GuideEntrances />
+    <div className={styles.useTabs} role="group" aria-label="이용 구분">
+      {Object.entries({ "": "전체", ...USE_CATEGORIES }).map(([value, label]) => <button key={value} type="button" aria-pressed={(filters.use || "") === value} onClick={() => update({ use: value, kind: [], delivery: [] })}>{label}</button>)}
+    </div>
 
     <div className={styles.workspace}>
       <aside className={styles.filterRail} aria-label="자료 필터" data-open={mobileFiltersOpen}>
@@ -197,7 +188,9 @@ export function FormsLibrary({ documents, groups }: Props) {
           {selectedFacetCount > 0 && <span>{selectedFacetCount}</span>}<ChevronDown size={17} aria-hidden="true" /></button>
         <div className={styles.filterPanel} id="forms-filter-controls">
           <div className={styles.filterHeading}><h2>조건으로 찾기</h2><button type="button" onClick={reset}>초기화</button></div>
-          {(Object.keys(FACETS) as FacetKey[]).map(facetControls)}
+          {(["purpose", "asset", "kind"] as FacetKey[]).map(facetControls)}
+          <details className={styles.facet}><summary>준비 시점<ChevronDown size={16} aria-hidden="true" /></summary><div className={styles.facetOptions} role="group" aria-label="준비 시점">{Object.entries(TIMINGS).map(([value, label]) => <button type="button" key={value} aria-pressed={filters.timing.includes(value)} onClick={() => toggle("timing", value)}><span className={styles.checkbox} aria-hidden="true">{filters.timing.includes(value) && <Check size={13} />}</span>{label}</button>)}</div></details>
+          <details className={styles.facet}><summary>업무로 찾기<ChevronDown size={16} aria-hidden="true" /></summary><div className={styles.facetOptions} role="group" aria-label="업무로 찾기">{STAGES.map(([id, label]) => <button type="button" key={id} aria-pressed={filters.stage === id} onClick={() => update({ stage: filters.stage === id ? "" : id })}>{id} · {label}</button>)}</div></details>
           <p className={styles.filterNote}>각 항목은 여러 개 선택할 수 있어요.</p>
           <button type="button" className={styles.mobileApplyFilters} onClick={() => {
             setMobileFiltersOpen(false);
@@ -217,8 +210,8 @@ export function FormsLibrary({ documents, groups }: Props) {
               {!active && archived.length > 0 ? ` · 보관 ${archived.length}개 별도` : ""}</p></div>
           {active && <button type="button" onClick={reset}>전체 자료 보기<X size={14} aria-hidden="true" /></button>}
         </div>
-        <PreviewCoverage items={previewResources} />
         {active && <div className={styles.appliedFilters} aria-label="적용한 조건">
+          {filters.use && <button type="button" onClick={() => update({ use: "" })}>{USE_CATEGORIES[filters.use as keyof typeof USE_CATEGORIES]}<X size={13} aria-hidden="true" /></button>}
           {filters.stage && <button onClick={() => update({ stage: "" })} aria-label="단계 조건 해제">{stageLabel(filters.stage)}<X size={13} aria-hidden="true" /></button>}
           {([...Object.keys(FACETS), "timing"] as (FacetKey | "timing")[]).flatMap(key => filters[key].map(value => <button key={`${key}-${value}`}
             onClick={() => toggle(key, value)} aria-label={`${key === "timing" ? TIMINGS[value] : (FACETS[key].values as Record<string, string>)[value]} 조건 해제`}>
@@ -229,7 +222,7 @@ export function FormsLibrary({ documents, groups }: Props) {
           {visible.length < filtered.length && <button type="button" className={styles.loadMore}
             onClick={() => setPageLimit({ key: listKey, count: visibleCount + 18 })}>자료 더 보기<span>{visible.length} / {filtered.length}</span><ArrowDown size={18} aria-hidden="true" /></button>}
         </> : <div className={styles.empty}><Search size={29} strokeWidth={1.5} aria-hidden="true" /><h3>일치하는 자료가 없어요.</h3>
-            <p>검색어를 줄이거나 선택한 조건을 해제해 보세요.</p><button type="button" onClick={reset}>전체 자료 보기</button></div>}
+            <p>위의 조건을 하나씩 해제하거나 상황별 안내에서 자료를 골라보세요.</p><Link href="/forms/guides">상황별 안내 보기</Link><button type="button" onClick={reset}>전체 자료 보기</button></div>}
       </section>
     </div>
 
@@ -240,7 +233,7 @@ export function FormsLibrary({ documents, groups }: Props) {
     </details>}
     <footer className={styles.footer} id="forms-usage"><p>공공·민간 제공자료의 출처와 확인일은 자료 상세에서 확인하세요.<br />제출 전 제공처의 최신 안내를 확인하세요.</p>
       <a href="/downloads/official-forms/manifest.json" target="_blank" rel="noopener noreferrer">출처·검증 기록<ExternalLink size={14} aria-hidden="true" /></a>
-      <a href="/downloads/official-forms/official-forms.zip" download data-bundle-download title="기존 74개 자료만 포함합니다. 추가 자료는 각 카드에서 받으세요.">기존 자료 ZIP 받기 (74개)<Download size={14} aria-hidden="true" /></a>
+      <details><summary>이전 묶음 보관본</summary><p>현재 자료실의 공개 범위와 다릅니다. 제외 자료가 포함된 기존 74개 묶음을 보존한 파일입니다.</p><a href="/downloads/official-forms/official-forms.zip" download data-bundle-download>과거 ZIP 보관본 받기<Download size={14} aria-hidden="true" /></a></details>
     </footer>
 
     <dialog ref={dialog} className={styles.dialog} aria-labelledby="form-preview-title"
@@ -253,36 +246,41 @@ export function FormsLibrary({ documents, groups }: Props) {
         <h2 id="form-preview-title">{selected?.title || legacyGroup?.title || "자료를 찾을 수 없어요"}</h2></div>
         <button type="button" onClick={closeDetail} aria-label="자료 상세 닫기"><X size={23} aria-hidden="true" /></button>
       </div>
-      <div className={styles.dialogBody}>{selected ? <>
+      <div className={styles.dialogBody}>{selected?.resource?.presentation.visibility === "excluded" ? <section><p className={styles.contextNote}>현재 자료실의 기본 제공 범위에서 제외된 자료입니다</p><p>{selected.title}</p><a className={styles.providerLink} href={selected.sourceUrl} target="_blank" rel="noopener noreferrer">기존 출처 확인 (새 창)<ExternalLink size={15} aria-hidden="true" /></a></section> : selected ? <>
         {selected.resource?.presentation.visibility === "archived" && <p className={styles.contextNote}>기본 목록에서 보관한 자료입니다. 기존 원본과 출처를 확인할 수 있습니다.</p>}
-        <section className={styles.downloadSection} id="detail-downloads" aria-label="제공 파일과 이용 방법">
-          <div className={styles.downloadHeading}><h3>{availableFiles(selected).length ? "파일 선택·다운로드" : "자료 확인하기"}</h3>
-            <span>{availableFiles(selected).length ? `${availableFiles(selected).length}개 파일` : deliveryLabel(selected)}</span></div>
-          <Files item={selected} />
-        </section>
+        {filters.guide && <p className={styles.contextNote}>상황별 안내에서 선택한 자료입니다. 닫으면 보던 안내 위치로 돌아갑니다.</p>}
         <div className={styles.originBadges}><span data-origin={selected.resource?.facets.origin}>{originLabel(selected)}</span><span>{authorityLabel(selected)}</span></div>
         <p className={styles.detailDescription}>{selected.description}</p>
-        <DocumentPreview item={selected} key={selected.id} />
+        {selectedUsage && <dl className={styles.metadata}><dt>사용 대상</dt><dd>{selectedUsage.who}</dd><dt>쓰는 경우</dt><dd>{selectedUsage.when}</dd></dl>}
+        <section className={styles.downloadSection} id="detail-downloads" aria-label="제공 파일과 이용 방법">
+          <div className={styles.downloadHeading}><h3>{USE_CATEGORIES[useCategory(selected)]}</h3></div>
+          {!SERVICE_CONTEXTS[selected.id] && (useCategory(selected) === "service" || !availableFiles(selected).length ? <FileAction item={selected} /> : <Files item={selected} />)}
+        </section>
+        {SERVICE_CONTEXTS[selected.id] && <section id="detail-service-contexts" aria-label="본인과 상속인 이용 안내">
+          {(filters.guide === "after-death" ? ["after-death", "before-death"] as const : ["before-death", "after-death"] as const).filter(timing => !filters.timing.length || filters.timing.includes(timing.replace("-", "_"))).map(timing => <LookupServices key={timing} timing={timing} serviceIds={SERVICE_CONTEXTS[selected.id]} />)}
+        </section>}
+        {selectedUsage && <section className={styles.usageGuide} aria-label="자료 사용 안내">
+          <h3>이 자료는 이렇게 사용하세요</h3>
+          <div className={styles.usageColumns}><div><h4>먼저 준비할 것</h4><ul>{selectedUsage.prepare.map(item => <li key={item}>{item}</li>)}</ul></div>
+            <div><h4>사용 순서</h4><ol>{selectedUsage.steps.map(item => <li key={item}>{item}</li>)}</ol></div></div>
+          {selectedUsage.note && <p className={styles.usageNote}>{selectedUsage.note}</p>}
+          {selected.resource?.facets.timing.length === 2 && <p className={styles.timingExplanation}>생전·사후 모두 연결되는 이유: {selectedUsage.timingRationale}</p>}
+          {selected.usage?.sourceUrls.length ? <div className={styles.usageSources}>{[...new Set(selected.usage.sourceUrls)].map((url, index) => <a href={url} key={url} target="_blank" rel="noopener noreferrer">{url.includes("hometax") ? "홈택스 열기" : `이용 근거 ${index + 1}`} (새 창)<ExternalLink size={13} aria-hidden="true" /></a>)}</div> : null}
+        </section>}
+        {(availableFiles(selected).length > 0 || selected.thumbnail) && <><DocumentPreview item={selected} key={selected.id} />{useCategory(selected) === "service" && <Files item={selected} />}</>}
         {related.length > 0 && <nav className={styles.relatedGuides} aria-label="관련 서류" data-related-documents><h3>관련 서류</h3>
           {related.map(item => <a key={item.id} href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)}>
             <span>{item.title}<small>{kindLabel(item)}</small></span><ArrowRight size={16} aria-hidden="true" />
           </a>)}
         </nav>}
-        {selectedUsage && <section className={styles.usageGuide} aria-label="자료 사용 안내">
-          <h3>이 자료는 이렇게 사용하세요</h3>
-          <dl><dt>누가 사용하나요?</dt><dd>{selectedUsage.who}</dd><dt>언제 필요한가요?</dt><dd>{selectedUsage.when}</dd></dl>
-          <div className={styles.usageColumns}><div><h4>먼저 준비할 것</h4><ul>{selectedUsage.prepare.map(item => <li key={item}>{item}</li>)}</ul></div>
-            <div><h4>사용 순서</h4><ol>{selectedUsage.steps.map(item => <li key={item}>{item}</li>)}</ol></div></div>
-          {selectedUsage.note && <p className={styles.usageNote}>{selectedUsage.note}</p>}
-          {selected.resource?.facets.timing.length === 2 && <p className={styles.timingExplanation}>생전·사후 모두 연결되는 이유: {selectedUsage.timingRationale}</p>}
-        </section>}
         {guideContexts.length > 0 && <nav className={styles.relatedGuides} aria-label="이 자료를 사용하는 가이드"><h3>전체 진행 과정에서 보기</h3>
           {guideContexts.map(context => <Link key={context.href} href={context.href}><span>{context.guideTitle}<small>{context.stepTitle}</small></span><ArrowRight size={16} aria-hidden="true" /></Link>)}
         </nav>}
         <div className={styles.detailLayout} style={{ gridTemplateColumns: "minmax(0, 1fr)" }}>
           <div className={styles.detailInfo}><h3>자료 정보</h3><dl className={styles.metadata}>
             <dt>제공처</dt><dd>{selected.institution}</dd><dt>이용 방식</dt><dd>{deliveryLabel(selected)}</dd>
-            <dt>서식번호</dt><dd>{selected.form_no || "기관 안내 확인"}</dd><dt>확인일</dt><dd>{selected.checkedOn || selected.checked_at?.slice(0, 10) || "확인 필요"}</dd>
+            <dt>서식번호</dt><dd>{selected.form_no || "기관 안내 확인"}</dd><dt>출처 확인일</dt><dd>{selected.checkedOn || selected.checked_at?.slice(0, 10) || "기존 안내 보존 · 재확인 필요"}</dd>
+            <dt>서식 개정일</dt><dd>{selected.revised_at || "공식 원문 확인"}</dd>
             <dt>이용 조건</dt><dd>{selected.license || "제공처 안내 확인"}</dd>
           </dl>{selected.sourceUrl && <a className={styles.providerLink} href={selected.sourceUrl} target="_blank" rel="noopener noreferrer">출처 게시물 확인<ExternalLink size={15} aria-hidden="true" /></a>}
             {selected.licenseUrl && selected.licenseUrl !== selected.sourceUrl && <a className={styles.providerLink} href={selected.licenseUrl} target="_blank" rel="noopener noreferrer">이용 조건 확인<ExternalLink size={15} aria-hidden="true" /></a>}
@@ -291,11 +289,12 @@ export function FormsLibrary({ documents, groups }: Props) {
         {selected.supplementalSources?.length ? <section className={styles.supplementalSources} aria-label="함께 확인할 첨부자료"><h3>함께 확인할 첨부자료</h3>
           <p>아래 자료는 제공처의 안내에서 확인할 수 있습니다.</p><ul>{selected.supplementalSources.map(source => <li key={`${source.title}-${source.url}`}>
             <div><span>{source.origin === "private_institution" ? "민간 제공 자료" : source.origin === "official_institution" ? "공공기관 자료" : "제공자료"}</span><small>{source.institution}</small></div>
-            <a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}<ExternalLink size={15} aria-hidden="true" /></a><p>{source.note}</p><small>출처 확인일 {source.checkedOn}</small>
+            <a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}<ExternalLink size={15} aria-hidden="true" /></a><p>{source.note}</p><small>{source.checkedOn ? `출처 확인일 ${source.checkedOn}` : "제공기관의 현재 안내를 확인하세요."}</small>
           </li>)}</ul>
         </section> : null}
         <details className={styles.verification}><summary>자료 확인 내용<ChevronDown size={16} aria-hidden="true" /></summary>
           <p>{selected.verification}</p>{selected.exampleVerification && <p>{selected.exampleVerification}</p>}
+          {selected.editorialReview && <p>이용·분류 검토 ({selected.editorialReview.date}): {selected.editorialReview.note}</p>}
           {selected.primaryArtifactType === "derived-image-compilation" && <p>기관 웹 사례의 이미지·본문을 묶은 사이트 변환본입니다.</p>}
           {selected.resource?.classification?.status !== "verified" && selected.resource?.classification?.note && <p>분류 검토: {selected.resource.classification.note}</p>}
         </details>
@@ -311,11 +310,11 @@ export function FormsLibrary({ documents, groups }: Props) {
         </li>)}</ul> : <p>현재 제공 중인 자료가 없습니다. 전체 목록에서 확인하세요.</p>}
       </section> : <div className={styles.empty}><p>주소의 자료 ID를 확인하거나 전체 목록에서 다시 찾아보세요.</p><button onClick={reset}>전체 자료 보기</button></div>}</div>
       <div className={styles.dialogFooter}>
-        <button className={styles.dialogBack} type="button" onClick={closeDetail}>목록으로</button>
-        {selected ? <button className={styles.dialogPrimary} type="button" onClick={() => {
-          const target = dialog.current?.querySelector<HTMLElement>("#detail-downloads");
-          target?.scrollIntoView({ block: "start" }); target?.querySelector<HTMLAnchorElement>("a[href]")?.focus();
-        }}>{availableFiles(selected).length ? "파일 선택·다운로드" : "제공처 확인"}<Download size={17} aria-hidden="true" /></button>
+        <button className={styles.dialogBack} type="button" onClick={closeDetail}>{filters.guide ? "가이드로 돌아가기" : "목록으로"}</button>
+        {selected && selected.resource?.presentation.visibility !== "excluded" ? <button className={styles.dialogPrimary} type="button" onClick={() => {
+          const target = dialog.current?.querySelector<HTMLElement>(SERVICE_CONTEXTS[selected.id] ? "#detail-service-contexts" : "#detail-downloads");
+          target?.scrollIntoView({ block: "start" }); target?.querySelector<HTMLElement>("summary, a[href]")?.focus();
+        }}>{useCategory(selected) === "form" && availableFiles(selected).length ? "파일 선택·다운로드" : "이용 방법 확인"}{useCategory(selected) === "form" && availableFiles(selected).length ? <Download size={17} aria-hidden="true" /> : <ArrowRight size={17} aria-hidden="true" />}</button>
           : <button className={styles.dialogPrimary} type="button" onClick={closeDetail}>목록으로 돌아가기<ArrowRight size={17} aria-hidden="true" /></button>}
       </div>
     </dialog>

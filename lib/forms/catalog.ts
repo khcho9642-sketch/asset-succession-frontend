@@ -12,6 +12,12 @@ export type ResourceMetadata = {
 };
 export type LibraryFile = { name: string; path: string; format: string; role: string; bytes: number; delivery: string };
 export type LibraryDocument = {
+  useCategory?: "service" | "guide" | "form";
+  primaryAction?: { label: string; url: string };
+  searchAliases?: string[];
+  assetCommon?: boolean;
+  usage?: { who: string; when: string; prepare: string[]; steps: string[]; note: string; timingRationale: string; sourceUrls: string[] };
+  editorialReview?: { date: string; status: string; note: string };
   id: string; title: string; category: string; description: string; tags: string;
   format: string; editable: string; example: string | null; thumbnail: string | null;
   sizeLabel: string; institution: string; sourceUrl: string; checkedOn: string;
@@ -41,8 +47,10 @@ export const FACETS = {
 } as const;
 export const TIMINGS: Record<string, string> = { before_death: "생전 준비·실행", after_death: "상속 발생 후" };
 export type FacetKey = keyof typeof FACETS;
-export type CatalogFilters = { purpose: string[]; asset: string[]; kind: string[]; delivery: string[]; timing: string[]; stage: string; q: string; resource: string; from: string };
-export const emptyFilters = (): CatalogFilters => ({ purpose: [], asset: [], kind: [], delivery: [], timing: [], stage: "", q: "", resource: "", from: "" });
+export const USE_CATEGORIES = { service: "조회·발급", guide: "절차 안내", form: "서식 다운로드" } as const;
+export const GUIDE_IDS = ["before-death", "after-death", "gift", "transfer", "business-succession"] as const;
+export type CatalogFilters = { purpose: string[]; asset: string[]; kind: string[]; delivery: string[]; timing: string[]; stage: string; q: string; resource: string; from: string; use?: string; guide?: string; step?: string };
+export const emptyFilters = (): CatalogFilters => ({ purpose: [], asset: [], kind: [], delivery: [], timing: [], stage: "", q: "", resource: "", from: "", use: "", guide: "", step: "" });
 const split = (params: URLSearchParams, key: string, allowed: readonly string[]) => [...new Set(params.getAll(key).flatMap(value => value.split(",")))].filter(value => allowed.includes(value));
 export function parseCatalogFilters(search: string): CatalogFilters {
   const params = new URLSearchParams(search);
@@ -53,18 +61,23 @@ export function parseCatalogFilters(search: string): CatalogFilters {
   result.q = (params.get("q") || "").slice(0, 100);
   result.resource = canonicalResourceId((params.get("resource") || "").slice(0, 120));
   result.from = params.get("from") === "precheck" ? "precheck" : "";
+  result.use = Object.hasOwn(USE_CATEGORIES, params.get("use") || "") ? params.get("use")! : "";
+  result.guide = GUIDE_IDS.find(id => id === params.get("guide")) || "";
+  result.step = result.guide && /^[a-z][a-z0-9-]{0,60}$/.test(params.get("step") || "") ? params.get("step")! : "";
   return result;
 }
 export function catalogUrl(filters: CatalogFilters): string {
   const params = new URLSearchParams();
   for (const key of ["purpose", "asset", "kind", "delivery", "timing"] as const) if (filters[key].length) params.set(key, filters[key].join(","));
-  for (const key of ["stage", "q", "resource", "from"] as const) if (filters[key]) params.set(key, filters[key]);
+  for (const key of ["stage", "q", "resource", "from", "use", "guide", "step"] as const) if (filters[key]) params.set(key, filters[key]);
   return `/forms${params.size ? `?${params}` : ""}`;
 }
 export const RESOURCE_ALIASES: Record<string, string> = { "P4-03": "P3-02", "P7-07": "P3-03", "P8-07": "P1-22", "P1-03": "REG-I-01", "P1-04": "REG-I-03", "P1-05": "REG-G-01" };
 export const canonicalResourceId = (id: string) => RESOURCE_ALIASES[id] || id;
 export const resourceUrl = (id: string) => catalogUrl({ ...emptyFilters(), resource: canonicalResourceId(id) });
-export const hasFilters = (f: CatalogFilters) => Boolean(f.q || f.stage || f.purpose.length || f.asset.length || f.kind.length || f.delivery.length || f.timing.length);
+export const hasFilters = (f: CatalogFilters) => Boolean(f.use || f.q || f.stage || f.purpose.length || f.asset.length || f.kind.length || f.delivery.length || f.timing.length);
+export const isPublicResource = (item: LibraryDocument) => !["archived", "excluded"].includes(item.resource?.presentation.visibility || "");
+export const useCategory = (item: LibraryDocument) => item.useCategory || (item.resource?.facets.kind === "service_link" ? "service" : item.resource?.facets.kind === "guide" ? "guide" : "form");
 const normalize = (value: string) => value.normalize("NFKC").toLocaleLowerCase("ko-KR").replace(/\s+/g, "");
 const overlaps = (selected: string[], actual: string[]) => selected.length === 0 || selected.some(value => actual.includes(value));
 function matchesFacets(meta: Pick<ResourceMetadata, "facets" | "stage_ids"> | undefined, filters: CatalogFilters): boolean {
@@ -76,8 +89,9 @@ function matchesFacets(meta: Pick<ResourceMetadata, "facets" | "stage_ids"> | un
     && (!filters.stage || Boolean(meta?.stage_ids.includes(filters.stage)));
 }
 export function matchesResource(item: LibraryDocument, filters: CatalogFilters, groupTitles: string[] = []): boolean {
-  return matchesFacets(item.resource, filters)
-    && normalize([item.id, item.title, item.catalogTitle, item.description, item.tags, item.institution, item.originalCategory, item.category, ...groupTitles].join(" ")).includes(normalize(filters.q));
+  return (!filters.use || useCategory(item) === filters.use)
+    && matchesFacets(item.resource, item.assetCommon ? { ...filters, asset: [] } : filters)
+    && normalize([item.id, item.title, item.catalogTitle, item.description, item.tags, item.institution, item.originalCategory, item.category, ...(item.searchAliases || []), item.usage?.when || "", ...groupTitles].join(" ")).includes(normalize(filters.q));
 }
 export function providerLabel(item: LibraryDocument): string {
   const origin = item.resource?.facets.origin;
@@ -130,14 +144,14 @@ export function buildCatalog(documents: LibraryDocument[], groups: PresentationG
 export function filterCatalog(index: CatalogIndex, filters: CatalogFilters): CatalogCard[] {
   const matching = new Set<string>();
   for (const item of index.documents.values()) {
-    if (item.resource?.presentation.visibility === "archived") continue;
+    if (!isPublicResource(item)) continue;
     const groupTitles = (index.rootsByResource.get(item.id) || []).map(id => index.groups.get(id)?.title || "");
     if (matchesResource(item, filters, groupTitles)) matching.add(item.id);
   }
   return index.cards.flatMap(card => {
     const matchedIds = card.resources.filter(item => matching.has(item.id)).map(item => item.id);
     return matchedIds.length ? [{ ...card, matchedIds }] : [];
-  });
+  }).sort((a, b) => Number(normalize(b.title) === normalize(filters.q)) - Number(normalize(a.title) === normalize(filters.q)));
 }
 /** Preserve examples/attachments as named files; never invent alternative formats. */
 export function availableFiles(item: LibraryDocument): LibraryFile[] {
