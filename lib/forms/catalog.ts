@@ -18,7 +18,10 @@ export type LibraryDocument = {
   license: string; verification: string; delivery: string;
   originalCategory: string; catalogTitle: string; exampleVerification: string; licenseUrl: string;
   primaryArtifactType?: string;
-  preview?: { method: string; sourceRole: string; width: number; height: number; lowResolution: boolean };
+  sourceRecordId?: string;
+  documentSection?: { sourcePath: string; pages: number[]; match: string };
+  preview?: { method: string; sourceRole: string; width: number; height: number; lowResolution: boolean;
+    sourcePath?: string; sourceSha256?: string; pdfPath?: string; pageCount?: number; editorialRedraw?: boolean };
   form_no?: string | null; revised_at?: string | null; deadline?: string | null; deadline_basis?: string | null;
   source_type?: string | null; checked_at?: string | null; status?: string; task_id?: string;
   files: LibraryFile[];
@@ -33,8 +36,8 @@ export const STAGES = [
 export const FACETS = {
   purpose: { label: "목적", values: { inheritance: "상속", gift: "증여", capital_transfer: "양도", business_succession: "가업승계" } },
   asset: { label: "자산", values: { real_estate: "부동산", cash_deposit: "현금·예금", securities: "주식·증권", business: "사업·경영권", insurance_pension: "보험·연금", other: "기타 자산" } },
-  kind: { label: "자료 유형", values: { form: "서식", guide: "안내", worksheet: "자체 점검표", example: "작성사례", toolkit: "준비 묶음", service_link: "기관 서비스" } },
-  delivery: { label: "이용 방식", values: { hosted: "파일 받기", official_link: "제공처에서 확인", inline: "화면에서 확인", unavailable: "준비 중" } },
+  kind: { label: "자료 유형", values: { form: "서식", guide: "안내", example: "작성사례", service_link: "기관 서비스" } },
+  delivery: { label: "이용 방식", values: { hosted: "파일 받기", official_link: "제공처에서 확인", unavailable: "준비 중" } },
 } as const;
 export const TIMINGS: Record<string, string> = { before_death: "생전 준비·실행", after_death: "상속 발생 후" };
 export type FacetKey = keyof typeof FACETS;
@@ -64,7 +67,6 @@ export const resourceUrl = (id: string) => catalogUrl({ ...emptyFilters(), resou
 export const hasFilters = (f: CatalogFilters) => Boolean(f.q || f.stage || f.purpose.length || f.asset.length || f.kind.length || f.delivery.length || f.timing.length);
 const normalize = (value: string) => value.normalize("NFKC").toLocaleLowerCase("ko-KR").replace(/\s+/g, "");
 const overlaps = (selected: string[], actual: string[]) => selected.length === 0 || selected.some(value => actual.includes(value));
-export type PlanningCatalogResource = { id: string; title: string; description: string; stage_ids: string[]; primary_stage_id: string; facets: ResourceMetadata["facets"] };
 function matchesFacets(meta: Pick<ResourceMetadata, "facets" | "stage_ids"> | undefined, filters: CatalogFilters): boolean {
   return overlaps(filters.purpose, meta?.facets.purposes || [])
     && overlaps(filters.asset, meta?.facets.assets || [])
@@ -77,10 +79,6 @@ export function matchesResource(item: LibraryDocument, filters: CatalogFilters, 
   return matchesFacets(item.resource, filters)
     && normalize([item.id, item.title, item.catalogTitle, item.description, item.tags, item.institution, item.originalCategory, item.category, ...groupTitles].join(" ")).includes(normalize(filters.q));
 }
-export function filterPlanningResources(items: PlanningCatalogResource[], filters: CatalogFilters): PlanningCatalogResource[] {
-  return items.filter(item => matchesFacets(item, filters)
-    && normalize([item.id, item.title, item.description, "자산승계 360 자체 제작 상담 준비자료"].join(" ")).includes(normalize(filters.q)));
-}
 export function providerLabel(item: LibraryDocument): string {
   const origin = item.resource?.facets.origin;
   return origin === "private_institution" ? "민간 제공처" : origin === "official_institution" ? "공식 제공처" : "제공처";
@@ -89,7 +87,7 @@ export function originLabel(item: LibraryDocument): string {
   return ({ official_institution: "공공기관 제공", private_institution: "민간 제공 참고서식", editorial: "자체 제작", unknown: "제공 주체 확인 필요" } as Record<string, string>)[item.resource?.facets.origin || "unknown"] || "제공 주체 확인 필요";
 }
 export function authorityLabel(item: LibraryDocument): string {
-  return ({ statutory: "법정 서식", official_reference: "기관 참고자료", private_terms: "민간 제공 자료", editorial: "자체 준비자료", unknown: "자료 성격 확인 필요" } as Record<string, string>)[item.resource?.facets.authority || "unknown"] || "자료 성격 확인 필요";
+  return ({ statutory: "법정 서식", official_reference: "기관 참고자료", private_terms: "민간 제공 자료", editorial: "자체 제작 자료", unknown: "자료 성격 확인 필요" } as Record<string, string>)[item.resource?.facets.authority || "unknown"] || "자료 성격 확인 필요";
 }
 export type CatalogCard = { id: string; title: string; stage: string | null; group?: PresentationGroup; document?: LibraryDocument; resources: LibraryDocument[]; matchedIds: string[] };
 export type CatalogIndex = { cards: CatalogCard[]; documents: Map<string, LibraryDocument>; groups: Map<string, PresentationGroup>; rootsByResource: Map<string, string[]> };

@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { ArrowRight, ChevronDown, ExternalLink, Search } from "lucide-react";
+import { ChevronDown, ExternalLink, Search } from "lucide-react";
 import { LOOKUP_SERVICES, type LookupService } from "@/lib/forms/lookup-services";
 import { POST_DEATH_LOOKUP_SERVICES } from "@/lib/forms/post-death-lookup-services";
 import type { GuideTiming } from "@/lib/forms/guides";
@@ -15,7 +14,7 @@ const authenticationLabels = {
 type PostDeathService = (typeof POST_DEATH_LOOKUP_SERVICES)[number];
 const postDeathHeadings: Record<string, { title: string; description: string }> = {
   "first-actions": { title: "상속관계 확인에 필요한 증명서", description: "신청인과 고인의 관계를 확인할 자료부터 준비하세요." },
-  "estate-inquiry": { title: "상속재산과 채무, 어디서 확인하나요?", description: "조회 범위와 신청 자격을 확인하고, 결과를 정리 노트에 기록하세요." },
+  "estate-inquiry": { title: "상속재산과 채무, 어디서 확인하나요?", description: "조회 범위와 신청 자격, 결과에서 확인할 항목을 살펴보세요." },
   transfer: { title: "유족연금 신청, 어디서 확인하나요?", description: "해당 급여의 신청 자격과 준비 서류를 확인하세요." },
 };
 
@@ -28,7 +27,7 @@ export function LookupServices({ timing = "before-death", stepId }: { timing?: G
   if (!services.length) return null;
   const heading = isPostDeath
     ? postDeathHeadings[stepId ?? "estate-inquiry"] ?? postDeathHeadings["estate-inquiry"]
-    : { title: "내 재산, 어디서 확인하나요?", description: "조회할 항목을 열고, 확인한 내용을 정리 노트에 기록하세요." };
+    : { title: "내 재산, 어디서 확인하나요?", description: "조회할 항목을 열고 공식 사이트의 이용 방법을 확인하세요." };
   const headingId = isPostDeath ? `lookup-services-after-death-${stepId ?? "all"}-title` : "lookup-services-title";
   return <section className={styles.panel} aria-labelledby={headingId} data-lookup-timing={timing}>
     <div className={styles.heading}>
@@ -67,11 +66,6 @@ export function LookupServices({ timing = "before-death", stepId }: { timing?: G
             </dl>
           </div> : <p className={styles.authDetail}>{service.authentication.text}</p>}
           <div className={styles.checks}><h4>{isPostDeath ? "조회·신청 후 확인할 항목" : "조회 후 확인할 항목"}</h4><ul>{service.checks.map(check => <li key={check}>{check}</li>)}</ul></div>
-          <div className={styles.recording}><h4>정리 노트에는 이렇게 옮기세요</h4>{service.targets.map(target => <div className={styles.target} key={`${target.resourceId}-${target.questionId}`}>
-            <p className={styles.record}>{target.record}</p>
-            <p className={styles.example}><span>작성 예시</span>{target.example}</p>
-            <Link className={styles.targetLink} href={`/forms/planning/${target.resourceId}#${target.questionId}`}><span>{target.label}<small>{target.resourceId === "PLAN-01" ? "가족·자산·채무 정리 노트" : "생활비·납부재원 점검표"}에 기록</small></span><ArrowRight size={16} aria-hidden="true" /></Link>
-          </div>)}</div>
           <p className={styles.limitation}>{service.limitation}</p>
         </div>
       </details>

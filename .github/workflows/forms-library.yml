@@ -2,9 +2,9 @@ name: Forms Library Review
 
 on:
   pull_request:
-    branches: [assistant/forms-additions-109, codex/forms-additions-preview-20260920, codex/forms-redesign-preview-20260920]
+    branches: [assistant/forms-additions-109, codex/forms-additions-preview-20260920, codex/forms-redesign-preview-20260920, codex/forms-life-guides-20260921]
   push:
-    branches: [codex/forms-library-complete, codex/forms-redesign-preview-20260920, codex/forms-life-guides-20260921]
+    branches: [codex/forms-library-complete, codex/forms-redesign-preview-20260920, codex/forms-life-guides-20260921, codex/forms-preview-completion-20260922]
 
 permissions:
   contents: read
@@ -29,7 +29,14 @@ jobs:
         with:
           python-version: '3.12'
       - run: npm ci --no-audit --no-fund
-      - run: python -m pip install jsonschema==4.26.0
+      - run: python -m pip install jsonschema==4.26.0 Pillow==11.3.0 olefile==0.47 pypdf==6.1.1
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - name: Verify real preview assets
+        if: github.head_ref == 'codex/forms-preview-completion-20260922' || github.ref_name == 'codex/forms-preview-completion-20260922'
+        run: |
+          python scripts/forms-preview-generator-tests.py
+          python scripts/forms-build-preview-index.py --check
+          python scripts/forms-preview-assets-tests.py
       - run: npm run test:forms
       - run: npm run test:simple-calculator
       - run: npm run lint

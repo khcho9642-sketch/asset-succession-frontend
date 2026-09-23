@@ -1,0 +1,16 @@
+* text=auto eol=lf
+# These legacy blobs contain intentional mixed line endings; preserve their bytes.
+app/globals.css -text
+lib/mockData.ts -text
+*.pdf binary
+*.hwp binary
+*.hwpx binary
+*.doc binary
+*.docx binary
+*.xls binary
+*.xlsx binary
+*.zip binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary

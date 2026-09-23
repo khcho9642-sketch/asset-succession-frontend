@@ -118,11 +118,19 @@ test('all 33 hosted expansion records retain real binaries and providers do not 
 });
 
 test('all 182 unique hosted file paths preserve the redesign original bytes', () => {
+  // Read by blob ID so Git for Windows never interprets a long revision:path as
+  // a filesystem path. The pinned baseline and byte-level assertions are unchanged.
+  const blobs = new Map(git('ls-tree', '-r', '-z', redesign, 'public/downloads').toString('utf8')
+    .split('\0').filter(Boolean).map(entry => {
+      const [metadata, path] = entry.split('\t');
+      return [path, metadata.split(' ')[2]];
+    }));
   const originals = new Set(completed.documents.flatMap(item => item.files)
     .filter(file => file.delivery === 'hosted').map(file => `public${decodeURIComponent(file.path)}`));
   assert.equal(originals.size, 182);
   for (const path of originals) {
-    assert.equal(hash(readFileSync(path)), hash(git('show', `${redesign}:${path}`)), path);
+    assert.ok(blobs.has(path), path);
+    assert.equal(hash(readFileSync(path)), hash(git('cat-file', 'blob', blobs.get(path))), path);
   }
 });
 

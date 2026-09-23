@@ -1,0 +1,20 @@
+PASS PDF with no legacy thumbnail still has a PDF preview
+PASS Raw institution image requires no invented metadata
+PASS Hosted HWP without a preview stays pending
+PASS Provider-only service has usage guidance, not a missing-file status
+PASS No source and no files is not falsely marked as a service
+PASS Pending files do not count as available previews
+PASS Measured full image uses the full-size example, not its thumbnail
+PASS An editorial drawing is never promoted into an official document
+PASS Untraced legacy images are not trusted as official originals
+PASS A thumbnail is not enlarged and mislabeled as a full-resolution image
+PASS An image and an unrelated PDF are not paired as the same source
+PASS Converted office PDF is only used with traceable source metadata
+PASS Invalid dimensions never qualify a generated image
+PASS External PDFs remain provider links and are not embedded cross-origin
+PASS Unsafe local paths are rejected
+PASS Untrusted provider protocols and credentials are rejected
+PASS Unsafe hosted files stay pending rather than disappearing into services
+PASS Coverage excludes archives and counts unique matching resources only
+PASS Coverage works beyond the old fixed 74-item catalogue
+19 preview policy tests passed.
