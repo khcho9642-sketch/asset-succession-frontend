@@ -38,19 +38,10 @@
 .application dd { margin: 0; color: #584f43; overflow-wrap: anywhere; }
 .application ul { margin: 0; padding-left: 18px; }
 .application li + li { margin-top: 5px; }
-.checks h4, .recording h4 { margin: 0 0 9px; font-size: 15px; line-height: 1.65; font-weight: 650; }
+.checks h4 { margin: 0 0 9px; font-size: 15px; line-height: 1.65; font-weight: 650; }
 .checks ul { margin: 0; padding-left: 18px; color: #584f43; font-size: 15px; line-height: 1.9; }
 .checks li { margin: 4px 0; padding-left: 2px; }
 .checks li::marker { color: #a58a66; }
-.recording { margin-top: 19px; padding-top: 16px; border-top: 1px solid #e7dece; }
-.target + .target { margin-top: 13px; padding-top: 12px; border-top: 1px dashed #ddd2bf; }
-.record { margin: 0 0 8px; color: #584f43; font-size: 15px; line-height: 1.9; }
-.example { margin: 0; padding: 10px 12px; background: #f4eee4; color: #665d50; font-size: 15px; line-height: 1.85; overflow-wrap: anywhere; }
-.example > span { display: block; color: #806744; font-size: 14px; font-weight: 600; margin-bottom: 3px; }
-.targetLink { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0 4px; min-height: 44px; color: #806744; font-size: 15px; font-weight: 650; line-height: 1.7; }
-.targetLink small { display: block; color: #786b58; font-size: 14px; font-weight: 400; margin-top: 2px; }
-.targetLink > svg { flex-shrink: 0; }
-.targetLink:hover > span { text-decoration: underline; text-underline-offset: 3px; }
 .limitation { margin: 18px 0 0; padding-left: 10px; border-left: 2px solid #bca57f; font-size: 14px; color: #786b58; line-height: 1.85; }
 .panel a:focus-visible, .panel summary:focus-visible { outline: 2px solid #806744; outline-offset: 3px; }
 @media (max-width: 1000px) {

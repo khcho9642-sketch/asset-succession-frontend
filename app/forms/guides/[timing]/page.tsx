@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, ExternalLink, FileText, NotebookPen } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, FileText } from "lucide-react";
 import { PublicNav } from "@/components/PublicNav";
 import { GUIDES, getGuide, guideCatalogUrl, guideResourceUrl, guideUrl } from "@/lib/forms/guides";
 import { LookupServices } from "../LookupServices";
@@ -48,11 +48,10 @@ export default async function GuidePage({ params }: { params: Promise<{ timing: 
         {step.note && <div className={styles.stepNote}><strong>{step.note.title}</strong><p>{step.note.body}</p></div>}
         {guide.timing === "before-death" && step.id === "inventory" && <LookupServices />}
         {guide.timing === "after-death" && <LookupServices timing="after-death" stepId={step.id} />}
-        {guide.timing === "before-death" && step.id === "funding" && <a className={styles.textLink} href="#lookup-pension">연금 조회·기록 안내 보기 <ArrowRight size={15} aria-hidden="true" /></a>}
+        {guide.timing === "before-death" && step.id === "funding" && <a className={styles.textLink} href="#lookup-pension">연금 조회 안내 보기 <ArrowRight size={15} aria-hidden="true" /></a>}
         <div className={styles.materials}><h3>필요한 자료 선택</h3><div className={styles.resourceGrid}>{step.resources.map(resource => {
-          const Icon = resource.id.startsWith("PLAN") ? NotebookPen : FileText;
           return <Link href={guideResourceUrl(resource.id)} key={resource.id} className={styles.resource}>
-            <Icon size={18} aria-hidden="true" /><span><strong>{resource.label}</strong><small>{resource.use}</small></span><ArrowRight size={15} aria-hidden="true" />
+            <FileText size={18} aria-hidden="true" /><span><strong>{resource.label}</strong><small>{resource.use}</small></span><ArrowRight size={15} aria-hidden="true" />
           </Link>;
         })}</div></div>
         {step.sources && <div className={styles.sources}><span>공식 안내 확인</span>{step.sources.map(source => <a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer">{source.title}<ExternalLink size={12} aria-hidden="true" /><span className={styles.srOnly}> (새 창)</span></a>)}</div>}

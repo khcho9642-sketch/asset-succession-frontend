@@ -10,10 +10,6 @@ export type PostDeathLookupService = LookupService & {
   };
 };
 
-const ASSET_LABEL = '재산별로 소유자와 현재 사용 상황을 적어 주세요.';
-const DEBT_LABEL = '채무나 보증 등 함께 확인할 부담이 있나요?';
-const UNKNOWN_LABEL = '아직 확인하지 못한 내용은 무엇인가요?';
-
 // Public guidance only: applications, identity checks and source documents stay with each provider.
 // Verification scope: docs/forms-life-guides-20260921/post-death-lookup-sources.md
 export const POST_DEATH_LOOKUP_SERVICES: readonly PostDeathLookupService[] = [
@@ -32,10 +28,6 @@ export const POST_DEATH_LOOKUP_SERVICES: readonly PostDeathLookupService[] = [
       channel: '전자가족관계등록시스템에서 가능한 증명서를 발급하고, 온라인 발급 대상이 아니거나 관계가 확인되지 않으면 시·구·읍·면·동 창구에 문의하세요.',
     },
     checks: ['사망 기록이 반영되었는지와 누구를 기준으로 발급할지를 확인합니다.', '접수기관이 요구하는 증명서 종류·발급시점·기재 범위를 확인합니다.', '서류에 표시된 가족과 추가 확인할 관계를 나누어 정리합니다.'],
-    targets: [
-      { resourceId: 'PLAN-01', questionId: 'family_context', label: '함께 고려할 가족과 관계를 적어 주세요.', record: '실명·주민등록번호 없이 고인과의 관계와 확인일을 남기세요.', example: '고인의 배우자·자녀 2명 관계 확인 · 9월 21일 · 추가 관계 확인 중' },
-      { resourceId: 'PLAN-01', questionId: 'unconfirmed_items', label: UNKNOWN_LABEL, record: '추가 증명서나 가족관계 확인이 필요한 이유를 적으세요.', example: '먼저 사망한 자녀의 가족관계 확인 필요 · 대습상속 여부 상담 예정' },
-    ],
     limitation: '가족관계증명서 한 장만으로 모든 상속인이 확정되지는 않습니다. 발급 실패나 미표시는 관계가 없다는 뜻이 아닙니다.',
     evidenceUrls: ['https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y', 'https://www.gov.kr/mw/AA020InfoCappView.do?CappBizCD=97400000004'],
     relatedResourceIds: ['P0-06'],
@@ -55,11 +47,6 @@ export const POST_DEATH_LOOKUP_SERVICES: readonly PostDeathLookupService[] = [
       channel: '정부24 온라인 또는 시·구청·읍·면·동 행정복지센터 방문. 신청 가능 시기와 본인 상황의 접수 요건은 공식 안내에서 확인하세요.',
     },
     checks: ['이미 신청한 금융조회와 중복되는 항목을 확인합니다.', '회신된 자산·채무와 아직 기다리는 항목을 구분합니다.', '조회 결과를 기다리는 동안에도 상속 승인·한정승인·포기 등 별도 기한을 확인합니다.'],
-    targets: [
-      { resourceId: 'PLAN-01', questionId: 'asset_notes', label: ASSET_LABEL, record: '회신기관·고인과의 관계·재산 종류·확인된 대략 금액·회신일을 적으세요.', example: '고인(부모님) · 토지 보유 회신 · 지분·가액 미확인 · 9월 21일' },
-      { resourceId: 'PLAN-01', questionId: 'debt_notes', label: DEBT_LABEL, record: '채무·체납 회신을 자산과 분리하고 금액의 기준일·확정 여부를 남기세요.', example: '고인 관련 지방세 회신 · 금액 확인 중 · 9월 21일' },
-      { resourceId: 'PLAN-01', questionId: 'unconfirmed_items', label: UNKNOWN_LABEL, record: '신청한 기관과 미회신·추가 확인할 항목을 적으세요. 접수번호는 이 노트에 옮기지 마세요.', example: '금융 회신 대기 · 건축물 지분과 대출잔액 추가 확인 필요' },
-    ],
     limitation: '통합신청은 모든 재산·채무의 확정이나 상속재산 지급 절차가 아닙니다. 조회되지 않음·미회신·신청 실패를 0원으로 적지 마세요.',
     evidenceUrls: ['https://www.gov.kr/mw/AA020InfoCappView.do?CappBizCD=17400000001'],
     relatedResourceIds: ['P0-01'],
@@ -79,11 +66,6 @@ export const POST_DEATH_LOOKUP_SERVICES: readonly PostDeathLookupService[] = [
       channel: '금융감독원·접수 금융기관 등의 방문 접수를 확인하세요. 안심상속으로 금융조회를 이미 신청했다면 접수 여부부터 확인합니다. 웹 결과 확인과 신규 온라인 신청은 다릅니다.',
     },
     checks: ['회신된 기관과 예금·채무·보험 가입·투자 잔고 유무를 구분합니다.', '상세 거래내역·정확한 잔액·주식 수량 등은 해당 금융회사에 확인하고, 사망일 기준 금액과 조회일 현재 금액을 구분합니다.', '대출잔액과 보증·한도는 따로 적고, 안심상속 회신과 같은 자산을 중복 합산하지 않습니다.'],
-    targets: [
-      { resourceId: 'PLAN-01', questionId: 'asset_notes', label: ASSET_LABEL, record: '기관·자산 종류·확인된 대략 금액·회신 기준일과 상세 확인 여부만 적으세요.', example: '고인(부모님) · A은행 예금 약 2,000만원 / B증권 잔고 있음, 상세 미확인 · 9월 21일' },
-      { resourceId: 'PLAN-01', questionId: 'debt_notes', label: DEBT_LABEL, record: '대출과 보증을 나누어 기관·대략 금액·기준일·확인할 조건을 남기세요.', example: '고인 · A은행 대출 약 3,000만원 / 보증 여부 별도 확인 중 · 9월 21일' },
-      { resourceId: 'PLAN-01', questionId: 'unconfirmed_items', label: UNKNOWN_LABEL, record: '미회신 금융기관·정확한 잔액·조회 밖의 채무를 질문으로 남기세요.', example: 'B증권 종목·수량·평가액과 가족 간 채무 확인 필요' },
-    ],
     limitation: '조회 가능한 금융회사와 정보에 한계가 있습니다. 결과 확인은 지급·해지·명의이전 권한을 부여하지 않으며 미회신은 재산·채무 없음이 아닙니다.',
     evidenceUrls: ['https://www.fss.or.kr/fss/cvpl/inhCerEc/main.do?menuNo=200010', 'https://www.kofia.or.kr/files/www/inheritGuide.pdf', 'https://www.kofia.or.kr/files/www/guide_pdf.pdf'],
     relatedResourceIds: ['P0-02', 'P0-03'],
@@ -103,10 +85,6 @@ export const POST_DEATH_LOOKUP_SERVICES: readonly PostDeathLookupService[] = [
       channel: '협회가 안내하는 지역 조회처에 방문 신청합니다. 금감원 상속인 금융거래조회 접수 후 보험 결과는 상속인 방문조회 결과보기에서 확인할 수 있습니다. 온라인 결과보기는 신규 방문접수를 대신하지 않습니다.',
     },
     checks: ['계약자·피보험자·수익자 관계를 구분하고 보험사별 문의사항을 정리합니다.', '미청구보험금과 사망보험금의 청구·심사 상태를 나누어 확인합니다.', '휴면보험금이나 다른 금융조회에 같은 금액이 있으면 중복 기록을 합칩니다.'],
-    targets: [
-      { resourceId: 'PLAN-01', questionId: 'asset_notes', label: ASSET_LABEL, record: '보험사·보험 종류·확인된 금액·조회일을 적고 청구권자 미확인은 그대로 표시하세요.', example: '고인 관련 A생명 계약 확인 · 미청구금 약 20만원 · 청구권자 확인 필요 · 9월 21일' },
-      { resourceId: 'PLAN-01', questionId: 'unconfirmed_items', label: UNKNOWN_LABEL, record: '수익자 관계·지급요건·상속세 검토와 조회 밖의 보험을 확인할 질문으로 남기세요.', example: '사망보험금 수익자 관계와 세무상 처리 확인 · 우체국보험 별도 문의' },
-    ],
     limitation: '상속인이라는 이유만으로 모든 보험금을 받는 것은 아닙니다. 보험금 청구권과 상속세상 취급은 별도이며 조회 목록을 상속재산총액으로 곧바로 합산하지 마세요.',
     evidenceUrls: ['https://cont.insure.or.kr/cont_web/information/information.do'],
     relatedResourceIds: ['P6-03'],
@@ -126,10 +104,6 @@ export const POST_DEATH_LOOKUP_SERVICES: readonly PostDeathLookupService[] = [
       channel: '인터넷등기소의 열람·발급 안내를 확인합니다. 이 카드가 연결하는 것은 공개기록 확인이며 상속등기 신청이 아닙니다.',
     },
     checks: ['토지·건물·구분건물 중 대상이 맞는지 먼저 확인합니다.', '고인 소유 지분과 타인의 지분을 나누어 적습니다.', '근저당권 채권최고액과 실제 대출잔액을 구분하고 임대차 관계는 별도로 확인합니다.'],
-    targets: [
-      { resourceId: 'PLAN-01', questionId: 'asset_notes', label: ASSET_LABEL, record: '상세 주소 없이 관계·부동산 종류·고인의 지분·확인일을 적으세요.', example: '고인(부모님) · 공동명의 주택 지분 1/2 · 나머지 배우자 지분 · 9월 21일 등기 확인' },
-      { resourceId: 'PLAN-01', questionId: 'debt_notes', label: DEBT_LABEL, record: '담보권의 존재·기관과 잔액 확인 필요 여부를 적으세요. 채권최고액을 채무잔액으로 옮기지 마세요.', example: '고인 지분 관련 A은행 근저당권 있음 · 실제 채무잔액 확인 필요' },
-    ],
     limitation: '고인의 전국 보유 부동산 전체를 찾아주는 서비스가 아닙니다. 등기만으로 모든 채무·임대차·상속분할 결과가 확정되지는 않습니다.',
     evidenceUrls: ['https://www.iros.go.kr/', 'https://play.google.com/store/apps/details?id=kr.go.iros'],
     relatedResourceIds: [],
@@ -149,10 +123,6 @@ export const POST_DEATH_LOOKUP_SERVICES: readonly PostDeathLookupService[] = [
       channel: '공시가격 알리미에서 부동산 유형을 선택합니다. 개별지·개별주택은 연결된 지자체 조회 안내를 따르세요.',
     },
     checks: ['부동산 종류·가격 기준일·단위를 확인합니다.', '토지의 단위면적당 가격을 전체 가격과 구분하고 고인 지분도 확인합니다.', '등기로 확인한 기존 부동산 기록에 가격 근거를 붙이고 별도 재산처럼 다시 더하지 않습니다.'],
-    targets: [
-      { resourceId: 'PLAN-01', questionId: 'asset_notes', label: ASSET_LABEL, record: '공시가격 종류·기준연도·대략 금액·확인일을 적고 전체 부동산 가격인지 고인 지분 금액인지 구분하세요.', example: '고인 관련 주택 전체 공시가격 약 3억원 · 2026년 기준 · 고인 지분 1/2, 상속평가 미확정' },
-      { resourceId: 'PLAN-01', questionId: 'unconfirmed_items', label: UNKNOWN_LABEL, record: '사망 시점의 평가에 필요한 시가·감정 등 추가 자료를 질문으로 남기세요.', example: '상속개시일 기준 평가방법과 인근 거래·감정자료 확인 필요' },
-    ],
     limitation: '공시가격은 상속세 신고가액이나 현재 매각가격을 확정하지 않습니다. 조회되지 않는 부동산은 가치가 0원이라는 뜻이 아닙니다.',
     evidenceUrls: ['https://www.realtyprice.kr/notice/main/main.do'],
     relatedResourceIds: ['P9-10'],
@@ -172,10 +142,6 @@ export const POST_DEATH_LOOKUP_SERVICES: readonly PostDeathLookupService[] = [
       channel: '공식 안내의 상속인 조회에서 약관동의·신청인 본인확인 후 신청 안내를 확인하세요. 미성년자는 법정대리인 동의와 방문 안내를 확인합니다. 지급·대리 신청 경로는 기관에 별도로 문의하세요.',
     },
     checks: ['조회 대상이 서민금융진흥원에 출연된 휴면예금·보험금인지 확인합니다.', '기관·종류·금액·회신일을 기존 금융·보험 조회와 대조합니다.', '조회 결과 확인과 실제 상속 지급 신청을 나누어 진행합니다.'],
-    targets: [
-      { resourceId: 'PLAN-01', questionId: 'asset_notes', label: ASSET_LABEL, record: '고인과의 관계·기관·휴면재산 종류·대략 금액·확인일과 중복 여부를 적으세요.', example: '고인(부모님) · 출연 휴면예금 약 10만원 · 9월 21일 · 기존 금융 회신과 중복 확인 중' },
-      { resourceId: 'PLAN-01', questionId: 'unconfirmed_items', label: UNKNOWN_LABEL, record: '조회 대상·결과 대기·상속 지급서류 등 아직 확인할 내용을 적으세요.', example: '상속인 조회 대상 여부와 지급에 필요한 공동상속인 서류 문의 예정' },
-    ],
     limitation: '모든 휴면계좌·미청구보험금을 포괄하지 않습니다. 온라인 상속 지급이 모두 가능하다는 뜻이 아니며 조회 미완료를 0원으로 기록하지 마세요.',
     evidenceUrls: ['https://www.kinfa.or.kr/financialLife/sleepmoney.do', 'https://www.kinfa.or.kr/cyber/pymntReqst/inhrtncIndvdlinfo.do'],
     relatedResourceIds: ['P6-02'],
@@ -195,10 +161,6 @@ export const POST_DEATH_LOOKUP_SERVICES: readonly PostDeathLookupService[] = [
       channel: '공식 주주서비스의 상속인 금융거래 조회 안내를 확인하고, 상세 조회·명의개서·수령은 예탁결제원 또는 해당 증권사에 방문·접수 방법을 문의하세요.',
     },
     checks: ['조회된 회사와 담당 명의개서 대행기관·증권사를 확인합니다.', '확인한 주식 수량·평가금액·배당내역·실제 수령 여부를 구분합니다.', '증권계좌에 이미 잡힌 주식·배당을 중복 합산하지 않고 조회 결과와 이전·지급 완료를 구분합니다.'],
-    targets: [
-      { resourceId: 'PLAN-01', questionId: 'asset_notes', label: ASSET_LABEL, record: '관계·회사·확인한 주식 수량·평가 확인 여부·배당 수령 상태·확인일을 적으세요. 주권번호는 적지 마세요.', example: '고인(부모님) · A회사 주식 10주 · 평가액 미확인 / 배당내역 약 5만원, 수령 여부 미확인 · 9월 21일' },
-      { resourceId: 'PLAN-01', questionId: 'unconfirmed_items', label: UNKNOWN_LABEL, record: '기관에서 확인할 주식 평가·미수령 여부·상속 이전 서류를 질문으로 남기세요.', example: 'A회사 주식의 명의개서 기관과 상속 이전 서류 확인 필요' },
-    ],
     limitation: '모든 회사·증권계좌가 조회되는 것은 아닙니다. 일반 주주용 배당 조회가 상속인에게 그대로 제공된다고 보장하지 않으며 배당내역 전체를 미수령금으로 보지 마세요.',
     evidenceUrls: ['https://ta.ksd.or.kr/index.jsp'],
     relatedResourceIds: ['P6-04', 'P6-05'],
@@ -218,10 +180,6 @@ export const POST_DEATH_LOOKUP_SERVICES: readonly PostDeathLookupService[] = [
       channel: '공식 안내는 전국 국민연금공단 지사 방문 또는 우편 청구를 안내합니다. 상담 1355에서 서류·대리청구·기한을 확인하세요. 이 링크는 온라인 청구를 약속하는 경로가 아닙니다.',
     },
     checks: ['유족연금·반환일시금·사망일시금 중 확인할 급여와 수급권자를 구분합니다.', '가입유무 조회 결과와 급여 지급결정을 구분합니다.', '확인된 월수입·수령 조건을 생활비 계획에 기록하고 고인의 상속재산총액에 더하지 않습니다.'],
-    targets: [
-      { resourceId: 'PLAN-04', questionId: 'income_notes', label: '수입이 유지되는 조건이나 변동 가능성을 적어 주세요.', record: '받을 사람은 관계로 적고 급여 종류·확인된 예상 월수입·조건·확인일을 남기세요. 심사 중이면 금액을 확정하지 마세요.', example: '고인의 배우자 · 유족연금 상담 완료, 수급 여부·월액 심사 중 · 9월 21일' },
-      { resourceId: 'PLAN-01', questionId: 'unconfirmed_items', label: UNKNOWN_LABEL, record: '수급권·필요서류·기존 연금과의 조정 등 공단에 물어볼 내용을 적으세요.', example: '배우자 수급권과 기존 본인 연금과의 조정 여부 확인 필요' },
-    ],
     limitation: '공적 유족급여는 고인의 연금잔액을 상속분대로 나누는 절차가 아닙니다. 퇴직연금·개인연금·다른 직역연금은 각 기관의 별도 요건을 확인하세요.',
     evidenceUrls: ['https://www.nps.or.kr/pnsinfo/ntpsklg/getOHAF0072M0.do?menuId=MN24001121'],
     relatedResourceIds: ['P0-16'],

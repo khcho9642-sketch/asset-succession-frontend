@@ -8,7 +8,7 @@ import styles from "./Guides.module.css";
 
 export const metadata: Metadata = {
   title: "생전 준비·상속 발생 후 가이드 | 자산승계 360",
-  description: "생전 준비와 상속 발생 후 필요한 일을 살펴보고, 각 단계에 맞는 설명·서류·준비자료로 바로 연결하세요.",
+  description: "생전 준비와 상속 발생 후 필요한 일을 살펴보고, 각 단계에 맞는 설명과 서류를 확인하세요.",
 };
 export const dynamic = "force-static";
 

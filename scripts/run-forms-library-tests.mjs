@@ -8,7 +8,7 @@ try {
   run(process.env.PYTHON || 'python', ['scripts/validate-forms-taxonomy.py']);
   run(process.execPath, ['scripts/forms-catalog-tests.mjs']);
   run(process.execPath, ['scripts/forms-preview-integration-tests.mjs']);
-  run(process.execPath, ['scripts/forms-planning-tests.mjs']);
+  run(process.execPath, ['scripts/forms-entry-tests.mjs']);
   run(process.execPath, ['scripts/forms-life-guides-tests.mjs']);
   run(process.execPath, ['scripts/forms-preview-counts-tests.mjs']);
   run(process.execPath, ['scripts/forms-preview-policy-tests.mjs']);

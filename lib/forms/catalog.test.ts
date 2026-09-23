@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFileSync } from "node:fs";
-import { availableFiles, buildCatalog, catalogUrl, emptyFilters, filterCatalog, filterPlanningResources, originLabel, providerLabel, parseCatalogFilters, type PlanningCatalogResource, type LibraryDocument, type PresentationGroup } from "./catalog";
+import { availableFiles, buildCatalog, catalogUrl, emptyFilters, filterCatalog, originLabel, providerLabel, parseCatalogFilters, type LibraryDocument, type PresentationGroup } from "./catalog";
 
 function doc(id: string, purposes: string[] = [], assets: string[] = [], parent?: string, relation = "ui_member_of"): LibraryDocument {
   return { id, title: id, category: "legacy", description: "", tags: "", format: "HWP", editable: "", example: null, thumbnail: null, sizeLabel: "", institution: "기관", sourceUrl: "", checkedOn: "", license: "", verification: "", delivery: "hosted", originalCategory: "", catalogTitle: id, exampleVerification: "", licenseUrl: "", files: [],
@@ -62,16 +62,6 @@ test("download menu keeps real formats and deduplicates paths without inventing 
   assert.equal(availableFiles(item).length, 2);
 });
 
-
-test("planning resources use the same filters but remain separate from original-card totals", () => {
-  const item: PlanningCatalogResource = { id: "PLAN", title: "대안 비교표", description: "증여 방법을 정리합니다", stage_ids: ["S2"], primary_stage_id: "S2", facets: { purposes: ["gift"], timing: ["before_death"], assets: ["real_estate"], kind: "worksheet", delivery: "inline", origin: "editorial", authority: "editorial" } };
-  const filters = { ...emptyFilters(), kind: ["worksheet"], delivery: ["inline"], stage: "S2" };
-  assert.equal(filterPlanningResources([item], filters).length, 1);
-  assert.equal(filterCatalog(buildCatalog([doc("public")], []), filters).length, 0);
-  assert.equal(filterPlanningResources([item], { ...filters, timing: ["after_death"] }).length, 0);
-  assert.equal(filterPlanningResources([item], { ...filters, purpose: ["inheritance"] }).length, 0);
-  assert.equal(filterPlanningResources([item], { ...filters, asset: ["cash_deposit"] }).length, 0);
-});
 
 test("private provider is not presented as a public official form", () => {
   const item = doc("private"); item.resource!.facets.origin = "private_institution"; item.resource!.facets.authority = "private_terms";

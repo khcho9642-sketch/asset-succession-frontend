@@ -188,25 +188,6 @@
 .empty button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 9px 18px; border: 1px solid #baa486; border-radius: 3px; font-size: 14px; }
 .muted { font-size: 13px; color: var(--lib-muted); }
 
-/* Preparation worksheets stay distinct from the original resource catalog. */
-.planningResults { padding: 19px; margin: 0 0 20px; border: 1px solid #cbb899; border-radius: 5px; background: #f7f0e3; }
-.grid + .planningResults, .loadMore + .planningResults { margin-top: 24px; }
-.planningResultHeading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 7px 14px; margin-bottom: 14px; }
-.planningResultHeading h3 { margin: 0; font-size: 16px; font-weight: 600; }
-.planningResultHeading h3 > span { margin-left: 6px; color: var(--lib-brass); font-size: 14px; }
-.planningResultHeading > span { color: var(--lib-muted); font-size: 12px; }
-.planningResultGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-.planningResultGrid > a { display: flex; align-items: center; gap: 11px; min-height: 84px; padding: 13px; border: 1px solid #ded0b8; border-radius: 3px; background: var(--lib-card); }
-.planningResultGrid > a > svg:first-child { color: var(--lib-brass); }
-.planningResultGrid > a > div { min-width: 0; flex: 1; }
-.planningResultGrid strong { display: block; font-size: 14px; font-weight: 500; line-height: 1.65; word-break: keep-all; }
-.planningResultGrid div > span { display: block; margin-top: 3px; color: var(--lib-muted); font-size: 12px; }
-.planningResultGrid > a:hover { border-color: #b29975; }
-.planningOnly { margin: 0 0 18px; padding: 17px; border: 1px dashed var(--lib-line); border-radius: 4px; color: var(--lib-muted); font-size: 13px; }
-.planningBanner { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 36px; padding: 23px 26px; border: 1px solid #ccbaa0; border-radius: 5px; background: #e9e0d1; }
-.planningBanner p { margin: 0 0 5px; font-size: 12px; color: var(--lib-muted); }
-.planningBanner h2 { margin: 0; font-size: 18px; font-weight: 600; letter-spacing: -.4px; }
-.planningBanner a { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 44px; white-space: nowrap; font-size: 14px; font-weight: 500; }
 .help { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--lib-line); }
 .help p { font-size: 13px; color: var(--lib-muted); margin: 0; }
 .help a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: 13px; font-weight: 600; color: var(--lib-red); }
@@ -388,16 +369,6 @@
   .members > summary { min-height: 45px; font-size: 12px; }
   .memberSection > ul > li > a:first-of-type { font-size: 14px; }
   .loadMore { min-height: 48px; margin-top: 17px; font-size: 14px; }
-  .planningResults { padding: 15px; margin-bottom: 16px; }
-  .planningResultHeading h3 { font-size: 15px; }
-  .planningResultHeading > span { font-size: 12px; }
-  .planningResultGrid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
-  .planningResultGrid > a { min-height: 77px; padding: 12px; }
-  .planningResultGrid strong { font-size: 14px; }
-  .planningOnly { font-size: 13px; }
-  .planningBanner { display: block; margin-top: 26px; padding: 19px; }
-  .planningBanner h2 { font-size: 17px; word-break: keep-all; }
-  .planningBanner a { margin-top: 11px; font-size: 14px; }
   .help { justify-content: flex-start; gap: 2px 15px; padding: 15px 0; }
   .help p, .help a { font-size: 13px; }
   .archivedResources { padding: 10px 0; }

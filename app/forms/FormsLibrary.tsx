@@ -2,11 +2,11 @@
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type MouseEvent } from "react";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, Check, ChevronDown, ChevronRight, Download, ExternalLink, FileText, Info, Search, SlidersHorizontal, X } from "lucide-react";
+import { ArrowDown, ArrowRight, Check, ChevronDown, ChevronRight, Download, ExternalLink, Info, Search, SlidersHorizontal, X } from "lucide-react";
 import {
-  availableFiles, authorityLabel, catalogUrl, emptyFilters, FACETS, filterCatalog, filterPlanningResources, hasFilters, originLabel, providerLabel,
+  availableFiles, authorityLabel, catalogUrl, emptyFilters, FACETS, filterCatalog, hasFilters, originLabel, providerLabel,
   parseCatalogFilters, resourceUrl, STAGES, TIMINGS,
-  type CatalogCard, type CatalogFilters, type FacetKey, type LibraryDocument, type PresentationGroup, type PlanningCatalogResource,
+  type CatalogCard, type CatalogFilters, type FacetKey, type LibraryDocument, type PresentationGroup,
 } from "@/lib/forms/catalog";
 import { buildIndividualCatalog, legacyGroupDocuments, relatedDocuments } from "@/lib/forms/individual-catalog";
 import styles from "./FormsLibrary.module.css";
@@ -16,7 +16,7 @@ import { guideUrl, guidesForResource } from "@/lib/forms/guides";
 import { getResourceUsage } from "@/lib/forms/resource-usage";
 export type { LibraryDocument } from "@/lib/forms/catalog";
 
-type Props = { documents: LibraryDocument[]; groups: PresentationGroup[]; planning: PlanningCatalogResource[] };
+type Props = { documents: LibraryDocument[]; groups: PresentationGroup[] };
 const URL_EVENT = "forms-navigation";
 function subscribeUrl(callback: () => void) {
   window.addEventListener("popstate", callback);
@@ -46,12 +46,11 @@ function FileAction({ item }: { item: LibraryDocument }) {
   return <details className={styles.filePicker}><summary aria-label={`${item.title} 파일 형식 선택`}>형식·파일 선택<ChevronDown size={14} aria-hidden="true" /></summary><Files item={item} /></details>;
 }
 
-export function FormsLibrary({ documents, groups, planning }: Props) {
+export function FormsLibrary({ documents, groups }: Props) {
   const urlSearch = useSyncExternalStore(subscribeUrl, snapshot, serverSnapshot);
   const filters = useMemo(() => parseCatalogFilters(urlSearch), [urlSearch]);
   const index = useMemo(() => buildIndividualCatalog(documents, groups), [documents, groups]);
   const filtered = useMemo(() => filterCatalog(index, filters), [index, filters]);
-  const matchingPlanning = useMemo(() => filterPlanningResources(planning, filters), [planning, filters]);
   const [pageLimit, setPageLimit] = useState({ key: "", count: 18 });
   const listKey = catalogUrl({ ...filters, resource: "" });
   const visibleCount = pageLimit.key === listKey ? pageLimit.count : 18;
@@ -73,7 +72,6 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const selectedFacetCount = filters.purpose.length + filters.asset.length + filters.kind.length + filters.delivery.length;
   const selectedFacetKeys = (Object.keys(FACETS) as FacetKey[]).filter(key => filters[key].length > 0).join(",");
-  const planningFirst = filters.stage === "S2" || filters.kind.includes("worksheet") || filters.kind.includes("toolkit") || filters.delivery.includes("inline") || filtered.length === 0;
   function navigate(next: CatalogFilters, replace = false) {
     const href = catalogUrl(next);
     if (`${window.location.pathname}${window.location.search}` !== href) window.history[replace ? "replaceState" : "pushState"](null, "", href);
@@ -156,15 +154,6 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
     </details>;
   }
 
-  const planningResults = active && matchingPlanning.length > 0 ? <section className={styles.planningResults} aria-label="조건에 맞는 자체 준비자료">
-    <div className={styles.planningResultHeading}><h3>자체 준비자료 <span>{matchingPlanning.length}개</span></h3><span>자산승계 360 제작 · 상담 준비용</span></div>
-    <div className={styles.planningResultGrid}>{matchingPlanning.map(item => <Link href={`/forms/planning/${item.id}`} key={item.id}>
-      <FileText size={21} strokeWidth={1.5} aria-hidden="true" /><div><strong>{item.title}</strong>
-        <span>{stageLabel(item.primary_stage_id)} · {(FACETS.kind.values as Record<string, string>)[item.facets.kind]}</span></div>
-      <ArrowRight size={17} aria-hidden="true" />
-    </Link>)}</div>
-  </section> : null;
-
   return <main className={styles.library} id="forms-library" data-forms-library="individual-v3">
     <nav className={styles.breadcrumb} aria-label="현재 위치"><Link href="/">홈</Link><ChevronRight size={13} aria-hidden="true" /><span aria-current="page">서류양식</span></nav>
     <header className={styles.header}>
@@ -183,7 +172,7 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
           <span className={styles.srOnly}>서류명·용도로 찾기</span><input ref={search} type="search" value={filters.q}
             onChange={event => update({ q: event.target.value }, true)} placeholder="어떤 서류를 찾으세요? 서류명·용도·기관 검색" maxLength={100} autoComplete="off" />
         </label>
-        <p className={styles.catalogSummary} data-catalog-summary><strong>개별 자료 {index.cards.length}개</strong><span>서류 1개당 카드 1개</span><span>자체 준비자료 {planning.length}개 별도</span></p>
+        <p className={styles.catalogSummary} data-catalog-summary><strong>개별 자료 {index.cards.length}개</strong><span>서류 1개당 카드 1개</span></p>
       </div>
       <div className={styles.timingRow}>
         <span className={styles.controlLabel}>준비 상황</span>
@@ -216,17 +205,16 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
               const heading = document.getElementById("documents-title");
               heading?.focus({ preventScroll: true }); heading?.scrollIntoView({ block: "start" });
             });
-          }}>{filtered.length}개 자료{active && matchingPlanning.length > 0 ? ` · 준비자료 ${matchingPlanning.length}개` : ""} 보기<ArrowRight size={17} aria-hidden="true" /></button>
+          }}>{filtered.length}개 자료 보기<ArrowRight size={17} aria-hidden="true" /></button>
         </div>
       </aside>
 
       <section className={styles.results} aria-labelledby="documents-title">
         {filters.from === "precheck" && <p className={styles.contextNote}><Info size={16} aria-hidden="true" />상담에서 선택한 상황을 반영했습니다. 조건은 자유롭게 바꿀 수 있어요.</p>}
         <div className={styles.resultsToolbar}>
-          <div><h2 id="documents-title" tabIndex={-1}>{active ? "검색 결과" : "전체 자료"}<span>{filtered.length === 0 && matchingPlanning.length > 0 ? `준비자료 ${matchingPlanning.length}개` : filtered.length}</span></h2>
+          <div><h2 id="documents-title" tabIndex={-1}>{active ? "검색 결과" : "전체 자료"}<span>{filtered.length}</span></h2>
             <p role="status" aria-live="polite" data-result-count>개별 자료 {filtered.length}개{active ? " 일치" : " 표시"}
-              {!active && archived.length > 0 ? ` · 보관 ${archived.length}개 별도` : ""}
-              {active && matchingPlanning.length > 0 ? ` · 자체 준비자료 ${matchingPlanning.length}개 별도` : ""}</p></div>
+              {!active && archived.length > 0 ? ` · 보관 ${archived.length}개 별도` : ""}</p></div>
           {active && <button type="button" onClick={reset}>전체 자료 보기<X size={14} aria-hidden="true" /></button>}
         </div>
         <PreviewCoverage items={previewResources} />
@@ -237,28 +225,20 @@ export function FormsLibrary({ documents, groups, planning }: Props) {
             {key === "timing" ? TIMINGS[value] : (FACETS[key].values as Record<string, string>)[value]}<X size={13} aria-hidden="true" /></button>))}
           {filters.q && <button onClick={() => update({ q: "" })}>“{filters.q}”<X size={13} aria-hidden="true" /></button>}
         </div>}
-        {planningFirst && planningResults}
         {filtered.length ? <><div className={styles.grid}>{visible.map(cardView)}</div>
           {visible.length < filtered.length && <button type="button" className={styles.loadMore}
             onClick={() => setPageLimit({ key: listKey, count: visibleCount + 18 })}>자료 더 보기<span>{visible.length} / {filtered.length}</span><ArrowDown size={18} aria-hidden="true" /></button>}
-        </> : matchingPlanning.length > 0
-          ? <p className={styles.planningOnly}>현재 조건에 맞는 제공처 원자료는 없습니다. 자체 준비자료 {matchingPlanning.length}개를 확인해 보세요.</p>
-          : <div className={styles.empty}><Search size={29} strokeWidth={1.5} aria-hidden="true" /><h3>일치하는 자료가 없어요.</h3>
+        </> : <div className={styles.empty}><Search size={29} strokeWidth={1.5} aria-hidden="true" /><h3>일치하는 자료가 없어요.</h3>
             <p>검색어를 줄이거나 선택한 조건을 해제해 보세요.</p><button type="button" onClick={reset}>전체 자료 보기</button></div>}
-        {!planningFirst && planningResults}
       </section>
     </div>
 
-    <section className={styles.planningBanner} aria-label="자체 준비자료 안내">
-      <div><p>서류 작성 전, 내 상황부터 정리하고 싶다면</p><h2>가족·재산 정리부터 상담 준비까지</h2></div>
-      <Link href="/forms/planning">자체 준비자료 6개 보기<ArrowRight size={18} aria-hidden="true" /></Link>
-    </section>
     <div className={styles.help}><p>어떤 자료가 필요한지 아직 고민되시나요?</p><Link href="/precheck">내 상황으로 상담 시작<ArrowRight size={16} aria-hidden="true" /></Link></div>
     {archived.length > 0 && <details className={styles.archivedResources}><summary>보관 자료 {archived.length}개<ChevronDown size={15} aria-hidden="true" /></summary>
       <p>기본 목록에서 보관한 자료입니다. 기존 원본과 출처를 확인할 수 있습니다.</p>
       <ul>{archived.map(item => <li key={item.id}><a href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)}>{item.title}<ChevronRight size={14} aria-hidden="true" /></a></li>)}</ul>
     </details>}
-    <footer className={styles.footer} id="forms-usage"><p>공공·민간 제공자료의 출처와 확인일은 자료 상세에서 확인하세요.<br />자체 준비자료는 상담용 점검표입니다. 제출 전 제공처의 최신 안내를 확인하세요.</p>
+    <footer className={styles.footer} id="forms-usage"><p>공공·민간 제공자료의 출처와 확인일은 자료 상세에서 확인하세요.<br />제출 전 제공처의 최신 안내를 확인하세요.</p>
       <a href="/downloads/official-forms/manifest.json" target="_blank" rel="noopener noreferrer">출처·검증 기록<ExternalLink size={14} aria-hidden="true" /></a>
       <a href="/downloads/official-forms/official-forms.zip" download data-bundle-download title="기존 74개 자료만 포함합니다. 추가 자료는 각 카드에서 받으세요.">기존 자료 ZIP 받기 (74개)<Download size={14} aria-hidden="true" /></a>
     </footer>
