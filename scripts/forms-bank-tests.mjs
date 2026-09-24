@@ -113,6 +113,13 @@ test('matching single or both service contexts preserve authentic applicant guid
   assert.equal(before.contexts[0].timing, 'before-death'); assert.equal(before.notice, '');
   assert.ok(individual.relatedDocuments(bankCatalog, 'P6-02').some(r => r.id === 'P0-01'));
 });
+test('after-death guide entry opens heir bank guidance without requiring list timing parameters', () => {
+  assert.equal(editorial.preferredProviderContext([], 'after-death'), 'heir');
+  assert.equal(editorial.preferredProviderContext([], 'before-death'), 'owner');
+  assert.equal(editorial.preferredProviderContext(['after_death']), 'heir');
+  assert.equal(editorial.preferredProviderContext(['before_death', 'after_death']), 'owner');
+  assert.equal(editorial.preferredProviderContext(['before_death'], 'after-death'), 'owner');
+});
 test('bank search phrases find their actual documents and exact titles rank first', () => {
   for (const [q, expected] of [['상속예금', 'P6-01'], ['상속예금', 'BANK-ADD-01'], ['하나 위임장', 'BANK-ADD-01'], ['잔액증명', 'BANK-ADD-02'], ['부채증명', 'BANK-ADD-03'], ['송금확인증', 'BANK-ADD-05'], ['DC 사망', 'BANK-ADD-06']]) assert.ok(ids({ q }).includes(expected), q);
   assert.equal(ids({ q: '부채증명서 발급 안내' })[0], 'BANK-ADD-03');

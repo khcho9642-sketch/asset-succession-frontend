@@ -14,7 +14,7 @@ import { DocumentPreview, PreviewThumbnail } from "./DocumentPreview";
 import { resolvePreview } from "@/lib/forms/preview";
 import { guidesForResource } from "@/lib/forms/guides";
 import { getResourceUsage } from "@/lib/forms/resource-usage";
-import { SERVICE_CONTEXTS, serviceContexts, detailServiceContexts } from "@/lib/forms/library-editorial";
+import { SERVICE_CONTEXTS, serviceContexts, detailServiceContexts, preferredProviderContext } from "@/lib/forms/library-editorial";
 import { LookupServices } from "./guides/LookupServices";
 import { GuideEntrances } from "./GuideEntrances";
 export type { LibraryDocument } from "@/lib/forms/catalog";
@@ -63,6 +63,7 @@ export function FormsLibrary({ documents, groups }: Props) {
   const visible = filtered.slice(0, visibleCount);
   const selected = index.documents.get(filters.resource);
   const selectedContexts = detailServiceContexts(selected?.id || "", filters.timing);
+  const preferredApplicant = preferredProviderContext(filters.timing, filters.guide);
   const selectedUsage = selected && !SERVICE_CONTEXTS[selected.id] ? selected.usage || getResourceUsage(selected.id) : undefined;
   const related = selected ? relatedDocuments(index, selected.id) : [];
   const guideContexts = selected && isPublicResource(selected) ? guidesForResource(selected.id, selected.resource) : [];
@@ -289,10 +290,7 @@ export function FormsLibrary({ documents, groups }: Props) {
         </section>}
         {selected.providerRoutes?.length ? <section className={styles.providerRoutes} id="detail-provider-routes" aria-label="은행별 신청 경로">
           <h3>{useCategory(selected) === "service" ? "누구의 자료를 발급하나요?" : "은행별 신청 안내"}</h3>
-          {[...selected.providerRoutes].sort((a, b) => {
-            const preferred = filters.timing.includes("after_death") && !filters.timing.includes("before_death") ? "heir" : "owner";
-            return Number(b.applicantContext === preferred) - Number(a.applicantContext === preferred);
-          }).map(route => <details key={`${route.provider}-${route.applicantContext}`} open={selected.providerRoutes!.length > 2 || route.applicantContext === (filters.timing.includes("after_death") && !filters.timing.includes("before_death") ? "heir" : "owner") || undefined}>
+          {[...selected.providerRoutes].sort((a, b) => Number(b.applicantContext === preferredApplicant) - Number(a.applicantContext === preferredApplicant)).map(route => <details key={`${route.provider}-${route.applicantContext}`} open={selected.providerRoutes!.length > 2 || route.applicantContext === preferredApplicant || undefined}>
             <summary>{route.provider} · {route.applicantContext === "owner" ? "본인" : "상속인"}<ChevronDown size={16} aria-hidden="true" /></summary>
             <p>{route.customerType}</p><p>{route.channel}</p><p>{route.authentication}</p><p className={styles.usageNote}>{route.note}</p>
             <a className={styles.providerLink} href={route.url} target="_blank" rel="noopener noreferrer" aria-label={`${route.provider} ${route.applicantContext === "owner" ? "본인" : "상속인"} ${route.label} (새 창)`}>{route.label}<ExternalLink size={15} aria-hidden="true" /></a>
