@@ -59,12 +59,70 @@ Securities account coverage: [KFTC account service FAQ](https://payinfo.or.kr/cs
 
 - `evidence/original-inspection.json`: preserved file headers, sizes and hashes; not a complete Office rendering or current-law review.
 - `evidence/source-access.json`: actual access results, response types, hashes, timestamps. Fourteen endpoints, not fourteen legal approvals.
-- `evidence/recheck-queue.json`: manual scan of all 198 current ledger entries. Zero overdue/missing source-check dates at this run; content applicability still pending.
+- `evidence/recheck-queue.json`: manual scan of all 198 current ledger entries on 2026-09-25. Five missing source-check dates, zero overdue dates. Missing: SVC-ACCOUNTS, SVC-INSURANCE, SVC-CREDIT, SVC-PENSION, SVC-REGISTRY. Their collection dates were not invented from this technical scan.
 - `before-pc.png`, `before-mobile.png` in `evidence/`: actual baseline Preview, 1440 and 390 pixels.
-- New library tests: 16. Calculator: 140 existing + 6 added date boundaries, all 146 passed.
+- New library tests: 17. Library suite: 134 existing + 17 new = 151 passed. Calculator: 140 existing + 6 added date boundaries = 146 passed.
 - Existing integration guard initially rejected the requested date-only change. It now reverses only the exact approved constant/import/message edits and compares all calculator code to the original byte-for-byte projection. No formula/file exemption or removed assertion.
-- Full library suite, final build, final Preview and T01-T20 browser results are recorded in the final validation section after execution.
+- Lint, typecheck, local production build and Vercel build passed. Sandbox subprocess `EPERM` initially prevented a repeat run; the identical commands passed with approved process permissions. No test was removed or weakened.
+
+## Actual Preview validation
+
+The first Preview of this work (`60cd120`) was used for the full interaction pass. Inspection found three remaining presentation issues, fixed in `3536353`: 38 split/source records still had generic title/page-only descriptions; the gift guide repeated its preliminary checklist; the 360px download tab wrapped its last syllable. Descriptions now identify users and submission context, the duplicate gift block is suppressed without removing conditions, and tab widths accommodate the complete label at unchanged font size. The fixed Preview was inspected again at 1440x1000, 390x844 and 360x800. `browser-qa.json` retains intermediate observations, including pre-hydration state and tool input limitations; `browser-final-qa.json` contains the post-fix checks. Only evidence/workflow files changed after this application-code commit. The final PR body gives the current delivery SHA and Preview, not an obsolete deployment URL.
+
+| Test | Result and actual scope |
+| --- | --- |
+| T01 | PASS: 198 items, five guide entrances, no forced timing. Form tab 151. PC and 390/360 first view captured; first card remains visible. |
+| T02 | PASS: `취득세` + real estate retains all six results including P0-13/P0-15; baseline was four. Repeated on fixed Preview. |
+| T03 | PASS: securities + account query finds SVC-ACCOUNTS; debt query/filter finds SVC-CREDIT and BANK-ADD-03/04. |
+| T04 | PASS: actual inheritance + gift + real-estate selection; automated exact union/intersection checks retained. |
+| T05 | PASS: correction claim remains in the combined purpose/asset result; four purposes/common scope checked in unit test. |
+| T06 | PASS: inventory card/detail is a form with P0-08 relation; filiation card/detail is guidance. |
+| T07 | PASS: everyday bereavement sentence returns five resources and the after-death guide. |
+| T08 | PASS: inquiry/issuance + balance query, then full reset clears query, filters and URL and restores 198. Existing reset logic was not changed. Query-only recovery from zero results also checked. |
+| T09 | PASS: direct P0-01 detail with before-death filter shows after-death context and a timing notice, not an empty detail. |
+| T10 | PASS: gift cash guide to bank/form detail and close returns to `#cash`; repeated on fixed Preview. |
+| T11 | PASS: modal close restores original title focus and scroll; reload restores search/filter after hydration; browser Back closes the detail and keeps six filtered results. |
+| T12 | PASS for public guidance/file routes: Woori owner/heir disclosure, private/business distinction, KB retirement-only DOC. No bank login/issuance performed. Hana original scope is preserved by existing tests, not a new bank transaction. |
+| T13 | PARTIAL source navigation: provider-only inventory shows exact document name, broad menu and explicit unverified submenu/current attachment warning. All 33 provider-only records get this treatment, but exact provider submenus are not individually verified. |
+| T14 | PASS samples: real preview image 724x1024 loaded; PDF/HWP format choices and external KB DOC present. Four downloaded sample bodies return HTTP 200 and match original SHA-256. Browser OS save completion is not claimed. |
+| T15 | PASS observed pages at 390/360: filters, long bank title, detail close/file controls, no page-width overflow. Fixed 360px tab label stays on one line. Evidence includes first-view and bank-detail images. |
+| T16 | PASS: Shift+Tab from close wraps to last action, Tab returns to close, Escape returns focus to originating title. |
+| T17 | PASS: all 198 public IDs have exactly one ledger record. Source, editorial, currentness and applicability are not conflated; partial reviews stay partial. |
+| T18 | PASS tool scope: manual 198-record queue detects five missing dates; 14 actual URL observations recorded. Tests distinguish overdue/missing, changed bytes, 403/auth blocking and timeout. No content-review date is refreshed. Monthly workflow configured, NOT running on default branch before merge. |
+| T19 | PASS displayed policy + engine boundaries: fixed 2026-09-19 review/support values and unchanged lower dates; six new boundary tests and all 140 prior calculator cases pass. IAB date-field fill left the example date unchanged, so no browser boundary-entry success is claimed. No HomeTax direct run. |
+| T20 | Final delivery SHA, existing project ID and Preview target are checked through Vercel metadata and recorded in the PR. Final docs-only commit has the same application code as the screenshot revision. |
+
+### Download samples
+
+`evidence/downloads.json` records response status, type, byte count, full SHA-256 and expected-hash comparison. All four matched:
+
+- P2-15 PDF: 137,687 bytes, `3aa19105978665a9c579afd3a3ff2107e64dc03307db706ac036974ab65d7d0b`.
+- Korean-name inheritance agreement HWP: 22,528 bytes, `704287e3acfb7f3e66ebbdd4f8912c7ab6deab2a9945ddfb47ddcf1fe7fd590a`.
+- Existing ZIP: 16,042,175 bytes, `b8ba06c99a3de918d0aa75c8c57506895057d9b75a270e3f50a9a1afc965e934`.
+- KB retirement DOC: 105,984 bytes, `d9fa02f49b950d8d54b7405ab845ea12fec2684b30efe4ebca20dd1adc578833`.
+
+Existing 182-path historical preservation assertions and 74-preview/ZIP byte checks also passed. Those are preservation checks, not 182 newly obtained institution originals.
+
+### Screenshots
+
+These committed images can be opened from the PR, not only a temporary directory:
+
+| View | Before | After |
+| --- | --- | --- |
+| PC 1440x1000 | [Before](evidence/before-pc.png) | [After](evidence/after-pc.png) |
+| Mobile 390x844 | [Before](evidence/before-mobile.png) | [After](evidence/after-mobile.png) |
+| Mobile 360x800 | Not captured in baseline | [After](evidence/after-360.png) |
+| Bank detail | Prior detail not recaptured | [390px](evidence/bank-detail-mobile.png), [360px](evidence/bank-detail-360.png), [file action](evidence/bank-file-360.png) |
+| Guide and split form | Generic description and duplicated initial guide note observed in first Preview | [Gift guide](evidence/gift-guide-pc.png), [split form detail](evidence/split-detail-pc.png) |
+
+### Default ordering and review scheduling
+
+The 12 priority IDs are existing entry points, not new cards: P0-01/SVC-ACCOUNTS/P0-06 start estate and relationship discovery; P0-08 supports debt-related acceptance review; P3-05/BP-G-01 start cash/property gift preparation; REG-I-01 starts inheritance registration; NTS-CG-01/NTS-IG-11 expose transfer/gift filing; NTS-IG-01/P2-02 expose business succession; P6-01 starts bank payout preparation. Search relevance is not overridden by this unfiltered order.
+
+Manual command: `node scripts/forms-recheck.mjs --date=2026-09-25 --output=docs/forms-final-review-20260925/evidence/recheck-queue.json`. Network mode adds `--network`; comparison mode accepts `--previous=<observations.json>`. The monthly workflow reuses the checked source observation baseline, uploads a queue/observation artifact and has read-only contents permission. A baseline change is a review candidate, not automatic replacement. Only 14 observed endpoints have initial hash baselines; others need first-baseline review. Dynamic HTML changes can generate false-positive candidates. Missing source dates require checking original acquisition evidence; they do not block customers automatically.
 
 ## Remaining verification boundaries
 
 No live HomeTax calculation, bank issuance/login, legal submission, contract acceptance or personal-data transaction was performed. Provider link reachability and binary identity are separate from institution-original confirmation and current legal validity. Generic routes require provider navigation; no nonexistent files or exact submenus are invented. All 198 applicability records remain individually unverified unless pre-existing evidence states a narrower fact.
+
+Customer impact/follow-up: priority nine and P6-03 remain usable with an explicit latest-version/eligibility warning, not a claim of current legal approval. Compare current statutory attachments and insurer-specific requirements before filing. Provider-only forms can require manual search; verify the 33 exact routes before calling them direct access. Five inherited service records need dated source evidence. KB trust contract stays withheld until the actual current contract is available. These are deliberately not counted as completed legal reviews.
