@@ -157,6 +157,7 @@ test('unrelated title-recovery search is not represented as an inheritance-recov
   assert.equal(new URL(route.url).searchParams.get('searchWrd'),'상속회복');
   assert.equal(route.status,'no_matching_result'); assert.match(route.limitation,/0건/);
   assert.match(byId.get('P8-02').description,/일치하는 원문을 확보하지 못/);
+  assert.equal(byId.get('P8-02').form_no,'대응 서식 미확인');
   assert.equal(byId.get('P8-02').usage.sourceUrls[0],route.url);
   assert.doesNotMatch(byId.get('P8-02').usage.note,/공식 문서명은 328-1/);
   assert.match(byId.get('P1-16').providerInstructions.keywords,/1068/);

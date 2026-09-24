@@ -79,6 +79,7 @@ export function applySourceFollowup(item: LibraryDocument): LibraryDocument {
   if (RESTORED_SOURCE_IDS.includes(item.id)) item.sourceReview = { checkedOn: "2026-09-21", scope: "기존 공개 안내 검토 기록 복구 · 인증 후 개인조회 미실행", evidence: "docs/forms-life-guides-20260921/lookup-sources.md" };
   if (routes[item.id]) item.providerInstructions = { ...routes[item.id], documentName: item.catalogTitle || item.title };
   if (item.id === "P8-02") {
+    item.form_no = "대응 서식 미확인";
     item.description = "상속권 침해에 맞는 청구서식을 찾는 제공처 안내입니다. 현재 상속회복 검색으로 일치하는 원문을 확보하지 못했으므로, 소장 예시가 제공되는 것으로 보지 마세요.";
     item.usage = {
       who: "상속권 침해에 따른 권리 회복을 검토하는 사람",
