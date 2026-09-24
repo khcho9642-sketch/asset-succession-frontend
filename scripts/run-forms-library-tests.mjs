@@ -14,6 +14,7 @@ try {
   run(process.execPath, ['scripts/forms-preview-policy-tests.mjs']);
   run(process.execPath, ['scripts/forms-individual-catalog-tests.mjs']);
   run(process.execPath, ['scripts/forms-current-preview-tests.mjs']);
+  run(process.execPath, ['scripts/forms-card-display-tests.mjs']);
   run(process.execPath, ['scripts/forms-prd-tests.mjs']);
   run(process.execPath, ['scripts/forms-bank-tests.mjs']);
   run(process.execPath, ['scripts/forms-final-review-tests.mjs']);

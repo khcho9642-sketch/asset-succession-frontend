@@ -47,7 +47,7 @@ function Files({ item }: { item: LibraryDocument }) {
 function FileAction({ item, onOpen }: { item: LibraryDocument; onOpen?: (event: MouseEvent<HTMLAnchorElement>, id: string) => void }) {
   const files = availableFiles(item);
   if (SERVICE_CONTEXTS[item.id] || item.providerRoutes?.length) return <a className={styles.fileAction} href={resourceUrl(item.id)} onClick={event => onOpen?.(event, item.id)}>{item.providerRoutes ? useCategory(item) === "service" ? "발급 안내" : "은행별 안내" : "조회·발급 안내"}<ArrowRight size={14} aria-hidden="true" /></a>;
-  if (useCategory(item) === "service" || !files.length) return item.sourceUrl ? <a className={styles.fileAction} href={item.providerInstructions?.url || item.primaryAction?.url || item.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`${item.title} ${providerActionLabel(item)} (새 창)`}>{providerActionLabel(item)}<ExternalLink size={14} aria-hidden="true" /></a> : <span className={styles.unavailable}>제공처 확인 필요</span>;
+  if (useCategory(item) === "service" || !files.length) return item.sourceUrl ? <a className={styles.fileAction} href={item.providerInstructions?.url || item.primaryAction?.url || item.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`${item.title} ${providerActionLabel(item)} (새 창)`} title="제공처 사이트를 새 창에서 엽니다"><span>{providerActionLabel(item)}</span><ExternalLink size={14} aria-hidden="true" /></a> : <span className={styles.unavailable}>제공처 확인 필요</span>;
   if (useCategory(item) === "guide") return <a className={styles.fileAction} href={resourceUrl(item.id)} onClick={event => onOpen?.(event, item.id)}>안내 보기<BookOpen size={14} aria-hidden="true" /></a>;
   if (files.length === 1) return <a className={styles.fileAction} href={files[0].path} download={files[0].delivery === "hosted"} target={files[0].delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer" aria-label={`${item.title} ${files[0].format} ${fileRole(files[0].role)} ${files[0].delivery === "hosted" ? "받기" : "공식 파일 열기 (새 창)"}`} data-form-download>{item.institutionKind === "은행 지정 서식" ? `${item.institution} 공식 ${files[0].format} ${files[0].format === "PDF" ? "열기" : "받기"}` : `${files[0].format} ${files[0].delivery === "hosted" ? "받기" : "열기"}`}{files[0].delivery === "hosted" ? <Download size={14} aria-hidden="true" /> : <ExternalLink size={14} aria-hidden="true" />}</a>;
   return <details className={styles.filePicker}><summary aria-label={`${item.title} 파일 형식 선택`}>형식·파일 선택<ChevronDown size={14} aria-hidden="true" /></summary><Files item={item} /></details>;
@@ -144,15 +144,15 @@ export function FormsLibrary({ documents, groups }: Props) {
         <div className={styles.cardCopy}>
           <p className={styles.cardCategory}>{kindLabel(item)}<span>·</span>{stageLabel(card.stage)}</p>
           <h3><a href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)}>{item.title}</a></h3>
-          <p className={styles.cardDescription}>{describe(item)}</p>
         </div>
       </div>
+      <p className={styles.cardDescription}>{describe(item)}</p>
       <div className={styles.cardMeta}>
         <span>{item.providerScope || item.institution || "제공처 확인"}</span>
         <span>{formats.length ? formats.join(" · ") : "제공처 안내"}</span>
       </div>
       <div className={styles.cardActions}>
-        {!SERVICE_CONTEXTS[item.id] && !item.providerRoutes?.length && !(useCategory(item) === "guide" && availableFiles(item).length) && <a className={styles.detailAction} href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)}>{detailLabel}<ArrowRight size={16} aria-hidden="true" /></a>}
+        {!SERVICE_CONTEXTS[item.id] && !item.providerRoutes?.length && !(useCategory(item) === "guide" && availableFiles(item).length) && <a className={styles.detailAction} href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)} aria-label={`${item.title} ${detailLabel} (사이트 내)`} title={preview.kind === "provider" ? "사이트 내 사용방법과 확인 사항" : "사이트 내 문서 미리보기와 상세 정보"}>{preview.kind === "provider" ? <Info size={16} aria-hidden="true" /> : <Search size={16} aria-hidden="true" />}<span>{detailLabel}</span></a>}
         <FileAction item={item} onOpen={openDetail} />
       </div>
     </article>;
