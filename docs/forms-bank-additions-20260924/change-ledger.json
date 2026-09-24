@@ -6,14 +6,16 @@
     "uniqueExternalFiles": 1
   },
   "after": {
-    "cards": 197,
+    "cards": 198,
     "uniqueHostedFiles": 166,
-    "uniqueExternalFiles": 3
+    "uniqueExternalFiles": 4
   },
   "sources": {
     "hanaDeposit": "https://www.kebhana.com/cont/customer/customer07/customer0701/customer070101/index.jsp",
     "hanaDepositPdf": "https://image.kebhana.com/cont/customer/customer07/customer0701/customer070101/__icsFiles/afieldfile/2026/09/07/5-08-0084.pdf",
     "kbDeposit": "https://obank.kbstar.com/quics?page=C112064",
+    "kbRepresentative": "https://okbfex.kbstar.com/quics?page=C112649",
+    "kbRepresentativeDoc": "https://okbfex.kbstar.com/quics?asfilecode=566703&QSL=F&_FILE_NAME=%EA%B3%B5%ED%86%B5%EB%8C%80%ED%91%9C%EC%83%81%EC%86%8D%EC%9D%B8%EC%A7%80%EC%A0%95.doc&_LANG_TYPE=KOR&formDocNo=68007&gubun=",
     "wooriBalance": "https://spib.wooribank.com/pib/Dream?withyou=PSBKM0213",
     "wooriDebt": "https://spib.wooribank.com/pib/Dream?withyou=PSBKM0137",
     "wooriTransfer": "https://spib.wooribank.com/pib/help?withyou=PSTRS0015",
@@ -385,6 +387,53 @@
       ]
     },
     {
+      "id": "BANK-ADD-07",
+      "title": "KB국민은행 퇴직연금 대표상속인 지정합의서",
+      "change": "new",
+      "visibility": "standalone",
+      "use": "form",
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [
+          "insurance_pension"
+        ],
+        "kind": "form",
+        "delivery": "official_link",
+        "origin": "private_institution",
+        "authority": "private_terms"
+      },
+      "stage": [
+        "S4"
+      ],
+      "related": [
+        "P0-06",
+        "P6-06",
+        "LIB-ADD-01",
+        "LIB-ADD-02"
+      ],
+      "source": "https://okbfex.kbstar.com/quics?page=C112649",
+      "checkedOn": "2026-09-24",
+      "publishedOn": null,
+      "revisedAt": "2022-03",
+      "verification": "2026-09-24 현재 KB퇴직연금 공식 목록과 다운로드 원본 DOC를 대조했습니다. 원문의 제목·06206033·2022.3월 개정 표시, 퇴직연금 지급 동의·위임 및 첨부서류 내용을 확인했습니다. 2022-03은 파일 개정월이며 오늘의 게시일을 뜻하지 않습니다. 실제 창구 접수와 개별 계약의 수리 여부는 미검증입니다.",
+      "providerRoutes": [],
+      "files": [
+        {
+          "name": "대표상속인 지정합의서 [공통]",
+          "path": "https://okbfex.kbstar.com/quics?asfilecode=566703&QSL=F&_FILE_NAME=%EA%B3%B5%ED%86%B5%EB%8C%80%ED%91%9C%EC%83%81%EC%86%8D%EC%9D%B8%EC%A7%80%EC%A0%95.doc&_LANG_TYPE=KOR&formDocNo=68007&gubun=",
+          "format": "DOC",
+          "role": "original",
+          "bytes": 105984,
+          "delivery": "official_link"
+        }
+      ]
+    },
+    {
       "id": "P6-01",
       "title": "상속예금 지급 청구 안내",
       "change": "enriched",
@@ -487,7 +536,8 @@
       "related": [
         "P0-16",
         "SVC-PENSION",
-        "BANK-ADD-06"
+        "BANK-ADD-06",
+        "BANK-ADD-07"
       ],
       "source": "https://www.moel.go.kr/info/publicdata/majorpublish/majorPublishView.do?bbs_seq=20240600297",
       "checkedOn": "2026-09-19",
@@ -569,7 +619,8 @@
         "S1"
       ],
       "related": [
-        "BANK-ADD-01"
+        "BANK-ADD-01",
+        "BANK-ADD-07"
       ],
       "source": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007001&guideYn=Y",
       "checkedOn": "2026-09-19",
@@ -606,7 +657,8 @@
         "S1"
       ],
       "related": [
-        "BANK-ADD-01"
+        "BANK-ADD-01",
+        "BANK-ADD-07"
       ],
       "source": "https://www.gov.kr/mw/AA020InfoCappView.do?CappBizCD=13100000025",
       "checkedOn": "2026-09-23",
@@ -643,7 +695,8 @@
         "S1"
       ],
       "related": [
-        "BANK-ADD-01"
+        "BANK-ADD-01",
+        "BANK-ADD-07"
       ],
       "source": "https://www.gov.kr/mw/AA020InfoCappView.do?CappBizCD=13110000047",
       "checkedOn": "2026-09-23",
@@ -1101,20 +1154,21 @@
     "BANK-ADD-05": "cash_deposit",
     "BANK-ADD-06": "insurance_pension"
   },
-  "pending": [
+  "resolvedCandidates": [
     {
       "id": "BANK-CAND-01",
-      "title": "KB 대표상속인 지정합의서",
-      "source": "https://okbfex.kbstar.com/quics?page=C112649",
-      "public": false,
-      "reason": "공식 목록의 대표상속인 지정합의서[공통] 제목 확인. 현재 실제 다운로드 파일·적용 범위는 미확정."
-    },
+      "publicId": "BANK-ADD-07",
+      "checkedOn": "2026-09-24",
+      "result": "현재 KB퇴직연금 목록과 DOC 원본·제목·개정월·퇴직연금 동의/위임 범위 확인. 기관 원본 직접 연결."
+    }
+  ],
+  "pending": [
     {
       "id": "BANK-CAND-02",
       "title": "KB 특정금전신탁 상속인 지정 계약",
-      "source": "https://img2.kbstar.com/obj/ocommon/beneficiary_designation.pdf",
+      "source": "https://obank.kbstar.com/quics?page=C019998",
       "public": false,
-      "reason": "공식 PDF 2쪽의 존재 확인. 현재 약관 목록과 대조한 현행성은 미확인."
+      "reason": "현행 약관 목록 68386과 설명서 목록 68387의 실제 첨부가 모두 동일한 4쪽 상품설명서였다(GET/POST 대조). 2025-06-27 공지의 2쪽 계약서와 불일치하여 현행 계약서로 공개하지 않음. KB-VERIFICATION.md 참조."
     }
   ],
   "inspectedOriginals": [
@@ -1131,6 +1185,16 @@
       "bytes": 176443,
       "pages": 2,
       "sha256": "7bfc16f79ec8152fe334bedf47937c54da6c448fbd3396da3ec09c12747d2110",
+      "checkedOn": "2026-09-24",
+      "rehosted": false
+    },
+    {
+      "id": "BANK-ADD-07",
+      "bytes": 105984,
+      "format": "DOC",
+      "formNo": "06206033",
+      "revisedAt": "2022-03",
+      "sha256": "d9fa02f49b950d8d54b7405ab845ea12fec2684b30efe4ebca20dd1adc578833",
       "checkedOn": "2026-09-24",
       "rehosted": false
     }

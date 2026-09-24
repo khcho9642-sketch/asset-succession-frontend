@@ -5,6 +5,8 @@ export const BANK_SOURCES = {
   hanaDeposit: "https://www.kebhana.com/cont/customer/customer07/customer0701/customer070101/index.jsp",
   hanaDepositPdf: "https://image.kebhana.com/cont/customer/customer07/customer0701/customer070101/__icsFiles/afieldfile/2026/09/07/5-08-0084.pdf",
   kbDeposit: "https://obank.kbstar.com/quics?page=C112064",
+  kbRepresentative: "https://okbfex.kbstar.com/quics?page=C112649",
+  kbRepresentativeDoc: "https://okbfex.kbstar.com/quics?asfilecode=566703&QSL=F&_FILE_NAME=%EA%B3%B5%ED%86%B5%EB%8C%80%ED%91%9C%EC%83%81%EC%86%8D%EC%9D%B8%EC%A7%80%EC%A0%95.doc&_LANG_TYPE=KOR&formDocNo=68007&gubun=",
   wooriBalance: "https://spib.wooribank.com/pib/Dream?withyou=PSBKM0213",
   wooriDebt: "https://spib.wooribank.com/pib/Dream?withyou=PSBKM0137",
   wooriTransfer: "https://spib.wooribank.com/pib/help?withyou=PSTRS0015",
@@ -63,7 +65,22 @@ pension.resource!.facets.assets = ["insurance_pension"];
 pension.resource!.relations = related("P6-06", "SVC-PENSION", "P0-16");
 pension.usage = { who: "하나은행 DC·기업형IRP 가입 사업장·가입자와 사망 시 청구 자격을 확인한 사람", when: "계약 제도가 DC·기업형IRP에 해당하고 은행의 지급 요건을 확인할 때", prepare: ["가입 제도·계약 금융기관·사업장 확인", "사업장 확인란과 신청 대상 정보", "사망 청구 시 은행이 정한 대표수익자 지정합의서 등 추가 첨부서류"], steps: ["DB·개인형IRP가 아닌 해당 제도인지 먼저 확인합니다.", "공식 PDF 2쪽의 사망 시 첨부 안내와 현재 서식 목록을 확인합니다.", "필요한 대표수익자 서류와 사업장 확인·접수 방법을 하나은행에 문의합니다."], note: "DB·개인형IRP 공통 서식이 아닙니다. 미확보 첨부서류의 다운로드를 제공하지 않습니다. P0-16 국민연금 급여 청구와도 다른 절차입니다.", timingRationale: "상속 발생 후의 퇴직급여 청구 용도로 연결합니다.", sourceUrls: [BANK_SOURCES.hanaPension, BANK_SOURCES.hanaPensionPdf] };
 pension.verification = "2026-09-24 공식 목록의 2026-09-18 게시 표시와 실제 PDF 2쪽의 제목·2026.09 개정·사업장 확인란·사망 시 첨부 안내를 확인했습니다. 실제 청구는 실행하지 않았습니다.";
-export const BANK_DOCUMENTS: LibraryDocument[] = [deposit, ...certificates, pension];
+const kbRepresentative = document("BANK-ADD-07", "KB국민은행 퇴직연금 대표상속인 지정합의서", "KB국민은행 퇴직연금 가입자 사망 시 지급받을 대표상속인을 지정하고 공동상속인이 동의하는 은행 지정 서식입니다.", BANK_SOURCES.kbRepresentative, true);
+kbRepresentative.catalogTitle = "대표상속인 지정합의서 [공통]";
+kbRepresentative.institution = "KB국민은행";
+kbRepresentative.providerScope = "KB국민은행 퇴직연금 전용";
+kbRepresentative.format = "DOC";
+kbRepresentative.editable = "Word";
+kbRepresentative.revised_at = "2022-03";
+kbRepresentative.form_no = "06206033";
+kbRepresentative.files = [{ name: kbRepresentative.catalogTitle, path: BANK_SOURCES.kbRepresentativeDoc, format: "DOC", role: "original", bytes: 105984, delivery: "official_link" }];
+kbRepresentative.primaryAction = { label: "KB국민은행 공식 DOC 받기", url: BANK_SOURCES.kbRepresentativeDoc };
+kbRepresentative.searchAliases = ["KB 대표상속인", "국민은행 대표상속인 합의서", "퇴직연금 대표상속인 지정", "KB 퇴직연금 사망"];
+kbRepresentative.resource!.facets.assets = ["insurance_pension"];
+kbRepresentative.resource!.relations = related("P6-06", "P0-06", "LIB-ADD-01", "LIB-ADD-02");
+kbRepresentative.usage = { who: "KB국민은행 퇴직연금 가입자가 사망한 경우의 공동상속인·대표상속인", when: "퇴직연금을 지급받을 대표상속인을 지정하고 상속인 동의·위임을 준비할 때", prepare: ["퇴직연금 계좌와 대표상속인·나머지 상속인 정보", "가족관계증명서 등 상속관계 확인 서류", "방문·미방문 및 미성년 상속인 여부에 따른 은행 요구 서류"], steps: ["KB퇴직연금 공식 서식 목록에서 대표상속인 지정합의서[공통]을 확인합니다.", "원본 Word 파일의 상속인 동의·위임 및 미성년자 법정대리인 항목을 확인합니다.", "해당 계약 제도에 맞는 지급신청서와 추가 구비서류를 KB국민은행에 확인한 뒤 함께 준비합니다."], note: "퇴직연금 지급용입니다. 일반 상속예금 지급 위임장, 금융거래조회 위임장 또는 다른 은행의 서식으로 대체하지 마세요. 이 합의서만으로 지급 신청이 완료되지는 않습니다. 파일은 DOC 형식이며 PDF 미리보기·작성예시는 제공하지 않습니다.", timingRationale: "상속 발생 후 퇴직연금 지급을 위한 대표상속인 지정입니다.", sourceUrls: [BANK_SOURCES.kbRepresentative, BANK_SOURCES.kbRepresentativeDoc] };
+kbRepresentative.verification = "2026-09-24 현재 KB퇴직연금 공식 목록과 다운로드 원본 DOC를 대조했습니다. 원문의 제목·06206033·2022.3월 개정 표시, 퇴직연금 지급 동의·위임 및 첨부서류 내용을 확인했습니다. 2022-03은 파일 개정월이며 오늘의 게시일을 뜻하지 않습니다. 실제 창구 접수와 개별 계약의 수리 여부는 미검증입니다.";
+export const BANK_DOCUMENTS: LibraryDocument[] = [deposit, ...certificates, pension, kbRepresentative];
 
 export function applyBankAdditions(documents: LibraryDocument[]): LibraryDocument[] {
   return [...documents.map(original => {

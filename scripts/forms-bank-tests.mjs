@@ -6,11 +6,12 @@ const byId = bankCatalog.documents;
 const ids = patch => catalog.filterCatalog(bankCatalog, { ...catalog.emptyFilters(), ...patch }).map(card => card.id);
 const serviceIds = ['BANK-ADD-02', 'BANK-ADD-03', 'BANK-ADD-04', 'BANK-ADD-05'];
 
-test('six unique additions: 191 to 197 public cards, 9 archived and 13 exclusions unchanged', () => {
-  assert.equal(banks.BANK_DOCUMENTS.length, 6);
+test('seven unique additions: original six plus verified KB form, 198 public cards', () => {
+  assert.equal(banks.BANK_DOCUMENTS.length, 7);
+  for (let n = 1; n <= 6; n++) assert.ok(byId.has(`BANK-ADD-0${n}`));
   assert.equal(publicCatalog.cards.length, 191);
-  assert.equal(bankCatalog.cards.length, 197);
-  assert.equal(bankDocuments.length, publicDocuments.length + 6);
+  assert.equal(bankCatalog.cards.length, 198);
+  assert.equal(bankDocuments.length, publicDocuments.length + 7);
   assert.equal(new Set(bankDocuments.map(d => d.id)).size, bankDocuments.length);
   for (const visibility of ['archived', 'excluded']) assert.equal(bankDocuments.filter(d => d.resource.presentation.visibility === visibility).length, visibility === 'archived' ? 9 : 13);
 });
@@ -24,12 +25,41 @@ test('all existing file bytes, preview metadata, IDs and source dates remain unc
     else assert.ok(current.supplementalSources.some(s => s.url === old.sourceUrl && s.title.includes('이력')));
   }
 });
-test('exactly two external PDF originals and zero new hosted files or fabricated examples', () => {
-  assert.equal(banks.BANK_DOCUMENTS.flatMap(d => d.files).length, 2);
-  for (const item of banks.BANK_DOCUMENTS) {
+test('original six additions keep two external PDF originals without fabricated examples', () => {
+  const originalSix = banks.BANK_DOCUMENTS.filter(d => d.id !== 'BANK-ADD-07');
+  assert.equal(originalSix.length, 6);
+  assert.equal(originalSix.flatMap(d => d.files).length, 2);
+  for (const item of originalSix) {
     assert.equal(item.thumbnail, null); assert.equal(item.example, null);
     for (const file of item.files) { assert.equal(file.format, 'PDF'); assert.equal(file.delivery, 'official_link'); assert.ok(file.path.startsWith('https://image.kebhana.com/')); }
   }
+});
+test('verified KB retirement agreement links the real DOC, not a fabricated PDF or deposit proxy', () => {
+  const d = byId.get('BANK-ADD-07');
+  assert.equal(d.institution, 'KB국민은행');
+  assert.equal(d.format, 'DOC'); assert.equal(d.files.length, 1);
+  assert.equal(d.files[0].format, 'DOC'); assert.equal(d.files[0].bytes, 105984);
+  assert.equal(d.files[0].delivery, 'official_link');
+  const url = new URL(d.files[0].path);
+  assert.equal(url.hostname, 'okbfex.kbstar.com');
+  assert.equal(url.searchParams.get('formDocNo'), '68007');
+  assert.equal(url.searchParams.get('_FILE_NAME'), '공통대표상속인지정.doc');
+  assert.equal(d.revised_at, '2022-03'); assert.equal(d.publishedOn, undefined);
+  assert.equal(d.form_no, '06206033'); assert.equal(d.checkedOn, '2026-09-24');
+  assert.deepEqual(d.resource.facets.assets, ['insurance_pension']);
+  assert.deepEqual(d.resource.facets.timing, ['after_death']);
+  assert.match(d.usage.note, /일반 상속예금.*다른 은행.*대체하지/);
+  assert.equal(d.preview, undefined); assert.equal(d.thumbnail, null); assert.equal(d.example, null);
+  assert.ok(individual.relatedDocuments(bankCatalog, 'P6-06').some(r => r.id === d.id));
+  assert.ok(ids({q: 'KB 대표상속인'}).includes(d.id));
+  const ui = readFileSync('app/forms/FormsLibrary.tsx', 'utf8');
+  assert.ok(ui.includes('공식 ${files[0].format}'));
+  assert.ok(!ui.includes('${item.institution} 공식 PDF 열기'));
+});
+test('KB follow-up preserves hosted originals and keeps conflicting trust attachment unpublished', () => {
+  assert.equal(new Set(bankCatalog.cards.flatMap(c => c.document.files.filter(f => f.delivery === 'hosted').map(f => f.path))).size, 166);
+  assert.equal(new Set(bankCatalog.cards.flatMap(c => c.document.files.filter(f => f.delivery === 'official_link').map(f => f.path))).size, 4);
+  assert.ok(!banks.BANK_DOCUMENTS.some(d => d.id === 'BANK-CAND-02' || d.files.some(f => f.path.includes('beneficiary_designation') || /formDocNo=6838[67]/.test(f.path))));
 });
 test('Hana deposit current original, posting date and revision month are separate', () => {
   const d = byId.get('BANK-ADD-01');
