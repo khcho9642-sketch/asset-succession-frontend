@@ -17,6 +17,9 @@ export type ProviderRoute = {
   channel: string; authentication: string; note: string;
 };
 export type LibraryDocument = {
+  authorityEvidence?: string;
+  reviewSummary?: { reviewedOn: string; status: string; scope: string; finding: string; limitation: string };
+  providerInstructions?: { documentName: string; menu: string; limitation: string };
   providerRoutes?: ProviderRoute[];
   providerScope?: string;
   institutionKind?: string;
@@ -51,7 +54,7 @@ export const STAGES = [
 ] as const;
 export const FACETS = {
   purpose: { label: "목적", values: { inheritance: "상속", gift: "증여", capital_transfer: "양도", business_succession: "가업승계" } },
-  asset: { label: "자산", values: { real_estate: "부동산", cash_deposit: "현금·예금", securities: "주식·증권", business: "사업·경영권", insurance_pension: "보험·연금", other: "기타 자산" } },
+  asset: { label: "자산", values: { real_estate: "부동산", cash_deposit: "현금·예금", securities: "주식·증권", business: "사업·경영권", insurance_pension: "보험·연금", debt: "채무·대출", other: "기타 자산" } },
   kind: { label: "자료 유형", values: { form: "서식", guide: "안내", example: "작성사례", service_link: "기관 서비스" } },
   delivery: { label: "이용 방식", values: { hosted: "파일 받기", official_link: "제공처에서 확인", unavailable: "준비 중" } },
 } as const;

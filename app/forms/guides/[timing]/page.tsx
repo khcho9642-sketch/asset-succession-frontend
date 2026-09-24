@@ -31,6 +31,9 @@ export default async function GuidePage({ params }: { params: Promise<{ timing: 
       <div><p className={styles.eyebrow}>{guide.title} 가이드</p><h1>{guide.question}</h1><p>{guide.description}</p></div>
       <Link className={styles.libraryButton} href={guideCatalogUrl(guide.timing)}><FileText size={17} aria-hidden="true" /> 관련 자료 모아보기</Link>
     </header>
+    {["gift", "transfer", "business-succession"].includes(guide.timing) && <nav className={styles.noticeActions} aria-label="내 자산·상황 선택">
+      {(guide.timing === "gift" ? [["cash", "현금"], ["real-estate", "부동산"], ["shares", "주식"]] : guide.timing === "transfer" ? [["property-check", "부동산 양도"], ["shares", "주식 양도"], ["payment-evidence", "공통 대금 증빙"]] : [["inheritance", "상속으로 승계"], ["gift", "주식 증여"], ["business-transfer", "사업 이전"], ["funding-evidence", "공통 자금 증빙"]]).map(([id, label]) => <a href={`#${id}`} key={id}>{label}<ArrowRight size={15} aria-hidden="true" /></a>)}
+    </nav>}
     <aside className={styles.notice} aria-label="시작 전 확인"><strong>{guide.notice.title}</strong><p>{guide.notice.body}</p>
       {guide.timing === "after-death" && <div className={styles.noticeActions}>
         <a href="#estate-inquiry">재산·채무 조회 <ArrowRight size={15} aria-hidden="true" /></a>
@@ -45,6 +48,7 @@ export default async function GuidePage({ params }: { params: Promise<{ timing: 
         <Link className={styles.contentsLibrary} href="/forms">자료실 전체 보기 <ArrowRight size={15} aria-hidden="true" /></Link>
       </aside>
       <div className={styles.steps}>{guide.steps.map((step, index) => <section id={step.id} className={styles.step} key={step.id} aria-labelledby={`${step.id}-title`}>
+        {guide.timing === "gift" && step.id === "cash" && <span id="transfer-evidence" />}
         <div className={styles.stepHeading}><span className={styles.number}>{String(index + 1).padStart(2, "0")}</span><div><p className={styles.question}>{step.question}</p><h2 id={`${step.id}-title`}>{step.title}</h2></div></div>
         <p className={styles.why}>{step.why}</p>
         <ul className={styles.actions}>{step.actions.map(action => <li key={action}>{action}</li>)}</ul>

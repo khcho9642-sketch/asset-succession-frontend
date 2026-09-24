@@ -8,6 +8,9 @@ import type {
 } from "./types";
 
 export const SIMPLE_CALCULATOR_CHECKED_ON = "2026-09-19";
+// An explicitly reviewed input window, not a claim that the tax law expires here.
+// Do not derive either value from the build date or current clock.
+export const SIMPLE_CALCULATOR_SUPPORTED_THROUGH = "2026-09-19";
 
 export const MAX_SIMPLE_CALCULATOR_WON = 100_000_000_000_000;
 const BASIC_CAPITAL_DEDUCTION = 2_500_000;
@@ -181,8 +184,8 @@ function validDate(value: string): boolean {
 
 function checkCalculationDate(value: string, label: string, start: string, result: SimpleCalculationResult): void {
   if (!validDate(value)) result.missing.push(`${label}: 올바른 날짜를 입력해 주세요.`);
-  else addUnsupported(result.unsupported, value < start || value > SIMPLE_CALCULATOR_CHECKED_ON,
-    label, `${start}부터 ${SIMPLE_CALCULATOR_CHECKED_ON}까지의 적용 기준을 지원합니다.`);
+  else addUnsupported(result.unsupported, value < start || value > SIMPLE_CALCULATOR_SUPPORTED_THROUGH,
+    label, `${start}부터 ${SIMPLE_CALCULATOR_SUPPORTED_THROUGH}까지의 입력일을 지원합니다. 그 밖의 날짜는 적용 기준 검토가 완료되지 않았습니다.`);
 }
 
 function anniversary(value: string, years: number): string {

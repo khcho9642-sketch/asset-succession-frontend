@@ -81,6 +81,7 @@
 }
 .searchWorkspace { padding-bottom: 0; }
 .purposeGuides { margin: 18px 0; }
+.guideEntryNote { display: block; font-size: 13px; font-weight: 400; color: var(--lib-muted); line-height: 1.5; margin-top: 3px; }
 .purposeGuides h2 { margin: 0 0 6px; font-size: 14px; font-weight: 600; color: var(--lib-muted); }
 .purposeGuides > div { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px 20px; }
 .providerRoutes { padding: 20px 0; border-top: 1px solid var(--lib-line); }

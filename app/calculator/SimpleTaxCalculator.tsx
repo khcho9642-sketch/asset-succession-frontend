@@ -14,6 +14,7 @@ import {
   fullYearsBetween,
   MAX_SIMPLE_CALCULATOR_WON,
   SIMPLE_CALCULATOR_CHECKED_ON,
+  SIMPLE_CALCULATOR_SUPPORTED_THROUGH,
 } from "@/lib/simple-calculator";
 import type {
   CapitalGainsInput,
@@ -1144,7 +1145,8 @@ export function SimpleTaxCalculator() {
         <p>자산승계 360 · 자체 참고 초안</p>
         <h1>간편 세금계산</h1>
         <span>날짜·가족관계·금액을 입력하면 같은 화면에서 예상 세액을 확인합니다. 확정 신고 전에는 전문가 검토가 필요합니다.</span>
-        <p>지원일: {kind === "capitalGains" ? "2021-12-08" : "2023-01-01"} ~ {SIMPLE_CALCULATOR_CHECKED_ON} · 계산 기준 검토일: {SIMPLE_CALCULATOR_CHECKED_ON}</p>
+        <p>입력일 지원 범위: {kind === "capitalGains" ? "2021-12-08" : "2023-01-01"} ~ {SIMPLE_CALCULATOR_SUPPORTED_THROUGH} · 계산 기준 검토일: {SIMPLE_CALCULATOR_CHECKED_ON}</p>
+        <p>검토일은 법령의 만료일이 아닙니다. 지원 범위 밖의 날짜는 기준 검토가 완료되지 않아 계산하지 않습니다.</p>
       </section>
       <div className={styles.layout}>
         <section ref={formRef} className={styles.formPanel}>

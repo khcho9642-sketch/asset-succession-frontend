@@ -5,5 +5,6 @@ import { expandDocumentParts, expandDocumentSections } from "./document-parts";
 import { mergeGeneratedPreviews } from "./preview-index";
 import { applyLibraryEditorial } from "./library-editorial";
 import { applyBankAdditions } from "./bank-additions";
+import { applyFinalReview } from "./final-review";
 
-export const libraryDocuments = applyBankAdditions(applyLibraryEditorial(mergeGeneratedPreviews(expandDocumentParts(expandDocumentSections(manifest.documents, sections), parts))));
+export const libraryDocuments = applyFinalReview(applyBankAdditions(applyLibraryEditorial(mergeGeneratedPreviews(expandDocumentParts(expandDocumentSections(manifest.documents, sections), parts)))));
