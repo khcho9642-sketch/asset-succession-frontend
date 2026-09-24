@@ -26,7 +26,7 @@ export async function run(args) {
   const ids = get('--ids')?.split(',');
   const previous = get('--previous') && existsSync(get('--previous')) ? JSON.parse(readFileSync(get('--previous'), 'utf8')) : { observations: [] };
   const records = ledger.records.filter(row => !ids || ids.includes(row.id));
-  const urls = new Set(records.flatMap(row => [row.sourceUrl, ...row.files.map(f => f.sourceUrl || (f.delivery !== 'hosted' ? f.path : null))]).filter(url => /^https:\/\//.test(url || '')));
+  const urls = new Set(records.flatMap(row => [row.sourceUrl, row.currentness?.sourceUrl, row.providerInstructions?.url, ...row.files.map(f => f.sourceUrl || (f.delivery !== 'hosted' ? f.path : null))]).filter(url => /^https:\/\//.test(url || '')));
   const observations = [];
   if (args.includes('--network')) for (const url of urls) {
     const result = await observe(url);

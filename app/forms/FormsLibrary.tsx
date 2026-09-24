@@ -37,7 +37,7 @@ const providerActionLabel = (item: LibraryDocument) => item.primaryAction?.label
 
 function Files({ item }: { item: LibraryDocument }) {
   const files = availableFiles(item);
-  if (!files.length) return item.sourceUrl ? <a className={styles.providerLink} href={item.sourceUrl} target="_blank" rel="noopener noreferrer">{providerLabel(item)}에서 확인<ExternalLink size={14} aria-hidden="true" /></a> : <p className={styles.muted}>제공 파일을 확인하고 있습니다.</p>;
+  if (!files.length) return item.sourceUrl ? <a className={styles.providerLink} href={item.providerInstructions?.url || item.sourceUrl} target="_blank" rel="noopener noreferrer">{providerLabel(item)}에서 확인<ExternalLink size={14} aria-hidden="true" /></a> : <p className={styles.muted}>제공 파일을 확인하고 있습니다.</p>;
   return <ul className={styles.fileList} aria-label={`${item.title} 제공 파일`}>{files.map(file => <li key={file.path}>
     <a href={file.path} download={file.delivery === "hosted"} target={file.delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer" data-file-download>
       <span className={styles.fileFormat}>{file.format}</span><span>{file.name}<small>{fileRole(file.role)}{file.delivery === "hosted" ? "" : " · 공식 파일 (새 창)"}{file.bytes > 0 ? ` · ${Math.ceil(file.bytes / 1024).toLocaleString("ko-KR")} KB` : ""}</small></span>{file.delivery === "hosted" ? <Download size={15} aria-hidden="true" /> : <ExternalLink size={15} aria-hidden="true" />}
@@ -47,7 +47,7 @@ function Files({ item }: { item: LibraryDocument }) {
 function FileAction({ item, onOpen }: { item: LibraryDocument; onOpen?: (event: MouseEvent<HTMLAnchorElement>, id: string) => void }) {
   const files = availableFiles(item);
   if (SERVICE_CONTEXTS[item.id] || item.providerRoutes?.length) return <a className={styles.fileAction} href={resourceUrl(item.id)} onClick={event => onOpen?.(event, item.id)}>{item.providerRoutes ? useCategory(item) === "service" ? "발급 안내" : "은행별 안내" : "조회·발급 안내"}<ArrowRight size={14} aria-hidden="true" /></a>;
-  if (useCategory(item) === "service" || !files.length) return item.sourceUrl ? <a className={styles.fileAction} href={item.primaryAction?.url || item.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`${item.title} ${providerActionLabel(item)} (새 창)`}>{providerActionLabel(item)}<ExternalLink size={14} aria-hidden="true" /></a> : <span className={styles.unavailable}>제공처 확인 필요</span>;
+  if (useCategory(item) === "service" || !files.length) return item.sourceUrl ? <a className={styles.fileAction} href={item.providerInstructions?.url || item.primaryAction?.url || item.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`${item.title} ${providerActionLabel(item)} (새 창)`}>{providerActionLabel(item)}<ExternalLink size={14} aria-hidden="true" /></a> : <span className={styles.unavailable}>제공처 확인 필요</span>;
   if (useCategory(item) === "guide") return <a className={styles.fileAction} href={resourceUrl(item.id)} onClick={event => onOpen?.(event, item.id)}>안내 보기<BookOpen size={14} aria-hidden="true" /></a>;
   if (files.length === 1) return <a className={styles.fileAction} href={files[0].path} download={files[0].delivery === "hosted"} target={files[0].delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer" aria-label={`${item.title} ${files[0].format} ${fileRole(files[0].role)} ${files[0].delivery === "hosted" ? "받기" : "공식 파일 열기 (새 창)"}`} data-form-download>{item.institutionKind === "은행 지정 서식" ? `${item.institution} 공식 ${files[0].format} ${files[0].format === "PDF" ? "열기" : "받기"}` : `${files[0].format} ${files[0].delivery === "hosted" ? "받기" : "열기"}`}{files[0].delivery === "hosted" ? <Download size={14} aria-hidden="true" /> : <ExternalLink size={14} aria-hidden="true" />}</a>;
   return <details className={styles.filePicker}><summary aria-label={`${item.title} 파일 형식 선택`}>형식·파일 선택<ChevronDown size={14} aria-hidden="true" /></summary><Files item={item} /></details>;
@@ -280,9 +280,11 @@ export function FormsLibrary({ documents, groups }: Props) {
         <p className={styles.detailDescription}>{selected.description}</p>
         {selectedUsage && <dl className={styles.metadata}><dt>사용 대상</dt><dd>{selectedUsage.who}</dd><dt>쓰는 경우</dt><dd>{selectedUsage.when}</dd></dl>}
         {!SERVICE_CONTEXTS[selected.id] && !selected.providerRoutes?.length && selected.institutionKind !== "은행 지정 서식" && <section className={styles.downloadSection} id="detail-downloads" aria-label="제공 파일과 이용 방법">
-          {selected.providerInstructions && <div className={styles.contextNote}><strong>{selected.providerInstructions.menu}</strong><p>찾을 문서: {selected.providerInstructions.documentName}</p><p>{selected.providerInstructions.limitation}</p></div>}
+          {selected.providerInstructions && <div className={styles.contextNote}><strong>{selected.providerInstructions.menu}</strong><p>찾을 문서: {selected.providerInstructions.documentName}</p>{selected.providerInstructions.keywords && <p>선택·검색어: {selected.providerInstructions.keywords}</p>}<p>{selected.providerInstructions.limitation}</p>{selected.providerInstructions.checkedOn && <small>경로 검토 {selected.providerInstructions.checkedOn} · 파일·개별 신청 검증과 별개</small>}</div>}
+          {selected.currentEdition && <p className={styles.usageNote}>현행 법령 첨부 제공본 · 서식 개정일 {selected.currentEdition.revision} · 확인 {selected.currentVersionReview?.reviewedOn}</p>}
           <div className={styles.downloadHeading}><h3>{USE_CATEGORIES[useCategory(selected)]}</h3></div>
           {!SERVICE_CONTEXTS[selected.id] && (useCategory(selected) === "service" || !availableFiles(selected).length ? <FileAction item={selected} /> : <Files item={selected} />)}
+          {selected.currentEdition && <details><summary>이전 수집 파일 보기 · 제출 전 현재 제공본 확인</summary><p>원래 파일과 경로는 이력 확인용으로 보존했습니다. 위의 현재 제공본과 구분하세요.</p><Files item={{ ...selected, currentEdition: undefined }} /></details>}
         </section>}
         {SERVICE_CONTEXTS[selected.id] && <section id="detail-service-contexts" aria-label="본인과 상속인 이용 안내">
           {selectedContexts.notice && <p className={styles.contextNote} role="status">{selectedContexts.notice}</p>}
@@ -319,7 +321,8 @@ export function FormsLibrary({ documents, groups }: Props) {
         <div className={styles.detailLayout} style={{ gridTemplateColumns: "minmax(0, 1fr)" }}>
           <div className={styles.detailInfo}><h3>자료 정보</h3><dl className={styles.metadata}>
             <dt>제공처</dt><dd>{selected.providerScope || selected.institution}</dd><dt>이용 방식</dt><dd>{deliveryLabel(selected)}</dd>
-            <dt>서식번호</dt><dd>{selected.form_no || "기관 안내 확인"}</dd><dt>출처 확인일</dt><dd>{selected.checkedOn || selected.checked_at?.slice(0, 10) || "기존 안내 보존 · 재확인 필요"}</dd>
+            <dt>서식번호</dt><dd>{selected.form_no || "기관 안내 확인"}</dd><dt>원자료 수집 확인일</dt><dd>{selected.checkedOn || selected.checked_at?.slice(0, 10) || "별도 파일 수집 기록 없음"}</dd>
+            {selected.sourceReview && <><dt>공개 출처 검토일</dt><dd>{selected.sourceReview.checkedOn} · {selected.sourceReview.scope}</dd></>}
             <dt>서식 개정일</dt><dd>{selected.revised_at || "공식 원문 확인"}</dd>
             {selected.publishedOn && <><dt>목록 게시일</dt><dd>{selected.publishedOn}</dd></>}
             <dt>이용 조건</dt><dd>{selected.license || "제공처 안내 확인"}</dd>
@@ -336,6 +339,7 @@ export function FormsLibrary({ documents, groups }: Props) {
         <details className={styles.verification}><summary>자료 확인 내용<ChevronDown size={16} aria-hidden="true" /></summary>
           {selected.authorityEvidence && <p>{selected.authorityEvidence}</p>}
           {selected.reviewSummary && <p>{selected.reviewSummary.scope} ({selected.reviewSummary.reviewedOn}): {selected.reviewSummary.finding}</p>}
+          {selected.currentVersionReview && <a href={selected.currentVersionReview.sourceUrl} target="_blank" rel="noopener noreferrer">이번에 대조한 공식 제공처<ExternalLink size={15} aria-hidden="true" /></a>}
           {selected.providerRoutes?.length || selected.institutionKind === "은행 지정 서식" ? <p>공개 안내·원문 확인과 실제 발급·접수 검증은 다릅니다. 인증 후 발급·창구 접수는 실행하지 않았습니다.</p> : null}
           <p>{selected.verification}</p>{selected.exampleVerification && <p>{selected.exampleVerification}</p>}
           {selected.editorialReview && <p>이용·분류 검토 ({selected.editorialReview.date}): {selected.editorialReview.note}</p>}

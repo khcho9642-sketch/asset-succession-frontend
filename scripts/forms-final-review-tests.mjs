@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFileSync } from 'node:fs';
-import { finalDocuments, bankDocuments, finalCatalog, finalReview, catalog, guides } from './load-current-forms.mjs';
+import { createHash } from 'node:crypto';
+import { finalDocuments, bankDocuments, finalCatalog, finalReview, catalog, guides, previewApi } from './load-current-forms.mjs';
 import { reviewFlags, compareObservation, observe } from './forms-recheck.mjs';
 const byId = new Map(finalDocuments.map(x => [x.id, x]));
 const ids = patch => catalog.filterCatalog(finalCatalog, { ...catalog.emptyFilters(), ...patch }).map(x => x.id);
@@ -79,7 +80,8 @@ test('priority nine are partial, not silently legally verified', () => {
 test('ledger maps exactly to final public IDs and preserves original source dates', () => {
   const ledger=JSON.parse(readFileSync('public/downloads/official-forms/review-ledger.json','utf8'));
   assert.deepEqual(new Set(ledger.records.map(x=>x.id)),new Set(finalCatalog.cards.map(x=>x.id)));
-  assert.equal(ledger.records.length,198); assert.deepEqual(ledger.after,{public:198,form:151,service:25,guide:22,archived:9,excluded:13,hosted:166,external:4});
+  // Four preferred originals are superseded by eight verified current originals; old paths remain intact.
+  assert.equal(ledger.records.length,198); assert.deepEqual(ledger.after,{public:198,form:151,service:25,guide:22,archived:9,excluded:13,hosted:170,external:4});
   for(const row of ledger.records) { assert.ok(row.sourceUrl); assert.ok(row.editorial && row.currentness && row.applicability); assert.notEqual(row.applicability.status,'verified'); }
 });
 test('recheck separates overdue, missing date, access failure, source change and unchanged bytes', () => {
@@ -92,4 +94,74 @@ test('recheck separates overdue, missing date, access failure, source change and
 test('network/auth failure is not interpreted as legal repeal', async () => {
   assert.equal((await observe('https://example.test',async()=>({ok:false,status:403}))).reason,'authentication_or_blocking');
   assert.equal((await observe('https://example.test',async()=>{throw new Error('blocked');})).reason,'network_or_timeout');
+});
+
+test('four current editions contain eight authentic complete binary originals, not rewritten forms', () => {
+  const expected = {
+    'NTS-CG-10':['4a55f04ab3127a535fc192cddb7afd2500adc824a4d8efd024142c9d474c8dc4','09609179aed8e6827c63d4785e3b61ca29619dc05209e8ca8160a0f7bc710303'],
+    'NTS-CG-11':['4543d6710a30470b849b07f64dddebfa5ac252f9b509ff10da7b49019dc33f99','d0ed1773208a4e88c595236eaccb49bd8342ab05f1a45bc949a189dceb3a9eae'],
+    'NTS-CG-12':['390de189a5b3b93227fe9ea5eee167bca797e4a7be49cdd1edb304574357c007','0e7e52bc828b2aa0a5aa6e52cf2db2c09dfa88593029dc254961fd9bedae4390'],
+    'P4-04':['a64b1f89328d5a0c0fee11cf91c7fa148734e3e932d909ae26e78502d87c6129','5d6c851a02077a80cce3419bee1ff6544d923e1ad4015b10215afbf3d8c58bfe'],
+  };
+  assert.equal(finalDocuments.filter(x=>x.currentEdition).length,4);
+  for (const [id, hashes] of Object.entries(expected)) {
+    const item=byId.get(id),files=catalog.availableFiles(item);
+    assert.deepEqual(files.map(x=>x.format),['PDF','HWP']);
+    files.forEach((file,i)=>{
+      const raw=readFileSync('public'+file.path);
+      assert.equal(createHash('sha256').update(raw).digest('hex'),hashes[i]);
+      assert.equal(raw.length,file.bytes);
+      assert.equal(file.sha256,hashes[i]);
+      assert.match(file.sourceUrl,/^https:\/\/www\.law\.go\.kr\/LSW\/flDownload\.do/);
+      assert.equal(file.licenseBasis,'statutory-form');
+    });
+  }
+});
+test('preferred previews trace to current originals, never historical embedded thumbnails',()=>{
+  for(const item of finalDocuments.filter(x=>x.currentEdition)) {
+    const preview=previewApi.resolvePreview(item);
+    assert.equal(preview.kind,'image'); assert.equal(preview.pdfPath,item.currentEdition.files[0].path);
+    assert.equal(preview.imagePath,item.currentEdition.example);
+    assert.notEqual(preview.imagePath,item.example); assert.equal(preview.pageCount,2);
+    assert.ok(item.files.every(x=>!catalog.availableFiles(item).some(y=>y.path===x.path)));
+  }
+});
+test('priority statutory comparison and individual legal eligibility remain separate',()=>{
+  for(const id of ['NTS-IG-12','NTS-CG-10','NTS-CG-11','NTS-CG-12','P2-05','P4-04','P5-02','P5-03']) {
+    assert.equal(byId.get(id).currentVersionReview.status,'current_attachment_checked');
+    assert.match(byId.get(id).currentVersionReview.sourceUrl,/law.go.kr/);
+    assert.equal(byId.get(id).reviewSummary.status,'partial');
+  }
+  assert.equal(byId.get('BP-G-01').currentVersionReview.status,'provider_reference_checked');
+});
+test('all 33 provider-only forms have specific search/navigation evidence or explicit access failure',()=>{
+  const items=finalDocuments.filter(x=>x.providerInstructions); assert.equal(items.length,33);
+  for(const item of items) {
+    assert.ok(item.providerInstructions.keywords); assert.equal(item.providerInstructions.checkedOn,'2026-09-25');
+    assert.ok(item.providerInstructions.status); assert.ok(item.providerInstructions.menu);
+    assert.notEqual(item.providerInstructions.status,'fully_verified');
+  }
+  assert.equal(byId.get('P0-08').providerInstructions.status,'access_blocked');
+  assert.match(byId.get('P0-08').providerInstructions.limitation,/403/);
+});
+test('unrelated title-recovery search is not represented as an inheritance-recovery form',()=>{
+  const route=byId.get('P8-02').providerInstructions;
+  assert.equal(new URL(route.url).searchParams.get('searchWrd'),'상속회복');
+  assert.equal(route.status,'no_matching_result'); assert.match(route.limitation,/0건/);
+  assert.match(byId.get('P1-16').providerInstructions.keywords,/1068/);
+  assert.match(byId.get('P1-20').providerInstructions.keywords,/461/);
+});
+test('five inherited service dates restore dated evidence without rewriting collection dates',()=>{
+  const ledger=JSON.parse(readFileSync('public/downloads/official-forms/review-ledger.json','utf8'));
+  for(const id of ['SVC-ACCOUNTS','SVC-INSURANCE','SVC-CREDIT','SVC-PENSION','SVC-REGISTRY']) {
+    const item=byId.get(id), row=ledger.records.find(x=>x.id===id);
+    assert.equal(item.sourceReview.checkedOn,'2026-09-21'); assert.equal(row.source.collectedOn,null);
+    assert.equal(row.source.checkedOn,'2026-09-21'); assert.equal(row.reviewPolicy.nextReviewDue,'2026-12-21');
+    assert.match(readFileSync(item.sourceReview.evidence,'utf8'),/확인일: 2026-09-21/);
+  }
+});
+test('PDF text equality is not mislabeled as binary identity',()=>{
+  const rows=JSON.parse(readFileSync('docs/forms-final-review-20260925/source-followup/comparison.json','utf8'));
+  assert.equal(rows.length,2);
+  for(const row of rows) { assert.equal(row.normalizedTextEqual,true);assert.notEqual(row.oldSha256,row.currentSha256); assert.ok(row.pageMatches.every(Boolean)); }
 });

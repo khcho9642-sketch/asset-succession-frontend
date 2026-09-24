@@ -17,9 +17,12 @@ export type ProviderRoute = {
   channel: string; authentication: string; note: string;
 };
 export type LibraryDocument = {
+  currentEdition?: Pick<LibraryDocument, "files" | "example" | "thumbnail" | "preview"> & { revision: string };
+  sourceReview?: { checkedOn: string; scope: string; evidence: string };
+  currentVersionReview?: { reviewedOn: string; status: string; decision: string; finding: string; limitation: string; sourceUrl: string };
   authorityEvidence?: string;
   reviewSummary?: { reviewedOn: string; status: string; scope: string; finding: string; limitation: string };
-  providerInstructions?: { documentName: string; menu: string; limitation: string };
+  providerInstructions?: { documentName: string; menu: string; limitation: string; keywords?: string; checkedOn?: string; status?: string; url?: string };
   providerRoutes?: ProviderRoute[];
   providerScope?: string;
   institutionKind?: string;
@@ -181,7 +184,7 @@ export function filterCatalog(index: CatalogIndex, filters: CatalogFilters): Cat
 /** Preserve examples/attachments as named files; never invent alternative formats. */
 export function availableFiles(item: LibraryDocument): LibraryFile[] {
   const seen = new Set<string>();
-  return item.files.filter(file => {
+  return (item.currentEdition?.files || item.files).filter(file => {
     if (!file.path || file.delivery === "pending" || seen.has(file.path)) return false;
     seen.add(file.path); return true;
   });

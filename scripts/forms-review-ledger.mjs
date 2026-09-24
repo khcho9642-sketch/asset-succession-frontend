@@ -28,6 +28,7 @@ export const ledger = {
   records: finalDocuments.filter(catalog.isPublicResource).map(item => {
     const priority = finalReview.PRIORITY_REVIEW[item.id];
     const collected = date(item.checkedOn || item.checked_at);
+    const reviewed = item.sourceReview?.checkedOn || collected;
     const editorial = item.editorialReview;
     const basis = item.id.startsWith('BANK-') || item.providerRoutes ? 'docs/forms-bank-additions-20260924/change-ledger.json' : 'public/downloads/official-forms/manifest.json';
     return {
@@ -35,15 +36,15 @@ export const ledger = {
       authority: { kind: item.resource?.facets.authority, basis: item.authorityEvidence || 'Preserved classification; see individual source evidence. Not proof of currentness.' },
       files: catalog.availableFiles(item).map(file => ({ ...file, observedSha256: file.delivery === 'hosted' && existsSync(filePath(file.path)) ? hash(readFileSync(filePath(file.path))) : null })),
       providerInstructions: item.providerInstructions || null, providerRoutes: item.providerRoutes || [],
-      source: { checkedOn: collected, status: collected ? 'recorded_source_check' : 'check_date_missing', basis },
+      source: { checkedOn: reviewed, collectedOn: collected, status: reviewed ? 'recorded_source_check' : 'check_date_missing', basis: item.sourceReview?.evidence || basis, scope: item.sourceReview?.scope || 'Original collection record' },
       editorial: { reviewedOn: editorial?.date || null, status: editorial?.status || 'unreviewed', basis: editorial?.note || 'No individual editorial record' },
-      currentness: { reviewedOn: priority ? finalReview.FINAL_REVIEW_DATE : null, status: priority ? 'partial_review' : 'not_reverified',
+      currentness: item.currentVersionReview || { reviewedOn: priority ? finalReview.FINAL_REVIEW_DATE : null, status: priority ? 'partial_review' : 'not_reverified',
         finding: priority?.finding || 'Existing source evidence preserved; no new current-version claim.',
         limitation: priority?.limitation || 'Currentness and individual legal applicability need separate confirmation.',
         decision: 'retain_pending_current_version_comparison' },
       applicability: { status: 'not_individually_verified', evidence: item.resource?.applicability || [], note: 'Classification and source checks are not individual legal approval.' },
       reviewPolicy: { intervalMonths: ['form', 'service'].includes(catalog.useCategory(item)) ? 3 : 6,
-        lastReviewedOn: collected, nextReviewDue: due(collected, ['form', 'service'].includes(catalog.useCategory(item)) ? 3 : 6),
+        lastReviewedOn: reviewed, nextReviewDue: due(reviewed, ['form', 'service'].includes(catalog.useCategory(item)) ? 3 : 6),
         scope: 'Source/current-version recheck queue; not expiry or automatic legal approval' },
       classificationCorrection: finalReview.CLASSIFICATION_CORRECTIONS[item.id] || null,
     };

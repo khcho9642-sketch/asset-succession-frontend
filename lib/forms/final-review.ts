@@ -1,4 +1,5 @@
 import { availableFiles, isPublicResource, useCategory, type LibraryDocument } from "./catalog";
+import { applySourceFollowup } from "./source-followup";
 
 export const FINAL_REVIEW_DATE = "2026-09-25";
 type Correction = { assets?: string[]; common?: boolean; use?: LibraryDocument["useCategory"]; kind?: string; note: string };
@@ -147,7 +148,7 @@ export function applyFinalReview(documents: LibraryDocument[]): LibraryDocument[
       menu: item.sourceUrl.includes("scourt") ? "법원 양식모음에서 문서명으로 검색" : item.sourceUrl.includes("nts.go.kr") ? "세무서식에서 문서명으로 검색" : "제공처의 서식·자료 메뉴에서 문서명으로 확인",
       limitation: "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요.",
     };
-    return item;
+    return applySourceFollowup(item);
   });
 }
 

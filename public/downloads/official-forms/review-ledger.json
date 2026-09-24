@@ -20,7 +20,7 @@
     "guide": 22,
     "archived": 9,
     "excluded": 13,
-    "hosted": 166,
+    "hosted": 170,
     "external": 4
   },
   "records": [
@@ -60,8 +60,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -144,8 +146,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -227,9 +231,11 @@
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-25",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "docs/forms-final-review-20260925/source-followup/REVIEW.md",
+        "scope": "공식 공개 목록·첨부 또는 안내 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -238,10 +244,11 @@
       },
       "currentness": {
         "reviewedOn": "2026-09-25",
-        "status": "partial_review",
-        "finding": "부평구청 취득세팀의 2026-03-27 게시물에 증여계약서·작성예시 및 공공누리 제1유형 표시가 있습니다. 기관이 제공한 계약 참고서식이며 법정 공통 계약서라는 근거는 없습니다.",
-        "limitation": "관할청 검인과 계약 당사자의 조건을 확인하세요. 개별 계약의 법적 적합성은 미검증입니다.",
-        "decision": "retain_pending_current_version_comparison"
+        "status": "provider_reference_checked",
+        "sourceUrl": "https://www.icbp.go.kr/main/bbs/bbsMsgDetail.do?bcd=taxes_form&msg_seq=64",
+        "finding": "2026-03-27 기관 게시물의 증여계약서·작성예시와 공공누리 제1유형 표시를 재확인했습니다. 법정 공통계약서가 아닌 기관 참고서식으로 유지합니다.",
+        "decision": "retain_official_reference",
+        "limitation": "개별 계약의 적합성·관할청 검인 요건은 별도 확인이 필요합니다."
       },
       "applicability": {
         "status": "not_individually_verified",
@@ -270,8 +277,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-25",
+        "nextReviewDue": "2026-12-25",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -312,8 +319,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -398,8 +407,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -484,8 +495,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -570,8 +583,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -664,8 +679,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -758,8 +775,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -913,8 +932,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -1069,8 +1090,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -1225,8 +1248,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -1381,8 +1406,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -1537,8 +1564,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -1693,8 +1722,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -1849,8 +1880,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -2005,8 +2038,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -2161,8 +2196,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -2317,8 +2354,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -2473,8 +2512,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -2629,8 +2670,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -2785,8 +2828,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -2941,8 +2986,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -3097,8 +3144,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -3253,8 +3302,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -3406,8 +3457,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -3562,8 +3615,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -3715,8 +3770,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -3868,8 +3925,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -3952,8 +4011,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -4039,8 +4100,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -4125,8 +4188,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -4235,8 +4300,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -4322,8 +4389,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -4409,8 +4478,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -4495,8 +4566,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -4582,8 +4655,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -4668,8 +4743,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -4777,8 +4854,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -4885,8 +4964,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -5016,9 +5097,11 @@
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-25",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "docs/forms-final-review-20260925/source-followup/REVIEW.md",
+        "scope": "공식 공개 목록·첨부 또는 안내 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -5027,10 +5110,11 @@
       },
       "currentness": {
         "reviewedOn": "2026-09-25",
-        "status": "partial_review",
-        "finding": "보존된 별지 제10호의2 합본의 본 신고서 부분입니다. 시행규칙의 2026-03-20 시행 표시는 재확인했습니다.",
-        "limitation": "현재 별지 첨부 원문과의 전체 대조는 미완료입니다. 창업자금·가업승계 특례 자격을 별도로 확인하세요.",
-        "decision": "retain_pending_current_version_comparison"
+        "status": "current_attachment_checked",
+        "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=284609&efYd=20260320",
+        "finding": "현행 별지 제10호의2 합본의 본 신고서(1~2쪽). 보존 HWP는 현행 첨부와 SHA-256 일치, PDF는 6쪽 전부 공백 제외 추출문 일치입니다. PDF 바이너리 자체는 다르므로 해시 일치로 표시하지 않습니다.",
+        "decision": "retain_current_source",
+        "limitation": "현행 제공 파일 확인과 개별 거래의 적용 자격·공제·감면 판단은 별개입니다. 제출 전 해당 조항과 관할기관 요구를 확인하세요."
       },
       "applicability": {
         "status": "not_individually_verified",
@@ -5060,8 +5144,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-25",
+        "nextReviewDue": "2026-12-25",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -5104,8 +5188,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -5191,8 +5277,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -5278,8 +5366,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -5364,8 +5454,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -5450,8 +5542,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -5536,8 +5630,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -5622,8 +5718,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -5708,8 +5806,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -5794,8 +5894,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -5880,8 +5982,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -5935,39 +6039,42 @@
       "sourceRecordId": "NTS-CG-10",
       "authority": {
         "kind": "statutory",
-        "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
+        "basis": "현행 시행규칙 별지 목록에서 직접 확보한 원본. current-20260925/index.json의 공식 다운로드 URL·SHA-256 참조. 개별 적용 자격 검증과 별개."
       },
       "files": [
         {
-          "name": "이월과세적용신청서.hwp",
-          "originalFilename": "이월과세적용신청서.hwp",
-          "path": "/downloads/official-forms/NTS-CG-10/%EC%9D%B4%EC%9B%94%EA%B3%BC%EC%84%B8%EC%A0%81%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
+          "name": "NTS-CG-10_2015-03-13.pdf",
+          "path": "/downloads/official-forms/current-20260925/NTS-CG-10.pdf",
+          "format": "PDF",
+          "role": "original",
+          "bytes": 61692,
+          "delivery": "hosted",
+          "sha256": "4a55f04ab3127a535fc192cddb7afd2500adc824a4d8efd024142c9d474c8dc4",
+          "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168815997&bylClsCd=110202",
+          "licenseBasis": "statutory-form",
+          "observedSha256": "4a55f04ab3127a535fc192cddb7afd2500adc824a4d8efd024142c9d474c8dc4"
+        },
+        {
+          "name": "NTS-CG-10_2015-03-13.hwp",
+          "path": "/downloads/official-forms/current-20260925/NTS-CG-10.hwp",
           "format": "HWP",
           "role": "original",
-          "bytes": 17920,
-          "sha256": "6d06eca0e2cd641eb526bd8940ca63819e46dbbd4e2f10d431ab5f091c8fc8ec",
-          "sourceUrl": "https://www.nts.go.kr/upload/ti_tax/01/%EC%9D%B4%EC%9B%94%EA%B3%BC%EC%84%B8%EC%A0%81%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
-          "sourcePage": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
-          "checkedOn": "2026-09-17",
+          "bytes": 50176,
           "delivery": "hosted",
+          "sha256": "09609179aed8e6827c63d4785e3b61ca29619dc05209e8ca8160a0f7bc710303",
+          "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168815995&bylClsCd=110202",
           "licenseBasis": "statutory-form",
-          "licenseUrl": "https://www.law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1029423769",
-          "inspection": {
-            "sha256Matches": true,
-            "fullOfficeRenderingVerified": false,
-            "kind": "HWP5",
-            "bodyRecordsParsed": true,
-            "extractedTextCharacters": 1492
-          },
-          "observedSha256": "6d06eca0e2cd641eb526bd8940ca63819e46dbbd4e2f10d431ab5f091c8fc8ec"
+          "observedSha256": "09609179aed8e6827c63d4785e3b61ca29619dc05209e8ca8160a0f7bc710303"
         }
       ],
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-25",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "docs/forms-final-review-20260925/source-followup/REVIEW.md",
+        "scope": "공식 공개 목록·첨부 또는 안내 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -5976,10 +6083,11 @@
       },
       "currentness": {
         "reviewedOn": "2026-09-25",
-        "status": "partial_review",
-        "finding": "국세청 양도 서식 경로와 보존된 2015년 이월과세적용신청서를 검토했습니다. 사업용 자산 신청서로 분류합니다.",
-        "limitation": "현행 별지 전체 대조 미완료. 기존 파일을 최신본으로 확정하지 않습니다.",
-        "decision": "retain_pending_current_version_comparison"
+        "status": "current_attachment_checked",
+        "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=289267&efYd=20260918",
+        "finding": "2026-09-18 시행규칙의 별지 제12호(2015-03-13 개정) HWP·PDF 원본을 확보했습니다. 오래된 개정일이어도 현행 목록에 있는 사업용 자산 이월과세 신청서입니다.",
+        "decision": "prefer_current_attachment_preserve_previous",
+        "limitation": "현행 제공 파일 확인과 개별 거래의 적용 자격·공제·감면 판단은 별개입니다. 제출 전 해당 조항과 관할기관 요구를 확인하세요."
       },
       "applicability": {
         "status": "not_individually_verified",
@@ -6008,8 +6116,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-25",
+        "nextReviewDue": "2026-12-25",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": {
@@ -6027,39 +6135,42 @@
       "sourceRecordId": "NTS-CG-11",
       "authority": {
         "kind": "statutory",
-        "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
+        "basis": "현행 시행규칙 별지 목록에서 직접 확보한 원본. current-20260925/index.json의 공식 다운로드 URL·SHA-256 참조. 개별 적용 자격 검증과 별개."
       },
       "files": [
         {
-          "name": "과세이연신청서.hwp",
-          "originalFilename": "과세이연신청서.hwp",
-          "path": "/downloads/official-forms/NTS-CG-11/%EA%B3%BC%EC%84%B8%EC%9D%B4%EC%97%B0%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
+          "name": "NTS-CG-11_2024-03-22.pdf",
+          "path": "/downloads/official-forms/current-20260925/NTS-CG-11.pdf",
+          "format": "PDF",
+          "role": "original",
+          "bytes": 78687,
+          "delivery": "hosted",
+          "sha256": "4543d6710a30470b849b07f64dddebfa5ac252f9b509ff10da7b49019dc33f99",
+          "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816019&bylClsCd=110202",
+          "licenseBasis": "statutory-form",
+          "observedSha256": "4543d6710a30470b849b07f64dddebfa5ac252f9b509ff10da7b49019dc33f99"
+        },
+        {
+          "name": "NTS-CG-11_2024-03-22.hwp",
+          "path": "/downloads/official-forms/current-20260925/NTS-CG-11.hwp",
           "format": "HWP",
           "role": "original",
-          "bytes": 20992,
-          "sha256": "ef3c7d35047c356ec22e97cb5bb0c3f0127aed7b66f818603eb3a0ce43bfe959",
-          "sourceUrl": "https://www.nts.go.kr/upload/ti_tax/01/%EA%B3%BC%EC%84%B8%EC%9D%B4%EC%97%B0%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
-          "sourcePage": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
-          "checkedOn": "2026-09-17",
+          "bytes": 101888,
           "delivery": "hosted",
+          "sha256": "d0ed1773208a4e88c595236eaccb49bd8342ab05f1a45bc949a189dceb3a9eae",
+          "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816017&bylClsCd=110202",
           "licenseBasis": "statutory-form",
-          "licenseUrl": "https://www.law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1029423769",
-          "inspection": {
-            "sha256Matches": true,
-            "fullOfficeRenderingVerified": false,
-            "kind": "HWP5",
-            "bodyRecordsParsed": true,
-            "extractedTextCharacters": 2073
-          },
-          "observedSha256": "ef3c7d35047c356ec22e97cb5bb0c3f0127aed7b66f818603eb3a0ce43bfe959"
+          "observedSha256": "d0ed1773208a4e88c595236eaccb49bd8342ab05f1a45bc949a189dceb3a9eae"
         }
       ],
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-25",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "docs/forms-final-review-20260925/source-followup/REVIEW.md",
+        "scope": "공식 공개 목록·첨부 또는 안내 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -6068,10 +6179,11 @@
       },
       "currentness": {
         "reviewedOn": "2026-09-25",
-        "status": "partial_review",
-        "finding": "보존된 2011년 과세이연신청서와 국세청 제공 경로를 검토했습니다. 같은 제목의 다른 제도 서식과 구분이 필요합니다.",
-        "limitation": "현행 별지 전체 대조 미완료. 거래 유형에 맞는 조항과 현재 서식을 확인하세요.",
-        "decision": "retain_pending_current_version_comparison"
+        "status": "current_attachment_checked",
+        "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=289267&efYd=20260918",
+        "finding": "별지 제12호의4는 2024-03-22 개정본입니다. 기존 2011년 파일과 달리 기회발전특구 이전·종전/신규 사업용부동산 및 시행령 제116조의37제9항 등이 포함됩니다. 현행 HWP·PDF를 우선 제공합니다.",
+        "decision": "replace_default_preserve_previous",
+        "limitation": "현행 제공 파일 확인과 개별 거래의 적용 자격·공제·감면 판단은 별개입니다. 제출 전 해당 조항과 관할기관 요구를 확인하세요."
       },
       "applicability": {
         "status": "not_individually_verified",
@@ -6100,8 +6212,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-25",
+        "nextReviewDue": "2026-12-25",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": {
@@ -6119,39 +6231,42 @@
       "sourceRecordId": "NTS-CG-12",
       "authority": {
         "kind": "statutory",
-        "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
+        "basis": "현행 시행규칙 별지 목록에서 직접 확보한 원본. current-20260925/index.json의 공식 다운로드 URL·SHA-256 참조. 개별 적용 자격 검증과 별개."
       },
       "files": [
         {
-          "name": "현물출자 등에 대한 세액감면(면제)신청서.hwp",
-          "originalFilename": "현물출자 등에 대한 세액감면(면제)신청서.hwp",
-          "path": "/downloads/official-forms/NTS-CG-12/%ED%98%84%EB%AC%BC%EC%B6%9C%EC%9E%90%20%EB%93%B1%EC%97%90%20%EB%8C%80%ED%95%9C%20%EC%84%B8%EC%95%A1%EA%B0%90%EB%A9%B4(%EB%A9%B4%EC%A0%9C)%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
+          "name": "NTS-CG-12_2026-03-20.pdf",
+          "path": "/downloads/official-forms/current-20260925/NTS-CG-12.pdf",
+          "format": "PDF",
+          "role": "original",
+          "bytes": 70529,
+          "delivery": "hosted",
+          "sha256": "390de189a5b3b93227fe9ea5eee167bca797e4a7be49cdd1edb304574357c007",
+          "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816033&bylClsCd=110202",
+          "licenseBasis": "statutory-form",
+          "observedSha256": "390de189a5b3b93227fe9ea5eee167bca797e4a7be49cdd1edb304574357c007"
+        },
+        {
+          "name": "NTS-CG-12_2026-03-20.hwp",
+          "path": "/downloads/official-forms/current-20260925/NTS-CG-12.hwp",
           "format": "HWP",
           "role": "original",
-          "bytes": 20480,
-          "sha256": "2bab232e5e0bf645f788b02e18862d2c54565b1b49ea8a4b1a21b0e2b44dcacb",
-          "sourceUrl": "https://www.nts.go.kr/upload/ti_tax/01/%ED%98%84%EB%AC%BC%EC%B6%9C%EC%9E%90%20%EB%93%B1%EC%97%90%20%EB%8C%80%ED%95%9C%20%EC%84%B8%EC%95%A1%EA%B0%90%EB%A9%B4(%EB%A9%B4%EC%A0%9C)%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
-          "sourcePage": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
-          "checkedOn": "2026-09-17",
+          "bytes": 98816,
           "delivery": "hosted",
+          "sha256": "0e7e52bc828b2aa0a5aa6e52cf2db2c09dfa88593029dc254961fd9bedae4390",
+          "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816031&bylClsCd=110202",
           "licenseBasis": "statutory-form",
-          "licenseUrl": "https://www.law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1029423769",
-          "inspection": {
-            "sha256Matches": true,
-            "fullOfficeRenderingVerified": false,
-            "kind": "HWP5",
-            "bodyRecordsParsed": true,
-            "extractedTextCharacters": 2242
-          },
-          "observedSha256": "2bab232e5e0bf645f788b02e18862d2c54565b1b49ea8a4b1a21b0e2b44dcacb"
+          "observedSha256": "0e7e52bc828b2aa0a5aa6e52cf2db2c09dfa88593029dc254961fd9bedae4390"
         }
       ],
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-25",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "docs/forms-final-review-20260925/source-followup/REVIEW.md",
+        "scope": "공식 공개 목록·첨부 또는 안내 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -6160,10 +6275,11 @@
       },
       "currentness": {
         "reviewedOn": "2026-09-25",
-        "status": "partial_review",
-        "finding": "보존된 2016년 감면 신청서와 현행 조세특례제한법 시행규칙의 서식 제공 경로를 검토했습니다.",
-        "limitation": "현행 첨부 원문의 조항별 대조 미완료. 감면 대상과 기한은 별도 확인해야 합니다.",
-        "decision": "retain_pending_current_version_comparison"
+        "status": "current_attachment_checked",
+        "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=289267&efYd=20260918",
+        "finding": "별지 제13호는 2026-03-20 개정본입니다. 기존 2016년 파일 대신 현재 감면 구분·첨부서류가 있는 HWP·PDF를 우선 제공합니다. 원문 앞뒤의 조항 표기는 임의 수정하지 않았습니다.",
+        "decision": "replace_default_preserve_previous",
+        "limitation": "현행 제공 파일 확인과 개별 거래의 적용 자격·공제·감면 판단은 별개입니다. 제출 전 해당 조항과 관할기관 요구를 확인하세요."
       },
       "applicability": {
         "status": "not_individually_verified",
@@ -6192,8 +6308,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-25",
+        "nextReviewDue": "2026-12-25",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": {
@@ -6242,8 +6358,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -6330,8 +6448,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -6417,8 +6537,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -6504,8 +6626,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -6591,8 +6715,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -6853,8 +6979,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -6939,8 +7067,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7025,8 +7155,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7111,8 +7243,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7197,8 +7331,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7283,8 +7419,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7369,8 +7507,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7431,8 +7571,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7493,8 +7635,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7553,14 +7697,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "상속인 금융거래조회 위임장",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "금융감독원 파인 → 상속인 금융거래조회 → 신청서류 → 위임장 다운로드",
+        "keywords": "상속인의 위임장",
+        "status": "attachment_list_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 위임장 버튼을 확인했습니다. 인감·본인서명 확인서와 대리인 서류는 신청기관 안내를 확인하세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7621,8 +7770,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7681,14 +7832,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "사망신고서",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "전자가족관계등록시스템 → 민원안내 → 신청서 양식 다운로드",
+        "keywords": "사망신고서",
+        "status": "menu_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 사망 신고 안내와 양식 다운로드 메뉴를 확인했습니다. 검색 후 현재 첨부를 선택하세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7749,8 +7905,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7809,14 +7967,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "상속포기 심판청구서",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
+        "keywords": "상속포기",
+        "status": "access_blocked",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7875,14 +8038,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "상속한정승인 심판청구서",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
+        "keywords": "상속한정승인",
+        "status": "access_blocked",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7941,14 +8109,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "상속재산목록(한정승인 첨부)",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
+        "keywords": "상속재산목록 한정승인",
+        "status": "access_blocked",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -8011,14 +8184,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "특별한정승인 심판청구서",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
+        "keywords": "특별한정승인",
+        "status": "access_blocked",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8089,8 +8267,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8163,8 +8343,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8233,8 +8415,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -8309,8 +8493,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -8382,8 +8568,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -8458,8 +8646,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -8530,8 +8720,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -8590,14 +8782,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "매매 소유권이전등기 신청서",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "생활법령 신청서 작성 안내 → 인터넷등기소 고객센터 → 지원안내 → 등기신청양식",
+        "keywords": "매매에 의한 소유권 이전등기 신청서",
+        "status": "guidance_route_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 생활법령에 적힌 이동 경로·문서명을 확인했습니다. 인터넷등기소의 실제 첨부 화면은 오류 응답으로 확인하지 못했습니다. 구분건물 여부와 등기 원인을 구별하세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8656,14 +8853,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "매매 소유권이전등기 신청서(구분건물)",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "인터넷등기소 · 현재 접속 오류",
+        "keywords": "매매 소유권이전등기 구분건물",
+        "status": "provider_error",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 현재 주소가 오류 페이지로 이동하여 세부 메뉴·첨부를 확인하지 못했습니다. 인터넷등기소의 등기신청양식 또는 관할 등기소에 문서명으로 문의하세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8722,14 +8924,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "공유물분할 소유권이전등기 신청서",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "생활법령 신청서 작성 안내 → 인터넷등기소 고객센터 → 지원안내 → 등기신청양식",
+        "keywords": "공유물 분할에 의한 소유권 이전등기 신청서",
+        "status": "guidance_route_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 생활법령에 적힌 이동 경로·문서명을 확인했습니다. 인터넷등기소의 실제 첨부 화면은 오류 응답으로 확인하지 못했습니다. 구분건물 여부와 등기 원인을 구별하세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8786,14 +8993,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "근저당권말소등기 신청서",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "생활법령 신청서 작성 안내 → 인터넷등기소 고객센터 → 지원안내 → 등기신청양식",
+        "keywords": "일부포기 / 해지에 의한 근저당권 말소등기 신청서",
+        "status": "guidance_route_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 생활법령에 적힌 이동 경로·문서명을 확인했습니다. 인터넷등기소의 실제 첨부 화면은 오류 응답으로 확인하지 못했습니다. 구분건물 여부와 등기 원인을 구별하세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8850,14 +9062,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "신탁등기 신청서",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "인터넷등기소 · 현재 접속 오류",
+        "keywords": "신탁등기",
+        "status": "provider_error",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 현재 주소가 오류 페이지로 이동하여 세부 메뉴·첨부를 확인하지 못했습니다. 인터넷등기소의 등기신청양식 또는 관할 등기소에 문서명으로 문의하세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8914,14 +9131,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "소유권경정등기 신청서",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "인터넷등기소 · 현재 접속 오류",
+        "keywords": "소유권경정등기",
+        "status": "provider_error",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 현재 주소가 오류 페이지로 이동하여 세부 메뉴·첨부를 확인하지 못했습니다. 인터넷등기소의 등기신청양식 또는 관할 등기소에 문서명으로 문의하세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8980,8 +9202,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9040,8 +9264,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9100,14 +9326,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "유언증서 검인 청구서",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
+        "keywords": "유언증서 검인",
+        "status": "access_blocked",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9166,14 +9397,20 @@
       "files": [],
       "providerInstructions": {
         "documentName": "유언집행자 선임 심판청구서",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "대한법률구조공단 → 법률정보 → 법률서식 → 서식제목 검색",
+        "keywords": "유언집행자 → 1068 유언집행자 선임청구서",
+        "status": "search_result_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 해당 제목과 HWP 다운로드 항목을 확인했습니다. 사건 사실관계와 관할법원 요구를 별도 확인하세요.",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EC%96%B8%EC%A7%91%ED%96%89%EC%9E%90&scdFolderId="
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9234,8 +9471,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9294,14 +9533,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "상속재산분할 심판청구서",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
+        "keywords": "상속재산분할",
+        "status": "access_blocked",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9360,14 +9604,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "기여분 결정 청구서",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
+        "keywords": "기여분 결정",
+        "status": "access_blocked",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9426,14 +9675,20 @@
       "files": [],
       "providerInstructions": {
         "documentName": "유류분반환청구 소장",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "대한법률구조공단 → 법률정보 → 법률서식 → 서식제목 검색",
+        "keywords": "유류분 → 461 유류분반환청구의 소",
+        "status": "search_result_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 해당 제목의 사례 서식을 확인했습니다. 현재 적용 법령·청구 요건을 보장하는 공통 소장이 아닙니다.",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EB%A5%98%EB%B6%84&scdFolderId="
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9492,14 +9747,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "상속재산관리인 선임 심판청구서",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
+        "keywords": "상속재산관리인 선임",
+        "status": "access_blocked",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9558,14 +9818,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "성년후견 개시 심판청구서",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "서울가정법원 → 민원 → 각종 양식 → 성년후견",
+        "keywords": "[가사] 성년후견개시심판청구",
+        "status": "attachment_list_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 법원 목록의 해당 제목·검색 연결을 확인했습니다. 후속 파일 열기와 제출은 미실행입니다."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9622,14 +9887,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "부재자 재산관리인 선임·실종선고 심판청구서",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
+        "keywords": "부재자 재산관리인 선임 / 실종선고",
+        "status": "access_blocked",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9698,8 +9968,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9770,8 +10042,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9843,8 +10117,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9916,8 +10192,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9988,8 +10266,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -10082,9 +10362,11 @@
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-25",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "docs/forms-final-review-20260925/source-followup/REVIEW.md",
+        "scope": "공식 공개 목록·첨부 또는 안내 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -10093,10 +10375,11 @@
       },
       "currentness": {
         "reviewedOn": "2026-09-25",
-        "status": "partial_review",
-        "finding": "보존된 별지 제9호 합본의 사후관리 추징 신고 부분입니다. 시행규칙 2026-03-20 시행 표시는 확인했습니다.",
-        "limitation": "현행 첨부 원문 전체 대조 및 개별 사후관리 위반 판단은 미완료입니다.",
-        "decision": "retain_pending_current_version_comparison"
+        "status": "current_attachment_checked",
+        "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=284609&efYd=20260320",
+        "finding": "현행 별지 제9호 합본의 가업(영농)상속공제 사후관리추징사유 신고(13~14쪽). 보존 HWP 해시 일치, PDF 17쪽 전부 공백 제외 추출문 일치입니다. 최초 공제신청과 구별합니다.",
+        "decision": "retain_current_source",
+        "limitation": "현행 제공 파일 확인과 개별 거래의 적용 자격·공제·감면 판단은 별개입니다. 제출 전 해당 조항과 관할기관 요구를 확인하세요."
       },
       "applicability": {
         "status": "not_individually_verified",
@@ -10126,8 +10409,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-25",
+        "nextReviewDue": "2026-12-25",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -10156,8 +10439,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -10228,8 +10513,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -10288,8 +10575,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -10358,8 +10647,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -10432,8 +10723,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -10506,8 +10799,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -10580,8 +10875,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -10661,8 +10958,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -10731,8 +11030,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -10801,8 +11102,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -10859,14 +11162,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "심사청구서/심판청구서",
-        "menu": "세무서식에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "국세청 불복청구 안내 → 각종 신청서 등 서식",
+        "keywords": "심사청구서 / 심판청구서",
+        "status": "attachment_list_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 두 청구서와 HWP·PDF 제공 메뉴를 확인했습니다. 과세전적부심사청구와 구별하고 제출기관을 확인하세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -10939,8 +11247,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -11009,8 +11319,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -11081,8 +11393,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -11143,8 +11457,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -11203,14 +11519,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "현금 증여계약서",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "세무법인 위드 → 서식자료실 → 현금증여계약서 → 첨부파일",
+        "keywords": "현금증여계약서.hwp",
+        "status": "attachment_list_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 민간 참고서식입니다. 정부 공식 서식·법정 필수 계약서가 아니며 개별 증여 조건 검토가 필요합니다."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -11271,8 +11592,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -11343,8 +11666,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -11415,8 +11740,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -11469,26 +11796,43 @@
       "sourceUrl": "https://www.ifez.go.kr/main/pst/view.do?pst_id=ciz01&pst_sn=194681&search=",
       "sourceRecordId": "P4-04",
       "authority": {
-        "kind": "unknown",
-        "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
+        "kind": "statutory",
+        "basis": "현행 시행규칙 별지 목록에서 직접 확보한 원본. current-20260925/index.json의 공식 다운로드 URL·SHA-256 참조. 개별 적용 자격 검증과 별개."
       },
       "files": [
         {
-          "name": "부동산거래계약 / 해제 / 신고서",
-          "path": "/downloads/official-forms/expansion/P4-04_c2098c514832.hwp",
+          "name": "P4-04_2020-02-27.pdf",
+          "path": "/downloads/official-forms/current-20260925/P4-04.pdf",
+          "format": "PDF",
+          "role": "original",
+          "bytes": 69642,
+          "delivery": "hosted",
+          "sha256": "a64b1f89328d5a0c0fee11cf91c7fa148734e3e932d909ae26e78502d87c6129",
+          "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=161499367&bylClsCd=110202",
+          "licenseBasis": "statutory-form",
+          "observedSha256": "a64b1f89328d5a0c0fee11cf91c7fa148734e3e932d909ae26e78502d87c6129"
+        },
+        {
+          "name": "P4-04_2020-02-27.hwp",
+          "path": "/downloads/official-forms/current-20260925/P4-04.hwp",
           "format": "HWP",
           "role": "original",
           "bytes": 20480,
           "delivery": "hosted",
-          "observedSha256": "c2098c514832dbb512fc45f47b70367a2eed573af7fffeb2861019f9f99875d5"
+          "sha256": "5d6c851a02077a80cce3419bee1ff6544d923e1ad4015b10215afbf3d8c58bfe",
+          "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=161499365&bylClsCd=110202",
+          "licenseBasis": "statutory-form",
+          "observedSha256": "5d6c851a02077a80cce3419bee1ff6544d923e1ad4015b10215afbf3d8c58bfe"
         }
       ],
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-25",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "docs/forms-final-review-20260925/source-followup/REVIEW.md",
+        "scope": "공식 공개 목록·첨부 또는 안내 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -11497,10 +11841,11 @@
       },
       "currentness": {
         "reviewedOn": "2026-09-25",
-        "status": "partial_review",
-        "finding": "IFEZ 2022-08-26 게시물은 계약 신고 후 해제·무효·취소 시 사용하는 별지 제4호 해제등 신고서를 제공합니다. 제3호 거래계약 신고와 구별합니다.",
-        "limitation": "게시물의 첨부 제목·절차는 확인했지만 현행 법령 별지와 바이너리 전체 대조는 미완료입니다.",
-        "decision": "retain_pending_current_version_comparison"
+        "status": "current_attachment_checked",
+        "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=283339&efYd=20260210",
+        "finding": "2026-02-10 시행규칙의 별지 제4호(2020-02-27 개정) 해제등 신고서를 확보했습니다. 신고 후 해제·무효·취소용이며 변경신고와 다릅니다. 현행 법령 첨부 HWP·PDF를 우선 제공합니다.",
+        "decision": "prefer_current_attachment_preserve_previous",
+        "limitation": "현행 제공 파일 확인과 개별 거래의 적용 자격·공제·감면 판단은 별개입니다. 제출 전 해당 조항과 관할기관 요구를 확인하세요."
       },
       "applicability": {
         "status": "not_individually_verified",
@@ -11529,8 +11874,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-25",
+        "nextReviewDue": "2026-12-25",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -11559,8 +11904,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -11621,8 +11968,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -11693,8 +12042,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -11787,9 +12138,11 @@
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-25",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "docs/forms-final-review-20260925/source-followup/REVIEW.md",
+        "scope": "공식 공개 목록·첨부 또는 안내 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -11798,10 +12151,11 @@
       },
       "currentness": {
         "reviewedOn": "2026-09-25",
-        "status": "partial_review",
-        "finding": "별지 제10호의2 본 신고서에 연결되는 창업자금 평가·과세가액 명세 부분입니다. 가업승계 주식 명세와 별개입니다.",
-        "limitation": "현재 별지 첨부 원문 전체 대조 및 창업자금 특례 자격은 미검증입니다.",
-        "decision": "retain_pending_current_version_comparison"
+        "status": "current_attachment_checked",
+        "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=284609&efYd=20260320",
+        "finding": "현행 별지 제10호의2의 창업자금 평가·과세가액 명세(3~4쪽). 합본 HWP 해시 및 PDF 전쪽 추출문을 대조했습니다. 특례 본 신고서에 연결하는 부표입니다.",
+        "decision": "retain_current_source",
+        "limitation": "현행 제공 파일 확인과 개별 거래의 적용 자격·공제·감면 판단은 별개입니다. 제출 전 해당 조항과 관할기관 요구를 확인하세요."
       },
       "applicability": {
         "status": "not_individually_verified",
@@ -11831,8 +12185,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-25",
+        "nextReviewDue": "2026-12-25",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -11882,9 +12236,11 @@
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-25",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "docs/forms-final-review-20260925/source-followup/REVIEW.md",
+        "scope": "공식 공개 목록·첨부 또는 안내 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -11893,10 +12249,11 @@
       },
       "currentness": {
         "reviewedOn": "2026-09-25",
-        "status": "partial_review",
-        "finding": "별지 제10호의2 본 신고서에 연결되는 가업승계 주식 등의 평가·과세가액 명세 부분입니다.",
-        "limitation": "현재 별지 첨부 원문 전체 대조 및 가업승계 특례 자격은 미검증입니다.",
-        "decision": "retain_pending_current_version_comparison"
+        "status": "current_attachment_checked",
+        "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=284609&efYd=20260320",
+        "finding": "현행 별지 제10호의2의 가업승계 주식 평가·과세가액 명세(5쪽). 합본 HWP 해시 및 PDF 전쪽 추출문을 대조했습니다. 창업자금 부표와 구분합니다.",
+        "decision": "retain_current_source",
+        "limitation": "현행 제공 파일 확인과 개별 거래의 적용 자격·공제·감면 판단은 별개입니다. 제출 전 해당 조항과 관할기관 요구를 확인하세요."
       },
       "applicability": {
         "status": "not_individually_verified",
@@ -11926,8 +12283,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-25",
+        "nextReviewDue": "2026-12-25",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -11978,8 +12335,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -12072,8 +12431,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -12134,8 +12495,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -12196,8 +12559,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -12296,8 +12661,10 @@
       ],
       "source": {
         "checkedOn": "2026-09-24",
+        "collectedOn": "2026-09-24",
         "status": "recorded_source_check",
-        "basis": "docs/forms-bank-additions-20260924/change-ledger.json"
+        "basis": "docs/forms-bank-additions-20260924/change-ledger.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -12358,8 +12725,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -12419,9 +12788,11 @@
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-25",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "docs/forms-final-review-20260925/source-followup/REVIEW.md",
+        "scope": "공식 공개 목록·첨부 또는 안내 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -12430,10 +12801,11 @@
       },
       "currentness": {
         "reviewedOn": "2026-09-25",
-        "status": "partial_review",
-        "finding": "기존 2017년 보험 청구 참고자료의 수집 기록을 보존했습니다. HTTP 접근과 실제 문서의 최신성은 별개이며 이번에는 현행 안내 원문 대조를 완료하지 못했습니다.",
-        "limitation": "최신 안내 대조 보류. 실제 보험사·보험수익자별 청구 서류는 해당 보험사에 확인하세요. 접속 실패는 폐지 판정이 아닙니다.",
-        "decision": "retain_pending_current_version_comparison"
+        "status": "provider_page_checked_document_revision_unverified",
+        "sourceUrl": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+        "finding": "생명보험협회의 현재 보험안내간행물 페이지와 PDF 다운로드 제공을 확인했습니다. 가입·유지·보험금 청구 참고자료이며 보험사별 청구서가 아닙니다.",
+        "decision": "retain_provider_guidance",
+        "limitation": "연결 페이지는 확인했지만 PDF의 최종 개정일·현재 계약별 청구서까지 확인한 것은 아닙니다. 보험사와 수익자별 필요 서류는 해당 보험사에 확인하세요."
       },
       "applicability": {
         "status": "not_individually_verified",
@@ -12462,8 +12834,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 6,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2027-03-19",
+        "lastReviewedOn": "2026-09-25",
+        "nextReviewDue": "2027-03-25",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -12482,8 +12854,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -12544,8 +12918,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -12606,8 +12982,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -12666,14 +13044,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "공무원연금 유족급여 청구서",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "공무원연금공단 → 퇴직(유족)급여 청구방법 → 유족급여 / 고객참여와 상담 → 각종서식 → 연금서식",
+        "keywords": "유족급여 청구서",
+        "status": "guidance_route_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 현재 안내의 유족급여 작성방법을 확인했습니다. 재직 중 사망과 연금 수급 중 사망의 급여·서식을 공단에 구분 확인하세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -12732,14 +13115,20 @@
       "files": [],
       "providerInstructions": {
         "documentName": "사학연금 유족급여 청구서",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "사학연금 → 퇴직급여종류 및 청구안내 → 유족 → 제203호 서식",
+        "keywords": "퇴직유족급여/퇴직수당 청구서",
+        "status": "attachment_list_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 현재 안내에서 제203호 게시물 연결을 확인했습니다. 재직 중 발생 유족급여용이며 퇴직 후 수급 중 사망은 별도 확인하세요.",
+        "url": "https://tp.or.kr/tp-kr/bbs/i-138/detail.do?ntt_sn=122"
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -12798,14 +13187,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "군인연금 유족급여 청구서",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "군인연금 → 유족연금신청안내 → 4-1 청구서 및 구비서류 안내",
+        "keywords": "별지 제3호 퇴역유족연금 / 별지 제2호 상이유족연금",
+        "status": "attachment_list_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 퇴역·상이 연금에 따른 파일을 별도로 확인했습니다. 같은 이름의 공무원·사학연금 서식과 혼동하지 마세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -12864,14 +13258,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "산재 유족급여·장의비 청구서",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "생활법령 산업재해보상보험 → 유족급여 → 유족보상연금의 청구",
+        "keywords": "유족급여 및 장례비 청구서",
+        "status": "guidance_route_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 현재 안내는 유족급여 및 장례비 청구서를 명시합니다. 장의비라는 기존 목록 표현과 구별하고 근로복지공단의 현재 청구 서식을 확인하세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -12932,8 +13331,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -12994,8 +13395,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13054,14 +13457,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "미성년자 특별대리인 선임 청구서",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
+        "keywords": "미성년자 특별대리인 선임",
+        "status": "access_blocked",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13120,14 +13528,20 @@
       "files": [],
       "providerInstructions": {
         "documentName": "상속회복청구 소장",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "대한법률구조공단 → 법률정보 → 법률서식",
+        "keywords": "상속회복",
+        "status": "no_matching_result",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 상속회복 검색 결과는 0건입니다. 이전 진정명의회복 검색 결과를 상속회복 소장으로 동일시하지 않습니다. 공단·관할법원에 사건에 맞는 서식을 문의하세요.",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%ED%9A%8C%EB%B3%B5&scdFolderId="
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13188,8 +13602,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -13252,14 +13668,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "상속재산 파산 신청서",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
+        "keywords": "상속재산 파산",
+        "status": "access_blocked",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13320,8 +13741,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13382,8 +13805,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13442,14 +13867,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "한정후견 / 특정후견 개시 심판청구서",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "서울가정법원 → 민원 → 각종 양식 → 한정후견 / 특정후견",
+        "keywords": "한정후견개시심판청구 / 특정후견심판청구",
+        "status": "attachment_list_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 각 후견 유형의 양식 목록을 확인했습니다. 두 유형의 신청 요건을 서로 대체하지 마세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13506,14 +13936,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "임의후견(후견계약) 관련 양식",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "서울가정법원 → 민원 → 각종 양식 → 임의후견",
+        "keywords": "후견계약 등기신청서 / 임의후견감독인선임심판 청구",
+        "status": "attachment_list_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 계약 등기와 감독인 선임은 별개 양식입니다. 공정증서 작성·등기 등 절차는 제공처에서 확인하세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13570,14 +14005,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "후견인 권한 초과행위 허가 청구서",
-        "menu": "법원 양식모음에서 문서명으로 검색",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "서울가정법원 → 민원 → 각종 양식 → 해당 후견 유형",
+        "keywords": "거주 건물 또는 대지 매도허가 / 법정대리권의 범위변경",
+        "status": "related_titles_only",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 포괄적인 권한 초과행위 허가라는 단일 양식으로 확인되지 않았습니다. 행위와 후견 유형에 맞는 허가·범위변경 양식을 법원에 확인하세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13636,8 +14076,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13706,8 +14148,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -13773,8 +14217,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13835,8 +14281,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13905,8 +14353,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13967,8 +14417,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -14027,14 +14479,19 @@
       "files": [],
       "providerInstructions": {
         "documentName": "주택임대사업자 등록·변경·말소 신청서",
-        "menu": "제공처의 서식·자료 메뉴에서 문서명으로 확인",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 하위 메뉴와 현재 첨부 제공 여부는 제공처에서 확인하세요."
+        "menu": "렌트홈 → 알림마당 → 민원법정서식 → 서식명 검색",
+        "keywords": "임대사업자 등록 / 등록사항 변경 / 등록 말소",
+        "status": "menu_confirmed",
+        "checkedOn": "2026-09-25",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 실제 검색 메뉴는 확인했지만 동적 목록의 개별 첨부는 미확인입니다. 등록·변경·말소를 구별해 선택하세요."
       },
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -14093,8 +14550,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-19",
+        "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -14156,8 +14615,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -14262,8 +14723,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -14370,8 +14833,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -14478,8 +14943,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -14586,8 +15053,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -14694,8 +15163,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -14802,8 +15273,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -14913,8 +15386,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -15021,8 +15496,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -15129,8 +15606,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -15237,8 +15716,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -15345,8 +15826,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -15453,8 +15936,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -15561,8 +16046,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-17",
+        "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -15626,8 +16113,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-23",
+        "collectedOn": "2026-09-23",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -15668,8 +16157,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-23",
+        "collectedOn": "2026-09-23",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -15710,8 +16201,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-23",
+        "collectedOn": "2026-09-23",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -15752,8 +16245,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-23",
+        "collectedOn": "2026-09-23",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -15794,8 +16289,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-23",
+        "collectedOn": "2026-09-23",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -15836,8 +16333,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-23",
+        "collectedOn": "2026-09-23",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -15878,8 +16377,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-23",
+        "collectedOn": "2026-09-23",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -15930,8 +16431,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-23",
+        "collectedOn": "2026-09-23",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "basis": "public/downloads/official-forms/manifest.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -15971,9 +16474,11 @@
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": null,
-        "status": "check_date_missing",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "checkedOn": "2026-09-21",
+        "collectedOn": null,
+        "status": "recorded_source_check",
+        "basis": "docs/forms-life-guides-20260921/lookup-sources.md",
+        "scope": "기존 공개 안내 검토 기록 복구 · 인증 후 개인조회 미실행"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -15994,8 +16499,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": null,
-        "nextReviewDue": null,
+        "lastReviewedOn": "2026-09-21",
+        "nextReviewDue": "2026-12-21",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": {
@@ -16019,9 +16524,11 @@
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": null,
-        "status": "check_date_missing",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "checkedOn": "2026-09-21",
+        "collectedOn": null,
+        "status": "recorded_source_check",
+        "basis": "docs/forms-life-guides-20260921/lookup-sources.md",
+        "scope": "기존 공개 안내 검토 기록 복구 · 인증 후 개인조회 미실행"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -16042,8 +16549,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": null,
-        "nextReviewDue": null,
+        "lastReviewedOn": "2026-09-21",
+        "nextReviewDue": "2026-12-21",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -16061,9 +16568,11 @@
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": null,
-        "status": "check_date_missing",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "checkedOn": "2026-09-21",
+        "collectedOn": null,
+        "status": "recorded_source_check",
+        "basis": "docs/forms-life-guides-20260921/lookup-sources.md",
+        "scope": "기존 공개 안내 검토 기록 복구 · 인증 후 개인조회 미실행"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -16084,8 +16593,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": null,
-        "nextReviewDue": null,
+        "lastReviewedOn": "2026-09-21",
+        "nextReviewDue": "2026-12-21",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": {
@@ -16108,9 +16617,11 @@
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": null,
-        "status": "check_date_missing",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "checkedOn": "2026-09-21",
+        "collectedOn": null,
+        "status": "recorded_source_check",
+        "basis": "docs/forms-life-guides-20260921/lookup-sources.md",
+        "scope": "기존 공개 안내 검토 기록 복구 · 인증 후 개인조회 미실행"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -16131,8 +16642,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": null,
-        "nextReviewDue": null,
+        "lastReviewedOn": "2026-09-21",
+        "nextReviewDue": "2026-12-21",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -16150,9 +16661,11 @@
       "providerInstructions": null,
       "providerRoutes": [],
       "source": {
-        "checkedOn": null,
-        "status": "check_date_missing",
-        "basis": "public/downloads/official-forms/manifest.json"
+        "checkedOn": "2026-09-21",
+        "collectedOn": null,
+        "status": "recorded_source_check",
+        "basis": "docs/forms-life-guides-20260921/lookup-sources.md",
+        "scope": "기존 공개 안내 검토 기록 복구 · 인증 후 개인조회 미실행"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -16173,8 +16686,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": null,
-        "nextReviewDue": null,
+        "lastReviewedOn": "2026-09-21",
+        "nextReviewDue": "2026-12-21",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -16203,8 +16716,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-24",
+        "collectedOn": "2026-09-24",
         "status": "recorded_source_check",
-        "basis": "docs/forms-bank-additions-20260924/change-ledger.json"
+        "basis": "docs/forms-bank-additions-20260924/change-ledger.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": null,
@@ -16270,8 +16785,10 @@
       ],
       "source": {
         "checkedOn": "2026-09-24",
+        "collectedOn": "2026-09-24",
         "status": "recorded_source_check",
-        "basis": "docs/forms-bank-additions-20260924/change-ledger.json"
+        "basis": "docs/forms-bank-additions-20260924/change-ledger.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": null,
@@ -16337,8 +16854,10 @@
       ],
       "source": {
         "checkedOn": "2026-09-24",
+        "collectedOn": "2026-09-24",
         "status": "recorded_source_check",
-        "basis": "docs/forms-bank-additions-20260924/change-ledger.json"
+        "basis": "docs/forms-bank-additions-20260924/change-ledger.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -16409,8 +16928,10 @@
       ],
       "source": {
         "checkedOn": "2026-09-24",
+        "collectedOn": "2026-09-24",
         "status": "recorded_source_check",
-        "basis": "docs/forms-bank-additions-20260924/change-ledger.json"
+        "basis": "docs/forms-bank-additions-20260924/change-ledger.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -16482,8 +17003,10 @@
       ],
       "source": {
         "checkedOn": "2026-09-24",
+        "collectedOn": "2026-09-24",
         "status": "recorded_source_check",
-        "basis": "docs/forms-bank-additions-20260924/change-ledger.json"
+        "basis": "docs/forms-bank-additions-20260924/change-ledger.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": null,
@@ -16534,8 +17057,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-24",
+        "collectedOn": "2026-09-24",
         "status": "recorded_source_check",
-        "basis": "docs/forms-bank-additions-20260924/change-ledger.json"
+        "basis": "docs/forms-bank-additions-20260924/change-ledger.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": null,
@@ -16586,8 +17111,10 @@
       "providerRoutes": [],
       "source": {
         "checkedOn": "2026-09-24",
+        "collectedOn": "2026-09-24",
         "status": "recorded_source_check",
-        "basis": "docs/forms-bank-additions-20260924/change-ledger.json"
+        "basis": "docs/forms-bank-additions-20260924/change-ledger.json",
+        "scope": "Original collection record"
       },
       "editorial": {
         "reviewedOn": null,
