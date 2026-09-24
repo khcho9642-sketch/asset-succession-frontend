@@ -4,5 +4,6 @@ import sections from "../../public/downloads/official-forms/document-sections.js
 import { expandDocumentParts, expandDocumentSections } from "./document-parts";
 import { mergeGeneratedPreviews } from "./preview-index";
 import { applyLibraryEditorial } from "./library-editorial";
+import { applyBankAdditions } from "./bank-additions";
 
-export const libraryDocuments = applyLibraryEditorial(mergeGeneratedPreviews(expandDocumentParts(expandDocumentSections(manifest.documents, sections), parts)));
+export const libraryDocuments = applyBankAdditions(applyLibraryEditorial(mergeGeneratedPreviews(expandDocumentParts(expandDocumentSections(manifest.documents, sections), parts))));

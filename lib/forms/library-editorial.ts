@@ -18,6 +18,15 @@ export function serviceContexts(id: string, timing: string[] = []) {
     ...(!timing.length || timing.includes("after_death") ? POST_DEATH_LOOKUP_SERVICES.filter(s => ids.includes(s.id)).map(service => ({ timing: "after-death" as const, service })) : []),
   ];
 }
+export function detailServiceContexts(id: string, timing: string[] = []) {
+  const matching = serviceContexts(id, timing);
+  const contexts = matching.length ? matching : serviceContexts(id);
+  const fallback = Boolean(timing.length && !matching.length && contexts.length);
+  return { contexts, notice: fallback ? (contexts[0].timing === "after-death" ? "상속 발생 후 이용하는 서비스입니다. 목록 조건을 유지한 채 사후 이용 안내를 보여드립니다." : "생전에 본인 자료를 조회하는 서비스입니다. 목록 조건을 유지한 채 본인 이용 안내를 보여드립니다.") : "" };
+}
+export function preferredProviderContext(timing: string[], guide?: string): "owner" | "heir" {
+  return (timing.includes("after_death") && !timing.includes("before_death")) || (!timing.length && guide === "after-death") ? "heir" : "owner";
+}
 const allPurposes = ["inheritance", "gift", "capital_transfer", "business_succession"];
 const both = ["before_death", "after_death"];
 const gov = (id: string) => `https://www.gov.kr/mw/AA020InfoCappView.do?CappBizCD=${id}`;

@@ -11,7 +11,17 @@ export type ResourceMetadata = {
   planning_windows?: { label: string; availability_conditions: string[]; closing_events: string[]; impact: string; verification: { status: string; note?: string } }[];
 };
 export type LibraryFile = { name: string; path: string; format: string; role: string; bytes: number; delivery: string };
+export type ProviderRoute = {
+  provider: string; customerType: string; applicantContext: "owner" | "heir";
+  label: string; url: string; sourceUrl: string; checkedOn: string;
+  channel: string; authentication: string; note: string;
+};
 export type LibraryDocument = {
+  providerRoutes?: ProviderRoute[];
+  providerScope?: string;
+  institutionKind?: string;
+  publishedOn?: string;
+  afterLookup?: { title: string; text: string; resourceIds: string[] };
   useCategory?: "service" | "guide" | "form";
   primaryAction?: { label: string; url: string };
   searchAliases?: string[];
@@ -79,6 +89,18 @@ export const hasFilters = (f: CatalogFilters) => Boolean(f.use || f.q || f.stage
 export const isPublicResource = (item: LibraryDocument) => !["archived", "excluded"].includes(item.resource?.presentation.visibility || "");
 export const useCategory = (item: LibraryDocument) => item.useCategory || (item.resource?.facets.kind === "service_link" ? "service" : item.resource?.facets.kind === "guide" ? "guide" : "form");
 const normalize = (value: string) => value.normalize("NFKC").toLocaleLowerCase("ko-KR").replace(/\s+/g, "");
+/** Rank facts from this document, never text borrowed from related documents. */
+export function resourceSearchRank(item: LibraryDocument, query: string, groupTitles: string[] = []): number {
+  if (!query.trim()) return 1;
+  const q = normalize(query);
+  const tokens = query.trim().split(/\s+/).map(normalize);
+  if ([item.title, item.catalogTitle].some(title => normalize(title || "") === q)) return 4;
+  const titleAndProvider = normalize([item.title, item.catalogTitle, item.institution].join(" "));
+  if (tokens.every(token => titleAndProvider.includes(token))) return 3;
+  if ((item.searchAliases || []).some(alias => normalize(alias).includes(q))) return 2;
+  const body = normalize([item.id, item.title, item.catalogTitle, item.description, item.tags, item.institution, item.originalCategory, item.category, ...(item.searchAliases || []), item.usage?.when || "", ...groupTitles].join(" "));
+  return tokens.every(token => body.includes(token)) ? 1 : 0;
+}
 const overlaps = (selected: string[], actual: string[]) => selected.length === 0 || selected.some(value => actual.includes(value));
 function matchesFacets(meta: Pick<ResourceMetadata, "facets" | "stage_ids"> | undefined, filters: CatalogFilters): boolean {
   return overlaps(filters.purpose, meta?.facets.purposes || [])
@@ -91,7 +113,7 @@ function matchesFacets(meta: Pick<ResourceMetadata, "facets" | "stage_ids"> | un
 export function matchesResource(item: LibraryDocument, filters: CatalogFilters, groupTitles: string[] = []): boolean {
   return (!filters.use || useCategory(item) === filters.use)
     && matchesFacets(item.resource, item.assetCommon ? { ...filters, asset: [] } : filters)
-    && normalize([item.id, item.title, item.catalogTitle, item.description, item.tags, item.institution, item.originalCategory, item.category, ...(item.searchAliases || []), item.usage?.when || "", ...groupTitles].join(" ")).includes(normalize(filters.q));
+    && resourceSearchRank(item, filters.q, groupTitles) > 0;
 }
 export function providerLabel(item: LibraryDocument): string {
   const origin = item.resource?.facets.origin;
@@ -151,7 +173,7 @@ export function filterCatalog(index: CatalogIndex, filters: CatalogFilters): Cat
   return index.cards.flatMap(card => {
     const matchedIds = card.resources.filter(item => matching.has(item.id)).map(item => item.id);
     return matchedIds.length ? [{ ...card, matchedIds }] : [];
-  }).sort((a, b) => Number(normalize(b.title) === normalize(filters.q)) - Number(normalize(a.title) === normalize(filters.q)));
+  }).sort((a, b) => Math.max(...b.resources.filter(item => b.matchedIds.includes(item.id)).map(item => resourceSearchRank(item, filters.q))) - Math.max(...a.resources.filter(item => a.matchedIds.includes(item.id)).map(item => resourceSearchRank(item, filters.q))));
 }
 /** Preserve examples/attachments as named files; never invent alternative formats. */
 export function availableFiles(item: LibraryDocument): LibraryFile[] {
