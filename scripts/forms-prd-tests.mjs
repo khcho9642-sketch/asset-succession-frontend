@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
-import { documents, publicDocuments, publicCatalog, editorial, catalog, individual, guides } from './load-current-forms.mjs';
+import { documents, publicDocuments, publicCatalog, bankDocuments, editorial, catalog, individual, guides } from './load-current-forms.mjs';
 const byId = new Map(publicDocuments.map(item => [item.id, item]));
 const ids = filters => catalog.filterCatalog(publicCatalog, { ...catalog.emptyFilters(), ...filters }).map(card => card.id);
 
@@ -116,7 +116,8 @@ test('reviewed everyday aliases work and exact titles sort first', () => {
 test('five guides link to active individual documents with explanations and safe return anchors', () => {
   assert.equal(guides.GUIDES.length, 5);
   for (const guide of guides.GUIDES) for (const step of guide.steps) for (const resource of step.resources) {
-    assert.ok(catalog.isPublicResource(byId.get(resource.id)), resource.id);
+    const current = bankDocuments.find(item => item.id === resource.id);
+    assert.ok(current && catalog.isPublicResource(current), resource.id);
     assert.ok(resource.use);
     const url = guides.guideResourceUrl(resource.id, guide.timing, step.id);
     const parsed = catalog.parseCatalogFilters(new URL(url, 'https://test').search);

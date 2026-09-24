@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import ts from 'typescript';
-import { publicDocuments } from './load-current-forms.mjs';
+import { bankDocuments as publicDocuments } from './load-current-forms.mjs';
 
 const read = name => JSON.parse(readFileSync(name, 'utf8'));
 const documents = read('public/downloads/official-forms/manifest.json').documents;

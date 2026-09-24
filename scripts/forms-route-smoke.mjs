@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import ts from 'typescript';
-import { publicCatalog as current } from './load-current-forms.mjs';
+import { bankCatalog as current } from './load-current-forms.mjs';
 
 const compiled = path.resolve('.tmp/forms-route-smoke');
 mkdirSync(compiled, { recursive: true });

@@ -7,7 +7,7 @@ import ts from 'typescript';
 const out = mkdtempSync(join(tmpdir(), 'forms-current-'));
 process.on('exit', () => rmSync(out, { recursive: true, force: true }));
 writeFileSync(join(out, 'package.json'), '{"type":"commonjs"}');
-for (const name of ['catalog', 'individual-catalog', 'document-parts', 'preview', 'preview-index', 'library-editorial', 'lookup-services', 'post-death-lookup-services', 'guides', 'purpose-guides']) {
+for (const name of ['catalog', 'individual-catalog', 'document-parts', 'preview', 'preview-index', 'library-editorial', 'bank-additions', 'lookup-services', 'post-death-lookup-services', 'guides', 'purpose-guides']) {
   writeFileSync(join(out, `${name}.js`), ts.transpileModule(readFileSync(`lib/forms/${name}.ts`, 'utf8'), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
   }).outputText);
@@ -29,3 +29,6 @@ export const editorial = require(join(out, 'library-editorial.js'));
 export const guides = require(join(out, 'guides.js'));
 export const publicDocuments = editorial.applyLibraryEditorial(documents);
 export const publicCatalog = individual.buildIndividualCatalog(publicDocuments, groups);
+export const banks = require(join(out, 'bank-additions.js'));
+export const bankDocuments = banks.applyBankAdditions(publicDocuments);
+export const bankCatalog = individual.buildIndividualCatalog(bankDocuments, groups);
