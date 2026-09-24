@@ -326,7 +326,7 @@ export function FormsLibrary({ documents, groups }: Props) {
             <dt>서식 개정일</dt><dd>{selected.revised_at || "공식 원문 확인"}</dd>
             {selected.publishedOn && <><dt>목록 게시일</dt><dd>{selected.publishedOn}</dd></>}
             <dt>이용 조건</dt><dd>{selected.license || "제공처 안내 확인"}</dd>
-          </dl>{selected.sourceUrl && <a className={styles.providerLink} href={selected.sourceUrl} target="_blank" rel="noopener noreferrer">출처 게시물 확인<ExternalLink size={15} aria-hidden="true" /></a>}
+          </dl>{selected.sourceUrl && <a className={styles.providerLink} href={selected.providerInstructions?.url || selected.sourceUrl} target="_blank" rel="noopener noreferrer">출처 게시물 확인<ExternalLink size={15} aria-hidden="true" /></a>}
             {selected.licenseUrl && selected.licenseUrl !== selected.sourceUrl && <a className={styles.providerLink} href={selected.licenseUrl} target="_blank" rel="noopener noreferrer">이용 조건 확인<ExternalLink size={15} aria-hidden="true" /></a>}
           </div>
         </div>

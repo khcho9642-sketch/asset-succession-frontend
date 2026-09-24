@@ -8,7 +8,8 @@ const out = mkdtempSync(join(tmpdir(), 'forms-current-'));
 process.on('exit', () => rmSync(out, { recursive: true, force: true }));
 writeFileSync(join(out, 'package.json'), '{"type":"commonjs"}');
 writeFileSync(join(out, 'current-editions.json'), readFileSync('lib/forms/current-editions.json'));
-for (const name of ['catalog', 'individual-catalog', 'document-parts', 'preview', 'preview-index', 'library-editorial', 'bank-additions', 'final-review', 'source-followup', 'lookup-services', 'post-death-lookup-services', 'guides', 'purpose-guides']) {
+writeFileSync(join(out, 'resource-usage.json'), readFileSync('lib/forms/resource-usage.json'));
+for (const name of ['catalog', 'individual-catalog', 'document-parts', 'preview', 'preview-index', 'library-editorial', 'bank-additions', 'final-review', 'source-followup', 'resource-usage', 'lookup-services', 'post-death-lookup-services', 'guides', 'purpose-guides']) {
   writeFileSync(join(out, `${name}.js`), ts.transpileModule(readFileSync(`lib/forms/${name}.ts`, 'utf8'), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
   }).outputText);

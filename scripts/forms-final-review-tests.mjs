@@ -126,6 +126,14 @@ test('preferred previews trace to current originals, never historical embedded t
     assert.ok(item.files.every(x=>!catalog.availableFiles(item).some(y=>y.path===x.path)));
   }
 });
+test('current-edition usage guidance names the current download separately from historical files',()=>{
+  for(const [id,revision] of Object.entries({'NTS-CG-10':'2015-03-13','NTS-CG-11':'2024-03-22','NTS-CG-12':'2026-03-20'})) {
+    const item=byId.get(id);
+    assert.ok(item.usage.note.includes(revision));
+    assert.match(item.usage.note,/현재 다운로드는 현행 시행규칙/);
+    assert.doesNotMatch(item.usage.note,/보존 원본은/);
+  }
+});
 test('priority statutory comparison and individual legal eligibility remain separate',()=>{
   for(const id of ['NTS-IG-12','NTS-CG-10','NTS-CG-11','NTS-CG-12','P2-05','P4-04','P5-02','P5-03']) {
     assert.equal(byId.get(id).currentVersionReview.status,'current_attachment_checked');
@@ -148,6 +156,9 @@ test('unrelated title-recovery search is not represented as an inheritance-recov
   const route=byId.get('P8-02').providerInstructions;
   assert.equal(new URL(route.url).searchParams.get('searchWrd'),'상속회복');
   assert.equal(route.status,'no_matching_result'); assert.match(route.limitation,/0건/);
+  assert.match(byId.get('P8-02').description,/일치하는 원문을 확보하지 못/);
+  assert.equal(byId.get('P8-02').usage.sourceUrls[0],route.url);
+  assert.doesNotMatch(byId.get('P8-02').usage.note,/공식 문서명은 328-1/);
   assert.match(byId.get('P1-16').providerInstructions.keywords,/1068/);
   assert.match(byId.get('P1-20').providerInstructions.keywords,/461/);
 });

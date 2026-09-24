@@ -1,5 +1,6 @@
 import type { LibraryDocument } from "./catalog";
 import editions from "./current-editions.json";
+import { getResourceUsage } from "./resource-usage";
 
 const DATE = "2026-09-25";
 const tax = "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=289267&efYd=20260918";
@@ -52,6 +53,12 @@ route(["P7-04"], "생활법령 산업재해보상보험 → 유족급여 → 유
 route(["P9-06"], "렌트홈 → 알림마당 → 민원법정서식 → 서식명 검색", "임대사업자 등록 / 등록사항 변경 / 등록 말소", "menu_confirmed", "실제 검색 메뉴는 확인했지만 동적 목록의 개별 첨부는 미확인입니다. 등록·변경·말소를 구별해 선택하세요.");
 export const PROVIDER_REVIEW_ROUTES = routes;
 
+const currentUsageNotes: Record<string, string> = {
+  "NTS-CG-10": "현재 다운로드는 현행 시행규칙에 수록된 2015-03-13 개정본입니다. 사업용자산의 법인전환 등 이월과세 신청용이며 배우자·직계존비속 증여재산 양도 시 이월과세와 다릅니다. 개별 거래의 적용 요건은 별도로 확인하세요.",
+  "NTS-CG-11": "현재 다운로드는 현행 시행규칙에 수록된 2024-03-22 개정본입니다. 2011년 수집 파일은 이전 보관본으로 분리했습니다. 사업전환·대토 등 해당 거래의 적용 요건을 확인하세요. 납부재원 부족에 따른 분납·연부연납 제도와는 다릅니다.",
+  "NTS-CG-12": "현재 다운로드는 현행 시행규칙에 수록된 2026-03-20 개정본입니다. 2016년 수집 파일은 이전 보관본으로 분리했습니다. 현물출자라는 이유만으로 면제되지 않으며 거래별 감면 요건·경과 규정은 별도 확인해야 합니다.",
+};
+
 export function applySourceFollowup(item: LibraryDocument): LibraryDocument {
   const edition = (editions as Record<string, NonNullable<LibraryDocument["currentEdition"]>>)[item.id];
   if (edition) {
@@ -60,6 +67,8 @@ export function applySourceFollowup(item: LibraryDocument): LibraryDocument {
     item.form_no = ({ "NTS-CG-10": "조세특례제한법 시행규칙 별지 제12호서식", "NTS-CG-11": "조세특례제한법 시행규칙 별지 제12호의4서식", "NTS-CG-12": "조세특례제한법 시행규칙 별지 제13호서식", "P4-04": "부동산 거래신고 등에 관한 법률 시행규칙 별지 제4호서식" } as Record<string, string>)[item.id];
     if (item.resource) item.resource.facets.authority = "statutory";
     item.authorityEvidence = "현행 시행규칙 별지 목록에서 직접 확보한 원본. current-20260925/index.json의 공식 다운로드 URL·SHA-256 참조. 개별 적용 자격 검증과 별개.";
+    const usage = item.usage || getResourceUsage(item.id);
+    if (usage && currentUsageNotes[item.id]) item.usage = { ...usage, note: currentUsageNotes[item.id] };
   }
   const review = CURRENT_VERSION_REVIEWS[item.id];
   if (review) {
@@ -69,5 +78,17 @@ export function applySourceFollowup(item: LibraryDocument): LibraryDocument {
   }
   if (RESTORED_SOURCE_IDS.includes(item.id)) item.sourceReview = { checkedOn: "2026-09-21", scope: "기존 공개 안내 검토 기록 복구 · 인증 후 개인조회 미실행", evidence: "docs/forms-life-guides-20260921/lookup-sources.md" };
   if (routes[item.id]) item.providerInstructions = { ...routes[item.id], documentName: item.catalogTitle || item.title };
+  if (item.id === "P8-02") {
+    item.description = "상속권 침해에 맞는 청구서식을 찾는 제공처 안내입니다. 현재 상속회복 검색으로 일치하는 원문을 확보하지 못했으므로, 소장 예시가 제공되는 것으로 보지 마세요.";
+    item.usage = {
+      who: "상속권 침해에 따른 권리 회복을 검토하는 사람",
+      when: "상속 발생 후 사건에 맞는 청구 방법과 서식을 확인할 때",
+      prepare: ["가족관계와 상속경위", "권리 침해 및 상대방 관련 자료", "분쟁 재산의 종류와 명의 관련 자료"],
+      steps: ["대한법률구조공단에 상속회복 관련 서식을 문의합니다.", "진정명의회복 등 다른 청구원인의 서식을 그대로 대신 사용하지 않습니다.", "사건에 맞는 청구방법·당사자·기간을 확인한 후 준비합니다."],
+      note: routes[item.id].limitation,
+      timingRationale: "상속 발생 후 상속권 침해를 다루는 절차입니다.",
+      sourceUrls: [routes[item.id].url!],
+    };
+  }
   return item;
 }
