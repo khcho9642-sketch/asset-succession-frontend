@@ -40,7 +40,7 @@ export default async function GuidePage({ params }: { params: Promise<{ timing: 
         <a href="#acceptance">받을지·포기할지 검토 <ArrowRight size={15} aria-hidden="true" /></a>
       </div>}
     </aside>
-    <section className={styles.stepNote} aria-label="먼저 확인할 사항"><h2>먼저 확인할 것</h2><ul>{guide.overview.map(item => <li key={item}>{item}</li>)}</ul></section>
+    {guide.timing !== "gift" && <section className={styles.stepNote} aria-label="먼저 확인할 사항"><h2>먼저 확인할 것</h2><ul>{guide.overview.map(item => <li key={item}>{item}</li>)}</ul></section>}
     <div className={styles.guideLayout}>
       <aside className={styles.contents}>
         <p>필요한 일 바로 찾기</p>

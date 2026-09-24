@@ -104,7 +104,8 @@
 @media (max-width: 760px) {
   .purposeGuides > div { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 14px; }
   .purposeGuides :is(a, summary) { font-size: 14px; }
-  .useTabs button { font-size: 13px; }
+  .useTabs { grid-template-columns: minmax(40px, .7fr) repeat(2, minmax(62px, 1fr)) minmax(94px, 1.35fr); }
+  .useTabs button { font-size: 13px; white-space: nowrap; }
   .search input { font-size: 15px; }
 }
 .searchRow { display: flex; gap: 24px; align-items: center; }

@@ -55,6 +55,16 @@ test('provider-only forms have document names and explicit route limitations', (
     assert.ok(item.providerInstructions.documentName); assert.match(item.providerInstructions.limitation,/직접 다운로드가 아닌/);
   }
 });
+
+test('split documents describe users and submission context without page-only placeholders', () => {
+  for (const item of finalDocuments.filter(x => catalog.isPublicResource(x) && (x.documentSection || finalReview.SPLIT_USAGE[x.id]))) {
+    assert.ok(finalReview.SPLIT_USAGE[item.id], item.id);
+    assert.match(item.description, /사용 대상:/);
+    assert.doesNotMatch(item.usage.when, /기관 원본 합본의|제공 자료이며 관련 서류/);
+    assert.ok(item.usage.who.length > 5 && item.usage.when.length > 30, item.id);
+    assert.match(item.editorialReview.note, /법적 적용조건 검증과 별개/);
+  }
+});
 test('archived records each retain specific reason without invalidity claims', () => {
   const rows=finalDocuments.filter(x=>x.resource?.presentation.visibility==='archived'); assert.equal(rows.length,9);
   for(const item of rows) assert.match(item.resource.presentation.reason,/구판·무효 판정이 아니/);
