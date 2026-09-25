@@ -183,7 +183,7 @@ export function FormsLibrary({ documents, groups }: Props) {
   }
 
   return <main className={styles.library} id="forms-library" data-forms-library="individual-v3">
-    <nav className={styles.breadcrumb} aria-label="현재 위치"><Link href="/">홈</Link><ChevronRight size={13} aria-hidden="true" /><span aria-current="page">서류양식</span></nav>
+    <nav className={styles.breadcrumb} aria-label="현재 위치"><Link href="/">홈</Link><ChevronRight size={13} aria-hidden="true" /><span aria-current="page">자료실</span></nav>
     <header className={styles.header}>
       <div><h1>서류 자료실</h1><p>필요한 자료를 찾고, 조회·발급·작성 방법을 확인하세요.</p></div>
     </header>

@@ -170,9 +170,12 @@ test('latest calculator and service code survive outside the forms pages and pre
       .replace('        <p>검토일은 법령의 만료일이 아닙니다. 지원 범위 밖의 날짜는 기준 검토가 완료되지 않아 계산하지 않습니다.</p>\n', '');
     return text;
   };
+  // Approved 2026-09-26 change: the shared public header labels and consultation
+  // CTA are site-wide chrome, not calculator or service-domain logic.
+  const commonHeaderFiles = ['components/PublicNav.tsx', 'components/PublicNav.module.css', 'app/consultation/page.tsx', 'app/consultation/Consultation.module.css'];
   const changes = git('diff', '--name-only', '-z', production, '--', 'app', 'components', 'lib', 'package-lock.json', 'next.config.ts', 'vercel.json').toString('utf8').split('\0').filter(Boolean);
   const allowed = path => path.startsWith('app/forms/') || path.startsWith('lib/forms/')
-    || ['components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css', ...datePolicyFiles].includes(path);
+    || ['components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css', ...datePolicyFiles, ...commonHeaderFiles].includes(path);
   assert.deepEqual(changes.filter(path => !allowed(path)), []);
   const calculators = git('ls-tree', '-r', '--name-only', '-z', production, 'app/calculator', 'lib/simple-calculator').toString('utf8').split('\0').filter(Boolean);
   assert.ok(calculators.length > 0);

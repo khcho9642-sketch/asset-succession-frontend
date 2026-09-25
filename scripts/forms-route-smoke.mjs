@@ -55,8 +55,9 @@ try {
   assert.match(main.text, /data-forms-library="individual-v3"/);
   assert.ok(textContent(renderedHtml(main.text)).includes(`개별 자료 ${current.cards.length}개`));
   assert.doesNotMatch(renderedHtml(main.text), /href="[^"\s]*\/forms\/planning/);
-  assert.match(main.text, /카카오 상담 \(새 창\)/);
-  assert.match(main.text, /서류양식/);
+  assert.doesNotMatch(main.text, /카카오 상담/);
+  assert.match(main.text, /자료실/);
+  assert.doesNotMatch(main.text, /서류양식/);
   assert.equal((main.text.match(/data-form-id="/g) || []).length, 18);
   for (const route of ['/forms/planning', ...Array.from({ length: 6 }, (_, index) => `/forms/planning/PLAN-0${index + 1}`)]) {
     const page = await request(route, { redirect: 'manual' });
