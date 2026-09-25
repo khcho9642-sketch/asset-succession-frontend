@@ -2,6 +2,7 @@
 
 // Official images use intrinsic dimensions; no stretching or third-party image proxy.
 import { useEffect, useId, useState } from "react";
+import { FileSearch, FileText, FileQuestion } from "lucide-react";
 import { previewCoverage, previewRoleLabel, resolvePreview, type PreviewDocument } from "@/lib/forms/preview";
 import styles from "./DocumentPreview.module.css";
 
@@ -14,9 +15,10 @@ export function PreviewThumbnail({ item }: Props) {
   if (image) return <img className={styles.thumbnail} src={image} loading="lazy" decoding="async"
     alt={`${item.title} · ${previewRoleLabel(preview.role)} 미리보기`}
     onError={() => setBroken(paths => [...paths, image])} />;
-  const label = preview.pdfPath ? "PDF 미리보기" : preview.kind === "provider" ? "제공처 이용 안내" : "미리보기 준비 중";
+  const label = preview.pdfPath ? "PDF 보기" : preview.kind === "provider" ? "제공처 서식" : "원본 확인";
+  const Icon = preview.pdfPath ? FileText : preview.kind === "provider" ? FileSearch : FileQuestion;
   return <span className={styles.cardState} data-preview-state={preview.pdfPath ? "pdf" : preview.kind === "provider" ? "provider" : "pending"}>
-    <strong>{label}</strong><span>{preview.pdfPath ? "자료 상세에서 확인" : preview.kind === "provider" ? "이용 방법과 제공처 확인" : "원본 파일·제공처 확인"}</span>
+    <Icon size={30} strokeWidth={1.8} aria-hidden="true" /><span>{label}</span>
   </span>;
 }
 

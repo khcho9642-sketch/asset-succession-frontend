@@ -1,0 +1,166 @@
+{
+  "NTS-CG-10": {
+    "revision": "2015-03-13",
+    "files": [
+      {
+        "name": "NTS-CG-10_2015-03-13.pdf",
+        "path": "/downloads/official-forms/current-20260925/NTS-CG-10.pdf",
+        "format": "PDF",
+        "role": "original",
+        "bytes": 61692,
+        "delivery": "hosted",
+        "sha256": "4a55f04ab3127a535fc192cddb7afd2500adc824a4d8efd024142c9d474c8dc4",
+        "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168815997&bylClsCd=110202",
+        "licenseBasis": "statutory-form"
+      },
+      {
+        "name": "NTS-CG-10_2015-03-13.hwp",
+        "path": "/downloads/official-forms/current-20260925/NTS-CG-10.hwp",
+        "format": "HWP",
+        "role": "original",
+        "bytes": 50176,
+        "delivery": "hosted",
+        "sha256": "09609179aed8e6827c63d4785e3b61ca29619dc05209e8ca8160a0f7bc710303",
+        "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168815995&bylClsCd=110202",
+        "licenseBasis": "statutory-form"
+      }
+    ],
+    "example": "/downloads/official-forms/current-20260925/NTS-CG-10.png",
+    "thumbnail": "/downloads/official-forms/current-20260925/NTS-CG-10.png",
+    "preview": {
+      "method": "original-pdf",
+      "sourceRole": "original",
+      "sourcePath": "/downloads/official-forms/current-20260925/NTS-CG-10.pdf",
+      "sourceSha256": "4a55f04ab3127a535fc192cddb7afd2500adc824a4d8efd024142c9d474c8dc4",
+      "pdfPath": "/downloads/official-forms/current-20260925/NTS-CG-10.pdf",
+      "width": 893,
+      "height": 1262,
+      "pageCount": 2,
+      "lowResolution": false,
+      "editorialRedraw": false
+    }
+  },
+  "NTS-CG-11": {
+    "revision": "2024-03-22",
+    "files": [
+      {
+        "name": "NTS-CG-11_2024-03-22.pdf",
+        "path": "/downloads/official-forms/current-20260925/NTS-CG-11.pdf",
+        "format": "PDF",
+        "role": "original",
+        "bytes": 78687,
+        "delivery": "hosted",
+        "sha256": "4543d6710a30470b849b07f64dddebfa5ac252f9b509ff10da7b49019dc33f99",
+        "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816019&bylClsCd=110202",
+        "licenseBasis": "statutory-form"
+      },
+      {
+        "name": "NTS-CG-11_2024-03-22.hwp",
+        "path": "/downloads/official-forms/current-20260925/NTS-CG-11.hwp",
+        "format": "HWP",
+        "role": "original",
+        "bytes": 101888,
+        "delivery": "hosted",
+        "sha256": "d0ed1773208a4e88c595236eaccb49bd8342ab05f1a45bc949a189dceb3a9eae",
+        "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816017&bylClsCd=110202",
+        "licenseBasis": "statutory-form"
+      }
+    ],
+    "example": "/downloads/official-forms/current-20260925/NTS-CG-11.png",
+    "thumbnail": "/downloads/official-forms/current-20260925/NTS-CG-11.png",
+    "preview": {
+      "method": "original-pdf",
+      "sourceRole": "original",
+      "sourcePath": "/downloads/official-forms/current-20260925/NTS-CG-11.pdf",
+      "sourceSha256": "4543d6710a30470b849b07f64dddebfa5ac252f9b509ff10da7b49019dc33f99",
+      "pdfPath": "/downloads/official-forms/current-20260925/NTS-CG-11.pdf",
+      "width": 893,
+      "height": 1262,
+      "pageCount": 2,
+      "lowResolution": false,
+      "editorialRedraw": false
+    }
+  },
+  "NTS-CG-12": {
+    "revision": "2026-03-20",
+    "files": [
+      {
+        "name": "NTS-CG-12_2026-03-20.pdf",
+        "path": "/downloads/official-forms/current-20260925/NTS-CG-12.pdf",
+        "format": "PDF",
+        "role": "original",
+        "bytes": 70529,
+        "delivery": "hosted",
+        "sha256": "390de189a5b3b93227fe9ea5eee167bca797e4a7be49cdd1edb304574357c007",
+        "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816033&bylClsCd=110202",
+        "licenseBasis": "statutory-form"
+      },
+      {
+        "name": "NTS-CG-12_2026-03-20.hwp",
+        "path": "/downloads/official-forms/current-20260925/NTS-CG-12.hwp",
+        "format": "HWP",
+        "role": "original",
+        "bytes": 98816,
+        "delivery": "hosted",
+        "sha256": "0e7e52bc828b2aa0a5aa6e52cf2db2c09dfa88593029dc254961fd9bedae4390",
+        "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816031&bylClsCd=110202",
+        "licenseBasis": "statutory-form"
+      }
+    ],
+    "example": "/downloads/official-forms/current-20260925/NTS-CG-12.png",
+    "thumbnail": "/downloads/official-forms/current-20260925/NTS-CG-12.png",
+    "preview": {
+      "method": "original-pdf",
+      "sourceRole": "original",
+      "sourcePath": "/downloads/official-forms/current-20260925/NTS-CG-12.pdf",
+      "sourceSha256": "390de189a5b3b93227fe9ea5eee167bca797e4a7be49cdd1edb304574357c007",
+      "pdfPath": "/downloads/official-forms/current-20260925/NTS-CG-12.pdf",
+      "width": 893,
+      "height": 1262,
+      "pageCount": 2,
+      "lowResolution": false,
+      "editorialRedraw": false
+    }
+  },
+  "P4-04": {
+    "revision": "2020-02-27",
+    "files": [
+      {
+        "name": "P4-04_2020-02-27.pdf",
+        "path": "/downloads/official-forms/current-20260925/P4-04.pdf",
+        "format": "PDF",
+        "role": "original",
+        "bytes": 69642,
+        "delivery": "hosted",
+        "sha256": "a64b1f89328d5a0c0fee11cf91c7fa148734e3e932d909ae26e78502d87c6129",
+        "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=161499367&bylClsCd=110202",
+        "licenseBasis": "statutory-form"
+      },
+      {
+        "name": "P4-04_2020-02-27.hwp",
+        "path": "/downloads/official-forms/current-20260925/P4-04.hwp",
+        "format": "HWP",
+        "role": "original",
+        "bytes": 20480,
+        "delivery": "hosted",
+        "sha256": "5d6c851a02077a80cce3419bee1ff6544d923e1ad4015b10215afbf3d8c58bfe",
+        "sourceUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=161499365&bylClsCd=110202",
+        "licenseBasis": "statutory-form"
+      }
+    ],
+    "example": "/downloads/official-forms/current-20260925/P4-04.png",
+    "thumbnail": "/downloads/official-forms/current-20260925/P4-04.png",
+    "preview": {
+      "method": "original-pdf",
+      "sourceRole": "original",
+      "sourcePath": "/downloads/official-forms/current-20260925/P4-04.pdf",
+      "sourceSha256": "a64b1f89328d5a0c0fee11cf91c7fa148734e3e932d909ae26e78502d87c6129",
+      "pdfPath": "/downloads/official-forms/current-20260925/P4-04.pdf",
+      "width": 893,
+      "height": 1262,
+      "pageCount": 2,
+      "lowResolution": false,
+      "editorialRedraw": false
+    }
+  }
+}

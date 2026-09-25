@@ -1,0 +1,410 @@
+[
+  {
+    "evidenceId": "bp-g",
+    "url": "https://www.icbp.go.kr/main/bbs/bbsMsgDetail.do?bcd=taxes_form&msg_seq=64",
+    "finalUrl": "https://www.icbp.go.kr/main/bbs/bbsMsgDetail.do?bcd=taxes_form&msg_seq=64",
+    "observedAt": "2026-09-24T17:04:07.550629+00:00",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 148281,
+    "sha256": "6ea413ac3972d2bdd7396d13517e4f88751303a98130e70b9d78a8bbd67e1439"
+  },
+  {
+    "evidenceId": "estate-10-2-hwp",
+    "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162627371&bylClsCd=110202",
+    "finalUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162627371&bylClsCd=110202",
+    "observedAt": "2026-09-24T16:57:25.049426+00:00",
+    "status": 200,
+    "contentType": "application/hwp;;charset=UTF-8",
+    "bytes": 102400,
+    "sha256": "1500f93a2c1b77b717cfca743f3565eaa14bee6cc1c67d2025e61cd93fb4b2e1"
+  },
+  {
+    "evidenceId": "estate-10-2-pdf",
+    "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162627373&bylClsCd=110202",
+    "finalUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162627373&bylClsCd=110202",
+    "observedAt": "2026-09-24T16:57:25.482626+00:00",
+    "status": 200,
+    "contentType": "application/pdf;;charset=UTF-8",
+    "bytes": 140673,
+    "sha256": "04bf998d1103256592d2f23f6a94645632e488ac89d7f52205dbd117af8b8e4d",
+    "pages": 6
+  },
+  {
+    "evidenceId": "estate-9-hwp",
+    "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162627307&bylClsCd=110202",
+    "finalUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162627307&bylClsCd=110202",
+    "observedAt": "2026-09-24T16:57:23.131054+00:00",
+    "status": 200,
+    "contentType": "application/hwp;;charset=UTF-8",
+    "bytes": 159744,
+    "sha256": "a30d4e7899829018f4b98386c83b88083e5c68d2b798c007b0e1d5a2b417c1c2"
+  },
+  {
+    "evidenceId": "estate-9-pdf",
+    "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162627309&bylClsCd=110202",
+    "finalUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162627309&bylClsCd=110202",
+    "observedAt": "2026-09-24T16:57:23.598878+00:00",
+    "status": 200,
+    "contentType": "application/pdf;;charset=UTF-8",
+    "bytes": 265841,
+    "sha256": "4c9aed90745977a7173fbac16cb7b9201f964f0f72626f0bb204a4f5aa816b8c",
+    "pages": 17
+  },
+  {
+    "evidenceId": "estate-body",
+    "url": "https://www.law.go.kr/LSW/lsInfoR.do?lsiSeq=284609&efYd=20260320",
+    "finalUrl": "https://www.law.go.kr/LSW/lsInfoR.do?lsiSeq=284609&efYd=20260320",
+    "observedAt": "2026-09-24T16:56:54.250965+00:00",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 711890,
+    "sha256": "b051e7909fc14a6e570bb2adb207d19d1f0a64a48ba29c04f8ce7e74962d16a8"
+  },
+  {
+    "evidenceId": "estate-index",
+    "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsId=007388",
+    "finalUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsId=007388",
+    "observedAt": "2026-09-24T16:56:23.694127+00:00",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 145706,
+    "sha256": "c9d44535edc04460f39b808129b961ccfb857937e6d972991f550f56027a869c"
+  },
+  {
+    "evidenceId": "insurance-guide",
+    "url": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+    "finalUrl": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+    "observedAt": "2026-09-24T16:56:55.112379+00:00",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 56904,
+    "sha256": "4486e812c58b4a3db4de30e7658490d3e8fdad11dda802f2b690eba29c6c812e"
+  },
+  {
+    "evidenceId": "kb-trust",
+    "url": "https://omoney.kbstar.com/quics?page=C108126",
+    "finalUrl": "https://omoney.kbstar.com/quics?page=C108126",
+    "observedAt": "2026-09-24T17:04:07.872492+00:00",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 59991,
+    "sha256": "f9b451443723ff8aa78296e7c7b97ec74b761f8552d5ef8b21f6c9ff9c04e8ac"
+  },
+  {
+    "evidenceId": "klac-상속회복",
+    "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%ED%9A%8C%EB%B3%B5&scdFolderId=",
+    "finalUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%ED%9A%8C%EB%B3%B5&scdFolderId=",
+    "observedAt": "2026-09-24T17:04:05.643306+00:00",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 129488,
+    "sha256": "5417883468510f56507dee1ad7e9339b3d722650e85e2294c0d2afec53d99764"
+  },
+  {
+    "evidenceId": "klac-유류분",
+    "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EB%A5%98%EB%B6%84&scdFolderId=",
+    "finalUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EB%A5%98%EB%B6%84&scdFolderId=",
+    "observedAt": "2026-09-24T17:04:06.596455+00:00",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 130911,
+    "sha256": "e1c6b50623851d4480bad715a90943e844bb4f927896f44eaae92eac91ca85f2"
+  },
+  {
+    "evidenceId": "klac-유언집행자",
+    "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EC%96%B8%EC%A7%91%ED%96%89%EC%9E%90&scdFolderId=",
+    "finalUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EC%96%B8%EC%A7%91%ED%96%89%EC%9E%90&scdFolderId=",
+    "observedAt": "2026-09-24T17:04:06.076503+00:00",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 130971,
+    "sha256": "7f6a9f34dea2ec0371bce7fe8f6dad1c7299e988e42c1855d7b9036ae615ddf6"
+  },
+  {
+    "evidenceId": "provider-P0-03",
+    "url": "https://fine.fss.or.kr/fine/main/contents.do?menuNo=900208",
+    "finalUrl": "https://fine.fss.or.kr/fine/main/contents.do?menuNo=900208",
+    "observedAt": "2026-09-24T17:00:09.258066+00:00",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 99843,
+    "sha256": "5e14b52af7cae3aad4ec0672f206d5549de918c6b1c4c1e0aa3983b2e752b778"
+  },
+  {
+    "evidenceId": "provider-P0-05",
+    "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000008&guideCd=0000008006&guideYn=Y",
+    "finalUrl": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000008&guideCd=0000008006&guideYn=Y",
+    "observedAt": "2026-09-24T16:59:59.862459+00:00",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 380254,
+    "sha256": "f7a618b0b6e7d7f54f349026094545f8344c6ecdeaebc5850848aecf0a19c197"
+  },
+  {
+    "evidenceId": "provider-P1-01",
+    "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=1&cnpClsNo=4&csmSeq=566&popMenu=ov",
+    "finalUrl": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=1&cnpClsNo=4&csmSeq=566&popMenu=ov",
+    "observedAt": "2026-09-24T16:59:28.876575+00:00",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 118904,
+    "sha256": "cc0ad3797222bab392e4fb6e561ccef2bf7181a13cbe621bb94bb04aa4f62378"
+  },
+  {
+    "evidenceId": "provider-P1-06",
+    "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=4&cnpClsNo=3&csmSeq=566&popMenu=ov",
+    "finalUrl": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=4&cnpClsNo=3&csmSeq=566&popMenu=ov",
+    "observedAt": "2026-09-24T16:59:33.197910+00:00",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 118860,
+    "sha256": "904ed2984ac23661d5e3e0e0b4e231c6b58d71247f6284d2e46829f7df9139c8"
+  },
+  {
+    "evidenceId": "provider-P1-08",
+    "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=4&cnpClsNo=3&csmSeq=566&popMenu=ov",
+    "finalUrl": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=4&cnpClsNo=3&csmSeq=566&popMenu=ov",
+    "observedAt": "2026-09-24T16:59:39.947344+00:00",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 120257,
+    "sha256": "d48319112cb5280e99de7bdb5c445246cb05098849f87994dbe3b42099fdf1e6"
+  },
+  {
+    "evidenceId": "provider-P1-10",
+    "url": "https://www.iros.go.kr/index.jsp",
+    "finalUrl": "https://www.iros.go.kr:443/biz/Pm10ComExceptionCtrl/interceptorException.do",
+    "observedAt": "2026-09-24T17:00:21.114945+00:00",
+    "status": 200,
+    "contentType": "text/html; charset=MS949",
+    "bytes": 3047,
+    "sha256": "058d0bdde17585e7a21ce8b9b5b2176573435864ef97b68d8d37964c3f4fcd2b"
+  },
+  {
+    "evidenceId": "provider-P1-19",
+    "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSPA14M01",
+    "observedAt": "2026-09-24T16:59:55.220666+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "evidenceId": "provider-P1-20",
+    "url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+    "finalUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+    "observedAt": "2026-09-24T17:00:26.232018+00:00",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 147032,
+    "sha256": "1083cb218bc2e579ca6271413d7f42429bffd56baa7996509eb8ccfbe4981e10"
+  },
+  {
+    "evidenceId": "provider-P2-14",
+    "url": "https://ems.nts.go.kr/tax_inquiry/guide_01.html",
+    "finalUrl": "https://ems.nts.go.kr/tax_inquiry/guide_01.html",
+    "observedAt": "2026-09-24T17:00:06.461040+00:00",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 7193,
+    "sha256": "6def490e43571b7c29f7dc9f25c0609d89a8d8160e43c3932dc531d97e5c05e2"
+  },
+  {
+    "evidenceId": "provider-P3-05",
+    "url": "https://www.taxwithgs.kr/board/view/sw5_2/420",
+    "finalUrl": "https://www.taxwithgs.kr/board/view/sw5_2/420",
+    "observedAt": "2026-09-24T17:00:47.970929+00:00",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 43571,
+    "sha256": "eeceb74e8df4a8bc4671e495386247108cc2f4f41a1fadc5c6110a6cfe597a5f"
+  },
+  {
+    "evidenceId": "provider-P7-01",
+    "url": "https://www.geps.or.kr/bizInformation_pensionBiz_retirementClaim",
+    "finalUrl": "https://www.geps.or.kr/bizInformation_pensionBiz_retirementClaim",
+    "observedAt": "2026-09-24T17:00:17.634037+00:00",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 81254,
+    "sha256": "f818b6448692d2956f91fc0d14e5518ab2a247a8ccc347527fb5c06d3b1693cd"
+  },
+  {
+    "evidenceId": "provider-P7-02",
+    "url": "https://www.tp.or.kr/tp-kr/cntnts/i-219/web.do",
+    "finalUrl": "https://www.tp.or.kr/tp-kr/cntnts/i-219/web.do",
+    "observedAt": "2026-09-24T17:00:52.251447+00:00",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 93700,
+    "sha256": "53ef7c632f6190b58ef9cb567c524b003600f67fe8f53dea2da00e696f72f2cf"
+  },
+  {
+    "evidenceId": "provider-P7-03",
+    "url": "https://www.mps.mil.kr/info/deceIncmAplcForm.do",
+    "finalUrl": "https://www.mps.mil.kr/info/deceIncmAplcForm.do",
+    "observedAt": "2026-09-24T17:00:38.536649+00:00",
+    "status": 200,
+    "contentType": "text/html; charset=euc-kr",
+    "bytes": 27848,
+    "sha256": "20b97487b0be43567a22515f50d03cf87bebbb5343e84d235ba87a981e6bc4d8"
+  },
+  {
+    "evidenceId": "provider-P7-04",
+    "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=5&cciNo=1&cnpClsNo=2&csmSeq=575&popMenu=ov",
+    "finalUrl": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=5&cciNo=1&cnpClsNo=2&csmSeq=575&popMenu=ov",
+    "observedAt": "2026-09-24T16:59:45.880299+00:00",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 169014,
+    "sha256": "35b7d2558e4034277991498684d058bed58b9a6defebc49bc303eb8f43ea5f79"
+  },
+  {
+    "evidenceId": "provider-P8-02",
+    "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%A7%84%EC%A0%95%EB%AA%85%EC%9D%98%ED%9A%8C%EB%B3%B5&scdFolderId=",
+    "finalUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%A7%84%EC%A0%95%EB%AA%85%EC%9D%98%ED%9A%8C%EB%B3%B5&scdFolderId=",
+    "observedAt": "2026-09-24T17:00:30.749641+00:00",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 139277,
+    "sha256": "99bd6a1db8910ea0828a08179119a47f84e3ce2250ea5decfdc06f56b9df7596"
+  },
+  {
+    "evidenceId": "provider-P8-04",
+    "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+    "observedAt": "2026-09-24T16:59:52.169036+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "evidenceId": "provider-P8-09",
+    "url": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
+    "finalUrl": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
+    "observedAt": "2026-09-24T17:00:13.222554+00:00",
+    "status": 200,
+    "contentType": "text/html",
+    "bytes": 54521,
+    "sha256": "0ffbde51c445b4e955322872fdadcd266a870be98941440579d018963fed5468"
+  },
+  {
+    "evidenceId": "provider-P9-06",
+    "url": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open",
+    "finalUrl": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open",
+    "observedAt": "2026-09-24T17:00:43.286200+00:00",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 20524,
+    "sha256": "3c966691fb7e22dcd02daa7701dcda3dcd219e1836303d0501fbb6e5999328f2"
+  },
+  {
+    "evidenceId": "realestate-4-hwp",
+    "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=161499365&bylClsCd=110202",
+    "finalUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=161499365&bylClsCd=110202",
+    "observedAt": "2026-09-24T16:57:26.316389+00:00",
+    "status": 200,
+    "contentType": "application/hwp;;charset=UTF-8",
+    "bytes": 20480,
+    "sha256": "5d6c851a02077a80cce3419bee1ff6544d923e1ad4015b10215afbf3d8c58bfe"
+  },
+  {
+    "evidenceId": "realestate-4-pdf",
+    "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=161499367&bylClsCd=110202",
+    "finalUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=161499367&bylClsCd=110202",
+    "observedAt": "2026-09-24T16:57:26.682985+00:00",
+    "status": 200,
+    "contentType": "application/pdf;;charset=UTF-8",
+    "bytes": 69642,
+    "sha256": "a64b1f89328d5a0c0fee11cf91c7fa148734e3e932d909ae26e78502d87c6129",
+    "pages": 2
+  },
+  {
+    "evidenceId": "realestate-body",
+    "url": "https://www.law.go.kr/LSW/lsInfoR.do?lsiSeq=283339&efYd=20260210",
+    "finalUrl": "https://www.law.go.kr/LSW/lsInfoR.do?lsiSeq=283339&efYd=20260210",
+    "observedAt": "2026-09-24T16:56:54.750498+00:00",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 317534,
+    "sha256": "475cfd9e8a907eb113d3606b882ff2a03fc1aa30b19dfd192916997d2b872f67"
+  },
+  {
+    "evidenceId": "tax-12-4-hwp",
+    "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816017&bylClsCd=110202",
+    "finalUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816017&bylClsCd=110202",
+    "observedAt": "2026-09-24T16:52:20.045252+00:00",
+    "status": 200,
+    "contentType": "application/hwp;;charset=UTF-8",
+    "bytes": 101888,
+    "sha256": "d0ed1773208a4e88c595236eaccb49bd8342ab05f1a45bc949a189dceb3a9eae"
+  },
+  {
+    "evidenceId": "tax-12-4-pdf",
+    "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816019&bylClsCd=110202",
+    "finalUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816019&bylClsCd=110202",
+    "observedAt": "2026-09-24T16:52:19.512487+00:00",
+    "status": 200,
+    "contentType": "application/pdf;;charset=UTF-8",
+    "bytes": 78687,
+    "sha256": "4543d6710a30470b849b07f64dddebfa5ac252f9b509ff10da7b49019dc33f99",
+    "pages": 2
+  },
+  {
+    "evidenceId": "tax-12-hwp",
+    "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168815995&bylClsCd=110202",
+    "finalUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168815995&bylClsCd=110202",
+    "observedAt": "2026-09-24T16:52:19.177302+00:00",
+    "status": 200,
+    "contentType": "application/hwp;;charset=UTF-8",
+    "bytes": 50176,
+    "sha256": "09609179aed8e6827c63d4785e3b61ca29619dc05209e8ca8160a0f7bc710303"
+  },
+  {
+    "evidenceId": "tax-12-pdf",
+    "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168815997&bylClsCd=110202",
+    "finalUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168815997&bylClsCd=110202",
+    "observedAt": "2026-09-24T16:52:18.579868+00:00",
+    "status": 200,
+    "contentType": "application/pdf;;charset=UTF-8",
+    "bytes": 61692,
+    "sha256": "4a55f04ab3127a535fc192cddb7afd2500adc824a4d8efd024142c9d474c8dc4",
+    "pages": 2
+  },
+  {
+    "evidenceId": "tax-13-hwp",
+    "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816031&bylClsCd=110202",
+    "finalUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816031&bylClsCd=110202",
+    "observedAt": "2026-09-24T16:52:20.911002+00:00",
+    "status": 200,
+    "contentType": "application/hwp;;charset=UTF-8",
+    "bytes": 98816,
+    "sha256": "0e7e52bc828b2aa0a5aa6e52cf2db2c09dfa88593029dc254961fd9bedae4390"
+  },
+  {
+    "evidenceId": "tax-13-pdf",
+    "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816033&bylClsCd=110202",
+    "finalUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=168816033&bylClsCd=110202",
+    "observedAt": "2026-09-24T16:52:20.355168+00:00",
+    "status": 200,
+    "contentType": "application/pdf;;charset=UTF-8",
+    "bytes": 70529,
+    "sha256": "390de189a5b3b93227fe9ea5eee167bca797e4a7be49cdd1edb304574357c007",
+    "pages": 2
+  },
+  {
+    "evidenceId": "tax-body",
+    "url": "https://www.law.go.kr/LSW/lsInfoR.do?lsiSeq=289267&efYd=20260918",
+    "finalUrl": "https://www.law.go.kr/LSW/lsInfoR.do?lsiSeq=289267&efYd=20260918",
+    "observedAt": "2026-09-24T16:51:47.020125+00:00",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 3644534,
+    "sha256": "13d3cccb26f2809ee08ad60b776214352f3ae611b82db12e7f27799ed3acac5c"
+  },
+  {
+    "evidenceId": "tax-rule",
+    "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=289267&efYd=20260918",
+    "finalUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=289267&efYd=20260918",
+    "observedAt": "2026-09-24T16:48:50.297761+00:00",
+    "status": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "bytes": 145099,
+    "sha256": "a7523de5e231f67c383ab5a1d0c63873f944cd4e18a74f1c0755f103d519340d"
+  }
+]

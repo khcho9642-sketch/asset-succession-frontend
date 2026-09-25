@@ -1,8 +1,45 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Building2, Clock3, FileCheck2, Gift, House, Landmark, ShieldCheck } from "lucide-react";
 import { HeroPaperCarousel } from "@/components/HeroPaperCarousel";
 import { PublicNav } from "@/components/PublicNav";
 import styles from "@/components/HomePage.module.css";
+
+const shareTitle = "자산승계 360";
+const shareDescription = "AI 진단 · 자료실 · 전문가 상담";
+const shareImage = "/og/asset-succession-360-share-v2.jpg";
+
+export const metadata: Metadata = {
+  title: shareTitle,
+  description: shareDescription,
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true
+  },
+  openGraph: {
+    title: shareTitle,
+    description: shareDescription,
+    url: "/",
+    siteName: "자산승계 360",
+    locale: "ko_KR",
+    type: "website",
+    images: [
+      {
+        url: shareImage,
+        width: 1200,
+        height: 630,
+        alt: "자산승계 360 상속 증여 한눈에"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: shareTitle,
+    description: shareDescription,
+    images: [shareImage]
+  }
+};
 
 const services = [
   { title: "상속세", body: "가족의 재산 배분과 상속세 납부재원을 함께 살핍니다.", href: "/precheck?purpose=inheritance", icon: Landmark },

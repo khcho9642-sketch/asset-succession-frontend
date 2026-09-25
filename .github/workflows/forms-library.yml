@@ -2,7 +2,7 @@ name: Forms Library Review
 
 on:
   pull_request:
-    branches: [assistant/forms-additions-109, codex/forms-additions-preview-20260920, codex/forms-redesign-preview-20260920, codex/forms-life-guides-20260921]
+    branches: [assistant/forms-additions-109, codex/forms-additions-preview-20260920, codex/forms-redesign-preview-20260920, codex/forms-life-guides-20260921, codex/forms-bank-additions-20260924]
   push:
     branches: [codex/forms-library-complete, codex/forms-redesign-preview-20260920, codex/forms-life-guides-20260921, codex/forms-preview-completion-20260922]
 

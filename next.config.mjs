@@ -11,6 +11,23 @@ const nextConfig = {
       destination: "/forms",
       permanent: false
     }];
+  },
+  async headers() {
+    return [
+      {
+        source: "/",
+        headers: [
+          { key: "X-Robots-Tag", value: "index, follow" }
+        ]
+      },
+      {
+        source: "/og/:path*",
+        headers: [
+          { key: "X-Robots-Tag", value: "index, follow" },
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" }
+        ]
+      }
+    ];
   }
 };
 

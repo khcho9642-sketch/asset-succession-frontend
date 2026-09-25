@@ -1,0 +1,22 @@
+name: Forms source recheck
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '20 1 1 * *'
+permissions:
+  contents: read
+jobs:
+  recheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/forms-recheck.mjs --network --previous=docs/forms-final-review-20260925/evidence/source-access.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: forms-source-recheck
+          path: forms-recheck-results.json
+          retention-days: 30

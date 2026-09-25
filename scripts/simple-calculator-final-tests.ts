@@ -14,6 +14,24 @@ type Case = {
 };
 const fixture: { cases: Case[] } = JSON.parse(readFileSync(path.join(root, "docs/reviews/calculator-final-cases-2026-09-19.json"), "utf8"));
 
+for (const [id, field, label, lower] of [["G01", "giftDate", "증여일", "2023-01-01"], ["I01", "deathDate", "상속개시일", "2023-01-01"], ["C01", "transferDate", "양도일", "2021-12-08"]]) {
+  test(`${id}: explicit supported-through date includes 19th, excludes 20th without changing tax rules`, () => {
+    const c = fixture.cases.find(row => row.id === id)!;
+    const calculate = (input: Case["input"]) => c.kind === "gift" ? gift(input as GiftInput) : c.kind === "inheritance" ? inheritance(input as InheritanceInput) : capital(input as CapitalGainsInput);
+    for (const date of ["2026-09-18", "2026-09-19"]) assert.equal(calculate({ ...adapted(c), [field]: date }).status, "ready", date);
+    const result = calculate({ ...adapted(c), [field]: "2026-09-20" });
+    assert.notEqual(result.status, "ready");
+    assert.ok(result.unsupported.some(row => row.reason.includes("입력일")));
+  });
+  test(`${id}: lower date boundary is explicit, not a moving current-date rule`, () => {
+    const c = fixture.cases.find(row => row.id === id)!;
+    const calculate = (input: Case["input"]) => c.kind === "gift" ? gift(input as GiftInput) : c.kind === "inheritance" ? inheritance(input as InheritanceInput) : capital(input as CapitalGainsInput);
+    const dayBefore = new Date(new Date(lower + "T00:00:00Z").getTime() - 86400000).toISOString().slice(0, 10);
+    assert.ok(calculate({ ...adapted(c), [field]: dayBefore }).unsupported.some(row => row.reason.includes("입력일")), label);
+    assert.ok(!calculate({ ...adapted(c), [field]: lower }).unsupported.some(row => row.reason.includes("입력일")), label);
+  });
+}
+
 // Facts are translated explicitly, never replaced with catch-all zero defaults.
 function adapted(c: Case) {
   const input = structuredClone(c.input);

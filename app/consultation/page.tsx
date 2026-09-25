@@ -34,8 +34,8 @@ export default function ConsultationPage() {
         <p className={styles.sectionLabel}>직접 문의</p>
         <h2 id="professional-name">조경호 <span>회계사</span></h2>
         <address className={styles.contacts}>
-          <a href={KAKAO_OPEN_CHAT_URL} target="_blank" rel="noopener noreferrer" aria-label="카카오톡 상담 (새 창)">
-            <MessageCircle size={19} aria-hidden="true" /><span>카카오톡 상담</span>
+          <a className={styles.kakaoButton} href={KAKAO_OPEN_CHAT_URL} target="_blank" rel="noopener noreferrer" aria-label="카카오톡 상담하기 (새 창)">
+            <MessageCircle size={19} aria-hidden="true" /><span>카카오톡 상담하기</span>
           </a>
           <a href="tel:01089309642" className={styles.phoneLink}><Phone size={19} aria-hidden="true" /><span>010-8930-9642</span></a>
           <a href="mailto:khcho@hangilac.co.kr"><Mail size={19} aria-hidden="true" /><span>khcho@hangilac.co.kr</span></a>

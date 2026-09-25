@@ -2,6 +2,7 @@
  * Never turn a decorative/editorial placeholder into a document preview.
  */
 export type PreviewDocument = {
+  currentEdition?: Pick<PreviewDocument, "files" | "example" | "thumbnail" | "preview">;
   id: string;
   title: string;
   example?: string | null;
@@ -73,6 +74,7 @@ export function previewRoleLabel(role?: string): string {
 
 /** A configured preview is not a claim that a remote browser has loaded it. */
 export function resolvePreview(item: PreviewDocument): ResolvedPreview {
+  if (item.currentEdition) return resolvePreview({ ...item, ...item.currentEdition, currentEdition: undefined });
   const files = item.files.filter(file => file.path && file.delivery !== "pending");
   const local = files.filter(file => file.delivery === "hosted" && localArtifact(file.path));
   const meta = item.preview;
