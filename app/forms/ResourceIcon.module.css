@@ -1,0 +1,2 @@
+.symbol { position: relative; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; color: #286260; }
+.badge { position: absolute; right: 0; bottom: 0; background: #e8efed; box-shadow: 0 0 0 3px #e8efed; border-radius: 2px; }

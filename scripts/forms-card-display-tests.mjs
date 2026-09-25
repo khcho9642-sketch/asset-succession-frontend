@@ -16,6 +16,11 @@ const componentRequire = name => name === '@/lib/forms/preview' ? previewApi
   : name.endsWith('.module.css') ? { cardState: 'cardState', thumbnail: 'thumbnail' } : require(name);
 new Function('require', 'module', 'exports', compiled)(componentRequire, module, module.exports);
 const render = item => renderToStaticMarkup(createElement(module.exports.PreviewThumbnail, { item }));
+const iconModule = { exports: {} };
+const iconCompiled = ts.transpileModule(readFileSync('app/forms/ResourceIcon.tsx', 'utf8'), {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
+}).outputText;
+new Function('require', 'module', 'exports', iconCompiled)(componentRequire, iconModule, iconModule.exports);
 
 for (const id of ['P0-08', 'P3-05']) {
   test(`${id}: provider-only thumbnail uses an icon and one short label`, () => {
@@ -70,4 +75,56 @@ test('internal instructions and external provider actions have distinct accessib
   assert.match(source, /\$\{detailLabel\} \(사이트 내\)/);
   assert.match(source, /제공처 사이트를 새 창에서 엽니다/);
   assert.match(source, /preview\.kind === "provider" \? <Info/);
+});
+
+const iconCases = [
+  ['LIB-ADD-04', 'building'],
+  ['SVC-REGISTRY', 'building'],
+  ['BANK-ADD-04', 'transaction'],
+  ['BANK-ADD-02', 'balance'],
+  ['BANK-ADD-03', 'debt'],
+  ['BANK-ADD-05', 'transfer'],
+  ['P0-06', 'family'],
+  ['P2-09', 'tax'],
+];
+for (const [id, kind] of iconCases) {
+  test(`${id}: content icon is ${kind}, without modifying the resource`, () => {
+    const item = finalDocuments.find(doc => doc.id === id);
+    assert.ok(item);
+    const before = JSON.stringify(item);
+    assert.equal(iconModule.exports.resourceIconKind(item.title), kind);
+    const html = renderToStaticMarkup(createElement(iconModule.exports.ResourceIcon, { title: item.title }));
+    assert.match(html, new RegExp(`data-resource-icon="${kind}"`));
+    assert.match(html, /aria-hidden="true"/);
+    assert.match(html, /width="36" height="36"/);
+    assert.ok([...html.matchAll(/stroke-width="([^"]+)"/g)].every(match => match[1] === '1.8'));
+    assert.doesNotMatch(html, /<img/);
+    assert.equal(JSON.stringify(item), before);
+  });
+}
+
+test('icons cover tax guidance, preserve family guardianship and use a neutral fallback', () => {
+  assert.equal(iconModule.exports.resourceIconKind('세금 신고·납부 안내'), 'tax');
+  assert.equal(iconModule.exports.resourceIconKind('후견등기사항증명서 발급 안내'), 'family');
+  assert.equal(iconModule.exports.resourceIconKind('새로운 절차 안내'), 'guide');
+});
+
+test('service card primary action opens instructions, while detail provider and file actions remain', () => {
+  const source = readFileSync('app/forms/FormsLibrary.tsx', 'utf8');
+  assert.match(source, /className=\{styles.serviceAction\} href=\{resourceUrl\(item.id\)\} onClick=\{event => openDetail\(event, item.id\)\}/);
+  assert.match(source, /이용 안내 보기 \(사이트 내\)/);
+  assert.match(source, /\(!service \|\| formats.length > 0\) && <FileAction item=\{item\}/);
+  assert.match(source, /preview.kind === "provider" && category !== "form" \? <ResourceIcon/);
+  assert.match(source, /<PreviewThumbnail item=\{item\}/);
+  assert.match(source, /<FileAction item=\{selected\}/);
+  assert.match(source, /data-use-category=\{category\}/);
+});
+
+test('card visual stays square, and the full description precedes an aligned footer', () => {
+  const css = readFileSync('app/forms/FormsLibrary.module.css', 'utf8');
+  assert.match(css, /\.visual\s*\{[^}]*width: 80px; height: 80px;/);
+  assert.match(css, /\.cardFooter\[data-single-action\][^}]*grid-template-columns: minmax\(0, 1fr\) auto/);
+  assert.doesNotMatch(css, /\.cardCopy h3\s*\{[^}]*min-height/);
+  const source = readFileSync('app/forms/FormsLibrary.tsx', 'utf8');
+  assert.ok(source.indexOf('styles.cardDescription') < source.indexOf('styles.cardFooter'));
 });

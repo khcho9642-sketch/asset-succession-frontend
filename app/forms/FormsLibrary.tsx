@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type MouseEvent } from "react";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, Check, ChevronDown, ChevronRight, Download, ExternalLink, Info, Search, SlidersHorizontal, X, Landmark, BookOpen } from "lucide-react";
+import { ArrowDown, ArrowRight, Check, ChevronDown, ChevronRight, Download, ExternalLink, Info, Search, SlidersHorizontal, X, BookOpen } from "lucide-react";
 import {
   availableFiles, authorityLabel, catalogUrl, emptyFilters, FACETS, filterCatalog, hasFilters, originLabel, providerLabel,
   parseCatalogFilters, resourceUrl, STAGES, TIMINGS, USE_CATEGORIES, useCategory, isPublicResource,
@@ -12,6 +12,7 @@ import { buildIndividualCatalog, legacyGroupDocuments, relatedDocuments } from "
 import styles from "./FormsLibrary.module.css";
 import { DocumentPreview, PreviewThumbnail } from "./DocumentPreview";
 import { resolvePreview } from "@/lib/forms/preview";
+import { ResourceIcon } from "./ResourceIcon";
 import { guidesForResource } from "@/lib/forms/guides";
 import { getResourceUsage } from "@/lib/forms/resource-usage";
 import { SERVICE_CONTEXTS, serviceContexts, detailServiceContexts, preferredProviderContext } from "@/lib/forms/library-editorial";
@@ -134,26 +135,32 @@ export function FormsLibrary({ documents, groups }: Props) {
     if (!item) return null;
     const formats = [...new Set(availableFiles(item).map(file => file.format))];
     const preview = resolvePreview(item);
+    const category = useCategory(item);
+    const service = category === "service";
+    const showDetail = !SERVICE_CONTEXTS[item.id] && !item.providerRoutes?.length && !(category === "guide" && formats.length);
+    const singleAction = service ? !formats.length : !showDetail;
     const detailLabel = preview.kind === "provider" ? "이용 안내" : preview.kind === "pending" ? "자료 상세" : "미리보기";
     return <article className={styles.card} key={item.id} data-form-id={item.id} data-card-kind="document">
       <div className={styles.cardBody}>
-        <a className={styles.visual} href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)}
+        <a className={`${styles.visual} ${preview.kind === "provider" ? styles.iconVisual : ""}`} href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)}
           aria-label={`${item.title} 자료 상세`} data-form-preview>
-          {preview.kind === "provider" && (useCategory(item) !== "form" || item.institutionKind === "은행 지정 서식") ? <span className={styles.serviceVisual}>{useCategory(item) === "service" || item.institutionKind === "은행 지정 서식" ? <Landmark size={30} aria-hidden="true" /> : <BookOpen size={30} aria-hidden="true" />}<span>{item.institutionKind === "은행 지정 서식" ? "은행 서식" : USE_CATEGORIES[useCategory(item)]}</span></span> : <PreviewThumbnail item={item} key={item.id} />}
+          {preview.kind === "provider" && category !== "form" ? <ResourceIcon title={item.title} /> : <PreviewThumbnail item={item} key={item.id} />}
         </a>
         <div className={styles.cardCopy}>
-          <p className={styles.cardCategory}>{kindLabel(item)}<span>·</span>{stageLabel(card.stage)}</p>
+          <p className={styles.cardCategory}><span className={styles.useBadge} data-use-category={category}>{USE_CATEGORIES[category]}</span></p>
           <h3><a href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)}>{item.title}</a></h3>
         </div>
       </div>
       <p className={styles.cardDescription}>{describe(item)}</p>
-      <div className={styles.cardMeta}>
-        <span>{item.providerScope || item.institution || "제공처 확인"}</span>
-        <span>{formats.length ? formats.join(" · ") : "제공처 안내"}</span>
-      </div>
-      <div className={styles.cardActions}>
-        {!SERVICE_CONTEXTS[item.id] && !item.providerRoutes?.length && !(useCategory(item) === "guide" && availableFiles(item).length) && <a className={styles.detailAction} href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)} aria-label={`${item.title} ${detailLabel} (사이트 내)`} title={preview.kind === "provider" ? "사이트 내 사용방법과 확인 사항" : "사이트 내 문서 미리보기와 상세 정보"}>{preview.kind === "provider" ? <Info size={16} aria-hidden="true" /> : <Search size={16} aria-hidden="true" />}<span>{detailLabel}</span></a>}
-        <FileAction item={item} onOpen={openDetail} />
+      <div className={styles.cardFooter} data-single-action={singleAction || undefined}>
+        <div className={styles.cardMeta}>
+          <span>{item.providerScope || item.institution || "제공처 확인"}</span>
+          {!service && <span>{formats.length ? formats.join(" · ") : "제공처 안내"}</span>}
+        </div>
+        <div className={styles.cardActions}>
+          {service ? <a className={styles.serviceAction} href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)} aria-label={`${item.title} 이용 안내 보기 (사이트 내)`}><span>이용 안내 보기</span><ArrowRight size={16} aria-hidden="true" /></a> : showDetail && <a className={styles.detailAction} href={resourceUrl(item.id)} onClick={event => openDetail(event, item.id)} aria-label={`${item.title} ${detailLabel} (사이트 내)`} title={preview.kind === "provider" ? "사이트 내 사용방법과 확인 사항" : "사이트 내 문서 미리보기와 상세 정보"}>{preview.kind === "provider" ? <Info size={16} aria-hidden="true" /> : <Search size={16} aria-hidden="true" />}<span>{detailLabel}</span></a>}
+          {(!service || formats.length > 0) && <FileAction item={item} onOpen={openDetail} />}
+        </div>
       </div>
     </article>;
   }

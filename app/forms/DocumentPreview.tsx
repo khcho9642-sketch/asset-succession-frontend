@@ -18,7 +18,7 @@ export function PreviewThumbnail({ item }: Props) {
   const label = preview.pdfPath ? "PDF 보기" : preview.kind === "provider" ? "제공처 서식" : "원본 확인";
   const Icon = preview.pdfPath ? FileText : preview.kind === "provider" ? FileSearch : FileQuestion;
   return <span className={styles.cardState} data-preview-state={preview.pdfPath ? "pdf" : preview.kind === "provider" ? "provider" : "pending"}>
-    <Icon size={26} strokeWidth={1.6} aria-hidden="true" /><span>{label}</span>
+    <Icon size={30} strokeWidth={1.8} aria-hidden="true" /><span>{label}</span>
   </span>;
 }
 
