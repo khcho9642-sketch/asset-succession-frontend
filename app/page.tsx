@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   title: shareTitle,
   description: shareDescription,
   alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true
+  },
   openGraph: {
     title: shareTitle,
     description: shareDescription,
