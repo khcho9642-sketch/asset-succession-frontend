@@ -5,9 +5,9 @@ import { HeroPaperCarousel } from "@/components/HeroPaperCarousel";
 import { PublicNav } from "@/components/PublicNav";
 import styles from "@/components/HomePage.module.css";
 
-const shareTitle = "자산승계 360 | 우리 가족에게 맞는 자산승계";
-const shareDescription = "상속·증여·양도·가업승계, AI 진단부터 자료 준비와 전문가 상담까지.";
-const shareImage = "/og/asset-succession-360-share.jpg";
+const shareTitle = "자산승계 360";
+const shareDescription = "AI 진단 · 자료실 · 전문가 상담";
+const shareImage = "/og/asset-succession-360-share-v2.jpg";
 
 export const metadata: Metadata = {
   title: shareTitle,
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         url: shareImage,
         width: 1200,
         height: 630,
-        alt: "자산승계 360 우리 가족에게 맞는 자산승계"
+        alt: "자산승계 360 상속 증여 한눈에"
       }
     ]
   },
