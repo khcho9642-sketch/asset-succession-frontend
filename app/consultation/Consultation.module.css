@@ -6,59 +6,648 @@
   min-height: 100vh;
   color: var(--contact-ink);
 }
-.content { max-width: 960px; margin: 0 auto; padding: 62px 28px 72px; }
-.intro { margin-bottom: 28px; }
-.eyebrow { margin: 0 0 12px; font-size: 13px; font-weight: 650; color: #7a6139; letter-spacing: .08em; }
-.intro h1 { margin: 0; font-family: var(--paper-serif); font-size: clamp(28px, 3vw, 40px); font-weight: 700; letter-spacing: -.055em; line-height: 1.5; }
-.intro > p:last-child { margin: 12px 0 0; font-size: 16px; line-height: 1.7; color: var(--contact-muted); }
-.card { display: grid; grid-template-columns: .95fr 1.05fr; border: 1px solid var(--contact-line); background: #f8f4ea; }
-.professional { padding: 34px 0; border-top: 1px solid var(--contact-line); }
-.sectionLabel { margin: 0 0 14px; font-size: 13px; color: var(--contact-muted); }
-.professional h2 { margin: 0; font-family: var(--paper-serif); font-size: 28px; font-weight: 700; letter-spacing: -.04em; }
-.professional h2 span { font-size: 17px; font-weight: 500; }
-.contacts { display: grid; gap: 3px; margin-top: 20px; font-style: normal; }
-.contacts a { display: flex; align-items: center; gap: 12px; min-height: 44px; width: fit-content; max-width: 100%; color: var(--contact-ink); font-size: 16px; }
-.contacts a span { overflow-wrap: anywhere; }
-.contacts a svg { flex-shrink: 0; color: #7a6139; }
-.contacts .kakaoButton { min-height: 48px; padding: 10px 18px; border: 1px solid #f2c94c; border-radius: 4px; background: #fee500; color: #26221b; font-weight: 700; }
-.contacts .kakaoButton svg { color: #26221b; }
-.contacts .kakaoButton:hover span { text-decoration: none; }
-.contacts .phoneLink { font-size: 23px; font-weight: 600; letter-spacing: -.025em; }
-.contacts a:hover span, .assessmentNote a:hover { text-decoration: underline; text-underline-offset: 4px; }
-.contactHint { margin: 14px 0 0; max-width: 30ch; font-size: 13px; line-height: 1.7; color: var(--contact-muted); }
-.formPanel { padding: 34px 30px; background: #fffdf8; }
-.previewNote { margin: 0 0 20px; color: var(--contact-muted); font-size: 13px; line-height: 1.6; }
-.phoneLabel { display: block; margin-bottom: 9px; font-size: 15px; font-weight: 600; }
-.formPanel input[type="tel"] { width: 100%; min-height: 52px; padding: 12px 14px; border: 1px solid #b4a894; border-radius: 2px; background: #fff; color: var(--contact-ink); font-size: 16px; }
-.formPanel input::placeholder { color: var(--contact-muted); }
-.consent { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 10px 0; margin: 7px 0 12px; cursor: pointer; font-size: 13px; line-height: 1.65; color: var(--contact-muted); }
-.consent input { width: 17px; height: 17px; flex-shrink: 0; accent-color: var(--contact-accent); }
-.submit { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; min-height: 52px; padding: 12px 18px; border: 1px solid var(--contact-accent); border-radius: 2px; background: var(--contact-accent); color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; }
-.submit:hover { background: #963023; border-color: #963023; }
-.page :is(a, button, input):focus-visible { outline: 2px solid var(--contact-accent); outline-offset: 4px; }
-.errors { margin: 0 0 16px; color: #9c3023; font-size: 14px; line-height: 1.6; }
-.errors p { margin: 0; }
-.assessmentNote { margin: 16px 0 0; color: var(--contact-muted); font-size: 13px; line-height: 1.7; }
-.assessmentNote a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; color: var(--contact-ink); text-decoration: underline; text-underline-offset: 3px; }
-.confirmation > svg { color: #28745a; }
-.confirmation h2 { margin: 16px 0 10px; font-size: 22px; line-height: 1.4; }
-.confirmation p { margin: 0; font-size: 14px; line-height: 1.8; color: var(--contact-muted); }
-.secondaryButton { margin-top: 20px; padding: 10px 16px; min-height: 44px; background: transparent; border: 1px solid #b4a894; border-radius: 2px; color: var(--contact-ink); cursor: pointer; }
-@media (max-width: 700px) {
-  .content { padding: 30px 20px 36px; }
-  .intro { margin-bottom: 22px; }
-  .intro > p:last-child { font-size: 14px; }
-  .card { grid-template-columns: 1fr; }
-  .professional { padding: 22px 24px; border-right: 0; border-bottom: 1px solid var(--contact-line); }
-  .sectionLabel { margin-bottom: 10px; }
-  .professional h2 { font-size: 25px; }
-  .contacts { margin-top: 14px; }
-  .contactHint { margin-top: 8px; }
-  .formPanel { padding: 22px 24px; }
-  .previewNote { margin-bottom: 16px; }
+
+.content {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 48px 28px 76px;
 }
+
+.intro {
+  margin-bottom: 28px;
+}
+
+.eyebrow,
+.sectionLabel {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 650;
+  color: #7a6139;
+  letter-spacing: .08em;
+}
+
+.intro h1,
+.sectionHeader h2,
+.profileCopy h2,
+.directContact h2,
+.noticePanel h2,
+.finalContact h2 {
+  margin: 0;
+  font-family: var(--paper-serif);
+  font-weight: 700;
+  letter-spacing: -.045em;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.intro h1 {
+  font-size: clamp(30px, 4vw, 46px);
+}
+
+.intro > p:last-child,
+.sectionHeader p,
+.directContact p,
+.finalContact p {
+  margin: 12px 0 0;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--contact-muted);
+}
+
+.heroPanel {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: 38px;
+  align-items: center;
+  padding: 34px;
+  border: 1px solid var(--contact-line);
+  background: #f8f4ea;
+}
+
+.photoWrap {
+  width: min(250px, 100%);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #fffdf8;
+  border: 1px solid rgba(122, 97, 57, .22);
+}
+
+.photoWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.profileCopy h2 {
+  font-size: clamp(26px, 3vw, 36px);
+}
+
+.name {
+  margin: 12px 0 0;
+  font-size: 22px;
+  font-weight: 750;
+}
+
+.name span {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--contact-muted);
+}
+
+.careerList {
+  display: grid;
+  gap: 8px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.careerList li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.careerList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .78em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--contact-accent);
+}
+
+.profileLead,
+.boundaryNote,
+.finePrint {
+  margin: 18px 0 0;
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--contact-muted);
+}
+
+.boundaryNote {
+  padding: 14px 16px;
+  background: #fffdf8;
+  border-left: 3px solid var(--contact-accent);
+}
+
+.directContact,
+.finalContact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, auto);
+  gap: 28px;
+  align-items: start;
+  margin-top: 28px;
+  padding: 30px 0;
+  border-top: 1px solid var(--contact-line);
+  border-bottom: 1px solid var(--contact-line);
+}
+
+.directContact h2,
+.finalContact h2 {
+  font-size: 25px;
+}
+
+.contacts {
+  display: grid;
+  gap: 8px;
+  font-style: normal;
+}
+
+.contacts a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  width: fit-content;
+  max-width: 100%;
+  color: var(--contact-ink);
+  font-size: 16px;
+}
+
+.contacts a span {
+  overflow-wrap: anywhere;
+}
+
+.contacts a svg {
+  flex-shrink: 0;
+  color: #7a6139;
+}
+
+.contacts .kakaoButton {
+  min-height: 48px;
+  padding: 10px 18px;
+  border: 1px solid #f2c94c;
+  border-radius: 4px;
+  background: #fee500;
+  color: #26221b;
+  font-weight: 700;
+}
+
+.contacts .kakaoButton svg {
+  color: #26221b;
+}
+
+.contacts .kakaoButton:hover span {
+  text-decoration: none;
+}
+
+.contacts .phoneLink {
+  font-size: 22px;
+  font-weight: 650;
+}
+
+.contacts a:hover span,
+.assessmentNote a:hover,
+.quickActions a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.assessmentNote {
+  margin: 8px 0 0;
+  color: var(--contact-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.assessmentNote a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 650;
+  color: var(--contact-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sectionBlock,
+.noticePanel {
+  margin-top: 34px;
+  padding-top: 34px;
+  border-top: 1px solid var(--contact-line);
+}
+
+.sectionHeader {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.sectionHeader h2,
+.noticePanel h2 {
+  font-size: clamp(24px, 3vw, 34px);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--contact-line);
+  background: #fffdf8;
+}
+
+.dataTable {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.dataTable th,
+.dataTable td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--contact-line);
+  vertical-align: top;
+  line-height: 1.65;
+  text-align: left;
+}
+
+.dataTable thead th {
+  background: #efe6d5;
+  font-weight: 750;
+  color: #4d3e25;
+}
+
+.dataTable tbody th {
+  width: 24%;
+  font-weight: 750;
+  word-break: keep-all;
+}
+
+.dataTable td {
+  color: var(--contact-muted);
+}
+
+.dataTable tr:last-child th,
+.dataTable tr:last-child td {
+  border-bottom: 0;
+}
+
+.mobileCards {
+  display: none;
+}
+
+.quickActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.quickActions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--contact-line);
+  border-radius: 4px;
+  color: var(--contact-ink);
+  background: #fffdf8;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.disclosureStack {
+  display: grid;
+  gap: 18px;
+}
+
+.feeDisclosure {
+  border: 1px solid var(--contact-line);
+  background: #fffdf8;
+}
+
+.feeDisclosure summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 60px;
+  padding: 16px 18px;
+  cursor: pointer;
+  font-family: var(--paper-serif);
+  font-size: 21px;
+  font-weight: 750;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.feeDisclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+.feeDisclosure summary span {
+  flex-shrink: 0;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #efe6d5;
+  color: #6b5531;
+  font-family: var(--paper-sans);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.feeDisclosure[open] summary {
+  border-bottom: 1px solid var(--contact-line);
+}
+
+.basis {
+  margin: 0;
+  padding: 18px;
+  color: var(--contact-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.exampleBox {
+  margin: 18px;
+  padding: 18px;
+  background: #f8f4ea;
+  border-left: 3px solid var(--contact-accent);
+}
+
+.exampleBox h4,
+.subheading,
+.noteGrid h4,
+.subSection h3 {
+  margin: 0 0 10px;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.exampleBox p,
+.exampleBox li,
+.noteGrid p,
+.subSection p,
+.noticePanel p {
+  margin: 0;
+  color: var(--contact-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.exampleBox ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.subheading {
+  padding: 0 18px;
+}
+
+.detailList {
+  display: grid;
+  gap: 10px;
+  padding: 0 18px 18px;
+}
+
+.detailList > div {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(180, 168, 148, .55);
+}
+
+.detailList > div:last-child {
+  border-bottom: 0;
+}
+
+.detailList strong {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.detailList p {
+  margin: 0;
+  color: var(--contact-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.noteGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding: 0 18px 18px;
+}
+
+.noteGrid article,
+.subSection,
+.noticePanel,
+.finalContact {
+  background: #f8f4ea;
+}
+
+.noteGrid article,
+.subSection {
+  padding: 18px;
+  border: 1px solid var(--contact-line);
+}
+
+.subSection {
+  margin-top: 18px;
+}
+
+.noticePanel {
+  padding: 24px;
+  border: 1px solid var(--contact-line);
+}
+
+.noticePanel p + p {
+  margin-top: 10px;
+}
+
+.finalContact {
+  padding: 28px 24px;
+  border: 1px solid var(--contact-line);
+}
+
+.page :is(a, button, input, summary):focus-visible {
+  outline: 2px solid var(--contact-accent);
+  outline-offset: 4px;
+}
+
+@media (max-width: 760px) {
+  .content {
+    padding: 28px 18px 44px;
+  }
+
+  .intro {
+    margin-bottom: 22px;
+  }
+
+  .intro > p:last-child,
+  .sectionHeader p,
+  .directContact p,
+  .finalContact p {
+    font-size: 14px;
+  }
+
+  .heroPanel {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 20px;
+    padding: 22px 18px;
+  }
+
+  .photoWrap {
+    width: 170px;
+  }
+
+  .profileCopy {
+    width: 100%;
+  }
+
+  .name {
+    font-size: 20px;
+  }
+
+  .directContact,
+  .finalContact {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 24px 0;
+  }
+
+  .finalContact {
+    padding: 22px 18px;
+  }
+
+  .contacts a {
+    width: 100%;
+  }
+
+  .contacts .kakaoButton {
+    justify-content: center;
+  }
+
+  .contacts .phoneLink {
+    font-size: 20px;
+  }
+
+  .sectionBlock,
+  .noticePanel {
+    margin-top: 28px;
+    padding-top: 28px;
+  }
+
+  .tableWrap {
+    display: none;
+  }
+
+  .mobileCards {
+    display: grid;
+    gap: 10px;
+  }
+
+  .mobileCard {
+    padding: 16px;
+    border: 1px solid var(--contact-line);
+    background: #fffdf8;
+  }
+
+  .mobileCard h4 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    line-height: 1.55;
+    word-break: keep-all;
+  }
+
+  .mobileCard p {
+    display: grid;
+    gap: 3px;
+    margin: 0;
+    padding: 10px 0;
+    border-top: 1px solid rgba(180, 168, 148, .5);
+    color: var(--contact-muted);
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+  }
+
+  .mobileCard p span {
+    color: #6b5531;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .feeDisclosure summary {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 19px;
+  }
+
+  .feeDisclosure summary span {
+    flex-shrink: 1;
+  }
+
+  .basis,
+  .exampleBox,
+  .subheading,
+  .detailList,
+  .noteGrid {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .exampleBox {
+    margin: 16px;
+  }
+
+  .detailList > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .noteGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .noticePanel {
+    padding: 20px 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .content {
+    padding-inline: 14px;
+  }
+
+  .heroPanel,
+  .mobileCard,
+  .noticePanel,
+  .finalContact {
+    padding-inline: 14px;
+  }
+
+  .photoWrap {
+    width: 150px;
+  }
+}
+
 @media print {
-  .page { min-height: auto; background: #fff; }
-  .content { padding-block: 24px; }
-  .formPanel form, .secondaryButton { display: none; }
+  .page {
+    min-height: auto;
+    background: #fff;
+  }
+
+  .content {
+    padding-block: 24px;
+  }
+
+  .quickActions,
+  .contacts .kakaoButton {
+    display: none;
+  }
 }
