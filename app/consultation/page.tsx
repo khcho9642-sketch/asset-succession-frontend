@@ -274,7 +274,7 @@ export default function ConsultationPage() {
 
       <section className={styles.heroPanel} aria-labelledby="profile-title">
         <div className={styles.photoWrap}>
-          <Image src="/images/cho-kyungho-profile.png" alt="상담 담당자 프로필 사진" width={622} height={509} priority sizes="(max-width: 700px) 170px, 250px" />
+          <Image src="/images/cho-kyungho-profile.png" alt="상담 담당자 프로필 사진" width={1254} height={1254} priority sizes="(max-width: 700px) 170px, 250px" />
         </div>
         <div className={styles.profileCopy}>
           <p className={styles.sectionLabel}>전문가 프로필</p>
