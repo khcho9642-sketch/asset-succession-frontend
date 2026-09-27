@@ -1,6 +1,7 @@
 import type { LibraryDocument } from "./catalog";
 import editions from "./current-editions.json";
 import { getResourceUsage } from "./resource-usage";
+import { applyDownloadFollowup } from "./download-followup";
 
 const DATE = "2026-09-25";
 const tax = "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=289267&efYd=20260918";
@@ -91,5 +92,5 @@ export function applySourceFollowup(item: LibraryDocument): LibraryDocument {
       sourceUrls: [routes[item.id].url!],
     };
   }
-  return item;
+  return applyDownloadFollowup(item);
 }

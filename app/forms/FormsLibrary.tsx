@@ -41,7 +41,7 @@ function Files({ item }: { item: LibraryDocument }) {
   if (!files.length) return item.sourceUrl ? <a className={styles.providerLink} href={item.providerInstructions?.url || item.sourceUrl} target="_blank" rel="noopener noreferrer">{providerLabel(item)}에서 확인<ExternalLink size={14} aria-hidden="true" /></a> : <p className={styles.muted}>제공 파일을 확인하고 있습니다.</p>;
   return <ul className={styles.fileList} aria-label={`${item.title} 제공 파일`}>{files.map(file => <li key={file.path}>
     <a href={file.path} download={file.delivery === "hosted"} target={file.delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer" data-file-download>
-      <span className={styles.fileFormat}>{file.format}</span><span>{file.name}<small>{fileRole(file.role)}{file.delivery === "hosted" ? "" : " · 공식 파일 (새 창)"}{file.bytes > 0 ? ` · ${Math.ceil(file.bytes / 1024).toLocaleString("ko-KR")} KB` : ""}</small></span>{file.delivery === "hosted" ? <Download size={15} aria-hidden="true" /> : <ExternalLink size={15} aria-hidden="true" />}
+      <span className={styles.fileFormat}>{file.format}</span><span>{file.name}<small>{fileRole(file.role)}{file.delivery === "hosted" ? "" : ` · ${providerLabel(item)} 파일 (새 창)`}{file.bytes > 0 ? ` · ${Math.ceil(file.bytes / 1024).toLocaleString("ko-KR")} KB` : ""}</small></span>{file.delivery === "hosted" ? <Download size={15} aria-hidden="true" /> : <ExternalLink size={15} aria-hidden="true" />}
     </a>
   </li>)}</ul>;
 }
@@ -50,7 +50,7 @@ function FileAction({ item, onOpen }: { item: LibraryDocument; onOpen?: (event: 
   if (SERVICE_CONTEXTS[item.id] || item.providerRoutes?.length) return <a className={styles.fileAction} href={resourceUrl(item.id)} onClick={event => onOpen?.(event, item.id)}>{item.providerRoutes ? useCategory(item) === "service" ? "발급 안내" : "은행별 안내" : "조회·발급 안내"}<ArrowRight size={14} aria-hidden="true" /></a>;
   if (useCategory(item) === "service" || !files.length) return item.sourceUrl ? <a className={styles.fileAction} href={item.providerInstructions?.url || item.primaryAction?.url || item.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`${item.title} ${providerActionLabel(item)} (새 창)`} title="제공처 사이트를 새 창에서 엽니다"><span>{providerActionLabel(item)}</span><ExternalLink size={14} aria-hidden="true" /></a> : <span className={styles.unavailable}>제공처 확인 필요</span>;
   if (useCategory(item) === "guide") return <a className={styles.fileAction} href={resourceUrl(item.id)} onClick={event => onOpen?.(event, item.id)}>안내 보기<BookOpen size={14} aria-hidden="true" /></a>;
-  if (files.length === 1) return <a className={styles.fileAction} href={files[0].path} download={files[0].delivery === "hosted"} target={files[0].delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer" aria-label={`${item.title} ${files[0].format} ${fileRole(files[0].role)} ${files[0].delivery === "hosted" ? "받기" : "공식 파일 열기 (새 창)"}`} data-form-download>{item.institutionKind === "은행 지정 서식" ? `${item.institution} 공식 ${files[0].format} ${files[0].format === "PDF" ? "열기" : "받기"}` : `${files[0].format} ${files[0].delivery === "hosted" ? "받기" : "열기"}`}{files[0].delivery === "hosted" ? <Download size={14} aria-hidden="true" /> : <ExternalLink size={14} aria-hidden="true" />}</a>;
+  if (files.length === 1) return <a className={styles.fileAction} href={files[0].path} download={files[0].delivery === "hosted"} target={files[0].delivery === "hosted" ? undefined : "_blank"} rel="noopener noreferrer" aria-label={`${item.title} ${files[0].format} ${fileRole(files[0].role)} ${files[0].delivery === "hosted" ? "받기" : `${providerLabel(item)} 파일 열기 (새 창)`}`} data-form-download>{item.institutionKind === "은행 지정 서식" ? `${item.institution} 공식 ${files[0].format} ${files[0].format === "PDF" ? "열기" : "받기"}` : `${files[0].format} ${files[0].delivery === "hosted" ? "받기" : "열기"}`}{files[0].delivery === "hosted" ? <Download size={14} aria-hidden="true" /> : <ExternalLink size={14} aria-hidden="true" />}</a>;
   return <details className={styles.filePicker}><summary aria-label={`${item.title} 파일 형식 선택`}>형식·파일 선택<ChevronDown size={14} aria-hidden="true" /></summary><Files item={item} /></details>;
 }
 
@@ -287,7 +287,15 @@ export function FormsLibrary({ documents, groups }: Props) {
         <p className={styles.detailDescription}>{selected.description}</p>
         {selectedUsage && <dl className={styles.metadata}><dt>사용 대상</dt><dd>{selectedUsage.who}</dd><dt>쓰는 경우</dt><dd>{selectedUsage.when}</dd></dl>}
         {!SERVICE_CONTEXTS[selected.id] && !selected.providerRoutes?.length && selected.institutionKind !== "은행 지정 서식" && <section className={styles.downloadSection} id="detail-downloads" aria-label="제공 파일과 이용 방법">
-          {selected.providerInstructions && <div className={styles.contextNote}><strong>{selected.providerInstructions.menu}</strong><p>찾을 문서: {selected.providerInstructions.documentName}</p>{selected.providerInstructions.keywords && <p>선택·검색어: {selected.providerInstructions.keywords}</p>}<p>{selected.providerInstructions.limitation}</p>{selected.providerInstructions.checkedOn && <small>경로 검토 {selected.providerInstructions.checkedOn} · 파일·개별 신청 검증과 별개</small>}</div>}
+          {selected.providerInstructions && <div className={`${styles.contextNote} ${styles.providerInstructions}`}>
+            <strong>{selected.providerInstructions.menu}</strong>
+            {!availableFiles(selected).length && <>
+              <p>찾을 문서: {selected.providerInstructions.documentName}</p>
+              {selected.providerInstructions.keywords && <p>선택·검색어: {selected.providerInstructions.keywords}</p>}
+              <p>{selected.providerInstructions.limitation}</p>
+            </>}
+            {selected.providerInstructions.checkedOn && <small>{availableFiles(selected).length ? "원본 연결 확인" : "경로 검토"} {selected.providerInstructions.checkedOn} · 개별 제출요건은 별도 확인</small>}
+          </div>}
           {selected.currentEdition && <p className={styles.usageNote}>현행 법령 첨부 제공본 · 서식 개정일 {selected.currentEdition.revision} · 확인 {selected.currentVersionReview?.reviewedOn}</p>}
           <div className={styles.downloadHeading}><h3>{USE_CATEGORIES[useCategory(selected)]}</h3></div>
           {!SERVICE_CONTEXTS[selected.id] && (useCategory(selected) === "service" || !availableFiles(selected).length ? <FileAction item={selected} /> : <Files item={selected} />)}

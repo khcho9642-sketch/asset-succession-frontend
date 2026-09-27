@@ -9,6 +9,7 @@ export type PreviewDocument = {
   thumbnail?: string | null;
   sourceUrl?: string;
   institution?: string;
+  externalPreviews?: { title: string; url: string; mode: "viewer" | "provider-page" }[];
   preview?: {
     method?: string;
     sourceRole?: string;
@@ -37,6 +38,7 @@ export type ResolvedPreview = {
   pdfPath?: string;
   originalPath?: string;
   providerUrl?: string;
+  externalPreviews?: { title: string; url: string; mode: "viewer" | "provider-page" }[];
   width?: number;
   height?: number;
   lowResolution: boolean;
@@ -95,6 +97,7 @@ export function resolvePreview(item: PreviewDocument): ResolvedPreview {
   const base: ResolvedPreview = {
     kind: "pending", label: "미리보기 준비 중", lowResolution: !!(generatedImage && meta?.lowResolution),
     originalPath, providerUrl: providerUrl(item.sourceUrl) || files.map(file => providerUrl(file.path)).find(Boolean),
+    externalPreviews: item.externalPreviews?.filter(link => providerUrl(link.url)?.startsWith("https:")),
   };
   if (imagePath || pdfPath) return {
     ...base, kind: imagePath ? "image" : "pdf", label: "문서 미리보기", imagePath, pdfPath,
