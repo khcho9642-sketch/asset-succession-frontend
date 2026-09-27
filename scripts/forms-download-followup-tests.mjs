@@ -6,17 +6,21 @@ import { finalDocuments, catalog, previewApi } from './load-current-forms.mjs';
 
 const read = path => JSON.parse(readFileSync(path, 'utf8'));
 const baseline = read('docs/forms-download-followup-20260927/baseline.json');
-const { records } = read('docs/forms-download-followup-20260927/sources.json');
+const records = {
+  ...read('docs/forms-download-followup-20260927/sources.json').records,
+  ...read('docs/forms-remaining11-20260927/sources.json').records,
+};
 const byId = new Map(finalDocuments.map(item => [item.id, item]));
 const connected = Object.values(records).filter(row => row.status === 'connected');
 
-test('33 previously fileless forms are accounted for: 22 connected, 11 explicitly unresolved', () => {
+test('33 previously fileless forms are accounted for: 30 connected, 3 explicitly unresolved after browser follow-up', () => {
   assert.equal(baseline.length, 33);
   assert.deepEqual(new Set(Object.keys(records)), new Set(baseline.map(item => item.id)));
-  assert.equal(connected.length, 22);
-  assert.equal(Object.values(records).filter(row => row.status === 'unresolved').length, 11);
-  assert.equal(connected.flatMap(row => row.files).length, 31);
-  assert.equal(new Set(connected.flatMap(row => row.files).map(file => file.url)).size, 30);
+  assert.equal(connected.length, 30);
+  assert.equal(Object.values(records).filter(row => row.status === 'unresolved').length, 3);
+  assert.equal(connected.flatMap(row => row.files).length, 47);
+  // Browser-only IROS downloads share a source page, not an attachment URL.
+  assert.equal(new Set(connected.flatMap(row => row.files).map(file => file.sha256)).size, 46);
 });
 
 for (const previous of baseline) test(`${previous.id}: preserve identity, classification, relationships and collection date`, () => {
@@ -39,7 +43,11 @@ for (const [id, row] of Object.entries(records)) test(`${id}: file evidence and 
     const proof = row.files[i];
     assert.equal(file.bytes, proof.bytes);
     assert.equal(file.format, proof.format);
-    assert.equal(proof.status, 200);
+    if (proof.transport === 'browser-download-completed; HTTP status not exposed') {
+      assert.equal(proof.status, null);
+      assert.match(proof.method, /normal browser/);
+      assert.equal(file.delivery, 'hosted');
+    } else assert.equal(proof.status, 200);
     assert.match(proof.sha256, /^[a-f0-9]{64}$/);
     assert.match(proof.url, /^https:\/\//);
     if (file.delivery === 'hosted') {

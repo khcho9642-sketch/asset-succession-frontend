@@ -86,7 +86,7 @@ test('ledger maps exactly to final public IDs and preserves original source date
   const ledger=JSON.parse(readFileSync('public/downloads/official-forms/review-ledger.json','utf8'));
   assert.deepEqual(new Set(ledger.records.map(x=>x.id)),new Set(finalCatalog.cards.map(x=>x.id)));
   // Four preferred originals are superseded by eight verified current originals; old paths remain intact.
-  assert.equal(ledger.records.length,198); assert.deepEqual(ledger.after,{public:198,form:151,service:25,guide:22,archived:9,excluded:13,hosted:182,external:22});
+  assert.equal(ledger.records.length,198); assert.deepEqual(ledger.after,{public:198,form:151,service:25,guide:22,archived:9,excluded:13,hosted:197,external:23});
   for(const row of ledger.records) { assert.ok(row.sourceUrl); assert.ok(row.editorial && row.currentness && row.applicability); assert.notEqual(row.applicability.status,'verified'); }
 });
 test('recheck separates overdue, missing date, access failure, source change and unchanged bytes', () => {
