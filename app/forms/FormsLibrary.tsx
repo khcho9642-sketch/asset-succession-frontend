@@ -287,7 +287,15 @@ export function FormsLibrary({ documents, groups }: Props) {
         <p className={styles.detailDescription}>{selected.description}</p>
         {selectedUsage && <dl className={styles.metadata}><dt>사용 대상</dt><dd>{selectedUsage.who}</dd><dt>쓰는 경우</dt><dd>{selectedUsage.when}</dd></dl>}
         {!SERVICE_CONTEXTS[selected.id] && !selected.providerRoutes?.length && selected.institutionKind !== "은행 지정 서식" && <section className={styles.downloadSection} id="detail-downloads" aria-label="제공 파일과 이용 방법">
-          {selected.providerInstructions && <div className={styles.contextNote}><strong>{selected.providerInstructions.menu}</strong><p>찾을 문서: {selected.providerInstructions.documentName}</p>{selected.providerInstructions.keywords && <p>선택·검색어: {selected.providerInstructions.keywords}</p>}<p>{selected.providerInstructions.limitation}</p>{selected.providerInstructions.checkedOn && <small>경로 검토 {selected.providerInstructions.checkedOn} · 파일·개별 신청 검증과 별개</small>}</div>}
+          {selected.providerInstructions && <div className={`${styles.contextNote} ${styles.providerInstructions}`}>
+            <strong>{selected.providerInstructions.menu}</strong>
+            {!availableFiles(selected).length && <>
+              <p>찾을 문서: {selected.providerInstructions.documentName}</p>
+              {selected.providerInstructions.keywords && <p>선택·검색어: {selected.providerInstructions.keywords}</p>}
+              <p>{selected.providerInstructions.limitation}</p>
+            </>}
+            {selected.providerInstructions.checkedOn && <small>{availableFiles(selected).length ? "원본 연결 확인" : "경로 검토"} {selected.providerInstructions.checkedOn} · 개별 제출요건은 별도 확인</small>}
+          </div>}
           {selected.currentEdition && <p className={styles.usageNote}>현행 법령 첨부 제공본 · 서식 개정일 {selected.currentEdition.revision} · 확인 {selected.currentVersionReview?.reviewedOn}</p>}
           <div className={styles.downloadHeading}><h3>{USE_CATEGORIES[useCategory(selected)]}</h3></div>
           {!SERVICE_CONTEXTS[selected.id] && (useCategory(selected) === "service" || !availableFiles(selected).length ? <FileAction item={selected} /> : <Files item={selected} />)}

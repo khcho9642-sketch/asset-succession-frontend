@@ -106,3 +106,12 @@ test('external viewer links reject scripts, credentials and insecure URLs', () =
   ]});
   assert.deepEqual(result.externalPreviews, item.externalPreviews);
 });
+
+test('download instructions do not squeeze paragraphs into five narrow flex columns', () => {
+  const css = readFileSync('app/forms/FormsLibrary.module.css', 'utf8');
+  const ui = readFileSync('app/forms/FormsLibrary.tsx', 'utf8');
+  assert.match(css, /\.contextNote\.providerInstructions\s*\{[^}]*display: block/);
+  assert.match(ui, /styles\.contextNote\} \$\{styles\.providerInstructions/);
+  assert.match(ui, /!availableFiles\(selected\)\.length &&/);
+  assert.match(ui, /원본 연결 확인/);
+});

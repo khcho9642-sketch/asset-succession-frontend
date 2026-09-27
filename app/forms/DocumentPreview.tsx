@@ -88,7 +88,7 @@ export function DocumentPreview({ item }: Props) {
     {showPdf && <PdfPreview key={preview.pdfPath} path={preview.pdfPath!} title={item.title} />}
     {preview.kind === "provider" && <div className={styles.notice}>
       <strong>{item.institution || "자료 제공처"}에서 확인하는 자료입니다.</strong>
-      <p>{preview.externalPreviews?.length ? "원본은 제공기관에서 관리합니다. 아래 링크에서 기관이 제공하는 미리보기를 확인할 수 있습니다." : "이 사이트에는 원본 파일을 보관하지 않습니다. 연결된 파일은 위에서 받을 수 있으며, 미리보기가 없는 파일은 내려받아 열어 주세요."}</p>
+      <p>{preview.externalPreviews?.length ? "원본은 제공기관에서 관리합니다. 아래 링크에서 기관이 제공하는 미리보기를 확인할 수 있습니다." : item.files.some(file => file.path && file.delivery !== "pending") ? "이 사이트에는 원본 파일을 보관하지 않습니다. 연결된 파일은 위에서 받을 수 있으며, 미리보기가 없는 파일은 내려받아 열어 주세요." : "이 사이트에는 원본 파일을 보관하지 않습니다. 빈 미리보기 대신 이용 경로를 안내합니다."}</p>
       {preview.externalPreviews?.map(link => <p key={link.url}><a className={styles.link} href={link.url} target="_blank" rel="noopener noreferrer" data-provider-preview>
         {link.title} · {link.mode === "viewer" ? "원본 미리보기" : "제공처에서 미리보기 선택"} · 새 창
       </a></p>)}

@@ -159,6 +159,9 @@
 .appliedFilters button { display: flex; align-items: center; gap: 7px; min-height: 44px; padding: 6px 11px; border: 1px solid #c5b69c; border-radius: 4px; background: #ebe2d3; font-size: 12px; }
 .contextNote { display: flex; align-items: flex-start; gap: 9px; padding: 12px 15px; margin: 0 0 17px; border-radius: 4px; background: #e8e0d1; color: var(--lib-muted); font-size: 13px; line-height: 1.8; }
 .contextNote svg { margin-top: 4px; }
+.contextNote.providerInstructions { display: block; font-size: 14px; word-break: keep-all; overflow-wrap: anywhere; }
+.providerInstructions p { margin: 6px 0; }
+.providerInstructions small { display: block; margin-top: 6px; }
 
 /* Resource cards: a small actual preview, clear copy, and two consistent actions. */
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); gap: 16px; align-items: stretch; }
