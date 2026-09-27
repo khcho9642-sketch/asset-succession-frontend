@@ -6,17 +6,22 @@ import { finalDocuments, catalog, previewApi } from './load-current-forms.mjs';
 
 const read = path => JSON.parse(readFileSync(path, 'utf8'));
 const baseline = read('docs/forms-download-followup-20260927/baseline.json');
-const { records } = read('docs/forms-download-followup-20260927/sources.json');
+const records = {
+  ...read('docs/forms-download-followup-20260927/sources.json').records,
+  ...read('docs/forms-remaining11-20260927/sources.json').records,
+};
 const byId = new Map(finalDocuments.map(item => [item.id, item]));
 const connected = Object.values(records).filter(row => row.status === 'connected');
+const removedIds = new Set(['P1-19', 'P8-02', 'P8-10']);
 
-test('33 previously fileless forms are accounted for: 22 connected, 11 explicitly unresolved', () => {
+test('33 previously fileless forms are accounted for: 30 connected, 3 explicitly unresolved after browser follow-up', () => {
   assert.equal(baseline.length, 33);
   assert.deepEqual(new Set(Object.keys(records)), new Set(baseline.map(item => item.id)));
-  assert.equal(connected.length, 22);
-  assert.equal(Object.values(records).filter(row => row.status === 'unresolved').length, 11);
-  assert.equal(connected.flatMap(row => row.files).length, 31);
-  assert.equal(new Set(connected.flatMap(row => row.files).map(file => file.url)).size, 30);
+  assert.equal(connected.length, 30);
+  assert.equal(Object.values(records).filter(row => row.status === 'unresolved').length, 3);
+  assert.equal(connected.flatMap(row => row.files).length, 47);
+  // Browser-only IROS downloads share a source page, not an attachment URL.
+  assert.equal(new Set(connected.flatMap(row => row.files).map(file => file.sha256)).size, 46);
 });
 
 for (const previous of baseline) test(`${previous.id}: preserve identity, classification, relationships and collection date`, () => {
@@ -26,7 +31,11 @@ for (const previous of baseline) test(`${previous.id}: preserve identity, classi
   for (const key of ['purposes', 'timing', 'assets', 'kind']) assert.deepEqual(item.resource.facets[key], previous.resource.facets[key], key);
   assert.equal(item.resource.facets.origin, records[item.id].status === 'connected' ? item.id === 'P3-05' ? 'private_institution' : 'official_institution' : previous.resource.facets.origin);
   assert.deepEqual(item.resource.relations, previous.resource.relations);
-  assert.deepEqual(item.resource.presentation, previous.resource.presentation);
+  // Only the three records explicitly removed by the user change visibility.
+  if (removedIds.has(item.id)) {
+    assert.deepEqual(item.resource.presentation, { ...previous.resource.presentation,
+      visibility: 'excluded', reason: '2026-09-27 사용자 요청으로 공개 자료실에서 제외. 원본 재조사 기록은 보존.' });
+  } else assert.deepEqual(item.resource.presentation, previous.resource.presentation);
   assert.equal(item.sourceReview.checkedOn, '2026-09-27');
   assert.ok(item.reviewSummary.limitation);
 });
@@ -39,7 +48,11 @@ for (const [id, row] of Object.entries(records)) test(`${id}: file evidence and 
     const proof = row.files[i];
     assert.equal(file.bytes, proof.bytes);
     assert.equal(file.format, proof.format);
-    assert.equal(proof.status, 200);
+    if (proof.transport === 'browser-download-completed; HTTP status not exposed') {
+      assert.equal(proof.status, null);
+      assert.match(proof.method, /normal browser/);
+      assert.equal(file.delivery, 'hosted');
+    } else assert.equal(proof.status, 200);
     assert.match(proof.sha256, /^[a-f0-9]{64}$/);
     assert.match(proof.url, /^https:\/\//);
     if (file.delivery === 'hosted') {

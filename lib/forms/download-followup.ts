@@ -2,7 +2,7 @@ import type { LibraryDocument } from "./catalog";
 import followup from "./download-followup.json";
 import { getResourceUsage } from "./resource-usage";
 
-type Followup = { document: Partial<LibraryDocument>; delivery: string | null; authority: string | null; origin?: string };
+type Followup = { document: Partial<LibraryDocument>; delivery: string | null; authority: string | null; origin?: string; exclusionReason?: string };
 
 /** Enrich only reviewed records; keep identifiers, facets, relations and older originals intact. */
 export function applyDownloadFollowup(item: LibraryDocument): LibraryDocument {
@@ -19,6 +19,11 @@ export function applyDownloadFollowup(item: LibraryDocument): LibraryDocument {
     } : item.usage,
     resource: item.resource ? {
       ...item.resource,
+      ...(update.exclusionReason ? { presentation: {
+        ...item.resource.presentation,
+        visibility: "excluded",
+        reason: update.exclusionReason,
+      } } : {}),
       facets: {
         ...item.resource.facets,
         ...(update.delivery ? { delivery: update.delivery } : {}),
