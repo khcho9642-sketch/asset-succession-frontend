@@ -8,8 +8,8 @@ const byId = new Map(finalDocuments.map(x => [x.id, x]));
 const downloadFollowup = JSON.parse(readFileSync('lib/forms/download-followup.json', 'utf8'));
 const ids = patch => catalog.filterCatalog(finalCatalog, { ...catalog.emptyFilters(), ...patch }).map(x => x.id);
 
-test('198 public items preserve existing originals; fileless records receive only reviewed additions', () => {
-  assert.equal(finalCatalog.cards.length, 198);
+test('195 public items preserve existing originals after three user-requested exclusions', () => {
+  assert.equal(finalCatalog.cards.length, 195);
   for (const previous of bankDocuments) {
     const patch = downloadFollowup[previous.id]?.document || {};
     if (patch.files) assert.equal(catalog.availableFiles(previous).length, 0, previous.id);
@@ -86,7 +86,7 @@ test('ledger maps exactly to final public IDs and preserves original source date
   const ledger=JSON.parse(readFileSync('public/downloads/official-forms/review-ledger.json','utf8'));
   assert.deepEqual(new Set(ledger.records.map(x=>x.id)),new Set(finalCatalog.cards.map(x=>x.id)));
   // Four preferred originals are superseded by eight verified current originals; old paths remain intact.
-  assert.equal(ledger.records.length,198); assert.deepEqual(ledger.after,{public:198,form:151,service:25,guide:22,archived:9,excluded:13,hosted:197,external:23});
+  assert.equal(ledger.records.length,195); assert.deepEqual(ledger.after,{public:195,form:148,service:25,guide:22,archived:9,excluded:16,hosted:197,external:23});
   for(const row of ledger.records) { assert.ok(row.sourceUrl); assert.ok(row.editorial && row.currentness && row.applicability); assert.notEqual(row.applicability.status,'verified'); }
 });
 test('recheck separates overdue, missing date, access failure, source change and unchanged bytes', () => {

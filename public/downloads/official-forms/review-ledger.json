@@ -14,12 +14,12 @@
     "external": 4
   },
   "after": {
-    "public": 198,
-    "form": 151,
+    "public": 195,
+    "form": 148,
     "service": 25,
     "guide": 22,
     "archived": 9,
-    "excluded": 13,
+    "excluded": 16,
     "hosted": 197,
     "external": 23
   },
@@ -9802,78 +9802,6 @@
       "classificationCorrection": null
     },
     {
-      "id": "P1-19",
-      "title": "기여분 결정 청구서",
-      "sourceUrl": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
-      "sourceRecordId": "P1-19",
-      "authority": {
-        "kind": "unknown",
-        "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
-      },
-      "files": [],
-      "providerInstructions": {
-        "documentName": "기여분 결정 청구서",
-        "menu": "전자소송포털 양식모음 또는 대한법률구조공단 법률서식에서 기여분 검색",
-        "keywords": "기여분",
-        "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
-        "status": "original_not_acquired",
-        "checkedOn": "2026-09-27",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 원본 미확보: 정상 브라우저에서 전자소송포털 양식모음과 대한법률구조공단 법률서식의 기여분 검색이 모두 0건이었습니다. 검색 범위 안에서 대응 첨부를 찾지 못한 것이며 서식이 존재하지 않거나 다운로드할 수 없다는 판정은 아닙니다. 일반 분할·분리 서식이나 민간 작성본으로 대신하지 않았습니다."
-      },
-      "providerRoutes": [],
-      "source": {
-        "checkedOn": "2026-09-27",
-        "collectedOn": "2026-09-19",
-        "status": "recorded_source_check",
-        "basis": "docs/forms-remaining11-20260927/sources.json",
-        "scope": "정상 브라우저·대체 공식 경로·원본 확보 여부 재조사"
-      },
-      "editorial": {
-        "reviewedOn": "2026-09-23",
-        "status": "editorial_reviewed",
-        "basis": "자료명·용도에 따른 분류·이용 안내 검토. 법적 적용 판단 또는 서식 현행성의 전면 검증은 아님."
-      },
-      "currentness": {
-        "reviewedOn": null,
-        "status": "not_reverified",
-        "finding": "Existing source evidence preserved; no new current-version claim.",
-        "limitation": "Currentness and individual legal applicability need separate confirmation.",
-        "decision": "retain_pending_current_version_comparison"
-      },
-      "applicability": {
-        "status": "not_individually_verified",
-        "evidence": [
-          {
-            "purposes": [
-              "inheritance"
-            ],
-            "party_roles": [],
-            "condition_description": "목적별 당사자 역할·거래 원인·적용 조건을 개별 확인해야 함.",
-            "evidence_refs": [
-              "taxonomy:P1-19",
-              "legacy:P1-19"
-            ],
-            "verification": {
-              "status": "pending",
-              "evidence_refs": [
-                "taxonomy:P1-19",
-                "legacy:P1-19"
-              ],
-              "note": "탐색 태그를 법적 적용 판정으로 사용하지 않음."
-            }
-          }
-        ],
-        "note": "Classification and source checks are not individual legal approval."
-      },
-      "reviewPolicy": {
-        "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-27",
-        "nextReviewDue": "2026-12-27",
-        "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
-      },
-      "classificationCorrection": null
-    },
-    {
       "id": "P1-20",
       "title": "유류분반환청구 소장",
       "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EB%A5%98%EB%B6%84&scdFolderId=",
@@ -13873,78 +13801,6 @@
       "classificationCorrection": null
     },
     {
-      "id": "P8-02",
-      "title": "상속회복청구 소장",
-      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%ED%9A%8C%EB%B3%B5&scdFolderId=",
-      "sourceRecordId": "P8-02",
-      "authority": {
-        "kind": "unknown",
-        "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
-      },
-      "files": [],
-      "providerInstructions": {
-        "documentName": "상속회복청구 소장",
-        "menu": "대한법률구조공단 법률서식 전체 검색 또는 전자소송포털 양식모음 → 상속회복",
-        "keywords": "상속회복",
-        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%ED%9A%8C%EB%B3%B5&scdFolderId=",
-        "status": "original_not_acquired",
-        "checkedOn": "2026-09-27",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 원본 미확보: 정상 브라우저에서 전자소송포털 양식모음과 대한법률구조공단 법률서식의 상속회복 검색이 모두 0건이었습니다. 상속권 침해의 회복에 대응하는 원본을 확인하지 못했으며, 진정명의회복 소장은 청구원인이 달라 연결하지 않았습니다. 다운로드 불가 확정이 아니라 조사 범위 내 미확보입니다."
-      },
-      "providerRoutes": [],
-      "source": {
-        "checkedOn": "2026-09-27",
-        "collectedOn": "2026-09-19",
-        "status": "recorded_source_check",
-        "basis": "docs/forms-remaining11-20260927/sources.json",
-        "scope": "정상 브라우저·대체 공식 경로·원본 확보 여부 재조사"
-      },
-      "editorial": {
-        "reviewedOn": "2026-09-23",
-        "status": "editorial_reviewed",
-        "basis": "자료명·용도에 따른 분류·이용 안내 검토. 법적 적용 판단 또는 서식 현행성의 전면 검증은 아님."
-      },
-      "currentness": {
-        "reviewedOn": null,
-        "status": "not_reverified",
-        "finding": "Existing source evidence preserved; no new current-version claim.",
-        "limitation": "Currentness and individual legal applicability need separate confirmation.",
-        "decision": "retain_pending_current_version_comparison"
-      },
-      "applicability": {
-        "status": "not_individually_verified",
-        "evidence": [
-          {
-            "purposes": [
-              "inheritance"
-            ],
-            "party_roles": [],
-            "condition_description": "목적별 당사자 역할·거래 원인·적용 조건을 개별 확인해야 함.",
-            "evidence_refs": [
-              "taxonomy:P8-02",
-              "legacy:P8-02"
-            ],
-            "verification": {
-              "status": "pending",
-              "evidence_refs": [
-                "taxonomy:P8-02",
-                "legacy:P8-02"
-              ],
-              "note": "탐색 태그를 법적 적용 판정으로 사용하지 않음."
-            }
-          }
-        ],
-        "note": "Classification and source checks are not individual legal approval."
-      },
-      "reviewPolicy": {
-        "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-27",
-        "nextReviewDue": "2026-12-27",
-        "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
-      },
-      "classificationCorrection": null
-    },
-    {
       "id": "P8-03",
       "title": "친생자관계존부확인의 소 / 인지청구의 소",
       "sourceUrl": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
@@ -14403,76 +14259,6 @@
               "evidence_refs": [
                 "taxonomy:P8-09",
                 "legacy:P8-09"
-              ],
-              "note": "탐색 태그를 법적 적용 판정으로 사용하지 않음."
-            }
-          }
-        ],
-        "note": "Classification and source checks are not individual legal approval."
-      },
-      "reviewPolicy": {
-        "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-27",
-        "nextReviewDue": "2026-12-27",
-        "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
-      },
-      "classificationCorrection": null
-    },
-    {
-      "id": "P8-10",
-      "title": "후견인 권한 초과행위 허가 청구서",
-      "sourceUrl": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
-      "sourceRecordId": "P8-10",
-      "authority": {
-        "kind": "unknown",
-        "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
-      },
-      "files": [],
-      "providerInstructions": {
-        "documentName": "후견인 권한 초과행위 허가 청구서",
-        "menu": "서울가정법원 → 민원 → 후견과 안내 → 각종 양식 → 후견 유형별 목록",
-        "keywords": "후견 유형과 필요한 행위 확인: 거주 건물·대지 매도허가, 법정대리권 범위변경, 후견감독인 동의를 갈음하는 재판",
-        "url": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
-        "status": "original_not_acquired",
-        "checkedOn": "2026-09-27",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 원본 미확보: 서울가정법원은 거주 건물·대지 매도허가, 법정대리권 범위변경, 후견감독인 동의를 갈음하는 재판 등 행위별 서식을 따로 제공합니다. 포괄적인 후견인 권한 초과행위 청구에 모두 대응하는 원본은 확인하지 못했습니다. 공단 1192 서식은 친권자·후견인의 임무대행자용임을 본문에서 확인해 일반 후견인용으로 연결하지 않았습니다. 후견 유형·허가 행위를 먼저 확인해야 하며 다운로드 불가 확정은 아닙니다."
-      },
-      "providerRoutes": [],
-      "source": {
-        "checkedOn": "2026-09-27",
-        "collectedOn": "2026-09-17",
-        "status": "recorded_source_check",
-        "basis": "docs/forms-remaining11-20260927/sources.json",
-        "scope": "정상 브라우저·대체 공식 경로·원본 확보 여부 재조사"
-      },
-      "editorial": {
-        "reviewedOn": "2026-09-23",
-        "status": "editorial_reviewed",
-        "basis": "자료명·용도에 따른 분류·이용 안내 검토. 법적 적용 판단 또는 서식 현행성의 전면 검증은 아님."
-      },
-      "currentness": {
-        "reviewedOn": null,
-        "status": "not_reverified",
-        "finding": "Existing source evidence preserved; no new current-version claim.",
-        "limitation": "Currentness and individual legal applicability need separate confirmation.",
-        "decision": "retain_pending_current_version_comparison"
-      },
-      "applicability": {
-        "status": "not_individually_verified",
-        "evidence": [
-          {
-            "purposes": [],
-            "party_roles": [],
-            "condition_description": "목적별 당사자 역할·거래 원인·적용 조건을 개별 확인해야 함.",
-            "evidence_refs": [
-              "taxonomy:P8-10",
-              "legacy:P8-10"
-            ],
-            "verification": {
-              "status": "pending",
-              "evidence_refs": [
-                "taxonomy:P8-10",
-                "legacy:P8-10"
               ],
               "note": "탐색 태그를 법적 적용 판정으로 사용하지 않음."
             }

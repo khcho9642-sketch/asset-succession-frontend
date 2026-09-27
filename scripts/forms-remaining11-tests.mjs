@@ -2,12 +2,32 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { finalDocuments, catalog, previewApi } from './load-current-forms.mjs';
+import { finalDocuments, finalCatalog, bankCatalog, individual, catalog, previewApi } from './load-current-forms.mjs';
 
 const read = path => JSON.parse(readFileSync(path, 'utf8'));
 const earlier = read('docs/forms-download-followup-20260927/sources.json').records;
 const { records } = read('docs/forms-remaining11-20260927/sources.json');
 const byId = new Map(finalDocuments.map(item => [item.id, item]));
+
+test('only three user-removed unresolved forms disappear from public cards, searches and relations', () => {
+  const removed = ['P1-19', 'P8-02', 'P8-10'];
+  assert.deepEqual(new Set(finalCatalog.cards.map(card => card.id)),
+    new Set(bankCatalog.cards.filter(card => !removed.includes(card.id)).map(card => card.id)));
+  for (const id of removed) {
+    const item = byId.get(id);
+    assert.equal(item.resource.presentation.visibility, 'excluded');
+    assert.match(item.resource.presentation.reason, /사용자 요청/);
+    assert.equal(catalog.isPublicResource(item), false);
+    for (const q of [id, item.title])
+      assert.ok(!catalog.filterCatalog(finalCatalog, { ...catalog.emptyFilters(), q }).some(card => card.id === id));
+    assert.equal(records[id].status, 'unresolved');
+    assert.ok(records[id].attempts.length >= 2);
+  }
+  for (const card of finalCatalog.cards)
+    assert.ok(individual.relatedDocuments(finalCatalog, card.id).every(item => !removed.includes(item.id)));
+  for (const id of finalCatalog.groups.keys())
+    assert.ok(individual.legacyGroupDocuments(finalCatalog, id).every(item => !removed.includes(item.id)));
+});
 
 test('follow-up covers exactly the previously unresolved eleven, not already completed items', () => {
   assert.deepEqual(new Set(Object.keys(records)), new Set(Object.keys(earlier).filter(id => earlier[id].status === 'unresolved')));

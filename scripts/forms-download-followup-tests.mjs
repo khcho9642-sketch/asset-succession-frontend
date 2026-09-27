@@ -12,6 +12,7 @@ const records = {
 };
 const byId = new Map(finalDocuments.map(item => [item.id, item]));
 const connected = Object.values(records).filter(row => row.status === 'connected');
+const removedIds = new Set(['P1-19', 'P8-02', 'P8-10']);
 
 test('33 previously fileless forms are accounted for: 30 connected, 3 explicitly unresolved after browser follow-up', () => {
   assert.equal(baseline.length, 33);
@@ -30,7 +31,11 @@ for (const previous of baseline) test(`${previous.id}: preserve identity, classi
   for (const key of ['purposes', 'timing', 'assets', 'kind']) assert.deepEqual(item.resource.facets[key], previous.resource.facets[key], key);
   assert.equal(item.resource.facets.origin, records[item.id].status === 'connected' ? item.id === 'P3-05' ? 'private_institution' : 'official_institution' : previous.resource.facets.origin);
   assert.deepEqual(item.resource.relations, previous.resource.relations);
-  assert.deepEqual(item.resource.presentation, previous.resource.presentation);
+  // Only the three records explicitly removed by the user change visibility.
+  if (removedIds.has(item.id)) {
+    assert.deepEqual(item.resource.presentation, { ...previous.resource.presentation,
+      visibility: 'excluded', reason: '2026-09-27 사용자 요청으로 공개 자료실에서 제외. 원본 재조사 기록은 보존.' });
+  } else assert.deepEqual(item.resource.presentation, previous.resource.presentation);
   assert.equal(item.sourceReview.checkedOn, '2026-09-27');
   assert.ok(item.reviewSummary.limitation);
 });

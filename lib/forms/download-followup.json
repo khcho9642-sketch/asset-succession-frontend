@@ -1524,6 +1524,7 @@
     "origin": "official_institution"
   },
   "P1-19": {
+    "exclusionReason": "2026-09-27 사용자 요청으로 공개 자료실에서 제외. 원본 재조사 기록은 보존.",
     "document": {
       "sourceUrl": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
       "sourceReview": {
@@ -1660,6 +1661,7 @@
     "origin": "official_institution"
   },
   "P8-02": {
+    "exclusionReason": "2026-09-27 사용자 요청으로 공개 자료실에서 제외. 원본 재조사 기록은 보존.",
     "document": {
       "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%ED%9A%8C%EB%B3%B5&scdFolderId=",
       "sourceReview": {
@@ -1769,6 +1771,7 @@
     "origin": "official_institution"
   },
   "P8-10": {
+    "exclusionReason": "2026-09-27 사용자 요청으로 공개 자료실에서 제외. 원본 재조사 기록은 보존.",
     "document": {
       "sourceUrl": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
       "sourceReview": {
