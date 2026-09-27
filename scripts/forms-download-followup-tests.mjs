@@ -23,7 +23,8 @@ for (const previous of baseline) test(`${previous.id}: preserve identity, classi
   const item = byId.get(previous.id);
   assert.equal(catalog.availableFiles(previous).length, 0);
   for (const key of ['id', 'title', 'catalogTitle', 'checkedOn', 'useCategory']) assert.deepEqual(item[key], previous[key], key);
-  for (const key of ['purposes', 'timing', 'assets', 'kind', 'origin']) assert.deepEqual(item.resource.facets[key], previous.resource.facets[key], key);
+  for (const key of ['purposes', 'timing', 'assets', 'kind']) assert.deepEqual(item.resource.facets[key], previous.resource.facets[key], key);
+  assert.equal(item.resource.facets.origin, records[item.id].status === 'connected' ? item.id === 'P3-05' ? 'private_institution' : 'official_institution' : previous.resource.facets.origin);
   assert.deepEqual(item.resource.relations, previous.resource.relations);
   assert.deepEqual(item.resource.presentation, previous.resource.presentation);
   assert.equal(item.sourceReview.checkedOn, '2026-09-27');
@@ -62,6 +63,9 @@ for (const [id, row] of Object.entries(records)) test(`${id}: file evidence and 
     assert.equal(files.length, 0);
     assert.equal(item.providerInstructions.status, 'original_not_acquired');
     assert.ok(item.providerInstructions.keywords);
+  } else {
+    assert.equal(item.usage.note, row.note);
+    assert.ok(item.usage.sourceUrls.includes(row.sourcePage));
   }
 });
 

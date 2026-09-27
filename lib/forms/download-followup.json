@@ -47,7 +47,8 @@
       ]
     },
     "delivery": "official_link",
-    "authority": "official_reference"
+    "authority": "official_reference",
+    "origin": "official_institution"
   },
   "P0-08": {
     "document": {
@@ -97,7 +98,8 @@
       ]
     },
     "delivery": "official_link",
-    "authority": "official_reference"
+    "authority": "official_reference",
+    "origin": "official_institution"
   },
   "P1-15": {
     "document": {
@@ -147,7 +149,8 @@
       ]
     },
     "delivery": "official_link",
-    "authority": "official_reference"
+    "authority": "official_reference",
+    "origin": "official_institution"
   },
   "P1-16": {
     "document": {
@@ -197,7 +200,8 @@
       ]
     },
     "delivery": "official_link",
-    "authority": "official_reference"
+    "authority": "official_reference",
+    "origin": "official_institution"
   },
   "P1-20": {
     "document": {
@@ -247,7 +251,8 @@
       ]
     },
     "delivery": "official_link",
-    "authority": "official_reference"
+    "authority": "official_reference",
+    "origin": "official_institution"
   },
   "P1-21": {
     "document": {
@@ -297,7 +302,8 @@
       ]
     },
     "delivery": "official_link",
-    "authority": "official_reference"
+    "authority": "official_reference",
+    "origin": "official_institution"
   },
   "P1-22": {
     "document": {
@@ -347,7 +353,8 @@
       ]
     },
     "delivery": "official_link",
-    "authority": "official_reference"
+    "authority": "official_reference",
+    "origin": "official_institution"
   },
   "P1-23": {
     "document": {
@@ -397,7 +404,8 @@
       ]
     },
     "delivery": "official_link",
-    "authority": "official_reference"
+    "authority": "official_reference",
+    "origin": "official_institution"
   },
   "P8-01": {
     "document": {
@@ -447,7 +455,8 @@
       ]
     },
     "delivery": "official_link",
-    "authority": "official_reference"
+    "authority": "official_reference",
+    "origin": "official_institution"
   },
   "P8-08": {
     "document": {
@@ -510,7 +519,8 @@
       ]
     },
     "delivery": "official_link",
-    "authority": "official_reference"
+    "authority": "official_reference",
+    "origin": "official_institution"
   },
   "P8-09": {
     "document": {
@@ -560,7 +570,8 @@
       ]
     },
     "delivery": "official_link",
-    "authority": "official_reference"
+    "authority": "official_reference",
+    "origin": "official_institution"
   },
   "P0-09": {
     "document": {
@@ -610,7 +621,8 @@
       ]
     },
     "delivery": "official_link",
-    "authority": "official_reference"
+    "authority": "official_reference",
+    "origin": "official_institution"
   },
   "P0-03": {
     "document": {
@@ -650,7 +662,8 @@
       "delivery": "제공처 원본 직접 다운로드"
     },
     "delivery": "official_link",
-    "authority": null
+    "authority": null,
+    "origin": "official_institution"
   },
   "P0-05": {
     "document": {
@@ -705,7 +718,8 @@
       }
     },
     "delivery": "hosted",
-    "authority": null
+    "authority": null,
+    "origin": "official_institution"
   },
   "P1-01": {
     "document": {
@@ -760,7 +774,8 @@
       }
     },
     "delivery": "hosted",
-    "authority": null
+    "authority": null,
+    "origin": "official_institution"
   },
   "P1-06": {
     "document": {
@@ -815,7 +830,8 @@
       }
     },
     "delivery": "hosted",
-    "authority": null
+    "authority": null,
+    "origin": "official_institution"
   },
   "P1-08": {
     "document": {
@@ -870,7 +886,8 @@
       }
     },
     "delivery": "hosted",
-    "authority": null
+    "authority": null,
+    "origin": "official_institution"
   },
   "P2-14": {
     "document": {
@@ -910,7 +927,8 @@
       "delivery": "제공처 원본 직접 다운로드"
     },
     "delivery": "official_link",
-    "authority": null
+    "authority": null,
+    "origin": "official_institution"
   },
   "P3-05": {
     "document": {
@@ -950,7 +968,8 @@
       "delivery": "제공처 원본 직접 다운로드"
     },
     "delivery": "official_link",
-    "authority": "private_terms"
+    "authority": "private_terms",
+    "origin": "private_institution"
   },
   "P7-01": {
     "document": {
@@ -1014,7 +1033,8 @@
       ]
     },
     "delivery": "official_link",
-    "authority": null
+    "authority": null,
+    "origin": "official_institution"
   },
   "P7-03": {
     "document": {
@@ -1078,7 +1098,8 @@
       }
     },
     "delivery": "hosted",
-    "authority": "statutory"
+    "authority": "statutory",
+    "origin": "official_institution"
   },
   "P9-06": {
     "document": {
@@ -1174,7 +1195,8 @@
       }
     },
     "delivery": "hosted",
-    "authority": "statutory"
+    "authority": "statutory",
+    "origin": "official_institution"
   },
   "P0-10": {
     "document": {
