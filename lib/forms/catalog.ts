@@ -19,6 +19,7 @@ export type ProviderRoute = {
 export type LibraryDocument = {
   currentEdition?: Pick<LibraryDocument, "files" | "example" | "thumbnail" | "preview"> & { revision: string };
   sourceReview?: { checkedOn: string; scope: string; evidence: string };
+  externalPreviews?: { title: string; url: string; mode: "viewer" | "provider-page" }[];
   currentVersionReview?: { reviewedOn: string; status: string; decision: string; finding: string; limitation: string; sourceUrl: string };
   authorityEvidence?: string;
   reviewSummary?: { reviewedOn: string; status: string; scope: string; finding: string; limitation: string };

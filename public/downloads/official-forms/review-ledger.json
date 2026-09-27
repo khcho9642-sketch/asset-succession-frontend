@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "scope": "Final assembled public catalog only. One record per public ID. Not a legal approval register.",
-  "assembledOn": "2026-09-25",
+  "assembledOn": "2026-09-27",
   "baselineCommit": "7ad8f2cd17b7e59faababc8d03bb721ac6f1936b",
   "before": {
     "public": 198,
@@ -20,8 +20,8 @@
     "guide": 22,
     "archived": 9,
     "excluded": 13,
-    "hosted": 170,
-    "external": 4
+    "hosted": 182,
+    "external": 22
   },
   "records": [
     {
@@ -7694,22 +7694,33 @@
         "kind": "unknown",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "상속인 금융거래조회 위임장.hwp",
+          "path": "https://fine.fss.or.kr/fine/cmmn/file/fileDown.do?atchFileId=d1eac548ed9f4aa883ddb0a8f29d3836&fileSn=1",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 22016,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "상속인 금융거래조회 위임장",
-        "menu": "금융감독원 파인 → 상속인 금융거래조회 → 신청서류 → 위임장 다운로드",
-        "keywords": "상속인의 위임장",
-        "status": "attachment_list_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 위임장 버튼을 확인했습니다. 인감·본인서명 확인서와 대리인 서류는 신청기관 안내를 확인하세요."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "상속인 금융거래조회 위임장",
+        "url": "https://fine.fss.or.kr/fine/main/contents.do?menuNo=900208",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "금융감독원 공개 HWP 원본에 직접 연결합니다. 재게시·미리보기 복제 허용은 미확인으로 로컬 파일이나 이미지를 만들지 않았습니다. 인감·본인서명 및 대리인 서류는 접수기관에 확인하세요."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7750,8 +7761,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -7829,22 +7840,33 @@
         "kind": "unknown",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "사망신고서.hwp",
+          "path": "/downloads/official-forms/followup-20260927/사망신고서.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 24064,
+          "delivery": "hosted",
+          "observedSha256": "8993b145dab51dd39d88a044bc352d17088cdce5bf66b8c1611908802118f8ba"
+        }
+      ],
       "providerInstructions": {
         "documentName": "사망신고서",
-        "menu": "전자가족관계등록시스템 → 민원안내 → 신청서 양식 다운로드",
+        "menu": "위 제공 파일에서 원본 받기",
         "keywords": "사망신고서",
-        "status": "menu_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 사망 신고 안내와 양식 다운로드 메뉴를 확인했습니다. 검색 후 현재 첨부를 선택하세요."
+        "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000008&guideCd=0000008006&guideYn=Y",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "양식 제19호 기관 원본입니다. 미리보기는 HWP에 내장된 저해상도 원본 이미지이며 다시 그린 문서가 아닙니다. 관할기관의 첨부서류 요건을 확인하세요."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -7885,8 +7907,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -7958,28 +7980,39 @@
     {
       "id": "P0-07",
       "title": "상속포기 심판청구서",
-      "sourceUrl": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%EC%9E%AC%EC%82%B0%ED%8F%AC%EA%B8%B0&scdFolderId=",
       "sourceRecordId": "P0-07",
       "authority": {
-        "kind": "unknown",
+        "kind": "official_reference",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "1059 상속재산포기 심판청구서.hwp",
+          "path": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f01%2f02%2f09%2f50%2f4fcee688-a816-486b-8343-7d2d5044ae6e&filename=1059+%ec%83%81%ec%86%8d%ec%9e%ac%ec%82%b0%ed%8f%ac%ea%b8%b0+%ec%8b%ac%ed%8c%90%ec%b2%ad%ea%b5%ac%ec%84%9c.hwp",
+          "format": "HWP",
+          "role": "example",
+          "bytes": 33280,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "상속포기 심판청구서",
-        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
-        "keywords": "상속포기",
-        "status": "access_blocked",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "1059 상속재산포기 심판청구서",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%EC%9E%AC%EC%82%B0%ED%8F%AC%EA%B8%B0&scdFolderId=",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "대한법률구조공단의 참고서식·작성사례입니다. 공공누리 제2유형으로 원본·미리보기를 우리 서버에 재게시하지 않고 공단으로 직접 연결합니다. 사건 사실관계·현재 법령·관할법원 요구를 확인하세요."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8020,8 +8053,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -8029,28 +8062,39 @@
     {
       "id": "P0-08",
       "title": "상속한정승인 심판청구서",
-      "sourceUrl": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%ED%95%9C%EC%A0%95%EC%8A%B9%EC%9D%B8&scdFolderId=",
       "sourceRecordId": "P0-08",
       "authority": {
-        "kind": "unknown",
+        "kind": "official_reference",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "1060 상속한정승인 심판청구서.hwp",
+          "path": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f01%2f02%2f09%2f50%2f348fe5b9-08c1-407d-8f5e-efbb64f25fc8&filename=1060+%ec%83%81%ec%86%8d%ed%95%9c%ec%a0%95%ec%8a%b9%ec%9d%b8+%ec%8b%ac%ed%8c%90%ec%b2%ad%ea%b5%ac%ec%84%9c.hwp",
+          "format": "HWP",
+          "role": "example",
+          "bytes": 49664,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "상속한정승인 심판청구서",
-        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
-        "keywords": "상속한정승인",
-        "status": "access_blocked",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "1060 상속한정승인 심판청구서",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%ED%95%9C%EC%A0%95%EC%8A%B9%EC%9D%B8&scdFolderId=",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "대한법률구조공단의 참고서식·작성사례입니다. 공공누리 제2유형으로 원본·미리보기를 우리 서버에 재게시하지 않고 공단으로 직접 연결합니다. 사건 사실관계·현재 법령·관할법원 요구를 확인하세요."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8091,8 +8135,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -8100,28 +8144,39 @@
     {
       "id": "P0-09",
       "title": "상속재산목록(한정승인 첨부)",
-      "sourceUrl": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%ED%95%9C%EC%A0%95%EC%8A%B9%EC%9D%B8&scdFolderId=",
       "sourceRecordId": "P0-09",
       "authority": {
-        "kind": "unknown",
+        "kind": "official_reference",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "1060 상속한정승인 심판청구서(3쪽 상속재산목록 포함).hwp",
+          "path": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f01%2f02%2f09%2f50%2f348fe5b9-08c1-407d-8f5e-efbb64f25fc8&filename=1060+%ec%83%81%ec%86%8d%ed%95%9c%ec%a0%95%ec%8a%b9%ec%9d%b8+%ec%8b%ac%ed%8c%90%ec%b2%ad%ea%b5%ac%ec%84%9c.hwp",
+          "format": "HWP",
+          "role": "combined",
+          "bytes": 49664,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "상속재산목록(한정승인 첨부)",
-        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
-        "keywords": "상속재산목록 한정승인",
-        "status": "access_blocked",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "1060 상속한정승인 심판청구서(3쪽 상속재산목록 포함)",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%ED%95%9C%EC%A0%95%EC%8A%B9%EC%9D%B8&scdFolderId=",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "기관 문서뷰어에서 실제 합본 5쪽 중 3쪽의 [별지] 상속재산목록을 확인했습니다. 다운로드는 별도 재제작 파일이 아닌 공단의 한정승인 청구서 합본입니다. 미리보기의 페이지 입력에 3을 입력하세요. 내용·기한·개별 제출요건은 관할법원에 확인하세요."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-25",
@@ -8162,8 +8217,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": {
@@ -8186,17 +8241,17 @@
         "documentName": "특별한정승인 심판청구서",
         "menu": "전자소송포털 양식모음 · 현재 접속 제한",
         "keywords": "특별한정승인",
-        "status": "access_blocked",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
+        "status": "original_not_acquired",
+        "checkedOn": "2026-09-27",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 전자소송포털 공개 페이지가 차단 안내를 반환했습니다. 공단에서 특별한정승인과 일치하는 별도 파일도 확인하지 못했습니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 경로·대체 제공처 확인 · 원본 미확보"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8237,8 +8292,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -8779,22 +8834,33 @@
         "kind": "unknown",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "소유권이전등기신청서(매매).hwp",
+          "path": "/downloads/official-forms/followup-20260927/소유권이전등기신청서(매매).hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 54784,
+          "delivery": "hosted",
+          "observedSha256": "2f11eda48a5c6234064cba2d054cd0f80f0fec271bec133755711090957290c7"
+        }
+      ],
       "providerInstructions": {
         "documentName": "매매 소유권이전등기 신청서",
-        "menu": "생활법령 신청서 작성 안내 → 인터넷등기소 고객센터 → 지원안내 → 등기신청양식",
-        "keywords": "매매에 의한 소유권 이전등기 신청서",
-        "status": "guidance_route_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 생활법령에 적힌 이동 경로·문서명을 확인했습니다. 인터넷등기소의 실제 첨부 화면은 오류 응답으로 확인하지 못했습니다. 구분건물 여부와 등기 원인을 구별하세요."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "소유권이전등기신청서(매매)",
+        "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=1&cnpClsNo=4&csmSeq=566&popMenu=ov",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "매매용이며 구분건물 전용 신청서로 확인한 것은 아닙니다. 법제처가 공개 제공한 첨부 원본이며 인터넷등기소 최신 별도 파일과의 일치까지 검증한 것은 아닙니다. HWP 내장 미리보기를 표시합니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8835,8 +8901,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -8855,17 +8921,17 @@
         "documentName": "매매 소유권이전등기 신청서(구분건물)",
         "menu": "인터넷등기소 · 현재 접속 오류",
         "keywords": "매매 소유권이전등기 구분건물",
-        "status": "provider_error",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 현재 주소가 오류 페이지로 이동하여 세부 메뉴·첨부를 확인하지 못했습니다. 인터넷등기소의 등기신청양식 또는 관할 등기소에 문서명으로 문의하세요."
+        "status": "original_not_acquired",
+        "checkedOn": "2026-09-27",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 인터넷등기소 연결 오류로 구분건물 전용 매매 신청서를 확인하지 못했습니다. 일반 매매 신청서로 대신 연결하지 않았습니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 경로·대체 제공처 확인 · 원본 미확보"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8906,8 +8972,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -8921,22 +8987,33 @@
         "kind": "unknown",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "소유권이전등기신청서(공유물분할).hwp",
+          "path": "/downloads/official-forms/followup-20260927/소유권이전등기신청서(공유물분할).hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 32768,
+          "delivery": "hosted",
+          "observedSha256": "66cbbcda97145a16a9d7af5b088e4921b8335b49f0a729da73060e87f3bf1dc3"
+        }
+      ],
       "providerInstructions": {
         "documentName": "공유물분할 소유권이전등기 신청서",
-        "menu": "생활법령 신청서 작성 안내 → 인터넷등기소 고객센터 → 지원안내 → 등기신청양식",
-        "keywords": "공유물 분할에 의한 소유권 이전등기 신청서",
-        "status": "guidance_route_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 생활법령에 적힌 이동 경로·문서명을 확인했습니다. 인터넷등기소의 실제 첨부 화면은 오류 응답으로 확인하지 못했습니다. 구분건물 여부와 등기 원인을 구별하세요."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "소유권이전등기신청서(공유물분할)",
+        "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=4&cnpClsNo=3&csmSeq=566&popMenu=ov",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "공유물분할에 의한 소유권이전용입니다. 법제처가 공개 제공한 첨부 원본이며 인터넷등기소 최신 별도 파일과의 일치까지 검증한 것은 아닙니다. HWP 내장 미리보기를 표시합니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -8975,8 +9052,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -8990,22 +9067,33 @@
         "kind": "unknown",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "근저당권말소등기신청서(일부포기).hwp",
+          "path": "/downloads/official-forms/followup-20260927/근저당권말소등기신청서(일부포기).hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 29184,
+          "delivery": "hosted",
+          "observedSha256": "3a1d6965dbf9ee44432ad2348e36356451556ae9b1b9766b786a4f4917b22570"
+        }
+      ],
       "providerInstructions": {
         "documentName": "근저당권말소등기 신청서",
-        "menu": "생활법령 신청서 작성 안내 → 인터넷등기소 고객센터 → 지원안내 → 등기신청양식",
-        "keywords": "일부포기 / 해지에 의한 근저당권 말소등기 신청서",
-        "status": "guidance_route_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 생활법령에 적힌 이동 경로·문서명을 확인했습니다. 인터넷등기소의 실제 첨부 화면은 오류 응답으로 확인하지 못했습니다. 구분건물 여부와 등기 원인을 구별하세요."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "근저당권말소등기신청서(일부포기)",
+        "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=4&cnpClsNo=3&csmSeq=566&popMenu=ov",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "현재 확보한 파일은 일부포기 원인입니다. 해지 등 다른 원인에 그대로 적용하지 마세요. 법제처가 공개 제공한 첨부 원본이며 인터넷등기소 최신 별도 파일과의 일치까지 검증한 것은 아닙니다. HWP 내장 미리보기를 표시합니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9044,8 +9132,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -9064,17 +9152,17 @@
         "documentName": "신탁등기 신청서",
         "menu": "인터넷등기소 · 현재 접속 오류",
         "keywords": "신탁등기",
-        "status": "provider_error",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 현재 주소가 오류 페이지로 이동하여 세부 메뉴·첨부를 확인하지 못했습니다. 인터넷등기소의 등기신청양식 또는 관할 등기소에 문서명으로 문의하세요."
+        "status": "original_not_acquired",
+        "checkedOn": "2026-09-27",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 인터넷등기소 연결 오류로 신탁등기 신청서 원본 미확보입니다. 명의신탁 관련 소장과 구별했습니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 경로·대체 제공처 확인 · 원본 미확보"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9113,8 +9201,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -9133,17 +9221,17 @@
         "documentName": "소유권경정등기 신청서",
         "menu": "인터넷등기소 · 현재 접속 오류",
         "keywords": "소유권경정등기",
-        "status": "provider_error",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 현재 주소가 오류 페이지로 이동하여 세부 메뉴·첨부를 확인하지 못했습니다. 인터넷등기소의 등기신청양식 또는 관할 등기소에 문서명으로 문의하세요."
+        "status": "original_not_acquired",
+        "checkedOn": "2026-09-27",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 인터넷등기소 연결 오류로 소유권경정 신청서 원본 미확보입니다. 명의인 표시경정 서식과 구별했습니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 경로·대체 제공처 확인 · 원본 미확보"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9182,8 +9270,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -9317,28 +9405,39 @@
     {
       "id": "P1-15",
       "title": "유언증서 검인 청구서",
-      "sourceUrl": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EC%96%B8&scdFolderId=",
       "sourceRecordId": "P1-15",
       "authority": {
-        "kind": "unknown",
+        "kind": "official_reference",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "1067 유언증서 검인신청서.hwp",
+          "path": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f01%2f11%2f16%2f22%2fd319e2da-94f2-40a9-886c-51f2bc0caf52&filename=1067+%ec%9c%a0%ec%96%b8%ec%a6%9d%ec%84%9c+%ea%b2%80%ec%9d%b8%ec%8b%a0%ec%b2%ad%ec%84%9c.hwp",
+          "format": "HWP",
+          "role": "example",
+          "bytes": 55808,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "유언증서 검인 청구서",
-        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
-        "keywords": "유언증서 검인",
-        "status": "access_blocked",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "1067 유언증서 검인신청서",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EC%96%B8&scdFolderId=",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "대한법률구조공단의 참고서식·작성사례입니다. 공공누리 제2유형으로 원본·미리보기를 우리 서버에 재게시하지 않고 공단으로 직접 연결합니다. 사건 사실관계·현재 법령·관할법원 요구를 확인하세요."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9379,8 +9478,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -9388,29 +9487,39 @@
     {
       "id": "P1-16",
       "title": "유언집행자 선임 심판청구서",
-      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EC%96%B8%EC%A7%91%ED%96%89%EC%9E%90&scdFolderId=",
       "sourceRecordId": "P1-16",
       "authority": {
-        "kind": "unknown",
+        "kind": "official_reference",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "1068 유언집행자 선임청구서.hwp",
+          "path": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2021%2f03%2f17%2f09%2f59%2f86ad830b-43c5-4c25-8cd7-9cfa3d72c76f&filename=1068+%ec%9c%a0%ec%96%b8%ec%a7%91%ed%96%89%ec%9e%90+%ec%84%a0%ec%9e%84%ec%b2%ad%ea%b5%ac%ec%84%9c.hwp",
+          "format": "HWP",
+          "role": "example",
+          "bytes": 39936,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "유언집행자 선임 심판청구서",
-        "menu": "대한법률구조공단 → 법률정보 → 법률서식 → 서식제목 검색",
-        "keywords": "유언집행자 → 1068 유언집행자 선임청구서",
-        "status": "search_result_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 해당 제목과 HWP 다운로드 항목을 확인했습니다. 사건 사실관계와 관할법원 요구를 별도 확인하세요.",
-        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EC%96%B8%EC%A7%91%ED%96%89%EC%9E%90&scdFolderId="
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "1068 유언집행자 선임청구서",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EC%96%B8%EC%A7%91%ED%96%89%EC%9E%90&scdFolderId=",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "대한법률구조공단의 참고서식·작성사례입니다. 공공누리 제2유형으로 원본·미리보기를 우리 서버에 재게시하지 않고 공단으로 직접 연결합니다. 사건 사실관계·현재 법령·관할법원 요구를 확인하세요."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9451,8 +9560,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -9535,17 +9644,17 @@
         "documentName": "상속재산분할 심판청구서",
         "menu": "전자소송포털 양식모음 · 현재 접속 제한",
         "keywords": "상속재산분할",
-        "status": "access_blocked",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
+        "status": "original_not_acquired",
+        "checkedOn": "2026-09-27",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 전자소송포털 차단 응답. 공단 검색의 협의분할계약·상속재산 분리 서식은 분할 심판청구서가 아니므로 연결하지 않았습니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 경로·대체 제공처 확인 · 원본 미확보"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9586,8 +9695,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -9606,17 +9715,17 @@
         "documentName": "기여분 결정 청구서",
         "menu": "전자소송포털 양식모음 · 현재 접속 제한",
         "keywords": "기여분 결정",
-        "status": "access_blocked",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
+        "status": "original_not_acquired",
+        "checkedOn": "2026-09-27",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 전자소송포털 차단 응답. 대한법률구조공단 공개 검색에서 기여분 결정과 일치하는 원본을 찾지 못했습니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 경로·대체 제공처 확인 · 원본 미확보"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9657,8 +9766,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -9666,29 +9775,39 @@
     {
       "id": "P1-20",
       "title": "유류분반환청구 소장",
-      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EB%A5%98%EB%B6%84&scdFolderId=",
       "sourceRecordId": "P1-20",
       "authority": {
-        "kind": "unknown",
+        "kind": "official_reference",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "461 유류분반환청구의 소.hwp",
+          "path": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f06%2f10%2f13%2f21%2ff149e66f-fcf3-42cb-b2a2-4b16528c76a0&filename=%ec%9c%a0%eb%a5%98%eb%b6%84%eb%b0%98%ed%99%98%ec%b2%ad%ea%b5%ac%ec%9d%98+%ec%86%8c.hwp",
+          "format": "HWP",
+          "role": "example",
+          "bytes": 86016,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "유류분반환청구 소장",
-        "menu": "대한법률구조공단 → 법률정보 → 법률서식 → 서식제목 검색",
-        "keywords": "유류분 → 461 유류분반환청구의 소",
-        "status": "search_result_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 해당 제목의 사례 서식을 확인했습니다. 현재 적용 법령·청구 요건을 보장하는 공통 소장이 아닙니다.",
-        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EB%A5%98%EB%B6%84&scdFolderId="
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "461 유류분반환청구의 소",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9C%A0%EB%A5%98%EB%B6%84&scdFolderId=",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "대한법률구조공단의 참고서식·작성사례입니다. 공공누리 제2유형으로 원본·미리보기를 우리 서버에 재게시하지 않고 공단으로 직접 연결합니다. 사건 사실관계·현재 법령·관할법원 요구를 확인하세요."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9729,8 +9848,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -9738,28 +9857,39 @@
     {
       "id": "P1-21",
       "title": "상속재산관리인 선임 심판청구서",
-      "sourceUrl": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%EC%9E%AC%EC%82%B0%EA%B4%80%EB%A6%AC%EC%9D%B8&scdFolderId=",
       "sourceRecordId": "P1-21",
       "authority": {
-        "kind": "unknown",
+        "kind": "official_reference",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "1062 상속재산관리인 선임심판청구서.hwp",
+          "path": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2021%2f03%2f17%2f09%2f59%2f28b2045c-9936-44a7-af5a-4a022d186e28&filename=1062+%ec%83%81%ec%86%8d%ec%9e%ac%ec%82%b0%ea%b4%80%eb%a6%ac%ec%9d%b8+%ec%84%a0%ec%9e%84%ec%8b%ac%ed%8c%90%ec%b2%ad%ea%b5%ac%ec%84%9c.hwp",
+          "format": "HWP",
+          "role": "example",
+          "bytes": 48640,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "상속재산관리인 선임 심판청구서",
-        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
-        "keywords": "상속재산관리인 선임",
-        "status": "access_blocked",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "1062 상속재산관리인 선임심판청구서",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%EC%9E%AC%EC%82%B0%EA%B4%80%EB%A6%AC%EC%9D%B8&scdFolderId=",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "대한법률구조공단의 참고서식·작성사례입니다. 공공누리 제2유형으로 원본·미리보기를 우리 서버에 재게시하지 않고 공단으로 직접 연결합니다. 사건 사실관계·현재 법령·관할법원 요구를 확인하세요."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9800,8 +9930,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -9809,28 +9939,39 @@
     {
       "id": "P1-22",
       "title": "성년후견 개시 심판청구서",
-      "sourceUrl": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
+      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%84%B1%EB%85%84%ED%9B%84%EA%B2%AC%EA%B0%9C%EC%8B%9C&scdFolderId=",
       "sourceRecordId": "P1-22",
       "authority": {
-        "kind": "unknown",
+        "kind": "official_reference",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "1108 성년후견개시 심판청구.hwp",
+          "path": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2018%2f07%2f13%2f16%2f59%2fc7604495-89af-44bc-b4fe-b95a90e0e865&filename=%ec%84%b1%eb%85%84%ed%9b%84%ea%b2%ac%ea%b0%9c%ec%8b%9c+%ec%8b%ac%ed%8c%90%ec%b2%ad%ea%b5%ac.hwp",
+          "format": "HWP",
+          "role": "example",
+          "bytes": 63488,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "성년후견 개시 심판청구서",
-        "menu": "서울가정법원 → 민원 → 각종 양식 → 성년후견",
-        "keywords": "[가사] 성년후견개시심판청구",
-        "status": "attachment_list_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 법원 목록의 해당 제목·검색 연결을 확인했습니다. 후속 파일 열기와 제출은 미실행입니다."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "1108 성년후견개시 심판청구",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%84%B1%EB%85%84%ED%9B%84%EA%B2%AC%EA%B0%9C%EC%8B%9C&scdFolderId=",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "대한법률구조공단의 참고서식·작성사례입니다. 공공누리 제2유형으로 원본·미리보기를 우리 서버에 재게시하지 않고 공단으로 직접 연결합니다. 사건 사실관계·현재 법령·관할법원 요구를 확인하세요."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9869,8 +10010,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -9878,28 +10019,39 @@
     {
       "id": "P1-23",
       "title": "부재자 재산관리인 선임·실종선고 심판청구서",
-      "sourceUrl": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EB%B6%80%EC%9E%AC%EC%9E%90&scdFolderId=",
       "sourceRecordId": "P1-23",
       "authority": {
-        "kind": "unknown",
+        "kind": "official_reference",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "1038 부재자 재산관리인 선임 심판청구서.hwp",
+          "path": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f01%2f02%2f09%2f50%2f6a394831-0ead-40c6-851b-e0e5be3e0bda&filename=1038+%eb%b6%80%ec%9e%ac%ec%9e%90+%ec%9e%ac%ec%82%b0%ea%b4%80%eb%a6%ac%ec%9d%b8+%ec%84%a0%ec%9e%84+%ec%8b%ac%ed%8c%90%ec%b2%ad%ea%b5%ac%ec%84%9c.hwp",
+          "format": "HWP",
+          "role": "example",
+          "bytes": 39424,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "부재자 재산관리인 선임·실종선고 심판청구서",
-        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
-        "keywords": "부재자 재산관리인 선임 / 실종선고",
-        "status": "access_blocked",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "1038 부재자 재산관리인 선임 심판청구서",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EB%B6%80%EC%9E%AC%EC%9E%90&scdFolderId=",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "대한법률구조공단의 참고서식·작성사례입니다. 공공누리 제2유형으로 원본·미리보기를 우리 서버에 재게시하지 않고 공단으로 직접 연결합니다. 사건 사실관계·현재 법령·관할법원 요구를 확인하세요. 현재 연결은 부재자 재산관리인 선임용이며 실종선고 청구서는 미확보입니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -9938,8 +10090,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -11159,22 +11311,33 @@
         "kind": "unknown",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "국세청 불복청구 관련 서식 합본(심사청구서·심판청구서 포함).pdf",
+          "path": "https://ems.nts.go.kr/comm/nttFileDownload.do?fileKey=cc43f52365aa9f40bc1a40b34e755e2a",
+          "format": "PDF",
+          "role": "combined",
+          "bytes": 813049,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "심사청구서/심판청구서",
-        "menu": "국세청 불복청구 안내 → 각종 신청서 등 서식",
-        "keywords": "심사청구서 / 심판청구서",
-        "status": "attachment_list_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 두 청구서와 HWP·PDF 제공 메뉴를 확인했습니다. 과세전적부심사청구와 구별하고 제출기관을 확인하세요."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "국세청 불복청구 관련 서식 합본(심사청구서·심판청구서 포함)",
+        "url": "https://ems.nts.go.kr/tax_inquiry/guide_01.html",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "국세청이 제공한 원본 PDF 합본입니다. 개별 청구서만 분리·재제작하지 않았습니다. 내려받은 문서에서 심사청구서(제16호)·심판청구서(제17호)를 선택하세요. 이 사이트의 미리보기는 미확보이며, 청구 종류·기관·기한은 별도 확인하세요."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -11213,8 +11376,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -11516,22 +11679,33 @@
         "kind": "private_terms",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "현금증여계약서.hwp",
+          "path": "https://www.taxwithgs.kr/board/file/download?file_number=221&is_cnt=Y&is_down=Y",
+          "format": "HWP",
+          "role": "example",
+          "bytes": 16384,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "현금 증여계약서",
-        "menu": "세무법인 위드 → 서식자료실 → 현금증여계약서 → 첨부파일",
-        "keywords": "현금증여계약서.hwp",
-        "status": "attachment_list_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 민간 참고서식입니다. 정부 공식 서식·법정 필수 계약서가 아니며 개별 증여 조건 검토가 필요합니다."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "현금증여계약서",
+        "url": "https://www.taxwithgs.kr/board/view/sw5_2/420",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "세무법인 위드의 민간 참고서식입니다. 정부 공식 서식이나 법정 필수 계약서가 아닙니다. 재게시 허용·공개 문서 뷰어를 확인하지 못해 원본 HWP 직접 다운로드만 연결했습니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -11572,8 +11746,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -13035,28 +13209,57 @@
     {
       "id": "P7-01",
       "title": "공무원연금 유족급여 청구서",
-      "sourceUrl": "https://www.geps.or.kr/bizInformation_pensionBiz_retirementClaim",
+      "sourceUrl": "https://www.geps.or.kr/cusEngagement_variousForms/18108?curPage=1&codeId=&upperCodeId=BBS_CATE_variousForms_1",
       "sourceRecordId": "P7-01",
       "authority": {
         "kind": "unknown",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "퇴직유족(연금·일시금)·퇴직수당 청구서.pdf",
+          "path": "https://www.geps.or.kr/comm/getFile?srvcId=BBSTY1&fileUuid=4CDF734CF634C1C6E06308DC950A5AA1",
+          "format": "PDF",
+          "role": "original",
+          "bytes": 107676,
+          "delivery": "official_link",
+          "observedSha256": null
+        },
+        {
+          "name": "퇴직유족(연금·일시금)·퇴직수당 청구서.hwp",
+          "path": "https://www.geps.or.kr/comm/getFile?srvcId=BBSTY1&fileUuid=4CDF734CF633C1C6E06308DC950A5AA1",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 94720,
+          "delivery": "official_link",
+          "observedSha256": null
+        },
+        {
+          "name": "퇴직유족급여 청구서 작성 예시.pdf",
+          "path": "https://www.geps.or.kr/comm/getFile?srvcId=BBSTY1&fileUuid=4CDF734CF632C1C6E06308DC950A5AA1",
+          "format": "PDF",
+          "role": "example",
+          "bytes": 91890,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "공무원연금 유족급여 청구서",
-        "menu": "공무원연금공단 → 퇴직(유족)급여 청구방법 → 유족급여 / 고객참여와 상담 → 각종서식 → 연금서식",
-        "keywords": "유족급여 청구서",
-        "status": "guidance_route_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 현재 안내의 유족급여 작성방법을 확인했습니다. 재직 중 사망과 연금 수급 중 사망의 급여·서식을 공단에 구분 확인하세요."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "퇴직유족(연금·일시금)·퇴직수당 청구서 / 퇴직유족(연금·일시금)·퇴직수당 청구서 / 퇴직유족급여 청구서 작성 예시",
+        "url": "https://www.geps.or.kr/cusEngagement_variousForms/18108?curPage=1&codeId=&upperCodeId=BBS_CATE_variousForms_1",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "공단 원본 PDF·HWP와 공단 작성 예시에 직접 연결합니다. 미리보기는 공단 게시물의 PDF 미리보기 버튼에서 실행됩니다. 재직 중 사망에 따른 퇴직유족급여용이며 연금 수급 중 사망의 승계 청구와 구별하세요. 재게시 조건 미확인으로 로컬 복제는 공개하지 않습니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13097,8 +13300,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -13117,18 +13320,18 @@
         "documentName": "사학연금 유족급여 청구서",
         "menu": "사학연금 → 퇴직급여종류 및 청구안내 → 유족 → 제203호 서식",
         "keywords": "퇴직유족급여/퇴직수당 청구서",
-        "status": "attachment_list_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 현재 안내에서 제203호 게시물 연결을 확인했습니다. 재직 중 발생 유족급여용이며 퇴직 후 수급 중 사망은 별도 확인하세요.",
+        "status": "original_not_acquired",
+        "checkedOn": "2026-09-27",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 사학연금 제203호 공개 게시물은 HTTP 400으로 본문·첨부 확인 실패입니다. 공무원연금 서식으로 대체하지 않았습니다.",
         "url": "https://tp.or.kr/tp-kr/bbs/i-138/detail.do?ntt_sn=122"
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 경로·대체 제공처 확인 · 원본 미확보"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13169,8 +13372,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -13178,28 +13381,48 @@
     {
       "id": "P7-03",
       "title": "군인연금 유족급여 청구서",
-      "sourceUrl": "https://www.mps.mil.kr/info/deceIncmAplcForm.do",
+      "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=262181&efYd=20240501",
       "sourceRecordId": "P7-03",
       "authority": {
-        "kind": "unknown",
+        "kind": "statutory",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "군인연금 퇴역유족급여 청구서.hwp",
+          "path": "/downloads/official-forms/followup-20260927/군인연금 퇴역유족급여 청구서.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 119296,
+          "delivery": "hosted",
+          "observedSha256": "2d3e786f961929aafa6f1366f152da1abed03807ca075c6d23f7d727fba08f1a"
+        },
+        {
+          "name": "군인연금 퇴역유족급여 청구서.pdf",
+          "path": "/downloads/official-forms/followup-20260927/군인연금 퇴역유족급여 청구서.pdf",
+          "format": "PDF",
+          "role": "original",
+          "bytes": 74377,
+          "delivery": "hosted",
+          "observedSha256": "be3de78f5446397517602a77e971f4f7fe34fd8c23c02fcbc87fd21fdf3df341"
+        }
+      ],
       "providerInstructions": {
         "documentName": "군인연금 유족급여 청구서",
-        "menu": "군인연금 → 유족연금신청안내 → 4-1 청구서 및 구비서류 안내",
-        "keywords": "별지 제3호 퇴역유족연금 / 별지 제2호 상이유족연금",
-        "status": "attachment_list_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 퇴역·상이 연금에 따른 파일을 별도로 확인했습니다. 같은 이름의 공무원·사학연금 서식과 혼동하지 마세요."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "군인연금 퇴역유족급여 청구서 / 군인연금 퇴역유족급여 청구서",
+        "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=262181&efYd=20240501",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "2024-05-01 시행 군인연금법 시행규칙 별지 제3호(2022-10-04 개정) 원본입니다. 퇴역유족급여 등 서식이며 상이·재해 유족급여 청구서는 포함하지 않습니다. PDF 원본의 첫 페이지를 미리보기로 표시합니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13240,8 +13463,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -13260,17 +13483,17 @@
         "documentName": "산재 유족급여·장의비 청구서",
         "menu": "생활법령 산업재해보상보험 → 유족급여 → 유족보상연금의 청구",
         "keywords": "유족급여 및 장례비 청구서",
-        "status": "guidance_route_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 현재 안내는 유족급여 및 장례비 청구서를 명시합니다. 장의비라는 기존 목록 표현과 구별하고 근로복지공단의 현재 청구 서식을 확인하세요."
+        "status": "original_not_acquired",
+        "checkedOn": "2026-09-27",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 생활법령에서 유족급여 및 장례비 청구라는 공식 문서명을 확인했으나 근로복지공단의 현재 원본 파일은 미확보입니다. 학교안전공제 등 다른 제도의 파일로 대체하지 않았습니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 경로·대체 제공처 확인 · 원본 미확보"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13311,8 +13534,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -13448,28 +13671,39 @@
     {
       "id": "P8-01",
       "title": "미성년자 특별대리인 선임 청구서",
-      "sourceUrl": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%ED%8A%B9%EB%B3%84%EB%8C%80%EB%A6%AC%EC%9D%B8&scdFolderId=",
       "sourceRecordId": "P8-01",
       "authority": {
-        "kind": "unknown",
+        "kind": "official_reference",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "1045 특별대리인 선임 심판청구서(상속재산 협의분할).hwp",
+          "path": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2018%2f07%2f12%2f17%2f57%2f13a7f1d6-6f34-4a87-9b84-499b4c2eb5b1&filename=%ed%8a%b9%eb%b3%84%eb%8c%80%eb%a6%ac%ec%9d%b8+%ec%84%a0%ec%9e%84+%ec%8b%ac%ed%8c%90%ec%b2%ad%ea%b5%ac%ec%84%9c(%ec%83%81%ec%86%8d%ec%9e%ac%ec%82%b0+%ed%98%91%ec%9d%98%eb%b6%84%ed%95%a0%ec%9d%98+%ea%b2%bd%ec%9a%b0).hwp",
+          "format": "HWP",
+          "role": "example",
+          "bytes": 62976,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "미성년자 특별대리인 선임 청구서",
-        "menu": "전자소송포털 양식모음 · 현재 접속 제한",
-        "keywords": "미성년자 특별대리인 선임",
-        "status": "access_blocked",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "1045 특별대리인 선임 심판청구서(상속재산 협의분할)",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%ED%8A%B9%EB%B3%84%EB%8C%80%EB%A6%AC%EC%9D%B8&scdFolderId=",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "대한법률구조공단의 참고서식·작성사례입니다. 공공누리 제2유형으로 원본·미리보기를 우리 서버에 재게시하지 않고 공단으로 직접 연결합니다. 사건 사실관계·현재 법령·관할법원 요구를 확인하세요."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13510,8 +13744,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -13530,18 +13764,18 @@
         "documentName": "상속회복청구 소장",
         "menu": "대한법률구조공단 → 법률정보 → 법률서식",
         "keywords": "상속회복",
-        "status": "no_matching_result",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 상속회복 검색 결과는 0건입니다. 이전 진정명의회복 검색 결과를 상속회복 소장으로 동일시하지 않습니다. 공단·관할법원에 사건에 맞는 서식을 문의하세요.",
+        "status": "original_not_acquired",
+        "checkedOn": "2026-09-27",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 공단 상속회복 검색에서 대응 원본 미확보. 진정명의회복 소장과 청구원인이 달라 대체하지 않았습니다.",
         "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%83%81%EC%86%8D%ED%9A%8C%EB%B3%B5&scdFolderId="
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 경로·대체 제공처 확인 · 원본 미확보"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13582,8 +13816,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -13670,17 +13904,17 @@
         "documentName": "상속재산 파산 신청서",
         "menu": "전자소송포털 양식모음 · 현재 접속 제한",
         "keywords": "상속재산 파산",
-        "status": "access_blocked",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 이번 공개 경로 확인은 HTTP 403으로 차단되었습니다. 현재 양식 목록·첨부는 미확인입니다. 전자소송포털의 양식모음에서 검색하거나 관할 가정법원에 문의하세요. 서식 폐지 판정은 아닙니다."
+        "status": "original_not_acquired",
+        "checkedOn": "2026-09-27",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 전자소송포털 차단 응답. 공단 검색에서도 상속재산 파산에 일치하는 파일 미확보입니다. 일반 개인파산 서식으로 대체하지 않았습니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 경로·대체 제공처 확인 · 원본 미확보"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13721,8 +13955,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -13858,28 +14092,48 @@
     {
       "id": "P8-08",
       "title": "한정후견 / 특정후견 개시 심판청구서",
-      "sourceUrl": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
+      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%ED%95%9C%EC%A0%95%ED%9B%84%EA%B2%AC%EA%B0%9C%EC%8B%9C&scdFolderId=",
       "sourceRecordId": "P8-08",
       "authority": {
-        "kind": "unknown",
+        "kind": "official_reference",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "1148 한정후견개시 심판청구.hwp",
+          "path": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2018%2f07%2f13%2f15%2f48%2fd6148a4e-4c43-4e6a-b54a-84a19136c052&filename=%ed%95%9c%ec%a0%95%ed%9b%84%ea%b2%ac%ea%b0%9c%ec%8b%9c+%ec%8b%ac%ed%8c%90%ec%b2%ad%ea%b5%ac.hwp",
+          "format": "HWP",
+          "role": "example",
+          "bytes": 97280,
+          "delivery": "official_link",
+          "observedSha256": null
+        },
+        {
+          "name": "1171 특정후견 심판청구.hwp",
+          "path": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2018%2f07%2f13%2f16%2f37%2f2adad986-0a36-4207-b5fe-5bd2aacd8dc4&filename=%ed%8a%b9%ec%a0%95%ed%9b%84%ea%b2%ac+%ec%8b%ac%ed%8c%90%ec%b2%ad%ea%b5%ac.hwp",
+          "format": "HWP",
+          "role": "example",
+          "bytes": 79360,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "한정후견 / 특정후견 개시 심판청구서",
-        "menu": "서울가정법원 → 민원 → 각종 양식 → 한정후견 / 특정후견",
-        "keywords": "한정후견개시심판청구 / 특정후견심판청구",
-        "status": "attachment_list_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 각 후견 유형의 양식 목록을 확인했습니다. 두 유형의 신청 요건을 서로 대체하지 마세요."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "1148 한정후견개시 심판청구 / 1171 특정후견 심판청구",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%ED%95%9C%EC%A0%95%ED%9B%84%EA%B2%AC%EA%B0%9C%EC%8B%9C&scdFolderId=",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "대한법률구조공단의 참고서식·작성사례입니다. 공공누리 제2유형으로 원본·미리보기를 우리 서버에 재게시하지 않고 공단으로 직접 연결합니다. 사건 사실관계·현재 법령·관할법원 요구를 확인하세요."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13918,8 +14172,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -13927,28 +14181,39 @@
     {
       "id": "P8-09",
       "title": "임의후견(후견계약) 관련 양식",
-      "sourceUrl": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
+      "sourceUrl": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9E%84%EC%9D%98%ED%9B%84%EA%B2%AC&scdFolderId=",
       "sourceRecordId": "P8-09",
       "authority": {
-        "kind": "unknown",
+        "kind": "official_reference",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "1185 임의후견감독인 선임 청구.hwp",
+          "path": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2018%2f07%2f13%2f16%2f47%2f88c836d5-4f1a-410f-9096-9015215ccd3b&filename=%ec%9e%84%ec%9d%98%ed%9b%84%ea%b2%ac%ea%b0%90%eb%8f%85%ec%9d%b8+%ec%84%a0%ec%9e%84+%ec%b2%ad%ea%b5%ac.hwp",
+          "format": "HWP",
+          "role": "example",
+          "bytes": 55296,
+          "delivery": "official_link",
+          "observedSha256": null
+        }
+      ],
       "providerInstructions": {
         "documentName": "임의후견(후견계약) 관련 양식",
-        "menu": "서울가정법원 → 민원 → 각종 양식 → 임의후견",
-        "keywords": "후견계약 등기신청서 / 임의후견감독인선임심판 청구",
-        "status": "attachment_list_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 계약 등기와 감독인 선임은 별개 양식입니다. 공정증서 작성·등기 등 절차는 제공처에서 확인하세요."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "1185 임의후견감독인 선임 청구",
+        "url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%9E%84%EC%9D%98%ED%9B%84%EA%B2%AC&scdFolderId=",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "대한법률구조공단의 참고서식·작성사례입니다. 공공누리 제2유형으로 원본·미리보기를 우리 서버에 재게시하지 않고 공단으로 직접 연결합니다. 사건 사실관계·현재 법령·관할법원 요구를 확인하세요. 현재 연결은 임의후견감독인 선임 청구서이며 후견계약서·계약 등기신청서는 미확보입니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -13987,8 +14252,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -14007,17 +14272,17 @@
         "documentName": "후견인 권한 초과행위 허가 청구서",
         "menu": "서울가정법원 → 민원 → 각종 양식 → 해당 후견 유형",
         "keywords": "거주 건물 또는 대지 매도허가 / 법정대리권의 범위변경",
-        "status": "related_titles_only",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 포괄적인 권한 초과행위 허가라는 단일 양식으로 확인되지 않았습니다. 행위와 후견 유형에 맞는 허가·범위변경 양식을 법원에 확인하세요."
+        "status": "original_not_acquired",
+        "checkedOn": "2026-09-27",
+        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 공단의 임무대행자 권한초과행위 청구서는 후견인용과 다른 서식입니다. 후견 유형·행위별 원본 미확보로 연결하지 않았습니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-17",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-17",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 경로·대체 제공처 확인 · 원본 미확보"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -14056,8 +14321,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-17",
-        "nextReviewDue": "2026-12-17",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null
@@ -14470,28 +14735,84 @@
     {
       "id": "P9-06",
       "title": "주택임대사업자 등록·변경·말소 신청서",
-      "sourceUrl": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open",
+      "sourceUrl": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=280639&efYd=20251219",
       "sourceRecordId": "P9-06",
       "authority": {
-        "kind": "unknown",
+        "kind": "statutory",
         "basis": "Preserved classification; see individual source evidence. Not proof of currentness."
       },
-      "files": [],
+      "files": [
+        {
+          "name": "임대사업자 등록신청서.hwp",
+          "path": "/downloads/official-forms/followup-20260927/임대사업자 등록신청서.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 105984,
+          "delivery": "hosted",
+          "observedSha256": "f04b6662dd02556e74b7824e390dc304f53bfe85560213d4bd3d390357f67b23"
+        },
+        {
+          "name": "임대사업자 등록신청서.pdf",
+          "path": "/downloads/official-forms/followup-20260927/임대사업자 등록신청서.pdf",
+          "format": "PDF",
+          "role": "original",
+          "bytes": 104162,
+          "delivery": "hosted",
+          "observedSha256": "8e66b068f420406c74c8043d73ac4aa75e09835c43a200ed64f2492532f52f40"
+        },
+        {
+          "name": "임대사업자 등록사항 변경신고서.hwp",
+          "path": "/downloads/official-forms/followup-20260927/임대사업자 등록사항 변경신고서.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 108544,
+          "delivery": "hosted",
+          "observedSha256": "b3c1b9c996d64ed383c6b250a9ae8867884a870fb8376aa5ac44804566333e04"
+        },
+        {
+          "name": "임대사업자 등록사항 변경신고서.pdf",
+          "path": "/downloads/official-forms/followup-20260927/임대사업자 등록사항 변경신고서.pdf",
+          "format": "PDF",
+          "role": "original",
+          "bytes": 59939,
+          "delivery": "hosted",
+          "observedSha256": "a90713d26043dea82fbf7e3a804393475a6398817edf252ae104f0e150d2b34b"
+        },
+        {
+          "name": "임대사업자 등록(전부·일부) 말소 신청서.hwp",
+          "path": "/downloads/official-forms/followup-20260927/임대사업자 등록(전부·일부) 말소 신청서.hwp",
+          "format": "HWP",
+          "role": "original",
+          "bytes": 26624,
+          "delivery": "hosted",
+          "observedSha256": "92e2405481e6d0c73d83b7b202ee0ab1c338b58bc1e6cfa85d222f2f0d9cb7a6"
+        },
+        {
+          "name": "임대사업자 등록(전부·일부) 말소 신청서.pdf",
+          "path": "/downloads/official-forms/followup-20260927/임대사업자 등록(전부·일부) 말소 신청서.pdf",
+          "format": "PDF",
+          "role": "original",
+          "bytes": 89838,
+          "delivery": "hosted",
+          "observedSha256": "17cbc48aa4452538d3cb9bed2c0da875cacf89a8b5988a056fe5f710234e90e5"
+        }
+      ],
       "providerInstructions": {
         "documentName": "주택임대사업자 등록·변경·말소 신청서",
-        "menu": "렌트홈 → 알림마당 → 민원법정서식 → 서식명 검색",
-        "keywords": "임대사업자 등록 / 등록사항 변경 / 등록 말소",
-        "status": "menu_confirmed",
-        "checkedOn": "2026-09-25",
-        "limitation": "파일 직접 다운로드가 아닌 제공처 안내입니다. 실제 검색 메뉴는 확인했지만 동적 목록의 개별 첨부는 미확인입니다. 등록·변경·말소를 구별해 선택하세요."
+        "menu": "위 제공 파일에서 원본 받기",
+        "keywords": "임대사업자 등록신청서 / 임대사업자 등록신청서 / 임대사업자 등록사항 변경신고서 / 임대사업자 등록사항 변경신고서 / 임대사업자 등록(전부·일부) 말소 신청서 / 임대사업자 등록(전부·일부) 말소 신청서",
+        "url": "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=280639&efYd=20251219",
+        "status": "direct_files_checked",
+        "checkedOn": "2026-09-27",
+        "limitation": "2025-12-19 시행 민간임대주택법 시행규칙 별지 제1호·제4호·제6호의7 원본입니다. 등록·변경은 2025-06-04 개정, 말소는 2020-12-10 개정본입니다. 등록신청서 첫 페이지를 표시하며 다른 서식은 해당 PDF를 열어 확인하세요. 주택·등록유형별 자격은 별도 확인이 필요합니다."
       },
       "providerRoutes": [],
       "source": {
-        "checkedOn": "2026-09-19",
+        "checkedOn": "2026-09-27",
         "collectedOn": "2026-09-19",
         "status": "recorded_source_check",
-        "basis": "public/downloads/official-forms/manifest.json",
-        "scope": "Original collection record"
+        "basis": "docs/forms-download-followup-20260927/sources.json",
+        "scope": "공개 원본 파일 형식·열림·문서명·해시 확인"
       },
       "editorial": {
         "reviewedOn": "2026-09-23",
@@ -14530,8 +14851,8 @@
       },
       "reviewPolicy": {
         "intervalMonths": 3,
-        "lastReviewedOn": "2026-09-19",
-        "nextReviewDue": "2026-12-19",
+        "lastReviewedOn": "2026-09-27",
+        "nextReviewDue": "2026-12-27",
         "scope": "Source/current-version recheck queue; not expiry or automatic legal approval"
       },
       "classificationCorrection": null

@@ -22,7 +22,7 @@ const counts = documents => {
 };
 export const ledger = {
   schemaVersion: 1, scope: 'Final assembled public catalog only. One record per public ID. Not a legal approval register.',
-  assembledOn: finalReview.FINAL_REVIEW_DATE,
+  assembledOn: finalDocuments.map(item => item.sourceReview?.checkedOn || finalReview.FINAL_REVIEW_DATE).sort().at(-1),
   baselineCommit: '7ad8f2cd17b7e59faababc8d03bb721ac6f1936b',
   before: counts(bankDocuments), after: counts(finalDocuments),
   records: finalDocuments.filter(catalog.isPublicResource).map(item => {

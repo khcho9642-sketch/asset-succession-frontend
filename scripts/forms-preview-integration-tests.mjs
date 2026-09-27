@@ -173,9 +173,12 @@ test('latest calculator and service code survive outside the forms pages and pre
   // Approved 2026-09-26 change: the shared public header labels and consultation
   // CTA are site-wide chrome, not calculator or service-domain logic.
   const commonHeaderFiles = ['components/PublicNav.tsx', 'components/PublicNav.module.css', 'app/consultation/page.tsx', 'app/consultation/Consultation.module.css'];
+  // Preserve the already-integrated sharing metadata, not the earlier production snapshot.
+  const sharingFiles = ['app/layout.tsx', 'app/page.tsx'];
+  for (const path of sharingFiles) assert.equal(hash(readFileSync(path)), hash(git('show', `9cea34283be86e72a18b490476a27e4a3014860c:${path}`)), path);
   const changes = git('diff', '--name-only', '-z', production, '--', 'app', 'components', 'lib', 'package-lock.json', 'next.config.ts', 'vercel.json').toString('utf8').split('\0').filter(Boolean);
   const allowed = path => path.startsWith('app/forms/') || path.startsWith('lib/forms/')
-    || ['components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css', ...datePolicyFiles, ...commonHeaderFiles].includes(path);
+    || ['components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css', ...datePolicyFiles, ...commonHeaderFiles, ...sharingFiles].includes(path);
   assert.deepEqual(changes.filter(path => !allowed(path)), []);
   const calculators = git('ls-tree', '-r', '--name-only', '-z', production, 'app/calculator', 'lib/simple-calculator').toString('utf8').split('\0').filter(Boolean);
   assert.ok(calculators.length > 0);
@@ -186,7 +189,7 @@ test('latest calculator and service code survive outside the forms pages and pre
   const { scripts: priorScripts, ...priorRuntime } = priorPackage;
   assert.deepEqual(currentRuntime, priorRuntime);
   for (const [name, command] of Object.entries(priorScripts)) assert.equal(currentScripts[name], command, name);
-  assert.deepEqual(Object.keys(currentScripts).filter(name => !Object.hasOwn(priorScripts, name)).sort(), ['test:forms', 'test:forms-integration', 'test:forms-routes']);
+  assert.deepEqual(Object.keys(currentScripts).filter(name => !Object.hasOwn(priorScripts, name)).sort(), ['test:forms', 'test:forms-downloads', 'test:forms-integration', 'test:forms-routes']);
 });
 
 test('historical migration evidence remains unchanged when production overlays are recorded', () => {

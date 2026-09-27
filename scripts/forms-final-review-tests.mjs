@@ -5,11 +5,16 @@ import { createHash } from 'node:crypto';
 import { finalDocuments, bankDocuments, finalCatalog, finalReview, catalog, guides, previewApi } from './load-current-forms.mjs';
 import { reviewFlags, compareObservation, observe } from './forms-recheck.mjs';
 const byId = new Map(finalDocuments.map(x => [x.id, x]));
+const downloadFollowup = JSON.parse(readFileSync('lib/forms/download-followup.json', 'utf8'));
 const ids = patch => catalog.filterCatalog(finalCatalog, { ...catalog.emptyFilters(), ...patch }).map(x => x.id);
 
-test('198 public items retain every ID, original, preview and URL', () => {
+test('198 public items preserve existing originals; fileless records receive only reviewed additions', () => {
   assert.equal(finalCatalog.cards.length, 198);
-  for (const previous of bankDocuments) for (const key of ['id', 'files', 'sourceUrl', 'checkedOn', 'thumbnail', 'preview', 'documentSection']) assert.deepEqual(byId.get(previous.id)[key], previous[key], `${previous.id}/${key}`);
+  for (const previous of bankDocuments) {
+    const patch = downloadFollowup[previous.id]?.document || {};
+    if (patch.files) assert.equal(catalog.availableFiles(previous).length, 0, previous.id);
+    for (const key of ['id', 'files', 'sourceUrl', 'checkedOn', 'thumbnail', 'preview', 'documentSection']) assert.deepEqual(byId.get(previous.id)[key], Object.hasOwn(patch, key) ? patch[key] : previous[key], `${previous.id}/${key}`);
+  }
 });
 test('ten asset omissions have explicit individual decisions', () => {
   for (const id of ['NTS-CG-10','NTS-CG-11','NTS-CG-12','P0-13','P0-14','P0-15','P2-11-GIFT-SPECIAL','P9-01','NTS-IG-10-S5','NTS-IG-11-S6']) {
@@ -81,7 +86,7 @@ test('ledger maps exactly to final public IDs and preserves original source date
   const ledger=JSON.parse(readFileSync('public/downloads/official-forms/review-ledger.json','utf8'));
   assert.deepEqual(new Set(ledger.records.map(x=>x.id)),new Set(finalCatalog.cards.map(x=>x.id)));
   // Four preferred originals are superseded by eight verified current originals; old paths remain intact.
-  assert.equal(ledger.records.length,198); assert.deepEqual(ledger.after,{public:198,form:151,service:25,guide:22,archived:9,excluded:13,hosted:170,external:4});
+  assert.equal(ledger.records.length,198); assert.deepEqual(ledger.after,{public:198,form:151,service:25,guide:22,archived:9,excluded:13,hosted:182,external:22});
   for(const row of ledger.records) { assert.ok(row.sourceUrl); assert.ok(row.editorial && row.currentness && row.applicability); assert.notEqual(row.applicability.status,'verified'); }
 });
 test('recheck separates overdue, missing date, access failure, source change and unchanged bytes', () => {
@@ -142,20 +147,21 @@ test('priority statutory comparison and individual legal eligibility remain sepa
   }
   assert.equal(byId.get('BP-G-01').currentVersionReview.status,'provider_reference_checked');
 });
-test('all 33 provider-only forms have specific search/navigation evidence or explicit access failure',()=>{
+test('all 33 reviewed forms have direct-file evidence or an explicit unresolved route',()=>{
   const items=finalDocuments.filter(x=>x.providerInstructions); assert.equal(items.length,33);
   for(const item of items) {
-    assert.ok(item.providerInstructions.keywords); assert.equal(item.providerInstructions.checkedOn,'2026-09-25');
+    assert.ok(item.providerInstructions.keywords); assert.equal(item.providerInstructions.checkedOn,'2026-09-27');
     assert.ok(item.providerInstructions.status); assert.ok(item.providerInstructions.menu);
     assert.notEqual(item.providerInstructions.status,'fully_verified');
   }
-  assert.equal(byId.get('P0-08').providerInstructions.status,'access_blocked');
-  assert.match(byId.get('P0-08').providerInstructions.limitation,/403/);
+  assert.equal(byId.get('P0-08').providerInstructions.status,'direct_files_checked');
+  assert.match(byId.get('P0-08').providerInstructions.limitation,/대한법률구조공단/);
+  assert.equal(catalog.availableFiles(byId.get('P0-08')).length,1);
 });
 test('unrelated title-recovery search is not represented as an inheritance-recovery form',()=>{
   const route=byId.get('P8-02').providerInstructions;
   assert.equal(new URL(route.url).searchParams.get('searchWrd'),'상속회복');
-  assert.equal(route.status,'no_matching_result'); assert.match(route.limitation,/0건/);
+  assert.equal(route.status,'original_not_acquired'); assert.match(route.limitation,/원본 미확보/);
   assert.match(byId.get('P8-02').description,/일치하는 원문을 확보하지 못/);
   assert.equal(byId.get('P8-02').form_no,'대응 서식 미확인');
   assert.equal(byId.get('P8-02').usage.sourceUrls[0],route.url);

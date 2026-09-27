@@ -21,6 +21,7 @@
     "test:tax-extensions-ui": "node scripts/tax-extensions-ui-audit.mjs",
     "test:smoke": "node scripts/pr2-smoke.mjs",
     "test:forms": "node scripts/run-forms-library-tests.mjs",
+    "test:forms-downloads": "node scripts/forms-download-followup-tests.mjs",
     "test:forms-integration": "node scripts/forms-preview-integration-tests.mjs",
     "test:forms-routes": "node scripts/forms-route-smoke.mjs"
   },
