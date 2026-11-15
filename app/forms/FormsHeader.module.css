@@ -1,0 +1,4 @@
+/* The shared desktop slogan is secondary when the action row needs room. */
+@media (min-width: 1024px) and (max-width: 1399px) {
+  .root :global([data-public-brand] small) { display: none; }
+}

@@ -1,0 +1,5 @@
+{
+  "url": "https://www.nts.go.kr/tax_inquiry/guide_01.html",
+  "checked_at": "2026-09-19T14:54:49Z",
+  "error": "HTTPSConnectionPool(host='www.nts.go.kr', port=443): Max retries exceeded with url: /tax_inquiry/guide_01.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.nts.go.kr', port=443) at 0x7f55d5b82690>, 'Connection to www.nts.go.kr timed out. (connect timeout=9)'))"
+}

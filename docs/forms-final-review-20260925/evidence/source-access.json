@@ -1,0 +1,161 @@
+{
+  "checkedOn": "2026-09-24",
+  "scope": "Technical access/hash check only. Review dates and original files are never changed.",
+  "queue": [],
+  "observations": [
+    {
+      "url": "https://www.icbp.go.kr/main/bbs/bbsMsgDetail.do?bcd=taxes_form&msg_seq=64",
+      "checkedAt": "2026-09-24T15:32:44.838Z",
+      "ok": true,
+      "status": 200,
+      "sha256": "396bebe8ae21af4012700781630af6bf4e90df4a48dbba691281c9958e2ccb90",
+      "bytes": 148281,
+      "contentType": "text/html;charset=UTF-8",
+      "finalUrl": "https://www.icbp.go.kr/main/bbs/bbsMsgDetail.do?bcd=taxes_form&msg_seq=64",
+      "comparison": "baseline_needed"
+    },
+    {
+      "url": "https://www.icbp.go.kr/main/bbs/bbsMsgFileDown.do?bcd=taxes_form&msg_seq=64&fileno=1",
+      "checkedAt": "2026-09-24T15:32:46.119Z",
+      "ok": true,
+      "status": 200,
+      "sha256": "a4f31d43173ca4534c2387c29b26f9966a883bb4cc5ba60c9d78551eb998ece7",
+      "bytes": 19968,
+      "contentType": "application/octet-stream;charset=UTF-8",
+      "finalUrl": "https://www.icbp.go.kr/main/bbs/bbsMsgFileDown.do?bcd=taxes_form&msg_seq=64&fileno=1",
+      "comparison": "baseline_needed"
+    },
+    {
+      "url": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "checkedAt": "2026-09-24T15:32:47.553Z",
+      "ok": true,
+      "status": 200,
+      "sha256": "d7cef6a7c318a43b2bb0a18b5f584348d3d44d8658bc6928874fc0f94ce681d2",
+      "bytes": 212065,
+      "contentType": "text/html;charset=UTF-8",
+      "finalUrl": "https://www.nts.go.kr/nts/ad/nf/nltFormatApiList.do?mi=40178&searchSe=select&selectCode=type11",
+      "comparison": "baseline_needed"
+    },
+    {
+      "url": "https://law.go.kr/LSW/flDownload.do?flSeq=162626039",
+      "checkedAt": "2026-09-24T15:32:47.827Z",
+      "ok": true,
+      "status": 200,
+      "sha256": "77a238390d4016a2d7b567fde0f85cfb06260fc8d40ea6083a43aa7f2689691b",
+      "bytes": 140673,
+      "contentType": "application/pdf;;charset=UTF-8",
+      "finalUrl": "https://law.go.kr/LSW/flDownload.do?flSeq=162626039",
+      "comparison": "baseline_needed"
+    },
+    {
+      "url": "https://law.go.kr/LSW/flDownload.do?flSeq=162626037",
+      "checkedAt": "2026-09-24T15:32:50.075Z",
+      "ok": true,
+      "status": 200,
+      "sha256": "1500f93a2c1b77b717cfca743f3565eaa14bee6cc1c67d2025e61cd93fb4b2e1",
+      "bytes": 102400,
+      "contentType": "application/hwp;;charset=UTF-8",
+      "finalUrl": "https://law.go.kr/LSW/flDownload.do?flSeq=162626037",
+      "comparison": "baseline_needed"
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162626039&bylClsCd=110202",
+      "checkedAt": "2026-09-24T15:32:50.390Z",
+      "ok": true,
+      "status": 200,
+      "sha256": "77a238390d4016a2d7b567fde0f85cfb06260fc8d40ea6083a43aa7f2689691b",
+      "bytes": 140673,
+      "contentType": "application/pdf;;charset=UTF-8",
+      "finalUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162626039&bylClsCd=110202",
+      "comparison": "baseline_needed"
+    },
+    {
+      "url": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "checkedAt": "2026-09-24T15:32:50.441Z",
+      "ok": true,
+      "status": 200,
+      "sha256": "dc13a7e6d55cf9a282b69fc2630f14751018407c286216a3cde685e1c6d26da2",
+      "bytes": 16821,
+      "contentType": "text/html; charset=UTF-8",
+      "finalUrl": "https://www.nts.go.kr/tax/sub/1.%EC%96%91%EB%8F%84%EC%86%8C%EB%93%9D%EC%84%B8%20%EC%8B%A0%EA%B3%A0%EC%84%9C%EC%8B%9D%20%EB%B0%8F%20%EC%B2%A8%EB%B6%80%EC%84%9C%EB%A5%98%20%EB%8B%A4%EC%9A%B4%EB%B0%9B%EA%B8%B0.html",
+      "comparison": "baseline_needed"
+    },
+    {
+      "url": "https://www.nts.go.kr/upload/ti_tax/01/%EC%9D%B4%EC%9B%94%EA%B3%BC%EC%84%B8%EC%A0%81%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
+      "checkedAt": "2026-09-24T15:32:51.294Z",
+      "ok": true,
+      "status": 200,
+      "sha256": "6d06eca0e2cd641eb526bd8940ca63819e46dbbd4e2f10d431ab5f091c8fc8ec",
+      "bytes": 17920,
+      "contentType": "application/vnd.hancom.hwp",
+      "finalUrl": "https://www.nts.go.kr/upload/ti_tax/01/%EC%9D%B4%EC%9B%94%EA%B3%BC%EC%84%B8%EC%A0%81%EC%9A%A9%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
+      "comparison": "baseline_needed"
+    },
+    {
+      "url": "https://www.nts.go.kr/upload/ti_tax/01/%EA%B3%BC%EC%84%B8%EC%9D%B4%EC%97%B0%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
+      "checkedAt": "2026-09-24T15:32:51.389Z",
+      "ok": true,
+      "status": 200,
+      "sha256": "ef3c7d35047c356ec22e97cb5bb0c3f0127aed7b66f818603eb3a0ce43bfe959",
+      "bytes": 20992,
+      "contentType": "application/vnd.hancom.hwp",
+      "finalUrl": "https://www.nts.go.kr/upload/ti_tax/01/%EA%B3%BC%EC%84%B8%EC%9D%B4%EC%97%B0%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
+      "comparison": "baseline_needed"
+    },
+    {
+      "url": "https://www.nts.go.kr/upload/ti_tax/01/%ED%98%84%EB%AC%BC%EC%B6%9C%EC%9E%90%20%EB%93%B1%EC%97%90%20%EB%8C%80%ED%95%9C%20%EC%84%B8%EC%95%A1%EA%B0%90%EB%A9%B4(%EB%A9%B4%EC%A0%9C)%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
+      "checkedAt": "2026-09-24T15:32:51.449Z",
+      "ok": true,
+      "status": 200,
+      "sha256": "2bab232e5e0bf645f788b02e18862d2c54565b1b49ea8a4b1a21b0e2b44dcacb",
+      "bytes": 20480,
+      "contentType": "application/vnd.hancom.hwp",
+      "finalUrl": "https://www.nts.go.kr/upload/ti_tax/01/%ED%98%84%EB%AC%BC%EC%B6%9C%EC%9E%90%20%EB%93%B1%EC%97%90%20%EB%8C%80%ED%95%9C%20%EC%84%B8%EC%95%A1%EA%B0%90%EB%A9%B4(%EB%A9%B4%EC%A0%9C)%EC%8B%A0%EC%B2%AD%EC%84%9C.hwp",
+      "comparison": "baseline_needed"
+    },
+    {
+      "url": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388",
+      "checkedAt": "2026-09-24T15:32:51.561Z",
+      "ok": true,
+      "status": 200,
+      "sha256": "63587ae37d823a85f78ef33fe2abd4f47aa65af23ef48829ca2b4ac9c78148c3",
+      "bytes": 145731,
+      "contentType": "text/html;charset=UTF-8",
+      "finalUrl": "https://www.law.go.kr/lsInfoP.do?joNo=001700&lsId=007388",
+      "comparison": "baseline_needed"
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162625975&bylClsCd=110202",
+      "checkedAt": "2026-09-24T15:32:52.510Z",
+      "ok": true,
+      "status": 200,
+      "sha256": "7f46b68911f46c6aa65265734c165d09f03ddf640dbb3248b4ac36866948ffd2",
+      "bytes": 265841,
+      "contentType": "application/pdf;;charset=UTF-8",
+      "finalUrl": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=162625975&bylClsCd=110202",
+      "comparison": "baseline_needed"
+    },
+    {
+      "url": "https://www.ifez.go.kr/main/pst/view.do?pst_id=ciz01&pst_sn=194681&search=",
+      "checkedAt": "2026-09-24T15:32:55.212Z",
+      "ok": true,
+      "status": 200,
+      "sha256": "c96a46912bcc863ec8ec6a68c64b5da58eccf7a6939ae7d6cc74ea12e7f25544",
+      "bytes": 106343,
+      "contentType": "text/html;charset=UTF-8",
+      "finalUrl": "https://www.ifez.go.kr/main/pst/view.do?pst_id=ciz01&pst_sn=194681&search=",
+      "comparison": "baseline_needed"
+    },
+    {
+      "url": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+      "checkedAt": "2026-09-24T15:32:55.823Z",
+      "ok": true,
+      "status": 200,
+      "sha256": "4486e812c58b4a3db4de30e7658490d3e8fdad11dda802f2b690eba29c6c812e",
+      "bytes": 56904,
+      "contentType": "text/html; charset=UTF-8",
+      "finalUrl": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+      "comparison": "baseline_needed"
+    }
+  ]
+}

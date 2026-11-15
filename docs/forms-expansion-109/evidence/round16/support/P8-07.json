@@ -1,0 +1,109 @@
+{
+  "id": "P8-07",
+  "checked_at": "2026-09-19T18:01:19.511190+00:00",
+  "sources": {
+    "sources": [
+      {
+        "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=2&cnpClsNo=1&csmSeq=694&popMenu=ov",
+        "finding": "성년후견 개시 청구의 첨부서류 종류로 진단서를 안내함. 해당 페이지가 이 공통 빈양식을 후견전용으로 지정한 것은 아님."
+      },
+      {
+        "url": "https://law.go.kr/LSW/lumLsLinkPop.do?lspttninfSeq=61673",
+        "finding": "현행 의료법 시행규칙 제9조가 의료인이 발급하는 진단서의 공통 서식과 기재·서명 근거를 정하고 있음."
+      },
+      {
+        "url": "https://www.ncmh.go.kr/ncmh/board/boardView.do?bn=newsView&fno=106&gubun_no=9&menu_cd=04_02_02_04&no=10040&pageIndex=1&search_content=&search_item=",
+        "finding": "정신질환자 공공후견 지원사업에서 의료기관 진단서를 첨부자료로 명시한 보조근거. 이 지침의 특정 사업 요건을 모든 성년후견 신청에 일반화하지 않음."
+      }
+    ],
+    "petition_and_property_original_verified": true,
+    "diagnosis_blank_form_verified": true,
+    "diagnosis_form_scope": "common_medical_certificate_reference",
+    "guardianship_specific_blank_form_verified": false,
+    "individual_case_submission_sufficiency_verified": false,
+    "scope_review": "원요청은 진단서·재산목록 등 첨부서식 포함이며 후견전용 서식으로 한정하지 않는다. 실제 공통 법정 진단서 양식을 참고자료로 분리하여 연결하면 진단서라는 첨부자료 종류의 수집 범위를 충족할 수 있다. 법원이 이 빈양식을 특정 사건에서 충분하다고 수리한다는 결론은 도출하지 않는다."
+  },
+  "verified_provider_files": [
+    {
+      "name": "진단서 공통 법정양식 참고.pdf",
+      "format": "pdf",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=164901851&bylClsCd=110202",
+      "sha256": "9c6feffcfebd89c295a66afc3acfe58d38a8543c6e4f0801156f1495438c32c6",
+      "bytes": 48225,
+      "checked_at": "2026-09-19T17:59:36Z",
+      "title_verified": true,
+      "redistribution_allowed": false,
+      "delivery": "provider_page",
+      "role": "original"
+    },
+    {
+      "name": "진단서 공통 법정양식 참고.hwp",
+      "format": "hwp",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=164901849&bylClsCd=110202",
+      "sha256": "0e75e11b09084efbe5904fd55b20ae2d227c6a756a9869fa6ffb9401f2467d41",
+      "bytes": 43520,
+      "checked_at": "2026-09-19T17:59:36Z",
+      "title_verified": true,
+      "redistribution_allowed": false,
+      "delivery": "provider_page",
+      "role": "original"
+    },
+    {
+      "name": "성년후견개시 청구·첨부 양식.hwp",
+      "format": "hwp",
+      "url": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f01%2f11%2f17%2f23%2f3da1cc0b-b4a2-4f0a-83e9-43f59ce52059&filename=1109+%ec%84%b1%eb%85%84%ed%9b%84%ea%b2%ac%ea%b0%9c%ec%8b%9c+%ec%8b%ac%ed%8c%90%ec%b2%ad%ea%b5%ac.hwp",
+      "sha256": "7f45f355f340414dc870bbefa990387752d7579ee8d7e7c9dfcd7eb9538b3b3b",
+      "bytes": 56832,
+      "checked_at": "2026-09-19T17:41:04.822678+00:00",
+      "title_verified": true,
+      "redistribution_allowed": false,
+      "delivery": "provider_page",
+      "role": "original"
+    },
+    {
+      "name": "성년후견개시 청구·첨부 양식.hwp",
+      "format": "hwp",
+      "url": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2018%2f07%2f13%2f16%2f59%2fc7604495-89af-44bc-b4fe-b95a90e0e865&filename=%ec%84%b1%eb%85%84%ed%9b%84%ea%b2%ac%ea%b0%9c%ec%8b%9c+%ec%8b%ac%ed%8c%90%ec%b2%ad%ea%b5%ac.hwp",
+      "sha256": "280e507621d03d979a87a421fbea777d4b8c5df9acd3fde5e6cbdf920acea6be",
+      "bytes": 63488,
+      "checked_at": "2026-09-19T17:41:05.533080+00:00",
+      "title_verified": true,
+      "redistribution_allowed": false,
+      "delivery": "provider_page",
+      "role": "original"
+    }
+  ],
+  "medical_validation": {
+    "checked_at": "2026-09-19T18:01:19.511190+00:00",
+    "form_title": "진단서",
+    "law": "의료법 시행규칙",
+    "annex": "별지 제5호의2서식",
+    "rule_current_effective_date": "2026-06-12",
+    "rule_lsiSeq": "286963",
+    "printed_form_amendment_date": "2019-09-27",
+    "signature_verified": {
+      "PDF": "%PDF-",
+      "HWP": "d0cf11e0a1b11ae1 / HWP FileHeader"
+    },
+    "pdf_pages": 1,
+    "pdf_visual_review": "원본 PDF를 PNG로 렌더링하여 한 페이지 빈 진단서 및 의료기관·의료인 면허번호·서명란 확인.",
+    "hwp_content_method": "OLE FileHeader 및 압축 BodyText 레코드 UTF-16LE 직접 파싱",
+    "verified_fields": [
+      "환자의 성명·주민등록번호·주소",
+      "병명·질병분류기호",
+      "발병일·진단일",
+      "치료 내용 및 향후 치료에 대한 소견",
+      "입원·퇴원 연월일",
+      "용도·비고",
+      "의료기관 명칭·주소",
+      "발급 의료인 면허번호·성명·서명 또는 인"
+    ],
+    "not_present": [
+      "후견전용 제목",
+      "후견사건의 인지능력이나 재산관리능력에 대한 전용 체크리스트"
+    ],
+    "form_number_correction": "별지 제5호서식은 면허 재발급신청서이며, 진단서는 제5호의2서식이다.",
+    "redistribution": "법령 제공처 연결만 사용. 확보 바이너리는 원문 검증 증거이며 제품에서 재배포하지 않음."
+  },
+  "review_note": "자료 종류 수집 완료. 공통 진단서 참고 원문이며 후견전용·사건별 제출 적합성을 검증한 것으로 표시하지 않는다."
+}

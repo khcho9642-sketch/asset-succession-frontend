@@ -1,0 +1,42 @@
+{
+  "id": "P2-15",
+  "title": "재산 평가심의위원회 심의신청서",
+  "institution": "국가법령정보센터 · 국세청",
+  "source_url": "https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000281898",
+  "checked_at": "2026-09-19T17:22:34Z",
+  "retention": "검증 메타데이터와 짧은 발췌만 보존. 원본·전체 텍스트·화면·쿠키·임시 경로는 포함하지 않음.",
+  "records": [
+    {
+      "capture_name": "valuation-law-body.json",
+      "capture_sha256": "1c61c806097695bc7b708ee7a55894316200a458de631e5f991eca069bb4c71f",
+      "url": "https://www.law.go.kr/LSW/admRulLsInfoR.do?admRulSeq=2100000281898&admRulId=21044&joTpYn=Y&languageType=KO&chrClsCd=010202",
+      "final_url": "https://www.law.go.kr/LSW/admRulLsInfoR.do?admRulSeq=2100000281898&admRulId=21044&joTpYn=Y&languageType=KO&chrClsCd=010202",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:21:15Z",
+      "sha256": "c7429874e7199d9caa9c97da6307e84c2320e62ada53538ecddb907fd2a0d383",
+      "bytes": 206378,
+      "content_type": "text/html;charset=UTF-8"
+    },
+    {
+      "capture_name": "P2-15-validation.json",
+      "capture_sha256": "6e92aef12eba4d0e0f0528e470bf4e445138a8a10c04bb25d68ac02a0d1e8517",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=166788129&flNm=%5B%EB%B3%84%EC%A7%80+6%5D+%EC%9E%AC%EC%82%B0%EC%9D%98+%EB%A7%A4%EB%A7%A4+%EB%93%B1+%EA%B0%80%EC%95%A1%EC%9D%98+%EC%8B%9C%EA%B0%80%EC%9D%B8%EC%A0%95+%EC%8B%AC%EC%9D%98+%EC%8B%A0%EC%B2%AD%EC%84%9C&bylClsCd=200203",
+      "final_url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=166788129&flNm=%5B%EB%B3%84%EC%A7%80+6%5D+%EC%9E%AC%EC%82%B0%EC%9D%98+%EB%A7%A4%EB%A7%A4+%EB%93%B1+%EA%B0%80%EC%95%A1%EC%9D%98+%EC%8B%9C%EA%B0%80%EC%9D%B8%EC%A0%95+%EC%8B%AC%EC%9D%98+%EC%8B%A0%EC%B2%AD%EC%84%9C&bylClsCd=200203",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:22:34Z",
+      "sha256": "3aa19105978665a9c579afd3a3ff2107e64dc03307db706ac036974ab65d7d0b",
+      "bytes": 137687,
+      "content_type": "application/pdf;;charset=UTF-8",
+      "title_verified": true,
+      "pages": 3,
+      "form_no": "평가심의위원회 운영 규정 별지 제6호 서식",
+      "text_sha256": "4789b6e734c12be7f4489c338d334e7ef98626069e087dddc31d392de2226633",
+      "excerpt": [
+        "재산의매매등가액의시가인정심의신청서",
+        "납세자 인적사항"
+      ],
+      "download_verified": true,
+      "binary_included_in_support": false
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "url": "https://mob.tbht.hometax.go.kr/jsonAction.do?actionId=UTBRNAAX18F001",
+  "checked_at": "2026-09-19T14:29:52Z",
+  "error": "Page.goto: Timeout 18000ms exceeded.\nCall log:\n  - navigating to \"https://mob.tbht.hometax.go.kr/jsonAction.do?actionId=UTBRNAAX18F001\", waiting until \"commit\"\n",
+  "events": []
+}

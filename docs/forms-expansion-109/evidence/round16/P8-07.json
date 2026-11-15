@@ -1,0 +1,92 @@
+{
+  "id": "P8-07",
+  "title": "성년후견 개시 심판청구서 일체",
+  "status": "확인 완료",
+  "required_original": false,
+  "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+  "institution": "대한법률구조공단 / 보건복지부 / 국가법령정보센터",
+  "checked_at": "2026-09-19T18:01:19.511190+00:00",
+  "source_type": "공식제공처",
+  "license": "제공처 링크 · 원본 재배포 없음",
+  "note": "청구서·사전현황설명서·재산목록 원문과 의료기관 발급용 공통 진단서 원문을 확인했습니다. 진단서는 의료법 시행규칙 별지 제5호의2서식의 참고자료이며, 후견전용 양식이나 이용자 직접 작성용이 아닙니다. 사건별 진단 내용과 제출 적합성은 법원 요구사항을 별도로 확인하세요.",
+  "files": [],
+  "source_evidence": {
+    "sources": [
+      {
+        "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=2&cnpClsNo=1&csmSeq=694&popMenu=ov",
+        "finding": "성년후견 개시 청구의 첨부서류 종류로 진단서를 안내함. 해당 페이지가 이 공통 빈양식을 후견전용으로 지정한 것은 아님."
+      },
+      {
+        "url": "https://law.go.kr/LSW/lumLsLinkPop.do?lspttninfSeq=61673",
+        "finding": "현행 의료법 시행규칙 제9조가 의료인이 발급하는 진단서의 공통 서식과 기재·서명 근거를 정하고 있음."
+      },
+      {
+        "url": "https://www.ncmh.go.kr/ncmh/board/boardView.do?bn=newsView&fno=106&gubun_no=9&menu_cd=04_02_02_04&no=10040&pageIndex=1&search_content=&search_item=",
+        "finding": "정신질환자 공공후견 지원사업에서 의료기관 진단서를 첨부자료로 명시한 보조근거. 이 지침의 특정 사업 요건을 모든 성년후견 신청에 일반화하지 않음."
+      }
+    ],
+    "petition_and_property_original_verified": true,
+    "diagnosis_blank_form_verified": true,
+    "diagnosis_form_scope": "common_medical_certificate_reference",
+    "guardianship_specific_blank_form_verified": false,
+    "individual_case_submission_sufficiency_verified": false,
+    "scope_review": "원요청은 진단서·재산목록 등 첨부서식 포함이며 후견전용 서식으로 한정하지 않는다. 실제 공통 법정 진단서 양식을 참고자료로 분리하여 연결하면 진단서라는 첨부자료 종류의 수집 범위를 충족할 수 있다. 법원이 이 빈양식을 특정 사건에서 충분하다고 수리한다는 결론은 도출하지 않는다.",
+    "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P8-07.json",
+    "evidence_sha256": "61b12ddb4a79d06bbd1b96e482dbcd4023380974f59bf17989634c354106712b"
+  },
+  "completion_basis": "request_document_types_verified_with_explicit_reference_scope",
+  "legal_deadline_values_added": false,
+  "verified_provider_files": [
+    {
+      "name": "진단서 공통 법정양식 참고.pdf",
+      "format": "pdf",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=164901851&bylClsCd=110202",
+      "sha256": "9c6feffcfebd89c295a66afc3acfe58d38a8543c6e4f0801156f1495438c32c6",
+      "bytes": 48225,
+      "checked_at": "2026-09-19T17:59:36Z",
+      "title_verified": true,
+      "redistribution_allowed": false,
+      "delivery": "provider_page",
+      "role": "original"
+    },
+    {
+      "name": "진단서 공통 법정양식 참고.hwp",
+      "format": "hwp",
+      "url": "https://www.law.go.kr/LSW/flDownload.do?gubun=&flSeq=164901849&bylClsCd=110202",
+      "sha256": "0e75e11b09084efbe5904fd55b20ae2d227c6a756a9869fa6ffb9401f2467d41",
+      "bytes": 43520,
+      "checked_at": "2026-09-19T17:59:36Z",
+      "title_verified": true,
+      "redistribution_allowed": false,
+      "delivery": "provider_page",
+      "role": "original"
+    },
+    {
+      "name": "성년후견개시 청구·첨부 양식.hwp",
+      "format": "hwp",
+      "url": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f01%2f11%2f17%2f23%2f3da1cc0b-b4a2-4f0a-83e9-43f59ce52059&filename=1109+%ec%84%b1%eb%85%84%ed%9b%84%ea%b2%ac%ea%b0%9c%ec%8b%9c+%ec%8b%ac%ed%8c%90%ec%b2%ad%ea%b5%ac.hwp",
+      "sha256": "7f45f355f340414dc870bbefa990387752d7579ee8d7e7c9dfcd7eb9538b3b3b",
+      "bytes": 56832,
+      "checked_at": "2026-09-19T17:41:04.822678+00:00",
+      "title_verified": true,
+      "redistribution_allowed": false,
+      "delivery": "provider_page",
+      "role": "original"
+    },
+    {
+      "name": "성년후견개시 청구·첨부 양식.hwp",
+      "format": "hwp",
+      "url": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2018%2f07%2f13%2f16%2f59%2fc7604495-89af-44bc-b4fe-b95a90e0e865&filename=%ec%84%b1%eb%85%84%ed%9b%84%ea%b2%ac%ea%b0%9c%ec%8b%9c+%ec%8b%ac%ed%8c%90%ec%b2%ad%ea%b5%ac.hwp",
+      "sha256": "280e507621d03d979a87a421fbea777d4b8c5df9acd3fde5e6cbdf920acea6be",
+      "bytes": 63488,
+      "checked_at": "2026-09-19T17:41:05.533080+00:00",
+      "title_verified": true,
+      "redistribution_allowed": false,
+      "delivery": "provider_page",
+      "role": "original"
+    }
+  ],
+  "candidate_reviewed_at": "2026-09-19T18:02:53.238679+00:00",
+  "task_operation": "alias",
+  "target_id": "P1-22"
+}

@@ -1,0 +1,5 @@
+{
+  "url": "https://sladmin.scourt.go.kr/slfamily/civil_complaint/civil_06/index_03.html",
+  "error": "HTTPSConnectionPool(host='sladmin.scourt.go.kr', port=443): Max retries exceeded with url: /slfamily/civil_complaint/civil_06/index_03.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='sladmin.scourt.go.kr', port=443) at 0x7ff5e9f03440>, 'Connection to sladmin.scourt.go.kr timed out. (connect timeout=9)'))",
+  "checked_at": "2026-09-19T13:12:10Z"
+}

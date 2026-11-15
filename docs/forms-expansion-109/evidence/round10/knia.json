@@ -1,0 +1,15 @@
+{
+  "url": "https://consumer.knia.or.kr/",
+  "http_status": 200,
+  "checked_at": "2026-09-19T14:29:07Z",
+  "sha256": "e25d8c53882ed751abad34695815517ea519364bdb9fa775188bd645584a3bed",
+  "text": "손해보험협회 소비자 포털 서비스",
+  "html": "\r\n<!DOCTYPE html>\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"ko\" lang=\"ko\">\r\n<head>\r\n\t<title>손해보험협회 소비자 포털 서비스</title>\r\n\r\n<meta name=\"description\" content=\"보험소비자의 손해보험에 대한 이해를 돕고자 보험상담실을 운영하고 있습니다. 상담신청건에 대하여 접수일로부터 영업일 기준  14일 이내(연장 가능) 답변을 받으실 수 있습니다. 본 상담실은 상담자의 신상 및 개인정보 누출을 막기 위해 비공개방식의 개별 상담으로 운영되고 있으며, 운영취지와 맞지 않는 문의는 답변이 제한될 수 있습니다. 또한 답변내용은 질의하신 내용에 한정된 단순상담으로 일체의 법적 권한을 가지고 있지 않음을 알려드립니다. 보험가입내역 조회안내 등 단순 문의는 손해보험협회 대표번호(02-3702-8500)로 전화하시면 신속한 답변을 받으실 수 있습니다.\" />\r\n<meta name=\"keyword\" content=\"손해보험협회 소비자포털 상담센터\" />\r\n<meta name=\"author\" content=\"손해보험협회\" />\r\n<meta name=\"Distribution\" content=\"손해보험협회\" />\r\n\r\n<meta property=\"og:type\" content=\"website\" />\r\n<meta property=\"og:title\" content=\"손해보험협회 소비자포털\" />\r\n<meta property=\"og:description\" content=\"보험소비자의 손해보험에 대한 이해를 돕고자 보험상담실을 운영하고 있습니다. 상담신청건에 대하여 접수일로부터 영업일 기준  14일 이내(연장 가능) 답변을 받으실 수 있습니다. 본 상담실은 상담자의 신상 및 개인정보 누출을 막기 위해 비공개방식의 개별 상담으로 운영되고 있으며, 운영취지와 맞지 않는 문의는 답변이 제한될 수 있습니다. 또한 답변내용은 질의하신 내용에 한정된 단순상담으로 일체의 법적 권한을 가지고 있지 않음을 알려드립니다. 보험가입내역 조회안내 등 단순 문의는 손해보험협회 대표번호(02-3702-8500)로 전화하시면 신속한 답변을 받으실 수 있습니다.\" />\r\n<meta property=\"og:image\" content=\"/images/main/common/img_ci.png\" />\r\n<meta property=\"og:url\" content=\"https://www.knia.or.kr/\" />\r\n\r\n\t<script type=\"text/javascript\">\r\n\t\twindow.location = \"/main.do\"; \r\n\t</script>\r\n</head>\r\n</html>\r\n ",
+  "links": [],
+  "scripts": [
+    {
+      "url": "",
+      "text": "\r\n\t\twindow.location = \"/main.do\"; \r\n\t"
+    }
+  ]
+}

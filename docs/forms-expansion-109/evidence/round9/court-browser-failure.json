@@ -1,0 +1,6 @@
+{
+  "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+  "error": "Page.goto: Timeout 20000ms exceeded.\nCall log:\n  - navigating to \"https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24\", waiting until \"commit\"\n",
+  "checked_at": "2026-09-19T14:17:19Z",
+  "events": []
+}

@@ -1,0 +1,6 @@
+{
+  "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005",
+  "error": "Page.goto: Timeout 20000ms exceeded.\nCall log:\n  - navigating to \"https://efamily.scourt.go.kr/cs/CsBltnWrtList.do?bltnbordId=0000005\", waiting until \"commit\"\n",
+  "checked_at": "2026-09-19T14:17:59Z",
+  "events": []
+}

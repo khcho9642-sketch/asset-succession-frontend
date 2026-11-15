@@ -1,0 +1,9 @@
+Observation method: web.run.open; extracted official source content, not an original form download.
+Observed URL: https://www.gov.kr/mw/AA020InfoCappView.do?CappBizCD=17400000001
+Observed tool source reference: turn135view0
+HTTP status: not provided by this observation method
+Observed service heading: 사망자 및 피후견인 등 재산조회 통합처리 신청(안심상속)
+Observed application form label: 재산조회 통합처리 신청서
+Observed provider portal: 정부24
+Observed responsible institution: 행정안전부
+Scope: source page identity and named application form only. Submission eligibility, deadlines and legal applicability were not verified.

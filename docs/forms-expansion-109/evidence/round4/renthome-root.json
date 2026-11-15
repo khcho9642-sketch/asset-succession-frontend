@@ -1,0 +1,275 @@
+{
+  "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+  "http_status": 200,
+  "checked_at": "2026-09-17T11:34:51Z",
+  "sha256": "83ff9e82d1d4cd4e2083e4cb23da24dc2e87c6c13308ffb976fb650c6540fbbd",
+  "text": "렌트홈(임대등록시스템) 본문 바로가기 알림닫기 등록민간임대주택 렌트홈 홈 로그인 프로그램 설치안내 사이트맵 확대 확대하기 + 축소하기 - 일시정지 재생 등록신청 계약신고 임대료인상률계산 말소신고 민원취하 불법행위 신고센터 임대사업자 안내 임대사업자 법령 정의 및 등록 안내 자세히 보기 + 렌트홈 이용안내 렌트홈 안내 및 임대사업자 민원 안내 자세히 보기 + 100세대 이상 민간임대주택 임대료 증액기준 안내 100세대 이상 민간임대주택단지 임대료 증액(가능)기준 안내 자세히 보기 + 임대보증금 미반환 임대사업자 정보공개 「민간임대주택에 관한 특별법」 제60조의2 (보증금반환채무를 이행하지 아니한 임대사업자의 공개) 자세히 보기 + 일시정지 재생 민원법정서식 임대사업자 민원 법정서식 조회 및 다운로드 임대주택 찾기 지도서비스 바로가기 상담코너 임대사업자 제도 상담 : 1670-8004 렌트홈 시스템 문의 : 031-719-0511 평일: 09:00~12:00, 13:00~18:00 주말/공휴일: 휴무 지자체 문의 세무서 안내 렌트홈 회원가입 렌트홈 홈페이지 신규 회원가입 (개인/법인) 공지사항 민간임대주택 관련 계약 단계별.. [민간임대주택에 관한 특별법].. '전남광주통합특별시 행정구역 .. '인천형 행정체제' 개편작업 .. + 더보기 보도자료 민간임대주택 관리비 투명성 제.. 계약 전 전세거래 위험 정보... 민간임대사업자 의무 이행 상시.. 비(非)아파트 6년 단기등록임.. + 더보기 국토교통부 LH한국토지주택공사 집 걱정 덜어주는 마이홈 국세청 건축행정시스템 세움터 함께 만드는 복지 복지ro 전세 임대포털 국토교통부 LH한국토지주택공사 집 걱정 덜어주는 마이홈 국세청 건축행정시스템 세움터 함께 만드는 복지 복지ro 전세 임대포털 홈페이지 이용약관 개인정보처리방침 이메일 무단수집 거부 품질오류신고 및 확인 원격지원 관련기관 국토교통부 한국토지주택공사 마이홈 세움터 Copyright(c) 국토교통부 & 한국토지주택공사 All Rights Reserved.",
+  "links": [
+    {
+      "text": "본문 바로가기",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open#container",
+      "onclick": null
+    },
+    {
+      "text": "등록민간임대주택 렌트홈",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": null
+    },
+    {
+      "text": "홈",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": null
+    },
+    {
+      "text": "로그인",
+      "url": "https://www.renthome.go.kr/webportal/usr/login/memberLogin.open",
+      "onclick": null
+    },
+    {
+      "text": "프로그램 설치안내",
+      "url": "https://www.renthome.go.kr/webportal/common/swInstallViewTop.open",
+      "onclick": null
+    },
+    {
+      "text": "사이트맵",
+      "url": "https://www.renthome.go.kr/webportal/siteMap/siteMapView.open",
+      "onclick": null
+    },
+    {
+      "text": "등록신청",
+      "url": "https://www.renthome.go.kr/webportal/minwon/rqs/rtsRegist/insertRtsRegistView.do",
+      "onclick": null
+    },
+    {
+      "text": "계약신고",
+      "url": "https://www.renthome.go.kr/webportal/minwon/rqs/rntcntrctstmnt/openRntCntrctStmntInsert.do",
+      "onclick": null
+    },
+    {
+      "text": "임대료인상률계산",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": "javascript:fn_popup(4); return false;"
+    },
+    {
+      "text": "말소신고",
+      "url": "https://www.renthome.go.kr/webportal/minwon/rqs/rntbizmnrgstersr/selectRntBizmnRgstErsrView.do",
+      "onclick": null
+    },
+    {
+      "text": "민원취하",
+      "url": "https://www.renthome.go.kr/webportal/minwon/rqs/cvplCanclRqs/cvplCanclRqsView.do",
+      "onclick": null
+    },
+    {
+      "text": "불법행위 신고센터",
+      "url": "https://www.renthome.go.kr/webportal/cont/ilgActStmntView.open",
+      "onclick": null
+    },
+    {
+      "text": "임대사업자 안내 임대사업자 법령 정의 및 등록 안내 자세히 보기 +",
+      "url": "https://www.renthome.go.kr/webportal/cont/rntBizmnInfoView.open",
+      "onclick": null
+    },
+    {
+      "text": "렌트홈 이용안내 렌트홈 안내 및 임대사업자 민원 안내 자세히 보기 +",
+      "url": "https://www.renthome.go.kr/webportal/cont/rntHmGdncView.open",
+      "onclick": null
+    },
+    {
+      "text": "100세대 이상 민간임대주택 임대료 증액기준 안내 100세대 이상 민간임대주택단지 임대료 증액(가능)기준 안내 자세히 보기 +",
+      "url": "https://www.renthome.go.kr/webportal/bbs/notice/selectPbNoticeDetail.open?notcNo=43",
+      "onclick": null
+    },
+    {
+      "text": "임대보증금 미반환 임대사업자 정보공개 「민간임대주택에 관한 특별법」 제60조의2 (보증금반환채무를 이행하지 아니한 임대사업자의 공개) 자세히 보기 +",
+      "url": "https://www.renthome.go.kr/webportal/bbs/rntgtnUngvbkRntBizmn/selectPbRntgtnUngvbkRntBizmnList.open",
+      "onclick": null
+    },
+    {
+      "text": "민원법정서식 임대사업자 민원 법정서식 조회 및 다운로드",
+      "url": "https://www.renthome.go.kr/webportal/bbs/frmtDownload/frmtDownloadList.open",
+      "onclick": null
+    },
+    {
+      "text": "임대주택 찾기 지도서비스 바로가기",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": "javascript:fn_link(); return false;"
+    },
+    {
+      "text": "렌트홈 회원가입 렌트홈 홈페이지 신규 회원가입 (개인/법인)",
+      "url": "https://www.renthome.go.kr/webportal/usr/info/selectMemberType.open",
+      "onclick": null
+    },
+    {
+      "text": "민간임대주택 관련 계약 단계별..",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": "javascript:fn_bbsDetail('notice', 160); return false;"
+    },
+    {
+      "text": "[민간임대주택에 관한 특별법]..",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": "javascript:fn_bbsDetail('notice', 154); return false;"
+    },
+    {
+      "text": "'전남광주통합특별시 행정구역 ..",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": "javascript:fn_bbsDetail('notice', 164); return false;"
+    },
+    {
+      "text": "'인천형 행정체제' 개편작업 ..",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": "javascript:fn_bbsDetail('notice', 163); return false;"
+    },
+    {
+      "text": "+ 더보기",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": "javascript:fn_bbsList('notice'); return false;"
+    },
+    {
+      "text": "민간임대주택 관리비 투명성 제..",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": "javascript:fn_bbsDetail('newsDta', 5102); return false;"
+    },
+    {
+      "text": "계약 전 전세거래 위험 정보...",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": "javascript:fn_bbsDetail('newsDta', 5101); return false;"
+    },
+    {
+      "text": "민간임대사업자 의무 이행 상시..",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": "javascript:fn_bbsDetail('newsDta', 5001); return false;"
+    },
+    {
+      "text": "비(非)아파트 6년 단기등록임..",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": "javascript:fn_bbsDetail('newsDta', 4909); return false;"
+    },
+    {
+      "text": "+ 더보기",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": "javascript:fn_bbsList('newsDta'); return false;"
+    },
+    {
+      "text": "국토교통부",
+      "url": "http://www.molit.go.kr",
+      "onclick": null
+    },
+    {
+      "text": "LH한국토지주택공사",
+      "url": "http://www.lh.or.kr",
+      "onclick": null
+    },
+    {
+      "text": "집 걱정 덜어주는 마이홈",
+      "url": "http://www.myhome.go.kr",
+      "onclick": null
+    },
+    {
+      "text": "국세청",
+      "url": "http://www.nts.go.kr/",
+      "onclick": null
+    },
+    {
+      "text": "건축행정시스템 세움터",
+      "url": "https://www.eais.go.kr/",
+      "onclick": null
+    },
+    {
+      "text": "함께 만드는 복지 복지ro",
+      "url": "http://www.bokjiro.go.kr/",
+      "onclick": null
+    },
+    {
+      "text": "전세 임대포털",
+      "url": "http://jeonse.lh.or.kr/",
+      "onclick": null
+    },
+    {
+      "text": "국토교통부",
+      "url": "http://www.molit.go.kr",
+      "onclick": null
+    },
+    {
+      "text": "LH한국토지주택공사",
+      "url": "http://www.lh.or.kr",
+      "onclick": null
+    },
+    {
+      "text": "집 걱정 덜어주는 마이홈",
+      "url": "http://www.myhome.go.kr",
+      "onclick": null
+    },
+    {
+      "text": "국세청",
+      "url": "http://www.nts.go.kr/",
+      "onclick": null
+    },
+    {
+      "text": "건축행정시스템 세움터",
+      "url": "https://www.eais.go.kr/",
+      "onclick": null
+    },
+    {
+      "text": "함께 만드는 복지 복지ro",
+      "url": "http://www.bokjiro.go.kr/",
+      "onclick": null
+    },
+    {
+      "text": "전세 임대포털",
+      "url": "http://jeonse.lh.or.kr/",
+      "onclick": null
+    },
+    {
+      "text": "홈페이지 이용약관",
+      "url": "https://www.renthome.go.kr/webportal/cont/UseStplatView.open",
+      "onclick": null
+    },
+    {
+      "text": "개인정보처리방침",
+      "url": "https://www.renthome.go.kr/webportal/cont/indvdlinfoPrcsPolcyView.open",
+      "onclick": null
+    },
+    {
+      "text": "이메일 무단수집 거부",
+      "url": "https://www.renthome.go.kr/webportal/cont/emailWtrmsClctRjctView.open",
+      "onclick": null
+    },
+    {
+      "text": "품질오류신고 및 확인",
+      "url": "https://data.molit.go.kr/systemQuality/list?system_id=S0015",
+      "onclick": null
+    },
+    {
+      "text": "원격지원",
+      "url": "https://988.co.kr/renthome",
+      "onclick": null
+    },
+    {
+      "text": "관련기관",
+      "url": "https://www.renthome.go.kr/webportal/main/portalMainList.open",
+      "onclick": null
+    },
+    {
+      "text": "국토교통부",
+      "url": "http://www.molit.go.kr",
+      "onclick": null
+    },
+    {
+      "text": "한국토지주택공사",
+      "url": "http://www.lh.or.kr/",
+      "onclick": null
+    },
+    {
+      "text": "마이홈",
+      "url": "http://www.myhome.go.kr",
+      "onclick": null
+    },
+    {
+      "text": "세움터",
+      "url": "http://www.eais.go.kr/",
+      "onclick": null
+    }
+  ],
+  "forms": []
+}

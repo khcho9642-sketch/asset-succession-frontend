@@ -1,0 +1,1480 @@
+{
+  "requested_url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
+  "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
+  "checked_at": "2026-09-17T09:51:23Z",
+  "http_status": 200,
+  "events": [
+    {
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
+      "http_status": 200
+    }
+  ],
+  "text": "본문 바로가기\n \n마이페이지\n공제상품/신청\n복지서비스\n홍보센터\n고객지원\n경영공시\n공제회소개\n통합검색하기\n로그인\n회원가입\nENG\n홈\n \n공제상품/신청\n \n복지급여\n \n사망급여금\n인쇄하기\n \n글자크게하기\n \n글자작게하기\n \n확대/축소초기화\n사망급여금\n\n일반회원이 재직 중 사망하는 경우 사망급여금이 지급됩니다.\n순직시에는 100% 가산 지급합니다.\n\n200 만원\n\n2025.11.20. 규정 개정(소급적용 불가), ~ 2021.12.31. 사망 건의 경우 이전 금액 기준 적용(기본증명서상 사망일시 기준)\n\n지급기준 및 금액\n신청방법\n규정 및 서식\n지급기준 및 지급금액\n지급기준 및 지급금액\n복지급여 청구시효는 5년입니다.\n아래 지급기준을 충족하면서 청구일로부터 5년 내 청구사유가 발생된 경우 신청이 가능합니다.\n회원 사망 및 행방불명의 경우, 유족대표가 청구를 대신할 수 있으며, 자세한 상담을 위해 회원상담센터(1577-7590)으로 연락 주시기 바랍니다\n지급기준 및 지급금액 - 지급기준, 금액의 내용을 제공합니다.\n지급기준\n\t\n지급금액\n\n일반회원이 재직 중 재난 또는 질병으로 사망하는 경우\n\n\n※ 순직시 100% 가산 지급\n\n\t200만원\n\n2025.11.20. 규정 개정(소급적용 불가), ~2021.12.31. 사망 건의 경우 이전 금액 기준 적용(기본증명서상 사망일시 기준)\n\n회원서비스헌장\n이용약관\n개인정보 처리방침\n고정형 영상정보처리기기 운영·관리\n오시는 길\n사이트맵\n원격지원\n관련사이트\n\n주소: [ 04382 ] 서울특별시 용산구 한강대로 140(한강로2가)상담안내전화 : 1577-7590\n\nCopyright(c) 2025 www.POBA.or.kr. All Rights Reserved.\n\n\t\n  \n \n \n이벤트\n마이페이지\n공제회 소식\nFAQ\n상담문의\n1577-7590\n오늘 하루 안 보기\n오늘 하루 안 보기",
+  "sha256": "3ee5b2c7a8881ef8240c2d5a4333b983cc202158d2984fe7002ec3c69193d756",
+  "links": [
+    {
+      "text": "본문 바로가기",
+      "url": "javascript:skipToContent()",
+      "onclick": null
+    },
+    {
+      "text": "무료숙박",
+      "url": "javascript:void(0);",
+      "onclick": "headerDoSearch(this);"
+    },
+    {
+      "text": "대출",
+      "url": "javascript:void(0);",
+      "onclick": "headerDoSearch(this);"
+    },
+    {
+      "text": "이벤트",
+      "url": "javascript:void(0);",
+      "onclick": "headerDoSearch(this);"
+    },
+    {
+      "text": "우수회원",
+      "url": "javascript:void(0);",
+      "onclick": "headerDoSearch(this);"
+    },
+    {
+      "text": "한아름",
+      "url": "javascript:void(0);",
+      "onclick": "headerDoSearch(this);"
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/",
+      "onclick": null
+    },
+    {
+      "text": "상품가입현황",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp11/myp1101');",
+      "onclick": null
+    },
+    {
+      "text": "공제회비",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp02/myp0201');",
+      "onclick": null
+    },
+    {
+      "text": "퇴직/탈퇴급여",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp03/myp0301');",
+      "onclick": null
+    },
+    {
+      "text": "분할지급퇴직급여",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp04/myp0401');",
+      "onclick": null
+    },
+    {
+      "text": "복지급여",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp05/myp0501');",
+      "onclick": null
+    },
+    {
+      "text": "한아름목돈예탁",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp06/myp0601');",
+      "onclick": null
+    },
+    {
+      "text": "단기적립급여",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp10/myp1001');",
+      "onclick": null
+    },
+    {
+      "text": "대여",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp07/myp0701');",
+      "onclick": null
+    },
+    {
+      "text": "제증명 발급",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp08/myp0801');",
+      "onclick": null
+    },
+    {
+      "text": "개인정보",
+      "url": "javascript:fnMenuLinkUrl('00','/myp/myp09/myp0901');",
+      "onclick": null
+    },
+    {
+      "text": "개인정보 수정",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp09/myp0901');",
+      "onclick": null
+    },
+    {
+      "text": "비밀번호 변경",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp09/myp0902');",
+      "onclick": null
+    },
+    {
+      "text": "약관 및 수신동의 변경",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp09/myp0905');",
+      "onclick": null
+    },
+    {
+      "text": "인증센터",
+      "url": "javascript:fnMenuLinkUrl('00','/usr/usr01/usr0101/usr010104');",
+      "onclick": null
+    },
+    {
+      "text": "웹회원 탈퇴",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp09/myp0903');",
+      "onclick": null
+    },
+    {
+      "text": "공제회비",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010101');",
+      "onclick": null
+    },
+    {
+      "text": "퇴직/탈퇴급여",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010102');",
+      "onclick": null
+    },
+    {
+      "text": "분할지급퇴직급여",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010103');",
+      "onclick": null
+    },
+    {
+      "text": "복지급여",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010104');",
+      "onclick": null
+    },
+    {
+      "text": "요양급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010107');",
+      "onclick": null
+    },
+    {
+      "text": "혼인급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010110');",
+      "onclick": null
+    },
+    {
+      "text": "출산급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010109');",
+      "onclick": null
+    },
+    {
+      "text": "가족사망급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010106');",
+      "onclick": null
+    },
+    {
+      "text": "재해급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010108');",
+      "onclick": null
+    },
+    {
+      "text": "사망급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010105');",
+      "onclick": null
+    },
+    {
+      "text": "복지지원급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010118');",
+      "onclick": null
+    },
+    {
+      "text": "우수회원급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010121');",
+      "onclick": null
+    },
+    {
+      "text": "한아름목돈예탁",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010111');",
+      "onclick": null
+    },
+    {
+      "text": "한아름목돈예탁",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010112');",
+      "onclick": null
+    },
+    {
+      "text": "한아름목돈예탁(비과세종합저축)",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010113');",
+      "onclick": null
+    },
+    {
+      "text": "단기적립급여",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010119');",
+      "onclick": null
+    },
+    {
+      "text": "단기적립급여",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010120?gdsUninCd=SAS18%27);",
+      "onclick": null
+    },
+    {
+      "text": "대여",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010114');",
+      "onclick": null
+    },
+    {
+      "text": "자기담보 생활안정자금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010115');",
+      "onclick": null
+    },
+    {
+      "text": "보증보험 생활안정자금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010116');",
+      "onclick": null
+    },
+    {
+      "text": "한아름목돈담보 대여",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010117');",
+      "onclick": null
+    },
+    {
+      "text": "회원콘도",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010101');",
+      "onclick": null
+    },
+    {
+      "text": "호텔인터시티",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010102');",
+      "onclick": null
+    },
+    {
+      "text": "중원골프장",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010103');",
+      "onclick": null
+    },
+    {
+      "text": "POBA누리",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010104');",
+      "onclick": null
+    },
+    {
+      "text": "우수회원지원금",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010105');",
+      "onclick": null
+    },
+    {
+      "text": "우수회원기념품",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010106');",
+      "onclick": null
+    },
+    {
+      "text": "회원행사",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010107');",
+      "onclick": null
+    },
+    {
+      "text": "총괄안내",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010100');",
+      "onclick": null
+    },
+    {
+      "text": "영상자료",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=10037%27);",
+      "onclick": null
+    },
+    {
+      "text": "공제회 소식",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=1%27);",
+      "onclick": null
+    },
+    {
+      "text": "창립 50년사",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=10039%27);",
+      "onclick": null
+    },
+    {
+      "text": "간행물",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=4%27);",
+      "onclick": null
+    },
+    {
+      "text": "브로셔",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=3%27);",
+      "onclick": null
+    },
+    {
+      "text": "POBA 가이드북",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=4%27);",
+      "onclick": null
+    },
+    {
+      "text": "공모전 수상작 모음집",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=10041%27);",
+      "onclick": null
+    },
+    {
+      "text": "홍보영상",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=5%27);",
+      "onclick": null
+    },
+    {
+      "text": "기관 홍보동영상",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=5%27);",
+      "onclick": null
+    },
+    {
+      "text": "공제업무담당자 교육",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=62%27);",
+      "onclick": null
+    },
+    {
+      "text": "입찰공고",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=11%27);",
+      "onclick": null
+    },
+    {
+      "text": "자주하는 질문",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=13%27);",
+      "onclick": null
+    },
+    {
+      "text": "FAQ",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=13%27);",
+      "onclick": null
+    },
+    {
+      "text": "1:1 상담",
+      "url": "javascript:fnMenuLinkUrl('01','/bbs/selectNttList?sechBbsSeq=14%27);",
+      "onclick": null
+    },
+    {
+      "text": "온라인 설문",
+      "url": "javascript:fnMenuLinkUrl('01','/csp/csp02/csp0201/csp020101');",
+      "onclick": null
+    },
+    {
+      "text": "이벤트",
+      "url": "javascript:fnMenuLinkUrl('00','/csp/csp03/csp0301');",
+      "onclick": null
+    },
+    {
+      "text": "각종 서식",
+      "url": "javascript:fnMenuLinkUrl('00','/csp/csp05/csp0501');",
+      "onclick": null
+    },
+    {
+      "text": "공지사항",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=10%27);",
+      "onclick": null
+    },
+    {
+      "text": "경영공시",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0101/mno010100');",
+      "onclick": null
+    },
+    {
+      "text": "공시개요",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0101/mno010100');",
+      "onclick": null
+    },
+    {
+      "text": "일반현황",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0101/mno010101');",
+      "onclick": null
+    },
+    {
+      "text": "기관운영",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0102/mno010201');",
+      "onclick": null
+    },
+    {
+      "text": "경영성과 및 주요사업",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0103/mno010301');",
+      "onclick": null
+    },
+    {
+      "text": "대내외평가",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0104/mno010401');",
+      "onclick": null
+    },
+    {
+      "text": "자산운용",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0105/mno010501');",
+      "onclick": null
+    },
+    {
+      "text": "기타사항",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0106/mno010601');",
+      "onclick": null
+    },
+    {
+      "text": "정보공개",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno02/mno0201/mno020101');",
+      "onclick": null
+    },
+    {
+      "text": "사전정보 공표",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno02/mno0201/mno020101');",
+      "onclick": null
+    },
+    {
+      "text": "공공데이터 개방",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno02/mno0202/mno020201');",
+      "onclick": null
+    },
+    {
+      "text": "CEO코너",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf01/inf0101/inf010101');",
+      "onclick": null
+    },
+    {
+      "text": "인사말",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf01/inf0101/inf010101');",
+      "onclick": null
+    },
+    {
+      "text": "프로필",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf01/inf0101/inf010102');",
+      "onclick": null
+    },
+    {
+      "text": "이사장과의 대화",
+      "url": "javascript:fnMenuLinkUrl('01','/bbs/selectNttList?sechBbsSeq=15%27);",
+      "onclick": null
+    },
+    {
+      "text": "역대 이사장",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf01/inf0101/inf010104');",
+      "onclick": null
+    },
+    {
+      "text": "윤리경영",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf02/inf0201/inf020102');",
+      "onclick": null
+    },
+    {
+      "text": "윤리규범",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf02/inf0201/inf020102');",
+      "onclick": null
+    },
+    {
+      "text": "사이버신문고",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf02/inf0201/inf020106');",
+      "onclick": null
+    },
+    {
+      "text": "미션 및 비전",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf03/inf0301/inf030101');",
+      "onclick": null
+    },
+    {
+      "text": "조직안내",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf04/inf0401/inf040101');",
+      "onclick": null
+    },
+    {
+      "text": "조직도",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf04/inf0401/inf040101');",
+      "onclick": null
+    },
+    {
+      "text": "의결기구",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf04/inf0402/inf040201');",
+      "onclick": null
+    },
+    {
+      "text": "시·도 지부",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf04/inf0403/inf040301');",
+      "onclick": null
+    },
+    {
+      "text": "직영 사업체",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf04/inf0404/inf040401');",
+      "onclick": null
+    },
+    {
+      "text": "CI",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf03/inf0302/inf030201');",
+      "onclick": null
+    },
+    {
+      "text": "채용정보",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=10035%27);",
+      "onclick": null
+    },
+    {
+      "text": "채용공고",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=10035%27);",
+      "onclick": null
+    },
+    {
+      "text": "오시는 길",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf06/inf0601/inf060101');",
+      "onclick": null
+    },
+    {
+      "text": "통합검색하기",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "로그인",
+      "url": "https://www.poba.or.kr/usr/usr01/usr0101",
+      "onclick": null
+    },
+    {
+      "text": "회원가입",
+      "url": "https://www.poba.or.kr/usr/usr02/usr0201",
+      "onclick": null
+    },
+    {
+      "text": "ENG",
+      "url": "https://www.poba.or.kr/eng/eng_main",
+      "onclick": null
+    },
+    {
+      "text": "이전",
+      "url": "javascript:history.back();",
+      "onclick": null
+    },
+    {
+      "text": "홈",
+      "url": "https://www.poba.or.kr/",
+      "onclick": null
+    },
+    {
+      "text": "공제상품/신청",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "마이페이지",
+      "url": "javascript:fnMenuLinkUrl(\"02\",\"/myp/myp02/myp0201\");",
+      "onclick": null
+    },
+    {
+      "text": "공제상품/신청",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010101\");",
+      "onclick": null
+    },
+    {
+      "text": "복지서비스",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/wlf/wlf01/wlf0101/wlf010101\");",
+      "onclick": null
+    },
+    {
+      "text": "홍보센터",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/bbs/selectNttList?sechBbsSeq=1%22);",
+      "onclick": null
+    },
+    {
+      "text": "고객지원",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/bbs/selectNttList?sechBbsSeq=13%22);",
+      "onclick": null
+    },
+    {
+      "text": "경영공시",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/mno/mno01/mno0101/mno010100\");",
+      "onclick": null
+    },
+    {
+      "text": "공제회소개",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/inf/inf01/inf0101/inf010101\");",
+      "onclick": null
+    },
+    {
+      "text": "복지급여",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "공제회비",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010101\");",
+      "onclick": null
+    },
+    {
+      "text": "퇴직/탈퇴급여",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010102\");",
+      "onclick": null
+    },
+    {
+      "text": "분할지급퇴직급여",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010103\");",
+      "onclick": null
+    },
+    {
+      "text": "복지급여",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010104\");",
+      "onclick": null
+    },
+    {
+      "text": "한아름목돈예탁",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010111\");",
+      "onclick": null
+    },
+    {
+      "text": "단기적립급여",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010119\");",
+      "onclick": null
+    },
+    {
+      "text": "대여",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010114\");",
+      "onclick": null
+    },
+    {
+      "text": "사망급여금",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "요양급여금",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010107\");",
+      "onclick": null
+    },
+    {
+      "text": "혼인급여금",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010110\");",
+      "onclick": null
+    },
+    {
+      "text": "출산급여금",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010109\");",
+      "onclick": null
+    },
+    {
+      "text": "가족사망급여금",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010106\");",
+      "onclick": null
+    },
+    {
+      "text": "재해급여금",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010108\");",
+      "onclick": null
+    },
+    {
+      "text": "사망급여금",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010105\");",
+      "onclick": null
+    },
+    {
+      "text": "복지지원급여금",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010118\");",
+      "onclick": null
+    },
+    {
+      "text": "우수회원급여금",
+      "url": "javascript:fnMenuLinkUrl(\"00\",\"/prd/prd01/prd0101/prd010121\");",
+      "onclick": null
+    },
+    {
+      "text": "지급기준 및 금액",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "지급기준 및 금액",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "신청방법",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "규정 및 서식",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "(복지) 급여금청구서(사망급여금)",
+      "url": "javascript:cfnFileDownload('CrD1cIBSnaT1VGWoKlZ48g%3D%3D', '1');",
+      "onclick": null
+    },
+    {
+      "text": "(복지) 유족대표자선정서(사망급여금)",
+      "url": "javascript:cfnFileDownload('wyzwK3qTYYGNb9EcDY47iA%3D%3D', '1');",
+      "onclick": null
+    },
+    {
+      "text": "회원서비스헌장",
+      "url": "https://www.poba.or.kr/man/man02/man0201/man020104",
+      "onclick": null
+    },
+    {
+      "text": "이용약관",
+      "url": "https://www.poba.or.kr/man/man02/man0201/man020106",
+      "onclick": null
+    },
+    {
+      "text": "개인정보 처리방침",
+      "url": "https://www.poba.or.kr/bbs/selectNttDetail?sechBbsSeq=18",
+      "onclick": null
+    },
+    {
+      "text": "고정형 영상정보처리기기  운영·관리",
+      "url": "https://www.poba.or.kr/man/man02/man0201/man020102",
+      "onclick": null
+    },
+    {
+      "text": "오시는 길",
+      "url": "https://www.poba.or.kr/inf/inf06/inf0601/inf060101",
+      "onclick": null
+    },
+    {
+      "text": "사이트맵",
+      "url": "https://www.poba.or.kr/man/man02/man0201/man020107",
+      "onclick": null
+    },
+    {
+      "text": "원격지원",
+      "url": "https://get.teamviewer.com/pobaqs",
+      "onclick": null
+    },
+    {
+      "text": "관련사이트",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "행정안전부",
+      "url": "https://www.mois.go.kr/frt/a01/frtMain.do",
+      "onclick": null
+    },
+    {
+      "text": "국가대표포털",
+      "url": "http://www.korea.go.kr/",
+      "onclick": null
+    },
+    {
+      "text": "새주소안내",
+      "url": "https://www.juso.go.kr/",
+      "onclick": null
+    },
+    {
+      "text": "한국법제연구원",
+      "url": "https://www.klri.re.kr/index.jsp",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://gooddesignawards.org/",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.german-design-award.com/",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://designitaward.com/",
+      "onclick": null
+    },
+    {
+      "text": "로그인",
+      "url": "https://www.poba.or.kr/usr/usr01/usr0101",
+      "onclick": null
+    },
+    {
+      "text": "홈",
+      "url": "https://www.poba.or.kr/",
+      "onclick": null
+    },
+    {
+      "text": "회원가입",
+      "url": "https://www.poba.or.kr/usr/usr02/usr0201",
+      "onclick": null
+    },
+    {
+      "text": "마이페이지",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "공제상품/신청",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "복지서비스",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "홍보센터",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "고객지원",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "경영공시",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "공제회소개",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "ENG",
+      "url": "https://www.poba.or.kr/eng/eng_main",
+      "onclick": null
+    },
+    {
+      "text": "상품가입현황",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp11/myp1101');",
+      "onclick": null
+    },
+    {
+      "text": "공제회비",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp02/myp0201');",
+      "onclick": null
+    },
+    {
+      "text": "퇴직/탈퇴급여",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp03/myp0301');",
+      "onclick": null
+    },
+    {
+      "text": "분할지급퇴직급여",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp04/myp0401');",
+      "onclick": null
+    },
+    {
+      "text": "복지급여",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp05/myp0501');",
+      "onclick": null
+    },
+    {
+      "text": "한아름목돈예탁",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp06/myp0601');",
+      "onclick": null
+    },
+    {
+      "text": "단기적립급여",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp10/myp1001');",
+      "onclick": null
+    },
+    {
+      "text": "대여",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp07/myp0701');",
+      "onclick": null
+    },
+    {
+      "text": "제증명 발급",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp08/myp0801');",
+      "onclick": null
+    },
+    {
+      "text": "개인정보",
+      "url": "javascript:fnMenuLinkUrl('00','/myp/myp09/myp0901');",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "개인정보 수정",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp09/myp0901');",
+      "onclick": null
+    },
+    {
+      "text": "비밀번호 변경",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp09/myp0902');",
+      "onclick": null
+    },
+    {
+      "text": "약관 및 수신동의 변경",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp09/myp0905');",
+      "onclick": null
+    },
+    {
+      "text": "인증센터",
+      "url": "javascript:fnMenuLinkUrl('00','/usr/usr01/usr0101/usr010104');",
+      "onclick": null
+    },
+    {
+      "text": "웹회원 탈퇴",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp09/myp0903');",
+      "onclick": null
+    },
+    {
+      "text": "공제회비",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010101');",
+      "onclick": null
+    },
+    {
+      "text": "퇴직/탈퇴급여",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010102');",
+      "onclick": null
+    },
+    {
+      "text": "분할지급퇴직급여",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010103');",
+      "onclick": null
+    },
+    {
+      "text": "복지급여",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010104');",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "요양급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010107');",
+      "onclick": null
+    },
+    {
+      "text": "혼인급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010110');",
+      "onclick": null
+    },
+    {
+      "text": "출산급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010109');",
+      "onclick": null
+    },
+    {
+      "text": "가족사망급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010106');",
+      "onclick": null
+    },
+    {
+      "text": "재해급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010108');",
+      "onclick": null
+    },
+    {
+      "text": "사망급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010105');",
+      "onclick": null
+    },
+    {
+      "text": "복지지원급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010118');",
+      "onclick": null
+    },
+    {
+      "text": "우수회원급여금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010121');",
+      "onclick": null
+    },
+    {
+      "text": "한아름목돈예탁",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010111');",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "한아름목돈예탁",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010112');",
+      "onclick": null
+    },
+    {
+      "text": "한아름목돈예탁(비과세종합저축)",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010113');",
+      "onclick": null
+    },
+    {
+      "text": "단기적립급여",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010119');",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "단기적립급여",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010120?gdsUninCd=SAS18%27);",
+      "onclick": null
+    },
+    {
+      "text": "대여",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010114');",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "자기담보 생활안정자금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010115');",
+      "onclick": null
+    },
+    {
+      "text": "보증보험 생활안정자금",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010116');",
+      "onclick": null
+    },
+    {
+      "text": "한아름목돈담보 대여",
+      "url": "javascript:fnMenuLinkUrl('00','/prd/prd01/prd0101/prd010117');",
+      "onclick": null
+    },
+    {
+      "text": "회원콘도",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010101');",
+      "onclick": null
+    },
+    {
+      "text": "호텔인터시티",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010102');",
+      "onclick": null
+    },
+    {
+      "text": "중원골프장",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010103');",
+      "onclick": null
+    },
+    {
+      "text": "POBA누리",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010104');",
+      "onclick": null
+    },
+    {
+      "text": "우수회원지원금",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010105');",
+      "onclick": null
+    },
+    {
+      "text": "우수회원기념품",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010106');",
+      "onclick": null
+    },
+    {
+      "text": "회원행사",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010107');",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "총괄안내",
+      "url": "javascript:fnMenuLinkUrl('00','/wlf/wlf01/wlf0101/wlf010100');",
+      "onclick": null
+    },
+    {
+      "text": "영상자료",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=10037%27);",
+      "onclick": null
+    },
+    {
+      "text": "공제회 소식",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=1%27);",
+      "onclick": null
+    },
+    {
+      "text": "창립 50년사",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=10039%27);",
+      "onclick": null
+    },
+    {
+      "text": "간행물",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=4%27);",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "브로셔",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=3%27);",
+      "onclick": null
+    },
+    {
+      "text": "POBA 가이드북",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=4%27);",
+      "onclick": null
+    },
+    {
+      "text": "공모전 수상작 모음집",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=10041%27);",
+      "onclick": null
+    },
+    {
+      "text": "홍보영상",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=5%27);",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "기관 홍보동영상",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=5%27);",
+      "onclick": null
+    },
+    {
+      "text": "공제업무담당자 교육",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=62%27);",
+      "onclick": null
+    },
+    {
+      "text": "입찰공고",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=11%27);",
+      "onclick": null
+    },
+    {
+      "text": "자주하는 질문",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=13%27);",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "FAQ",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=13%27);",
+      "onclick": null
+    },
+    {
+      "text": "1:1 상담",
+      "url": "javascript:fnMenuLinkUrl('01','/bbs/selectNttList?sechBbsSeq=14%27);",
+      "onclick": null
+    },
+    {
+      "text": "온라인 설문",
+      "url": "javascript:fnMenuLinkUrl('01','/csp/csp02/csp0201/csp020101');",
+      "onclick": null
+    },
+    {
+      "text": "이벤트",
+      "url": "javascript:fnMenuLinkUrl('00','/csp/csp03/csp0301');",
+      "onclick": null
+    },
+    {
+      "text": "각종 서식",
+      "url": "javascript:fnMenuLinkUrl('00','/csp/csp05/csp0501');",
+      "onclick": null
+    },
+    {
+      "text": "공지사항",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=10%27);",
+      "onclick": null
+    },
+    {
+      "text": "경영공시",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0101/mno010100');",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "공시개요",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0101/mno010100');",
+      "onclick": null
+    },
+    {
+      "text": "일반현황",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0101/mno010101');",
+      "onclick": null
+    },
+    {
+      "text": "기관운영",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0102/mno010201');",
+      "onclick": null
+    },
+    {
+      "text": "경영성과 및 주요사업",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0103/mno010301');",
+      "onclick": null
+    },
+    {
+      "text": "대내외평가",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0104/mno010401');",
+      "onclick": null
+    },
+    {
+      "text": "자산운용",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0105/mno010501');",
+      "onclick": null
+    },
+    {
+      "text": "기타사항",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno01/mno0106/mno010601');",
+      "onclick": null
+    },
+    {
+      "text": "정보공개",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno02/mno0201/mno020101');",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "사전정보 공표",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno02/mno0201/mno020101');",
+      "onclick": null
+    },
+    {
+      "text": "공공데이터 개방",
+      "url": "javascript:fnMenuLinkUrl('00','/mno/mno02/mno0202/mno020201');",
+      "onclick": null
+    },
+    {
+      "text": "CEO코너",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf01/inf0101/inf010101');",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "인사말",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf01/inf0101/inf010101');",
+      "onclick": null
+    },
+    {
+      "text": "프로필",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf01/inf0101/inf010102');",
+      "onclick": null
+    },
+    {
+      "text": "이사장과의 대화",
+      "url": "javascript:fnMenuLinkUrl('01','/bbs/selectNttList?sechBbsSeq=15%27);",
+      "onclick": null
+    },
+    {
+      "text": "역대 이사장",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf01/inf0101/inf010104');",
+      "onclick": null
+    },
+    {
+      "text": "윤리경영",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf02/inf0201/inf020102');",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "윤리규범",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf02/inf0201/inf020102');",
+      "onclick": null
+    },
+    {
+      "text": "사이버신문고",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf02/inf0201/inf020106');",
+      "onclick": null
+    },
+    {
+      "text": "미션 및 비전",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf03/inf0301/inf030101');",
+      "onclick": null
+    },
+    {
+      "text": "조직안내",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf04/inf0401/inf040101');",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "조직도",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf04/inf0401/inf040101');",
+      "onclick": null
+    },
+    {
+      "text": "의결기구",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf04/inf0402/inf040201');",
+      "onclick": null
+    },
+    {
+      "text": "시·도 지부",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf04/inf0403/inf040301');",
+      "onclick": null
+    },
+    {
+      "text": "직영 사업체",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf04/inf0404/inf040401');",
+      "onclick": null
+    },
+    {
+      "text": "CI",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf03/inf0302/inf030201');",
+      "onclick": null
+    },
+    {
+      "text": "채용정보",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=10035%27);",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "채용공고",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=10035%27);",
+      "onclick": null
+    },
+    {
+      "text": "오시는 길",
+      "url": "javascript:fnMenuLinkUrl('00','/inf/inf06/inf0601/inf060101');",
+      "onclick": null
+    },
+    {
+      "text": "이벤트",
+      "url": "javascript:fnMenuLinkUrl('00','/csp/csp03/csp0301');",
+      "onclick": null
+    },
+    {
+      "text": "마이페이지",
+      "url": "javascript:fnMenuLinkUrl('02','/myp/myp02/myp0201');",
+      "onclick": null
+    },
+    {
+      "text": "공제회 소식",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=1%27);",
+      "onclick": null
+    },
+    {
+      "text": "FAQ",
+      "url": "javascript:fnMenuLinkUrl('00','/bbs/selectNttList?sechBbsSeq=13%27);",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "javascript:;",
+      "onclick": "javascript:openChat();"
+    },
+    {
+      "text": "",
+      "url": "javascript:;",
+      "onclick": "javascript:$(this).parent().remove();"
+    },
+    {
+      "text": "",
+      "url": "javascript:;",
+      "onclick": "javascript:openChat('915');"
+    },
+    {
+      "text": "",
+      "url": "javascript:;",
+      "onclick": "javascript:$(this).parent().remove();"
+    },
+    {
+      "text": "SCROLL",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    },
+    {
+      "text": "TOP",
+      "url": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105#",
+      "onclick": null
+    }
+  ],
+  "forms": [
+    {
+      "action": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
+      "method": "get",
+      "fields": [
+        {
+          "name": "redirectUrl",
+          "type": "hidden",
+          "value": "/dfc/retrieveDefectCreateFormPopup.do"
+        },
+        {
+          "name": "url",
+          "type": "hidden",
+          "value": "http://192.167.110.220:9080/orca-sso/main.do"
+        },
+        {
+          "name": "ssoType",
+          "type": "hidden",
+          "value": "EMAIL"
+        },
+        {
+          "name": "email",
+          "type": "hidden",
+          "value": ""
+        },
+        {
+          "name": "project_id",
+          "type": "hidden",
+          "value": "PROJECT"
+        },
+        {
+          "name": "defc_img_base64",
+          "type": "hidden",
+          "value": ""
+        },
+        {
+          "name": "linkparam",
+          "type": "hidden",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "action": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
+      "method": "get",
+      "fields": [
+        {
+          "name": "reqQuery",
+          "type": "hidden",
+          "value": ""
+        },
+        {
+          "name": "token",
+          "type": "hidden",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "action": "https://www.poba.or.kr/prd/prd01/prd0101/prd010105",
+      "method": "post",
+      "fields": []
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "P1-16",
+  "title": "유언집행자 선임 심판청구서",
+  "institution": "대한법률구조공단",
+  "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+  "checked_at": "2026-09-19T17:36:34.782912Z",
+  "retention": "검증 메타데이터와 짧은 발췌만 보존. 원본·전체 텍스트·화면·쿠키·임시 경로는 포함하지 않음.",
+  "records": [
+    {
+      "capture_name": "klac-browser-evidence.json",
+      "capture_sha256": "26b970720540a6099b21996a18391d96c1c3faae220f0321c5af806905c003e7",
+      "evidence_key": "court-executor",
+      "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+      "captured_at": "2026-09-19T17:30:39.195Z",
+      "method": "live_browser_rendered_dom",
+      "observed_rows": [
+        {
+          "text": "1068 유언집행자 선임청구서",
+          "download_urls": [
+            "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2021%2f03%2f17%2f09%2f59%2f86ad830b-43c5-4c25-8cd7-9cfa3d72c76f&filename=1068+%ec%9c%a0%ec%96%b8%ec%a7%91%ed%96%89%ec%9e%90+%ec%84%a0%ec%9e%84%ec%b2%ad%ea%b5%ac%ec%84%9c.hwp"
+          ]
+        }
+      ],
+      "download_verified": false
+    }
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "case_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+    },
+    "resource_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+    },
+    "procedure_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+    },
+    "action_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+    },
+    "purpose": {
+      "$ref": "#/$defs/purpose"
+    },
+    "party_role": {
+      "$ref": "#/$defs/partyRole"
+    },
+    "rule_binding_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+    },
+    "rule_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+    },
+    "effective_version_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+    },
+    "source_revision_ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+    },
+    "calendar_timezone": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trigger_events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "event_ref": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+          },
+          "occurred_on": {
+            "type": "string",
+            "format": "date"
+          },
+          "verification": {
+            "$ref": "#/$defs/verification"
+          }
+        },
+        "required": [
+          "event_ref",
+          "occurred_on",
+          "verification"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "deadline_evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "awaiting_facts",
+            "awaiting_rule_verification",
+            "verified",
+            "not_applicable"
+          ]
+        },
+        "computed_due_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "calculation_trace_ref": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "rule_verified": {
+          "type": "boolean"
+        },
+        "scope_verified": {
+          "type": "boolean"
+        },
+        "facts_verified": {
+          "type": "boolean"
+        },
+        "calendar_rules_verified": {
+          "type": "boolean"
+        },
+        "evaluated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "state",
+        "rule_verified",
+        "scope_verified",
+        "facts_verified",
+        "calendar_rules_verified",
+        "evidence_refs"
+      ]
+    },
+    "task_state": {
+      "type": "string",
+      "enum": [
+        "open",
+        "completed",
+        "cancelled"
+      ]
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "note": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "task_id",
+    "resource_id",
+    "procedure_id",
+    "action_ref",
+    "purpose",
+    "party_role",
+    "calendar_timezone",
+    "trigger_events",
+    "deadline_evaluation",
+    "task_state"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:asset-succession:private-deadline-task:1.0.0",
+  "title": "Private case deadline task — never publish in resource catalog",
+  "$defs": {
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "inheritance",
+        "gift",
+        "capital_transfer",
+        "business_succession"
+      ]
+    },
+    "partyRole": {
+      "type": "string",
+      "enum": [
+        "asset_owner",
+        "transferor",
+        "transferee",
+        "heir",
+        "executor_trustee",
+        "business_owner",
+        "representative",
+        "other"
+      ]
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "pending",
+            "needs_review"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+          },
+          "uniqueItems": true
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reviewer_ref": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "status",
+        "evidence_refs"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "verified"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "reviewed_at",
+              "reviewer_ref"
+            ],
+            "properties": {
+              "evidence_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "deadline_evaluation": {
+            "properties": {
+              "state": {
+                "const": "verified"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          }
+        },
+        "required": [
+          "deadline_evaluation"
+        ]
+      },
+      "then": {
+        "required": [
+          "rule_binding_ref",
+          "rule_ref",
+          "effective_version_ref",
+          "source_revision_ref"
+        ],
+        "properties": {
+          "deadline_evaluation": {
+            "required": [
+              "computed_due_date",
+              "calculation_trace_ref",
+              "evaluated_at"
+            ],
+            "properties": {
+              "rule_verified": {
+                "const": true
+              },
+              "scope_verified": {
+                "const": true
+              },
+              "facts_verified": {
+                "const": true
+              },
+              "calendar_rules_verified": {
+                "const": true
+              },
+              "evidence_refs": {
+                "minItems": 1
+              }
+            }
+          },
+          "trigger_events": {
+            "minItems": 1,
+            "items": {
+              "properties": {
+                "verification": {
+                  "properties": {
+                    "status": {
+                      "const": "verified"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "deadline_evaluation": {
+            "not": {
+              "required": [
+                "computed_due_date"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task_state": {
+            "const": "completed"
+          }
+        },
+        "required": [
+          "task_state"
+        ]
+      },
+      "then": {
+        "required": [
+          "completed_at"
+        ]
+      }
+    }
+  ]
+}

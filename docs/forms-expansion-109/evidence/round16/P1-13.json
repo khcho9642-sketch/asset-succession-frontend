@@ -1,0 +1,58 @@
+{
+  "id": "P1-13",
+  "title": "등기신청 위임장·등기신청수수료 안내",
+  "status": "확인 완료",
+  "source_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=1&cnpClsNo=3&csmSeq=566&popMenu=ov",
+  "checked_at": "2026-09-19T17:22:27Z",
+  "source_type": "공식제공처",
+  "institution": "법제처 찾기쉬운 생활법령정보",
+  "requested_provider": "대한민국 법원 인터넷등기소",
+  "alternative_official_source": true,
+  "license": "법제처 공식 제공처의 첨부 원본 확인 · 자체 재배포하지 않음",
+  "files": [],
+  "inspected_originals": [
+    {
+      "url": "https://www.easylaw.go.kr/CSP/FlDownload.laf?flSeq=1776590363784",
+      "bytes": 16896,
+      "sha256": "c21ba114818cc058edaf4df662c75b38739481bdbd70a7c918f5a30d8a0b9ddb",
+      "format": "hwp",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:22:34Z",
+      "title_verified": true,
+      "role": "original",
+      "name": "등기신청 위임장·등기신청수수료 안내"
+    }
+  ],
+  "source_evidence": {
+    "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=3&cciNo=1&cnpClsNo=3&csmSeq=566&popMenu=ov",
+    "http_status": 200,
+    "checked_at": "2026-09-19T17:22:27Z",
+    "page_sha256": "75fb2107a06b7187858fee06df71ee613ef38a9cd2bbb287ef0aaff5a38e059f",
+    "matched_terms": [
+      "위임장",
+      "등기신청수수료"
+    ],
+    "download_sha256": [
+      "c21ba114818cc058edaf4df662c75b38739481bdbd70a7c918f5a30d8a0b9ddb"
+    ],
+    "confirmed_observations": [
+      "본문의 해당 서식 다운로드 링크 확인",
+      "실제 HWP 파일의 HWP Document File 서명 확인",
+      "파일 내 신청서 제목 및 요청 목적 대조",
+      "같은 페이지 등기신청수수료 납부 안내 확인"
+    ],
+    "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-13.json",
+    "evidence_sha256": "b7503374fc9e19233589cef5d890f3df5fe2c194bdd1373df0c001dbe1fbb469"
+  },
+  "failure_reason": null,
+  "note": "법제처 매매 소유권이전등기 제출서류 페이지에서 등기신청 위임장 원본과 등기신청수수료 안내를 함께 확인했습니다. 위임장 파일 제목 및 부동산 등기신청·취하 위임 본문을 검사했습니다. 금액·법정기한은 옮기지 않고 공식 페이지를 안내합니다.",
+  "candidate_reviewed_at": "2026-09-19T17:31:52.017947+00:00",
+  "task_operation": "add",
+  "target_id": null,
+  "evidence_retention": {
+    "representation": "metadata_and_short_excerpts",
+    "support_file": "docs/forms-expansion-109/evidence/round16/support/P1-13.json",
+    "new_original_binaries_included": false,
+    "private_local_paths_included": false
+  }
+}

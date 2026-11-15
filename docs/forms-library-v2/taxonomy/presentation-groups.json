@@ -1,0 +1,254 @@
+[
+  {
+    "id": "G-GIFT-REAL",
+    "title": "부동산 증여계약",
+    "primary_stage_id": "S3",
+    "member_resource_ids": [
+      "BP-G-01",
+      "DD-G-01"
+    ],
+    "group_type": "presentation_only",
+    "reason": "기관별 서식과 일반·복수 대상 변형을 선택하도록 묶음",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-SALE-HOUSE",
+    "title": "단독주택 매매",
+    "primary_stage_id": "S3",
+    "member_resource_ids": [
+      "SC-01",
+      "SC-04",
+      "SC-05",
+      "SC-06",
+      "SC-07"
+    ],
+    "group_type": "presentation_only",
+    "reason": "간이·일반·담보·임차보증금 인수 조건별 변형",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-SALE-UNIT",
+    "title": "집합건물 매매",
+    "primary_stage_id": "S3",
+    "member_resource_ids": [
+      "SC-02",
+      "SC-08",
+      "SC-09",
+      "SC-10",
+      "SC-11"
+    ],
+    "group_type": "presentation_only",
+    "reason": "간이·일반·담보·임차보증금 인수 조건별 변형",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-SALE-LAND",
+    "title": "토지 매매",
+    "primary_stage_id": "S3",
+    "member_resource_ids": [
+      "SC-03",
+      "SC-12",
+      "SC-13",
+      "SC-14",
+      "SC-15"
+    ],
+    "group_type": "presentation_only",
+    "reason": "간이·일반·담보·임차보증금 인수 조건별 변형",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-LOAN",
+    "title": "금전대차계약",
+    "primary_stage_id": "S3",
+    "member_resource_ids": [
+      "SC-22",
+      "SC-23",
+      "SC-24",
+      "SC-25"
+    ],
+    "group_type": "presentation_only",
+    "reason": "보증·담보 제공자 조건별 변형; 가족 간 대여와의 적용 연결은 개별 확인",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-IOU",
+    "title": "차용증",
+    "primary_stage_id": "S3",
+    "member_resource_ids": [
+      "SC-30",
+      "SC-31"
+    ],
+    "group_type": "presentation_only",
+    "reason": "일반·연대보증 구분 보존",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-REPAYMENT",
+    "title": "대여금 상환 영수증",
+    "primary_stage_id": "S6",
+    "member_resource_ids": [
+      "SC-28",
+      "SC-29"
+    ],
+    "group_type": "presentation_only",
+    "reason": "전액·일부 상환을 선택하도록 묶음",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-REG-INHERIT",
+    "title": "상속 소유권 이전등기",
+    "primary_stage_id": "S4",
+    "member_resource_ids": [
+      "REG-I-01",
+      "REG-I-02",
+      "REG-I-03",
+      "REG-I-04"
+    ],
+    "group_type": "presentation_only",
+    "reason": "상속 원인·협의분할·구분건물 조건을 별도 유지",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-REG-GIFT",
+    "title": "증여 소유권 이전등기",
+    "primary_stage_id": "S4",
+    "member_resource_ids": [
+      "REG-G-01",
+      "REG-G-02"
+    ],
+    "group_type": "presentation_only",
+    "reason": "일반·구분건물 변형",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-FIND-ASSETS",
+    "title": "재산 조회",
+    "primary_stage_id": "S1",
+    "member_resource_ids": [
+      "P0-01",
+      "P0-02",
+      "P6-02",
+      "P6-05"
+    ],
+    "group_type": "presentation_only",
+    "reason": "본인 조회·사망자 조회, 기관별 조회 대상과 지급 포함 여부를 별도로 표시. 사후 전용으로 일괄 제한하지 않음",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-INHERIT-CHOICE",
+    "title": "상속 승인·포기 선택",
+    "primary_stage_id": "S3",
+    "member_resource_ids": [
+      "P0-07",
+      "P0-08",
+      "P0-10"
+    ],
+    "group_type": "presentation_only",
+    "reason": "서로 다른 선택 절차. 추천·대체·동시제출을 자동 추정하지 않음",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-WILL-PREPARE",
+    "title": "유언 준비",
+    "primary_stage_id": "S3",
+    "member_resource_ids": [
+      "P1-14",
+      "P1-17"
+    ],
+    "group_type": "presentation_only",
+    "reason": "자필 작성 안내와 공증 안내를 구분; 빈칸 제출서식으로 합성하지 않음",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-WILL-EXECUTE",
+    "title": "유언 집행 관련 신청",
+    "primary_stage_id": "S3",
+    "member_resource_ids": [
+      "P1-15",
+      "P1-16"
+    ],
+    "group_type": "presentation_only",
+    "reason": "검인·집행자 선임은 별도 절차와 기한 규칙 유지",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-GUARDIAN-START",
+    "title": "법정후견 개시",
+    "primary_stage_id": "S3",
+    "member_resource_ids": [
+      "P1-22",
+      "P8-08"
+    ],
+    "group_type": "presentation_only",
+    "reason": "성년·한정·특정후견을 각 신청으로 보존; 임의후견은 별도",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-SURVIVOR-BENEFIT",
+    "title": "연금·공제 유족급여",
+    "primary_stage_id": "S4",
+    "member_resource_ids": [
+      "P0-16",
+      "P7-01",
+      "P7-02",
+      "P7-03",
+      "P7-04",
+      "P7-05",
+      "P7-06"
+    ],
+    "group_type": "presentation_only",
+    "reason": "직역·기관·급여별 개별 신청·수급요건 보존",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-REG-SALE",
+    "title": "매매 소유권 이전등기",
+    "primary_stage_id": "S4",
+    "member_resource_ids": [
+      "P1-01",
+      "P1-02"
+    ],
+    "group_type": "presentation_only",
+    "reason": "일반·구분건물 변형",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-MORTGAGE",
+    "title": "근저당권 등기",
+    "primary_stage_id": "S4",
+    "member_resource_ids": [
+      "P1-07",
+      "P1-08"
+    ],
+    "group_type": "presentation_only",
+    "reason": "설정·말소는 각기 독립된 절차; 선택 화면만 통합",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-TAX-REMEDY",
+    "title": "세무 정정·불복",
+    "primary_stage_id": "S7",
+    "member_resource_ids": [
+      "P2-10",
+      "P2-11",
+      "P2-12",
+      "P2-13",
+      "P2-14"
+    ],
+    "group_type": "presentation_only",
+    "reason": "경정·기한후·과세전·이의·심사·심판을 개별 절차로 보존",
+    "procedure_identity_preserved": true
+  },
+  {
+    "id": "G-RENTAL-BUSINESS",
+    "title": "임대사업자 승계·변경",
+    "primary_stage_id": "S4",
+    "member_resource_ids": [
+      "P9-06",
+      "P9-07"
+    ],
+    "group_type": "presentation_only",
+    "reason": "등록·변경·말소·승계는 독립된 절차. 승계에 필요한 분기를 우선 표시",
+    "procedure_identity_preserved": true
+  }
+]

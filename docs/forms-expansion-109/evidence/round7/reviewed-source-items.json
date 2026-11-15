@@ -1,0 +1,17 @@
+{
+  "reviewed_at": "2026-09-19T13:23:04Z",
+  "newly_completed_ids": [
+    "P0-07",
+    "P0-08",
+    "P1-15",
+    "P1-18",
+    "P1-21",
+    "P1-23",
+    "P7-03",
+    "P8-01",
+    "P8-03"
+  ],
+  "source_retrieval_dates_preserved": true,
+  "new_original_files_downloaded": 0,
+  "note": "서식이 존재하는 기존 성공 응답을 확인해 공식 제공처 항목으로 등록했습니다. 오늘 재접속 성공 또는 원본 파일 확보로 보고하지 않습니다."
+}

@@ -1,0 +1,136 @@
+{
+  "requested_url": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17",
+  "checked_at": "2026-09-19T15:02:52Z",
+  "http_status": 200,
+  "chain": [
+    {
+      "url": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17",
+      "http_status": 200,
+      "sha256": "59a93423977cd906ccd5c07a3f88f2a88fb8e8f9089bf60eb2a3d3f0ffab4be5",
+      "checked_at": "2026-09-19T15:02:52Z"
+    }
+  ],
+  "text": "- 민원서식 양식모음 | 대전회생법원 Home 민원 > 민원서식 양식모음 프린트 민원서식 양식모음 법원 선택 전체 개인회생 개인파산 법인회생 법인파산 일반회생 검색어 입력 검색 전체 | 개인회생 | 개인파산 | 법인회생 | 법인파산 | 일반회생 [개인회생] (서울회생법원)주택담보대출채권 채무재조정 프로그램 지원신청서 및 안내문 [개인파산/면책] (즉시)항고장 [개인회생] (즉시)항고장 [개인파산/면책] (춘천지방법원 강릉지원) 자료제출목록 - 파산(면책)신청서 첨부서류 [개인파산/면책] 99-3.상속재산 파산제도 안내 [개인회생] a-1-1 (대구지방법원) 개인회생절차 개시신청서(청년회생사건용) [개인회생] a-4-1 (대구지방법원) 수입 및 지출에 관한 목록(청년회생사건용) [개인회생] a-5-1 (대구지방법원) 진술서(청년회생사건용) [개인회생] j-1.변제계획 수정안 제출서 [개인회생] k.채권자목록 수정허가 신청서 이전 이전 16 17 18 19 20 다음 다음",
+  "links": [
+    {
+      "text": "Home",
+      "url": "https://djb.scourt.go.kr/rel/main.work",
+      "onclick": null,
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "[개인회생] (서울회생법원)주택담보대출채권 채무재조정 프로그램 지원신청서 및 안내문",
+      "url": "https://file.scourt.go.kr/AttachDownload?path=004&file=1667978372493_161932.hwp&downFile=[개인회생] 변경 주택담보대출 채무재조정프로그램 신청서 및 안내문.hwp&seqnum=133",
+      "onclick": null,
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "[개인파산/면책] (즉시)항고장",
+      "url": "https://file.scourt.go.kr/AttachDownload?path=004&file=1671525727707_174207.hwp&downFile=(즉시)항고장.hwp&seqnum=42",
+      "onclick": null,
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "[개인회생] (즉시)항고장",
+      "url": "https://file.scourt.go.kr/AttachDownload?path=004&file=1671525590643_173950.hwp&downFile=(즉시)항고장.hwp&seqnum=127",
+      "onclick": null,
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "[개인파산/면책] (춘천지방법원 강릉지원) 자료제출목록 - 파산(면책)신청서 첨부서류",
+      "url": "https://file.scourt.go.kr/AttachDownload?path=004&file=1720750389802_111309.hwp&downFile=(춘천지방법원 강릉지원) 자료제출목록 - 파산(면책)신청서 첨부서류.hwp&seqnum=65",
+      "onclick": null,
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "[개인파산/면책] 99-3.상속재산 파산제도 안내",
+      "url": "https://file.scourt.go.kr/AttachDownload?path=004&file=1669789501475_152501.hwp&downFile=서울회생법원 상속재산 파산제도 안내(수정본).hwp&seqnum=45",
+      "onclick": null,
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "[개인회생] a-1-1 (대구지방법원) 개인회생절차 개시신청서(청년회생사건용)",
+      "url": "https://file.scourt.go.kr/AttachDownload?path=004&file=1672210973936_160253.hwp&downFile=(대구지방법원)개인회생절차 개시신청서(청년개인회생사건용).hwp&seqnum=123",
+      "onclick": null,
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "[개인회생] a-4-1 (대구지방법원) 수입 및 지출에 관한 목록(청년회생사건용)",
+      "url": "https://file.scourt.go.kr/AttachDownload?path=004&file=1672210956120_160236.hwp&downFile=(대구지방법원) 수입 및 지출에 관한 목록(청년회생사건용).hwp&seqnum=124",
+      "onclick": null,
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "[개인회생] a-5-1 (대구지방법원) 진술서(청년회생사건용)",
+      "url": "https://file.scourt.go.kr/AttachDownload?path=004&file=1672210940564_160220.hwp&downFile=(대구지방법원) 진술서(청년회생사건용).hwp&seqnum=125",
+      "onclick": null,
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "[개인회생] j-1.변제계획 수정안 제출서",
+      "url": "https://file.scourt.go.kr/AttachDownload?path=004&file=1667978164662_161604.hwp&downFile=[개인회생] 변경 변제계획 수정안 제출서.hwp&seqnum=106",
+      "onclick": null,
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "[개인회생] k.채권자목록 수정허가 신청서",
+      "url": "https://file.scourt.go.kr/AttachDownload?path=004&file=1668130552674_103552.hwp&downFile=[개인회생] 변경 채권자목록 수정허가신청서.hwp&seqnum=108",
+      "onclick": null,
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "이전",
+      "url": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=1",
+      "onclick": "fn_egov_select_brdMstr(1);return false; ",
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "이전",
+      "url": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=15",
+      "onclick": "fn_egov_select_brdMstr(15);return false; ",
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "16",
+      "url": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=16",
+      "onclick": "fn_egov_select_brdMstr(16);return false; ",
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "17",
+      "url": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17",
+      "onclick": null,
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "18",
+      "url": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=18",
+      "onclick": "fn_egov_select_brdMstr(18);return false; ",
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "19",
+      "url": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=19",
+      "onclick": "fn_egov_select_brdMstr(19);return false; ",
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "20",
+      "url": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=20",
+      "onclick": "fn_egov_select_brdMstr(20);return false; ",
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "다음",
+      "url": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=21",
+      "onclick": "fn_egov_select_brdMstr(21);return false; ",
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    },
+    {
+      "text": "다음",
+      "url": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=28",
+      "onclick": "fn_egov_select_brdMstr(28);return false; ",
+      "origin": "https://djb.scourt.go.kr/rel/information/min/MinListAction.work?pageIndex=17"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "P8-02",
+  "requested_title": "상속회복청구 소장",
+  "candidate_status": "verified_official_related_pleading_example",
+  "completion_recommendation": "source_confirmed_with_scope_label",
+  "display_title": "상속회복청구 관련 소장 예시(인지 후 진정명의회복)",
+  "official_title": "328-1 소유권이전등기청구의 소(진정명의회복을 원인으로)",
+  "institution": "대한법률구조공단",
+  "source_type": "공식제공처",
+  "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do?pageIndex=1&folderId=000&listNm=%EC%A0%84%EC%B2%B4&searchCnd=0&searchWrd=%EC%A7%84%EC%A0%95%EB%AA%85%EC%9D%98%ED%9A%8C%EB%B3%B5&scdFolderId=",
+  "download_url": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f01%2f29%2f14%2f05%2f91279566-0d9e-474a-a803-0e12e1197e34&filename=328-1+%ec%86%8c%ec%9c%a0%ea%b6%8c%ec%9d%b4%ec%a0%84%eb%93%b1%ea%b8%b0%ec%b2%ad%ea%b5%ac%ec%9d%98_%ec%86%8c(%ec%a7%84%ec%a0%95%eb%aa%85%ec%9d%98%ed%9a%8c%eb%b3%b5%ec%9d%84_%ec%9b%90%ec%9d%b8%ec%9c%bc%eb%a1%9c).hwp",
+  "checked_at": "2026-09-19T17:41:18.254014+00:00",
+  "format": "HWP v5 OLE",
+  "file": {
+    "name": "candidate-328-1.hwp",
+    "url": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f01%2f29%2f14%2f05%2f91279566-0d9e-474a-a803-0e12e1197e34&filename=328-1+%ec%86%8c%ec%9c%a0%ea%b6%8c%ec%9d%b4%ec%a0%84%eb%93%b1%ea%b8%b0%ec%b2%ad%ea%b5%ac%ec%9d%98_%ec%86%8c(%ec%a7%84%ec%a0%95%eb%aa%85%ec%9d%98%ed%9a%8c%eb%b3%b5%ec%9d%84_%ec%9b%90%ec%9d%b8%ec%9c%bc%eb%a1%9c).hwp",
+    "status": 200,
+    "bytes": 81920,
+    "sha256": "82b91ab5993284c2bba0ed4dc2da7e0cb75e3368b34a6ab75b732ac16405dcdc",
+    "content_type": "application/x-msdownload",
+    "signature": "d0cf11e0a1b11ae10000000000000000"
+  },
+  "form_no": "328-1",
+  "revised_at": null,
+  "deadline": null,
+  "deadline_basis": null,
+  "license": "공공누리 제2유형 안내 · 공식 제공처 링크 · 파일 재배포 없음",
+  "evidence_summary": [
+    "공식 KLAC 법률서식 검색 결과에 서식 번호와 다운로드 링크가 있습니다.",
+    "다운로드 응답은 정상 HWP이며 파일 헤더·본문 파싱 및 내장 미리보기 확인을 마쳤습니다.",
+    "청구원인은 인지판결 후 진정상속인이 후순위 상속인을 상대로 부동산 명의 회복을 구하는 사례입니다.",
+    "서식 설명은 해당 등기이전청구권이 상속회복청구권의 성질을 가진다고 명시합니다."
+  ],
+  "scope_limits": [
+    "상속회복청구 일반에 사용하는 단일 법정 표준서식으로 표시하지 않습니다.",
+    "공식 문서명과 사례 범위를 공개 카드 상세에서 그대로 설명합니다.",
+    "기타 재산 반환 등 다른 사건에 그대로 사용할 수 있다고 안내하지 않습니다.",
+    "원문은 기간·법령 설명을 포함하지만 서비스의 deadline 필드나 UI 설명으로 전재하지 않습니다.",
+    "경로에 포함된 날짜를 개정일로 추정하지 않았습니다.",
+    "ECFS의 특정 상속회복 전자문서 메뉴 존재는 확인하지 못했습니다."
+  ],
+  "excluded_candidates": [
+    {
+      "number": "327",
+      "reason": "일반 명의회복 소송 예시이며 상속회복청구 성격이 원문에 명시되지 않아 대체하지 않습니다."
+    },
+    {
+      "number": "328",
+      "reason": "일반 명의회복 소송 예시이며 상속회복청구 성격이 원문에 명시되지 않아 대체하지 않습니다."
+    }
+  ],
+  "status": "확인 완료",
+  "note": "상속회복청구 관련 소장 예시(인지 후 진정명의회복). 공식 원문명: 328-1 소유권이전등기청구의 소(진정명의회복을 원인으로). 상속회복청구 일반에 사용하는 단일 법정 표준서식으로 표시하지 않습니다. 공식 문서명과 사례 범위를 공개 카드 상세에서 그대로 설명합니다. 기타 재산 반환 등 다른 사건에 그대로 사용할 수 있다고 안내하지 않습니다.",
+  "source_evidence": {
+    "original": {
+      "name": "candidate-328-1.hwp",
+      "url": "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f01%2f29%2f14%2f05%2f91279566-0d9e-474a-a803-0e12e1197e34&filename=328-1+%ec%86%8c%ec%9c%a0%ea%b6%8c%ec%9d%b4%ec%a0%84%eb%93%b1%ea%b8%b0%ec%b2%ad%ea%b5%ac%ec%9d%98_%ec%86%8c(%ec%a7%84%ec%a0%95%eb%aa%85%ec%9d%98%ed%9a%8c%eb%b3%b5%ec%9d%84_%ec%9b%90%ec%9d%b8%ec%9c%bc%eb%a1%9c).hwp",
+      "status": 200,
+      "bytes": 81920,
+      "sha256": "82b91ab5993284c2bba0ed4dc2da7e0cb75e3368b34a6ab75b732ac16405dcdc",
+      "content_type": "application/x-msdownload",
+      "signature": "d0cf11e0a1b11ae10000000000000000"
+    },
+    "scope": [
+      "공식 KLAC 법률서식 검색 결과에 서식 번호와 다운로드 링크가 있습니다.",
+      "다운로드 응답은 정상 HWP이며 파일 헤더·본문 파싱 및 내장 미리보기 확인을 마쳤습니다.",
+      "청구원인은 인지판결 후 진정상속인이 후순위 상속인을 상대로 부동산 명의 회복을 구하는 사례입니다.",
+      "서식 설명은 해당 등기이전청구권이 상속회복청구권의 성질을 가진다고 명시합니다."
+    ],
+    "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P8-02.json",
+    "evidence_sha256": "38bb73cf9b2e701459832c81011e1bdc900917ad198d673c1d2b9d266326c954"
+  },
+  "files": [],
+  "catalog_title": "상속회복청구 소장",
+  "verified_provider_files": [],
+  "candidate_reviewed_at": "2026-09-19T17:43:42.517876+00:00",
+  "task_operation": "add",
+  "target_id": null,
+  "evidence_retention": {
+    "representation": "metadata_and_short_excerpts",
+    "support_file": "docs/forms-expansion-109/evidence/round16/support/P8-02.json",
+    "new_original_binaries_included": false,
+    "private_local_paths_included": false
+  }
+}

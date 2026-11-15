@@ -1,0 +1,97 @@
+{
+  "requested_url": "https://eum.cw.or.kr/web/fir/WEBFIR090M00",
+  "url": "https://eum.cw.or.kr/web/fir/WEBFIR090M00",
+  "checked_at": "2026-09-17T09:51:15Z",
+  "http_status": 200,
+  "events": [
+    {
+      "url": "https://eum.cw.or.kr/web/fir/WEBFIR090M00",
+      "http_status": 200
+    }
+  ],
+  "text": "메뉴건너뛰고 본문 바로가기\n주메뉴 바로가기\n서브메뉴 바로가기\n\n건설근로자공제회\n\n근로자\n글자 확대\n글자 축소\n대표홈페이지\n발급문서 확인\n로그인\n퇴직공제/대부금복지서비스훈련/교육기능등급구인/구직증명서자료실고객센터고객참여공제회\n통합검색\nHOME\n퇴직공제/대부금\n퇴직공제금\n사망자 퇴직공제금안내\n사망자 퇴직공제금\n유족의 순위와 범위 및 구비서류\n청구방법\n유족의 순위와 범위\n유족의 순위와 범위\n순위\t구분\t공통서류\t청구유족별 구비서류\n1\t배우자\n(사실혼 배우자 포함)\t\n①\n망자의 사망진단서(또는 시체검안서), 기본증명서, 법원의 실종선고 결정문 중 1부\n②\n망자의 가족관계증명서\n③\n청구인 신분증 및 통장사본(필요시)\n\t\n(사실혼의 경우) 사실상 혼인관계 존부확인서, 타 공공기관에서 발급한 연금수급자증명서 등\n\n2\t자녀\t\n미성년자녀의 경우 기본증명서 추가 제출\n\n3\t부모\t\n공통 서류만 제출\n\n4\t손자녀\t\n자녀의 가족관계증명서, 미성년 손자녀의 경우 기본증명서 추가 제출\n\n5\t조부모\t\n부모의 가족관계증명서\n\n6\t형제자매\t\n부모의 가족관계증명서 또는 제적등본\n청구 유족별 구비서류는 최근 3개월 이내 발급, 주민등록번호 모두 공개\n만 19세 미만(자녀 또는 손자녀) 유족 청구의 경우, 법정대리인이 미성년자를 대리하여 청구하거나 미성년자가 법정대리인의 동의를 얻어 청구\n추가구비서류\n선순위 유족 또는 동순위 유족이 청구권을 포기하는 경우, 해당 유족의 청구자격이 없음을 증빙하는 서류 추가 제출\n①\n선순위 유족동의서 또는 동순위 유족동의서\n\n선순위유족동의서는 청구권을 포기한 유족이 청구하려는 유족보다 선순위유족인 경우 활용, 동순위 유족 동의서는 유족순위 및 범위가 동일한 유족 중 1인이 포기하는 경우 활용\n\n②\n청구권을 포기한 유족의 신분증 사본\n선순위 유족동의서 다운로드\n동순위 유족동의서 다운로드\n만나이 계산하기\n유족 퇴직공제금 신청\n지사\n상단으로 이동\n개인정보처리방침\n원격지원\n자료실\n인스타그램 바로가기\n유튜브 바로가기\n페이스북 바로가기\n블로그 바로가기\n\n건설근로자공제회\n\n04522 서울특별시 중구 남대문로 109 (국제빌딩)\n\nCopyright 2025 ⓒ All rights reserved.\n\n패밀리 사이트 및 유관기관\n고객센터\n1666-1122(근로자), 1666-5119(사업주), 1666-1133(적립일수 확인 ARS-24시간)\n월~금 09:00~18:00 토·일·공휴일 휴무",
+  "sha256": "2a4c0b167ae2d13ec5a4f38f11a7b969c5f019355b67118568bca0619253a587",
+  "links": [
+    {
+      "text": "메뉴건너뛰고 본문 바로가기",
+      "url": "https://eum.cw.or.kr/web/fir/WEBFIR090M00#container",
+      "onclick": null
+    },
+    {
+      "text": "주메뉴 바로가기",
+      "url": "https://eum.cw.or.kr/web/fir/WEBFIR090M00#gnb",
+      "onclick": null
+    },
+    {
+      "text": "서브메뉴 바로가기",
+      "url": "https://eum.cw.or.kr/web/fir/WEBFIR090M00#breadcrumb",
+      "onclick": null
+    },
+    {
+      "text": "사업주 퇴직공제 교육 녹화 자료 시청하기",
+      "url": "https://www.youtube.com/watch?v=t0T1OARy5NY",
+      "onclick": null
+    },
+    {
+      "text": "한국산업인력공단",
+      "url": "http://www.hrdkorea.or.kr/",
+      "onclick": null
+    },
+    {
+      "text": "한국산업안전보건공단",
+      "url": "http://www.kosha.or.kr/",
+      "onclick": null
+    },
+    {
+      "text": "근로복지공단",
+      "url": "http://www.kcomwel.or.kr/",
+      "onclick": null
+    },
+    {
+      "text": "한국장애인고용공단",
+      "url": "http://www.kead.or.kr/",
+      "onclick": null
+    },
+    {
+      "text": "한국고용정보원",
+      "url": "http://www.keis.or.kr/",
+      "onclick": null
+    },
+    {
+      "text": "한국사회적기업진흥원",
+      "url": "http://www.socialenterprise.or.kr/",
+      "onclick": null
+    },
+    {
+      "text": "노사발전재단",
+      "url": "http://www.nosa.or.kr/",
+      "onclick": null
+    },
+    {
+      "text": "학교법인한국폴리텍",
+      "url": "http://www.kopo.ac.kr/",
+      "onclick": null
+    },
+    {
+      "text": "한국기술교육대학교",
+      "url": "http://www.koreatech.ac.kr/",
+      "onclick": null
+    },
+    {
+      "text": "한국잡월드",
+      "url": "http://koreajobworld.or.kr/",
+      "onclick": null
+    },
+    {
+      "text": "한국고용노동교육원",
+      "url": "https://www.keli.kr/",
+      "onclick": null
+    },
+    {
+      "text": "",
+      "url": "http://www.webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110",
+      "onclick": null
+    }
+  ],
+  "forms": []
+}

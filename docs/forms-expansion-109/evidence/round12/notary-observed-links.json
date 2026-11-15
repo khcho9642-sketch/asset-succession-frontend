@@ -1,0 +1,20 @@
+[
+  {
+    "text": "차용증 공증하기",
+    "url": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?popMenu=ov&csmSeq=272&ccfNo=2&cciNo=2&cnpClsNo=2",
+    "onclick": null,
+    "origin": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=2&cciNo=2&cnpClsNo=2&csmSeq=272&menuType=onhunqna&popMenu=ov"
+  },
+  {
+    "text": "금전거래 > 금전거래 계약체결 > 차용증 작성하기 > 차용증 공증하기",
+    "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?popMenu=ov&csmSeq=272&ccfNo=2&cciNo=2&cnpClsNo=2",
+    "onclick": null,
+    "origin": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=2&cciNo=2&cnpClsNo=2&csmSeq=272&menuType=onhunqna&popMenu=ov"
+  },
+  {
+    "text": "금전거래 > 금전거래 계약체결 > 차용증 작성하기 > 차용증 공증하기",
+    "url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?popMenu=ov&csmSeq=272&ccfNo=2&cciNo=2&cnpClsNo=2",
+    "onclick": null,
+    "origin": "https://easylaw.go.kr/CSP/CnpClsMainBtr.laf?ccfNo=2&cciNo=2&cnpClsNo=2&csmSeq=272&menuType=onhunqna&popMenu=ov"
+  }
+]

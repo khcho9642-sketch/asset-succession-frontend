@@ -1,0 +1,140 @@
+{
+  "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+  "http_status": 200,
+  "checked_at": "2026-09-17T11:19:18Z",
+  "responses": [
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/websquare/suffix.txt?postfix=17896439555186797.842677056313",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/websquare/config.xml?postfix=17896439556586171.664683727287",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/websquare/externalJS/jquery/jquery-3.7.1.min.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/websquare/externalJS/es5-sham.mod.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/websquare/externalJS/papaparse.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/websquare/common.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/websquare/javascript.wq?w2xType=6&q=uiplugin/popup&postfix=NS4wXzQuNTI0NUIuMjAyNDA5MjcuMTE0NzMyXw==MS44&compression=true",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/websquare/commonScope.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/websquare/hotfix.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/websquare/blockscript.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/sccdo.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/sccorto.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/scdateo.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/scglblo.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/sclibo.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/scmsgo.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/scpolyfillo.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/scscrno.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/scframeo/scutilo.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/psp.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspcdp.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspcom.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspetc.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspscrn.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspsoltn.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/psputils.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/ui/message/pspmsg.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspadmin.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspstng.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/cm/js/pspschkey.js?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/ui/pspcom/PSPLayoutDefault.xml?postfix=202609171800",
+      "status": 200
+    },
+    {
+      "url": "https://ecfs.scourt.go.kr/psp/websquare/serverTime.wq?pattern=yyyyMMddHHmmssSSS&idx=17896439581146335.724118595281",
+      "status": 200
+    }
+  ],
+  "frames": []
+}

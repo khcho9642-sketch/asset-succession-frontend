@@ -1,0 +1,1306 @@
+[
+  {
+    "id": "P0-03",
+    "title": "상속인 금융거래조회 위임장",
+    "catalogTitle": "상속인 금융거래조회 위임장",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [
+          "cash_deposit",
+          "insurance_pension",
+          "securities"
+        ],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "attachment_of",
+          "target_resource_id": "P0-02",
+          "evidence_refs": [
+            "taxonomy:P0-03"
+          ],
+          "note": "금융조회 위임장; 법정부표라고 단정하지 않음",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P0-03"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: child_resource. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P0-05",
+    "title": "사망신고서",
+    "catalogTitle": "사망신고서",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P0-07",
+    "title": "상속포기 심판청구서",
+    "catalogTitle": "상속포기 심판청구서",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-INHERIT-CHOICE",
+          "evidence_refs": [
+            "taxonomy:P0-07"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P0-07"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P0-08",
+    "title": "상속한정승인 심판청구서",
+    "catalogTitle": "상속한정승인 심판청구서",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-INHERIT-CHOICE",
+          "evidence_refs": [
+            "taxonomy:P0-08"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P0-08"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P0-09",
+    "title": "상속재산목록(한정승인 첨부)",
+    "catalogTitle": "상속재산목록(한정승인 첨부)",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "subform_of",
+          "target_resource_id": "P0-08",
+          "evidence_refs": [
+            "taxonomy:P0-09",
+            "legacy:P0-09",
+            "legacy:P0-08"
+          ],
+          "note": "검증 기록상 한정승인 합본에 포함된 상속재산목록",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P0-09",
+              "legacy:P0-09",
+              "legacy:P0-08"
+            ],
+            "note": "배치표와 보존 수집 증거의 본서식·부표 연결 확인. 개인별 제출 의무 판단은 포함하지 않음.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          },
+          "procedure_id": "procedure:P0-08"
+        },
+        {
+          "type": "related_to",
+          "target_resource_id": "P0-08"
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: child_resource. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P0-10",
+    "title": "특별한정승인 심판청구서",
+    "catalogTitle": "특별한정승인 심판청구서",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-INHERIT-CHOICE",
+          "evidence_refs": [
+            "taxonomy:P0-10"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P0-10"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P1-01",
+    "title": "매매 소유권이전등기 신청서",
+    "catalogTitle": "매매 소유권이전등기 신청서",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "capital_transfer"
+        ],
+        "timing": [
+          "before_death",
+          "after_death"
+        ],
+        "assets": [
+          "real_estate"
+        ],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-REG-SALE",
+          "evidence_refs": [
+            "taxonomy:P1-01"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P1-01"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P1-02",
+    "title": "매매 소유권이전등기 신청서(구분건물)",
+    "catalogTitle": "매매 소유권이전등기 신청서(구분건물)",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "capital_transfer"
+        ],
+        "timing": [
+          "before_death",
+          "after_death"
+        ],
+        "assets": [
+          "real_estate"
+        ],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-REG-SALE",
+          "evidence_refs": [
+            "taxonomy:P1-02"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P1-02"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P1-06",
+    "title": "공유물분할 소유권이전등기 신청서",
+    "catalogTitle": "공유물분할 소유권이전등기 신청서",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "before_death",
+          "after_death"
+        ],
+        "assets": [
+          "real_estate"
+        ],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P1-08",
+    "title": "근저당권말소등기 신청서",
+    "catalogTitle": "근저당권말소등기 신청서",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance",
+          "gift",
+          "capital_transfer"
+        ],
+        "timing": [
+          "before_death",
+          "after_death"
+        ],
+        "assets": [
+          "real_estate"
+        ],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-MORTGAGE",
+          "evidence_refs": [
+            "taxonomy:P1-08"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P1-08"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P1-10",
+    "title": "신탁등기 신청서",
+    "catalogTitle": "신탁등기 신청서",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "before_death",
+          "after_death"
+        ],
+        "assets": [
+          "real_estate"
+        ],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P1-11",
+    "title": "소유권경정등기 신청서",
+    "catalogTitle": "소유권경정등기 신청서",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance",
+          "gift",
+          "capital_transfer"
+        ],
+        "timing": [
+          "before_death",
+          "after_death"
+        ],
+        "assets": [
+          "real_estate"
+        ],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P1-15",
+    "title": "유언증서 검인 청구서",
+    "catalogTitle": "유언증서 검인 청구서",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-WILL-EXECUTE",
+          "evidence_refs": [
+            "taxonomy:P1-15"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P1-15"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P1-16",
+    "title": "유언집행자 선임 심판청구서",
+    "catalogTitle": "유언집행자 선임 심판청구서",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "unknown",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-WILL-EXECUTE",
+          "evidence_refs": [
+            "taxonomy:P1-16"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P1-16"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P1-18",
+    "title": "상속재산분할 심판청구서",
+    "catalogTitle": "상속재산분할 심판청구서",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P1-19",
+    "title": "기여분 결정 청구서",
+    "catalogTitle": "기여분 결정 청구서",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P1-20",
+    "title": "유류분반환청구 소장",
+    "catalogTitle": "유류분반환청구 소장",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "unknown",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P1-21",
+    "title": "상속재산관리인 선임 심판청구서",
+    "catalogTitle": "상속재산관리인 선임 심판청구서",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P1-22",
+    "title": "성년후견 개시 심판청구서",
+    "catalogTitle": "성년후견 개시 심판청구서",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "before_death",
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-GUARDIAN-START",
+          "evidence_refs": [
+            "taxonomy:P1-22"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P1-22"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P1-23",
+    "title": "부재자 재산관리인 선임·실종선고 심판청구서",
+    "catalogTitle": "부재자 재산관리인 선임·실종선고 심판청구서",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "before_death",
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P2-14",
+    "title": "심사청구서/심판청구서",
+    "catalogTitle": "심사청구서/심판청구서",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance",
+          "gift",
+          "capital_transfer",
+          "business_succession"
+        ],
+        "timing": [
+          "before_death",
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-TAX-REMEDY",
+          "evidence_refs": [
+            "taxonomy:P2-14"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P2-14"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P3-05",
+    "title": "현금 증여계약서",
+    "catalogTitle": "현금 증여계약서",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "gift"
+        ],
+        "timing": [
+          "before_death"
+        ],
+        "assets": [
+          "cash_deposit"
+        ],
+        "kind": "form",
+        "origin": "private_institution",
+        "authority": "private_terms",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P7-01",
+    "title": "공무원연금 유족급여 청구서",
+    "catalogTitle": "공무원연금 유족급여 청구서",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [
+          "insurance_pension"
+        ],
+        "kind": "form",
+        "origin": "unknown",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-SURVIVOR-BENEFIT",
+          "evidence_refs": [
+            "taxonomy:P7-01"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P7-01"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P7-02",
+    "title": "사학연금 유족급여 청구서",
+    "catalogTitle": "사학연금 유족급여 청구서",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [
+          "insurance_pension"
+        ],
+        "kind": "form",
+        "origin": "unknown",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-SURVIVOR-BENEFIT",
+          "evidence_refs": [
+            "taxonomy:P7-02"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P7-02"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P7-03",
+    "title": "군인연금 유족급여 청구서",
+    "catalogTitle": "군인연금 유족급여 청구서",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [
+          "insurance_pension"
+        ],
+        "kind": "form",
+        "origin": "unknown",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-SURVIVOR-BENEFIT",
+          "evidence_refs": [
+            "taxonomy:P7-03"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P7-03"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P7-04",
+    "title": "산재 유족급여·장의비 청구서",
+    "catalogTitle": "산재 유족급여·장의비 청구서",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [
+          "insurance_pension"
+        ],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-SURVIVOR-BENEFIT",
+          "evidence_refs": [
+            "taxonomy:P7-04"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P7-04"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P8-01",
+    "title": "미성년자 특별대리인 선임 청구서",
+    "catalogTitle": "미성년자 특별대리인 선임 청구서",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P8-02",
+    "title": "상속회복청구 소장",
+    "catalogTitle": "상속회복청구 소장",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "example",
+        "origin": "unknown",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P8-04",
+    "title": "상속재산 파산 신청서",
+    "catalogTitle": "상속재산 파산 신청서",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "after_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P8-08",
+    "title": "한정후견 / 특정후견 개시 심판청구서",
+    "catalogTitle": "한정후견 / 특정후견 개시 심판청구서",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "before_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-GUARDIAN-START",
+          "evidence_refs": [
+            "taxonomy:P8-08"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P8-08"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P8-09",
+    "title": "임의후견(후견계약) 관련 양식",
+    "catalogTitle": "임의후견(후견계약) 관련 양식",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "before_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P8-10",
+    "title": "후견인 권한 초과행위 허가 청구서",
+    "catalogTitle": "후견인 권한 초과행위 허가 청구서",
+    "checkedOn": "2026-09-17",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance"
+        ],
+        "timing": [
+          "before_death"
+        ],
+        "assets": [],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [],
+      "presentation": {
+        "visibility": "standalone",
+        "reason": "승인 배치표: standalone. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  },
+  {
+    "id": "P9-06",
+    "title": "주택임대사업자 등록·변경·말소 신청서",
+    "catalogTitle": "주택임대사업자 등록·변경·말소 신청서",
+    "checkedOn": "2026-09-19",
+    "useCategory": "form",
+    "files": [],
+    "resource": {
+      "facets": {
+        "purposes": [
+          "inheritance",
+          "capital_transfer"
+        ],
+        "timing": [
+          "before_death",
+          "after_death"
+        ],
+        "assets": [
+          "real_estate",
+          "business"
+        ],
+        "kind": "form",
+        "origin": "official_institution",
+        "authority": "unknown",
+        "delivery": "official_link"
+      },
+      "relations": [
+        {
+          "type": "ui_member_of",
+          "target_resource_id": "G-RENTAL-BUSINESS",
+          "evidence_refs": [
+            "taxonomy:P9-06"
+          ],
+          "note": "화면 탐색 묶음. 독립된 절차와 원본은 유지.",
+          "verification": {
+            "status": "verified",
+            "evidence_refs": [
+              "taxonomy:P9-06"
+            ],
+            "note": "승인된 배치표의 화면 연결을 적용. 법적 적용조건은 별도 미검증.",
+            "reviewed_at": "2026-09-19T18:02:53.491540Z",
+            "reviewer_ref": "forms-taxonomy-migration:evidence-review"
+          }
+        }
+      ],
+      "presentation": {
+        "visibility": "within_parent",
+        "reason": "승인 배치표: group_member. 원본·기존 ID·파일·URL 유지."
+      }
+    }
+  }
+]

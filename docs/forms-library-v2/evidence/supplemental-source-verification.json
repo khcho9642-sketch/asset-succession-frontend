@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "source identity only; no legal applicability or deadline validation",
+  "entries": [
+    {
+      "evidence_id": "supplemental:P0-01:govkr-20260919",
+      "resource_id": "P0-01",
+      "status": "verified",
+      "observed_at": "2026-09-19T18:05:43.535886Z",
+      "verification_method": "web.run.open official page content extraction",
+      "source_url": "https://www.gov.kr/mw/AA020InfoCappView.do?CappBizCD=17400000001",
+      "observed_title": "사망자 및 피후견인 등 재산조회 통합처리 신청(안심상속)",
+      "required_text": [
+        "사망자 및 피후견인 등 재산조회 통합처리 신청(안심상속)",
+        "재산조회 통합처리 신청서",
+        "정부24",
+        "행정안전부"
+      ],
+      "issuer_name": "정부24 (행정안전부)",
+      "origin": "official_institution",
+      "evidence_file": "docs/forms-library-v2/evidence/P0-01-govkr-source-20260919.txt",
+      "evidence_sha256": "1c1976c8311bf6502d354e0c222cd8681a9dfab2b7a8b44a4eb1a17e56882532",
+      "http_status": null,
+      "original_download_verified": false,
+      "legal_applicability_verified": false,
+      "note": "공식 제공처의 실제 서비스 제목과 신청서 명칭을 확인. HTTP 상태코드·원본파일·법적 적용조건·기한을 검증한 것으로 확대하지 않음."
+    }
+  ]
+}

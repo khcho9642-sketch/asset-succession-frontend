@@ -1,0 +1,23 @@
+PASS One standalone card per active document, including prior children
+PASS No group card or sibling resources are carried by a document card
+PASS Parent membership does not replace the child title, stage or preview
+PASS A document appearing in several legacy groups remains a single card
+PASS Archived records stay out of results but keep their direct lookup
+PASS Unclassified documents are visible in the unfiltered list
+PASS Orphaned within-parent documents are no longer hidden
+PASS Cyclic parent references neither hide documents nor hang the catalogue
+PASS Gift search at S5 returns the matching documents, not the parent or siblings
+PASS Kind filtering exposes a formerly hidden example directly
+PASS Facets keep OR within a category and AND across categories
+PASS Legacy group titles do not cause unrelated documents to match
+PASS Original records, relation metadata and files are not rewritten
+PASS PDF and HWP formats of the same record remain on one card
+PASS An old group URL resolves to named document links including nested examples
+PASS Missing or stale group members do not create fictitious documents
+PASS Duplicate IDs fail visibly rather than silently discarding documents
+PASS Sorting uses each document stage, not its former group stage
+PASS Existing aliases and filters survive detail open/close URL round trips
+PASS Synthetic 177-record catalogue keeps every active record once
+PASS UI source uses the individual catalogue and removes nested-card controls
+NOT RUN real-manifest integration: repository dataset is not present in this isolated test directory.
+21 individual-catalogue tests passed. Browser and production-build tests were not run by this script.

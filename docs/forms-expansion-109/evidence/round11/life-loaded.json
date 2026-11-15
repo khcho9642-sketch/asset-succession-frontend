@@ -1,0 +1,655 @@
+{
+  "url": "https://consumer.insure.or.kr/",
+  "checked_at": "2026-09-19T14:55:42Z",
+  "events": [
+    {
+      "url": "https://consumer.insure.or.kr/",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "url": "https://www.google-analytics.com/j/collect?v=1&_v=j102&a=484284872&t=pageview&_s=1&dl=https%3A%2F%2Fconsumer.insure.or.kr%2F&ul=ko-kr&dt=%EC%83%9D%EB%AA%85%EB%B3%B4%ED%97%98%ED%98%91%ED%9A%8C%20%EC%86%8C%EB%B9%84%EC%9E%90%ED%8F%AC%ED%84%B8&sr=1280x720&vp=1280x720&_u=IEBAAUABAAAAACAAI~&jid=1395940040&gjid=445675760&cid=694050360.1789829735&tid=UA-122160355-5&_gid=41583708.1789829735&_r=1&_slc=1&gtm=2ou6c0&z=1491428571",
+      "status": 200,
+      "method": "POST",
+      "post_data": null
+    },
+    {
+      "url": "https://consumer.insure.or.kr/main/selectInsuranceAjax.do",
+      "status": 200,
+      "method": "POST",
+      "post_data": null
+    }
+  ],
+  "dom": {
+    "text": "본문바로가기\n소비자정보통합공시\n회사별\n항목별\n생명보험 핵심정보\n생명보험개요\n보험관련 법규 및 표준약관\n보험안내간행물\n보험웹툰\n보험다모아\n계약 유지를 지원하는 제도\n생명보험 상담 및 사례\n자주하는 질문\n보험상담 Q＆A\n보험사링크＆콜센터번호\n어려운 보험 약관·용어 제안 센터\n분쟁사례 및 판례\n금융감독원 소비자경보\n사이트맵\n금융보험 교육교재\n\n초·중·고학생을 위한 금융보험교재 및 금융업권별 생활 속\n금융상식을 수록한 금융상식 포켓북입니다.\n\n자세히보기\n장애인을 위한 보험 안내\n알기 쉬운 생명보험 안내자료\n\n장애인 전용 보험상품, 장애인 보장성보험 전환, 장애인을 위한\n서비스안내 등을 담은 자료입니다.\n\n자세히보기\n어려운 보험약관·용어 제안센터\n\n어려운 보험약관·용어를 소비자가 쉽게 이해할 수 있도록\n개선안을 제안하는 게시판입니다.\n\n자세히보기\n보험소비자가 꼭 알아야할\n알기 쉬운 생명보험 안내자료\n\n소비자들이 꼭 알아야 할 생명보험 표준약관의 주요내용을\n알기 쉽게 정리한 자료입니다.\n\n자세히보기\n가입전 가입시 가입후\n보험상품 거래단계별 핵심정보\n\n보험 가입전, 가입시, 가입후 소비자가 알아야 할\n핵심정보를 담은 자료입니다.\n\n자세히보기\n금융보험 교육교재\n\n초·중·고학생을 위한 금융보험교재 및 금융업권별 생활 속\n금융상식을 수록한 금융상식 포켓북입니다.\n\n자세히보기\n장애인을 위한 보험 안내\n알기 쉬운 생명보험 안내자료\n\n장애인 전용 보험상품, 장애인 보장성보험 전환, 장애인을 위한\n서비스안내 등을 담은 자료입니다.\n\n자세히보기\n어려운 보험약관·용어 제안센터\n\n어려운 보험약관·용어를 소비자가 쉽게 이해할 수 있도록\n개선안을 제안하는 게시판입니다.\n\n자세히보기\n보험소비자가 꼭 알아야할\n알기 쉬운 생명보험 안내자료\n\n소비자들이 꼭 알아야 할 생명보험 표준약관의 주요내용을\n알기 쉽게 정리한 자료입니다.\n\n자세히보기\n가입전 가입시 가입후\n보험상품 거래단계별 핵심정보\n\n보험 가입전, 가입시, 가입후 소비자가 알아야 할\n핵심정보를 담은 자료입니다.\n\n자세히보기\n금융보험 교육교재\n\n초·중·고학생을 위한 금융보험교재 및 금융업권별 생활 속\n금융상식을 수록한 금융상식 포켓북입니다.\n\n자세히보기\n알기 쉬운 생명보험 안내자료\n보험상품 거래단계별 핵심정보\n금융보험 교육교재\n장애인을 위한 보험 안내\n어려운 보험약관·용어 제안센터\n메인배너 일시정지\n소비자정보통합공시\n회사별 비교\n항목별 비교\n생명보험 핵심정보\n생명보험 개요\n보험관련 법규 및 표준약관\n보험안내간행물\n보험웹툰\n보험다모아\n계약유지를 지원하는 제도\n생명보험 상담 및 사례\n자주하는질문\n보험상담 Q&A\n보험사링크&콜센터번호\n분쟁사례및판례\n어려운 보험 약관·용어 제안 센터\n자주하는 질문\n생존자 본인의 보험가입내역 및 미청구보험금 조회방법\n2023-03-23\n미청구보험금의 개념과 종류\n2023-03-22\n보험나이\n2023-03-22\n손해사정제도 관련 소비자 유의사항 안내\n2020-02-20\n자주하는 질문 더보기\n보험상담 Q&A\n어려운 보험 약관·용어 제안 센터\n내보험찾아줌 \n* 생명보험협회 조회기준\n오늘 조회된 보험가입\n2,492\n \n오늘 조회된 숨은보험금\n424,570,066\n개인정보처리방침\n\n(04554)서울특별시 중구 퇴계로 173, 16층(충무로3가)ㆍ 사업자등록번호 : 201-82-30608ㆍ TEL : 02-2262-6600\n\n상호명 : 사단법인 생명보험협회ㆍ 대표자 : 김철주 (통신판매업신고:2015-서울중구-1480 | 확인)\n\nCopyright ⓒ 2019 by KOREA Life Insurance Association. All Rights Reserved.",
+    "html": "<html lang=\"ko\"><head>\n\t\t<meta charset=\"UTF-8\">\n\t\t<meta name=\"viewport\" content=\"width=1260\">\n\t\t<meta name=\"format-detection\" content=\"telephone=no\">\n\t\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n\t\t<meta name=\"viewport\" content=\"target-densitydpi=device-dpi\">\n\t\t<meta property=\"og:type\" content=\"website\">\n\t\t<meta property=\"og:title\" content=\"소비자포털\">\n\t\t<meta property=\"og:image\" content=\"/home/images/common/meta_logo.jpg\">\n\t\t<meta property=\"og:url\" content=\"http://consumer.insure.or.kr\">\n\t\t<title>생명보험협회 소비자포털</title>\n\n\t\t<link rel=\"stylesheet\" href=\"/home/css/font/font.css\">\n\t\t<link rel=\"stylesheet\" href=\"/home/css/swiper.min.css\">\n\t\t<link rel=\"stylesheet\" href=\"/home/css/style.css\">\n\t\t<link rel=\"stylesheet\" href=\"/home/css/animate.css\">\n\t\t<link rel=\"stylesheet\" href=\"/home/css/layout.css\">\n\n\t\t<link rel=\"stylesheet\" href=\"/home/css/main.css\"><!-- 메인에서만 사용 -->\n\n\t\t<script type=\"text/javascript\" async=\"\" src=\"https://www.google-analytics.com/analytics.js\"></script><script src=\"/home/js/jquery-3.2.1.min.js\"></script>\n\t\t<script src=\"/home/js/swiper.min.js\"></script>\n\t\t<script src=\"/home/js/script.js?v=20220317.01\"></script>\n\n\t\t<script src=\"/home/js/jquery.animateNumber.min.js\"></script> <!-- 메인에서만 사용 -->\n\t\t<script src=\"/home/js/jquery.inview.min.js\"></script> <!-- 메인에서만 사용 -->\n\t\t<script src=\"/home/js/main.js\"></script><!-- 메인에서만 사용 -->\n\t</head>\n\t<body>\n\t\t<a href=\"#main\" id=\"skip_nav\">본문바로가기</a>\n\t\t<div id=\"wrap\">\n\t\t\t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<div id=\"header\" class=\"\">\n\t<div class=\"inwrap\">\n\t\t<h1><a href=\"/main.do\"><img src=\"/home/images/common/t_logo.jpg\" alt=\"생명보험협회 소비자포털\"></a></h1>\n\t\t<div id=\"gnb\">\n\t\t\t<ul class=\"nav_dep1\">\n\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<a href=\"#\" class=\"first\">소비자정보통합공시</a>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<ul class=\"nav_dep2\">\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li><a href=\"/disclosure/member/view.do\">회사별</a></li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li><a href=\"/disclosure/item/view.do\">항목별</a></li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<a href=\"#\">생명보험 핵심정보</a>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<ul class=\"nav_dep2\">\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li><a href=\"/info/summary/outline.do\" target=\"_blank\" title=\"새창 (열림)\">생명보험개요</a></li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li><a href=\"/info/regulation/1/list.do\">보험관련 법규 및 표준약관</a></li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li><a href=\"/info/insuranceGuide/1/view.do\">보험안내간행물</a></li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li><a href=\"/info/webtoon/list.do\">보험웹툰</a></li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li><a href=\"http://www.e-insmarket.or.kr \" target=\"_blank\" title=\"새창 (열림)\">보험다모아</a></li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li><a href=\"/counselCase/contractMaintenance/list.do\">계약 유지를 지원하는 제도</a></li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t\t<li>\n\t\t\t\t\t\t\t<a href=\"#\">생명보험 상담 및 사례</a>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<ul class=\"nav_dep2\">\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li><a href=\"/counselCase/frequently/list.do\">자주하는 질문</a></li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li><a href=\"/counselCase/qna/list.do\">보험상담 Q＆A</a></li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li><a href=\"http://www.klia.or.kr/klia/company/member/list.do\" target=\"_blank\" title=\"새창 (열림)\">보험사링크＆콜센터번호</a></li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li><a href=\"/counselCase/termProposal/list.do\">어려운 보험 약관·용어 제안 센터</a></li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li><a href=\"/counselCase/dispute/list.do\">분쟁사례 및 판례</a></li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<li><a href=\"https://www.fss.or.kr/fss/bbs/B0000175/list.do?menuNo=200204\" target=\"_blank\" title=\"새창 (열림)\" class=\"last\">금융감독원 소비자경보</a></li>\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t</ul>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</div>\n\t\t<ul class=\"top_util\">\n\t\t\t<li><a href=\"#\" class=\"btn_t_sitemap\">사이트맵</a></li>\n\t\t</ul>\n\t</div>\n</div>\n<!-- //header -->\n\n\n<!-- 사이트맵 -->\n\n\n<div id=\"sitemap\">\n    <p class=\"logo\"><img src=\"/home/images/common/t_logo.jpg\" alt=\"생명보험협회 소비자포털\"></p>\n    <div class=\"inwrap\">\n        <ul class=\"nav_dep1\">\n            \n                \n                <li>\n                    \n                    <h2>소비자정보통합공시</h2>\n                    <ul class=\"nav_dep2\">\n                        \n                            \n                        \n                            \n                            <li>\n                                <a href=\"/disclosure/member/view.do\">회사별</a>\n                                \n                            </li>\n                            \n                        \n                            \n                            <li>\n                                <a href=\"/disclosure/item/view.do\">항목별</a>\n                                \n                            </li>\n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                    </ul>\n                </li>\n                \n            \n                \n            \n                \n            \n                \n                <li>\n                    \n                    <h2>생명보험 핵심정보</h2>\n                    <ul class=\"nav_dep2\">\n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                            <li>\n                                <a href=\"/info/summary/outline.do\" target=\"_blank\">생명보험개요</a>\n                                \n                                    <ul class=\"nav_dep3\">\n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                            <li><a href=\"/info/summary/outline.do\">생명보험개요</a></li>\n                                            \n                                        \n                                            \n                                            <li><a href=\"/info/summary/media.do\">홍보동영상</a></li>\n                                            \n                                        \n                                            \n                                            <li><a href=\"http://pub.insure.or.kr/summary/explan01.do\" target=\"_blank\">보험상품 정보(공시실)</a></li>\n                                            \n                                        \n                                            \n                                            <li><a href=\"/info/summary/termsMedia.do\">보험약관 안내 동영상</a></li>\n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                    </ul>\n                                \n                            </li>\n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                            <li>\n                                <a href=\"/info/regulation/1/list.do\">보험관련 법규 및 표준약관</a>\n                                \n                                    <ul class=\"nav_dep3\">\n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                            <li><a href=\"/info/regulation/1/list.do\">보험관련법규</a></li>\n                                            \n                                        \n                                            \n                                            <li><a href=\"/info/standardTerms/list.do\">생명보험 표준약관</a></li>\n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                    </ul>\n                                \n                            </li>\n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                            <li>\n                                <a href=\"/info/insuranceGuide/1/view.do\">보험안내간행물</a>\n                                \n                                    <ul class=\"nav_dep3\">\n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                            <li><a href=\"/info/insuranceGuide/1/view.do\">알기쉬운 생명보험 안내자료</a></li>\n                                            \n                                        \n                                            \n                                            <li><a href=\"http://fine.fss.or.kr/main/prc/main.jsp\" target=\"_blank\">금융상품 거래단계별 핵심정보</a></li>\n                                            \n                                        \n                                            \n                                            <li><a href=\"/info/insuranceGuide/2/view.do\">장애인을 위한 보험안내</a></li>\n                                            \n                                        \n                                            \n                                            <li><a href=\"/info/textbook/list.do\">금융보험교육교재</a></li>\n                                            \n                                        \n                                            \n                                            <li><a href=\"/info/seniorGuide/list.do\">고령층을 위한 금융보험 안내</a></li>\n                                            \n                                        \n                                            \n                                            <li><a href=\"/info/insuranceGuide/3/view.do\">연금보험 홍보만화</a></li>\n                                            \n                                        \n                                            \n                                            <li><a href=\"/info/insuranceGuide/4/view.do\">변액연금보험가이드</a></li>\n                                            \n                                        \n                                            \n                                            <li><a href=\"http://www.klia.or.kr/klia/archive/insurMonth/webzine.do\" target=\"_blank\">월간생명보험</a></li>\n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                            \n                                        \n                                    </ul>\n                                \n                            </li>\n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                            <li>\n                                <a href=\"/info/webtoon/list.do\">보험웹툰</a>\n                                \n                            </li>\n                            \n                        \n                            \n                            <li>\n                                <a href=\"http://www.e-insmarket.or.kr \" target=\"_blank\">보험다모아</a>\n                                \n                            </li>\n                            \n                        \n                            \n                            <li>\n                                <a href=\"/counselCase/contractMaintenance/list.do\">계약 유지를 지원하는 제도</a>\n                                \n                            </li>\n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                    </ul>\n                </li>\n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n                <li>\n                    \n                    <h2>생명보험 상담 및 사례</h2>\n                    <ul class=\"nav_dep2\">\n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                        \n                            \n                            <li>\n                                <a href=\"/counselCase/frequently/list.do\">자주하는 질문</a>\n                                \n                            </li>\n                            \n                        \n                            \n                            <li>\n                                <a href=\"/counselCase/qna/list.do\">보험상담 Q＆A</a>\n                                \n                            </li>\n                            \n                        \n                            \n                            <li>\n                                <a href=\"http://www.klia.or.kr/klia/company/member/list.do\" target=\"_blank\">보험사링크＆콜센터번호</a>\n                                \n                            </li>\n                            \n                        \n                            \n                            <li>\n                                <a href=\"/counselCase/termProposal/list.do\">어려운 보험 약관·용어 제안 센터</a>\n                                \n                            </li>\n                            \n                        \n                            \n                            <li>\n                                <a href=\"/counselCase/dispute/list.do\">분쟁사례 및 판례</a>\n                                \n                            </li>\n                            \n                        \n                            \n                            <li>\n                                <a href=\"https://www.fss.or.kr/fss/bbs/B0000175/list.do?menuNo=200204\" target=\"_blank\">금융감독원 소비자경보</a>\n                                \n                            </li>\n                            \n                        \n                    </ul>\n                </li>\n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n                \n            \n        </ul>\n        <a href=\"#\" class=\"btn_close\"><img src=\"/home/images/btn/btn_sitemap_close.png\" alt=\"닫기\"></a>\n    </div>\n</div>\n\n\n\n\n\n<!-- 개인정보처리방침 -->\n\n\n\n\t\t\t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<style>\n    #layer_pop {display:none;}\n\t#layer_pop:before {position:fixed; top:0; left:0; right:0; bottom:0; z-index:11100; background:rgba(0,0,0,0.5); content:'';}\n\t#layer_pop .box {position:fixed; top:50%; left:50%; z-index:11101; width:550px; margin-left:-275px; margin-top:-200px; padding:0 35px 35px; background:#fff;}\n\t#layer_pop h2 {margin:0 -35px 30px; padding-left:30px; font-size:22px; color:#fff; line-height:70px; background:#d82744;}\n\t#layer_pop .btn_close {position:absolute; top:20px; right:30px;}\n\t#layer_pop .stxt {margin-bottom:15px; color:#222222;}\n\t#layer_pop .btn_area {margin-top:15px;}\n\n\t.btn_area {margin-top:40px; text-align:center;}\n    .btn {display:inline-block; min-width:115px; height:43px; margin:0 7px; padding:0 20px; text-align:center; line-height:43px; font-weight:400; color:#fff; background:#383b3d;}\n\n</style>\n\n<script type=\"text/javascript\">\n\n\t$(document).ready(function(){\n\n\t});\n\n\t//작성자 확인 layout\n\tfunction fn_openLayout(type, no) {\n\t    //$(\"#viewForm input[name='qnaNo']\").val(no);\n\n\t    $(\"#layer_pop\").show();\n\t}\n\n</script>\n\n\n<div id=\"main\">\n\t<div id=\"main_banner\" class=\"swiper-container-horizontal\">\n\t\t<div class=\"swiper-wrapper\" style=\"transform: translate3d(-3840px, 0px, 0px); transition-duration: 0ms;\"><div class=\"swiper-slide slide03 swiper-slide-duplicate swiper-slide-duplicate-next\" data-txt=\"금융보험 교육교재\" data-swiper-slide-index=\"2\" style=\"width: 1260px; margin-right: 20px;\">\n                <div>\n                    <h2>\n                        <strong>금융보험 교육교재</strong>\n                    </h2>\n                    <p>초·중·고학생을 위한 금융보험교재 및 금융업권별 생활 속 <br>금융상식을 수록한 금융상식 포켓북입니다.   </p>\n                </div>\n                <a href=\"/info/textbook/list.do\" class=\"btn_view\" tabindex=\"-1\">자세히보기</a>\n            </div><div class=\"swiper-slide slide04 swiper-slide-duplicate\" data-txt=\"장애인을 위한 보험 안내\" data-swiper-slide-index=\"3\" style=\"width: 1260px; margin-right: 20px;\">\n                <div>\n                    <h2>\n                        장애인을 위한 보험 안내\n                        <strong>알기 쉬운 생명보험 안내자료</strong>\n                    </h2>\n                    <p>장애인 전용 보험상품, 장애인 보장성보험 전환, 장애인을 위한 <br>서비스안내 등을 담은 자료입니다.  </p>\n                </div>\n                <a href=\"/info/insuranceGuide/2/view.do\" class=\"btn_view\" tabindex=\"-1\">자세히보기</a>\n            </div><div class=\"swiper-slide slide05 swiper-slide-duplicate\" data-txt=\"어려운 보험약관·용어 제안센터\" data-swiper-slide-index=\"4\" style=\"width: 1260px; margin-right: 20px;\">\n                <div>\n                    <h2>\n                        <strong>어려운 보험약관·용어 제안센터</strong>\n                    </h2>\n                    <p>어려운 보험약관·용어를 소비자가 쉽게 이해할 수 있도록 <br>개선안을 제안하는 게시판입니다.</p>\n                </div>\n                <a href=\"/counselCase/termProposal/list.do\" class=\"btn_view\" tabindex=\"-1\">자세히보기</a>\n            </div>\n\t\t\t<div class=\"swiper-slide slide01 swiper-slide-prev\" data-txt=\"알기 쉬운 생명보험 안내자료\" data-swiper-slide-index=\"0\" style=\"width: 1260px; margin-right: 20px;\">\n                <div>\n                    <h2>\n                        보험소비자가 꼭 알아야할\n                        <strong>알기 쉬운 생명보험 안내자료</strong>\n                    </h2>\n                    <p>소비자들이 꼭 알아야 할 생명보험 표준약관의 주요내용을 <br>알기 쉽게 정리한 자료입니다. </p>\n                </div>\n                <a href=\"/info/insuranceGuide/1/view.do\" class=\"btn_view\" tabindex=\"-1\">자세히보기</a>\n            </div>\n            <div class=\"swiper-slide slide02 swiper-slide-active\" data-txt=\"보험상품 거래단계별 핵심정보\" data-swiper-slide-index=\"1\" style=\"width: 1260px; margin-right: 20px;\">\n                <div>\n                    <h2>\n                        가입전 가입시 가입후\n                        <strong>보험상품 거래단계별 핵심정보</strong>\n                    </h2>\n                    <p>보험 가입전, 가입시, 가입후 소비자가 알아야 할<br>핵심정보를 담은 자료입니다. </p>\n                </div>\n                <a href=\"http://fine.fss.or.kr/main/prc/main.jsp\" target=\"_blank\" class=\"btn_view\" tabindex=\"0\">자세히보기</a>\n            </div>\n            <div class=\"swiper-slide slide03 swiper-slide-next\" data-txt=\"금융보험 교육교재\" data-swiper-slide-index=\"2\" style=\"width: 1260px; margin-right: 20px;\">\n                <div>\n                    <h2>\n                        <strong>금융보험 교육교재</strong>\n                    </h2>\n                    <p>초·중·고학생을 위한 금융보험교재 및 금융업권별 생활 속 <br>금융상식을 수록한 금융상식 포켓북입니다.   </p>\n                </div>\n                <a href=\"/info/textbook/list.do\" class=\"btn_view\" tabindex=\"-1\">자세히보기</a>\n            </div>\n            <div class=\"swiper-slide slide04\" data-txt=\"장애인을 위한 보험 안내\" data-swiper-slide-index=\"3\" style=\"width: 1260px; margin-right: 20px;\">\n                <div>\n                    <h2>\n                        장애인을 위한 보험 안내\n                        <strong>알기 쉬운 생명보험 안내자료</strong>\n                    </h2>\n                    <p>장애인 전용 보험상품, 장애인 보장성보험 전환, 장애인을 위한 <br>서비스안내 등을 담은 자료입니다.  </p>\n                </div>\n                <a href=\"/info/insuranceGuide/2/view.do\" class=\"btn_view\" tabindex=\"-1\">자세히보기</a>\n            </div>\n            <div class=\"swiper-slide slide05\" data-txt=\"어려운 보험약관·용어 제안센터\" data-swiper-slide-index=\"4\" style=\"width: 1260px; margin-right: 20px;\">\n                <div>\n                    <h2>\n                        <strong>어려운 보험약관·용어 제안센터</strong>\n                    </h2>\n                    <p>어려운 보험약관·용어를 소비자가 쉽게 이해할 수 있도록 <br>개선안을 제안하는 게시판입니다.</p>\n                </div>\n                <a href=\"/counselCase/termProposal/list.do\" class=\"btn_view\" tabindex=\"-1\">자세히보기</a>\n            </div>\n\t\t<div class=\"swiper-slide slide01 swiper-slide-duplicate swiper-slide-duplicate-prev\" data-txt=\"알기 쉬운 생명보험 안내자료\" data-swiper-slide-index=\"0\" style=\"width: 1260px; margin-right: 20px;\">\n                <div>\n                    <h2>\n                        보험소비자가 꼭 알아야할\n                        <strong>알기 쉬운 생명보험 안내자료</strong>\n                    </h2>\n                    <p>소비자들이 꼭 알아야 할 생명보험 표준약관의 주요내용을 <br>알기 쉽게 정리한 자료입니다. </p>\n                </div>\n                <a href=\"/info/insuranceGuide/1/view.do\" class=\"btn_view\" tabindex=\"-1\">자세히보기</a>\n            </div><div class=\"swiper-slide slide02 swiper-slide-duplicate swiper-slide-duplicate-active\" data-txt=\"보험상품 거래단계별 핵심정보\" data-swiper-slide-index=\"1\" style=\"width: 1260px; margin-right: 20px;\">\n                <div>\n                    <h2>\n                        가입전 가입시 가입후\n                        <strong>보험상품 거래단계별 핵심정보</strong>\n                    </h2>\n                    <p>보험 가입전, 가입시, 가입후 소비자가 알아야 할<br>핵심정보를 담은 자료입니다. </p>\n                </div>\n                <a href=\"http://fine.fss.or.kr/main/prc/main.jsp\" target=\"_blank\" class=\"btn_view\" tabindex=\"-1\">자세히보기</a>\n            </div><div class=\"swiper-slide slide03 swiper-slide-duplicate swiper-slide-duplicate-next\" data-txt=\"금융보험 교육교재\" data-swiper-slide-index=\"2\" style=\"width: 1260px; margin-right: 20px;\">\n                <div>\n                    <h2>\n                        <strong>금융보험 교육교재</strong>\n                    </h2>\n                    <p>초·중·고학생을 위한 금융보험교재 및 금융업권별 생활 속 <br>금융상식을 수록한 금융상식 포켓북입니다.   </p>\n                </div>\n                <a href=\"/info/textbook/list.do\" class=\"btn_view\" tabindex=\"-1\">자세히보기</a>\n            </div></div>\n\t\t<div class=\"swiper-button-prev\"></div>\n\t\t<div class=\"swiper-button-next\"></div>\n\t\t<div class=\"swiper-controls\">\n\t\t\t<div class=\"swiper-pagination grid5 swiper-pagination-clickable swiper-pagination-bullets\"><a href=\"#\" class=\"swiper-pagination-bullet\"><span>알기 쉬운 생명보험 안내자료</span></a><a href=\"#\" class=\"swiper-pagination-bullet swiper-pagination-bullet-active\"><span>보험상품 거래단계별 핵심정보</span></a><a href=\"#\" class=\"swiper-pagination-bullet\"><span>금융보험 교육교재</span></a><a href=\"#\" class=\"swiper-pagination-bullet\"><span>장애인을 위한 보험 안내</span></a><a href=\"#\" class=\"swiper-pagination-bullet\"><span>어려운 보험약관·용어 제안센터</span></a></div>\n\t\t\t<button type=\"button\" class=\"btn_play\">메인배너 일시정지</button>\n\t\t</div>\n\t</div>\n\t<!-- //main_banner -->\n\t<div id=\"main_qlink\">\n\t    <div class=\"qlink qlink03\">\n            <button type=\"button\" title=\"축소됨\">소비자정보통합공시</button>\n            <div class=\"list02\">\n                <ul>\n                    <li class=\"s01\" onclick=\"location.href='/disclosure/member/view.do'\"><a href=\"javascript:void(0);\">회사별 비교</a></li>\n                    <li class=\"s02\" onclick=\"location.href='/disclosure/item/view.do'\"><a href=\"javascript:void(0);\" class=\"last\">항목별 비교</a></li>\n                </ul>\n            </div>\n        </div>\n\t\t<div class=\"qlink qlink01\">\n\t\t\t <button type=\"button\" title=\"축소됨\">생명보험 핵심정보</button>\n\t\t\t<div class=\"list01\">\n\t\t\t\t<ul>\n\t\t\t\t\t<li><a href=\"/info/summary/outline.do\">생명보험 개요</a></li>\n\t\t\t\t\t<li><a href=\"/info/regulation/1/list.do\">보험관련 법규 및 표준약관</a></li>\n\t\t\t\t\t<li><a href=\"/info/insuranceGuide/1/view.do\">보험안내간행물</a></li>\n\t\t\t\t\t<li><a href=\"/info/webtoon/list.do\">보험웹툰</a></li>\n\t\t\t\t\t<li><a href=\"http://www.e-insmarket.or.kr\" target=\"_blank\">보험다모아</a></li>\n\t\t\t\t\t<li><a href=\"/counselCase/contractMaintenance/list.do\" class=\"last\">계약유지를 지원하는 제도</a></li>\n\t\t\t\t\t\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"qlink qlink02\">\n\t\t\t<button type=\"button\" title=\"축소됨\">생명보험 상담 및 사례</button>\n\t\t\t<div class=\"list01\">\n\t\t\t\t<ul>\n\t\t\t\t\t<li><a href=\"/counselCase/frequently/list.do\">자주하는질문</a></li>\n\t\t\t\t\t<li><a href=\"/counselCase/qna/list.do\">보험상담 Q&amp;A</a></li>\n\t\t\t\t\t<li><a href=\"https://www.klia.or.kr/klia/company/member/list.do\" target=\"_blank\" title=\"새창 (열림)\">보험사링크&amp;콜센터번호</a></li>\n\t\t\t\t\t<li><a href=\"/counselCase/dispute/view.do\">분쟁사례및판례</a></li>\n\t\t\t\t\t<li><a href=\"/counselCase/termProposal/list.do\" class=\"last\">어려운 보험 약관·용어 제안 센터</a></li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<div id=\"layer_pop\">\n        <div class=\"box\">\n            <h2>작성자 확인</h2>\n            <p class=\"stxt\">※ 글 작성하실 때 입력하신 정보를 입력해 주시기 바랍니다.</p>\n            <form id=\"viewForm\">\n                <input type=\"hidden\" name=\"qnaNo\" value=\"\">\n                <input type=\"hidden\" name=\"beforePageType\" value=\"LIST\">\n                <fieldset>\n                    <legend>작성자 확인 정보입력</legend>\n                    <table class=\"board_write\">\n                        <colgroup>\n                            <col style=\"width:130px;\">\n                            <col>\n                        </colgroup>\n                        <tbody>\n                            <tr>\n                                <th scope=\"row\"><label for=\"\">작성자명</label></th>\n                                <td>\n                                    <input type=\"text\" class=\"full\" name=\"writerNm\">\n                                </td>\n                            </tr>\n                            <tr>\n                                <th scope=\"row\"><label for=\"\">비밀번호</label></th>\n                                <td>\n                                    <input type=\"password\" class=\"full\" name=\"pw\">\n                                </td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </fieldset>\n                <div class=\"btn_area\">\n                    <p><input type=\"button\" id=\"btnConfirm\" onclick=\"fn_goView();\" value=\"확인\" class=\"btn\"></p>\n                </div>\n            </form>\n        \t<a href=\"javascript:void(0);\" class=\"btn_close\"><img src=\"/home/images/btn/btn_pop_close.png\" alt=\"닫기\"></a>\n        </div>\n    </div>\n\n\t<!-- //main_qlink -->\n\t<div class=\"main_cont\">\n\t\t<div id=\"main_board\">\n\t\t\t<dl>\n                <dt class=\"on\"><a href=\"\" title=\"선택됨\">자주하는 질문</a></dt>\n                <dd>\n                    <ul>\n                        \n                        <li><a href=\"/counselCase/frequently/list.do\">생존자 본인의 보험가입내역 및 미청구보험금 조회방법</a><span class=\"date\">2023-03-23</span></li>\n                        \n                        <li><a href=\"/counselCase/frequently/list.do\">미청구보험금의 개념과 종류</a><span class=\"date\">2023-03-22</span></li>\n                        \n                        <li><a href=\"/counselCase/frequently/list.do\">보험나이</a><span class=\"date\">2023-03-22</span></li>\n                        \n                        <li><a href=\"/counselCase/frequently/list.do\">손해사정제도 관련 소비자 유의사항 안내</a><span class=\"date\">2020-02-20</span></li>\n                        \n                    </ul>\n                    <a href=\"/counselCase/frequently/list.do\" class=\"btn_more\">자주하는 질문 더보기</a>\n                </dd>\n                <dt><a href=\"\" title=\"선택안됨\">보험상담 Q&amp;A</a></dt>\n                <dd>\n                    <ul>\n                        \n                        <li><a href=\"/counselCase/qna/list.do\">소멸시효 보험금 청구 문제, 문의 드립니다</a><span class=\"date\">2026-09-14</span></li>\n                        \n                        <li><a href=\"/counselCase/qna/list.do\">[공시 담당 부서 전달 요청] 상품비교공시 데이터 이용 조건 문의</a><span class=\"date\">2026-09-10</span></li>\n                        \n                        <li><a href=\"/counselCase/qna/list.do\">ABL생명- 암입원급여금 심사과정에서 보험금 심사 담당자의 부적절한 응대에 대한 민원</a><span class=\"date\">2026-09-09</span></li>\n                        \n                        <li><a href=\"/counselCase/qna/list.do\">생명보험협회 확인서</a><span class=\"date\">2026-09-01</span></li>\n                        \n                    </ul>\n                    <a href=\"/counselCase/qna/list.do\" class=\"btn_more\">보험상담 Q&amp;A 더보기</a>\n                </dd>\n                <dt class=\"wide\"><a href=\"\" title=\"선택안됨\">어려운 보험 약관·용어 제안 센터</a></dt>\n                <dd>\n                    <ul>\n                        \n                    </ul>\n                    <a href=\"/counselCase/termProposal/list.do\" class=\"btn_more\">어려운 보험 약관·용어 제안 센터</a>\n                </dd>\n            </dl>\n\t\t</div>\n\t\t<div id=\"my_insurance\">\n\t\t\t<a href=\"https://cont.insure.or.kr/\" target=\"_blank\" style=\"display: block;\"><h2>내보험찾아줌 <i class=\"icon_search\"></i></h2></a>\n\t\t\t<span class=\"txt\">* 생명보험협회  조회기준</span>\n\t\t\t<dl class=\"s01\" style=\"width: 244px;\">\n\t\t\t\t<dt>오늘 조회된 보험가입</dt>\n\t\t\t\t<dd id=\"count_num01\" class=\"blue\" data-count-num=\"2492\">2,492</dd>\n\t\t\t</dl>\n\t\t\t<dl class=\"s02\" style=\"width: 356px;\">\n\t\t\t\t<dt>오늘 조회된 숨은보험금</dt>\n\t\t\t\t<dd id=\"count_num02\" class=\"wine\" data-count-num=\"424570066\">424,570,066</dd>\n\t\t\t</dl>\n\t\t</div>\n\t</div>\n</div><!-- //main -->\n\t\t\t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<div id=\"footer\">\n    <div class=\"inwrap\">\n        <img src=\"/home/images/common/b_logo.png\" class=\"logo visible-lg\" alt=\"생명보험협회\">\n        <a href=\"https://www.klia.or.kr/#privacy\" target=\"_blank\" class=\"btn_privacy\">개인정보처리방침</a>\n        <!-- <img src=\"/home/images/common/accessibility.png\" class=\"accessibility visible-lg\" alt=\"accessibility\"> -->\n        <div class=\"footer_cont\">\n            <p>(04554)서울특별시 중구 퇴계로 173, 16층(충무로3가)ㆍ 사업자등록번호 : 201-82-30608ㆍ TEL : 02-2262-6600</p>\n            <p>상호명 : 사단법인 생명보험협회ㆍ 대표자 : 김철주   (통신판매업신고:2015-서울중구-1480&nbsp;|&nbsp;<a href=\"http://www.ftc.go.kr/info/bizinfo/communicationViewPopup.jsp?wrkr_no=2018230608\" target=\"_blank\" title=\"통신판매업신고확인 새창으로 열림\">확인</a>) </p>\n            <p class=\"copyright\">Copyright ⓒ 2019 by KOREA Life Insurance Association. All Rights Reserved.</p>\n        </div>\n\t\t</div>\n    </div>\n</div><!-- //footer -->\n\n\t\t\n\t\t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!-- Google Analytics -->\n<script src=\"/analytics/js/tags/google_gtag.js?id=UA-122160355-5\"></script>\n<script>\n\ttry{\n\t\twindow.dataLayer = window.dataLayer || [];\n\t\tfunction gtag(){dataLayer.push(arguments);}\n\t\tgtag('js', new Date());\n\t\t\n\t\tgtag('config', 'UA-122160355-5');\n\t\t\n\t\tgtag('event', 'click', {\n\t\t\t  'event_category' : category,\n\t\t\t  'event_label' : url,\n\t\t\t  'transport_type' : \"beacon\",\n\t\t\t  'event_callback' : function(){}\n\t\t});\n\t} catch(e) {\n\t\tconsole.log(e);\n\t}\n</script>\n\n<!-- Naver Analytics -->\n<script type=\"text/javascript\" src=\"/analytics/js/tags/naver_wcslog.js\"></script>\n<script type=\"text/javascript\">\n\tif(!wcs_add) var wcs_add = {};\n\twcs_add[\"wa\"] = \"ac521780584aa\";\n\twcs_do();\n</script>\n\n\t\n\n</body></html>",
+    "links": [
+      {
+        "text": "본문바로가기",
+        "url": "https://consumer.insure.or.kr/#main",
+        "onclick": null
+      },
+      {
+        "text": "",
+        "url": "https://consumer.insure.or.kr/main.do",
+        "onclick": null
+      },
+      {
+        "text": "소비자정보통합공시",
+        "url": "https://consumer.insure.or.kr/#",
+        "onclick": null
+      },
+      {
+        "text": "회사별",
+        "url": "https://consumer.insure.or.kr/disclosure/member/view.do",
+        "onclick": null
+      },
+      {
+        "text": "항목별",
+        "url": "https://consumer.insure.or.kr/disclosure/item/view.do",
+        "onclick": null
+      },
+      {
+        "text": "생명보험 핵심정보",
+        "url": "https://consumer.insure.or.kr/#",
+        "onclick": null
+      },
+      {
+        "text": "생명보험개요",
+        "url": "https://consumer.insure.or.kr/info/summary/outline.do",
+        "onclick": null
+      },
+      {
+        "text": "보험관련 법규 및 표준약관",
+        "url": "https://consumer.insure.or.kr/info/regulation/1/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험안내간행물",
+        "url": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+        "onclick": null
+      },
+      {
+        "text": "보험웹툰",
+        "url": "https://consumer.insure.or.kr/info/webtoon/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험다모아",
+        "url": "http://www.e-insmarket.or.kr/",
+        "onclick": null
+      },
+      {
+        "text": "계약 유지를 지원하는 제도",
+        "url": "https://consumer.insure.or.kr/counselCase/contractMaintenance/list.do",
+        "onclick": null
+      },
+      {
+        "text": "생명보험 상담 및 사례",
+        "url": "https://consumer.insure.or.kr/#",
+        "onclick": null
+      },
+      {
+        "text": "자주하는 질문",
+        "url": "https://consumer.insure.or.kr/counselCase/frequently/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험상담 Q＆A",
+        "url": "https://consumer.insure.or.kr/counselCase/qna/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험사링크＆콜센터번호",
+        "url": "http://www.klia.or.kr/klia/company/member/list.do",
+        "onclick": null
+      },
+      {
+        "text": "어려운 보험 약관·용어 제안 센터",
+        "url": "https://consumer.insure.or.kr/counselCase/termProposal/list.do",
+        "onclick": null
+      },
+      {
+        "text": "분쟁사례 및 판례",
+        "url": "https://consumer.insure.or.kr/counselCase/dispute/list.do",
+        "onclick": null
+      },
+      {
+        "text": "금융감독원 소비자경보",
+        "url": "https://www.fss.or.kr/fss/bbs/B0000175/list.do?menuNo=200204",
+        "onclick": null
+      },
+      {
+        "text": "사이트맵",
+        "url": "https://consumer.insure.or.kr/#",
+        "onclick": null
+      },
+      {
+        "text": "회사별",
+        "url": "https://consumer.insure.or.kr/disclosure/member/view.do",
+        "onclick": null
+      },
+      {
+        "text": "항목별",
+        "url": "https://consumer.insure.or.kr/disclosure/item/view.do",
+        "onclick": null
+      },
+      {
+        "text": "생명보험개요",
+        "url": "https://consumer.insure.or.kr/info/summary/outline.do",
+        "onclick": null
+      },
+      {
+        "text": "생명보험개요",
+        "url": "https://consumer.insure.or.kr/info/summary/outline.do",
+        "onclick": null
+      },
+      {
+        "text": "홍보동영상",
+        "url": "https://consumer.insure.or.kr/info/summary/media.do",
+        "onclick": null
+      },
+      {
+        "text": "보험상품 정보(공시실)",
+        "url": "http://pub.insure.or.kr/summary/explan01.do",
+        "onclick": null
+      },
+      {
+        "text": "보험약관 안내 동영상",
+        "url": "https://consumer.insure.or.kr/info/summary/termsMedia.do",
+        "onclick": null
+      },
+      {
+        "text": "보험관련 법규 및 표준약관",
+        "url": "https://consumer.insure.or.kr/info/regulation/1/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험관련법규",
+        "url": "https://consumer.insure.or.kr/info/regulation/1/list.do",
+        "onclick": null
+      },
+      {
+        "text": "생명보험 표준약관",
+        "url": "https://consumer.insure.or.kr/info/standardTerms/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험안내간행물",
+        "url": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+        "onclick": null
+      },
+      {
+        "text": "알기쉬운 생명보험 안내자료",
+        "url": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+        "onclick": null
+      },
+      {
+        "text": "금융상품 거래단계별 핵심정보",
+        "url": "http://fine.fss.or.kr/main/prc/main.jsp",
+        "onclick": null
+      },
+      {
+        "text": "장애인을 위한 보험안내",
+        "url": "https://consumer.insure.or.kr/info/insuranceGuide/2/view.do",
+        "onclick": null
+      },
+      {
+        "text": "금융보험교육교재",
+        "url": "https://consumer.insure.or.kr/info/textbook/list.do",
+        "onclick": null
+      },
+      {
+        "text": "고령층을 위한 금융보험 안내",
+        "url": "https://consumer.insure.or.kr/info/seniorGuide/list.do",
+        "onclick": null
+      },
+      {
+        "text": "연금보험 홍보만화",
+        "url": "https://consumer.insure.or.kr/info/insuranceGuide/3/view.do",
+        "onclick": null
+      },
+      {
+        "text": "변액연금보험가이드",
+        "url": "https://consumer.insure.or.kr/info/insuranceGuide/4/view.do",
+        "onclick": null
+      },
+      {
+        "text": "월간생명보험",
+        "url": "http://www.klia.or.kr/klia/archive/insurMonth/webzine.do",
+        "onclick": null
+      },
+      {
+        "text": "보험웹툰",
+        "url": "https://consumer.insure.or.kr/info/webtoon/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험다모아",
+        "url": "http://www.e-insmarket.or.kr/",
+        "onclick": null
+      },
+      {
+        "text": "계약 유지를 지원하는 제도",
+        "url": "https://consumer.insure.or.kr/counselCase/contractMaintenance/list.do",
+        "onclick": null
+      },
+      {
+        "text": "자주하는 질문",
+        "url": "https://consumer.insure.or.kr/counselCase/frequently/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험상담 Q＆A",
+        "url": "https://consumer.insure.or.kr/counselCase/qna/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험사링크＆콜센터번호",
+        "url": "http://www.klia.or.kr/klia/company/member/list.do",
+        "onclick": null
+      },
+      {
+        "text": "어려운 보험 약관·용어 제안 센터",
+        "url": "https://consumer.insure.or.kr/counselCase/termProposal/list.do",
+        "onclick": null
+      },
+      {
+        "text": "분쟁사례 및 판례",
+        "url": "https://consumer.insure.or.kr/counselCase/dispute/list.do",
+        "onclick": null
+      },
+      {
+        "text": "금융감독원 소비자경보",
+        "url": "https://www.fss.or.kr/fss/bbs/B0000175/list.do?menuNo=200204",
+        "onclick": null
+      },
+      {
+        "text": "",
+        "url": "https://consumer.insure.or.kr/#",
+        "onclick": null
+      },
+      {
+        "text": "자세히보기",
+        "url": "https://consumer.insure.or.kr/info/textbook/list.do",
+        "onclick": null
+      },
+      {
+        "text": "자세히보기",
+        "url": "https://consumer.insure.or.kr/info/insuranceGuide/2/view.do",
+        "onclick": null
+      },
+      {
+        "text": "자세히보기",
+        "url": "https://consumer.insure.or.kr/counselCase/termProposal/list.do",
+        "onclick": null
+      },
+      {
+        "text": "자세히보기",
+        "url": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+        "onclick": null
+      },
+      {
+        "text": "자세히보기",
+        "url": "http://fine.fss.or.kr/main/prc/main.jsp",
+        "onclick": null
+      },
+      {
+        "text": "자세히보기",
+        "url": "https://consumer.insure.or.kr/info/textbook/list.do",
+        "onclick": null
+      },
+      {
+        "text": "자세히보기",
+        "url": "https://consumer.insure.or.kr/info/insuranceGuide/2/view.do",
+        "onclick": null
+      },
+      {
+        "text": "자세히보기",
+        "url": "https://consumer.insure.or.kr/counselCase/termProposal/list.do",
+        "onclick": null
+      },
+      {
+        "text": "자세히보기",
+        "url": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+        "onclick": null
+      },
+      {
+        "text": "자세히보기",
+        "url": "http://fine.fss.or.kr/main/prc/main.jsp",
+        "onclick": null
+      },
+      {
+        "text": "자세히보기",
+        "url": "https://consumer.insure.or.kr/info/textbook/list.do",
+        "onclick": null
+      },
+      {
+        "text": "알기 쉬운 생명보험 안내자료",
+        "url": "https://consumer.insure.or.kr/#",
+        "onclick": null
+      },
+      {
+        "text": "보험상품 거래단계별 핵심정보",
+        "url": "https://consumer.insure.or.kr/#",
+        "onclick": null
+      },
+      {
+        "text": "금융보험 교육교재",
+        "url": "https://consumer.insure.or.kr/#",
+        "onclick": null
+      },
+      {
+        "text": "장애인을 위한 보험 안내",
+        "url": "https://consumer.insure.or.kr/#",
+        "onclick": null
+      },
+      {
+        "text": "어려운 보험약관·용어 제안센터",
+        "url": "https://consumer.insure.or.kr/#",
+        "onclick": null
+      },
+      {
+        "text": "회사별 비교",
+        "url": "javascript:void(0);",
+        "onclick": null
+      },
+      {
+        "text": "항목별 비교",
+        "url": "javascript:void(0);",
+        "onclick": null
+      },
+      {
+        "text": "생명보험 개요",
+        "url": "https://consumer.insure.or.kr/info/summary/outline.do",
+        "onclick": null
+      },
+      {
+        "text": "보험관련 법규 및 표준약관",
+        "url": "https://consumer.insure.or.kr/info/regulation/1/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험안내간행물",
+        "url": "https://consumer.insure.or.kr/info/insuranceGuide/1/view.do",
+        "onclick": null
+      },
+      {
+        "text": "보험웹툰",
+        "url": "https://consumer.insure.or.kr/info/webtoon/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험다모아",
+        "url": "http://www.e-insmarket.or.kr/",
+        "onclick": null
+      },
+      {
+        "text": "계약유지를 지원하는 제도",
+        "url": "https://consumer.insure.or.kr/counselCase/contractMaintenance/list.do",
+        "onclick": null
+      },
+      {
+        "text": "자주하는질문",
+        "url": "https://consumer.insure.or.kr/counselCase/frequently/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험상담 Q&A",
+        "url": "https://consumer.insure.or.kr/counselCase/qna/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험사링크&콜센터번호",
+        "url": "https://www.klia.or.kr/klia/company/member/list.do",
+        "onclick": null
+      },
+      {
+        "text": "분쟁사례및판례",
+        "url": "https://consumer.insure.or.kr/counselCase/dispute/view.do",
+        "onclick": null
+      },
+      {
+        "text": "어려운 보험 약관·용어 제안 센터",
+        "url": "https://consumer.insure.or.kr/counselCase/termProposal/list.do",
+        "onclick": null
+      },
+      {
+        "text": "",
+        "url": "javascript:void(0);",
+        "onclick": null
+      },
+      {
+        "text": "자주하는 질문",
+        "url": "https://consumer.insure.or.kr/",
+        "onclick": null
+      },
+      {
+        "text": "생존자 본인의 보험가입내역 및 미청구보험금 조회방법",
+        "url": "https://consumer.insure.or.kr/counselCase/frequently/list.do",
+        "onclick": null
+      },
+      {
+        "text": "미청구보험금의 개념과 종류",
+        "url": "https://consumer.insure.or.kr/counselCase/frequently/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험나이",
+        "url": "https://consumer.insure.or.kr/counselCase/frequently/list.do",
+        "onclick": null
+      },
+      {
+        "text": "손해사정제도 관련 소비자 유의사항 안내",
+        "url": "https://consumer.insure.or.kr/counselCase/frequently/list.do",
+        "onclick": null
+      },
+      {
+        "text": "자주하는 질문 더보기",
+        "url": "https://consumer.insure.or.kr/counselCase/frequently/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험상담 Q&A",
+        "url": "https://consumer.insure.or.kr/",
+        "onclick": null
+      },
+      {
+        "text": "소멸시효 보험금 청구 문제, 문의 드립니다",
+        "url": "https://consumer.insure.or.kr/counselCase/qna/list.do",
+        "onclick": null
+      },
+      {
+        "text": "[공시 담당 부서 전달 요청] 상품비교공시 데이터 이용 조건 문의",
+        "url": "https://consumer.insure.or.kr/counselCase/qna/list.do",
+        "onclick": null
+      },
+      {
+        "text": "ABL생명- 암입원급여금 심사과정에서 보험금 심사 담당자의 부적절한 응대에 대한 민원",
+        "url": "https://consumer.insure.or.kr/counselCase/qna/list.do",
+        "onclick": null
+      },
+      {
+        "text": "생명보험협회 확인서",
+        "url": "https://consumer.insure.or.kr/counselCase/qna/list.do",
+        "onclick": null
+      },
+      {
+        "text": "보험상담 Q&A 더보기",
+        "url": "https://consumer.insure.or.kr/counselCase/qna/list.do",
+        "onclick": null
+      },
+      {
+        "text": "어려운 보험 약관·용어 제안 센터",
+        "url": "https://consumer.insure.or.kr/",
+        "onclick": null
+      },
+      {
+        "text": "어려운 보험 약관·용어 제안 센터",
+        "url": "https://consumer.insure.or.kr/counselCase/termProposal/list.do",
+        "onclick": null
+      },
+      {
+        "text": "내보험찾아줌 ",
+        "url": "https://cont.insure.or.kr/",
+        "onclick": null
+      },
+      {
+        "text": "개인정보처리방침",
+        "url": "https://www.klia.or.kr/#privacy",
+        "onclick": null
+      },
+      {
+        "text": "확인",
+        "url": "http://www.ftc.go.kr/info/bizinfo/communicationViewPopup.jsp?wrkr_no=2018230608",
+        "onclick": null
+      }
+    ],
+    "inputs": [
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "name": "",
+        "type": "button",
+        "value": "",
+        "text": "메인배너 일시정지",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "name": "",
+        "type": "button",
+        "value": "",
+        "text": "소비자정보통합공시",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "name": "",
+        "type": "button",
+        "value": "",
+        "text": "생명보험 핵심정보",
+        "visible": true
+      },
+      {
+        "tag": "BUTTON",
+        "id": "",
+        "name": "",
+        "type": "button",
+        "value": "",
+        "text": "생명보험 상담 및 사례",
+        "visible": true
+      },
+      {
+        "tag": "INPUT",
+        "id": "",
+        "name": "qnaNo",
+        "type": "hidden",
+        "value": "",
+        "text": "",
+        "visible": false
+      },
+      {
+        "tag": "INPUT",
+        "id": "",
+        "name": "beforePageType",
+        "type": "hidden",
+        "value": "LIST",
+        "text": "",
+        "visible": false
+      },
+      {
+        "tag": "INPUT",
+        "id": "",
+        "name": "writerNm",
+        "type": "text",
+        "value": "",
+        "text": "",
+        "visible": false
+      },
+      {
+        "tag": "INPUT",
+        "id": "",
+        "name": "pw",
+        "type": "password",
+        "value": "",
+        "text": "",
+        "visible": false
+      },
+      {
+        "tag": "INPUT",
+        "id": "btnConfirm",
+        "name": "",
+        "type": "button",
+        "value": "확인",
+        "text": "",
+        "visible": false
+      }
+    ],
+    "scripts": [
+      {
+        "url": "https://www.google-analytics.com/analytics.js",
+        "text": ""
+      },
+      {
+        "url": "https://consumer.insure.or.kr/home/js/jquery-3.2.1.min.js",
+        "text": ""
+      },
+      {
+        "url": "https://consumer.insure.or.kr/home/js/swiper.min.js",
+        "text": ""
+      },
+      {
+        "url": "https://consumer.insure.or.kr/home/js/script.js?v=20220317.01",
+        "text": ""
+      },
+      {
+        "url": "https://consumer.insure.or.kr/home/js/jquery.animateNumber.min.js",
+        "text": ""
+      },
+      {
+        "url": "https://consumer.insure.or.kr/home/js/jquery.inview.min.js",
+        "text": ""
+      },
+      {
+        "url": "https://consumer.insure.or.kr/home/js/main.js",
+        "text": ""
+      },
+      {
+        "url": "",
+        "text": "\n\n\t$(document).ready(function(){\n\n\t});\n\n\t//작성자 확인 layout\n\tfunction fn_openLayout(type, no) {\n\t    //$(\"#viewForm input[name='qnaNo']\").val(no);\n\n\t    $(\"#layer_pop\").show();\n\t}\n\n"
+      },
+      {
+        "url": "https://consumer.insure.or.kr/analytics/js/tags/google_gtag.js?id=UA-122160355-5",
+        "text": ""
+      },
+      {
+        "url": "",
+        "text": "\n\ttry{\n\t\twindow.dataLayer = window.dataLayer || [];\n\t\tfunction gtag(){dataLayer.push(arguments);}\n\t\tgtag('js', new Date());\n\t\t\n\t\tgtag('config', 'UA-122160355-5');\n\t\t\n\t\tgtag('event', 'click', {\n\t\t\t  'event_category' : category,\n\t\t\t  'event_label' : url,\n\t\t\t  'transport_type' : \"beacon\",\n\t\t\t  'event_callback' : function(){}\n\t\t});\n\t} catch(e) {\n\t\tconsole.log(e);\n\t}\n"
+      },
+      {
+        "url": "https://consumer.insure.or.kr/analytics/js/tags/naver_wcslog.js",
+        "text": ""
+      },
+      {
+        "url": "",
+        "text": "\n\tif(!wcs_add) var wcs_add = {};\n\twcs_add[\"wa\"] = \"ac521780584aa\";\n\twcs_do();\n"
+      }
+    ]
+  },
+  "payloads": [
+    {
+      "url": "https://www.google-analytics.com/j/collect?v=1&_v=j102&a=484284872&t=pageview&_s=1&dl=https%3A%2F%2Fconsumer.insure.or.kr%2F&ul=ko-kr&dt=%EC%83%9D%EB%AA%85%EB%B3%B4%ED%97%98%ED%98%91%ED%9A%8C%20%EC%86%8C%EB%B9%84%EC%9E%90%ED%8F%AC%ED%84%B8&sr=1280x720&vp=1280x720&_u=IEBAAUABAAAAACAAI~&jid=1395940040&gjid=445675760&cid=694050360.1789829735&tid=UA-122160355-5&_gid=41583708.1789829735&_r=1&_slc=1&gtm=2ou6c0&z=1491428571",
+      "body": "2,x",
+      "sha256": "1cffc2b3146584685cd72751d7f28aa030ab9ae2f1bc78f2c27909f8d8287b26"
+    },
+    {
+      "url": "https://consumer.insure.or.kr/main/selectInsuranceAjax.do",
+      "body": "{\"cnt\":\"2492\",\"amt\":\"424570066\"}",
+      "sha256": "caca2b06fb59cde1ba111dd0f65081c211bc56f9d8e541beb522e8244e94d361"
+    }
+  ],
+  "page_errors": []
+}

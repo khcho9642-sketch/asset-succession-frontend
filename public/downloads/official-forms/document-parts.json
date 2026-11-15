@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "documents": {
+    "BP-I-01": [
+      {"id":"BP-I-01","title":"상속재산분할협의서","fileIndexes":[0]},
+      {"id":"BP-I-01-EXAMPLE","title":"상속재산분할협의서 · 작성 예시","fileIndexes":[1]}
+    ],
+    "BP-G-01": [
+      {"id":"BP-G-01","title":"부동산 증여계약서","fileIndexes":[0]},
+      {"id":"BP-G-01-EXAMPLE","title":"부동산 증여계약서 · 작성 예시","fileIndexes":[1]}
+    ],
+    "DD-G-01": [
+      {"id":"DD-G-01","title":"증여계약서 · 일반","fileIndexes":[0]},
+      {"id":"DD-G-01-MULTIPLE","title":"증여계약서 · 복수","fileIndexes":[1]},
+      {"id":"DD-G-01-EXAMPLE","title":"증여계약서 · 기관 작성 샘플","fileIndexes":[2]}
+    ],
+    "FAMILY-I-01": [
+      {"id":"FAMILY-I-01","title":"상속재산명세표 · 작성 예시","fileIndexes":[0]},
+      {"id":"FAMILY-I-01-BLANK","title":"상속재산명세표 · 빈칸용","fileIndexes":[1]}
+    ],
+    "P0-16": [
+      {"id":"P0-16","title":"유족연금 지급 청구서","fileIndexes":[0]},
+      {"id":"P0-16-LUMP-SUM","title":"반환일시금·사망일시금 지급 청구서","fileIndexes":[1]}
+    ],
+    "P2-11": [
+      {"id":"P2-11","title":"상속세 신고서 · 기한후신고 참고","fileIndexes":[0],"purposes":["inheritance"]},
+      {"id":"P2-11-GIFT","title":"증여세 신고서 · 기본세율·기한후신고 참고","fileIndexes":[1],"purposes":["gift"]},
+      {"id":"P2-11-GIFT-SPECIAL","title":"증여세 신고서 · 창업자금·가업승계 특례·기한후신고 참고","fileIndexes":[2],"purposes":["gift","business_succession"]},
+      {"id":"P2-11-TRANSFER","title":"양도소득세 신고서 · 기한후신고 참고","fileIndexes":[3],"purposes":["capital_transfer"]}
+    ],
+    "P4-04": [
+      {"id":"P4-04","title":"부동산거래계약 해제등 신고서","fileIndexes":[0]},
+      {"id":"P4-04-CHANGE","title":"부동산거래계약 변경 신고서","fileIndexes":[1]}
+    ]
+  }
+}

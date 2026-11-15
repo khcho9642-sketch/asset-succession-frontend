@@ -1,0 +1,57 @@
+{
+  "id": "P1-02",
+  "title": "매매 소유권이전등기 신청서(구분건물)",
+  "status": "확인 완료",
+  "source_url": "https://www.iros.go.kr/index.jsp",
+  "checked_at": "2026-09-19T17:33:29.037Z",
+  "source_type": "공식제공처",
+  "institution": "대한민국 법원 인터넷등기소",
+  "requested_provider": "대한민국 법원 인터넷등기소",
+  "alternative_official_source": false,
+  "license": "대한민국 법원 인터넷등기소 공식 제공처 연결 · 자체 재배포하지 않음",
+  "files": [],
+  "inspected_originals": [],
+  "source_evidence": {
+    "url": "https://www.iros.go.kr/index.jsp",
+    "checked_at": "2026-09-19T17:33:29.037Z",
+    "verification_method": "official-browser-rendered-form-list",
+    "page_title": "인터넷등기소 - 등기신청양식",
+    "navigation": [
+      "고객센터",
+      "지원안내",
+      "등기신청양식"
+    ],
+    "search_term": "매매",
+    "matched_terms": [
+      "04-2.매매로인한소유권이전등기신청(구분건물)"
+    ],
+    "attachment_filenames": [
+      "04-2.매매로인한소유권이전등기신청(구분건물).hwp",
+      "04-2.매매로인한소유권이전등기신청(구분건물).pdf",
+      "04-2.매매로인한소유권이전등기신청(구분건물).docx",
+      "04-2.매매로인한소유권이전등기신청(구분건물).odt"
+    ],
+    "confirmed_observations": [
+      "공식 인터넷등기소 고객센터 > 지원안내 > 등기신청양식 검색 수행",
+      "대상 신청서의 제목과 부동산등기 분류 확인",
+      "같은 행의 HWP/PDF/DOCX/ODT 첨부 아이콘 및 첨부 파일명 확인"
+    ],
+    "download_verified": false,
+    "verification_limit": "공식 목록에 해당 서식과 첨부 표시가 존재함을 확인했습니다. 원본 바이트 수신 및 원본 내용은 확인하지 않았습니다.",
+    "screenshot_sha256": "f93722ec38e6fa8662faddd5f737b8cddb576c231aa7daf2dff1fd01be0c6580",
+    "captured_evidence_sha256": "adff8a2798b2c40acd577dde9a724a0870b7fd943c9dab6621110a56138a420a",
+    "evidence_file": "docs/forms-expansion-109/evidence/round16/support/P1-02.json",
+    "evidence_sha256": "1a5f0763f858bcaca526089ce9b9177c50da342f2390935ffe6d0a05e6e8a932"
+  },
+  "failure_reason": null,
+  "note": "공식 제공처에서 고객센터 > 지원안내 > 등기신청양식으로 이동하여 ‘매매’을 검색한 뒤 ‘04-2.매매로인한소유권이전등기신청(구분건물)’을 선택하세요. 해당 공식 목록의 첨부 형식 표시를 확인했습니다. 화면이 단일 주소(index.jsp)를 사용하므로 검색 결과별 직접 URL은 제공되지 않습니다. 원본 파일 자체는 미확보입니다.",
+  "candidate_reviewed_at": "2026-09-19T17:36:41.033568+00:00",
+  "task_operation": "add",
+  "target_id": null,
+  "evidence_retention": {
+    "representation": "metadata_and_short_excerpts",
+    "support_file": "docs/forms-expansion-109/evidence/round16/support/P1-02.json",
+    "new_original_binaries_included": false,
+    "private_local_paths_included": false
+  }
+}

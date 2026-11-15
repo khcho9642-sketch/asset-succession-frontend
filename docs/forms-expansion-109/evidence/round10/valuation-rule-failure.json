@@ -1,0 +1,5 @@
+{
+  "url": "https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000281898",
+  "error": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /LSW/admRulLsInfoP.do?admRulSeq=2100000281898 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f548c5e4d70>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))",
+  "checked_at": "2026-09-19T14:29:15Z"
+}

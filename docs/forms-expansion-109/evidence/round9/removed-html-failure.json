@@ -1,0 +1,5 @@
+{
+  "url": "https://efamily.scourt.go.kr/cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007007&guideYn=Y",
+  "checked_at": "2026-09-19T14:16:57Z",
+  "error": "HTTPSConnectionPool(host='efamily.scourt.go.kr', port=443): Max retries exceeded with url: /cs/CsBltnWrtGuide.do?bltnbordId=0000007&guideCd=0000007007&guideYn=Y (Caused by ConnectTimeoutError(<HTTPSConnection(host='efamily.scourt.go.kr', port=443) at 0x7fedd8f79a00>, 'Connection to efamily.scourt.go.kr timed out. (connect timeout=9)'))"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "P1-02",
+  "title": "매매 소유권이전등기 신청서(구분건물)",
+  "institution": "대한민국 법원 인터넷등기소",
+  "source_url": "https://www.iros.go.kr/index.jsp",
+  "checked_at": "2026-09-19T17:33:29.037Z",
+  "retention": "검증 메타데이터와 짧은 발췌만 보존. 원본·전체 텍스트·화면·쿠키·임시 경로는 포함하지 않음.",
+  "records": [
+    {
+      "capture_name": "P1-02-iros-evidence.json",
+      "capture_sha256": "adff8a2798b2c40acd577dde9a724a0870b7fd943c9dab6621110a56138a420a",
+      "source_url": "https://www.iros.go.kr/index.jsp",
+      "checked_at": "2026-09-19T17:33:29.037Z",
+      "verification_method": "official-browser-rendered-form-list",
+      "confirmed_observations": [
+        "공식 인터넷등기소 고객센터 > 지원안내 > 등기신청양식 검색 수행",
+        "대상 신청서의 제목과 부동산등기 분류 확인",
+        "같은 행의 HWP/PDF/DOCX/ODT 첨부 아이콘 및 첨부 파일명 확인"
+      ],
+      "page_title": "인터넷등기소 - 등기신청양식",
+      "search_term": "매매",
+      "navigation": [
+        "고객센터",
+        "지원안내",
+        "등기신청양식"
+      ],
+      "form_titles": [
+        "04-2.매매로인한소유권이전등기신청(구분건물)"
+      ],
+      "attachment_filenames": [
+        "04-2.매매로인한소유권이전등기신청(구분건물).hwp",
+        "04-2.매매로인한소유권이전등기신청(구분건물).pdf",
+        "04-2.매매로인한소유권이전등기신청(구분건물).docx",
+        "04-2.매매로인한소유권이전등기신청(구분건물).odt"
+      ],
+      "download_verified": false,
+      "limitation": "공식 목록에 해당 서식과 첨부 표시가 존재함을 확인했습니다. 원본 바이트 수신 및 원본 내용은 확인하지 않았습니다."
+    }
+  ]
+}

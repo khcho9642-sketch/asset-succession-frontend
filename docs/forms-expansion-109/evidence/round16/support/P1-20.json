@@ -1,0 +1,27 @@
+{
+  "id": "P1-20",
+  "title": "유류분반환청구 소장",
+  "institution": "대한법률구조공단",
+  "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+  "checked_at": "2026-09-19T17:36:34.782912Z",
+  "retention": "검증 메타데이터와 짧은 발췌만 보존. 원본·전체 텍스트·화면·쿠키·임시 경로는 포함하지 않음.",
+  "records": [
+    {
+      "capture_name": "klac-browser-evidence.json",
+      "capture_sha256": "26b970720540a6099b21996a18391d96c1c3faae220f0321c5af806905c003e7",
+      "evidence_key": "court-reserve",
+      "source_url": "https://www.klac.or.kr/legalinfo/legalFrm.do",
+      "captured_at": "2026-09-19T17:30:39.196Z",
+      "method": "live_browser_rendered_dom",
+      "observed_rows": [
+        {
+          "text": "유류분 461 유류분반환청구의 소 다운로드다운로드 아이콘 바로보기바로보기 아이콘",
+          "download_urls": [
+            "https://support.klac.or.kr/cmm/fms/FileDown_docs.do?repositoryPath=%2fECM%2f2019%2f06%2f10%2f13%2f21%2ff149e66f-fcf3-42cb-b2a2-4b16528c76a0&filename=%ec%9c%a0%eb%a5%98%eb%b6%84%eb%b0%98%ed%99%98%ec%b2%ad%ea%b5%ac%ec%9d%98+%ec%86%8c.hwp"
+          ]
+        }
+      ],
+      "download_verified": false
+    }
+  ]
+}

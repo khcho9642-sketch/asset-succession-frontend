@@ -14,6 +14,8 @@ const diagnosisLinks = [
   { href: "/precheck?purpose=business", label: "가업승계" }
 ];
 
+const libraryLink = { href: "/forms", label: "자료실" };
+
 function KakaoConsultationLink({ compact = false }: { compact?: boolean }) {
   return (
     <a href={KAKAO_OPEN_CHAT_URL} target="_blank" rel="noopener noreferrer"
@@ -54,6 +56,7 @@ export function PublicNav() {
         </Link>
         <nav className={styles.desktopNav} aria-label="진단 유형">
           {diagnosisLinks.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
+          <Link href={libraryLink.href}>{libraryLink.label}</Link>
         </nav>
         <div className={styles.desktopActions} data-public-desktop-actions>
           <KakaoConsultationLink />
@@ -71,6 +74,7 @@ export function PublicNav() {
       </div>
       <nav id="mobile-diagnosis-menu" hidden={!isMenuOpen} className={styles.mobileMenu} aria-label="모바일 진단 유형">
         {diagnosisLinks.map((item) => <Link href={item.href} key={item.href} onClick={() => setIsMenuOpen(false)}>{item.label}</Link>)}
+        <Link href={libraryLink.href} onClick={() => setIsMenuOpen(false)}>{libraryLink.label}</Link>
         <a href={KAKAO_OPEN_CHAT_URL} target="_blank" rel="noopener noreferrer"
           aria-label="카카오 상담 (새 창)" onClick={() => setIsMenuOpen(false)}>카카오 상담</a>
         <Link href="/consultation" onClick={() => setIsMenuOpen(false)}>전문가 상담</Link>

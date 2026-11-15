@@ -1,0 +1,64 @@
+{
+  "requested_url": "https://ems.nts.go.kr/tax_inquiry/guide_01.html",
+  "checked_at": "2026-09-19T15:02:51Z",
+  "http_status": 200,
+  "chain": [
+    {
+      "url": "https://ems.nts.go.kr/tax_inquiry/guide_01.html",
+      "http_status": 200,
+      "sha256": "6def490e43571b7c29f7dc9f25c0609d89a8d8160e43c3932dc531d97e5c05e2",
+      "checked_at": "2026-09-19T15:02:51Z"
+    }
+  ],
+  "text": "세무조사 가이드북 세무조사 GUIDE BOOK 세무조사 GUIDE BOOK 세무조사, 이렇게 진행됩니다. 일반조사(사전통지) 일반조사(사전통지생략) 재산제세조사(사전통지) 재산제세조사(사전통지생략) Contents 국세청 개청 60주년 기념사 3 납세자권리헌장 4 세무조사는 이렇게 진행됩니다. 5 세무조사 진행 과정별 확인할 사항 6 중점검증항목 7 (세무조사 준비에 부담을 갖지 마세요) 세무조사 시작전 8 (세무조사는 공정하고 투명하게 진행됩니다) 세무조사의 시작과 진행 12 (세무조사의 마지막까지 배려하겠습니다) 세무조사 마무리 20 (납세자의 목소리에 귀를 기울이겠습니다) 납세자의 권리구제 및 고객평가 23 기타 안내말씀 30 가이드북 다운받기 각종 신청서 등 서식 1. 세무조사 연기신청서 2. 세무조사 장소 신청서 3. 세무조사 유예 신청서(일자리 창출기업) 4. 세무조사 유예 신청서(스타트업 기업·혁신 중소기업) 5. 세무조사 유예 신청서(모범납세자) 6. 조사유예(중지·연기) 철회 신청 7. 세무대리인 위임장 8. 장부·서류 등 반환 요청서 9. 세무조사(중지·연장) 신청서 10. 조기결정신청서 11. 납부기한 등 연장 신청서 12. 국세·지방세 납부기한등의 연장 등의 적용특례 신청서 13. 과세전적부심사청구서 14. 과세전적부심사청구서(국세청용) 15. 이의신청서 16. 심사청구서 17. 심판청구서 18. 불복청구 전 국선대리인 선정 신청서 19. 세무조사 실시간 체크리스트 20. 세무조사 사후 체크리스트 21. 권리보호 심의 요청서 22. 세무조사 참관 신청서 23. 세무조사 참관 신청 취하서 전체서식 HWP받기 전체서식 PDF받기 Copyright © 2020 National Tax Service. Republic Of Korea 닫기",
+  "links": [
+    {
+      "text": "일반조사(사전통지)",
+      "url": "https://ems.nts.go.kr/tax_inquiry/guide_01.html",
+      "onclick": null,
+      "origin": "https://ems.nts.go.kr/tax_inquiry/guide_01.html"
+    },
+    {
+      "text": "일반조사(사전통지생략)",
+      "url": "https://ems.nts.go.kr/tax_inquiry/guide_02.html",
+      "onclick": null,
+      "origin": "https://ems.nts.go.kr/tax_inquiry/guide_01.html"
+    },
+    {
+      "text": "재산제세조사(사전통지)",
+      "url": "https://ems.nts.go.kr/tax_inquiry/guide_03.html",
+      "onclick": null,
+      "origin": "https://ems.nts.go.kr/tax_inquiry/guide_01.html"
+    },
+    {
+      "text": "재산제세조사(사전통지생략)",
+      "url": "https://ems.nts.go.kr/tax_inquiry/guide_04.html",
+      "onclick": null,
+      "origin": "https://ems.nts.go.kr/tax_inquiry/guide_01.html"
+    },
+    {
+      "text": "가이드북 다운받기",
+      "url": "https://ems.nts.go.kr/comm/nttFileDownload.do?fileKey=03a1fa389bb870347ac1874fd802154a",
+      "onclick": null,
+      "origin": "https://ems.nts.go.kr/tax_inquiry/guide_01.html"
+    },
+    {
+      "text": "전체서식 HWP받기",
+      "url": "https://ems.nts.go.kr/comm/nttFileDownload.do?fileKey=a52e7a24de91f732648721a7e8d89a58",
+      "onclick": null,
+      "origin": "https://ems.nts.go.kr/tax_inquiry/guide_01.html"
+    },
+    {
+      "text": "전체서식 PDF받기",
+      "url": "https://ems.nts.go.kr/comm/nttFileDownload.do?fileKey=cc43f52365aa9f40bc1a40b34e755e2a",
+      "onclick": null,
+      "origin": "https://ems.nts.go.kr/tax_inquiry/guide_01.html"
+    },
+    {
+      "text": "닫기",
+      "url": "https://ems.nts.go.kr/tax_inquiry/guide_01.html#close",
+      "onclick": null,
+      "origin": "https://ems.nts.go.kr/tax_inquiry/guide_01.html"
+    }
+  ]
+}

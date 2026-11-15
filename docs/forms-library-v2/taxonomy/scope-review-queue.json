@@ -1,0 +1,17 @@
+[
+  {
+    "review_id": "GAP-JEONSE-CANCELLATION",
+    "title": "전세권말소등기 신청서·작성 안내",
+    "status": "needs_source_verification",
+    "proposed_primary_stage_id": "S4",
+    "candidate_purposes": ["inheritance", "capital_transfer"],
+    "basis": "사용자 지적에 따른 승계 관련 범위 검토 후보. 현재 177개 자료와 109개 작업에서 해당 제목·파일·별칭을 찾지 못함.",
+    "scope_conditions_to_verify": ["기존 전세권의 존재", "말소 원인과 실제 신청 필요", "신청 당사자와 관련 승계 행위"],
+    "source_url": null,
+    "counted_in_current_catalog": false,
+    "counted_as_collected": false,
+    "related_existing_resource_id": "P1-09",
+    "must_not_replace_existing_title": true,
+    "review_note": "P1-09는 설정등기 자료이다. 제목만 말소로 바꾸거나 상속 발생만으로 말소가 필요하다고 추천하지 않는다. 말소 자료의 공식 출처·적용 조건 확인 후 별도 ID로 등록 여부를 결정한다."
+  }
+]

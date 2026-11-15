@@ -1,0 +1,133 @@
+{
+  "base_commit": "3f0fbb1cf1e5c03df821d4f0ebd2a0ea37f0c0c5",
+  "branch": "assistant/forms-additions-109",
+  "processed_ids": [
+    "P7-04",
+    "P9-03",
+    "P6-03",
+    "P6-06",
+    "P4-05"
+  ],
+  "completed_before": 87,
+  "completed_after": 92,
+  "unchecked_after": 17,
+  "failed_in_this_batch": [],
+  "pending_ids": [
+    "P0-10",
+    "P1-02",
+    "P1-03",
+    "P1-04",
+    "P1-05",
+    "P1-10",
+    "P1-11",
+    "P1-13",
+    "P1-16",
+    "P1-19",
+    "P1-20",
+    "P2-11",
+    "P2-15",
+    "P3-05",
+    "P8-02",
+    "P8-07",
+    "P9-07"
+  ],
+  "pending_reasons": [
+    {
+      "id": "P0-10",
+      "reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+    },
+    {
+      "id": "P1-02",
+      "reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    },
+    {
+      "id": "P1-03",
+      "reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    },
+    {
+      "id": "P1-04",
+      "reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    },
+    {
+      "id": "P1-05",
+      "reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    },
+    {
+      "id": "P1-10",
+      "reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    },
+    {
+      "id": "P1-11",
+      "reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    },
+    {
+      "id": "P1-13",
+      "reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    },
+    {
+      "id": "P1-16",
+      "reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+    },
+    {
+      "id": "P1-19",
+      "reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+    },
+    {
+      "id": "P1-20",
+      "reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+    },
+    {
+      "id": "P2-11",
+      "reason": "현행 법령 서식 검색: 공식 검색 결과에 법령명과 요청 서식명 일치 없음"
+    },
+    {
+      "id": "P2-15",
+      "reason": "HWP/HWPX/DOCX/PDF 바이너리 확인 실패"
+    },
+    {
+      "id": "P3-05",
+      "reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    },
+    {
+      "id": "P8-02",
+      "reason": "공식 양식 검색에서 요청 문서 존재를 확인하지 못함"
+    },
+    {
+      "id": "P8-07",
+      "reason": "요청 범위의 공식 원문·파일 검증을 아직 완료하지 못했습니다."
+    },
+    {
+      "id": "P9-07",
+      "reason": "HTTPSConnectionPool(host='www.law.go.kr', port=443): Max retries exceeded with url: /%EB%B2%95%EB%A0%B9/%EB%AF%BC%EA%B0%84%EC%9E%84%EB%8C%80%EC%A3%BC%ED%83%9D%EC%97%90%EA%B4%80%ED%95%9C%ED%8A%B9%EB%B3%84%EB%B2%95%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.law.go.kr', port=443) at 0x7f55d5b810d0>, 'Connection to www.law.go.kr timed out. (connect timeout=9)'))"
+    }
+  ],
+  "delivery": "Five official-provider guidance cards; no new binary redistribution.",
+  "preservation": {
+    "existing_completed_task_records": 87,
+    "legacy_catalog_records": 74,
+    "manifest_records": 177,
+    "legacy_files_and_zip": "No tree entries changed",
+    "ui_main_calculator_chat_mcp": "No tree entries changed",
+    "prior_checkpoints": "Unchanged; checkpoint-090 added"
+  },
+  "prior_item_commits": [
+    {
+      "id": "P7-04",
+      "sha": "ad534e18fc1567540bd3b3a1064140c66eca8bce"
+    },
+    {
+      "id": "P9-03",
+      "sha": "f57a2abf59af82d71c80f0593820dedf879aa05f"
+    },
+    {
+      "id": "P6-03",
+      "sha": "3eb3b5466ae611caeda40f90c6e65d335d8aba17"
+    },
+    {
+      "id": "P6-06",
+      "sha": "5c943a799f030d57fc711784b22658ec12800de9"
+    }
+  ],
+  "final_item": "P4-05 is saved by the commit containing this file.",
+  "validation": "Each item validated for data/task/summary consistency and unchanged records before its individual commit."
+}

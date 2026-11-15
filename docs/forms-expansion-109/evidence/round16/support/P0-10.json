@@ -1,0 +1,43 @@
+{
+  "id": "P0-10",
+  "title": "특별한정승인 심판청구서",
+  "institution": "대한민국 법원",
+  "source_url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+  "checked_at": "2026-09-19T17:36:34.782912Z",
+  "retention": "검증 메타데이터와 짧은 발췌만 보존. 원본·전체 텍스트·화면·쿠키·임시 경로는 포함하지 않음.",
+  "records": [
+    {
+      "capture_name": "court-original-0.json",
+      "capture_sha256": "05588711ff0c99c49b3dbf2f1403977faf24ab9e3c7a4f3395800eb3da690a59",
+      "url": "https://file.scourt.go.kr/AttachDownload?path=004&file=1671436629761_165709.hwp&downFile=53_%BB%F3%BC%D3%C7%D1%C1%A4%BD%C2%C0%CE%20%BD%C9%C6%C7%C3%BB%B1%B8(%BF%CF%B7%E13)-hwp.hwp",
+      "checked_at": "2026-09-19T15:18:25Z",
+      "sha256": "ad23724e2a7250cfcec7e305607a542fc80b75cd88e3f09d7c9199e72071c2f7",
+      "bytes": 80896,
+      "format": "hwp",
+      "unmodified_original": true,
+      "excerpt": [
+        "상속한정승인 심판청구서",
+        "특별한정승인"
+      ],
+      "download_verified": true,
+      "verification_round": "round14 기록 재사용; round16 재다운로드 아님",
+      "binary_included_in_support": false
+    },
+    {
+      "capture_name": "court-query-한정승인.json",
+      "capture_sha256": "81e6cdff552cf818f40b1997f1ccd92691d0d512912a5e396f1efc217dda9817",
+      "url": "https://ecfs.scourt.go.kr/psp/index.on?m=PSP720M24",
+      "checked_at": "2026-09-19T15:18:07Z",
+      "excerpt": [
+        "[가사] 상속한정승인 심판청구서"
+      ],
+      "catalog_matches": [
+        {
+          "url": "https://ecfs.scourt.go.kr/psp/psp720/selectNboardList.on",
+          "response_sha256": "f0bfd9824247ad327cadf51504d2f66f916504b8f6b7cac55fda64e77b8f3963",
+          "matched_file_name": "1671436629761_165709.hwp"
+        }
+      ]
+    }
+  ]
+}

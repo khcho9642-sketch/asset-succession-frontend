@@ -1,0 +1,1411 @@
+{
+  "sourceRecordCount": 177,
+  "catalogueCount": 200,
+  "ready": 123,
+  "provider": 68,
+  "pending": 0,
+  "archived": 9,
+  "legacyHwpVerified": 40,
+  "legacyHwpRestored": 38,
+  "items": [
+    {
+      "id": "BP-I-01",
+      "title": "상속재산분할협의서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "BP-I-01-EXAMPLE",
+      "title": "상속재산분할협의서 · 작성 예시",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "BP-G-01",
+      "title": "부동산 증여계약서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "BP-G-01-EXAMPLE",
+      "title": "부동산 증여계약서 · 작성 예시",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "DD-G-01",
+      "title": "증여계약서 · 일반",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "DD-G-01-MULTIPLE",
+      "title": "증여계약서 · 복수",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "DD-G-01-EXAMPLE",
+      "title": "증여계약서 · 기관 작성 샘플",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "FAMILY-I-01",
+      "title": "상속재산명세표 · 작성 예시",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "FAMILY-I-01-BLANK",
+      "title": "상속재산명세표 · 빈칸용",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "SC-01",
+      "title": "매매 · [단독주택] 간이하게 작성하는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-02",
+      "title": "매매 · [아파트,연립주택] 간이하게 작성하는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-03",
+      "title": "매매 · [토지] 간이하게 작성하는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-04",
+      "title": "매매 · [단독주택] 일반적인 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-05",
+      "title": "매매 · [단독주택] 저당권이 있는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-06",
+      "title": "매매 · [단독주택] 전세를 안고 사는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-07",
+      "title": "매매 · [단독주택] 저당권도 있고 전세도 안고 사는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-08",
+      "title": "매매 · [아파트,연립주택] 일반적인 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-09",
+      "title": "매매 · [아파트,연립주택] 저당권이 있는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-10",
+      "title": "매매 · [아파트,연립주택] 전세를 안고 사는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-11",
+      "title": "매매 · [아파트,연립주택] 저당권도 있고 전세도 안고 사는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-12",
+      "title": "매매 · [토지] 일반적인 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-13",
+      "title": "매매 · [토지] 저당권이 있는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-14",
+      "title": "매매 · [토지] 전세를 안고 사는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-15",
+      "title": "매매 · [토지] 저당권도 있고 전세도 안고 사는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-16",
+      "title": "임대차 · [일반건물] 간이하게 작성하는 경우",
+      "status": "archived",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019,
+      "previewStatus": "ready"
+    },
+    {
+      "id": "SC-17",
+      "title": "임대차 · [아파트,연립주택] 간이하게 작성하는 경우",
+      "status": "archived",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019,
+      "previewStatus": "ready"
+    },
+    {
+      "id": "SC-18",
+      "title": "임대차 · [상가건물] 간이하게 작성하는 경우",
+      "status": "archived",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019,
+      "previewStatus": "ready"
+    },
+    {
+      "id": "SC-19",
+      "title": "임대차 · [일반건물] 일반적인 경우",
+      "status": "archived",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019,
+      "previewStatus": "ready"
+    },
+    {
+      "id": "SC-20",
+      "title": "임대차 · [아파트,연립주택] 일반적인 경우",
+      "status": "archived",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019,
+      "previewStatus": "ready"
+    },
+    {
+      "id": "SC-21",
+      "title": "임대차 · [상가건물] 일반적인 경우",
+      "status": "archived",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019,
+      "previewStatus": "ready"
+    },
+    {
+      "id": "SC-22",
+      "title": "금전대차 · 일반적인 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-23",
+      "title": "금전대차 · 연대보증인이 있는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-24",
+      "title": "금전대차 · 차용인 부동산에 저당권 설정하는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-25",
+      "title": "금전대차 · 제3자 부동산에 저당권 설정하는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-26",
+      "title": "차용·영수증 · [영수증] 매매대금을 받는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-27",
+      "title": "차용·영수증 · [영수증] 전세금을 받는 경우",
+      "status": "archived",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019,
+      "previewStatus": "ready"
+    },
+    {
+      "id": "SC-28",
+      "title": "차용·영수증 · [영수증] 대여금을 전부 돌려받는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-29",
+      "title": "차용·영수증 · [영수증] 대여금을 일부 돌려받는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-30",
+      "title": "차용·영수증 · [차용증] 일반적인 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "SC-31",
+      "title": "차용·영수증 · [차용증] 연대보증인이 있는 경우",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1019
+    },
+    {
+      "id": "NTS-IG-01",
+      "title": "가업상속공제신고서·가업상속재산명세서·가업용 자산 명세",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "NTS-IG-02",
+      "title": "영농상속공제신고서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "NTS-IG-03",
+      "title": "배우자 상속재산 미분할 신고서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-IG-04",
+      "title": "임신사실확인서",
+      "status": "ready",
+      "method": "pdf-first-page",
+      "width": 720,
+      "height": 1018
+    },
+    {
+      "id": "NTS-IG-05",
+      "title": "장애인증명서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "NTS-IG-06",
+      "title": "금융재산 상속공제 신고서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-IG-07",
+      "title": "재해손실 공제신고서(상속세, 증여세)",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-IG-08",
+      "title": "동거주택상속공제신고서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-IG-09",
+      "title": "외국납부세액공제신청서(상속세, 증여세)",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-IG-10",
+      "title": "상속세과세표준신고 및 자진납부계산서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "NTS-IG-11",
+      "title": "증여세과세표준신고 및 자진납부계산서 · 기본세율",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "NTS-IG-12",
+      "title": "증여세과세표준신고 및 자진납부계산서 · 창업자금·가업승계 특례",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "NTS-IG-13",
+      "title": "상속세(증여세) 연부연납허가(변경, 철회) 신청서·연부연납세액 계산명세",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "NTS-IG-14",
+      "title": "가업상속 납부유예 신청서·가업상속재산명세서·가업용 자산 명세",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "NTS-CG-01",
+      "title": "양도소득세과세표준 신고 및 납부계산서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-CG-02",
+      "title": "양도소득금액 계산명세서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-CG-03",
+      "title": "취득가액 및 필요경비 상세명세서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-CG-04",
+      "title": "양도소득세 간편신고서(소명자료제출서)",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "NTS-CG-05",
+      "title": "주식 등 양도소득 계산명세서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-CG-06",
+      "title": "파생상품등 양도소득금액 계산명세서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 250,
+      "height": 177
+    },
+    {
+      "id": "NTS-CG-07",
+      "title": "주식 등 양도소득세 간편신고서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "NTS-CG-08",
+      "title": "농어촌주택 소유자 1세대1주택 특례적용신고서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-CG-09",
+      "title": "주택임대사업자의 거주주택 1세대1주택 특례적용신고서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "NTS-CG-10",
+      "title": "이월과세적용신청서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-CG-11",
+      "title": "과세이연신청서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-CG-12",
+      "title": "현물출자 등에 대한 세액감면(면제)신청서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-CG-13",
+      "title": "개발제한구역 지정에 따른 매수대상 토지 등에 대한 세액감면신청서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-CG-14",
+      "title": "영수증서(납세자용)납부서(수납기관용)",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-CG-15",
+      "title": "개인지방소득세 납부서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-IE-01",
+      "title": "사례01_피상속인이 비거주자인 경우",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-IE-02",
+      "title": "사례02_피상속인이 거주자로 과세미달인 경우",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-IE-03",
+      "title": "사례03_피상속인이 거주자로 과세인 경우",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "NTS-CE-01",
+      "title": "비상장 대기업 주식 양도 · 실지거래가액이 있는 경우",
+      "status": "ready",
+      "method": "institution-image",
+      "width": 720,
+      "height": 1099
+    },
+    {
+      "id": "REG-I-01",
+      "title": "상속에 의한 소유권 이전등기 신청서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "REG-I-02",
+      "title": "상속에 의한 소유권 이전등기 신청서(구분건물)",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "REG-I-03",
+      "title": "협의분할에 의한 상속을 원인으로 한 소유권 이전등기 신청서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "REG-I-04",
+      "title": "협의분할에 의한 상속을 원인으로 한 소유권 이전등기 신청서(구분건물)",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "REG-G-01",
+      "title": "증여에 의한 소유권 이전등기 신청서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "REG-G-02",
+      "title": "증여에 의한 소유권 이전등기 신청서(구분건물)",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "P0-01",
+      "title": "사망자 등 재산조회 통합처리 신청서(안심상속)",
+      "status": "provider"
+    },
+    {
+      "id": "P0-02",
+      "title": "상속인 금융거래조회 신청서",
+      "status": "provider"
+    },
+    {
+      "id": "P0-03",
+      "title": "상속인 금융거래조회 위임장",
+      "status": "provider"
+    },
+    {
+      "id": "P0-04",
+      "title": "외국인 사망자 조회 안내문",
+      "status": "provider"
+    },
+    {
+      "id": "P0-05",
+      "title": "사망신고서",
+      "status": "provider"
+    },
+    {
+      "id": "P0-06",
+      "title": "가족관계증명서(상세)·기본증명서(상세)·제적등본 발급 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P0-07",
+      "title": "상속포기 심판청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P0-08",
+      "title": "상속한정승인 심판청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P0-09",
+      "title": "상속재산목록(한정승인 첨부)",
+      "status": "provider"
+    },
+    {
+      "id": "P0-10",
+      "title": "특별한정승인 심판청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P0-11",
+      "title": "취득세(기한내/기한후) 신고서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P0-12",
+      "title": "주택(무상·유상거래) 취득 상세 명세서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P0-13",
+      "title": "취득세 납부서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P0-14",
+      "title": "지방세 감면 신청서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P0-15",
+      "title": "취득세 비과세 확인서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P0-16",
+      "title": "유족연금 지급 청구서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P0-16-LUMP-SUM",
+      "title": "반환일시금·사망일시금 지급 청구서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P1-01",
+      "title": "매매 소유권이전등기 신청서",
+      "status": "provider"
+    },
+    {
+      "id": "P1-02",
+      "title": "매매 소유권이전등기 신청서(구분건물)",
+      "status": "provider"
+    },
+    {
+      "id": "P1-06",
+      "title": "공유물분할 소유권이전등기 신청서",
+      "status": "provider"
+    },
+    {
+      "id": "P1-07",
+      "title": "근저당권설정등기 신청서",
+      "status": "provider"
+    },
+    {
+      "id": "P1-08",
+      "title": "근저당권말소등기 신청서",
+      "status": "provider"
+    },
+    {
+      "id": "P1-09",
+      "title": "전세권설정등기 신청서",
+      "status": "archived",
+      "previewStatus": "provider"
+    },
+    {
+      "id": "P1-10",
+      "title": "신탁등기 신청서",
+      "status": "provider"
+    },
+    {
+      "id": "P1-11",
+      "title": "소유권경정등기 신청서",
+      "status": "provider"
+    },
+    {
+      "id": "P1-12",
+      "title": "소유권이전청구권 가등기 신청서",
+      "status": "provider"
+    },
+    {
+      "id": "P1-13",
+      "title": "등기신청 위임장·등기신청수수료 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P1-14",
+      "title": "자필증서 유언 작성 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P1-15",
+      "title": "유언증서 검인 청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P1-16",
+      "title": "유언집행자 선임 심판청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P1-17",
+      "title": "공정증서 유언 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P1-18",
+      "title": "상속재산분할 심판청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P1-19",
+      "title": "기여분 결정 청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P1-20",
+      "title": "유류분반환청구 소장",
+      "status": "provider"
+    },
+    {
+      "id": "P1-21",
+      "title": "상속재산관리인 선임 심판청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P1-22",
+      "title": "성년후견 개시 심판청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P1-23",
+      "title": "부재자 재산관리인 선임·실종선고 심판청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P1-24",
+      "title": "자동차 이전등록 신청서(상속)",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P2-01",
+      "title": "창업자금 증여세 과세특례 적용신청서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P2-02",
+      "title": "가업승계 주식 증여세 과세특례 적용신청서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P2-03",
+      "title": "주식등변동상황명세서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 1024,
+      "height": 724
+    },
+    {
+      "id": "P2-04",
+      "title": "사업자등록 정정신고서(상속 대표자 변경)",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P2-05",
+      "title": "가업(영농)상속공제 사후관리 추징사유 신고 및 자진납부계산서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "P2-06",
+      "title": "명문장수기업 확인 신청",
+      "status": "archived",
+      "previewStatus": "provider"
+    },
+    {
+      "id": "P2-07",
+      "title": "상속세 물납 신청서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "P2-08",
+      "title": "납세담보 제공서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P2-09",
+      "title": "분납 신청 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P2-10",
+      "title": "경정청구서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P2-11",
+      "title": "상속세 신고서 · 기한후신고 참고",
+      "status": "ready",
+      "method": "original-pdf",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "P2-11-GIFT",
+      "title": "증여세 신고서 · 기본세율·기한후신고 참고",
+      "status": "ready",
+      "method": "original-pdf",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "P2-11-GIFT-SPECIAL",
+      "title": "증여세 신고서 · 창업자금·가업승계 특례·기한후신고 참고",
+      "status": "ready",
+      "method": "original-pdf",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "P2-11-TRANSFER",
+      "title": "양도소득세 신고서 · 기한후신고 참고",
+      "status": "ready",
+      "method": "original-pdf",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "P2-12",
+      "title": "과세전적부심사 청구서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P2-13",
+      "title": "이의신청서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P2-14",
+      "title": "심사청구서/심판청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P2-15",
+      "title": "재산 평가심의위원회 심의신청서",
+      "status": "ready",
+      "method": "original-pdf",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "P3-01",
+      "title": "농지취득자격증명 신청서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P3-02",
+      "title": "부동산 거래계약 신고서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P3-03",
+      "title": "국민건강보험 자격상실 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P3-04",
+      "title": "세무대리 위임장",
+      "status": "provider"
+    },
+    {
+      "id": "P3-05",
+      "title": "현금 증여계약서",
+      "status": "provider"
+    },
+    {
+      "id": "P3-06",
+      "title": "부담부증여 계약서 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P4-01",
+      "title": "주택취득자금 조달 및 입주계획서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P4-02",
+      "title": "토지취득자금 조달계획서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P4-04",
+      "title": "부동산거래계약 해제등 신고서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 177,
+      "height": 250
+    },
+    {
+      "id": "P4-04-CHANGE",
+      "title": "부동산거래계약 변경 신고서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P4-05",
+      "title": "증여추정 해명자료 제출 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P5-01",
+      "title": "영농자녀가 증여받은 농지 등에 대한 증여세 감면신청서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P5-02",
+      "title": "창업자금 증여재산평가 및 과세가액 계산명세서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 1100,
+      "height": 779
+    },
+    {
+      "id": "P5-03",
+      "title": "가업승계 주식 등 증여재산평가 및 과세가액 계산명세서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "P5-04",
+      "title": "증여재산 및 평가명세서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 1100,
+      "height": 779
+    },
+    {
+      "id": "P5-05",
+      "title": "상속인별 상속재산 및 평가명세서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 1100,
+      "height": 779
+    },
+    {
+      "id": "P5-06",
+      "title": "장애인 신탁 증여세 과세가액 불산입 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P5-07",
+      "title": "공익법인 출연재산 보고서 / 출연재산 명세서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P5-08",
+      "title": "상속재산 협의분할 후 재분할 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P6-01",
+      "title": "상속예금 지급 청구 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P6-02",
+      "title": "휴면예금·미청구 보험금 조회",
+      "status": "provider"
+    },
+    {
+      "id": "P6-03",
+      "title": "상속 보험금 청구 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P6-04",
+      "title": "상속 주식 명의개서 / 계좌 이전 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P6-05",
+      "title": "미수령 주식·배당금 조회",
+      "status": "provider"
+    },
+    {
+      "id": "P6-06",
+      "title": "퇴직연금(DB·DC·IRP) 상속 수령 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P7-01",
+      "title": "공무원연금 유족급여 청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P7-02",
+      "title": "사학연금 유족급여 청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P7-03",
+      "title": "군인연금 유족급여 청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P7-04",
+      "title": "산재 유족급여·장의비 청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P7-05",
+      "title": "건설근로자 퇴직공제금 청구",
+      "status": "provider"
+    },
+    {
+      "id": "P7-06",
+      "title": "대한지방행정공제회 급여 청구",
+      "status": "provider"
+    },
+    {
+      "id": "P8-01",
+      "title": "미성년자 특별대리인 선임 청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P8-02",
+      "title": "상속회복청구 소장",
+      "status": "provider"
+    },
+    {
+      "id": "P8-03",
+      "title": "친생자관계존부확인의 소 / 인지청구의 소",
+      "status": "provider"
+    },
+    {
+      "id": "P8-04",
+      "title": "상속재산 파산 신청서",
+      "status": "provider"
+    },
+    {
+      "id": "P8-05",
+      "title": "한정승인 후 청산 절차 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P8-06",
+      "title": "상속인 부존재 시 상속재산 청산 공고 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P8-08",
+      "title": "한정후견 / 특정후견 개시 심판청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P8-09",
+      "title": "임의후견(후견계약) 관련 양식",
+      "status": "provider"
+    },
+    {
+      "id": "P8-10",
+      "title": "후견인 권한 초과행위 허가 청구서",
+      "status": "provider"
+    },
+    {
+      "id": "P8-11",
+      "title": "후견사무보고서 / 재산목록보고서",
+      "status": "provider"
+    },
+    {
+      "id": "P8-12",
+      "title": "후견등기사항증명서·부존재증명서 발급 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P9-01",
+      "title": "등록면허세 신고서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P9-02",
+      "title": "계약서 검인 신청 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P9-03",
+      "title": "금전소비대차 공정증서 / 확정일자 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P9-04",
+      "title": "폐업신고서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P9-05",
+      "title": "사업포괄양수도 관련 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P9-06",
+      "title": "주택임대사업자 등록·변경·말소 신청서",
+      "status": "provider"
+    },
+    {
+      "id": "P9-07",
+      "title": "임대사업자 지위 승계 신고",
+      "status": "provider"
+    },
+    {
+      "id": "P9-08",
+      "title": "해외금융계좌 신고서",
+      "status": "ready",
+      "method": "hwp-embedded-image",
+      "width": 724,
+      "height": 1024
+    },
+    {
+      "id": "P9-09",
+      "title": "국외전출자 국내주식 양도소득세 신고 안내",
+      "status": "provider"
+    },
+    {
+      "id": "P9-10",
+      "title": "개별공시지가·공동주택가격 조회 안내",
+      "status": "provider"
+    },
+    {
+      "id": "NTS-IG-10-S1",
+      "title": "상속세과세가액계산명세서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 1100,
+      "height": 779
+    },
+    {
+      "id": "NTS-IG-10-S3",
+      "title": "채무·공과금·장례비용 및 상속공제명세서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "NTS-IG-10-S3-2",
+      "title": "배우자 상속공제 명세서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "NTS-IG-10-S4-A",
+      "title": "상속개시 전 처분재산·채무 사용처 소명명세서(갑)",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 1100,
+      "height": 779
+    },
+    {
+      "id": "NTS-IG-10-S4-B",
+      "title": "상속개시 전 처분재산·채무 사용처 소명명세서(을)",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 1100,
+      "height": 779
+    },
+    {
+      "id": "NTS-IG-10-S5",
+      "title": "영리법인 상속세 면제 및 납부 명세서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "NTS-IG-10-S7",
+      "title": "가업상속 납부유예 사후관리 추징사유 신고 및 자진납부계산서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "NTS-IG-10-S8",
+      "title": "서화·골동품 등 상속재산 명세서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "NTS-IG-11-S2",
+      "title": "가업승계 증여세 납부유예 증여재산평가 및 세액 계산명세서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "NTS-IG-11-S3",
+      "title": "혼인 및 출산 증여재산 공제 명세서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "NTS-IG-11-S4",
+      "title": "혼인 증여재산 공제 추징사유 신고 및 자진납부계산서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "NTS-IG-11-S5",
+      "title": "서화·골동품 등 증여재산 명세서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    },
+    {
+      "id": "NTS-IG-11-S6",
+      "title": "공익법인 등 관련 가산세 명세서",
+      "status": "ready",
+      "method": "original-pdf-section",
+      "width": 779,
+      "height": 1100
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+*.hwp binary
+*.doc binary
+*.pdf binary
+*.zip binary
+*.png binary
+*.json text eol=lf
+*.md text eol=lf

@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-09-24T16:03:30.001Z",
+  "preview": "https://frontend-prototype-d6be7pivm-khcho98-6477s-projects.vercel.app",
+  "results": [
+    {
+      "url": "https://frontend-prototype-d6be7pivm-khcho98-6477s-projects.vercel.app/downloads/official-forms/expansion/P2-15_3aa191059786.pdf",
+      "expected": "3aa19105978665a9c579afd3a3ff2107e64dc03307db706ac036974ab65d7d0b",
+      "status": 200,
+      "type": "application/pdf",
+      "disposition": "inline; filename=\"P2-15_3aa191059786.pdf\"",
+      "bytes": 137687,
+      "sha256": "3aa19105978665a9c579afd3a3ff2107e64dc03307db706ac036974ab65d7d0b",
+      "match": true
+    },
+    {
+      "url": "https://frontend-prototype-d6be7pivm-khcho98-6477s-projects.vercel.app/downloads/official-forms/%EC%83%81%EC%86%8D%EC%9E%AC%EC%82%B0%EB%B6%84%ED%95%A0%ED%98%91%EC%9D%98%EC%84%9C.hwp",
+      "expected": "704287e3acfb7f3e66ebbdd4f8912c7ab6deab2a9945ddfb47ddcf1fe7fd590a",
+      "status": 200,
+      "type": "application/octet-stream",
+      "disposition": "inline; filename=\"ììì¬ì°ë¶í íìì.hwp\"",
+      "bytes": 22528,
+      "sha256": "704287e3acfb7f3e66ebbdd4f8912c7ab6deab2a9945ddfb47ddcf1fe7fd590a",
+      "match": true
+    },
+    {
+      "url": "https://frontend-prototype-d6be7pivm-khcho98-6477s-projects.vercel.app/downloads/official-forms/official-forms.zip",
+      "expected": "b8ba06c99a3de918d0aa75c8c57506895057d9b75a270e3f50a9a1afc965e934",
+      "status": 200,
+      "type": "application/zip",
+      "disposition": "inline; filename=\"official-forms.zip\"",
+      "bytes": 16042175,
+      "sha256": "b8ba06c99a3de918d0aa75c8c57506895057d9b75a270e3f50a9a1afc965e934",
+      "match": true
+    },
+    {
+      "url": "https://okbfex.kbstar.com/quics?asfilecode=566703&QSL=F&_FILE_NAME=%EA%B3%B5%ED%86%B5%EB%8C%80%ED%91%9C%EC%83%81%EC%86%8D%EC%9D%B8%EC%A7%80%EC%A0%95.doc&_LANG_TYPE=KOR&formDocNo=68007&gubun=",
+      "expected": "d9fa02f49b950d8d54b7405ab845ea12fec2684b30efe4ebca20dd1adc578833",
+      "status": 200,
+      "type": "application/unknown;charset=UTF-8",
+      "disposition": "attachment; filename=ê³µíµëíììì¸ì§ì .doc;",
+      "bytes": 105984,
+      "sha256": "d9fa02f49b950d8d54b7405ab845ea12fec2684b30efe4ebca20dd1adc578833",
+      "match": true
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "url": "https://ems.nts.go.kr/tax_inquiry/guide_01.html",
+  "checked_at": "2026-09-19T15:03:32Z",
+  "events": [
+    {
+      "url": "https://ems.nts.go.kr/tax_inquiry/guide_01.html",
+      "status": 200,
+      "method": "GET"
+    }
+  ],
+  "dom": {
+    "text": "세무조사 GUIDE BOOK\n세무조사 GUIDE BOOK\n\n세무조사, 이렇게 진행됩니다.\n\n일반조사(사전통지)\n일반조사(사전통지생략)\n재산제세조사(사전통지)\n재산제세조사(사전통지생략)\nContents\n국세청 개청 60주년 기념사\n3\n납세자권리헌장\n4\n세무조사는 이렇게 진행됩니다.\n5\n세무조사 진행 과정별 확인할 사항\n6\n중점검증항목\n7\n(세무조사 준비에 부담을 갖지 마세요)\n세무조사 시작전\n8\n(세무조사는 공정하고 투명하게 진행됩니다)\n세무조사의 시작과 진행\n12\n(세무조사의 마지막까지 배려하겠습니다)\n세무조사 마무리\n20\n(납세자의 목소리에 귀를 기울이겠습니다)\n납세자의 권리구제 및 고객평가\n23\n기타 안내말씀\n30\n가이드북 다운받기\n각종 신청서 등 서식\n1.\n세무조사 연기신청서\n2.\n세무조사 장소 신청서\n3.\n세무조사 유예 신청서(일자리 창출기업)\n4.\n세무조사 유예 신청서(스타트업 기업·혁신 중소기업)\n5.\n세무조사 유예 신청서(모범납세자)\n6.\n조사유예(중지·연기) 철회 신청\n7.\n세무대리인 위임장\n8.\n장부·서류 등 반환 요청서\n9.\n세무조사(중지·연장) 신청서\n10.\n조기결정신청서\n11.\n납부기한 등 연장 신청서\n12.\n국세·지방세 납부기한등의 연장 등의 적용특례 신청서\n13.\n과세전적부심사청구서\n14.\n과세전적부심사청구서(국세청용)\n15.\n이의신청서\n16.\n심사청구서\n17.\n심판청구서\n18.\n불복청구 전 국선대리인 선정 신청서\n19.\n세무조사 실시간 체크리스트\n20.\n세무조사 사후 체크리스트\n21.\n권리보호 심의 요청서\n22.\n세무조사 참관 신청서\n23.\n세무조사 참관 신청 취하서\n전체서식 HWP받기\n 전체서식 PDF받기\n\nCopyright © 2020 National Tax Service. Republic Of Korea\n\n닫기",
+    "html": "<html lang=\"ko\"><head>\n        <title>세무조사 가이드북</title>\n        <meta property=\"og:type\" content=\"website\">\n        <meta property=\"og:title\" content=\"국세청\">\n        <meta property=\"og:description\" content=\"국세청\">\n        <meta property=\"og:image\" content=\"/images/web/nts/layout/logo.png\">\n        <meta property=\"og:url\" content=\"https://www.nts.go.kr/\">\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n        <meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no\">\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"/css/web/nts/popup.css?ver=2\">\n        <script type=\"text/javascript\" src=\"/common/js/jquery-3.1.1.min.js\"></script>\n        <!--[if lt IE 9]>\n            <script src=\"https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js\"></script>\n            <script src=\"https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js\"></script>\n        <![endif]-->\n    </head>\n\n    <body>\n        <div class=\"popup_wrap1\">\n        <div id=\"popup_wrap\">\n            <h1>세무조사 GUIDE BOOK</h1>\n                <div class=\"guideWrap\">\n                <div class=\"box_st5 mgb20\">\n                    <div class=\"box_st_ico\">\n                    <div class=\"ico_boxImg\"><img alt=\"\" src=\"/common/images/con_com/ico_boxImg1.png\"></div>\n                        <h3 class=\"fs18 pc_black\">세무조사 GUIDE BOOK</h3>\n                        <p>세무조사, 이렇게 진행됩니다.</p>\n                    </div>\n                </div>\n                <div class=\"pop_tab_box\">\n                    <ul class=\"pop_tab\">\n                        <li class=\"on\"><a href=\"/tax_inquiry/guide_01.html\" title=\"현재페이지\">일반조사(사전통지)</a></li>\n                        <li><a href=\"/tax_inquiry/guide_02.html\">일반조사(사전통지생략)</a></li>\n                        <li><a href=\"/tax_inquiry/guide_03.html\">재산제세조사(사전통지)</a></li>\n                        <li><a href=\"/tax_inquiry/guide_04.html\">재산제세조사(사전통지생략)</a></li>\n                    </ul>\n                </div>\n                <div class=\"taxAudit_wrap\">\n                    <div class=\"ta_box\">\n                        <h3 class=\"ta_tit\">Contents</h3>\n                        <ul>\n                        \t<li>국세청 개청 60주년 기념사 <em class=\"ta_num\">3</em></li>\n                            <li>납세자권리헌장 <em class=\"ta_num\">4</em></li>\n                            <li>세무조사는 이렇게 진행됩니다. <em class=\"ta_num\">5</em></li>\n                            <li>세무조사 진행 과정별 확인할 사항 <em class=\"ta_num\">6</em></li>\n                            <li>중점검증항목 <em class=\"ta_num\">7</em></li>\n                            <li><span class=\"ta_txt\">(세무조사 준비에 부담을 갖지 마세요)</span>세무조사 시작전 <em class=\"ta_num\">8</em></li>\n                            <li><span class=\"ta_txt\">(세무조사는 공정하고 투명하게 진행됩니다)</span>세무조사의 시작과 진행 <em class=\"ta_num\">12</em></li>\n                            <li><span class=\"ta_txt\">(세무조사의 마지막까지 배려하겠습니다)</span>세무조사 마무리 <em class=\"ta_num\">20</em></li>\n                            <li><span class=\"ta_txt\">(납세자의 목소리에 귀를 기울이겠습니다)</span>납세자의 권리구제 및 고객평가 <em class=\"ta_num\">23</em></li>\n                            <li>기타 안내말씀 <em class=\"ta_num\">30</em></li>\n                        </ul>\n\n                        <div class=\"ta_btnbox\">\n                            <a class=\"btn_bl ico_w\" href=\"/comm/nttFileDownload.do?fileKey=03a1fa389bb870347ac1874fd802154a\" title=\"Download file\">가이드북 다운받기<span class=\"down\"></span></a>\n                        </div>\n                    </div>\n\n                    <div class=\"ta_box\">\n                        <h3 class=\"ta_tit\">각종 신청서 등 서식</h3>\n\n                        <ul>                            \n\t\t\t\t\t\t\t<li><em class=\"ta_num\">1.</em> 세무조사 연기신청서</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">2.</em> 세무조사 장소 신청서</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">3.</em> 세무조사 유예 신청서(일자리 창출기업)</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">4.</em> 세무조사 유예 신청서(스타트업 기업·혁신 중소기업)</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">5.</em> 세무조사 유예 신청서(모범납세자)</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">6.</em> 조사유예(중지·연기) 철회 신청</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">7.</em> 세무대리인 위임장</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">8.</em> 장부·서류 등 반환 요청서</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">9.</em> 세무조사(중지·연장) 신청서</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">10.</em> 조기결정신청서</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">11.</em> 납부기한 등 연장 신청서</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">12.</em> 국세·지방세 납부기한등의 연장 등의 적용특례 신청서</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">13.</em> 과세전적부심사청구서</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">14.</em> 과세전적부심사청구서(국세청용)</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">15.</em> 이의신청서</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">16.</em> 심사청구서</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">17.</em> 심판청구서</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">18.</em> 불복청구 전 국선대리인 선정 신청서</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">19.</em> 세무조사 실시간 체크리스트</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">20.</em> 세무조사 사후 체크리스트</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">21.</em> 권리보호 심의 요청서</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">22.</em> 세무조사 참관 신청서</li>\n\t\t\t\t\t\t\t<li><em class=\"ta_num\">23.</em> 세무조사 참관 신청 취하서</li>\t\t\t\t\t\n                        </ul>\n                        <div class=\"ta_btnbox\">\n                            <a class=\"btn_sky ico_w\" href=\"/comm/nttFileDownload.do?fileKey=a52e7a24de91f732648721a7e8d89a58\" title=\"Download file\">전체서식 HWP받기<span class=\"down\"></span></a>\n                            <a class=\"btn_sky ico_w\" href=\"/comm/nttFileDownload.do?fileKey=cc43f52365aa9f40bc1a40b34e755e2a\" title=\"Download file\">전체서식 PDF받기<span class=\"down\"></span></a>\n                        </div>\n                    </div>\n                </div>\n                <p class=\"copy_p\">Copyright © 2020 National Tax Service. Republic Of Korea</p>\n                <p class=\"popup_close\"><a href=\"#close\" id=\"popClose\" title=\"닫기\">닫기</a></p>\n            </div>\n            <script>\n    \n            $(\"#popClose\").on(\"click\", function(){\n        \t\twindow.close();\n        \t});\n    \n    </script>\n        </div>\n        </div>\n    \n    \n\n</body></html>",
+    "links": [
+      {
+        "text": "일반조사(사전통지)",
+        "url": "https://ems.nts.go.kr/tax_inquiry/guide_01.html",
+        "onclick": null
+      },
+      {
+        "text": "일반조사(사전통지생략)",
+        "url": "https://ems.nts.go.kr/tax_inquiry/guide_02.html",
+        "onclick": null
+      },
+      {
+        "text": "재산제세조사(사전통지)",
+        "url": "https://ems.nts.go.kr/tax_inquiry/guide_03.html",
+        "onclick": null
+      },
+      {
+        "text": "재산제세조사(사전통지생략)",
+        "url": "https://ems.nts.go.kr/tax_inquiry/guide_04.html",
+        "onclick": null
+      },
+      {
+        "text": "가이드북 다운받기",
+        "url": "https://ems.nts.go.kr/comm/nttFileDownload.do?fileKey=03a1fa389bb870347ac1874fd802154a",
+        "onclick": null
+      },
+      {
+        "text": "전체서식 HWP받기",
+        "url": "https://ems.nts.go.kr/comm/nttFileDownload.do?fileKey=a52e7a24de91f732648721a7e8d89a58",
+        "onclick": null
+      },
+      {
+        "text": "전체서식 PDF받기",
+        "url": "https://ems.nts.go.kr/comm/nttFileDownload.do?fileKey=cc43f52365aa9f40bc1a40b34e755e2a",
+        "onclick": null
+      },
+      {
+        "text": "닫기",
+        "url": "https://ems.nts.go.kr/tax_inquiry/guide_01.html#close",
+        "onclick": null
+      }
+    ],
+    "inputs": [],
+    "scripts": [
+      {
+        "url": "https://ems.nts.go.kr/common/js/jquery-3.1.1.min.js",
+        "text": ""
+      },
+      {
+        "url": "",
+        "text": "\n    \n            $(\"#popClose\").on(\"click\", function(){\n        \t\twindow.close();\n        \t});\n    \n    "
+      }
+    ]
+  },
+  "payloads": []
+}

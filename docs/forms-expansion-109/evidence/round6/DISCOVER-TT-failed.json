@@ -1,0 +1,5 @@
+{
+  "url": "https://www.tt.go.kr/mUser/attach/formList.do",
+  "error": "HTTPSConnectionPool(host='www.tt.go.kr', port=443): Max retries exceeded with url: /mUser/attach/formList.do (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.tt.go.kr', port=443) at 0x7ff5fb347470>, 'Connection to www.tt.go.kr timed out. (connect timeout=9)'))",
+  "checked_at": "2026-09-19T13:12:00Z"
+}

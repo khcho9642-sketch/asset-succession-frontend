@@ -1,0 +1,46 @@
+{
+  "id": "P3-05",
+  "title": "현금 증여계약서",
+  "institution": "세무법인 위드",
+  "source_url": "https://www.taxwithgs.kr/board/view/sw5_2/420",
+  "checked_at": "2026-09-19T17:34:29Z",
+  "retention": "검증 메타데이터와 짧은 발췌만 보존. 원본·전체 텍스트·화면·쿠키·임시 경로는 포함하지 않음.",
+  "records": [
+    {
+      "capture_name": "cash-private-page.json",
+      "capture_sha256": "92b30fdd9041736d61ea0ded9ba3c3790f920c8dd8b2e9231c42f258ea2df41f",
+      "url": "https://www.taxwithgs.kr/board/view/sw5_2/420",
+      "final_url": "https://www.taxwithgs.kr/board/view/sw5_2/420",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:25:01Z",
+      "sha256": "5bcf462a668f61a55b94de4e188933e387b17802319a73fd9707973b6126aac4",
+      "bytes": 43571,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "capture_name": "P3-05-validation.json",
+      "capture_sha256": "530016883537f23ee5078eafbe605bda0e131b6a6647851a8a403ca602032bb9",
+      "url": "https://www.taxwithgs.kr/board/file/download?file_number=221&is_cnt=Y&is_down=Y",
+      "final_url": "https://www.taxwithgs.kr/board/file/download?file_number=221&is_cnt=Y&is_down=Y",
+      "http_status": 200,
+      "checked_at": "2026-09-19T17:34:29Z",
+      "sha256": "be71f97f5b743afd6b8352321a553394f9a3c615420858e9e4b9ed8d740bffc2",
+      "bytes": 16384,
+      "format": "hwp",
+      "content_type": "file/unknown",
+      "title_verified": true,
+      "container_signature": "D0 CF 11 E0 A1 B1 1A E1",
+      "hwp_signature": "HWP Document File",
+      "compressed_body_decoded": true,
+      "body_verified_terms": [
+        "현금 증여계약서",
+        "현금(예금)",
+        "실명계좌",
+        "수증자"
+      ],
+      "download_verified": true,
+      "redistribution_allowed": false,
+      "binary_included_in_support": false
+    }
+  ]
+}

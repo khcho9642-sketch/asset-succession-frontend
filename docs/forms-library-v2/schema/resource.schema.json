@@ -1,0 +1,1241 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "resource_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "catalog_role": {
+      "type": "string",
+      "enum": [
+        "resource",
+        "navigation_group"
+      ]
+    },
+    "primary_stage_id": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/stage"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "stage_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/stage"
+      },
+      "uniqueItems": true,
+      "maxItems": 7
+    },
+    "facets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "purposes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/purpose"
+          },
+          "uniqueItems": true,
+          "maxItems": 4
+        },
+        "timing": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "before_death",
+              "after_death"
+            ]
+          },
+          "uniqueItems": true,
+          "maxItems": 2
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "real_estate",
+              "cash_deposit",
+              "securities",
+              "business",
+              "insurance_pension",
+              "other"
+            ]
+          },
+          "uniqueItems": true,
+          "maxItems": 6
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "form",
+            "guide",
+            "worksheet",
+            "example",
+            "toolkit",
+            "service_link"
+          ]
+        },
+        "origin": {
+          "type": "string",
+          "enum": [
+            "official_institution",
+            "private_institution",
+            "editorial",
+            "unknown"
+          ]
+        },
+        "authority": {
+          "type": "string",
+          "enum": [
+            "statutory",
+            "official_reference",
+            "private_terms",
+            "editorial",
+            "unknown"
+          ]
+        },
+        "delivery": {
+          "type": "string",
+          "enum": [
+            "hosted",
+            "official_link",
+            "inline",
+            "unavailable"
+          ]
+        }
+      },
+      "required": [
+        "purposes",
+        "timing",
+        "assets",
+        "kind",
+        "origin",
+        "authority",
+        "delivery"
+      ]
+    },
+    "applicability": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/applicability"
+      },
+      "uniqueItems": true
+    },
+    "procedure_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+      },
+      "uniqueItems": true
+    },
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "reviewed",
+            "pending",
+            "needs_review"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+          },
+          "uniqueItems": true
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "status",
+        "evidence_refs"
+      ]
+    },
+    "source_verification": {
+      "$ref": "#/$defs/verification"
+    },
+    "source_revisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sourceRevision"
+      },
+      "uniqueItems": true
+    },
+    "access": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hosted_file_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+          },
+          "uniqueItems": true
+        },
+        "official_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "inline_content_ref": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        }
+      },
+      "required": [
+        "hosted_file_ids"
+      ]
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationship"
+      },
+      "uniqueItems": true
+    },
+    "presentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "standalone",
+            "within_parent",
+            "archived"
+          ]
+        },
+        "canonical_resource_id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "visibility"
+      ]
+    },
+    "deadline": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "not_applicable_verified",
+            "rule_reference_only"
+          ]
+        },
+        "rule_bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/deadlineRuleReference"
+          },
+          "uniqueItems": true
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "state",
+        "rule_bindings",
+        "evidence_refs"
+      ]
+    },
+    "planning_windows": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/planningWindow"
+      },
+      "uniqueItems": true,
+      "description": "법정 기한과 별개인 정성적 준비 가능 시기. 빈 배열은 미등록 상태이며 기회의 창이 없다는 판정이 아니다."
+    },
+    "legacy_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "system": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+          },
+          "legacy_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "legacy_labels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "system",
+          "legacy_id",
+          "legacy_labels"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "review_note": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "resource_id",
+    "title",
+    "catalog_role",
+    "primary_stage_id",
+    "stage_ids",
+    "facets",
+    "applicability",
+    "procedure_ids",
+    "classification",
+    "source_verification",
+    "source_revisions",
+    "access",
+    "relations",
+    "presentation",
+    "deadline",
+    "planning_windows",
+    "legacy_refs"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:asset-succession:resource:1.0.0",
+  "title": "Asset succession public resource catalog record",
+  "$defs": {
+    "stage": {
+      "type": "string",
+      "enum": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6",
+        "S7"
+      ]
+    },
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "inheritance",
+        "gift",
+        "capital_transfer",
+        "business_succession"
+      ]
+    },
+    "partyRole": {
+      "type": "string",
+      "enum": [
+        "asset_owner",
+        "transferor",
+        "transferee",
+        "heir",
+        "executor_trustee",
+        "business_owner",
+        "representative",
+        "other"
+      ]
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "pending",
+            "needs_review"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+          },
+          "uniqueItems": true
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reviewer_ref": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "status",
+        "evidence_refs"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "verified"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "reviewed_at",
+              "reviewer_ref"
+            ],
+            "properties": {
+              "evidence_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "sourceRevision": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "revision_id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "issuer_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "retrieved_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "effective_version_ref": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "original_files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/originalFile"
+          },
+          "uniqueItems": true
+        },
+        "verification": {
+          "$ref": "#/$defs/verification"
+        }
+      },
+      "required": [
+        "source_id",
+        "revision_id",
+        "issuer_name",
+        "source_url",
+        "original_files",
+        "verification"
+      ]
+    },
+    "originalFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "file_id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "original_filename": {
+          "type": "string",
+          "minLength": 1
+        },
+        "media_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "storage_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_revision_ref": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "immutable": {
+          "const": true
+        }
+      },
+      "required": [
+        "file_id",
+        "original_filename",
+        "media_type",
+        "storage_ref",
+        "sha256",
+        "source_revision_ref",
+        "immutable"
+      ]
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "ui_member_of",
+            "equivalent_to",
+            "subform_of",
+            "example_for",
+            "attachment_of"
+          ]
+        },
+        "target_resource_id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "procedure_id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+          },
+          "uniqueItems": true
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification": {
+          "$ref": "#/$defs/verification"
+        }
+      },
+      "required": [
+        "type",
+        "target_resource_id",
+        "evidence_refs",
+        "verification"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "equivalent_to",
+                  "subform_of"
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "subform_of"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "required": [
+              "procedure_id"
+            ]
+          }
+        }
+      ]
+    },
+    "applicability": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "purposes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/purpose"
+          },
+          "uniqueItems": true,
+          "maxItems": 4
+        },
+        "party_roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/partyRole"
+          },
+          "uniqueItems": true,
+          "maxItems": 8
+        },
+        "condition_description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+          },
+          "uniqueItems": true
+        },
+        "verification": {
+          "$ref": "#/$defs/verification"
+        }
+      },
+      "required": [
+        "purposes",
+        "party_roles",
+        "condition_description",
+        "evidence_refs",
+        "verification"
+      ]
+    },
+    "deadlineRuleReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "binding_id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "rule_ref": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "action_ref": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "procedure_id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "purposes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/purpose"
+          },
+          "uniqueItems": true,
+          "maxItems": 4,
+          "minItems": 1
+        },
+        "party_roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/partyRole"
+          },
+          "uniqueItems": true,
+          "maxItems": 8,
+          "minItems": 1
+        },
+        "source_revision_ref": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "effective_version_ref": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "verification": {
+          "$ref": "#/$defs/verification"
+        }
+      },
+      "required": [
+        "binding_id",
+        "rule_ref",
+        "action_ref",
+        "procedure_id",
+        "purposes",
+        "party_roles",
+        "verification"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "verification": {
+                "properties": {
+                  "status": {
+                    "const": "verified"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              }
+            },
+            "required": [
+              "verification"
+            ]
+          },
+          "then": {
+            "required": [
+              "source_revision_ref",
+              "effective_version_ref"
+            ]
+          }
+        }
+      ]
+    },
+    "planningWindow": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "준비 가능한 조건과 닫힐 수 있는 계기를 정성적으로 설명한다. 법정 제출기한, 개인의 능력·자격 판정, 사건 날짜, D-day를 저장하거나 계산하지 않는다.",
+      "properties": {
+        "window_id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "capacity",
+            "event",
+            "lead_time",
+            "eligibility",
+            "unknown"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "availability_conditions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "description": "확인된 일반적 준비 조건 또는 검토할 조건. 개인 사건의 충족 여부를 의미하지 않는다."
+        },
+        "closing_events": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true,
+          "description": "준비 가능성이 달라질 수 있는 계기의 정성적 설명. 사건 날짜 또는 확정 마감일을 포함하지 않는다."
+        },
+        "purposes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/purpose"
+          },
+          "uniqueItems": true,
+          "maxItems": 4
+        },
+        "party_roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/partyRole"
+          },
+          "uniqueItems": true,
+          "maxItems": 8
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+          },
+          "uniqueItems": true
+        },
+        "verification": {
+          "$ref": "#/$defs/verification"
+        },
+        "rule_ref": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$",
+          "description": "검증 대상 또는 검증된 준비 조건 규칙의 참조. deadline의 기한 계산 규칙으로 자동 전환하지 않는다."
+        },
+        "display_policy": {
+          "const": "qualitative_only"
+        },
+        "impact": {
+          "type": "string",
+          "enum": [
+            "option_availability",
+            "expected_effect",
+            "unknown"
+          ],
+          "description": "선택 가능성 자체의 변화와 기대 효과의 변화를 구분한다. 개인별 확정 판정이 아니다."
+        }
+      },
+      "required": [
+        "window_id",
+        "type",
+        "label",
+        "availability_conditions",
+        "closing_events",
+        "purposes",
+        "party_roles",
+        "evidence_refs",
+        "verification",
+        "display_policy",
+        "impact"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "verification": {
+                "properties": {
+                  "status": {
+                    "const": "verified"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              }
+            },
+            "required": [
+              "verification"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_refs": {
+                "minItems": 1
+              },
+              "purposes": {
+                "minItems": 1
+              },
+              "party_roles": {
+                "minItems": 1
+              },
+              "availability_conditions": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "unknown"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "verification": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "pending",
+                      "needs_review"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "verification": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "pending",
+                      "needs_review"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              }
+            },
+            "required": [
+              "verification"
+            ]
+          },
+          "then": {
+            "properties": {
+              "verification": {
+                "required": [
+                  "note"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "impact": {
+                "const": "unknown"
+              }
+            },
+            "required": [
+              "impact"
+            ]
+          },
+          "then": {
+            "properties": {
+              "verification": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "pending",
+                      "needs_review"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "catalog_role": {
+            "const": "navigation_group"
+          }
+        },
+        "required": [
+          "catalog_role"
+        ]
+      },
+      "then": {
+        "properties": {
+          "facets": {
+            "properties": {
+              "kind": {
+                "const": "toolkit"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "facets": {
+            "properties": {
+              "delivery": {
+                "const": "hosted"
+              }
+            },
+            "required": [
+              "delivery"
+            ]
+          }
+        },
+        "required": [
+          "facets"
+        ]
+      },
+      "then": {
+        "properties": {
+          "access": {
+            "properties": {
+              "hosted_file_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "facets": {
+            "properties": {
+              "delivery": {
+                "const": "official_link"
+              }
+            },
+            "required": [
+              "delivery"
+            ]
+          }
+        },
+        "required": [
+          "facets"
+        ]
+      },
+      "then": {
+        "properties": {
+          "access": {
+            "required": [
+              "official_url"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "facets": {
+            "properties": {
+              "delivery": {
+                "const": "inline"
+              }
+            },
+            "required": [
+              "delivery"
+            ]
+          }
+        },
+        "required": [
+          "facets"
+        ]
+      },
+      "then": {
+        "properties": {
+          "access": {
+            "required": [
+              "inline_content_ref"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "deadline": {
+            "properties": {
+              "state": {
+                "const": "rule_reference_only"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          }
+        },
+        "required": [
+          "deadline"
+        ]
+      },
+      "then": {
+        "properties": {
+          "deadline": {
+            "properties": {
+              "rule_bindings": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "deadline": {
+            "properties": {
+              "state": {
+                "const": "not_applicable_verified"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          }
+        },
+        "required": [
+          "deadline"
+        ]
+      },
+      "then": {
+        "properties": {
+          "deadline": {
+            "properties": {
+              "rule_bindings": {
+                "maxItems": 0
+              },
+              "evidence_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "deadline": {
+            "properties": {
+              "state": {
+                "const": "unknown"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          }
+        },
+        "required": [
+          "deadline"
+        ]
+      },
+      "then": {
+        "properties": {
+          "deadline": {
+            "properties": {
+              "rule_bindings": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "primary_stage_id": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "primary_stage_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "stage_ids": {
+            "maxItems": 0
+          },
+          "classification": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "pending",
+                  "needs_review"
+                ]
+              }
+            },
+            "required": [
+              "note"
+            ]
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "stage_ids": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}

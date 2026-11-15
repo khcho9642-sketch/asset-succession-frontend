@@ -1,0 +1,10 @@
+{
+  "url": "http://www.moj.go.kr/moj/331/subview.do",
+  "requested_url": "https://www.moj.go.kr/moj/331/subview.do",
+  "http_status": 200,
+  "checked_at": "2026-09-19T14:07:09Z",
+  "sha256": "4920f999d66ffe08149e2667a38988d9e23ecd5169a8855ce2aa6aae2b035502",
+  "text": "관리모드\r\n\t\t\t\r\n\t\t\t\r\n\t\t\t\r\n\t\t\t\r\n\t\t\t> 알림메세지 알립니다. 현재 서비스를 사용할 수 없습니다.",
+  "matched_terms": [],
+  "links": []
+}

@@ -1,0 +1,32 @@
+{
+  "checkedOn": "2026-09-25",
+  "scope": "Technical access/hash check only. Review dates and original files are never changed.",
+  "queue": [
+    {
+      "id": "SVC-ACCOUNTS",
+      "missingDate": true,
+      "due": false
+    },
+    {
+      "id": "SVC-INSURANCE",
+      "missingDate": true,
+      "due": false
+    },
+    {
+      "id": "SVC-CREDIT",
+      "missingDate": true,
+      "due": false
+    },
+    {
+      "id": "SVC-PENSION",
+      "missingDate": true,
+      "due": false
+    },
+    {
+      "id": "SVC-REGISTRY",
+      "missingDate": true,
+      "due": false
+    }
+  ],
+  "observations": []
+}

@@ -1,0 +1,117 @@
+{
+  "task_id": "P4-05",
+  "base_commit": "3f0fbb1cf1e5c03df821d4f0ebd2a0ea37f0c0c5",
+  "status": "확인 완료",
+  "binary_acquired": false,
+  "url": "https://law.go.kr/LSW/admRulLsInfoP.do?admRulId=37077&efYd=0",
+  "http_status": 200,
+  "checked_at": "2026-09-19T15:40:58Z",
+  "response_sha256": "e1aaf6335178bc2502c5a190466a02ba55199eca7f5fb57928f54ee0759f5ba5",
+  "title": "상속세 및 증여세 사무처리규정 [시행 2026. 8. 3.] [국세청훈령 제2760호]",
+  "current_version_verified": true,
+  "current_version_evidence": "공식 원문 HTML의 nwYn='Y', admRulSeq=2100000283312 및 시행일·훈령번호 표시 대조",
+  "body_url": "https://law.go.kr/LSW/admRulLsInfoR.do?admRulSeq=2100000283312&admRulId=37077&joTpYn=Y&languageType=KO&chrClsCd=010202",
+  "body_http_status": 200,
+  "body_checked_at": "2026-09-19T15:41:28Z",
+  "body_sha256": "24a548131416c33bc5fddeb3f56b5bcfba0b380522b925cb1f2bbd10491c9bfc",
+  "verified_terms": [
+    "제13조(과세자료의 생성과 분류 및 처리)",
+    "상속세(증여세) 해명자료 제출 안내",
+    "납세자 해명자료 제출",
+    "제42조(재산취득자금 등의 증여추정 배제기준)"
+  ],
+  "sections": {
+    "제13조": "과세자료에 관한 납세자 해명이 필요하면 별지 제5호 안내·제30호 제출서식 등을 발송한다. 제출된 해명자료는 접수 후 검토하고, 원칙적으로 제출일로부터 30일 이내에 검토결과를 안내한다. 보완 필요 시 처리기한 연장 규정이 있다.",
+    "제42조": "재산취득자금 등의 증여추정 배제기준을 정하되, 타인으로부터 증여받은 사실이 확인되면 과세대상이 됨을 규정한다."
+  },
+  "forms": [
+    {
+      "filename": "P4-05-notice.pdf",
+      "url": "https://law.go.kr/LSW/flDownload.do?flSeq=167782073",
+      "http_status": 200,
+      "bytes": 62317,
+      "sha256": "d434621c3ae90d9789f5cf207feaf6e48102fd9982e9e67a1dd3184c3d3b0054",
+      "checked_at": "2026-09-19T15:41:57.865340+00:00",
+      "title": "상속세(증여세) 해명자료 제출 안내",
+      "title_verified": true,
+      "format": "pdf",
+      "revised_at": "2026-08-03",
+      "role": "supporting_official_form",
+      "publication": "공식 링크만 제공; 공개 재배포하지 않음",
+      "content_text": "■ 상속세 및 증여세 사무처리규정 [별지 제5호 서식] <2026. 08. 03. 개정>\n\n\n                                      기 관 명\n                   상속세(증여세) 해명자료 제출 안내\n문서번호 : 재산세과 -\n\n○ 수신자      ○○○ 귀하\n  안녕하십니까? 항상 국세행정에 협조하여 주신데 대하여 감사드립니다.\n\n  귀하의 상속(증여)과 관련하여 아래와 같이 과세자료가 발생하였음을 알려드리니\n이에 대한 해명자료를 20          .   .   .까지    제출하여 주시기 바라며, 해명자료를 제출\n기한까지 제출한 경우 제출일로부터 30일(기한의 말일이 토요일 또는 공휴일인 경우\n그 다음날) 내에 그 검토결과를 통지합니다.\n\n  제출 기한까지 회신이 없거나 제출한 자료가 불충분할 때에는 과세자료의 내용대로\n세금이 부과될 수 있음을 알려드립니다.\n\n\n○ 과세자료 발생 경위(해명할 사항)\n\n\n\n○ 과세자료 내용(상속 또는 증여받은 재산)\n   세목    상속(증여)받은 재산                    상속개시일       증여일          비    고\n   상속\n   증여\n○ 제출할 해명자료\n\n\n\n\n 과세자료 검토내용과 같이 상속세(증여세)를 과소신고한 경우 위 기한까지 수정(기한후)\n 신고 ․ 납부하여 주시기 바라며, 기한 내 회신이 없거나 제출한 자료의 내용이 불분명한 경우\n 에는 과세자료의 내용대로 세금이 부과될 수 있음을 알려드립니다.\n\n                                                           년      월       일\n                                기     관 장\n위 내용과 관련한 문의사항은 담당자에게 연락하시면 친절하게 상담해 드리겠습니다.\n◆ 담당자 : ○○세무서 ○○○과 ○○○ 조사관(전화 :                 , 전송 :            )\n                                                    백상지(80g/㎡) 또는 중질지(80g/㎡)\n\f"
+    },
+    {
+      "filename": "P4-05-response.pdf",
+      "url": "https://law.go.kr/LSW/flDownload.do?flSeq=167782295",
+      "http_status": 200,
+      "bytes": 26797,
+      "sha256": "2458ea088d9cba5c6e6745a336aa3078b315ee2004981065ef7a3e2a6144e766",
+      "checked_at": "2026-09-19T15:41:57.016913+00:00",
+      "title": "납세자 해명자료 제출",
+      "title_verified": true,
+      "format": "pdf",
+      "revised_at": null,
+      "role": "supporting_official_form",
+      "publication": "공식 링크만 제공; 공개 재배포하지 않음",
+      "content_text": "【상속세 및 증여세 사무처리규정 별지 제30호 서식】(2019. 6. 3. 신설)\n\n                   납세자 해명자료 제출\n1. 인적사항\n\n ① 문서번호(해명안내관리번호)\n\n ② 해 명 자 료     성       명              생 년 월 일\n 제   출   자     연   락   처\n\n ③ 해 명 자 료     성       명              생 년 월 일\n 제출 대상자\n               제출자와의\n (상속세는 피상속인)\n               관   계\n\n2. 해명자료 제출에 대한 납세자 의견\n\n\n\n\n3. 해명자료 제출\n  일련번호                      제출자료                       비고\n\n\n\n\n 상 속 세 (증 여 세 ) 해 명 자 료 제 출 안 내 와 관 련 하 여 해 명 자 료 를 붙 임 과\n같이 제출합니다.\n                                 년       월       일\n                           제출인           (서명 또는 인)\n       세무서장 귀하\n                                            210㎜×297㎜(인쇄용지 70g/m)\n\f"
+    }
+  ],
+  "supporting_sources": [
+    {
+      "filename": "P4-05-law45.html",
+      "url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsId=001561&lsJoLnkSeq=900678547&print=print",
+      "http_status": 200,
+      "bytes": 18839,
+      "sha256": "6f347d931838d171ab245096703d378b7f13c3e38c81c9cfb6f03983d31b5e79",
+      "checked_at": "2026-09-19T15:42:16.369677+00:00",
+      "title": "상속세 및 증여세법 제45조(재산 취득자금 등의 증여 추정)",
+      "verified_section_text": "제45조(재산 취득자금 등의 증여 추정) ① 재산 취득자의 직업, 연령, 소득 및 재산 상태 등으로 볼 때 재산을 자력으로 취득하였다고 인정하기 어려운 경우로서 대통령령으로 정하는 경우에는 그 재산을 취득한 때에 그 재산의 취득자금을 그 재산 취득자가 증여받은 것으로 추정하여 이를 그 재산 취득자의 증여재산가액으로 한다. <개정 2015. 12. 15.> ② 채무자의 직업, 연령, 소득, 재산 상태 등으로 볼 때 채무를 자력으로 상환(일부 상환을 포함한다. 이하 이 항에서 같다)하였다고 인정하기 어려운 경우로서 대통령령으로 정하는 경우에는 그 채무를 상환한 때에 그 상환자금을 그 채무자가 증여받은 것으로 추정하여 이를 그 채무자의 증여재산가액으로 한다. <개정 2015. 12. 15.> ③ 취득자금 또는 상환자금이 직업, 연령, 소득, 재산 상태 등을 고려하여 대통령령으로 정하는 금액 이하인 경우와 취득자금 또는 상환자금의 출처에 관한 충분한 소명(疏明)이 있는 경우에는 제1항과 제2항을 적용하지 아니한다. ④ 「금융실명거래 및 비밀보장에 관한 법률」 제3조에 따라 실명이 확인된 계좌 또는 외국의 관계 법령에 따라 이와 유사한 방법으로 실명이 확인된 계좌에 보유하고 있는 재산은 명의자가 그 재산을 취득한 것으로 추정하여 제1항을 적용한다. <신설 2013. 1. 1.> [전문개정 2010. 1. 1.] "
+    },
+    {
+      "filename": "P4-05-decree34.html",
+      "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=75727",
+      "http_status": 200,
+      "bytes": 14941,
+      "sha256": "9dfe6d48591dc9cb875dcf3279c3c28167ef5479a4c642667e2a5a90857dd952",
+      "checked_at": "2026-09-19T15:42:15.971888+00:00",
+      "title": "상속세 및 증여세법 시행령 제34조(재산 취득자금 등의 증여추정)",
+      "verified_section_text": "제34조(재산 취득자금 등의 증여추정) ① 법 제45조 제1항 및 제2항 에서 “대통령령으로 정하는 경우”란 다음 각 호에 따라 입증된 금액의 합계액이 취득재산의 가액 또는 채무의 상환금액에 미달하는 경우를 말한다. 다만, 입증되지 아니하는 금액이 취득재산의 가액 또는 채무의 상환금액의 100분의 20에 상당하는 금액과 2억원중 적은 금액에 미달하는 경우를 제외한다. <개정 2010. 2. 18.> 1. 신고하였거나 과세(비과세 또는 감면받은 경우를 포함한다. 이하 이 조에서 같다)받은 소득금액 2. 신고하였거나 과세받은 상속 또는 수증재산의 가액 3. 재산을 처분한 대가로 받은 금전이나 부채를 부담하고 받은 금전으로 당해 재산의 취득 또는 당해 채무의 상환에 직접 사용한 금액 ② 법 제45조 제3항 에서 “대통령령으로 정하는 금액”이란 재산취득일 전 또는 채무상환일 전 10년 이내에 해당 재산 취득자금 또는 해당 채무 상환자금의 합계액이 5천만원 이상으로서 연령ㆍ직업ㆍ재산상태ㆍ사회경제적 지위 등을 고려하여 국세청장이 정하는 금액을 말한다. <개정 2010. 2. 18., 2014. 2. 21., 2020. 2. 11.> "
+    }
+  ],
+  "deadline_verification": "별지 제5호 원본의 제출기한은 개별 날짜 기재란(20 . . .까지)이다. 제출일로부터 30일은 과세관청의 검토결과 통지기간으로, 납세자의 일반 제출기한이 아니다. deadline 및 deadline_basis는 null로 유지한다.",
+  "verification_method": "public_HTTP_200_current_rule_HTML_and_official_PDF_text_inspection",
+  "excluded_sources": [
+    {
+      "url": "https://s.nts.go.kr/webtv/na/ntt/selectNttInfo.do?mi=10675&nttSn=1343590",
+      "reason": "조회 당시 홈페이지 운영 중단 문구만 표시되어 본문 근거로 채택하지 않음"
+    },
+    {
+      "url": "https://law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000260432",
+      "reason": "2025-06-11 연혁본이므로 최신 판 확인 후 현행 2026-08-03판으로 대체"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://law.go.kr/LSW/admRulLsInfoP.do?admRulId=37077&efYd=0",
+      "title": "상속세 및 증여세 사무처리규정 [시행 2026. 8. 3.] [국세청훈령 제2760호]"
+    },
+    {
+      "url": "https://law.go.kr/LSW/flDownload.do?flSeq=167782073",
+      "title": "상속세(증여세) 해명자료 제출 안내"
+    },
+    {
+      "url": "https://law.go.kr/LSW/flDownload.do?flSeq=167782295",
+      "title": "납세자 해명자료 제출"
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/lsLawLinkInfo.do?chrClsCd=010202&lsId=001561&lsJoLnkSeq=900678547&print=print",
+      "title": "상속세 및 증여세법 제45조(재산 취득자금 등의 증여 추정)"
+    },
+    {
+      "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lspttninfSeq=75727",
+      "title": "상속세 및 증여세법 시행령 제34조(재산 취득자금 등의 증여추정)"
+    }
+  ],
+  "redistribution_scope": "공식 원문을 내려받아 검증했으며, 저장소에는 출처·해시·확인 내용과 이용 안내를 기록한다. 원문 PDF 자체는 재배포하지 않는다.",
+  "evidence_file": "docs/forms-expansion-109/evidence/round15/P4-05.json"
+}
