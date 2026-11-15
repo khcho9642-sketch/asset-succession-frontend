@@ -159,10 +159,18 @@ check('Git diff preserves public files and source data', () => {
   assert.deepEqual(forbidden, [], `Data changes relative to ${BASELINE_COMMIT}`);
 });
 
-check('AI diagnosis, consultation and report implementation remains unchanged', () => {
+check('AI diagnosis and report implementation remain unchanged outside the approved contact flow', () => {
+  // User-approved contact reception and the existing public deployment identity.
+  // Keep this list exact: no other service/API/calculation path is exempted.
+  const approvedServiceFiles = new Set([
+    'app/api/deployment/route.ts',
+    'app/consultation/page.tsx',
+    'app/consultation/Consultation.module.css',
+    'app/api/consultation/route.ts',
+    'lib/consultation.ts',
+  ]);
   const protectedFile = filename =>
-    // Reviewed operations-only endpoint: public build identity, not diagnosis or report logic.
-    (filename.startsWith('app/') && !filename.startsWith('app/forms/') && filename !== 'app/api/deployment/route.ts')
+    (filename.startsWith('app/') && !filename.startsWith('app/forms/') && !approvedServiceFiles.has(filename))
     || /^lib\/(chat|phase2b|tax-comparison)\//.test(filename)
     || /^lib\/(assessment|contact-links)\./.test(filename)
     || /^components\/(DiagnosisChat|StructuredChat|TaxComparison|Report|PersonalReport|PaperReport|PrintButton)/.test(filename)

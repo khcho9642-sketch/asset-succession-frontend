@@ -186,7 +186,10 @@ test('latest calculator and service code survive outside the forms pages and pre
   };
   // Approved 2026-09-26 change: the shared public header labels and consultation
   // CTA are site-wide chrome, not calculator or service-domain logic.
-  const commonHeaderFiles = ['components/PublicNav.tsx', 'components/PublicNav.module.css', 'app/consultation/page.tsx', 'app/consultation/Consultation.module.css'];
+  const commonHeaderFiles = ['components/PublicNav.tsx', 'components/PublicNav.module.css'];
+  // User-approved phone/consent contact reception. Preserve every other API and
+  // service-domain file with the original guard; do not exclude a directory.
+  const contactReceptionFiles = ['app/consultation/page.tsx', 'app/consultation/Consultation.module.css', 'app/api/consultation/route.ts', 'lib/consultation.ts'];
   // Preserve the sharing metadata from the deployment currently serving asset360.
   const sharingFiles = ['app/layout.tsx', 'app/page.tsx'];
   // Approved deployment-management endpoint: exposes only public build identity.
@@ -195,7 +198,7 @@ test('latest calculator and service code survive outside the forms pages and pre
   for (const path of sharingFiles) assert.equal(textHash(readFileSync(path)), textHash(git('show', `${activeProduction}:${path}`)), path);
   const changes = git('diff', '--name-only', '-z', activeProduction, '--', 'app', 'components', 'lib', 'package-lock.json', 'next.config.ts', 'vercel.json').toString('utf8').split('\0').filter(Boolean);
   const allowed = path => path.startsWith('app/forms/') || path.startsWith('lib/forms/')
-    || ['components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css', deploymentIdentityFile, ...datePolicyFiles, ...commonHeaderFiles, ...sharingFiles].includes(path);
+    || ['components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css', deploymentIdentityFile, ...contactReceptionFiles, ...datePolicyFiles, ...commonHeaderFiles, ...sharingFiles].includes(path);
   assert.deepEqual(changes.filter(path => !allowed(path)), []);
   const calculators = git('ls-tree', '-r', '--name-only', '-z', activeProduction, 'app/calculator', 'lib/simple-calculator').toString('utf8').split('\0').filter(Boolean);
   for (const path of calculators) assert.equal(hash(projectDatePolicy(path, readFileSync(path))), hash(projectDatePolicy(path, git('show', `${activeProduction}:${path}`))), path);

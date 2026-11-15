@@ -61,6 +61,9 @@ jobs:
       - name: Tax calculation and comparison tests
         run: npm run test:tax
 
+      - name: Contact API validation and idempotent delivery with isolated webhooks
+        run: node scripts/consultation-server-tests.mjs
+
       - name: Preserve forms, source files and library navigation
         env:
           PYTHON: python3
@@ -109,6 +112,12 @@ jobs:
           done
           cat /tmp/ui-server.log
           exit 1
+
+      - name: Audit contact reception with mocked responses and no external writes
+        env:
+          BASE_URL: http://127.0.0.1:4173
+          UI_AUDIT_DIR: artifacts/ui-audit
+        run: node scripts/consultation-contact-audit.mjs
 
       - name: Audit prerendered seven-page sample tax report
         env:

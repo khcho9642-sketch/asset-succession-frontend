@@ -102,7 +102,16 @@ try {
     await page.close();
   }
 
-  const page = await browser.newPage({ viewport: { width: 1440, height: 1200 } });
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1200 }, serviceWorkers: "block" });
+  const contactRequests = [];
+  // Exercise the receipt UI without ever forwarding test contact data to the
+  // real API, Google register or notification mailbox.
+  await page.route(/\/api\/consultation(?:\?.*)?$/, async (route) => {
+    assert(route.request().method() === "POST", "Unexpected consultation request method.");
+    const payload = route.request().postDataJSON();
+    contactRequests.push(payload);
+    await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, receiptId: payload.requestId, notification: "sent" }) });
+  });
   await page.goto(`${baseURL}/precheck/form?step=5`, { waitUntil: "networkidle" });
   assert(await page.getByText("어떤 준비를 고민하고 계신가요?").first().isVisible(), "Query step bypass was not blocked.");
 
@@ -132,13 +141,17 @@ try {
   await page.goto(`${baseURL}/consultation`, { waitUntil: "networkidle" });
   await page.locator(`[data-assessment-id="${assessmentId}"]`).waitFor({ timeout: 10_000 });
   assert((await page.getByRole("link", { name: "결과 보기", exact: true }).getAttribute("href")).includes(assessmentId), "Assessment result link missing from consultation page.");
-  await page.getByRole("button", { name: "연락처 남기기", exact: true }).click();
+  await page.getByRole("button", { name: "상담 신청하기", exact: true }).click();
   assert(await page.getByText("전화번호를 입력해 주세요.").isVisible(), "Contact validation alert missing.");
   await page.getByLabel("전화번호", { exact: true }).fill("000-0000-0000");
-  await page.getByRole("checkbox", { name: /전화번호 이용/ }).check();
-  await page.getByRole("button", { name: "연락처 남기기", exact: true }).click();
+  await page.getByRole("checkbox", { name: /전화번호.*동의/ }).check();
+  await page.getByRole("button", { name: "상담 신청하기", exact: true }).click();
+  await page.getByRole("heading", { name: "상담 신청이 접수되었습니다.", exact: true }).waitFor();
   const successText = await page.locator("body").innerText();
-  assert(successText.includes("연락처 입력을 확인했습니다.") && successText.includes("실제 접수·전송은 되지 않았습니다.") && !successText.includes("RCV-"), "Contact preview must not claim actual receipt.");
+  assert(contactRequests.length === 1 && contactRequests[0].consent === true && contactRequests[0].assessmentId === assessmentId, "Contact request must preserve consent and the optional assessment ID.");
+  assert(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(contactRequests[0].requestId), "Contact request must carry a UUID for safe retry.");
+  assert(await page.locator('[data-consultation-state="success"]').getAttribute("data-receipt-id") === contactRequests[0].requestId, "Confirmation must use the receipt returned by the mocked saved response.");
+  assert(successText.includes("상담 신청이 접수되었습니다.") && !successText.includes("실제 접수·전송은 되지 않았습니다."), "Saved contact response must render a receipt confirmation.");
   assert(await page.locator(`[data-assessment-id="${assessmentId}"]`).count() === 1, "Optional assessment handoff was lost.");
   await page.close();
 
@@ -156,7 +169,7 @@ try {
       "final free-question stage and '없어요, 분석해 주세요' auto-transition work",
       "required 50억원 conversation reaches result, seven-page report, and consultation",
       "36 internal scenario candidates stay summarized rather than exposed as a list",
-      "phone-only contact validation, optional assessment handoff and honest non-transmission state work"
+      "phone-only contact validation, optional assessment handoff and matching mocked saved receipt work without any external write"
     ]
   }, null, 2));
 } finally {
