@@ -33,7 +33,7 @@
 
 - `PR Quality Checks`: `main` 대상 PR, `main` push, 수동 실행. 해당 커밋을 빌드하고 로컬 서버에서 기능을 검사합니다. 이때 `127.0.0.1:4173`은 수정 코드를 검사하기 위한 정상적인 대상입니다.
 - 자료실 회귀검사: 같은 CI에서 `node scripts/run-forms-library-tests.mjs`를 실행합니다. 자료 ID·검색·업무 목록·상세·다운로드 연결을 검사합니다.
-- 공개 헤더·모바일 진단 화면·툴바 검사: Production 배포 성공 이벤트 뒤에 `https://asset360.intellic.co.kr`을 검사합니다. 수동 실행에서는 승인된 Preview URL을 명시해 검사할 수 있습니다.
+- 공개 헤더·모바일 진단 화면·툴바 검사: Production 배포 성공 이벤트 또는 `main` 코드 검사 성공 뒤에 `https://asset360.intellic.co.kr`을 검사합니다. `/api/deployment`의 공개 빌드 SHA가 검사 대상 커밋과 일치한 뒤 화면 검사를 시작하므로 이전 배포를 잘못 통과시키지 않습니다. 수동 실행에서는 승인된 Preview URL과 확인할 SHA를 명시할 수 있습니다.
 - 자동 점검을 과거 `khcho98` 프로젝트의 Preview 주소에 고정하지 않습니다. 배포 성공 시에는 배포 SHA를 checkout합니다.
 
 로컬 기본 검사:
@@ -61,6 +61,7 @@ node scripts/forms-preservation-check.mjs --baseline=/path/to/materials-register
 - 상속 발생 후 → 이전·청구 → 은행·예금 → 업무 자료 전체 보기: 해당 업무 자료 5개와 가이드 복귀를 확인합니다.
 - 자료 상세 → 원본 다운로드 → 목록/가이드 복귀. 현재 제공본과 이전 버전, HWP·PDF 등 실제 형식을 구분합니다.
 - `/precheck`, `/consultation`, `/sample-report`도 기존 동작을 확인합니다. AI 활성화 여부는 서버 설정과 API 응답을 별도로 확인합니다.
+- `/api/deployment`의 `commitSha`가 GitHub `main` 및 Vercel Production SHA와 일치해야 합니다. 이 API는 빌드 SHA·브랜치·배포 환경만 공개하며 인증정보를 반환하지 않습니다.
 - `succession.intellic.co.kr/forms?resource=BP-G-01`이 대표 주소의 같은 경로·검색 조건으로 이동하는지 확인합니다.
 
 원본 파일 458개, 자료 220개와 공식기관 외부 링크·Google Drive 과거 보관본은 도메인·브랜치 정리와 무관하게 유지합니다. 이전 배포의 immutable Preview URL은 검토 증거이므로 무조건 대표 주소로 보내지 않습니다.

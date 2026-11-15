@@ -2,12 +2,20 @@ name: Public header consistency
 
 on:
   deployment_status:
+  workflow_run:
+    workflows: ['PR Quality Checks']
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
     inputs:
       base_url:
         description: 'Production URL, or an explicitly selected preview URL'
         required: true
         default: 'https://asset360.intellic.co.kr'
+        type: string
+      expected_sha:
+        description: 'Optional full commit SHA to wait for before checking the site'
+        required: false
         type: string
 
 permissions:
@@ -21,14 +29,19 @@ jobs:
   verify-public-header:
     if: >-
       github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_run' &&
+       github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       github.event.workflow_run.head_repository.full_name == github.repository &&
+       (github.event.workflow_run.event == 'push' || github.event.workflow_run.event == 'workflow_dispatch')) ||
       (github.event.deployment_status.state == 'success' &&
        (github.event.deployment.production_environment == true || github.event.deployment.environment == 'Production'))
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.deployment.sha || github.sha }}
+          ref: ${{ github.event.workflow_run.head_sha || github.event.deployment.sha || github.sha }}
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
@@ -41,6 +54,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Wait for the expected production deployment
+        env:
+          PRODUCTION_BASE_URL: ${{ inputs.base_url || 'https://asset360.intellic.co.kr' }}
+          EXPECTED_DEPLOYMENT_SHA: ${{ github.event.workflow_run.head_sha || github.event.deployment.sha || inputs.expected_sha || '' }}
+        run: python scripts/wait-production-deployment.py
       - name: Prepare browser
         run: |
           python -m pip install --disable-pip-version-check playwright

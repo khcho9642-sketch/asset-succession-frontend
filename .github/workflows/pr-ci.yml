@@ -43,6 +43,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install forms schema validator
+        run: python -m pip install --disable-pip-version-check 'jsonschema>=4,<5'
+
       - name: Lint
         run: npm run lint
 
@@ -67,7 +70,7 @@ jobs:
         run: npm run build
 
   ui-audit:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
 
     steps:
