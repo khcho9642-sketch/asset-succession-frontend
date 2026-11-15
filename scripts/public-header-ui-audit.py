@@ -154,6 +154,6 @@ with sync_playwright() as p:
     expect(page.locator("[data-public-header]")).to_be_hidden()
     browser.close()
 
-summary = {"preview_url":BASE,"route_count":len(ROUTES),"viewport_widths":[1440,1024,768,375,320],"checks":len(records),"identical_header_geometry_and_typography":True,"report_page_images_unchanged":True,"report_navigation_and_fullscreen":True,"pdf_link_preserved":True,"mobile_menu_layer_and_escape":True,"contact_links_preserved":True,"no_ai_post_or_contact_submission":True,"records":records}
+summary = {"preview_url":BASE,"commit":os.environ.get("EXPECTED_DEPLOYMENT_SHA") or None,"workflow_sha":os.environ.get("GITHUB_SHA"),"route_count":len(ROUTES),"viewport_widths":[1440,1024,768,375,320],"checks":len(records),"identical_header_geometry_and_typography":True,"report_page_images_unchanged":True,"report_navigation_and_fullscreen":True,"pdf_link_preserved":True,"mobile_menu_layer_and_escape":True,"contact_links_preserved":True,"no_ai_post_or_contact_submission":True,"records":records}
 (OUT / "verification.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
 print(json.dumps({key:value for key,value in summary.items() if key != "records"}, ensure_ascii=False, indent=2))

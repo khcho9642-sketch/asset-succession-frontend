@@ -130,6 +130,6 @@ with sync_playwright() as p:
     browser.close()
 
 assert not requests, 'Guided layout tests must not require even mocked model POSTs'
-proof = {'base_url': BASE, 'checks': checks, 'real_model_requests': 0, 'physical_keyboard_test':False, 'commit':os.environ.get('GITHUB_SHA')}
+proof = {'base_url': BASE, 'checks': checks, 'real_model_requests': 0, 'physical_keyboard_test':False, 'commit':os.environ.get('EXPECTED_DEPLOYMENT_SHA') or None, 'workflow_sha':os.environ.get('GITHUB_SHA')}
 (OUT / 'verification.json').write_text(json.dumps(proof,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps(proof, ensure_ascii=False, indent=2))

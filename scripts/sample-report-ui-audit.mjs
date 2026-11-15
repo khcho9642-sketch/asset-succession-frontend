@@ -67,6 +67,23 @@ async function assertViewerLayout(page, label) {
     const frame = stage.getBoundingClientRect();
     const sheets = [...document.querySelectorAll("[data-report-page]")];
     const visible = sheets.filter(sheet => sheet.getBoundingClientRect().height > 0);
+    function controlCoversSheet(control, sheet) {
+      const button = control.getBoundingClientRect();
+      const paper = sheet.getBoundingClientRect();
+      const left = Math.max(button.left, paper.left + 2, 0);
+      const right = Math.min(button.right, paper.right - 2, innerWidth);
+      const top = Math.max(button.top, paper.top + 2, 0);
+      const bottom = Math.min(button.bottom, paper.bottom - 2, innerHeight);
+      if (right <= left || bottom <= top) return false;
+      // The expanded viewer covers the shared header. Rectangles alone would
+      // flag those background links; retain all controls and check paint order.
+      return [.1, .5, .9].some(x => [.1, .5, .9].some(y => {
+        const stack = document.elementsFromPoint(left + (right - left) * x, top + (bottom - top) * y);
+        const controlIndex = stack.findIndex(element => element === control || control.contains(element));
+        const sheetIndex = stack.findIndex(element => element === sheet || sheet.contains(element));
+        return controlIndex >= 0 && (sheetIndex < 0 || controlIndex < sheetIndex);
+      }));
+    }
     return {
       viewport: { width: innerWidth, height: innerHeight },
       rootWidth: document.documentElement.scrollWidth,
@@ -106,10 +123,7 @@ async function assertViewerLayout(page, label) {
       overlappingControls: [...document.querySelectorAll("button, a")].filter(button => {
         const box = button.getBoundingClientRect();
         if (!box.width || !box.height) return false;
-        return visible.some(sheet => {
-          const paper = sheet.getBoundingClientRect();
-          return box.left < paper.right - 2 && box.right > paper.left + 2 && box.top < paper.bottom - 2 && box.bottom > paper.top + 2;
-        });
+        return visible.some(sheet => controlCoversSheet(button, sheet));
       }).map(button => button.textContent.trim()),
     };
   });

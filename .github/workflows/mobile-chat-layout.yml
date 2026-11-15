@@ -39,6 +39,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 8
     env:
+      EXPECTED_DEPLOYMENT_SHA: ${{ github.event.workflow_run.head_sha || github.event.deployment.sha || inputs.expected_sha || '' }}
       PYTHONUNBUFFERED: '1'
       MOBILE_CHAT_BASE_URL: ${{ inputs.base_url || 'https://asset360.intellic.co.kr' }}
       MOBILE_CHAT_PROOF_DIR: .tmp/mobile-chat-live-proof
@@ -53,7 +54,6 @@ jobs:
       - name: Wait for the expected production deployment
         env:
           PRODUCTION_BASE_URL: ${{ inputs.base_url || 'https://asset360.intellic.co.kr' }}
-          EXPECTED_DEPLOYMENT_SHA: ${{ github.event.workflow_run.head_sha || github.event.deployment.sha || inputs.expected_sha || '' }}
         run: python scripts/wait-production-deployment.py
       - name: Prepare browser
         run: |
