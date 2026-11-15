@@ -7,6 +7,7 @@ const run = (program, args) => execFileSync(program, args, { stdio: 'inherit' })
 try {
   run(process.env.PYTHON || 'python', ['scripts/validate-forms-taxonomy.py']);
   run(process.execPath, ['scripts/forms-catalog-tests.mjs']);
+  run(process.execPath, ['scripts/forms-search-tests.mjs']);
   run(process.execPath, ['scripts/forms-preview-integration-tests.mjs']);
   run(process.execPath, ['scripts/forms-entry-tests.mjs']);
   run(process.execPath, ['scripts/forms-life-guides-tests.mjs']);

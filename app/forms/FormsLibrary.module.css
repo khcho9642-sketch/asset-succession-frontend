@@ -308,7 +308,7 @@
 .planningWindow p { margin: 7px 0; }
 .planningWindow small { color: var(--lib-muted); font-size: 12px; }
 .dialogFooter { display: flex; align-items: center; gap: 12px; flex-shrink: 0; padding: 15px 26px; border-top: 1px solid var(--lib-line); background: #faf5eb; }
-.dialogFooter > button { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; padding: 10px 18px; border: 1px solid #bdab8b; border-radius: 3px; font-size: 14px; }
+.dialogFooter > button, .dialogFooter > a { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; padding: 10px 18px; border: 1px solid #bdab8b; border-radius: 3px; font-size: 14px; text-decoration: none; }
 .dialogBack { color: var(--lib-muted) !important; min-width: 120px; }
 .dialogPrimary { margin-left: auto; min-width: 240px; background: var(--lib-ink) !important; border-color: var(--lib-ink) !important; color: var(--lib-card) !important; font-weight: 500; }
 
@@ -438,7 +438,7 @@
   .supplementalSources h3 { font-size: 15px; }
   .supplementalSources a { font-size: 14px; }
   .dialogFooter { padding: 12px 15px; gap: 10px; }
-  .dialogFooter > button { min-height: 46px; font-size: 14px; padding: 10px 13px; }
+  .dialogFooter > button, .dialogFooter > a { min-height: 46px; font-size: 14px; padding: 10px 13px; }
   .dialogBack { min-width: 82px; }
   .dialogPrimary { min-width: 0; flex: 1; }
 }
@@ -454,6 +454,15 @@
   .stages { margin-right: -13px; padding-right: 13px; }
 }
 @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+.taskContext { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 16px; margin-bottom: 20px; border: 1px solid var(--lib-line); background: var(--lib-card); border-radius: 6px; }
+.taskContext p { margin: 0; line-height: 1.8; }
+.taskContext a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
+.fileFormat small { color: inherit; font-size: 11px; }
+@media (max-width: 400px) {
+  .dialogFooter { flex-wrap: wrap; }
+  .dialogFooter > a, .dialogFooter > button { flex: 1 1 100%; width: 100%; margin: 0; }
+  .dialogFooter > .dialogBack { order: 1; min-height: 40px; }
+}
 .searchHint { color: var(--lib-muted); margin: 0 0 12px; line-height: 1.7; }
 .browseModes { display: flex; flex-wrap: wrap; gap: 8px; padding: 20px 0; border-bottom: 1px solid var(--lib-line); }
 .browseModes a { display: inline-flex; align-items: center; gap: 9px; min-height: 46px; padding: 10px 18px; color: var(--lib-muted); border: 1px solid var(--lib-line); border-radius: 6px; text-decoration: none; }

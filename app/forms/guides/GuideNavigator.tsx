@@ -9,7 +9,7 @@ import styles from "./Guides.module.css";
 
 export type GuideResourceSummary = {
   id: string; title: string; category: string; provider: string; delivery: string;
-  action: "발급 방법 보기" | "작성 안내 보기" | "서식 받기";
+  action: string;
 };
 type Props = {
   guide: InheritanceGuide;
@@ -99,7 +99,7 @@ export function GuideNavigator({ guide, resources, catalogHref, lookupPanels, an
         <div className={styles.materialsHeading}><h3>{showAssetContext ? `${activeAsset?.label} 관련 자료` : "필요한 자료 선택"}</h3><span role="status">{visibleResources.length}개 자료</span></div>
         <div className={styles.resourceGrid}>{renderResources(primaryResources)}</div>
         {contextResources.length > 0 && <div className={styles.contextMaterials}><h3>가족관계·유언에 따라 함께 확인할 자료</h3><div className={styles.resourceGrid}>{renderResources(contextResources)}</div></div>}
-        <Link className={styles.textLink} href={guideRelatedCatalogUrl(catalogHref, guide.timing, selection)}>{relatedAsset ? `${relatedAsset.label} 관련 전체 자료 보기` : "이 상황의 전체 자료 보기"}<ArrowRight size={15} aria-hidden="true" /></Link>
+        <Link className={styles.textLink} href={guideRelatedCatalogUrl(guide.timing, selection)}>{relatedAsset ? `${relatedAsset.label} 업무 자료 전체 보기` : "이 업무의 자료 전체 보기"}<ArrowRight size={15} aria-hidden="true" /></Link>
       </div>}
 
       {guide.timing === "before-death" && selectedStep.id === "options" && <Link className={styles.textLink} href={guideUrl("gift")}>생전 증여를 검토한다면 증여 안내 보기<ArrowRight size={15} aria-hidden="true" /></Link>}

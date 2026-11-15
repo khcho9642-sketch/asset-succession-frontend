@@ -13,7 +13,7 @@ const usage = read('lib/forms/resource-usage.json').documents;
 const output = path.resolve('.tmp/forms-life-guides-tests');
 mkdirSync(output, { recursive: true });
 writeFileSync(path.join(output, 'package.json'), '{"type":"commonjs"}');
-for (const name of ['catalog', 'guides', 'purpose-guides', 'lookup-services', 'post-death-lookup-services']) {
+for (const name of ['search', 'catalog', 'guides', 'purpose-guides', 'lookup-services', 'post-death-lookup-services']) {
   writeFileSync(path.join(output, name + '.js'), ts.transpileModule(readFileSync(`lib/forms/${name}.ts`, 'utf8'), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
   }).outputText);

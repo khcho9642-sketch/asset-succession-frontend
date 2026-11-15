@@ -12,7 +12,7 @@ const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'forms-individual-'));
 let count = 0;
 const test = (name, run) => { run(); count++; console.log(`PASS ${name}`); };
 try {
-  for (const name of ['catalog', 'individual-catalog']) {
+  for (const name of ['search', 'catalog', 'individual-catalog']) {
     const code = ts.transpileModule(fs.readFileSync(path.join(root, `lib/forms/${name}.ts`), 'utf8'), {
       fileName: `${name}.ts`, reportDiagnostics: true,
       compilerOptions: { target: ts.ScriptTarget.ES2020, module: ts.ModuleKind.CommonJS },
@@ -114,6 +114,15 @@ try {
     const closed = parseCatalogFilters(catalogUrl({ ...f, resource: '' }).split('?')[1]);
     assert.equal(closed.q, '증여'); assert.equal(closed.stage, 'S5'); assert.deepEqual(closed.timing, ['before_death', 'after_death']);
   });
+  test('Internal resource URLs preserve a selected task and catalog context', () => {
+    const selected = parseCatalogFilters('?view=all&guide=after-death&step=transfer--bank');
+    const destination = new URL(catalogUrl({ ...selected, resource: 'BP-I-01' }), 'https://asset360.intellic.co.kr');
+    assert.equal(destination.pathname, '/forms');
+    assert.equal(destination.searchParams.get('resource'), 'BP-I-01');
+    assert.equal(destination.searchParams.get('view'), 'all');
+    assert.equal(destination.searchParams.get('guide'), 'after-death');
+    assert.equal(destination.searchParams.get('step'), 'transfer--bank');
+  });
   test('Synthetic 177-record catalogue keeps every active record once', () => {
     const rows = Array.from({ length: 177 }, (_, i) => document(`D${i}`));
     rows.forEach(row => { row.resource.presentation.visibility = 'within_parent'; });
@@ -126,8 +135,7 @@ try {
     assert.match(source, /data-card-kind="document"/);
     assert.doesNotMatch(source, /GroupDocumentPreview|data-members|card\.group|대표 자료/);
     assert.match(source, /PreviewThumbnail item=\{item\}/);
-    // Cards now lead to the individual detail; original file actions remain there.
-    assert.match(source, /href=\{resourceUrl\(item.id\)\} onClick=\{event => openDetail\(event, item.id\)\}/);
+    // Rendered card hrefs and click behavior are exercised in forms-card-display-tests.
     assert.match(source, /<Files item=\{selected\}/);
     const parsed = ts.transpileModule(source, { fileName: 'FormsLibrary.tsx', reportDiagnostics: true, compilerOptions: { jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2020 } });
     assert.equal((parsed.diagnostics || []).filter(d => d.category === ts.DiagnosticCategory.Error).length, 0);

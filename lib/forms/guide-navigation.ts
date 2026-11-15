@@ -58,10 +58,10 @@ export function guideCatalogAsset(guideId: GuideTiming, selection: GuideSelectio
   return guideId === "gift" ? GIFT_CATALOG_ASSETS[selection.stepId] || null : null;
 }
 
-export function guideRelatedCatalogUrl(baseUrl: string, guideId: GuideTiming, selection: GuideSelection): string {
-  const params = new URLSearchParams(baseUrl.split("?")[1] || "");
-  params.set("view", "all");
-  const asset = guideCatalogAsset(guideId, selection)?.catalogAsset;
-  if (asset) params.set("asset", asset);
+export function guideRelatedCatalogUrl(guideId: GuideTiming, selection: GuideSelection): string {
+  // The guide's selected resources define this list. Broad facet filters would
+  // discard contextual references (for example, learning about payment options
+  // before an inheritance occurs) or introduce unrelated tasks.
+  const params = new URLSearchParams({ view: "all", guide: guideId, step: guideSelectionHash(selection.stepId, selection.assetId) });
   return `/forms?${params.toString()}`;
 }

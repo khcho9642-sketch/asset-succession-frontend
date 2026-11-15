@@ -51,14 +51,28 @@ test('legacy nested anchors and complete-catalog links retain their context', ()
   assert.deepEqual(nav.resolveGuideSelection('before-death', ['inventory', 'funding'], '#lookup-pension', { 'lookup-pension': 'inventory' }), { stepId: 'inventory', assetId: '' });
   assert.deepEqual(nav.resolveGuideSelection('gift', ['cash', 'shares'], '#transfer-evidence', { 'transfer-evidence': 'cash' }), { stepId: 'cash', assetId: '' });
   for (const guide of guides.GUIDES) assert.equal(new URL(guides.guideCatalogUrl(guide.timing), 'https://example.test').searchParams.get('view'), 'all');
-  const related = new URL(nav.guideRelatedCatalogUrl(guides.guideCatalogUrl('after-death'), 'after-death', { stepId: 'transfer', assetId: 'insurance' }), 'https://example.test');
+  const related = new URL(nav.guideRelatedCatalogUrl('after-death', { stepId: 'transfer', assetId: 'insurance' }), 'https://example.test');
   assert.equal(related.searchParams.get('view'), 'all');
-  assert.equal(related.searchParams.get('timing'), 'after_death');
-  assert.equal(related.searchParams.get('asset'), 'insurance_pension');
-  for (const [stepId, asset] of [['cash', 'cash_deposit'], ['real-estate', 'real_estate'], ['shares', 'securities']]) {
-    const gift = new URL(nav.guideRelatedCatalogUrl(guides.guideCatalogUrl('gift'), 'gift', { stepId, assetId: '' }), 'https://example.test');
-    assert.equal(gift.searchParams.get('purpose'), 'gift');
-    assert.equal(gift.searchParams.get('asset'), asset);
+  assert.equal(related.searchParams.get('guide'), 'after-death');
+  assert.equal(related.searchParams.get('step'), 'transfer--insurance');
+  assert.equal(related.searchParams.has('timing'), false);
+  assert.equal(related.searchParams.has('asset'), false);
+  for (const stepId of ['cash', 'real-estate', 'shares']) {
+    const gift = new URL(nav.guideRelatedCatalogUrl('gift', { stepId, assetId: '' }), 'https://example.test');
+    assert.equal(gift.searchParams.get('guide'), 'gift');
+    assert.equal(gift.searchParams.get('step'), stepId);
     assert.equal(gift.searchParams.get('view'), 'all');
+    assert.equal(gift.searchParams.has('purpose'), false);
+    assert.equal(gift.searchParams.has('asset'), false);
   }
+});
+
+test('learning about later payment options retains the selected task without a conflicting timing filter', () => {
+  const url = nav.guideRelatedCatalogUrl('before-death', { stepId: 'funding', assetId: '' });
+  const filter = catalog.parseCatalogFilters(new URL(url, 'https://example.test').search);
+  assert.equal(filter.guide, 'before-death');
+  assert.equal(filter.step, 'funding');
+  assert.deepEqual(filter.timing, []);
+  const selected = guides.getGuide(filter.guide).steps.find(step => step.id === filter.step).resources.map(resource => resource.id);
+  assert.ok(selected.includes('P2-09') && selected.includes('P2-07'));
 });

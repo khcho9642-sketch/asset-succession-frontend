@@ -1,3 +1,5 @@
+import { rankResourceSearch } from "./search";
+
 /** Navigation is resolved only after individual resources match every active facet. */
 export type ResourceMetadata = {
   resource_id: string;
@@ -98,18 +100,9 @@ export const hasFilters = (f: CatalogFilters) => Boolean(f.use || f.q || f.stage
 export const showsCatalog = (f: CatalogFilters) => f.view === "all" || hasFilters(f) || Boolean(f.resource);
 export const isPublicResource = (item: LibraryDocument) => !["archived", "excluded"].includes(item.resource?.presentation.visibility || "");
 export const useCategory = (item: LibraryDocument) => item.useCategory || (item.resource?.facets.kind === "service_link" ? "service" : item.resource?.facets.kind === "guide" ? "guide" : "form");
-const normalize = (value: string) => value.normalize("NFKC").toLocaleLowerCase("ko-KR").replace(/\s+/g, "");
 /** Rank facts from this document, never text borrowed from related documents. */
 export function resourceSearchRank(item: LibraryDocument, query: string, groupTitles: string[] = []): number {
-  if (!query.trim()) return 1;
-  const q = normalize(query);
-  const tokens = query.trim().split(/\s+/).map(normalize);
-  if ([item.title, item.catalogTitle].some(title => normalize(title || "") === q)) return 4;
-  const titleAndProvider = normalize([item.title, item.catalogTitle, item.institution].join(" "));
-  if (tokens.every(token => titleAndProvider.includes(token))) return 3;
-  if ((item.searchAliases || []).some(alias => normalize(alias).includes(q))) return 2;
-  const body = normalize([item.id, item.title, item.catalogTitle, item.description, item.tags, item.institution, item.originalCategory, item.category, ...(item.searchAliases || []), item.usage?.when || "", ...groupTitles].join(" "));
-  return tokens.every(token => body.includes(token)) ? 1 : 0;
+  return rankResourceSearch(item, query, groupTitles);
 }
 const overlaps = (selected: string[], actual: string[]) => selected.length === 0 || selected.some(value => actual.includes(value));
 function matchesFacets(meta: Pick<ResourceMetadata, "facets" | "stage_ids"> | undefined, filters: CatalogFilters): boolean {

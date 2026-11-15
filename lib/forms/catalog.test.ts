@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFileSync } from "node:fs";
-import { availableFiles, buildCatalog, catalogUrl, emptyFilters, filterCatalog, hasFilters, originLabel, providerLabel, parseCatalogFilters, resourceUrl, showsCatalog, type LibraryDocument, type PresentationGroup } from "./catalog";
+import { availableFiles, buildCatalog, catalogUrl, emptyFilters, filterCatalog, hasFilters, originLabel, providerLabel, parseCatalogFilters, resourceSearchRank, resourceUrl, showsCatalog, type LibraryDocument, type PresentationGroup } from "./catalog";
 
 function doc(id: string, purposes: string[] = [], assets: string[] = [], parent?: string, relation = "ui_member_of"): LibraryDocument {
   return { id, title: id, category: "legacy", description: "", tags: "", format: "HWP", editable: "", example: null, thumbnail: null, sizeLabel: "", institution: "기관", sourceUrl: "", checkedOn: "", license: "", verification: "", delivery: "hosted", originalCategory: "", catalogTitle: id, exampleVerification: "", licenseUrl: "", files: [],
@@ -96,6 +96,31 @@ test("archived resources preserve direct lookup but never leak into normal searc
 test("missing classification is never guessed from legacy category", () => {
   const missing = doc("증여부동산"); delete missing.resource; missing.category = "증여";
   assert.equal(filterCatalog(buildCatalog([missing], []), { ...emptyFilters(), purpose: ["gift"] }).length, 0);
+});
+
+test("exact IDs, form numbers and titles outrank text-only mentions", () => {
+  const exact = { ...doc("NTS-IG-11"), title: "증여세 신고서", catalogTitle: "증여세 신고서", form_no: "06206033" };
+  const mention = { ...doc("NTS-IG-11-S2"), description: "NTS-IG-11 및 06206033 증여세 신고서 참고" };
+  for (const q of [exact.id, exact.form_no, exact.title]) {
+    assert.ok(resourceSearchRank(exact, q) > resourceSearchRank(mention, q), q);
+    assert.equal(filterCatalog(buildCatalog([mention, exact], []), { ...emptyFilters(), q })[0].id, exact.id, q);
+  }
+});
+
+test("search wording tolerates reviewed compounds without inventing unrelated matches", () => {
+  const inheritance = { ...doc("deposit"), title: "상속예금 지급 안내", institution: "하나은행" };
+  const gift = { ...doc("gift"), title: "현금 증여계약서" };
+  const unrelated = { ...doc("unrelated"), title: "부동산 매매계약서" };
+  const index = buildCatalog([inheritance, gift, unrelated], []);
+  for (const q of ["예금상속", "예금 상속", "상속예금 서류", "하나은행상속예금자료"]) {
+    assert.deepEqual(filterCatalog(index, { ...emptyFilters(), q }).map(card => card.id), [inheritance.id], q);
+  }
+  for (const q of ["현금증여", "증여현금", "증여 현금 자료"]) {
+    assert.deepEqual(filterCatalog(index, { ...emptyFilters(), q }).map(card => card.id), [gift.id], q);
+  }
+  for (const q of ["서류 자료", "바나나자료", "현금증여 바나나 서류", "우리은행 상속예금"]) {
+    assert.equal(filterCatalog(index, { ...emptyFilters(), q }).length, 0, q);
+  }
 });
 
 test("download menu keeps real formats and deduplicates paths without inventing conversions", () => {
