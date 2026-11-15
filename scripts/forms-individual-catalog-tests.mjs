@@ -126,7 +126,9 @@ try {
     assert.match(source, /data-card-kind="document"/);
     assert.doesNotMatch(source, /GroupDocumentPreview|data-members|card\.group|대표 자료/);
     assert.match(source, /PreviewThumbnail item=\{item\}/);
-    assert.match(source, /FileAction item=\{item\}/);
+    // Cards now lead to the individual detail; original file actions remain there.
+    assert.match(source, /href=\{resourceUrl\(item.id\)\} onClick=\{event => openDetail\(event, item.id\)\}/);
+    assert.match(source, /<Files item=\{selected\}/);
     const parsed = ts.transpileModule(source, { fileName: 'FormsLibrary.tsx', reportDiagnostics: true, compilerOptions: { jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2020 } });
     assert.equal((parsed.diagnostics || []).filter(d => d.category === ts.DiagnosticCategory.Error).length, 0);
   });

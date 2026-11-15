@@ -178,5 +178,6 @@ test('unverified candidates, excluded records and removed planning notes never r
   for (const id of [...editorial.EXCLUDED_IDS, 'BANK-CAND-01', 'BANK-CAND-02', ...Array.from({ length: 6 }, (_, n) => `PLAN-0${n + 1}`)]) assert.ok(!ids({ q: id }).includes(id));
   const entry = readFileSync('app/forms/GuideEntrances.tsx', 'utf8');
   assert.doesNotMatch(entry, /<details|<summary/);
-  for (const title of ['상속 전 준비', '상속 발생 후', '증여', '양도', '가업승계']) assert.ok(entry.includes(title));
+  for (const title of ['상속을 미리 준비하고 있어요', '상속이 발생했어요', '재산을 증여하려고 해요', '재산을 팔려고 해요', '사업을 가족에게 넘기려고 해요']) assert.ok(entry.includes(title));
+  for (const path of ['before-death', 'after-death', 'gift', 'transfer', 'business-succession']) assert.ok(entry.includes(path));
 });

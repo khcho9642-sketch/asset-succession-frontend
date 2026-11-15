@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFileSync } from "node:fs";
-import { availableFiles, buildCatalog, catalogUrl, emptyFilters, filterCatalog, originLabel, providerLabel, parseCatalogFilters, type LibraryDocument, type PresentationGroup } from "./catalog";
+import { availableFiles, buildCatalog, catalogUrl, emptyFilters, filterCatalog, hasFilters, originLabel, providerLabel, parseCatalogFilters, resourceUrl, showsCatalog, type LibraryDocument, type PresentationGroup } from "./catalog";
 
 function doc(id: string, purposes: string[] = [], assets: string[] = [], parent?: string, relation = "ui_member_of"): LibraryDocument {
   return { id, title: id, category: "legacy", description: "", tags: "", format: "HWP", editable: "", example: null, thumbnail: null, sizeLabel: "", institution: "기관", sourceUrl: "", checkedOn: "", license: "", verification: "", delivery: "hosted", originalCategory: "", catalogTitle: id, exampleVerification: "", licenseUrl: "", files: [],
@@ -37,6 +37,53 @@ test("direct entry has no default filters and URL values roundtrip without stale
   assert.equal(catalogUrl(emptyFilters()), "/forms");
   assert.equal(parseCatalogFilters("resource=P1-03").resource, "REG-I-01");
   assert.equal(parseCatalogFilters("resource=P8-07").resource, "P1-22");
+});
+
+test("the situation home and complete catalog have distinct shareable URL states", () => {
+  const home = parseCatalogFilters("");
+  assert.equal(showsCatalog(home), false);
+  assert.equal(hasFilters(home), false);
+  assert.equal(catalogUrl(home), "/forms");
+  const all = { ...emptyFilters(), view: "all" as const };
+  assert.equal(showsCatalog(all), true);
+  assert.equal(hasFilters(all), false, "view is navigation state, not a resource filter");
+  assert.equal(catalogUrl(all), "/forms?view=all");
+  assert.deepEqual(parseCatalogFilters("?view=all"), all);
+  assert.equal(showsCatalog({ ...emptyFilters(), view: "all", q: "" }), true, "clearing search keeps the complete catalog open");
+  for (const value of ["unknown", "ALL", "https://example.test", "//example.test"]) {
+    const invalid = parseCatalogFilters(`?view=${encodeURIComponent(value)}`);
+    assert.deepEqual(invalid, home);
+    assert.equal(showsCatalog(invalid), false);
+  }
+});
+
+test("every existing filter bookmark opens the catalog without requiring view=all", () => {
+  for (const query of ["q=협의서", "purpose=gift", "asset=real_estate", "timing=before_death", "stage=S3", "use=form", "kind=form", "delivery=hosted"]) {
+    const legacy = parseCatalogFilters(query);
+    assert.equal(hasFilters(legacy), true, query);
+    assert.equal(showsCatalog(legacy), true, query);
+    assert.deepEqual(parseCatalogFilters(catalogUrl(legacy).split("?")[1]), legacy, query);
+  }
+  const filtered = parseCatalogFilters("purpose=gift&asset=real_estate&timing=before_death&use=form");
+  const index = buildCatalog([doc("gift-home", ["gift"], ["real_estate"]), doc("gift-cash", ["gift"], ["cash_deposit"])], []);
+  assert.deepEqual(filterCatalog(index, { ...filtered, view: "all" }), filterCatalog(index, filtered), "view must not alter search results");
+});
+
+test("direct, alias and guide-return resource bookmarks retain detail and return context", () => {
+  for (const [id, expected] of [["BP-I-01", "BP-I-01"], ["P1-03", "REG-I-01"], ["P8-07", "P1-22"]]) {
+    const legacy = parseCatalogFilters(`resource=${id}`);
+    assert.equal(showsCatalog(legacy), true, id);
+    assert.equal(hasFilters(legacy), false, id);
+    assert.equal(legacy.resource, expected);
+    assert.equal(new URL(resourceUrl(id), "https://example.test").searchParams.get("resource"), expected);
+  }
+  const detail = parseCatalogFilters("guide=after-death&step=report&resource=P0-01&timing=after_death&view=all");
+  assert.equal(detail.guide, "after-death");
+  assert.equal(detail.step, "report");
+  assert.equal(detail.resource, "P0-01");
+  assert.deepEqual(parseCatalogFilters(catalogUrl(detail).split("?")[1]), detail);
+  assert.equal(showsCatalog(detail), true);
+  assert.equal(showsCatalog(parseCatalogFilters("from=precheck")), false, "context alone does not hide the situation home");
 });
 
 test("archived resources preserve direct lookup but never leak into normal search; cycles terminate", () => {

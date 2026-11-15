@@ -2,18 +2,20 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import test from 'node:test';
+import * as React from 'react';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import ts from 'typescript';
-import { finalDocuments, previewApi } from './load-current-forms.mjs';
+import { finalDocuments, groups, previewApi, catalog, individual, guides, editorial, finalReview } from './load-current-forms.mjs';
 
 const require = createRequire(import.meta.url);
 const module = { exports: {} };
 const compiled = ts.transpileModule(readFileSync('app/forms/DocumentPreview.tsx', 'utf8'), {
   compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
 }).outputText;
+const classNames = new Proxy({}, { get: (_, key) => key === '__esModule' ? false : String(key) });
 const componentRequire = name => name === '@/lib/forms/preview' ? previewApi
-  : name.endsWith('.module.css') ? { cardState: 'cardState', thumbnail: 'thumbnail' } : require(name);
+  : name.endsWith('.module.css') ? classNames : require(name);
 new Function('require', 'module', 'exports', compiled)(componentRequire, module, module.exports);
 const render = item => renderToStaticMarkup(createElement(module.exports.PreviewThumbnail, { item }));
 const iconModule = { exports: {} };
@@ -21,6 +23,57 @@ const iconCompiled = ts.transpileModule(readFileSync('app/forms/ResourceIcon.tsx
   compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
 }).outputText;
 new Function('require', 'module', 'exports', iconCompiled)(componentRequire, iconModule, iconModule.exports);
+
+// Render the real parent component at a URL snapshot. Child previews and guide
+// content have separate suites; markers keep these tests focused on navigation,
+// card actions and the order of the parent's detail sections.
+let librarySearch = '';
+const usage = JSON.parse(readFileSync('lib/forms/resource-usage.json', 'utf8'));
+const archiveModule = { exports: {} };
+new Function('require', 'module', 'exports', ts.transpileModule(readFileSync('lib/forms/archive.ts', 'utf8'), {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+}).outputText)(require, archiveModule, archiveModule.exports);
+const libraryModule = { exports: {} };
+const libraryRequire = name => {
+  const modules = {
+    react: { ...React, useSyncExternalStore: () => librarySearch },
+    'next/link': ({ children, ...props }) => createElement('a', props, children),
+    '@/lib/forms/catalog': catalog,
+    '@/lib/forms/individual-catalog': individual,
+    '@/lib/forms/preview': previewApi,
+    '@/lib/forms/guides': guides,
+    '@/lib/forms/resource-usage': { getResourceUsage: id => usage.documents[id] },
+    '@/lib/forms/library-editorial': editorial,
+    '@/lib/forms/final-review': finalReview,
+    '@/lib/forms/archive': archiveModule.exports,
+    './DocumentPreview': { ...module.exports, DocumentPreview: ({ item }) => createElement('section', { 'data-detail-preview': item.id }) },
+    './ResourceIcon': iconModule.exports,
+    './guides/LookupServices': { LookupServices: ({ timing }) => createElement('section', { 'data-lookup-timing': timing }) },
+    './GuideEntrances': { GuideEntrances: () => createElement('section', { 'data-situation-entrances': true }) },
+  };
+  return Object.hasOwn(modules, name) ? modules[name] : name.endsWith('.module.css') ? classNames : require(name);
+};
+new Function('require', 'module', 'exports', ts.transpileModule(readFileSync('app/forms/FormsLibrary.tsx', 'utf8'), {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
+}).outputText)(libraryRequire, libraryModule, libraryModule.exports);
+const renderLibrary = (search = '', documents = finalDocuments) => {
+  librarySearch = search;
+  return renderToStaticMarkup(createElement(libraryModule.exports.FormsLibrary, { documents, groups }));
+};
+const interactionModule = { exports: {} };
+const interactionReact = {
+  ...React,
+  useMemo: factory => factory(),
+  useRef: value => ({ current: value }),
+  useState: initial => [typeof initial === 'function' ? initial() : initial, () => {}],
+  useEffect: () => {},
+  useSyncExternalStore: () => librarySearch,
+};
+new Function('require', 'module', 'exports', ts.transpileModule(readFileSync('app/forms/FormsLibrary.tsx', 'utf8'), {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
+}).outputText)(name => name === 'react' ? interactionReact : libraryRequire(name), interactionModule, interactionModule.exports);
+const elements = node => Array.isArray(node) ? node.flatMap(elements)
+  : node && typeof node === 'object' && node.props ? [node, ...elements(node.props.children)] : [];
 
 for (const id of ['P0-08', 'P3-05']) {
   test(`${id}: provider-only thumbnail uses an icon and one short label`, () => {
@@ -61,20 +114,56 @@ test('an unavailable local original is not presented as provider-only', () => {
   assert.doesNotMatch(html, /<img|제공처 서식/);
 });
 
-test('card descriptions are outside the thumbnail row and are not line-clamped', () => {
+test('cards keep a short description while detail preserves the complete explanation', () => {
   const source = readFileSync('app/forms/FormsLibrary.tsx', 'utf8');
   assert.match(source, /<\/div>\s*<p className=\{styles.cardDescription\}>/);
   const css = readFileSync('app/forms/FormsLibrary.module.css', 'utf8');
-  for (const rule of css.matchAll(/\.cardDescription\s*\{([^}]+)\}/g)) {
+  assert.match(css, /\.cardDescription\s*\{[^}]*-webkit-line-clamp:\s*2/);
+  for (const rule of css.matchAll(/\.detailDescription\s*\{([^}]+)\}/g)) {
     assert.doesNotMatch(rule[1], /line-clamp|overflow\s*:\s*hidden/);
+  }
+  const item = finalDocuments.find(document => document.id === 'BP-G-01');
+  const html = renderLibrary('?resource=BP-G-01');
+  assert.ok(html.includes(`<p class="detailDescription">${item.description}</p>`));
+});
+
+test('situation home hides the long catalog while complete and legacy filtered URLs expose it', () => {
+  const home = renderLibrary();
+  assert.match(home, /data-situation-entrances="true"/);
+  assert.doesNotMatch(home, /data-card-kind="document"/);
+  assert.match(home, /href="\/forms\?view=all"/);
+  for (const query of ['?view=all', '?q=상속', '?purpose=gift', '?resource=BP-I-01']) {
+    const html = renderLibrary(query);
+    assert.doesNotMatch(html, /data-situation-entrances="true"/, query);
+    assert.match(html, /data-card-kind="document"/, query);
   }
 });
 
-test('internal instructions and external provider actions have distinct accessible names', () => {
-  const source = readFileSync('app/forms/FormsLibrary.tsx', 'utf8');
-  assert.match(source, /\$\{detailLabel\} \(사이트 내\)/);
-  assert.match(source, /제공처 사이트를 새 창에서 엽니다/);
-  assert.match(source, /preview\.kind === "provider" \? <Info/);
+test('removing the last condition from a legacy bookmark keeps the complete catalog open', () => {
+  const originalWindow = globalThis.window;
+  try {
+    for (const [query, label] of [['?purpose=gift', '증여 조건 해제'], ['?stage=S3', '단계 조건 해제']]) {
+      librarySearch = query;
+      let navigated = null;
+      globalThis.window = {
+        location: { pathname: '/forms', search: query },
+        history: { pushState: (_state, _title, href) => { navigated = href; }, replaceState: (_state, _title, href) => { navigated = href; } },
+        dispatchEvent: () => true,
+      };
+      const tree = interactionModule.exports.FormsLibrary({ documents: finalDocuments, groups });
+      const remove = elements(tree).find(node => node.type === 'button' && node.props['aria-label'] === label);
+      assert.ok(remove, label);
+      remove.props.onClick();
+      assert.ok(navigated, query);
+      const next = catalog.parseCatalogFilters(new URL(navigated, 'https://asset360.intellic.co.kr').search);
+      assert.equal(catalog.hasFilters(next), false, query);
+      assert.equal(catalog.showsCatalog(next), true, query);
+      assert.equal(next.view, 'all', query);
+    }
+  } finally {
+    if (originalWindow === undefined) delete globalThis.window;
+    else globalThis.window = originalWindow;
+  }
 });
 
 const iconCases = [
@@ -109,15 +198,48 @@ test('icons cover tax guidance, preserve family guardianship and use a neutral f
   assert.equal(iconModule.exports.resourceIconKind('새로운 절차 안내'), 'guide');
 });
 
-test('service card primary action opens instructions, while detail provider and file actions remain', () => {
-  const source = readFileSync('app/forms/FormsLibrary.tsx', 'utf8');
-  assert.match(source, /className=\{styles.serviceAction\} href=\{resourceUrl\(item.id\)\} onClick=\{event => openDetail\(event, item.id\)\}/);
-  assert.match(source, /이용 안내 보기 \(사이트 내\)/);
-  assert.match(source, /\(!service \|\| formats.length > 0\) && <FileAction item=\{item\}/);
-  assert.match(source, /preview.kind === "provider" && category !== "form" \? <ResourceIcon/);
-  assert.match(source, /<PreviewThumbnail item=\{item\}/);
-  assert.match(source, /<FileAction item=\{selected\}/);
-  assert.match(source, /data-use-category=\{category\}/);
+test('each resource category has one card CTA leading to its internal detail', () => {
+  for (const [id, label] of [['BP-I-01', '서식 받기'], ['SVC-ACCOUNTS', '발급 방법 보기'], ['P1-14', '작성 안내 보기']]) {
+    const item = finalDocuments.find(document => document.id === id);
+    assert.ok(item, id);
+    const html = renderLibrary('?view=all', [item]);
+    const card = html.match(/<article[^>]*data-form-id="[^"]+"[\s\S]*?<\/article>/)?.[0];
+    assert.ok(card, id);
+    const actions = card.match(/<div class="cardActions">([\s\S]*?)<\/div>/)?.[1];
+    assert.ok(actions, id);
+    assert.equal([...actions.matchAll(/<a\s/g)].length, 1, id);
+    assert.ok(actions.includes(`href="/forms?resource=${id}"`), id);
+    assert.ok(actions.includes(`<span>${label}</span>`), id);
+    assert.ok(actions.includes(`aria-label="${item.title} ${label}"`), id);
+    assert.doesNotMatch(actions, /target="_blank"|download=|data-form-download|data-file-download/, id);
+  }
+});
+
+test('detail puts user guidance before original downloads, preview and source metadata', () => {
+  const html = renderLibrary('?resource=BP-G-01');
+  const detail = html.slice(html.indexOf('<dialog'));
+  const positions = ['자료 사용 안내', 'id="detail-downloads"', 'data-detail-preview="BP-G-01"', '출처와 확인일', '상세 검토기록']
+    .map(marker => {
+      const index = detail.indexOf(marker);
+      assert.ok(index >= 0, marker);
+      return index;
+    });
+  assert.deepEqual(positions, [...positions].sort((a, b) => a - b));
+  const selected = finalDocuments.find(item => item.id === 'BP-G-01');
+  for (const file of catalog.availableFiles(selected)) assert.ok(detail.includes(`href="${file.path}"`), file.path);
+  assert.match(detail, /data-file-download="true"/);
+  assert.match(detail, /target="_blank"[^>]*rel="noopener noreferrer"[^>]*>출처 게시물 확인/);
+});
+
+test('provider-only detail preserves its external action without fabricating a file download', () => {
+  const item = finalDocuments.find(document => document.id === 'P1-14');
+  assert.equal(catalog.availableFiles(item).length, 0, 'Fixture has a provider page, not an attachment');
+  const html = renderLibrary('?resource=P1-14');
+  const downloads = html.match(/<section[^>]*id="detail-downloads"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(downloads);
+  assert.match(downloads, /target="_blank"/);
+  assert.match(downloads, /aria-label="[^"]+\(새 창\)"/);
+  assert.doesNotMatch(downloads, /data-file-download|data-form-download|download="/);
 });
 
 test('card visual stays square, and the full description precedes an aligned footer', () => {

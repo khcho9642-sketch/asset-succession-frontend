@@ -57,6 +57,8 @@
 .resource strong { display: block; font-size: 13px; font-weight: 650; line-height: 1.65; overflow-wrap: anywhere; }
 .resource small { display: block; margin-top: 4px; color: #786b58; font-size: 11px; line-height: 1.7; }
 .resource:hover { background: #f5eedf; border-color: #b9a582; }
+.resource .resourceMeta { margin-top: 12px; padding-top: 9px; border-top: 1px solid #e8e0d3; font-size: 11px; }
+.resourceAction { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 9px; min-height: 30px; color: #705936; font-size: 13px; font-weight: 650; }
 .sources { display: flex; align-items: baseline; gap: 3px 15px; flex-wrap: wrap; margin-top: 14px; }
 .sources > span { font-size: 11px; color: #786b58; }
 .sources a { display: inline-flex; align-items: center; gap: 5px; min-height: 32px; color: #806744; font-size: 11px; line-height: 1.6; text-decoration: underline; text-underline-offset: 3px; }
@@ -67,6 +69,35 @@
 .switchGuide { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 12px; }
 .srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .page a:focus-visible { outline: 2px solid var(--guide-blue); outline-offset: 4px; }
+.navigator { margin-top: 24px; }
+.preparationOverview { margin: -12px 0 24px; color: var(--guide-muted); font-size: 14px; }
+.preparationOverview summary { width: fit-content; cursor: pointer; min-height: 44px; padding: 12px 0; font-weight: 600; }
+.preparationOverview ul { margin: 0 0 12px; padding-left: 20px; line-height: 1.9; }
+.taskSelection { margin-bottom: 24px; }
+.taskSelectionHeading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+.taskSelectionHeading h2 { margin: 0; font-size: 21px; line-height: 1.6; scroll-margin-top: 100px; }
+.taskSelectionHeading p { margin: 5px 0 0; color: var(--guide-muted); font-size: 13px; line-height: 1.8; }
+.taskSelectionHeading > a { flex-shrink: 0; }
+.taskChoices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.taskChoices a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 70px; padding: 14px 16px; border: 1px solid var(--guide-line); border-radius: 8px; background: #fffcf6; color: var(--guide-ink); font-size: 15px; line-height: 1.65; }
+.taskChoices a > svg { flex-shrink: 0; color: var(--guide-blue); }
+.taskChoices a:hover { border-color: #a38b66; background: #f8f1e6; }
+.taskChoices a[aria-current="true"] { border-color: #8a6d46; background: #e9dfcf; box-shadow: inset 0 0 0 1px #8a6d46; font-weight: 700; }
+.selectionPrompt { padding: 28px; border: 1px dashed #c9baa3; border-radius: 9px; color: var(--guide-muted); background: #f6f0e6; }
+.selectionPrompt > svg { color: var(--guide-blue); }
+.selectionPrompt p { margin: 10px 0 5px; font-size: 15px; line-height: 1.8; }
+.assetSelection { margin-top: 20px; padding-bottom: 18px; border-bottom: 1px solid var(--guide-line); }
+.assetSelection > p { margin: 0 0 10px; color: var(--guide-muted); font-size: 13px; }
+.assetSelection nav { display: flex; flex-wrap: wrap; gap: 8px; }
+.assetSelection a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 9px 15px; border: 1px solid #d9cbb5; border-radius: 6px; font-size: 14px; background: #fffdf8; }
+.assetSelection a:hover { background: #f5eedf; }
+.assetSelection a[aria-current="true"] { color: #fff; background: #806744; border-color: #806744; font-weight: 650; }
+.materialsHeading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.materialsHeading > span { color: var(--guide-muted); font-size: 12px; }
+.contextMaterials { margin-top: 20px; padding-top: 17px; border-top: 1px solid #e8e0d3; }
+.stepBottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 18px; margin-top: 24px; padding-top: 15px; border-top: 1px solid var(--guide-line); }
+.step h2 { scroll-margin-top: 110px; }
+.page :is(summary, h2):focus-visible { outline: 2px solid var(--guide-blue); outline-offset: 4px; }
 @media (max-width: 1000px) {
   .guideHeading { align-items: flex-start; flex-direction: column; gap: 18px; }
   .guideLayout { grid-template-columns: 195px minmax(0, 1fr); gap: 18px; }
@@ -74,6 +105,10 @@
 }
 @media (max-width: 760px) {
   .page { padding: 12px 18px 34px; }
+  .taskSelectionHeading { align-items: flex-start; flex-direction: column; gap: 2px; }
+  .taskChoices { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .taskChoices a { min-height: 72px; padding: 12px; font-size: 14px; }
+  .selectionPrompt { padding: 20px; }
   .indexHeading { margin: 20px 0 23px; }
   .entryGrid { gap: 15px; }
   .entry { padding: 22px; }
@@ -92,6 +127,9 @@
 }
 @media (max-width: 560px) {
   .entryGrid { grid-template-columns: minmax(0, 1fr); }
+  .taskSelectionHeading h2 { font-size: 19px; }
+  .taskChoices a { font-size: 13px; gap: 7px; }
+  .assetSelection a { flex: 1 1 auto; font-size: 13px; padding-inline: 12px; }
   .entry { padding: 22px; }
   .entryIcon { width: 40px; height: 40px; margin-bottom: 17px; }
   .entryDescription { font-size: 14px; }

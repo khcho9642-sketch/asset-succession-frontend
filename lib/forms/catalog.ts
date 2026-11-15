@@ -66,8 +66,8 @@ export const TIMINGS: Record<string, string> = { before_death: "생전 준비·�
 export type FacetKey = keyof typeof FACETS;
 export const USE_CATEGORIES = { service: "조회·발급", guide: "절차 안내", form: "서식 다운로드" } as const;
 export const GUIDE_IDS = ["before-death", "after-death", "gift", "transfer", "business-succession"] as const;
-export type CatalogFilters = { purpose: string[]; asset: string[]; kind: string[]; delivery: string[]; timing: string[]; stage: string; q: string; resource: string; from: string; use?: string; guide?: string; step?: string };
-export const emptyFilters = (): CatalogFilters => ({ purpose: [], asset: [], kind: [], delivery: [], timing: [], stage: "", q: "", resource: "", from: "", use: "", guide: "", step: "" });
+export type CatalogFilters = { purpose: string[]; asset: string[]; kind: string[]; delivery: string[]; timing: string[]; stage: string; q: string; resource: string; from: string; use?: string; guide?: string; step?: string; view?: "" | "all" };
+export const emptyFilters = (): CatalogFilters => ({ purpose: [], asset: [], kind: [], delivery: [], timing: [], stage: "", q: "", resource: "", from: "", use: "", guide: "", step: "", view: "" });
 const split = (params: URLSearchParams, key: string, allowed: readonly string[]) => [...new Set(params.getAll(key).flatMap(value => value.split(",")))].filter(value => allowed.includes(value));
 export function parseCatalogFilters(search: string): CatalogFilters {
   const params = new URLSearchParams(search);
@@ -81,18 +81,21 @@ export function parseCatalogFilters(search: string): CatalogFilters {
   result.use = Object.hasOwn(USE_CATEGORIES, params.get("use") || "") ? params.get("use")! : "";
   result.guide = GUIDE_IDS.find(id => id === params.get("guide")) || "";
   result.step = result.guide && /^[a-z][a-z0-9-]{0,60}$/.test(params.get("step") || "") ? params.get("step")! : "";
+  result.view = params.get("view") === "all" ? "all" : "";
   return result;
 }
 export function catalogUrl(filters: CatalogFilters): string {
   const params = new URLSearchParams();
   for (const key of ["purpose", "asset", "kind", "delivery", "timing"] as const) if (filters[key].length) params.set(key, filters[key].join(","));
-  for (const key of ["stage", "q", "resource", "from", "use", "guide", "step"] as const) if (filters[key]) params.set(key, filters[key]);
+  for (const key of ["stage", "q", "resource", "from", "use", "guide", "step", "view"] as const) if (filters[key]) params.set(key, filters[key]);
   return `/forms${params.size ? `?${params}` : ""}`;
 }
 export const RESOURCE_ALIASES: Record<string, string> = { "P4-03": "P3-02", "P7-07": "P3-03", "P8-07": "P1-22", "P1-03": "REG-I-01", "P1-04": "REG-I-03", "P1-05": "REG-G-01" };
 export const canonicalResourceId = (id: string) => RESOURCE_ALIASES[id] || id;
 export const resourceUrl = (id: string) => catalogUrl({ ...emptyFilters(), resource: canonicalResourceId(id) });
 export const hasFilters = (f: CatalogFilters) => Boolean(f.use || f.q || f.stage || f.purpose.length || f.asset.length || f.kind.length || f.delivery.length || f.timing.length);
+/** Existing filtered/detail bookmarks still open the complete catalogue. */
+export const showsCatalog = (f: CatalogFilters) => f.view === "all" || hasFilters(f) || Boolean(f.resource);
 export const isPublicResource = (item: LibraryDocument) => !["archived", "excluded"].includes(item.resource?.presentation.visibility || "");
 export const useCategory = (item: LibraryDocument) => item.useCategory || (item.resource?.facets.kind === "service_link" ? "service" : item.resource?.facets.kind === "guide" ? "guide" : "form");
 const normalize = (value: string) => value.normalize("NFKC").toLocaleLowerCase("ko-KR").replace(/\s+/g, "");

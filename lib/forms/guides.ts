@@ -227,7 +227,7 @@ export const GUIDES: readonly InheritanceGuide[] = [
 export const getGuide = (timing: string) => GUIDES.find(guide => guide.timing === timing);
 export const guideUrl = (timing: GuideTiming, stepId?: string) => `/forms/guides/${timing}${stepId ? `#${stepId}` : ""}`;
 export const guideResourceUrl = (id: string, guide?: GuideTiming, step?: string) => guide ? catalogUrl({ ...emptyFilters(), resource: canonicalResourceId(id), guide, step }) : resourceUrl(id);
-export const guideCatalogUrl = (timing: GuideTiming) => catalogUrl({ ...emptyFilters(), ...(["before-death", "after-death"].includes(timing) ? { timing: [timing.replace("-", "_")] } : { purpose: [timing === "transfer" ? "capital_transfer" : timing === "business-succession" ? "business_succession" : "gift"] }) });
+export const guideCatalogUrl = (timing: GuideTiming) => catalogUrl({ ...emptyFilters(), view: "all", ...(["before-death", "after-death"].includes(timing) ? { timing: [timing.replace("-", "_")] } : { purpose: [timing === "transfer" ? "capital_transfer" : timing === "business-succession" ? "business_succession" : "gift"] }) });
 
 const stageFallbacks: Partial<Record<GuideTiming, Record<string, string>>> = {
   "before-death": { S1: "inventory", S2: "options", S3: "intent", S4: "prepare", S5: "prepare", S6: "prepare", S7: "prepare" },
