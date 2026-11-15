@@ -1,25 +1,35 @@
 name: Verify toolbar is disabled
 
 on:
-  push:
-    branches: [codex/chat-opening-topics]
-    paths:
-      - vercel.json
-      - .github/workflows/toolbar-check.yml
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: 'Production URL, or an explicitly selected preview URL'
+        required: true
+        default: 'https://asset360.intellic.co.kr'
+        type: string
 
 permissions:
   contents: read
 
 concurrency:
-  group: toolbar-check-${{ github.ref }}
+  group: toolbar-check-${{ inputs.base_url || 'https://asset360.intellic.co.kr' }}
   cancel-in-progress: true
 
 jobs:
   verify-toolbar-disabled:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       (github.event.deployment.production_environment == true || github.event.deployment.environment == 'Production'))
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.deployment.sha || github.sha }}
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -30,6 +40,7 @@ jobs:
       - name: Verify ordinary visitor sessions without toolbar bypass headers
         env:
           PYTHONUNBUFFERED: '1'
+          TOOLBAR_BASE_URL: ${{ inputs.base_url || 'https://asset360.intellic.co.kr' }}
         run: |
           python - <<'PY'
           import json, os, time, urllib.request
@@ -37,7 +48,7 @@ jobs:
           from pathlib import Path
           from playwright.sync_api import sync_playwright
 
-          base = 'https://frontend-prototype-git-codex-chat-0328a9-khcho98-6477s-projects.vercel.app'
+          base = os.environ['TOOLBAR_BASE_URL'].rstrip('/')
           output = Path('.tmp/toolbar-check')
           output.mkdir(parents=True, exist_ok=True)
           routes = ['/', '/precheck', '/sample-report', '/consultation']

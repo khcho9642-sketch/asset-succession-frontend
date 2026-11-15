@@ -1,6 +1,7 @@
 """Verify the same deployed public header on every customer-facing route.
 
-Run with PUBLIC_HEADER_BASE_URL pointing at the approved preview deployment.
+Defaults to the canonical production site. Set PUBLIC_HEADER_BASE_URL to check
+an explicitly selected preview or local build instead.
 Uses only empty browser sessions and public sample assets; never calls the AI
 POST endpoint or submits contact details. Requires Playwright and Chromium.
 """
@@ -18,7 +19,7 @@ from playwright.sync_api import expect, sync_playwright
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / ".tmp/public-header-proof"
 OUT.mkdir(parents=True, exist_ok=True)
-BASE = os.environ["PUBLIC_HEADER_BASE_URL"].rstrip("/")
+BASE = os.environ.get("PUBLIC_HEADER_BASE_URL", "https://asset360.intellic.co.kr").rstrip("/")
 ROUTES = ["/", "/precheck", "/precheck/form", "/precheck/result", "/sample-report", "/report-preview", "/consultation"]
 KAKAO = "https://open.kakao.com/o/ss665WMi"
 manifest = json.loads((ROOT / "public/media/sample-report-v3/manifest.json").read_text(encoding="utf-8"))
@@ -37,11 +38,11 @@ while True:
         if all(b"data-public-header" in read(path) for path in ROUTES):
             break
     except Exception as error:
-        print("Waiting for the preview:", type(error).__name__, flush=True)
+        print("Waiting for the selected deployment:", type(error).__name__, flush=True)
     if time.monotonic() > deadline:
-        raise RuntimeError("The shared header was not available on every preview route within 240 seconds")
+        raise RuntimeError("The shared header was not available on every selected deployment route within 240 seconds")
     time.sleep(10)
-print("Shared header found on all seven preview routes", flush=True)
+print("Shared header found on all seven selected deployment routes", flush=True)
 
 assert len(manifest["pages"]) == 7
 for item in manifest["pages"]:

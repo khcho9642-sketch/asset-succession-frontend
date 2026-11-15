@@ -1,6 +1,7 @@
 """Mobile diagnosis layout regression. Uses synthetic inputs, no model calls.
 
-MOBILE_CHAT_BASE_URL selects local or approved preview. Virtual keyboard tests
+Defaults to the canonical production site; MOBILE_CHAT_BASE_URL can explicitly
+select a local build or approved preview. Virtual keyboard tests
 simulate visual-viewport-only shrink/pan and full viewport shrink; they are not
 physical Android/iOS device tests. Screenshots contain only synthetic examples.
 """
@@ -9,7 +10,7 @@ import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 
-BASE = os.environ.get('MOBILE_CHAT_BASE_URL', 'http://127.0.0.1:3000').rstrip('/')
+BASE = os.environ.get('MOBILE_CHAT_BASE_URL', 'https://asset360.intellic.co.kr').rstrip('/')
 OUT = Path(os.environ.get('MOBILE_CHAT_PROOF_DIR', '.tmp/mobile-chat-proof'))
 OUT.mkdir(parents=True, exist_ok=True)
 checks = []
