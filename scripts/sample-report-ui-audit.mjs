@@ -12,6 +12,9 @@ const outputDir = path.resolve(process.env.UI_AUDIT_DIR ?? ".tmp/sample-report-a
 const assessmentKey = "as360.precheck.assessment.v1";
 const runFile = promisify(execFile);
 const manifest = JSON.parse(await readFile("public/media/sample-report-v3/manifest.json", "utf8"));
+assert.equal(manifest.version, 5, "Browser audit requires the approved v5 sample");
+assert.equal(manifest.pages[0].image, "/media/sample-report-v3/page-01-layout-v5.webp");
+assert.equal(manifest.pdf, "/media/sample-report-v3/sample-report-layout-v5.pdf");
 const expected = manifest.pages.map(({ title, width, height, image }) => ({ title, width, height, src: image }));
 const observations = [];
 const errors = [];
@@ -48,8 +51,11 @@ async function assertSampleContent(page, label) {
     assert.deepEqual(intrinsic, { complete: true, width: original.width, height: original.height, objectFit: "contain" }, `${label}: page ${number} is broken, cropped or distorted`);
   }
   const text = await page.locator('[data-report-page="1"]').textContent();
-  for (const amount of ["38,800,000원", "14,550,000원", "24,250,000원"]) assert(text.includes(amount), `${label}: estimated gift-tax effect lost ${amount}`);
-  assert(text.includes("이번 현금 증여세만 비교"), `${label}: the cash-gift example lost its comparison scope`);
+  for (const amount of ["14.91억원", "9.16억원", "5.75억원"]) assert(text.includes(amount), `${label}: inheritance comparison lost ${amount}`);
+  for (const scope of ["상속재산 52억원", "배우자의 실제 상속분", "별도 상속세 비교 예시", "전문가 검토 전 추정 세액"]) assert(text.includes(scope), `${label}: inheritance example lost its comparison scope: ${scope}`);
+  for (const amount of ["38,800,000원", "14,550,000원", "24,250,000원"]) assert(!text.includes(amount), `${label}: old gift-tax cover content replaced the approved inheritance comparison`);
+  const giftText = await page.locator('[data-report-page="4"]').textContent();
+  for (const content of ["4,850,000원", "14,550,000원", "첫 장의 상속세 비교와 별개인 현금 3억원 증여 사례"]) assert(giftText.includes(content), `${label}: separate fourth-page gift example lost ${content}`);
   const download = page.locator(`a[href="${manifest.pdf}"][download]`);
   assert.equal(await download.getAttribute("href"), manifest.pdf, `${label}: PDF differs from the infographic report`);
   assert(await download.getAttribute("download"), `${label}: PDF must download directly`);
@@ -328,8 +334,20 @@ try {
     await waitForPage(page, 3);
     observations.push(await assertViewerLayout(page, `${width}px after wheel input`));
     assert.deepEqual(await storage(page), initialStorage, `${width}px: sample navigation changed assessment storage`);
-    assert.equal(await page.getByRole("link", { name: "무료 AI 진단", exact: true }).getAttribute("href"), "/precheck");
-    assert.equal(await page.getByRole("link", { name: "홈으로", exact: true }).getAttribute("href"), "/");
+    const header = page.locator("[data-public-header]");
+    assert.equal(await header.count(), 1, "Sample must keep the shared public header");
+    assert.equal(await header.getByRole("link", { name: "자산승계 360 홈", exact: true }).getAttribute("href"), "/");
+    const menuButton = header.getByRole("button", { name: "메뉴 열기", exact: true });
+    const mobileMenu = await menuButton.isVisible();
+    if (mobileMenu) await menuButton.click();
+    const diagnosisNav = header.getByRole("navigation", { name: mobileMenu ? "모바일 진단 유형" : "진단 유형", exact: true });
+    for (const [name, purpose] of [["양도", "capital-gains"], ["상속", "inheritance"], ["증여", "gift"], ["가업승계", "business"]]) {
+      const link = diagnosisNav.getByRole("link", { name, exact: true });
+      assert(await link.isVisible(), `Shared navigation lost visible ${name} entry`);
+      assert.equal(await link.getAttribute("href"), `/precheck?purpose=${purpose}`);
+    }
+    assert.equal(await diagnosisNav.getByRole("link", { name: "자료실", exact: true }).getAttribute("href"), "/forms");
+    if (mobileMenu) await header.getByRole("button", { name: "메뉴 닫기", exact: true }).click();
 
     if (width === 1440) {
       // The public control downloads the authored illustrated PDF with searchable text.
@@ -346,8 +364,10 @@ try {
       for (const [index, text] of downloaded.texts.entries()) {
         assert(text.includes("샘플"), `Downloaded PDF page ${index + 1} needs selectable Korean sample text`);
       }
-      for (const amount of ["3,880", "1,455", "2,425"]) assert(downloaded.texts[0].includes(amount), `Downloaded first page lost gift-tax effect value ${amount}`);
-      assert(downloaded.texts[0].includes("이번 현금 증여세만 비교"), "Downloaded first page lost its limited comparison scope");
+      const coverText = downloaded.texts[0].replace(/\s+/g, "");
+      for (const amount of ["14.91억원", "9.16억원", "5.75억원"]) assert(coverText.includes(amount), `Downloaded first page lost inheritance comparison value ${amount}`);
+      for (const scope of ["상속재산52억원", "배우자상속분에따른별도비교", "다음장가족표와구분", "전문가검토전추정세액"]) assert(coverText.includes(scope), `Downloaded first page lost its limited comparison scope: ${scope}`);
+      for (const amount of ["485만원", "1,455만원"]) assert(downloaded.texts[3].replace(/\s+/g, "").includes(amount), `Downloaded fourth-page gift example lost ${amount}`);
       observations.push({ media: "download", pages: downloaded.pages, sizes: downloaded.sizes, pdf: downloadPath, filename: download.suggestedFilename() });
 
       // Browser printing remains supported and must reveal all seven matching image pages.
@@ -382,7 +402,7 @@ try {
   assert.deepEqual(errors, [], "Sample report produced browser runtime errors");
   assert.deepEqual(apiRequests, [], "Opening a fictional sample unexpectedly invoked an API");
   await writeFile(path.join(outputDir, "sample-report-audit.json"), `${JSON.stringify({ status: "passed", baseURL, expected, observations, errors, apiRequests }, null, 2)}\n`);
-  console.log(`Sample report audit passed: seven illustrated pages with an accessible scoped gift-tax effect summary, identical sheet geometry at 390/1440/1920px and in expanded/resized viewports, contained images, visible arrows, touch/keyboard/contents navigation, unchanged customer storage, matching seven-page illustrated PDF download and seven unclipped A4 print pages. Artifacts: ${outputDir}`);
+  console.log(`Sample report audit passed: approved v5 cover and seven illustrated pages with separate inheritance/gift examples, identical sheet geometry at 390/1440/1920px and in expanded/resized viewports, contained images, visible arrows, shared navigation, touch/keyboard/contents navigation, unchanged customer storage, matching seven-page illustrated PDF download and seven unclipped A4 print pages. Artifacts: ${outputDir}`);
 } catch (error) {
   await writeFile(path.join(outputDir, "sample-report-audit.json"), `${JSON.stringify({ status: "failed", baseURL, expected, observations, errors, apiRequests, failure: error.stack || String(error) }, null, 2)}\n`);
   throw error;

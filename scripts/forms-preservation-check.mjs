@@ -161,7 +161,8 @@ check('Git diff preserves public files and source data', () => {
 
 check('AI diagnosis, consultation and report implementation remains unchanged', () => {
   const protectedFile = filename =>
-    (filename.startsWith('app/') && !filename.startsWith('app/forms/'))
+    // Reviewed operations-only endpoint: public build identity, not diagnosis or report logic.
+    (filename.startsWith('app/') && !filename.startsWith('app/forms/') && filename !== 'app/api/deployment/route.ts')
     || /^lib\/(chat|phase2b|tax-comparison)\//.test(filename)
     || /^lib\/(assessment|contact-links)\./.test(filename)
     || /^components\/(DiagnosisChat|StructuredChat|TaxComparison|Report|PersonalReport|PaperReport|PrintButton)/.test(filename)

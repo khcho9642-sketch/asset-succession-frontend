@@ -189,10 +189,13 @@ test('latest calculator and service code survive outside the forms pages and pre
   const commonHeaderFiles = ['components/PublicNav.tsx', 'components/PublicNav.module.css', 'app/consultation/page.tsx', 'app/consultation/Consultation.module.css'];
   // Preserve the sharing metadata from the deployment currently serving asset360.
   const sharingFiles = ['app/layout.tsx', 'app/page.tsx'];
+  // Approved deployment-management endpoint: exposes only public build identity.
+  // Keep every other API and service-domain file under the existing byte guard.
+  const deploymentIdentityFile = 'app/api/deployment/route.ts';
   for (const path of sharingFiles) assert.equal(textHash(readFileSync(path)), textHash(git('show', `${activeProduction}:${path}`)), path);
   const changes = git('diff', '--name-only', '-z', activeProduction, '--', 'app', 'components', 'lib', 'package-lock.json', 'next.config.ts', 'vercel.json').toString('utf8').split('\0').filter(Boolean);
   const allowed = path => path.startsWith('app/forms/') || path.startsWith('lib/forms/')
-    || ['components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css', ...datePolicyFiles, ...commonHeaderFiles, ...sharingFiles].includes(path);
+    || ['components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css', deploymentIdentityFile, ...datePolicyFiles, ...commonHeaderFiles, ...sharingFiles].includes(path);
   assert.deepEqual(changes.filter(path => !allowed(path)), []);
   const calculators = git('ls-tree', '-r', '--name-only', '-z', activeProduction, 'app/calculator', 'lib/simple-calculator').toString('utf8').split('\0').filter(Boolean);
   for (const path of calculators) assert.equal(hash(projectDatePolicy(path, readFileSync(path))), hash(projectDatePolicy(path, git('show', `${activeProduction}:${path}`))), path);
