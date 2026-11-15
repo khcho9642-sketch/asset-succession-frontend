@@ -199,12 +199,18 @@ export function FormsLibrary({ documents, groups }: Props) {
     </header>
     <section className={styles.searchWorkspace} aria-label="자료 검색과 단계 선택">
       <p className={styles.searchHint}>서류명을 알고 계신가요? 하고 싶은 일이나 기관명으로도 찾을 수 있어요.</p>
-      <div className={styles.searchRow}>
+      <form className={styles.searchRow} action="/forms" method="get" onSubmit={event => {
+        event.preventDefault();
+        const submitted = new FormData(event.currentTarget).get("q");
+        update({ q: typeof submitted === "string" ? submitted.slice(0, 100) : "", view: "all" }, catalogVisible);
+      }}>
+        <input type="hidden" name="view" value="all" />
         <label className={styles.search}><Search size={23} strokeWidth={1.8} aria-hidden="true" />
-          <span className={styles.srOnly}>서류명·하고 싶은 일·기관으로 검색</span><input ref={search} type="search" value={filters.q}
+          <span className={styles.srOnly}>서류명·하고 싶은 일·기관으로 검색</span><input ref={search} type="search" name="q" value={filters.q}
             onChange={event => update({ q: event.target.value, view: "all" }, catalogVisible)} placeholder="예: 상속예금, 증여계약서, 가족관계증명서" maxLength={100} autoComplete="off" />
         </label>
-      </div>
+        <button className={styles.searchSubmit} type="submit">검색</button>
+      </form>
     </section>
     <nav className={styles.browseModes} aria-label="자료 찾는 방법">
       <a href="/forms" aria-current={!catalogVisible ? "page" : undefined} onClick={event => {

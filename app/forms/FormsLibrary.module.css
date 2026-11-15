@@ -458,6 +458,11 @@
 .taskContext p { margin: 0; line-height: 1.8; }
 .taskContext a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
 .fileFormat small { color: inherit; font-size: 11px; }
+.searchSubmit { min-height: 62px; padding: 0 24px; flex-shrink: 0; border: 1px solid var(--lib-ink); border-radius: 6px; background: var(--lib-ink); color: var(--lib-card); font-size: 15px; }
+@media (max-width: 640px) {
+  .searchRow { display: flex; gap: 8px; }
+  .searchSubmit { min-height: 54px; padding: 0 16px; font-size: 14px; }
+}
 @media (max-width: 400px) {
   .dialogFooter { flex-wrap: wrap; }
   .dialogFooter > a, .dialogFooter > button { flex: 1 1 100%; width: 100%; margin: 0; }

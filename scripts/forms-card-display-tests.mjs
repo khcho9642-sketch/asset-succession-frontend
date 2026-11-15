@@ -185,6 +185,43 @@ test('situation home hides the long catalog while complete and legacy filtered U
   }
 });
 
+test('submitting the search form reads its actual input and preserves existing task filters', () => {
+  const originalFormData = globalThis.FormData;
+  try {
+    for (const query of ['', '?view=all&guide=after-death&step=transfer--bank&kind=form&asset=cash_deposit&q=상속']) {
+      withBrowser(query, changes => {
+        const form = elements(interactionTree(query)).find(node => node.type === 'form' && node.props.action === '/forms');
+        assert.ok(form);
+        assert.equal(form.props.method, 'get');
+        const fields = elements(form);
+        assert.ok(fields.some(node => node.type === 'input' && node.props.type === 'hidden' && node.props.name === 'view' && node.props.value === 'all'));
+        assert.ok(fields.some(node => node.type === 'input' && node.props.type === 'search' && node.props.name === 'q'));
+        assert.ok(fields.some(node => node.type === 'button' && node.props.type === 'submit'));
+        const submittedForm = { enteredQuery: '예금상속' };
+        globalThis.FormData = class {
+          constructor(element) { assert.equal(element, submittedForm); }
+          get(name) { assert.equal(name, 'q'); return submittedForm.enteredQuery; }
+        };
+        let prevented = false;
+        // Submit without firing onChange: the DOM may have text entered before hydration.
+        form.props.onSubmit({ currentTarget: submittedForm, preventDefault() { prevented = true; } });
+        assert.equal(prevented, true);
+        assert.equal(changes.length, 1);
+        const destination = new URL(changes[0].href, 'https://asset360.intellic.co.kr');
+        assert.equal(destination.pathname, '/forms');
+        const next = catalog.parseCatalogFilters(destination.search);
+        const previous = catalog.parseCatalogFilters(query);
+        assert.equal(next.q, submittedForm.enteredQuery);
+        assert.equal(next.view, 'all');
+        for (const key of ['guide', 'step', 'kind', 'asset']) assert.deepEqual(next[key], previous[key], key);
+      });
+    }
+  } finally {
+    if (originalFormData === undefined) delete globalThis.FormData;
+    else globalThis.FormData = originalFormData;
+  }
+});
+
 test('removing the last condition from a legacy bookmark keeps the complete catalog open', () => {
   const originalWindow = globalThis.window;
   try {
