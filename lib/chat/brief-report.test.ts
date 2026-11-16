@@ -1,9 +1,27 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { BRIEF_REPORT_REQUEST, buildChatBriefReport, getBriefReportJudgmentFeedback } from "./brief-report";
+import { BRIEF_REPORT_REQUEST, buildChatBriefReport, getBriefReportContextFeedback, getBriefReportJudgmentFeedback } from "./brief-report";
 import { applyChatPatches, createChatState, type ChatState } from "./intake";
 
 const now = "2026-11-16T12:00:00.000Z";
+
+test("a missing purpose and an invented child recipient cannot become the customer's report", () => {
+  const invented = "현재 판단\n보유하신 주식 증여는 자녀 성년 여부를 확인해야 합니다.\n우선할 일\n증여 대상인 자녀의 성년 여부를 확인하세요.\n확인할 사항\n증여 시점을 확인합니다.";
+  assert(getBriefReportContextFeedback(invented, "주식 10억"));
+  assert(getBriefReportContextFeedback(invented, "증여하려고 합니다. 자녀가 없습니다."));
+  assert.equal(getBriefReportContextFeedback(invented, "아들에게 주식을 증여하려고 합니다."), null);
+  const conservative = "현재 판단\n주식 금액만 확인되어 검토 목적과 재산 소유자 확인이 우선입니다.\n우선할 일\n상속·증여·양도 중 검토하려는 목적을 정리합니다.\n확인할 사항\n재산 소유자와 받는 분은 확인 전입니다.";
+  assert.equal(getBriefReportContextFeedback(conservative, "주식 10억"), null);
+  let state = createChatState();
+  state.messages.push({ id: "stock", role: "user", text: "주식 10억", created_at: now });
+  state = applyChatPatches(state, [{ key: "financialAssets", value: "주식 10억", evidence: "주식 10억" }], "stock");
+  state.messages.push({ id: "ai-question", role: "assistant", text: JSON.stringify({ message: "자녀에게 증여하시려는 건가요?", choices: ["네", "아니요"], selectionMode: "single" }), created_at: now });
+  state.messages.push({ id: "report-request", role: "user", text: BRIEF_REPORT_REQUEST, created_at: now });
+  state.messages.push({ id: "report", role: "assistant", text: JSON.stringify({ message: invented, choices: [], selectionMode: "single" }), created_at: now });
+  assert.equal(buildChatBriefReport(state, { report: "ai" }, now), null, "An assistant question cannot supply the customer's missing purpose or child");
+  state.messages.at(-1)!.text = JSON.stringify({ message: conservative, choices: [], selectionMode: "single" });
+  assert(buildChatBriefReport(state, { report: "ai" }, now));
+});
 const review = "현재 판단\n유언과 상속인 관계를 먼저 확인해야 합니다.\n\n우선할 일\n주식 잔고 내역과 유언 관련 자료를 준비합니다.\n\n확인할 사항\n유언 여부와 주식 평가액은 확인 전입니다.";
 
 function fixture(): ChatState {

@@ -4,6 +4,7 @@ import { diagnosisReplySchema, hasAppOwnedHandoffClaim } from "./choices";
 import type { ChatPatch } from "./intake";
 import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DiagnosisResponseRejectedError, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
 import { buildDiagnosisSources } from "./sources";
+import { BRIEF_REPORT_REQUEST } from "./brief-report";
 import { buildDialogueUnknownContext, getDialogueQualityIssue, type DialogueQualityIssue } from "./dialogue";
 
 type DiagnosisResponseOptions = DiagnosisRequest & {
@@ -207,7 +208,8 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
       }
       const preceding = options.messages[options.messages.length - 2];
       const previousQuestion = preceding?.role === "assistant" ? preceding.parts[0].text : undefined;
-      const qualityIssue = getDialogueQualityIssue(latestMessage.text, options.facts, modelReply, previousQuestion, unknownContext);
+      const qualityIssue = getDialogueQualityIssue(latestMessage.text, options.facts, modelReply, previousQuestion, unknownContext,
+        options.messages.filter(message => message.role === "user" && message.parts[0].text !== BRIEF_REPORT_REQUEST).map(message => message.parts[0].text).join("\n"));
       if (qualityIssue) {
         trialFailure({ category: "dialogue_quality", kind: qualityIssue.kind, fields: [...new Set(qualityIssue.subjects.map((subject) => UNKNOWN_SUBJECT_FIELDS[subject]))] });
         throw new DialogueQualityRejectedError(qualityIssue);
