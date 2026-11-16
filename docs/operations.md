@@ -85,4 +85,6 @@ node scripts/forms-preservation-check.mjs --baseline=/path/to/materials-register
 
 `codex/ai-conversation-trial`은 보호된 Preview 전용 무료 Gemini 시험이다. [답변·기억·실패 처리와 검증 기준](ai-conversation-trial.md)을 따른다. 실제 고객 정보는 입력하지 않는다. 운영 상담 접수 설정은 유지한다.
 
-2026-11-16 사용자 최종 선택은 **무료 가상상담 시험만 유지**다. AI 대화·간략 검토보고서 코드를 `main`에 통합하더라도 Production AI는 활성화하지 않는다. 운영의 직접 입력·기존 상세 보고서 흐름은 유지하고, 실제 API로 간략 보고서 생성은 보호된 시험 Preview에서 가상정보로만 검증한다. 시험 키를 Production에 복사하지 않는다. 준비했던 유료 운영 키 값은 비웠고 `AI_DIAGNOSIS_PRODUCTION_ENABLED=false`로 설정했다. 현재 코드는 이 플래그와 무관하게 Preview·시험 브랜치·시험 플래그를 모두 만족해야 AI를 호출한다.
+`asset360.intellic.co.kr`에도 무료 Gemini API를 연결한다. Production의 `main`에서 `AI_DIAGNOSIS_PRODUCTION_ENABLED=true`, `GOOGLE_DIAGNOSIS_MODEL=gemini-3.5-flash-lite`, 기존 APCI 무료 등급 프로젝트의 서버 전용 키를 모두 설정해야 활성화된다. 유료 프로젝트 키·결제 연결·유료 전환은 사용하지 않는다. 무료 할당량이 소진되면 오류와 재시도를 안내하며 유료 서비스로 우회하지 않는다.
+
+운영 화면에는 가상정보 시험 배너를 표시하지 않는다. 입력창 아래에는 Google Gemini 전송과 식별정보 입력 주의를 간단히 안내한다. 무료 API의 데이터 처리 조건은 [Google 약관](https://aistudio.google.com/docs/terms#data-use-unpaid)을 따른다. 보고서는 고객 확인 전·세액 미산정 초안이며, 계산과 상담 접수는 기존 확인 절차를 유지한다. 운영 API를 중지할 때는 Production 플래그를 false로 바꾸고 재배포한다. 보호 Preview의 별도 시험 설정과 상담 접수 설정은 유지한다.

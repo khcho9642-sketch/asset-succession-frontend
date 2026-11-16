@@ -157,7 +157,7 @@ test("same-origin uses validated HTTP Host when Next canonicalizes its URL", asy
 
 const diagnosisEnvironmentKeys = [
   "GOOGLE_GENERATIVE_AI_API_KEY", "GEMINI_API_KEY", "GOOGLE_DIAGNOSIS_MODEL",
-  "AI_DIAGNOSIS_FREE_TRIAL_ENABLED", "AI_GATEWAY_API_KEY", "AI_DIAGNOSIS_MODEL",
+  "AI_DIAGNOSIS_FREE_TRIAL_ENABLED", "AI_DIAGNOSIS_PRODUCTION_ENABLED", "AI_GATEWAY_API_KEY", "AI_DIAGNOSIS_MODEL",
   "VERCEL_OIDC_TOKEN", "VERCEL", "VERCEL_ENV", "VERCEL_GIT_COMMIT_REF",
 ] as const;
 
@@ -305,6 +305,34 @@ test("Google capability and route failures are honest, bounded, and never reveal
   }
 });
 
+test("public free Google AI requires production main and its own explicit switch", async () => {
+  const restoreEnvironment = saveDiagnosisEnvironment();
+  const approved = { VERCEL_ENV: "production", VERCEL_GIT_COMMIT_REF: "main",
+    AI_DIAGNOSIS_PRODUCTION_ENABLED: "true", GOOGLE_DIAGNOSIS_MODEL: DEFAULT_GOOGLE_DIAGNOSIS_MODEL,
+    GOOGLE_GENERATIVE_AI_API_KEY: "unit-test-free-tier-key" };
+  try {
+    setDiagnosisEnvironment(approved);
+    assert.deepEqual(await GET().json(), { configured: true, issues: [], mode: "production" });
+    for (const flag of [undefined, "false", "TRUE", "1"]) {
+      setDiagnosisEnvironment({ ...approved, AI_DIAGNOSIS_FREE_TRIAL_ENABLED: "true" });
+      if (flag === undefined) delete process.env.AI_DIAGNOSIS_PRODUCTION_ENABLED;
+      else process.env.AI_DIAGNOSIS_PRODUCTION_ENABLED = flag;
+      assert.deepEqual(await GET().json(), { configured: false, issues: ["PRODUCTION_NOT_ENABLED"] });
+      assert.equal((await POST(request(validBody))).status, 503);
+    }
+    for (const branch of ["codex/ai-conversation-trial", "main-extra", " main "]) {
+      setDiagnosisEnvironment({ ...approved, VERCEL_GIT_COMMIT_REF: branch });
+      assert.deepEqual(await GET().json(), { configured: false, issues: ["PRODUCTION_BRANCH_REQUIRED"] });
+    }
+    setDiagnosisEnvironment({ ...approved, GOOGLE_GENERATIVE_AI_API_KEY: "" });
+    assert.deepEqual(await GET().json(), { configured: false, issues: ["GOOGLE_API_KEY_MISSING"] });
+    setDiagnosisEnvironment({ ...approved, VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "codex/ai-conversation-trial" });
+    assert.deepEqual(await GET().json(), { configured: false, issues: ["FREE_TRIAL_NOT_ENABLED"] });
+    setDiagnosisEnvironment({ ...approved, VERCEL_ENV: "development" });
+    assert.equal(getDiagnosisConfiguration(), null);
+  } finally { restoreEnvironment(); }
+});
+
 test("Google trial requires the exact Preview branch and every explicit setting", async (context) => {
   const restoreEnvironment = saveDiagnosisEnvironment();
   const googleKey = "unit-test-preview-google-secret";
@@ -323,7 +351,7 @@ test("Google trial requires the exact Preview branch and every explicit setting"
     const invalid: Array<[Record<string, string | undefined>, string[]]> = [
       [{ VERCEL_ENV: undefined }, ["PREVIEW_REQUIRED"]],
       [{ VERCEL_ENV: "development" }, ["PREVIEW_REQUIRED"]],
-      [{ VERCEL_ENV: "production" }, ["PREVIEW_REQUIRED"]],
+      [{ VERCEL_ENV: "production" }, ["PRODUCTION_BRANCH_REQUIRED", "PRODUCTION_NOT_ENABLED"]],
       [{ VERCEL_ENV: " preview " }, ["PREVIEW_REQUIRED"]],
       [{ VERCEL_GIT_COMMIT_REF: undefined }, ["TRIAL_BRANCH_REQUIRED"]],
       [{ VERCEL_GIT_COMMIT_REF: "codex/chat-opening-topics" }, ["TRIAL_BRANCH_REQUIRED"]],
