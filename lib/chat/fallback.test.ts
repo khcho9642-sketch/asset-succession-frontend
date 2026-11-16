@@ -251,6 +251,24 @@ test("fallback returns immediate SSE and one structured primary call with canoni
   assertWinningReply(chunks, primaryProposals);
 });
 
+test("explanation-only turns emit no choices while mixed customer corrections retain facts", async (t) => {
+  const expected: DiagnosisReply = { message: "돌려줘야 할 보증금이 있는지에 따라 함께 확인할 채무가 달라지기 때문이에요.", choices: [], selectionMode: "single" };
+  for (const [text, proposals] of [
+    ["배우자 여부는 왜 필요한가요? 이유만 설명해 주세요.", []],
+    ["대출은 3억으로 정정할게요. 보증금은 왜 필요한가요? 이유만 설명해 주세요.", [{ key: "debt", value: "대출은 3억으로 정정할게요", evidence: "대출은 3억으로 정정할게요" }]],
+  ] satisfies Array<[string, ChatPatch[]]>) {
+    await t.test(text, async (subtest) => {
+      const requests = installGoogleMock(subtest, [turn(PRIMARY, proposals, expected)]);
+      const history: DiagnosisRequest["messages"] = [{ id: "explanation-only", role: "user", parts: [{ type: "text", text }] }];
+      assertWinningReply(await readChunks(response({ messages: history })), proposals, expected, text);
+      const properties = requests[0].body.generationConfig.responseSchema!.properties as Record<string, { maxItems?: number }>;
+      assert.equal(properties.choices.maxItems, 0);
+      assert.equal(properties.facts.maxItems, proposals.length ? 17 : 0);
+      assert.equal(requests.length, 1);
+    });
+  }
+});
+
 const unknownDepositText = "대출은 5억이고 보증금은 모르겠어요.";
 const unknownDepositHistory: DiagnosisRequest["messages"] = [{ id: "unknown-deposit", role: "user", parts: [{ type: "text", text: unknownDepositText }] }];
 const depositReask: DiagnosisReply = {

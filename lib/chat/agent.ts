@@ -34,18 +34,29 @@ export const diagnosisTurnSchema = proposeFactsInputSchema.extend(turnReplyShape
 
 export type DiagnosisFactSelection = { key: ChatPatch["key"]; sourceId: string };
 
-export function createDiagnosisModelTurnSchema(sources: DiagnosisSource[]) {
+/** Narrow native constraints for explicit explanation requests, never fact inference. */
+export function getDiagnosisTurnConstraints(latestText: string) {
+  const explanationOnly = /이유\s*만\s*(?:설명|알려)|설명\s*만\s*(?:해\s*주|해줘|부탁)/.test(latestText);
+  const possibleFact = /\d|정정|수정|추가|바꾸|변경|모르|모름|몰라|모른|모릅|기억|미정|미상|미확인|확인(?:이)?\s*필요|(?:있|없)(?:음|어요|습니다|다|고|는데|지만|는)|계세요|계십니다|계셔|성년|성인|미성년|돌아가|사망|별세|발생했|는데|지만|명의|소유|보유|샀|받았|줬|드렸|자녀\s*(?:둘|한|두|세|네|하나)/.test(latestText);
+  const clauses = latestText.split(/[.!?。！？;\n]+/).map((clause) => clause.trim()).filter(Boolean);
+  const pureQuestion = explanationOnly && !possibleFact && clauses.length > 0 && clauses.every((clause) => /왜|어째서|이유|무슨\s*뜻|의미|설명(?:해|만|을)?|어떻게|무엇|인가요|나요|습니까|알려\s*주|궁금/.test(clause));
+  return { explanationOnly, pureQuestion };
+}
+
+export function createDiagnosisModelTurnSchema(sources: DiagnosisSource[], latestText = "") {
   const sourceIds = sources.map(({ id }) => id);
   if (!sourceIds.length || new Set(sourceIds).size !== sourceIds.length) {
     throw new DiagnosisResponseRejectedError("Invalid customer quote candidates");
   }
+  const constraints = getDiagnosisTurnConstraints(latestText);
   return z.object({
     facts: z.array(z.object({
       key: z.enum(CHAT_FIELD_KEYS),
       // A native enum constrains the provider to this latest message's quotes.
       sourceId: z.enum(sourceIds),
-    }).strict()).max(DIAGNOSIS_LIMITS.proposals),
+    }).strict()).max(constraints.pureQuestion ? 0 : DIAGNOSIS_LIMITS.proposals),
     ...turnReplyShape,
+    choices: turnReplyShape.choices.max(constraints.explanationOnly ? 0 : 4),
   }).strict().superRefine(validateTurnInteraction);
 }
 
@@ -97,14 +108,14 @@ selectionMode는 하나만 답할 수 있으면 single, 재산·채무·목표�
 선택지 문구는 클릭하면 그대로 고객 메시지로 전송됩니다. 질문에 대한 선택지는 CHAT_GUIDE의 기준으로 매번 구성합니다.
 직접 입력하기는 화면에서 항상 제공하므로 choices에 중복해서 넣지 않습니다.
 이전 대화·현재 초안·최신 입력에서 이미 모른다고 답한 항목은 이번 질문을 마친 것으로 취급하며, message와 choices 모두에서 해당 항목의 재확인을 요구하지 않습니다.
-choices를 제공할 때는 그 선택지들이 답하는 명확한 질문 문장 하나를 message에 작성합니다.${policyCorrection ? `\n\n서버 대화 품질 검사의 수정 지침:\n${policyCorrection}\n이번 재생성에서는 위 수정 지침을 우선 적용하며, 고객의 설명·정리·종료 요청과 기존 원문 ID·응답 형식을 지킵니다.` : ""}`;
+choices를 제공할 때는 그 선택지들이 답하는 명확한 질문 문장 하나를 message에 작성합니다.${getDiagnosisTurnConstraints(latestMessage.text).explanationOnly ? "\n이번 요청은 이유나 설명만을 원하므로 추가 질문 없이 설명으로 마칩니다." : ""}${policyCorrection ? `\n\n서버 대화 품질 검사의 수정 지침:\n${policyCorrection}\n이번 재생성에서는 위 수정 지침을 우선 적용하며, 고객의 설명·정리·종료 요청과 기존 원문 ID·응답 형식을 지킵니다.` : ""}`;
   // Each attempt uses Google Developer API directly; fallback is orchestrated separately.
   const google = createGoogleGenerativeAI({ apiKey });
   const replyModel = google(model);
   return new ToolLoopAgent({
     model: replyModel,
     instructions,
-    output: Output.object({ schema: createDiagnosisModelTurnSchema(sourceTable) }),
+    output: Output.object({ schema: createDiagnosisModelTurnSchema(sourceTable, latestMessage.text) }),
     maxOutputTokens: 3_000,
     // Keep the trial's reasoning and response work within its existing budget.
     providerOptions: { google: { thinkingConfig: { thinkingLevel: model === DEFAULT_GOOGLE_DIAGNOSIS_MODEL ? "minimal" : "low" } } },

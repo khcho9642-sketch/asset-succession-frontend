@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { NoObjectGeneratedError } from "ai";
-import { acceptFactProposals, createDiagnosisAgent, createDiagnosisModelTurnSchema, diagnosisTurnSchema, resolveDiagnosisFactSelections } from "./agent";
+import { acceptFactProposals, createDiagnosisAgent, createDiagnosisModelTurnSchema, diagnosisTurnSchema, getDiagnosisTurnConstraints, resolveDiagnosisFactSelections } from "./agent";
 import type { ChatPatch } from "./intake";
 import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
 import { buildDiagnosisSources, getDiagnosisSourceHints, type DiagnosisSource } from "./sources";
@@ -88,6 +88,37 @@ function sourceContaining(sources: DiagnosisSource[], quote: string) {
   assert.ok(source, `Missing synthetic quote candidate for ${quote}`);
   return source;
 }
+
+test("explicit explanation-only requests constrain native choices and pure questions constrain facts", async (t) => {
+  const pure = "배우자 여부는 왜 필요한가요? 이유만 설명해 주세요.";
+  assert.deepEqual(getDiagnosisTurnConstraints(pure), { explanationOnly: true, pureQuestion: true });
+  const sources = buildDiagnosisSources(pure);
+  const schema = createDiagnosisModelTurnSchema(sources, pure);
+  const expected = { facts: [], message: "배우자 여부는 가족관계에 맞는 검토 조건을 확인하는 데 필요해요.", choices: [], selectionMode: "single" };
+  assert.equal(schema.safeParse(expected).success, true);
+  assert.equal(schema.safeParse({ ...expected, choices: ["있어요", "없어요"] }).success, false);
+  assert.equal(schema.safeParse({ ...expected, facts: [{ key: "notes", sourceId: sources[0].id }] }).success, false);
+  for (const mixed of ["대출 3억으로 정정할게요. 보증금은 왜 필요한가요? 이유만 설명해 주세요.", "과거 증여는 기억이 안 나요. 이유만 설명해 주세요.", "보증금은 몰라요. 이유만 설명해 주세요.", "배우자는 없어요. 이유만 설명해 주세요.", "자녀는 성년인데 이유만 설명해 주세요.", "배우자가 계세요. 이유만 설명해 주세요.", "아버지가 돌아가셨는데 배우자 여부는 왜 필요한가요? 이유만 설명해 주세요."]) {
+    assert.deepEqual(getDiagnosisTurnConstraints(mixed), { explanationOnly: true, pureQuestion: false });
+    const pool = buildDiagnosisSources(mixed);
+    assert.equal(createDiagnosisModelTurnSchema(pool, mixed).safeParse({ ...expected, facts: [{ key: "notes", sourceId: pool[0].id }] }).success, true);
+  }
+  assert.deepEqual(getDiagnosisTurnConstraints("잘 모르겠어요"), { explanationOnly: false, pureQuestion: false });
+  assert.deepEqual(getDiagnosisTurnConstraints("집을 팔 예정인데 어떻게 준비해요?"), { explanationOnly: false, pureQuestion: false });
+  let calls = 0;
+  t.mock.method(globalThis, "fetch", async (input: RequestInfo | URL, init?: RequestInit) => {
+    calls++;
+    const request = new Request(input, init);
+    const body = JSON.parse(await request.text()) as GoogleRequestBody;
+    const properties = body.generationConfig.responseSchema!.properties as Record<string, { maxItems?: number }>;
+    assert.equal(properties.facts.maxItems, 0);
+    assert.equal(properties.choices.maxItems, 0);
+    return googleResponse(JSON.stringify(expected));
+  });
+  const result = await createDiagnosisAgent({ apiKey: SYNTHETIC_KEY, model: MODEL, messages: [{ id: "why-only", role: "user", parts: [{ type: "text", text: pure }] }], facts: {} }).generate({ messages: [{ role: "user", content: pure }] });
+  assert.deepEqual(result.output, expected);
+  assert.equal(calls, 1);
+});
 
 test("new model turns ask one question with 2–4 choices or finish without a question", () => {
   const base = { facts: [], message: "누구에게 주려고 하세요?", choices: ["자녀", "배우자"], selectionMode: "single" };

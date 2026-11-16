@@ -177,7 +177,7 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
       if (result.finalStep.finishReason === "content-filter") {
         throw new DiagnosisResponseRejectedError("AI response filtered");
       }
-      const parsedTurn = createDiagnosisModelTurnSchema(sources).safeParse(result.output);
+      const parsedTurn = createDiagnosisModelTurnSchema(sources, latestMessage.text).safeParse(result.output);
       if (!parsedTurn.success) {
         trialFailure({ category: "structured_validation", issues: safeValidationIssues(parsedTurn.error) });
         throw new DiagnosisResponseRejectedError("AI response failed turn validation");
