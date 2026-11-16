@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { z } from "zod";
 import { NoObjectGeneratedError } from "ai";
 import { acceptFactProposals, createDiagnosisAgent, createDiagnosisModelTurnSchema, diagnosisTurnSchema, getDiagnosisTurnConstraints, resolveDiagnosisFactSelections } from "./agent";
 import type { ChatPatch } from "./intake";
@@ -14,6 +15,9 @@ test("a brief-report action cannot be stored as new customer facts or ask anothe
   assert.equal(schema.safeParse(reply).success, true);
   assert.equal(schema.safeParse({ ...reply, facts: [{ key: "notes", sourceId: sources[0].id }] }).success, false);
   assert.equal(schema.safeParse({ ...reply, choices: ["있어요", "없어요"] }).success, false);
+  const native = z.toJSONSchema(schema).properties as Record<string, { maxItems?: number }>;
+  assert.equal(native.facts.maxItems, 17);
+  assert.equal(native.choices.maxItems, 4);
 });
 
 const MODEL = DEFAULT_GOOGLE_DIAGNOSIS_MODEL;
@@ -99,7 +103,7 @@ function sourceContaining(sources: DiagnosisSource[], quote: string) {
   return source;
 }
 
-test("explicit explanation-only requests constrain native choices and pure questions constrain facts", async (t) => {
+test("explanation-only turns enforce empty arrays on the server with a compatible provider schema", async (t) => {
   const pure = "배우자 여부는 왜 필요한가요? 이유만 설명해 주세요.";
   assert.deepEqual(getDiagnosisTurnConstraints(pure), { explanationOnly: true, pureQuestion: true });
   const sources = buildDiagnosisSources(pure);
@@ -121,8 +125,8 @@ test("explicit explanation-only requests constrain native choices and pure quest
     const request = new Request(input, init);
     const body = JSON.parse(await request.text()) as GoogleRequestBody;
     const properties = body.generationConfig.responseSchema!.properties as Record<string, { maxItems?: number }>;
-    assert.equal(properties.facts.maxItems, 0);
-    assert.equal(properties.choices.maxItems, 0);
+    assert.equal(properties.facts.maxItems, 17);
+    assert.equal(properties.choices.maxItems, 4);
     const instructions = body.systemInstruction?.parts.map(({ text }) => text).join("") ?? "";
     assert.ok(instructions.endsWith("이번 메시지는 순수한 설명 요청이며 새 고객 사실이 없습니다. facts는 반드시 빈 배열 []로 둡니다. 질문/설명요청 원문을 notes나 다른 facts에 저장하지 않습니다."));
     return googleResponse(JSON.stringify(expected));
