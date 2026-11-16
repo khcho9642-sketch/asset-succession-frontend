@@ -115,7 +115,7 @@ choices를 제공할 때는 그 선택지들이 답하는 명확한 질문 문�
   const replyModel = google(model);
   return new ToolLoopAgent({
     model: replyModel,
-    instructions: instructions + (latestMessage.text === BRIEF_REPORT_REQUEST ? "\n고객이 간략 검토보고서 만들기를 선택했습니다. 새 고객 사실이 없는 정리 요청이므로 facts는 반드시 빈 배열 []이며 choices도 빈 배열 []입니다. 기존 대화와 현재 초안으로 고객 고민에 대한 현재 판단, 구체적인 우선할 일, 확인할 사항을 제목이 있는 세 단락으로 작성합니다. 사실만 되읽거나 질문으로 끝내지 않습니다." : ""),
+    instructions: instructions + (latestMessage.text === BRIEF_REPORT_REQUEST ? "\n고객이 간략 검토보고서 만들기를 선택했습니다. 새 고객 사실이 없는 정리 요청이므로 facts는 반드시 빈 배열 []이며 choices도 빈 배열 []입니다. 기존 대화와 현재 초안으로 고객 고민에 대한 현재 판단, 구체적인 우선할 일, 확인할 사항을 제목이 있는 세 단락으로 작성합니다. 현재 판단의 첫 문장은 고객 질문에 대한 검토 방향과 이유입니다. 자산·가족·희망을 반복하거나 ‘고민하고 계십니다’로 끝내지 않습니다. 현재 정보로 실행 가능성을 확정할 수 없다면 그 이유를 판단으로 제시합니다. 근거 없는 세액과 법적 결론은 만들지 않습니다. 추가 질문 없이 마칩니다." : ""),
     output: Output.object({ schema: createDiagnosisModelTurnSchema(sourceTable, latestMessage.text) }),
     maxOutputTokens: 3_000,
     // Keep the trial's reasoning and response work within its existing budget.

@@ -6,6 +6,7 @@ import { getAssistantReply, type DiagnosisReply } from "./choices";
 import { createDiagnosisResponse } from "./fallback";
 import type { ChatPatch } from "./intake";
 import { buildDiagnosisSources } from "./sources";
+import { BRIEF_REPORT_REQUEST } from "./brief-report";
 import {
   BACKUP_GOOGLE_DIAGNOSIS_MODEL,
   DEFAULT_GOOGLE_DIAGNOSIS_MODEL,
@@ -270,6 +271,26 @@ test("explanation-only turns emit no choices while mixed customer corrections re
 });
 
 const unknownDepositText = "대출은 5억이고 보증금은 모르겠어요.";
+
+test("a report that merely recites facts gets one bounded correction, never a substitute report", async (t) => {
+  const recap: DiagnosisReply = { message: "현재 판단\n상속이 발생했고 주식이 있으며 자녀에게 주지 않는 방향을 고민하고 계십니다.\n\n우선할 일\n유언을 확인하세요.\n\n확인할 사항\n유언은 미확인입니다.", choices: [], selectionMode: "single" };
+  const conclusion: DiagnosisReply = { message: "현재 판단\n유언과 상속인 관계가 확인되지 않아 배제 가능성을 확정할 수 없습니다.\n\n우선할 일\n주식 잔고와 유언 관련 자료를 준비하세요.\n\n확인할 사항\n세액은 계산 전입니다.", choices: [], selectionMode: "single" };
+  const history: DiagnosisRequest["messages"] = [{ id: "brief-request", role: "user", parts: [{ type: "text", text: BRIEF_REPORT_REQUEST }] }];
+  await t.test("only the corrected judgment reaches the customer", async subtest => {
+    const diagnostics = captureTrialDiagnostics(subtest);
+    const requests = installGoogleMock(subtest, [turn(PRIMARY, [], recap), turn(PRIMARY, [], conclusion)]);
+    const chunks = await readChunks(response({ messages: history }));
+    assertWinningReply(chunks, [], conclusion, BRIEF_REPORT_REQUEST);
+    assert.equal(JSON.stringify(chunks).includes(recap.message), false);
+    assert.deepEqual(requests.map(({ model }) => model), [PRIMARY, PRIMARY]);
+    assert.deepEqual(diagnostics().find(entry => entry.category === "dialogue_quality"), { category: "dialogue_quality", kind: "brief_report_missing_judgment", fields: [] });
+  });
+  await t.test("two recaps fail honestly without another model or a fixed answer", async subtest => {
+    const requests = installGoogleMock(subtest, [turn(PRIMARY, [], recap), turn(PRIMARY, [], recap)]);
+    assertOnlyPublicFailure(await readChunks(response({ messages: history })), "AI_RESPONSE_REJECTED");
+    assert.deepEqual(requests.map(({ model }) => model), [PRIMARY, PRIMARY]);
+  });
+});
 const unknownDepositHistory: DiagnosisRequest["messages"] = [{ id: "unknown-deposit", role: "user", parts: [{ type: "text", text: unknownDepositText }] }];
 const depositReask: DiagnosisReply = {
   message: "보증금 금액을 알고 계신가요?", choices: ["금액을 알고 있어요", "보증금 없어요", "잘 모르겠어요"], selectionMode: "single",

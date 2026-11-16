@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { BRIEF_REPORT_REQUEST, buildChatBriefReport } from "./brief-report";
+import { BRIEF_REPORT_REQUEST, buildChatBriefReport, getBriefReportJudgmentFeedback } from "./brief-report";
 import { applyChatPatches, createChatState, type ChatState } from "./intake";
 
 const now = "2026-11-16T12:00:00.000Z";
@@ -62,4 +62,13 @@ test("natural conclusions preserve complete AI text when no section headings wer
   const report = buildChatBriefReport(state, { answer: "ai" }, now)!;
   assert.equal(report.sections.length, 1);
   assert.equal(report.sections[0].body, text);
+});
+
+test("a judgment heading containing only facts and customer wishes is not a completed report", () => {
+  const recap = "현재 판단\n상속이 발생했고 주식이 있으며 자녀에게 주지 않는 방향을 고민하고 계십니다.\n\n우선할 일\n유언을 확인하세요.\n\n확인할 사항\n유언은 미확인입니다.";
+  assert(getBriefReportJudgmentFeedback(recap));
+  assert.equal(getBriefReportJudgmentFeedback(review), null);
+  const state = fixture();
+  state.messages.at(-1)!.text = JSON.stringify({ message: recap, choices: [], selectionMode: "single" });
+  assert.equal(buildChatBriefReport(state, { answer: "ai" }, now), null);
 });

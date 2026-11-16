@@ -31,6 +31,14 @@ function sectionsFromReply(text: string): ChatBriefReport["sections"] {
     : [{ title: "현재 판단과 우선할 일", body: text }];
 }
 
+/** A section labelled judgment must contain more than a restatement of facts. */
+export function getBriefReportJudgmentFeedback(text: string): string | null {
+  const sections = sectionsFromReply(text);
+  const judgment = sections.find(section => section.title === "현재 판단")?.body ?? text;
+  const hasDirection = /해야|필요|우선|먼저|권하|권해|권장|확정|단정|판단|주의|권리|권한|허용|제한|위험|가능|유리|불리|요건/.test(judgment);
+  return hasDirection ? null : "현재 판단이 고객의 사실과 희망을 되읽는 데서 끝났습니다. 고객의 고민에 답하는 검토 방향과 이유를 먼저 제시하세요. 현재 정보로 실행 가능성을 확정할 수 없다면 무엇 때문에 확정할 수 없는지가 판단입니다. 단순히 자산·가족·고민을 반복하는 것으로 판단을 대신하지 마세요. 현재 판단·우선할 일·확인할 사항 세 단락과 facts=[]·choices=[]를 유지하며 근거 없는 세액이나 법적 결론을 만들지 마세요.";
+}
+
 /** Only the current, complete AI conclusion can become a draft brief report. */
 export function buildChatBriefReport(state: ChatState, origins: Record<string, "ai" | "local">, createdAt: string): ChatBriefReport | null {
   const valid = validateChatState(state);
@@ -39,7 +47,7 @@ export function buildChatBriefReport(state: ChatState, origins: Record<string, "
   const user = valid.messages.at(-2);
   if (last?.role !== "assistant" || origins[last.id] !== "ai" || user?.role !== "user" || !isConclusionRequest(user.text)) return null;
   const reply = getAssistantReply(last.text);
-  if (!reply || reply.choices.length || !Object.keys(valid.facts).length) return null;
+  if (!reply || reply.choices.length || !Object.keys(valid.facts).length || getBriefReportJudgmentFeedback(reply.message)) return null;
   const facts = CHAT_FIELD_KEYS.flatMap(key => {
     const fact = valid.facts[key];
     if (!fact || key === "unconfirmed") return [];

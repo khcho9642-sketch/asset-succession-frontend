@@ -1,8 +1,9 @@
 import type { DiagnosisReply } from "./choices";
 import { getChatFactSources, type ChatState } from "./intake";
+import { BRIEF_REPORT_REQUEST, getBriefReportJudgmentFeedback } from "./brief-report";
 
 export type DialogueQualitySubject = "deposit" | "loan" | "acquisition_date" | "stock_value" | "timing" | "child_age" | "past_gifts";
-export type DialogueQualityIssue = { kind: "repeated_unknown_question"; subjects: DialogueQualitySubject[]; feedback: string };
+export type DialogueQualityIssue = { kind: "repeated_unknown_question" | "brief_report_missing_judgment"; subjects: DialogueQualitySubject[]; feedback: string };
 type Aspect = "amount" | "presence" | "date" | "age" | "timing" | "details";
 export type DialogueUnknownContext = { unknowns: Partial<Record<DialogueQualitySubject, Aspect[]>>; resolved: DialogueQualitySubject[] };
 type Kind = DialogueQualitySubject | "stock" | "valuation" | "children" | "age" | "other";
@@ -163,6 +164,10 @@ export function buildDialogueUnknownContext(messages: Array<{ role: "user" | "as
 }
 
 export function getDialogueQualityIssue(latestText: string, facts: ChatState["facts"], reply: DiagnosisReply, previousQuestion?: string, unknownContext?: DialogueUnknownContext): DialogueQualityIssue | null {
+  if (latestText === BRIEF_REPORT_REQUEST) {
+    const feedback = getBriefReportJudgmentFeedback(reply.message);
+    if (feedback) return { kind: "brief_report_missing_judgment", subjects: [], feedback };
+  }
   const unknowns = knownUnknowns(latestText, facts, previousQuestion, unknownContext);
   if (!unknowns.size) return null;
   const repeated = new Set<DialogueQualitySubject>();
