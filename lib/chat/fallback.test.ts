@@ -275,7 +275,10 @@ const unknownDepositText = "대출은 5억이고 보증금은 모르겠어요.";
 test("a report that merely recites facts gets one bounded correction, never a substitute report", async (t) => {
   const recap: DiagnosisReply = { message: "현재 판단\n상속이 발생했고 주식이 있으며 자녀에게 주지 않는 방향을 고민하고 계십니다.\n\n우선할 일\n유언을 확인하세요.\n\n확인할 사항\n유언은 미확인입니다.", choices: [], selectionMode: "single" };
   const conclusion: DiagnosisReply = { message: "현재 판단\n유언과 상속인 관계가 확인되지 않아 배제 가능성을 확정할 수 없습니다.\n\n우선할 일\n주식 잔고와 유언 관련 자료를 준비하세요.\n\n확인할 사항\n세액은 계산 전입니다.", choices: [], selectionMode: "single" };
-  const history: DiagnosisRequest["messages"] = [{ id: "brief-request", role: "user", parts: [{ type: "text", text: BRIEF_REPORT_REQUEST }] }];
+  const history: DiagnosisRequest["messages"] = [
+    { id: "case-before-report", role: "user", parts: [{ type: "text", text: "상속이 발생했고 주식이 있습니다. 자녀에게 주지 않는 방향을 검토하며 유언은 모릅니다." }] },
+    { id: "brief-request", role: "user", parts: [{ type: "text", text: BRIEF_REPORT_REQUEST }] },
+  ];
   await t.test("only the corrected judgment reaches the customer", async subtest => {
     const diagnostics = captureTrialDiagnostics(subtest);
     const requests = installGoogleMock(subtest, [turn(PRIMARY, [], recap), turn(PRIMARY, [], conclusion)]);
@@ -292,6 +295,22 @@ test("a report that merely recites facts gets one bounded correction, never a su
   });
 });
 const unknownDepositHistory: DiagnosisRequest["messages"] = [{ id: "unknown-deposit", role: "user", parts: [{ type: "text", text: unknownDepositText }] }];
+test("a report cannot adopt a gift recipient from an AI question instead of the customer", async (t) => {
+  const history: DiagnosisRequest["messages"] = [
+    { id: "stock-only", role: "user", parts: [{ type: "text", text: "주식 10억" }] },
+    { id: "ai-example", role: "assistant", parts: [{ type: "text", text: JSON.stringify({ message: "자녀에게 증여하시려는 건가요?", choices: ["네", "아니요"], selectionMode: "single" }) }] },
+    { id: "close-report", role: "user", parts: [{ type: "text", text: BRIEF_REPORT_REQUEST }] },
+  ];
+  const invented: DiagnosisReply = { message: "현재 판단\n주식 증여는 자녀의 나이를 확인해야 합니다.\n우선할 일\n증여 대상인 자녀의 성년 여부를 확인합니다.\n확인할 사항\n증여 시점입니다.", choices: [], selectionMode: "single" };
+  const grounded: DiagnosisReply = { message: "현재 판단\n주식 금액만 확인되어 검토 목적과 재산 소유자 확인이 우선입니다.\n우선할 일\n상속·증여·양도 중 검토하려는 목적을 정리합니다.\n확인할 사항\n재산 소유자와 받는 분은 확인 전입니다.", choices: [], selectionMode: "single" };
+  const diagnostics = captureTrialDiagnostics(t);
+  const requests = installGoogleMock(t, [turn(PRIMARY, [], invented), turn(PRIMARY, [], grounded)]);
+  const chunks = await readChunks(response({ messages: history }));
+  assertWinningReply(chunks, [], grounded, BRIEF_REPORT_REQUEST);
+  assert.equal(JSON.stringify(chunks).includes(invented.message), false);
+  assert.deepEqual(requests.map(({ model }) => model), [PRIMARY, PRIMARY]);
+  assert.equal(diagnostics().find(entry => entry.category === "dialogue_quality")?.kind, "brief_report_missing_context");
+});
 const depositReask: DiagnosisReply = {
   message: "보증금 금액을 알고 계신가요?", choices: ["금액을 알고 있어요", "보증금 없어요", "잘 모르겠어요"], selectionMode: "single",
 };
