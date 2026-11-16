@@ -43,10 +43,14 @@ const uiMessageSchema = z.object({
   return { id: message.id, role: message.role, parts: [{ type: "text" as const, text: historyText }] };
 });
 
-const factSchema = z.object({
+const factSourceSchema = z.object({
   value: z.string().min(1).max(DIAGNOSIS_LIMITS.factValueLength),
   evidence: z.string().min(1).max(DIAGNOSIS_LIMITS.factValueLength),
   messageId: z.string().min(1).max(120),
+});
+const factSchema = factSourceSchema.extend({
+  // Older v1 drafts have one source; accumulated v1 drafts preserve every quote.
+  sources: z.array(factSourceSchema).min(2).max(24).optional(),
 });
 
 export const diagnosisRequestSchema = z.object({
@@ -80,32 +84,32 @@ export const proposeFactsInputSchema = z.object({
 }).strict();
 
 type DiagnosisConfigurationIssue =
+  | "PREVIEW_REQUIRED"
+  | "TRIAL_BRANCH_REQUIRED"
   | "FREE_TRIAL_NOT_ENABLED"
   | "MODEL_MISSING"
   | "MODEL_INVALID"
   | "GOOGLE_API_KEY_MISSING";
 
 // Standard input/output are free only when the key belongs to a Google
-// Free Tier project (official pricing checked 2026-09-09).
+// Free Tier project; configuration alone cannot inspect its billing tier.
 export const DEFAULT_GOOGLE_DIAGNOSIS_MODEL = "gemini-3.8-flash";
 export const BACKUP_GOOGLE_DIAGNOSIS_MODEL = "gemini-3.5-flash-lite";
 
 function evaluateDiagnosisConfiguration() {
   const issues: DiagnosisConfigurationIssue[] = [];
-  // The user switched this approved Preview trial to Google's own free API.
-  // Defaults stay scoped to this branch; explicit settings still take priority.
-  const approvedTrialPreview = process.env.VERCEL_ENV === "preview"
-    && process.env.VERCEL_GIT_COMMIT_REF === "codex/chat-opening-topics";
-  const trialEnabled = process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED
-    ?? (approvedTrialPreview ? "true" : undefined);
+  // All conditions are explicit. A saved key, an old branch, local development
+  // or even an enabled Production flag must never activate this Preview trial.
+  if (process.env.VERCEL_ENV !== "preview") issues.push("PREVIEW_REQUIRED");
+  if (process.env.VERCEL_GIT_COMMIT_REF !== "codex/ai-conversation-trial") issues.push("TRIAL_BRANCH_REQUIRED");
+  const trialEnabled = process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
   // This switch cannot inspect the Google project's billing tier. Use a key
   // from a Free Tier project; never enable Cloud Billing for this trial.
   if (trialEnabled?.trim() !== "true") issues.push("FREE_TRIAL_NOT_ENABLED");
   const apiKey = (process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? process.env.GEMINI_API_KEY)?.trim();
   // Provider-specific settings keep old Gateway keys/models from silently
   // selecting a different service or its billing path after the migration.
-  const model = (process.env.GOOGLE_DIAGNOSIS_MODEL
-    ?? (approvedTrialPreview ? DEFAULT_GOOGLE_DIAGNOSIS_MODEL : undefined))?.trim();
+  const model = process.env.GOOGLE_DIAGNOSIS_MODEL?.trim();
   if (!model) issues.push("MODEL_MISSING");
   else if (model !== DEFAULT_GOOGLE_DIAGNOSIS_MODEL) issues.push("MODEL_INVALID");
   if (!apiKey) issues.push("GOOGLE_API_KEY_MISSING");
@@ -129,10 +133,12 @@ type DiagnosisPublicErrorCode =
   | "AI_INVALID_REQUEST"
   | "AI_MODEL_UNAVAILABLE"
   | "AI_PROVIDER_UNAVAILABLE"
+  | "AI_RESPONSE_REJECTED"
   | "AI_UNAVAILABLE";
 
 /** Inspect numeric HTTP status only; provider messages and payloads stay private. */
 export function getDiagnosisPublicErrorCode(error: unknown): DiagnosisPublicErrorCode {
+  if (error instanceof DiagnosisResponseRejectedError) return "AI_RESPONSE_REJECTED";
   const seen = new Set<object>();
   let current = error;
   let fallback: DiagnosisPublicErrorCode = "AI_UNAVAILABLE";
@@ -161,6 +167,9 @@ export function getDiagnosisPublicErrorCode(error: unknown): DiagnosisPublicErro
   }
   return fallback;
 }
+
+/** A whole model turn failed validation; no facts or substitute answer is sent. */
+export class DiagnosisResponseRejectedError extends Error {}
 
 export class DiagnosisRequestError extends Error {
   constructor(public readonly status: number, public readonly code: string, message: string) {

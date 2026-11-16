@@ -42,6 +42,23 @@ test("schema rejects unknown fields, system roles, oversized history and duplica
   assert.equal(diagnosisRequestSchema.safeParse({ ...validBody, messages: Array.from({ length: DIAGNOSIS_LIMITS.messages + 1 }, (_, i) => ({ ...validBody.messages[0], id: `m-${i}` })) }).success, false);
 });
 
+test("v1 requests preserve accumulated quote sources and new recipient and unconfirmed fields", () => {
+  const first = { value: "대출 5억", evidence: "대출 5억", messageId: "loan" };
+  const second = { value: "보증금은 모름", evidence: "보증금은 모름", messageId: "deposit" };
+  const facts = {
+    debt: { ...second, value: `${first.value}\n${second.value}`, sources: [first, second] },
+    recipient: { value: "아들", evidence: "아들", messageId: "recipient" },
+    unconfirmed: { ...second },
+  };
+  const result = diagnosisRequestSchema.parse({ messages: [
+    { id: "loan", role: "user", parts: [{ type: "text", text: first.value }] },
+    { id: "recipient", role: "user", parts: [{ type: "text", text: "아들" }] },
+    { id: "deposit", role: "user", parts: [{ type: "text", text: second.value }] },
+  ], facts });
+  assert.deepEqual(result.facts, facts);
+  assert.equal(diagnosisRequestSchema.safeParse({ ...validBody, facts: { debt: { ...second, sources: Array.from({ length: 25 }, () => second) } } }).success, false);
+});
+
 test("untrusted assistant tool results are stripped before provider input", () => {
   const result = diagnosisRequestSchema.parse({
     messages: [
@@ -164,6 +181,8 @@ test("Google capability and route failures are honest, bounded, and never reveal
   const googleKey = "unit-test-google-secret-never-use-network";
   const aliasKey = "unit-test-alias-secret-never-use-network";
   const explicitConfiguration = {
+    VERCEL_ENV: "preview",
+    VERCEL_GIT_COMMIT_REF: "codex/ai-conversation-trial",
     GOOGLE_GENERATIVE_AI_API_KEY: googleKey,
     GOOGLE_DIAGNOSIS_MODEL: DEFAULT_GOOGLE_DIAGNOSIS_MODEL,
     AI_DIAGNOSIS_FREE_TRIAL_ENABLED: "true",
@@ -177,7 +196,7 @@ test("Google capability and route failures are honest, bounded, and never reveal
     setDiagnosisEnvironment({});
     assert.deepEqual(await GET().json(), {
       configured: false,
-      issues: ["FREE_TRIAL_NOT_ENABLED", "MODEL_MISSING", "GOOGLE_API_KEY_MISSING"],
+      issues: ["PREVIEW_REQUIRED", "TRIAL_BRANCH_REQUIRED", "FREE_TRIAL_NOT_ENABLED", "MODEL_MISSING", "GOOGLE_API_KEY_MISSING"],
     });
     const unconfigured = await POST(request(validBody));
     assert.equal(unconfigured.status, 503);
@@ -244,6 +263,8 @@ test("Google capability and route failures are honest, bounded, and never reveal
     ];
     for (const identity of gatewayIdentities) {
       setDiagnosisEnvironment({
+        VERCEL_ENV: "preview",
+        VERCEL_GIT_COMMIT_REF: "codex/ai-conversation-trial",
         GOOGLE_DIAGNOSIS_MODEL: DEFAULT_GOOGLE_DIAGNOSIS_MODEL,
         AI_DIAGNOSIS_FREE_TRIAL_ENABLED: "true",
         ...identity,
@@ -284,71 +305,62 @@ test("Google capability and route failures are honest, bounded, and never reveal
   }
 });
 
-test("Google trial defaults stay inside the exact Preview branch and explicit settings override them", async (context) => {
+test("Google trial requires the exact Preview branch and every explicit setting", async (context) => {
   const restoreEnvironment = saveDiagnosisEnvironment();
   const googleKey = "unit-test-preview-google-secret";
-  const approvedPreview = { VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "codex/chat-opening-topics" };
+  const approved = {
+    VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "codex/ai-conversation-trial",
+    AI_DIAGNOSIS_FREE_TRIAL_ENABLED: "true", GOOGLE_DIAGNOSIS_MODEL: DEFAULT_GOOGLE_DIAGNOSIS_MODEL,
+    GOOGLE_GENERATIVE_AI_API_KEY: googleKey,
+  };
   let fetchCalls = 0;
-  const fetchMock = context.mock.method(globalThis, "fetch", async () => {
+  context.mock.method(globalThis, "fetch", async () => {
     fetchCalls += 1;
     throw new Error("Readiness tests must never call a provider");
   });
   try {
     assert.equal(DEFAULT_GOOGLE_DIAGNOSIS_MODEL, "gemini-3.8-flash");
-    const nonTrialEnvironments: Record<string, string>[] = [
-      {},
-      { VERCEL_OIDC_TOKEN: "unit-test-local-oidc" },
-      { ...approvedPreview, VERCEL_ENV: "production" },
-      { ...approvedPreview, VERCEL_GIT_COMMIT_REF: "codex/unrelated-preview" },
-      { ...approvedPreview, VERCEL_GIT_COMMIT_REF: "codex/chat-opening-topics-extra" },
-      { ...approvedPreview, VERCEL_GIT_COMMIT_REF: "" },
-      { ...approvedPreview, VERCEL_ENV: "" },
-      { VERCEL_GIT_COMMIT_REF: approvedPreview.VERCEL_GIT_COMMIT_REF },
-      { VERCEL_ENV: approvedPreview.VERCEL_ENV },
+    const invalid: Array<[Record<string, string | undefined>, string[]]> = [
+      [{ VERCEL_ENV: undefined }, ["PREVIEW_REQUIRED"]],
+      [{ VERCEL_ENV: "development" }, ["PREVIEW_REQUIRED"]],
+      [{ VERCEL_ENV: "production" }, ["PREVIEW_REQUIRED"]],
+      [{ VERCEL_ENV: " preview " }, ["PREVIEW_REQUIRED"]],
+      [{ VERCEL_GIT_COMMIT_REF: undefined }, ["TRIAL_BRANCH_REQUIRED"]],
+      [{ VERCEL_GIT_COMMIT_REF: "codex/chat-opening-topics" }, ["TRIAL_BRANCH_REQUIRED"]],
+      [{ VERCEL_GIT_COMMIT_REF: "codex/ai-conversation-trial-extra" }, ["TRIAL_BRANCH_REQUIRED"]],
+      [{ AI_DIAGNOSIS_FREE_TRIAL_ENABLED: undefined }, ["FREE_TRIAL_NOT_ENABLED"]],
+      [{ AI_DIAGNOSIS_FREE_TRIAL_ENABLED: "false" }, ["FREE_TRIAL_NOT_ENABLED"]],
+      [{ AI_DIAGNOSIS_FREE_TRIAL_ENABLED: "TRUE" }, ["FREE_TRIAL_NOT_ENABLED"]],
+      [{ GOOGLE_DIAGNOSIS_MODEL: undefined }, ["MODEL_MISSING"]],
+      [{ GOOGLE_DIAGNOSIS_MODEL: "" }, ["MODEL_MISSING"]],
+      [{ GOOGLE_DIAGNOSIS_MODEL: "google/gemini-3.8-flash" }, ["MODEL_INVALID"]],
+      [{ GOOGLE_DIAGNOSIS_MODEL: "gemini-3.5-flash-lite" }, ["MODEL_INVALID"]],
+      [{ GOOGLE_GENERATIVE_AI_API_KEY: undefined }, ["GOOGLE_API_KEY_MISSING"]],
     ];
-    for (const environment of nonTrialEnvironments) {
-      setDiagnosisEnvironment({ ...environment, GOOGLE_GENERATIVE_AI_API_KEY: googleKey });
+    for (const [overrides, issues] of invalid) {
+      setDiagnosisEnvironment(approved);
+      for (const [key, value] of Object.entries(overrides)) {
+        if (value === undefined) delete process.env[key];
+        else process.env[key] = value;
+      }
       assert.equal(getDiagnosisConfiguration(), null);
-      assert.deepEqual(await GET().json(), { configured: false, issues: ["FREE_TRIAL_NOT_ENABLED", "MODEL_MISSING"] });
+      assert.deepEqual(await GET().json(), { configured: false, issues });
       assert.equal((await POST(request(validBody))).status, 503);
     }
-
-    // Preview defaults only choose a model and enable the trial; a Google key is still mandatory.
-    setDiagnosisEnvironment({ ...approvedPreview, VERCEL: "1", VERCEL_OIDC_TOKEN: "unit-test-preview-oidc", AI_GATEWAY_API_KEY: "unit-test-preview-gateway" });
-    assert.equal(getDiagnosisConfiguration(), null);
-    assert.deepEqual(await GET().json(), { configured: false, issues: ["GOOGLE_API_KEY_MISSING"] });
-    assert.equal((await POST(request(validBody))).status, 503);
-    setDiagnosisEnvironment({ ...approvedPreview, GOOGLE_GENERATIVE_AI_API_KEY: googleKey });
+    // No implicit activation remains, even on the approved branch with a key.
+    setDiagnosisEnvironment({ VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: approved.VERCEL_GIT_COMMIT_REF, GOOGLE_GENERATIVE_AI_API_KEY: googleKey });
+    assert.deepEqual(await GET().json(), { configured: false, issues: ["FREE_TRIAL_NOT_ENABLED", "MODEL_MISSING"] });
+    // Local configuration is never promoted by a flag, legacy Gateway key or OIDC.
+    setDiagnosisEnvironment({
+      AI_DIAGNOSIS_FREE_TRIAL_ENABLED: "true", GOOGLE_DIAGNOSIS_MODEL: DEFAULT_GOOGLE_DIAGNOSIS_MODEL,
+      GOOGLE_GENERATIVE_AI_API_KEY: googleKey, VERCEL_OIDC_TOKEN: "unit-test-oidc", AI_GATEWAY_API_KEY: "ignored-key",
+    });
+    assert.deepEqual(await GET().json(), { configured: false, issues: ["PREVIEW_REQUIRED", "TRIAL_BRANCH_REQUIRED"] });
+    setDiagnosisEnvironment(approved);
     assert.deepEqual(getDiagnosisConfiguration(), { apiKey: googleKey, model: DEFAULT_GOOGLE_DIAGNOSIS_MODEL });
     assert.deepEqual(await GET().json(), { configured: true, issues: [] });
-
-    for (const flag of ["false", " false ", "", "FALSE", "1", "TRUE"]) {
-      setDiagnosisEnvironment({ ...approvedPreview, GOOGLE_GENERATIVE_AI_API_KEY: googleKey, AI_DIAGNOSIS_FREE_TRIAL_ENABLED: flag });
-      assert.equal(getDiagnosisConfiguration(), null);
-      assert.deepEqual(await GET().json(), { configured: false, issues: ["FREE_TRIAL_NOT_ENABLED"] });
-      assert.equal((await POST(request(validBody))).status, 503);
-    }
-    for (const model of ["", "  ", "https://elsewhere.test/model", "google/gemini-3.8-flash", "openai/gpt-5.4-mini"]) {
-      setDiagnosisEnvironment({ ...approvedPreview, GOOGLE_GENERATIVE_AI_API_KEY: googleKey, GOOGLE_DIAGNOSIS_MODEL: model });
-      assert.equal(getDiagnosisConfiguration(), null);
-      assert.deepEqual(await GET().json(), { configured: false, issues: [model.trim() ? "MODEL_INVALID" : "MODEL_MISSING"] });
-      assert.equal((await POST(request(validBody))).status, 503);
-    }
-    // The old Gateway model setting has no effect, including when it is explicitly empty.
-    for (const legacyModel of ["", "openai/gpt-5.4-mini", "test/explicit"]) {
-      setDiagnosisEnvironment({ ...approvedPreview, GOOGLE_GENERATIVE_AI_API_KEY: googleKey, AI_DIAGNOSIS_MODEL: legacyModel });
-      assert.deepEqual(getDiagnosisConfiguration(), { apiKey: googleKey, model: DEFAULT_GOOGLE_DIAGNOSIS_MODEL });
-      assert.deepEqual(await GET().json(), { configured: true, issues: [] });
-    }
-    setDiagnosisEnvironment({
-      GOOGLE_GENERATIVE_AI_API_KEY: googleKey,
-      GOOGLE_DIAGNOSIS_MODEL: DEFAULT_GOOGLE_DIAGNOSIS_MODEL,
-      AI_DIAGNOSIS_FREE_TRIAL_ENABLED: " true ",
-    });
-    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: googleKey, model: DEFAULT_GOOGLE_DIAGNOSIS_MODEL });
     assert.equal(fetchCalls, 0);
   } finally {
-    fetchMock.mock.restore();
     restoreEnvironment();
   }
 });

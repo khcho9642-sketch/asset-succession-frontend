@@ -34,9 +34,11 @@
 .eyebrow { display: block; font-size: 13px; line-height: 1.5; font-weight: 600; letter-spacing: .1em; color: var(--brass); }
 .chatHeading h1 { margin-top: 9px; font-size: clamp(24px, 2.45vw, 33px); font-weight: 600; letter-spacing: -.05em; line-height: 1.3; }
 .privateBadge { display: inline-flex; flex-shrink: 0; align-items: center; gap: 5px; color: var(--soft); font-size: 13px; padding-bottom: 3px; }
-.connection { display: flex; align-items: center; gap: 6px; min-height: 24px; margin-bottom: 18px; color: var(--soft); font-size: 14px; }
-.statusDot { width: 6px; height: 6px; background: #9a8870; border-radius: 50%; }
+.connection { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 24px; margin-bottom: 10px; color: var(--soft); font-size: 14px; }
+.statusDot { width: 6px; height: 6px; flex: 0 0 6px; background: #9a8870; border-radius: 50%; }
 .connected .statusDot { background: var(--ink); }
+.modeButton { min-height: 36px; margin-left: auto; padding: 5px 4px; color: var(--brass); font-size: 13px; text-decoration: underline; text-underline-offset: 4px; }
+.trialNotice { margin-bottom: 10px !important; color: var(--soft); font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
 .chatSurface { position: relative; background: var(--sheet); border: 1px solid var(--line); box-shadow: 0 6px 20px #45351c04; }
 .transcript { height: clamp(360px, 51dvh, 640px); min-height: 360px; overflow-y: auto; overscroll-behavior-y: contain; padding: 31px 30px 28px; scrollbar-color: #cfc4b4 transparent; scrollbar-width: thin; }
 .transcript.openingTranscript { height: auto; min-height: 0; overflow: visible; }
@@ -329,6 +331,8 @@
   .workspace[data-chat-stage="chat"] .chatHeading .eyebrow { display: none; }
   .workspace[data-chat-stage="chat"] .chatHeading h1 { margin: 0; font-size: 21px; line-height: 1.3; }
   .workspace[data-chat-stage="chat"] .connection { flex: 0 0 auto; min-height: 20px; margin-bottom: 8px; font-size: 12px; }
+  .workspace[data-chat-stage="chat"] .modeButton { min-height: 44px; padding-block: 8px; font-size: 12px; }
+  .workspace[data-chat-stage="chat"] .trialNotice { flex: 0 0 auto; margin-bottom: 6px !important; font-size: 12px; }
   .workspace[data-chat-stage="chat"] .chatSurface {
     display: flex; flex-direction: column; flex: 1 1 0; min-height: 0; overflow: hidden;
   }
@@ -375,6 +379,7 @@
   .workspace[data-chat-stage="chat"][data-keyboard-open="true"] .topline,
   .workspace[data-chat-stage="chat"][data-keyboard-open="true"] .chatHeading,
   .workspace[data-chat-stage="chat"][data-keyboard-open="true"] .connection,
+  .workspace[data-chat-stage="chat"][data-keyboard-open="true"] .trialNotice,
   .workspace[data-chat-stage="chat"][data-keyboard-open="true"] .composerLabel { display: none; }
 }
 @media (max-width: 340px) {

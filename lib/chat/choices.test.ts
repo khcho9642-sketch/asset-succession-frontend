@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { Chat } from "@ai-sdk/react";
 import type { UIMessage, UIMessageChunk } from "ai";
-import { diagnosisReplySchema, getAssistantReply, SAFE_REVIEW_MESSAGE, type DiagnosisReply } from "./choices";
+import { diagnosisReplySchema, getAssistantReply, type DiagnosisReply } from "./choices";
 
 test("structured replies require strict complete content and trim labels", () => {
   assert.deepEqual(getAssistantReply('{"message":"  누구에게 주려고 하세요?  ","choices":[" 아들 ","딸"]}'), {
@@ -65,7 +65,7 @@ test("ordinary historical assistant text remains available without choices", () 
   assert.equal(getAssistantReply("가".repeat(4_001)), null);
 });
 
-test("saved model-owned completion and navigation claims render as an app-safe review notice", () => {
+test("saved model-owned completion and navigation claims are withheld without a substitute answer", () => {
   for (const unsafe of [
     "상속과 증여 비교 계산을 위한 확인이 완료되었습니다. 결과 화면으로 연결해 드릴게요.",
     "필요한 확인을 마쳤습니다.",
@@ -73,11 +73,8 @@ test("saved model-owned completion and navigation claims render as an app-safe r
     "결과 페이지로 안내해 드릴게요.",
     "보고서로 이동하겠습니다.",
   ]) {
-    assert.deepEqual(getAssistantReply(JSON.stringify({ message: unsafe, choices: [], selectionMode: "single" })), {
-      message: SAFE_REVIEW_MESSAGE,
-      choices: [],
-    });
-    assert.deepEqual(getAssistantReply(unsafe), { message: SAFE_REVIEW_MESSAGE, choices: [] });
+    assert.equal(getAssistantReply(JSON.stringify({ message: unsafe, choices: [], selectionMode: "single" })), null);
+    assert.equal(getAssistantReply(unsafe), null);
   }
 
   for (const allowed of [

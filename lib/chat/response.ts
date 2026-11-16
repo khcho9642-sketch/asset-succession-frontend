@@ -4,7 +4,9 @@ import { getAssistantReply } from "./choices";
 type ChatFinish = Parameters<ChatOnFinishCallback<UIMessage>>[0];
 
 const GENERIC_ERROR_NOTICE = "답변을 가져오지 못했어요. 입력한 내용은 남아 있으니 다시 시도하거나 요약을 직접 확인해 주세요.";
-const RATE_LIMIT_NOTICE = "AI 요청 한도에 도달했어요. 잠시 후 다시 시도해 주세요. 입력한 내용은 그대로 남아 있어요.";
+const RATE_LIMIT_NOTICE = "AI 시험 요청 한도에 도달했어요. 잠시 후 다시 시도하거나 직접 입력으로 계속해 주세요. 입력한 내용은 남아 있어요.";
+const SETUP_NOTICE = "AI 시험 연결 설정을 확인해야 해요. 입력한 내용은 남아 있으니 직접 입력으로 계속해 주세요.";
+const REJECTED_NOTICE = "AI 답변을 검증하지 못했어요. 다시 시도하거나 직접 입력으로 계속해 주세요.";
 
 /** Render fixed notices only; neither SSE nor HTTP error text is user-facing. */
 export function getChatErrorNotice(error: unknown): string {
@@ -19,8 +21,17 @@ export function getChatErrorNotice(error: unknown): string {
       }
     } catch { /* Unrecognized provider text stays behind the generic notice. */ }
   }
-  // Only the approved public rate-limit code gets a specific explanation.
-  return code === "AI_RATE_LIMITED" ? RATE_LIMIT_NOTICE : GENERIC_ERROR_NOTICE;
+  // Only allowlisted codes select fixed copy. Never interpolate provider text,
+  // a model name, a key, an internal path or even an unknown code into the UI.
+  switch (code) {
+    case "AI_RATE_LIMITED": return RATE_LIMIT_NOTICE;
+    case "AI_AUTHENTICATION_FAILED":
+    case "AI_CREDIT_REQUIRED":
+    case "AI_MODEL_UNAVAILABLE":
+    case "AI_NOT_CONFIGURED": return SETUP_NOTICE;
+    case "AI_RESPONSE_REJECTED": return REJECTED_NOTICE;
+    default: return GENERIC_ERROR_NOTICE;
+  }
 }
 
 /** A terminal SSE finish can report failure without setting useChat.error. */

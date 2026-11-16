@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { NoObjectGeneratedError } from "ai";
-import { createDiagnosisAgent } from "./agent";
+import { createDiagnosisAgent, diagnosisTurnSchema } from "./agent";
 import type { ChatPatch } from "./intake";
 import { getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
 
@@ -13,6 +13,20 @@ const messages: DiagnosisRequest["messages"] = [{
   role: "user",
   parts: [{ type: "text", text: "증여를 준비하고 있어요. 제 아파트를 아들에게 주려고 해요." }],
 }];
+
+test("new model turns ask one question with 2–4 choices or finish without a question", () => {
+  const base = { facts: [], message: "누구에게 주려고 하세요?", choices: ["자녀", "배우자"], selectionMode: "single" };
+  assert.equal(diagnosisTurnSchema.safeParse(base).success, true);
+  assert.equal(diagnosisTurnSchema.safeParse({ ...base, message: "말씀하신 내용과 확인할 부분을 정리했어요.", choices: [] }).success, true);
+  for (const changes of [
+    { choices: ["자녀"] },
+    { choices: ["자녀", "배우자", "부모", "친구", "미정"] },
+    { choices: ["자녀", "자녀"] },
+    { choices: [] },
+    { message: "누구에게 주시나요? 언제 주시나요?" },
+    { inputMode: "assetAmounts" },
+  ]) assert.equal(diagnosisTurnSchema.safeParse({ ...base, ...changes }).success, false);
+});
 
 type GoogleRequestBody = {
   generationConfig: {

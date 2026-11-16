@@ -70,6 +70,7 @@ test("gift, sale and business openings are concise and contextual", () => {
   assert.equal(advance(createChatState(), "가업상속").reply.message, "승계는 어떻게 준비하고 계세요?");
 
   const gift = advance(advance(createChatState(), "증여").state, "아들");
+  assert.equal(gift.state.facts.recipient?.value, "아들");
   assert.equal(gift.reply.message, "어떤 재산을 주려고 하세요?");
   assert.equal(gift.reply.selectionMode, "multiple");
   assert.equal(gift.reply.inputMode, "assetAmounts");

@@ -26,12 +26,14 @@ const DRAFT_KEY = "as360.chat.draft.v1";
 // Retain the current tab's draft during client navigation if sessionStorage is blocked.
 let volatileDraft: string | null = null;
 const TOPICS: Record<string, string> = {
-  inheritance: "상속", gift: "증여", capital_gains: "양도", business_succession: "가업상속", business_inheritance: "가업상속",
+  inheritance: "상속", gift: "증여", capital_gains: "양도", "capital-gains": "양도", business: "가업상속", business_succession: "가업상속", business_inheritance: "가업상속",
   "상속": "상속", "증여": "증여", "양도": "양도", "가업승계": "가업상속", "가업상속": "가업상속",
 };
 const START_TOPICS = ["상속", "증여", "양도", "가업상속"] as const;
+type MessageOrigin = "ai" | "local";
+type PendingSubmission = { userId: string; submittedText: string; inputText: string };
 const FIELD_HINTS: Record<ChatFieldKey, string> = {
-  topic: "예: 상속과 증여를 함께 비교", timing: "예: 3년 안에 준비 / 이미 상속 발생", owner: "예: 본인 명의 / 아버지 명의", spouse: "예: 배우자 있음 / 없음 / 모름", children: "예: 자녀 2명 / 없음", adultChildren: "예: 성인 자녀 2명", minorChildren: "예: 미성년 자녀 없음", realEstate: "예: 아파트 20억, 상가 10억 / 금액 모름", financialAssets: "예: 예금 3억, 주식 1억", businessAssets: "예: 비상장 주식 10억 / 평가액 모름", otherAssets: "예: 보험 있음 / 기타 자산 없음", debt: "예: 대출 2억 / 채무 없음 / 모름", pastGifts: "예: 3년 전 자녀에게 1억 증여 / 없음", goal: "예: 노후생활비 유지, 납부할 현금 준비", notes: "그 밖에 함께 검토할 상황을 적어주세요",
+  topic: "예: 상속과 증여를 함께 비교", timing: "예: 3년 안에 준비 / 이미 상속 발생", owner: "예: 본인 명의 / 아버지 명의", recipient: "예: 성년 아들 / 배우자 / 아직 정하지 않음", spouse: "예: 배우자 있음 / 없음 / 모름", children: "예: 자녀 2명 / 없음", adultChildren: "예: 성인 자녀 2명", minorChildren: "예: 미성년 자녀 없음", realEstate: "예: 아파트 20억, 상가 10억 / 금액 모름", financialAssets: "예: 예금 3억, 주식 1억", businessAssets: "예: 비상장 주식 10억 / 평가액 모름", otherAssets: "예: 보험 있음 / 기타 자산 없음", debt: "예: 대출 2억 / 채무 없음 / 모름", pastGifts: "예: 3년 전 자녀에게 1억 증여 / 없음", goal: "예: 노후생활비 유지, 납부할 현금 준비", unconfirmed: "예: 보증금은 확인 필요 / 취득일 모름", notes: "그 밖에 함께 검토할 상황을 적어주세요",
 };
 
 function makeId() { return globalThis.crypto?.randomUUID?.() ?? `chat-${Date.now()}-${Math.random().toString(36).slice(2)}`; }
@@ -48,6 +50,8 @@ export function DiagnosisChat() {
   const [input, setInput] = useState("");
   const [hydrated, setHydrated] = useState(false);
   const [configured, setConfigured] = useState<boolean | null>(null);
+  const [directMode, setDirectMode] = useState(false);
+  const [messageOrigins, setMessageOrigins] = useState<Record<string, MessageOrigin>>({});
   const [connectionError, setConnectionError] = useState(false);
   const [storageNotice, setStorageNotice] = useState("");
   const [stage, setStage] = useState<"chat" | "review">("chat");
@@ -60,6 +64,7 @@ export function DiagnosisChat() {
   const [localNotice, setLocalNotice] = useState("");
   const [cancelled, setCancelled] = useState(false);
   const [incompleteResponse, setIncompleteResponse] = useState(false);
+  const [acceptedRevision, setAcceptedRevision] = useState(0);
   const [resetRequested, setResetRequested] = useState(false);
   const [reportOpening, setReportOpening] = useState(false);
   const [editingIds, setEditingIds] = useState<Set<string>>(() => new Set());
@@ -68,6 +73,8 @@ export function DiagnosisChat() {
   const composing = useRef(false);
   const reportId = useRef<string | undefined>(undefined);
   const processedTools = useRef(new Set<string>());
+  const acceptedResponses = useRef(new Set<string>());
+  const pendingSubmission = useRef<PendingSubmission | null>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const transcriptRef = useRef<HTMLDivElement>(null);
   const workspaceRef = useDiagnosisViewport(stage, input, inputRef, transcriptRef);
@@ -77,9 +84,29 @@ export function DiagnosisChat() {
   const transport = useRef(new DefaultChatTransport<DiagnosisUIMessage>({ api: "/api/diagnosis" }));
   const { messages, setMessages, sendMessage, regenerate, status, error, clearError, stop } = useChat<DiagnosisUIMessage>({
     transport: transport.current,
-    onFinish: (completion) => setIncompleteResponse(isIncompleteChatResponse(completion)),
+    onError: () => {
+      const pending = pendingSubmission.current;
+      if (pending) setInput(current => current || pending.inputText);
+    },
+    onFinish: (completion) => {
+      const incomplete = isIncompleteChatResponse(completion);
+      setIncompleteResponse(incomplete);
+      setMessageOrigins(previous => ({ ...previous, [completion.message.id]: "ai" }));
+      const pending = pendingSubmission.current;
+      if (incomplete || completion.isAbort) {
+        acceptedResponses.current.delete(completion.message.id);
+        setMessages(completion.messages.filter(message => message.id !== completion.message.id));
+        if (pending) setInput(current => current || pending.inputText);
+      } else {
+        acceptedResponses.current.add(completion.message.id);
+        setAcceptedRevision(previous => previous + 1);
+        if (pending) setInput(current => current === pending.inputText ? "" : current);
+        pendingSubmission.current = null;
+      }
+    },
   });
   const busy = status === "submitted" || status === "streaming";
+  const aiMode = configured === true && !directMode;
 
   const commit = useCallback((next: ChatState) => {
     stateRef.current = next;
@@ -119,14 +146,27 @@ export function DiagnosisChat() {
         if (!restored) throw new Error("invalid-draft");
         commit(restored);
         setMessages(toUiMessages(restored));
+        setDirectMode(draft?.directMode === true);
+        const savedOrigins = draft?.messageOrigins;
+        if (savedOrigins && typeof savedOrigins === "object") {
+          setMessageOrigins(Object.fromEntries(restored.messages.flatMap(message => {
+            const origin = (savedOrigins as Record<string, unknown>)[message.id];
+            return message.role === "assistant" && (origin === "ai" || origin === "local") ? [[message.id, origin as MessageOrigin]] : [];
+          })));
+        }
         const lastMessage = restored.messages.at(-1);
-        setIncompleteResponse(Boolean(lastMessage && (draft?.responseFailed === true
-          || (lastMessage.role === "assistant" && !getAssistantReply(lastMessage.text)))));
+        const responseFailed = Boolean(lastMessage && (draft?.responseFailed === true
+          || (lastMessage.role === "assistant" && !getAssistantReply(lastMessage.text))));
+        setIncompleteResponse(responseFailed);
+        const lastUser = [...restored.messages].reverse().find(message => message.role === "user");
+        const savedInput = typeof draft?.input === "string" && draft.input.length <= 6000 ? draft.input : "";
+        const pendingInput = typeof draft?.pendingInput === "string" && draft.pendingInput.length <= 6000 ? draft.pendingInput : savedInput || lastUser?.text || "";
+        if (responseFailed && lastUser) pendingSubmission.current = { userId: lastUser.id, submittedText: lastUser.text, inputText: pendingInput };
         const restoredTax = validateTaxComparisonInput(draft?.taxInput);
         const signature = taxFactsSignature(restored);
         setTaxInput(restoredTax && draft?.taxSignature === signature ? { ...restoredTax, confirmed: false } : createTaxInputFromChat(restored));
         setTaxSignature(signature);
-        if (typeof draft?.input === "string" && draft.input.length <= 6000) setInput(draft.input);
+        setInput(savedInput || (responseFailed ? pendingInput : ""));
         if (typeof draft?.reportId === "string" && /^AS360-[A-Za-z0-9-]+$/.test(draft.reportId)) reportId.current = draft.reportId;
       }
     } catch (reason) {
@@ -154,13 +194,13 @@ export function DiagnosisChat() {
 
   useEffect(() => {
     if (!hydrated) return;
-    volatileDraft = JSON.stringify({ version: 1, state, input, reportId: reportId.current, taxInput, taxSignature, responseFailed: incompleteResponse || cancelled || Boolean(error) || busy });
+    volatileDraft = JSON.stringify({ version: 1, state, input, pendingInput: pendingSubmission.current?.inputText, reportId: reportId.current, taxInput, taxSignature, directMode, messageOrigins, responseFailed: incompleteResponse || cancelled || Boolean(error) || busy });
     try {
       window.sessionStorage.setItem(DRAFT_KEY, volatileDraft);
     } catch {
       setStorageNotice("이 브라우저에서는 대화를 저장할 수 없어요. 새로고침하면 입력 내용이 사라질 수 있어요.");
     }
-  }, [hydrated, state, input, taxInput, taxSignature, incompleteResponse, cancelled, error, busy]);
+  }, [hydrated, state, input, taxInput, taxSignature, directMode, messageOrigins, incompleteResponse, cancelled, error, busy]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -182,18 +222,22 @@ export function DiagnosisChat() {
       return [{ id: message.id, role: message.role, text, created_at: previousById.get(message.id)?.created_at ?? new Date().toISOString() }];
     });
     let next = { ...previous, messages: syncedMessages };
-    let latestUserId = "";
-    for (const message of messages) {
-      if (message.role === "user") latestUserId = message.id;
-      for (const part of message.parts) {
-        if (part.type === "tool-proposeFacts" && part.state === "output-available" && !processedTools.current.has(part.toolCallId)) {
-          processedTools.current.add(part.toolCallId);
-          next = applyChatPatches(next, part.output.proposals, latestUserId);
-        }
+    const latest = messages.at(-1);
+    const latestUserId = [...messages].reverse().find(message => message.role === "user")?.id ?? "";
+    const completedReply = latest?.role === "assistant" && getAssistantReply(latest.parts.filter(part => part.type === "text").map(part => part.text).join(""));
+    // A partial or rejected response cannot change the case notes. Replaying an
+    // identical proposal after retry must not append its evidence a second time.
+    if (completedReply && acceptedResponses.current.has(latest.id) && !busy && !error && !incompleteResponse && !cancelled) {
+      for (const part of latest.parts) {
+        if (part.type !== "tool-proposeFacts" || part.state !== "output-available") continue;
+        const proposalKey = `${latestUserId}:${JSON.stringify(part.output.proposals)}`;
+        if (processedTools.current.has(proposalKey)) continue;
+        processedTools.current.add(proposalKey);
+        next = applyChatPatches(next, part.output.proposals, latestUserId);
       }
     }
     if (JSON.stringify(next) !== JSON.stringify(previous)) commit(next);
-  }, [messages, hydrated, commit]);
+  }, [messages, hydrated, busy, error, incompleteResponse, cancelled, acceptedRevision, commit]);
 
   useEffect(() => {
     const transcript = transcriptRef.current;
@@ -226,10 +270,17 @@ export function DiagnosisChat() {
 
   async function submitMessage(quickReply?: string) {
     const text = quickReply ?? input.trim();
-    const submittedText = quickReply === undefined && topic && !stateRef.current.messages.some(message => message.role === "user")
+    let submittedText = quickReply === undefined && topic && !stateRef.current.messages.some(message => message.role === "user")
       ? `검토 주제: ${topic}\n\n${text}` : text;
-    const guided = getGuidedChatTurn(stateRef.current, submittedText);
-    if (!text || busy || sending.current || !hydrated || (configured === null && !guided) || reportOpening) return;
+    if (!text || busy || sending.current || !hydrated || (configured === null && !directMode) || reportOpening) return;
+    const pending = pendingSubmission.current;
+    const reusePending = Boolean(pending && (text === pending.inputText || submittedText === pending.submittedText));
+    if (reusePending && aiMode) { await retryResponse(); return; }
+    if (reusePending && pending) submittedText = pending.submittedText;
+    const pendingIndex = reusePending && pending ? stateRef.current.messages.findIndex(message => message.id === pending.userId) : -1;
+    const base = pendingIndex >= 0 ? { ...stateRef.current, messages: stateRef.current.messages.slice(0, pendingIndex) } : stateRef.current;
+    // Configured conversations always reach the model, including button replies.
+    const guided = !aiMode ? getGuidedChatTurn(base, submittedText) : null;
     sending.current = true;
     invalidateReport();
     clearError();
@@ -238,30 +289,38 @@ export function DiagnosisChat() {
     setStage("chat");
     if (quickReply === undefined) setInput("");
     shouldFollow.current = true;
-    const message: ChatMessage = { id: makeId(), role: "user", text: submittedText, created_at: new Date().toISOString() };
-    let next: ChatState = { ...stateRef.current, messages: [...stateRef.current.messages, message] };
+    const message: ChatMessage = { id: pendingIndex >= 0 && pending ? pending.userId : makeId(), role: "user", text: submittedText, created_at: new Date().toISOString() };
+    let next: ChatState = { ...base, messages: [...base.messages, message] };
     if (guided) next = applyChatPatches(next, guided.patches, message.id);
-    else if (!configured) next = applyChatPatches(next, extractLocalChatPatches(submittedText, next), message.id);
+    else if (!aiMode) next = applyChatPatches(next, extractLocalChatPatches(submittedText, next), message.id);
     commit(next);
     try {
-      if (guided) {
-        next = { ...next, messages: [...next.messages, { id: makeId(), role: "assistant", text: JSON.stringify(guided.reply), created_at: new Date().toISOString() }] };
-        commit(next);
-        setMessages(toUiMessages(next));
-        setLocalNotice("");
-      } else if (configured) {
+      if (aiMode) {
+        pendingSubmission.current = { userId: message.id, submittedText, inputText: text };
         setLocalNotice("");
         await sendMessage({ id: message.id, role: "user", parts: [{ type: "text", text: submittedText }] }, { body: { facts: next.facts } });
       } else {
-        // Save the local question too so its choices and context survive reload.
-        const reply = getLocalChatReply(next);
-        next = { ...next, messages: [...next.messages, { id: makeId(), role: "assistant", text: JSON.stringify(reply), created_at: new Date().toISOString() }] };
+        const reply = guided?.reply ?? getLocalChatReply(next);
+        const replyId = makeId();
+        next = { ...next, messages: [...next.messages, { id: replyId, role: "assistant", text: JSON.stringify(reply), created_at: new Date().toISOString() }] };
+        setMessageOrigins(previous => ({ ...previous, [replyId]: "local" }));
+        pendingSubmission.current = null;
         commit(next);
         setMessages(toUiMessages(next));
         setLocalNotice("");
       }
-    } catch { /* useChat exposes request errors in its error state. */ }
+    } catch { setInput(current => current || text); /* useChat exposes request errors in its error state. */ }
     finally { sending.current = false; }
+  }
+
+  function selectDirectMode() {
+    if (busy || sending.current) return;
+    setDirectMode(true);
+    clearError();
+    setIncompleteResponse(false);
+    setCancelled(false);
+    setLocalNotice("직접 입력 정리 모드예요. 기본 규칙으로 정리한 내용을 직접 확인하고 수정해 주세요.");
+    inputRef.current?.focus();
   }
 
   function editFact(key: ChatFieldKey, value: string) {
@@ -270,6 +329,9 @@ export function DiagnosisChat() {
     const text = `정정: ${CHAT_FIELD_LABELS[key]} — ${value.trim()}`;
     const message: ChatMessage = { id: makeId(), role: "user", text, created_at: new Date().toISOString() };
     const next = applyChatPatches({ ...stateRef.current, messages: [...stateRef.current.messages, message] }, [{ key, value: value.trim(), evidence: text }], message.id);
+    // A correction made after a failed request becomes the retry boundary.
+    // Keep all earlier turns and the preserved composer text on either path.
+    if (pendingSubmission.current) pendingSubmission.current = { ...pendingSubmission.current, userId: message.id, submittedText: message.text };
     commit(next);
     setMessages(toUiMessages(next));
     setLocalNotice("직접 수정한 내용을 요약에 반영했어요. 보고서를 열기 전에 한 번 더 확인해 주세요.");
@@ -282,6 +344,7 @@ export function DiagnosisChat() {
     delete facts[key];
     const message: ChatMessage = { id: makeId(), role: "user", text: `정리 내용에서 ${CHAT_FIELD_LABELS[key]} 항목을 삭제했어요. 이 항목은 다시 확인이 필요해요.`, created_at: new Date().toISOString() };
     const next = { ...stateRef.current, facts, messages: [...stateRef.current.messages, message] };
+    if (pendingSubmission.current) pendingSubmission.current = { ...pendingSubmission.current, userId: message.id, submittedText: message.text };
     commit(next);
     setMessages(toUiMessages(next));
   }
@@ -302,7 +365,7 @@ export function DiagnosisChat() {
       const snapshot = buildConfirmedTaxAssessmentSnapshot(stateRef.current, { ...taxInput, confirmed: true, confirmedAt }, { confirmed: true, confirmedAt });
       const persisted = saveAssessmentForSession(snapshot);
       reportId.current = snapshot.assessment_id;
-      volatileDraft = JSON.stringify({ version: 1, state: stateRef.current, input, reportId: snapshot.assessment_id, taxInput, taxSignature });
+      volatileDraft = JSON.stringify({ version: 1, state: stateRef.current, input, reportId: snapshot.assessment_id, taxInput, taxSignature, directMode, messageOrigins });
       try { window.sessionStorage.setItem(DRAFT_KEY, volatileDraft); } catch { /* In-memory report remains available. */ }
       if (!persisted) setStorageNotice("현재 화면에서는 보고서를 볼 수 있지만 새로고침하면 다시 입력해야 합니다.");
       router.push(`/report-preview?assessment_id=${encodeURIComponent(snapshot.assessment_id)}&source=chat`);
@@ -313,12 +376,15 @@ export function DiagnosisChat() {
   }
 
   async function retryResponse() {
-    if (busy || sending.current || !configured) return;
+    if (busy || sending.current || !aiMode) return;
     sending.current = true;
     setCancelled(false);
     setIncompleteResponse(false);
     clearError();
-    try { await regenerate({ body: { facts: stateRef.current.facts } }); }
+    const latestUser = [...stateRef.current.messages].reverse().find(message => message.role === "user");
+    if (!latestUser) { sending.current = false; return; }
+    pendingSubmission.current ??= { userId: latestUser.id, submittedText: latestUser.text, inputText: input || latestUser.text };
+    try { await regenerate({ messageId: pendingSubmission.current.userId, body: { facts: stateRef.current.facts } }); }
     catch { /* The retry error is shown by useChat. */ }
     finally { sending.current = false; }
   }
@@ -327,6 +393,9 @@ export function DiagnosisChat() {
     await stop();
     invalidateReport();
     processedTools.current.clear();
+    acceptedResponses.current.clear();
+    pendingSubmission.current = null;
+    setMessageOrigins({});
     const next = createChatState();
     commit(next);
     setMessages([]);
@@ -350,7 +419,7 @@ export function DiagnosisChat() {
 
   return (
     <section ref={workspaceRef} className={styles.workspace} aria-label="자산승계 사전진단 대화"
-      data-chat-layout="mobile-fit-v1" data-chat-stage={stage} data-chat-opening={!hasMessages} data-summary-open={summaryOpen}>
+      data-chat-layout="mobile-fit-v1" data-chat-stage={stage} data-chat-opening={!hasMessages} data-summary-open={summaryOpen} data-chat-mode={aiMode ? "ai" : directMode ? "direct" : "local"}>
       <div className={styles.topline}>
         <Link href="/" className={styles.backLink}><ArrowLeft size={15} aria-hidden="true" /> 처음으로</Link>
         <div className={styles.progress} aria-label="진행 단계"><span className={stage === "chat" ? styles.activeStep : ""}>01 대화</span><span aria-hidden="true">/</span><span className={stage === "review" ? styles.activeStep : ""}>02 내용 확인</span><span aria-hidden="true">/</span><span>03 보고서</span></div>
@@ -366,17 +435,22 @@ export function DiagnosisChat() {
             <div><span className={styles.eyebrow}>무료 사전진단{displayTopic ? ` · ${displayTopic}` : ""}</span><h1>먼저, 이야기를 들려주세요.</h1></div>
             <span className={styles.privateBadge}><ShieldCheck size={15} aria-hidden="true" /> 이름·연락처 없이</span>
           </div>
-          <div className={`${styles.connection} ${configured ? styles.connected : ""}`} role="status">
+          <div className={`${styles.connection} ${aiMode ? styles.connected : ""}`}>
             <span className={styles.statusDot} aria-hidden="true" />
-            {configured === null ? "연결 상태 확인 중" : configured ? "AI와 대화 중" : "AI 연결 전 · 입력 정리 모드"}
+            <span role="status">{directMode ? "직접 입력 정리 모드 · AI 응답 없음" : configured === null ? "연결 상태 확인 중" : configured ? "AI와 대화 중" : "AI 연결 전 · 입력 정리 모드"}</span>
+            {configured && <button className={styles.modeButton} disabled={busy || reportOpening} onClick={() => {
+              if (directMode) { setDirectMode(false); setLocalNotice(""); }
+              else selectDirectMode();
+            }}>{directMode ? "AI 대화로 전환" : "직접 정리 모드"}</button>}
           </div>
+          {aiMode && <p className={styles.trialNotice}>가상 상담 시험 · 실제 개인정보를 입력하지 마세요.</p>}
 
           <div className={styles.chatSurface}>
             {stage === "chat" ? <div ref={transcriptRef} className={`${styles.transcript} ${!hasMessages ? styles.openingTranscript : ""}`} role="log" aria-label="대화 내용" aria-live="polite" aria-relevant="additions text" onScroll={event => { const node = event.currentTarget; shouldFollow.current = node.scrollHeight - node.scrollTop - node.clientHeight < 100; if (shouldFollow.current) setHasNewText(false); }}>
               <div className={styles.welcome}>
                 <p className={styles.welcomeTitle}>안녕하세요. 재산과 관련된 세금에 관해 무엇이 궁금하세요?</p>
                 {!hasMessages && <div className={styles.topicButtons} role="group" aria-label="상담 주제 선택">
-                  {START_TOPICS.map(label => <button key={label} type="button" className={styles.topicButton} onClick={() => void submitMessage(label)} disabled={!hydrated || busy || reportOpening}>{label}</button>)}
+                  {START_TOPICS.map(label => <button key={label} type="button" className={styles.topicButton} onClick={() => void submitMessage(label)} disabled={!hydrated || busy || (!directMode && configured === null) || reportOpening}>{label}</button>)}
                 </div>}
               </div>
 
@@ -387,13 +461,15 @@ export function DiagnosisChat() {
                 if (!visibleText) return null;
                 const showChoices = reply && reply.choices.length > 0 && message.id === messages.at(-1)?.id
                   && !busy && !error && !incompleteResponse && !cancelled;
-                return <article className={message.role === "user" ? styles.userMessage : styles.assistantMessage} key={message.id}>
-                  <p className={styles.speaker}>{message.role === "user" ? "내가 전한 이야기" : configured === false ? "입력 안내" : "자산승계360 AI"}</p>
+                const pendingIndex = pendingSubmission.current ? messages.findIndex(entry => entry.id === pendingSubmission.current?.userId) : -1;
+                const origin = messageOrigins[message.id] ?? (pendingIndex >= 0 && messages.findIndex(entry => entry.id === message.id) > pendingIndex ? "ai" : undefined);
+                return <article className={message.role === "user" ? styles.userMessage : styles.assistantMessage} key={message.id} data-message-origin={message.role === "assistant" ? origin ?? "unknown" : "user"}>
+                  <p className={styles.speaker}>{message.role === "user" ? "내가 전한 이야기" : origin === "ai" ? "자산승계360 AI" : origin === "local" ? "입력 안내 · 기본 규칙" : "이전 대화 안내"}</p>
                   <div className={styles.messageText}>{visibleText}</div>
                   {showChoices && <ReplyChoices
                     reply={reply}
                     disabled={!hydrated || reportOpening}
-                    isSubmitDisabled={value => !hydrated || reportOpening || (configured === null && !getGuidedChatTurn(stateRef.current, value))}
+                    isSubmitDisabled={() => !hydrated || reportOpening || (!directMode && configured === null)}
                     onSubmit={value => void submitMessage(value)}
                     onWrite={value => {
                       if (value && !input.trim()) {
@@ -405,10 +481,10 @@ export function DiagnosisChat() {
                   />}
                 </article>;
               })}
-              {configured === false && !hasMessages && <p className={styles.localExplanation}>{connectionError ? "AI 연결을 확인하지 못했어요. " : ""}지금은 입력 내용을 기본 규칙으로 정리해요. 요약을 직접 고쳐 보고서를 볼 수 있어요.</p>}
+              {(!configured || directMode) && configured !== null && !hasMessages && <p className={styles.localExplanation}>{connectionError ? "AI 연결을 확인하지 못했어요. " : ""}지금은 입력 내용을 기본 규칙으로 정리해요. 요약을 직접 고쳐 보고서를 볼 수 있어요.</p>}
               {localNotice && <div className={styles.localGuidance} role="status"><span>입력 안내</span><p>{localNotice}</p></div>}
               {busy && <div className={styles.thinking} role="status"><span aria-hidden="true" />{status === "submitted" ? "이야기를 읽고 있어요…" : "답변을 작성하고 있어요…"}<button onClick={() => { void stop(); setCancelled(true); }}>응답 중지</button></div>}
-              {(error || incompleteResponse || cancelled) && <div className={styles.errorNotice} role="alert"><p>{cancelled ? "응답을 중지했어요. 입력 내용은 그대로 남아 있어요." : getChatErrorNotice(error)}</p><div>{configured && <button disabled={busy} onClick={() => void retryResponse()}><RotateCcw size={15} aria-hidden="true" /> 다시 시도</button>}<button onClick={openReview}>요약 직접 확인</button></div></div>}
+              {(error || incompleteResponse || cancelled) && <div className={styles.errorNotice} role="alert"><p>{cancelled ? "응답을 중지했어요. 입력 내용은 그대로 남아 있어요." : getChatErrorNotice(error)}</p><div>{aiMode && <><button disabled={busy} onClick={() => void retryResponse()}><RotateCcw size={15} aria-hidden="true" /> 다시 시도</button><button disabled={busy} onClick={selectDirectMode}>직접 정리 모드로 전환</button></>}<button onClick={openReview}>요약 직접 확인</button></div></div>}
               {showSampleReport && !busy && <Link href="/sample-report" className={styles.sampleReportLink}><FileText size={19} aria-hidden="true" /><span><strong>7장 샘플 보고서 보기</strong><small>가상 사례 보고서 · 바로 열기</small></span><ArrowRight size={19} aria-hidden="true" /></Link>}
               {readyForReview && hasMessages && !busy && <button className={styles.inlineReview} onClick={openReview}><FileText size={18} aria-hidden="true" /><span>내 상황에 맞춘 보고서 준비하기</span><ArrowRight size={18} aria-hidden="true" /></button>}
             </div> : <div className={styles.reviewPanel}>
@@ -439,7 +515,7 @@ export function DiagnosisChat() {
               <label htmlFor="diagnosis-message" className={styles.composerLabel}>{stage === "review" ? "더할 이야기가 있으면 이어서 말씀해주세요" : hasMessages ? "선택하거나 편하게 적어주세요" : "또는 채팅으로 말씀해 주세요"}</label>
               <div className={styles.composer}>
                 <textarea id="diagnosis-message" ref={inputRef} value={input} rows={2} maxLength={6000} disabled={!hydrated || reportOpening} placeholder={hasMessages ? "답변을 적어주세요…" : "궁금한 점을 적어주세요…"} onChange={event => { invalidateReport(); setInput(event.target.value); }} onCompositionStart={() => { composing.current = true; }} onCompositionEnd={() => { composing.current = false; }} onKeyDown={event => { if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && !composing.current && event.keyCode !== 229) { event.preventDefault(); void submitMessage(); } }} />
-                {busy ? <button className={styles.sendButton} type="button" aria-label="응답 중지" onClick={() => { void stop(); setCancelled(true); }}><Square size={20} aria-hidden="true" /></button> : <button className={styles.sendButton} type="submit" disabled={!input.trim() || !hydrated || configured === null || reportOpening} aria-label="메시지 보내기"><Send size={21} aria-hidden="true" /></button>}
+                {busy ? <button className={styles.sendButton} type="button" aria-label="응답 중지" onClick={() => { void stop(); setCancelled(true); }}><Square size={20} aria-hidden="true" /></button> : <button className={styles.sendButton} type="submit" disabled={!input.trim() || !hydrated || (!directMode && configured === null) || reportOpening} aria-label="메시지 보내기"><Send size={21} aria-hidden="true" /></button>}
               </div>
               <div className={styles.composerMeta}><span>Enter 전송 · Shift+Enter 줄바꿈</span></div>
             </form>

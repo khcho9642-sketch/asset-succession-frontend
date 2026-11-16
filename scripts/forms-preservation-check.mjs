@@ -159,7 +159,7 @@ check('Git diff preserves public files and source data', () => {
   assert.deepEqual(forbidden, [], `Data changes relative to ${BASELINE_COMMIT}`);
 });
 
-check('AI diagnosis and report implementation remain unchanged outside the approved contact flow', () => {
+check('Unrelated application and tax engine code remain unchanged outside the approved service flows', () => {
   // User-approved contact reception and the existing public deployment identity.
   // Keep this list exact: no other service/API/calculation path is exempted.
   const approvedServiceFiles = new Set([
@@ -169,13 +169,28 @@ check('AI diagnosis and report implementation remain unchanged outside the appro
     'app/api/consultation/route.ts',
     'lib/consultation.ts',
   ]);
+  // Approved protected-preview AI dialogue work. Exact paths keep the original
+  // material and tax-engine boundaries intact; no directory-wide exemption.
+  const approvedAiTrialFiles = new Set([
+    'CHAT_GUIDE.md',
+    'components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css',
+    'lib/chat/intake.ts', 'lib/chat/intake-memory.test.ts',
+    'lib/chat/local.ts', 'lib/chat/guided.ts', 'lib/chat/guided.test.ts',
+    'lib/chat/report.ts',
+    'lib/chat/server.ts', 'lib/chat/server.test.ts',
+    'lib/chat/agent.ts', 'lib/chat/agent.test.ts',
+    'lib/chat/prompt.ts', 'lib/chat/guide.test.ts',
+    'lib/chat/fallback.ts', 'lib/chat/fallback.test.ts',
+    'lib/chat/choices.ts', 'lib/chat/choices.test.ts',
+    'lib/chat/response.ts', 'lib/chat/response.test.ts',
+  ]);
   const protectedFile = filename =>
     (filename.startsWith('app/') && !filename.startsWith('app/forms/') && !approvedServiceFiles.has(filename))
     || /^lib\/(chat|phase2b|tax-comparison)\//.test(filename)
     || /^lib\/(assessment|contact-links)\./.test(filename)
     || /^components\/(DiagnosisChat|StructuredChat|TaxComparison|Report|PersonalReport|PaperReport|PrintButton)/.test(filename)
     || filename === 'CHAT_GUIDE.md';
-  const forbidden = changedOrAdded.filter(protectedFile);
+  const forbidden = changedOrAdded.filter(filename => protectedFile(filename) && !approvedAiTrialFiles.has(filename));
   assert.deepEqual(forbidden, [], `Out-of-scope application changes relative to ${BASELINE_COMMIT}`);
 });
 

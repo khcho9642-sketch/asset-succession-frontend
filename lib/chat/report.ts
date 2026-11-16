@@ -1,6 +1,6 @@
 import { createAssessmentId, type AssessmentAnswer, type AssessmentSnapshot } from "../assessment";
 import { parseKoreanMoneyRangeToEok, parseKoreanMoneyToEok } from "../phase2b/money";
-import { CHAT_ASSET_KEYS, CHAT_FIELD_KEYS, CHAT_FIELD_LABELS, getMissingRequiredFields, validateChatState, type ChatFieldKey, type ChatState } from "./intake";
+import { CHAT_ASSET_KEYS, CHAT_FIELD_KEYS, CHAT_FIELD_LABELS, getChatFactSources, getMissingRequiredFields, validateChatState, type ChatFieldKey, type ChatState } from "./intake";
 import { getAssistantReply } from "./choices";
 
 export type ChatAmount =
@@ -28,6 +28,7 @@ export function parseChatAmount(value: string): ChatAmount {
   const raw = value.trim().replace(/(\d),(?=\d{3}(?:\D|$))/g, "$1");
   if (!raw || UNKNOWN_PATTERN.test(raw)) return unresolved(value, "금액을 확인하지 않았습니다.", "unknown");
   if (explicitNone(raw)) return confirmed(0);
+  if (/없음|없어요|없습니다|없다|해당\s*없음/.test(raw)) return unresolved(value, "금액과 없음 답변이 함께 있어 대상별 확인이 필요합니다.");
   if (/마이너스|음수|−|(^|\s)-\s*\d/.test(raw)) return unresolved(value, "음수 금액은 지원하지 않습니다.");
   if (/약|대략|정도|쯤|내외|이상|이하|초과|미만|가량|추정|예상|최소|최대|또는|혹은|아니라|아니고|취득가|매입가|공시가|과세표준|세금|대출|채무|보증금|각각?\s*\d|각\s*\d|\d+\s*(?:%|퍼센트)|절반/.test(raw)) return unresolved(value, "추정·조건·차감·지분·여러 평가기준이 포함되어 금액 확인이 필요합니다.");
   const range = parseKoreanMoneyRangeToEok(raw);
@@ -96,13 +97,13 @@ const ASSET_WORDS = {
 
 export function parseAssetAmount(key: typeof CHAT_ASSET_KEYS[number], state: ChatState): ChatAmount {
   const fact = state.facts[key]!;
+  const sources = getChatFactSources(fact);
+  const categoryOnly = { realEstate: /부동산/, financialAssets: /금융\s*자산/, businessAssets: /사업\s*자산/, otherAssets: /기타\s*자산/ }[key];
+  if (sources.length > 1 && sources.some(source => categoryOnly.test(source.value.replace(/^정정:\s*[^—\n]+—\s*/, "")))) return unresolved(fact.value, "자산 종류의 합계와 개별 내역이 겹칠 수 있어 전체 금액 확인이 필요합니다.");
   const remainder = fact.value.replace(ASSET_WORDS[key], "");
   if (CHAT_ASSET_KEYS.some((otherKey) => otherKey !== key && remainder.match(ASSET_WORDS[otherKey]))) return unresolved(fact.value, "다른 자산 종류의 금액이 함께 있어 중복 합산하지 않습니다.");
-  const isPartialCorrection = fact.sources?.slice(1).some((source) => {
-    const message = state.messages.find((item) => item.id === source.messageId);
-    return message && /정정|수정|정확히는|아니라|아니고|잘못|변경|고칠|바꿀|대신|다시\s*입력/.test(message.text);
-  });
-  if (isPartialCorrection) return unresolved(fact.value, "여러 자산 중 일부의 정정입니다. 이 자산 종류의 전체 내역을 정보 확인에서 수정해 주세요.");
+  const unresolvedCorrection = sources.some(source => getChatFactSources(state.facts.unconfirmed).some(pending => pending.messageId === source.messageId && pending.value === source.value && /정정|수정|정확히는|아니라|아니고|잘못|변경|고칠|바꿀|대신|다시\s*입력/.test(source.evidence)));
+  if (unresolvedCorrection) return unresolved(fact.value, "정정할 대상을 확인하지 못했습니다. 정보 확인에서 전체 내역을 확인해 주세요.");
   return parseChatAmount(fact.value);
 }
 
@@ -124,6 +125,7 @@ export function buildConfirmedAssessmentSnapshot(
   if (/가업|회사\s*승계/.test(topic)) purpose.choices.push("가업·회사 승계");
   if (/양도|매각/.test(topic)) purpose.choices.push("양도");
   const familyFacts: Record<string, string> = {};
+  if (raw("recipient")) familyFacts["증여받는 사람 원문"] = raw("recipient")!;
   const spouse = spouseValue(raw("spouse"));
   if (spouse) familyFacts["배우자 유무"] = spouse;
   for (const [key, label] of [["children", "자녀 수"], ["adultChildren", "성년 자녀 수"], ["minorChildren", "미성년 자녀 수"]] as const) {
@@ -178,7 +180,7 @@ export function buildConfirmedAssessmentSnapshot(
       if (debtKinds.length === 1) {
         const parsed = parseChatAmount(debtRaw.replace(/담보\s*대출|임대\s*보증금|전세\s*보증금|대출|채무|빚/g, ""));
         debt.choices.push(debtKinds[0]);
-        if (parsed.status === "confirmed" && parsed.value_won > 0) {
+        if (getChatFactSources(facts.debt).length === 1 && parsed.status === "confirmed" && parsed.value_won > 0) {
           debt.debtAmounts = { [debtKinds[0]]: String(parsed.value_eok) };
           debt.debtAmountWons = { [debtKinds[0]]: parsed.value_won };
         }
@@ -191,7 +193,7 @@ export function buildConfirmedAssessmentSnapshot(
   for (const [pattern, label] of [[/절세|세금.*(?:줄|절감)|세부담.*줄/, "세금 부담 절감"], [/노후|생활비/, "노후생활비 유지"], [/미리.*(?:증여|이전)|생전\s*증여/, "일부를 미리 이전"], [/통제|현재.*유지/, "현재 구조 유지"]] as const) {
     if (pattern.test(goalRaw)) goal.choices.push(label);
   }
-  const review: AssessmentAnswer = { label: "결과 준비", choices: ["전체 요약 먼저 보기"], facts: { "고객 확인 일시": confirmation.confirmedAt, "추가 상황": raw("notes") ?? "미입력", "산정 범위": "입력한 자산가액의 합계이며 전체 재산·세무상 평가액·과세표준을 확정한 값이 아닙니다. 미확인 채무와 증여는 0으로 보지 않습니다." } };
+  const review: AssessmentAnswer = { label: "결과 준비", choices: ["전체 요약 먼저 보기"], facts: { "고객 확인 일시": confirmation.confirmedAt, "추가 상황": raw("notes") ?? "미입력", "확인할 내용": raw("unconfirmed") ?? "없음", "산정 범위": "입력한 자산가액의 합계이며 전체 재산·세무상 평가액·과세표준을 확정한 값이 아닙니다. 미확인 채무와 증여는 0으로 보지 않습니다." } };
   return {
     assessment_id: confirmation.assessmentId ?? createAssessmentId(),
     created_at: confirmation.confirmedAt,

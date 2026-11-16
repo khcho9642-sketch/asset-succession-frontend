@@ -24,10 +24,9 @@ export function hasAppOwnedHandoffClaim(message: string) {
   return APP_OWNED_COMPLETION_PATTERN.test(message) || APP_OWNED_NAVIGATION_PATTERN.test(message);
 }
 
-function visibleReply(reply: DiagnosisReply): DiagnosisReply {
-  return hasAppOwnedHandoffClaim(reply.message)
-    ? { message: SAFE_REVIEW_MESSAGE, choices: [] }
-    : reply;
+function visibleReply(reply: DiagnosisReply): DiagnosisReply | null {
+  // Preserve saved data, but never fabricate a different answer for display.
+  return hasAppOwnedHandoffClaim(reply.message) ? null : reply;
 }
 
 // Enough for the maximum reply even when every character is JSON-escaped.

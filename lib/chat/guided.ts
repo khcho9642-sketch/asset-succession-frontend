@@ -1,6 +1,7 @@
 import { getAssistantReply, SAFE_REVIEW_MESSAGE, type DiagnosisReply } from "./choices";
 import type { ChatPatch, ChatState } from "./intake";
-import { LOCAL_CHAT_QUESTIONS } from "./local";
+import { applyChatPatches, CHAT_ASSET_KEYS } from "./intake";
+import { getLocalChatReply, LOCAL_CHAT_QUESTIONS } from "./local";
 
 export type GuidedChatTurn = { reply: DiagnosisReply; patches: ChatPatch[] };
 
@@ -104,7 +105,7 @@ function nextAfterAssetAmounts(topic: string | undefined): DiagnosisReply {
  * Common button paths are deterministic and need no provider round trip.
  * Free text and any unrecognized branch continue through the AI route.
  */
-export function getGuidedChatTurn(state: ChatState, rawText: string): GuidedChatTurn | null {
+function getGuidedChatTurnDraft(state: ChatState, rawText: string): GuidedChatTurn | null {
   const text = rawText.trim();
   const hasUserMessage = state.messages.some((message) => message.role === "user");
   if (!hasUserMessage && openingTurns[text]) {
@@ -137,7 +138,7 @@ export function getGuidedChatTurn(state: ChatState, rawText: string): GuidedChat
     if (!openingTurns.증여.choices.includes(text)) return null;
     return {
       reply: assetAmountQuestion(giftAssetQuestion),
-      patches: [],
+      patches: [patch("recipient", text)],
     };
   }
 
@@ -264,4 +265,24 @@ export function getGuidedChatTurn(state: ChatState, rawText: string): GuidedChat
   }
 
   return null;
+}
+
+/** Saved/free-text context takes precedence over the next button in a fixed sequence. */
+export function getGuidedChatTurn(state: ChatState, rawText: string): GuidedChatTurn | null {
+  const turn = getGuidedChatTurnDraft(state, rawText);
+  if (!turn) return null;
+  const id = `guided-preview-${state.messages.length}`;
+  const projected = applyChatPatches({ ...state, messages: [...state.messages, { id, role: "user", text: rawText, created_at: new Date(0).toISOString() }] }, turn.patches, id);
+  const facts = projected.facts;
+  const question = turn.reply.message;
+  const answered =
+    ([inheritanceAssetQuestion, giftAssetQuestion].includes(question) && CHAT_ASSET_KEYS.some(key => facts[key])) ||
+    (question === LOCAL_CHAT_QUESTIONS.inheritanceSpouseQuestion.message && Boolean(facts.spouse)) ||
+    (question === LOCAL_CHAT_QUESTIONS.inheritanceAdultChildrenQuestion.message && Boolean(facts.children || facts.adultChildren || facts.minorChildren)) ||
+    (question === LOCAL_CHAT_QUESTIONS.inheritanceDebtQuestion.message && Boolean(facts.debt)) ||
+    ([LOCAL_CHAT_QUESTIONS.inheritancePastGiftsQuestion.message, LOCAL_CHAT_QUESTIONS.giftPastGiftsQuestion.message].includes(question) && Boolean(facts.pastGifts)) ||
+    (question === "증여는 언제쯤 하실 예정인가요?" && Boolean(facts.timing)) ||
+    (question === LOCAL_CHAT_QUESTIONS.giftOwnerQuestion.message && Boolean(facts.owner)) ||
+    (["누구의 재산을 준비하고 계세요?", "누구의 상속인가요?", "현재 회사 지분은 누가 보유하고 있나요?"].includes(question) && Boolean(facts.owner));
+  return answered ? { ...turn, reply: getLocalChatReply(projected) } : turn;
 }

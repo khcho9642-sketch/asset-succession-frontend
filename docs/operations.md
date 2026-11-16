@@ -80,3 +80,7 @@ node scripts/forms-preservation-check.mjs --baseline=/path/to/materials-register
 - 운영 확인은 식별 가능한 합성 테스트 접수 한 건으로 화면의 접수번호, 접수대장 저장, 담당자 메일 도착을 대조합니다. 중복 확인은 같은 요청 ID를 재사용합니다. 실제 고객 연락처는 테스트나 증거 파일에 넣지 않습니다.
 
 기존 `consultation-contact-review.md`의 미전송 화면은 과거 검토 기록입니다. 현재 동작은 이 운영 기준과 최신 코드·검사 결과를 따릅니다.
+
+## AI 가상상담 시험
+
+`codex/ai-conversation-trial`은 보호된 Preview 전용 무료 Gemini 시험이다. [답변·기억·실패 처리와 검증 기준](ai-conversation-trial.md)을 따른다. 실제 고객 정보는 입력하지 않는다. Production의 AI 활성화나 이 브랜치의 운영 병합을 시험 완료에 포함하지 않는다. 운영 상담 접수 설정은 유지한다.
