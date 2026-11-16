@@ -57,8 +57,8 @@
   .professional h2 { font-size: 25px; }
   .contacts { margin-top: 14px; }
   .contactHint { margin-top: 8px; }
-  .formPanel { padding: 22px 24px; }
-  .formNote { margin-bottom: 16px; }
+  .formPanel { padding: 16px 24px; }
+  .formNote { margin-bottom: 12px; }
 }
 @media print {
   .page { min-height: auto; background: #fff; }

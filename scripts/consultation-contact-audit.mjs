@@ -31,7 +31,7 @@ async function saved(route, body, notification = 'sent') {
   await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ ok: true, receiptId: body.requestId, notification }) });
 }
 
-async function createSession(width = 390, handler = saved, options = {}) {
+async function createSession(width = 390, handler = (route, body) => saved(route, body), options = {}) {
   const height = width < 700 ? 844 : 900;
   const context = await browser.newContext({ viewport: { width, height }, reducedMotion: 'reduce', serviceWorkers: 'block' });
   const state = { context, page: await context.newPage(), width, height, calls: [], unexpectedWrites: [], errors: [] };
@@ -288,7 +288,7 @@ try {
   assert.notEqual(edited.calls[0].phone, edited.calls[1].phone);
   await finish(edited, 'edited-after-failure', { changedPayloadHasNewKey: true });
 
-  const blocked = await createSession(390, saved, { blockStorage: true });
+  const blocked = await createSession(390, (route, body) => saved(route, body), { blockStorage: true });
   await fillContact(blocked);
   await submitButton(blocked).click();
   await blocked.page.locator('[data-consultation-state="success"]').waitFor();
