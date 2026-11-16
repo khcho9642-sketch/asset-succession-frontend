@@ -14,7 +14,6 @@ const git = (...args) => execFileSync('git', args, { maxBuffer: 40_000_000 });
 const read = path => JSON.parse(readFileSync(path, 'utf8').replace(/^\uFEFF/, ''));
 const source = (ref, path) => JSON.parse(git('show', `${ref}:${path}`));
 const hash = data => createHash('sha256').update(data).digest('hex');
-const textHash = data => hash(data.toString('utf8').replace(/\r\n/g, '\n'));
 const manifest = read(manifestPath);
 const externalArchive = {
   path: 'https://drive.google.com/uc?export=download&id=1p4PHrU4fP9EciDX4MtblVtkpAp3wDHE_',
@@ -190,15 +189,20 @@ test('latest calculator and service code survive outside the forms pages and pre
   // User-approved phone/consent contact reception. Preserve every other API and
   // service-domain file with the original guard; do not exclude a directory.
   const contactReceptionFiles = ['app/consultation/page.tsx', 'app/consultation/Consultation.module.css', 'app/api/consultation/route.ts', 'lib/consultation.ts'];
-  // Preserve the sharing metadata from the deployment currently serving asset360.
-  const sharingFiles = ['app/layout.tsx', 'app/page.tsx'];
+  // 2026-11-16: add the requested Kakao share card. Only metadata declarations
+  // and their imports may differ; preserve the complete page and layout bodies.
+  const sharingFiles = ['app/layout.tsx', 'app/page.tsx', 'app/sample-report/page.tsx'];
+  const withoutShareMetadata = value => value.toString('utf8').replace(/\r\n/g, '\n')
+    .replace(/^import (?:type \{ Metadata \} from "next"|\{ createShareMetadata \} from "@\/lib\/share-metadata");\n/gm, '')
+    .replace(/^export const metadata(?:: Metadata)? = [\s\S]*?;\n/gm, '')
+    .replace(/\n{3,}/g, '\n\n').trim();
   // Approved deployment-management endpoint: exposes only public build identity.
   // Keep every other API and service-domain file under the existing byte guard.
   const deploymentIdentityFile = 'app/api/deployment/route.ts';
-  for (const path of sharingFiles) assert.equal(textHash(readFileSync(path)), textHash(git('show', `${activeProduction}:${path}`)), path);
+  for (const path of sharingFiles) assert.equal(withoutShareMetadata(readFileSync(path)), withoutShareMetadata(git('show', `${activeProduction}:${path}`)), path);
   const changes = git('diff', '--name-only', '-z', activeProduction, '--', 'app', 'components', 'lib', 'package-lock.json', 'next.config.ts', 'vercel.json').toString('utf8').split('\0').filter(Boolean);
   const allowed = path => path.startsWith('app/forms/') || path.startsWith('lib/forms/')
-    || ['components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css', deploymentIdentityFile, ...contactReceptionFiles, ...datePolicyFiles, ...commonHeaderFiles, ...sharingFiles].includes(path);
+    || ['components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css', 'lib/share-metadata.ts', deploymentIdentityFile, ...contactReceptionFiles, ...datePolicyFiles, ...commonHeaderFiles, ...sharingFiles].includes(path);
   assert.deepEqual(changes.filter(path => !allowed(path)), []);
   const calculators = git('ls-tree', '-r', '--name-only', '-z', activeProduction, 'app/calculator', 'lib/simple-calculator').toString('utf8').split('\0').filter(Boolean);
   for (const path of calculators) assert.equal(hash(projectDatePolicy(path, readFileSync(path))), hash(projectDatePolicy(path, git('show', `${activeProduction}:${path}`))), path);

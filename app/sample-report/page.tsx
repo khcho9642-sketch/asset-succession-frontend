@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
+import { createShareMetadata } from "@/lib/share-metadata";
 import { PublicNav } from "@/components/PublicNav";
 import { SampleReportViewer } from "@/components/SampleReportViewer";
 import styles from "@/components/SampleReport.module.css";
 
-export const metadata: Metadata = {
+export const metadata = createShareMetadata({
+  path: "/sample-report",
   title: "7장 샘플 보고서 | 자산승계 360",
   description: "가족 합산 자산 50억원, 채무 5억원의 가상 사례로 보는 7장 일러스트 보고서. 첫 장의 상속재산 52억원 배분별 추정 상속세 차이 5.75억원부터 증여·매각·상속의 방향과 실행 준비까지 살펴보세요."
-};
+});
 
 export default function SampleReportPage() {
   return (
