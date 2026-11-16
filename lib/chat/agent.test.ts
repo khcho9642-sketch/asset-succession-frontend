@@ -113,6 +113,8 @@ test("explicit explanation-only requests constrain native choices and pure quest
     const properties = body.generationConfig.responseSchema!.properties as Record<string, { maxItems?: number }>;
     assert.equal(properties.facts.maxItems, 0);
     assert.equal(properties.choices.maxItems, 0);
+    const instructions = body.systemInstruction?.parts.map(({ text }) => text).join("") ?? "";
+    assert.ok(instructions.endsWith("이번 메시지는 순수한 설명 요청이며 새 고객 사실이 없습니다. facts는 반드시 빈 배열 []로 둡니다. 질문/설명요청 원문을 notes나 다른 facts에 저장하지 않습니다."));
     return googleResponse(JSON.stringify(expected));
   });
   const result = await createDiagnosisAgent({ apiKey: SYNTHETIC_KEY, model: MODEL, messages: [{ id: "why-only", role: "user", parts: [{ type: "text", text: pure }] }], facts: {} }).generate({ messages: [{ role: "user", content: pure }] });
