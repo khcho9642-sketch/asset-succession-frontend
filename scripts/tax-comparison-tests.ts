@@ -3,12 +3,17 @@ import assert from "node:assert/strict";
 import { ordinaryTax, parseAmountWon } from "../lib/tax-comparison/common";
 import { calculateTaxComparison, validateTaxComparisonInput } from "../lib/tax-comparison";
 import { attachConfirmedTaxComparison, buildConfirmedTaxAssessmentSnapshot, createTaxInputFromChat } from "../lib/chat/tax";
-import { createChatState, applyChatPatches } from "../lib/chat/intake";
+import { createChatState, applyChatPatches, type ChatFieldKey } from "../lib/chat/intake";
 import { createDemoAssessmentSnapshot } from "../lib/assessment";
 import type { TaxComparisonInput } from "../lib/tax-comparison/types";
 import { getAllowedTaxKeys, getTaxFields } from "../lib/tax-comparison/config";
 
 const gift: TaxComparisonInput = { version: 1, track: "gift", confirmed: false, values: { giftAmount: "3", recipientCount: "3", recipientType: "adult_child", resident: "yes", standardCase: "yes" } };
+
+function chatFacts(values: Partial<Record<ChatFieldKey, string>>) {
+  const message = { id: "prefill-source", role: "user" as const, text: Object.values(values).join("\n"), created_at: "2026-09-08T09:00:00Z" };
+  return applyChatPatches({ ...createChatState(), messages: [message] }, Object.entries(values).map(([key, value]) => ({ key, value, evidence: value })), message.id);
+}
 
 test("money is exact to one won and blanks, guesses, overflows cannot become zero", () => {
   assert.equal(parseAmountWon("0.00000001"), 1);
@@ -77,6 +82,54 @@ test("prefill uses grounded chat assets, no assumed residency, old gifts, or pay
   assert.equal(empty.values.funeral, "0.05", "visible statutory minimum modelling assumption only");
 });
 
+test("spouse prefill accepts explicit honorific statements without re-asking known existence", () => {
+  for (const raw of ["아버지의 배우자는 계세요", "아버지에게 배우자가 계십니다", "소유자의 배우자가 있으세요.", "배우자가 있어요", "있음", "계세요"]) {
+    assert.equal(createTaxInputFromChat(chatFacts({ spouse: raw })).values.spouse, "yes", raw);
+  }
+  for (const raw of ["아버지의 배우자는 안 계세요", "배우자가 계시지 않습니다", "어머니의 배우자는 없어요", "없음", "0명"]) {
+    assert.equal(createTaxInputFromChat(chatFacts({ spouse: raw })).values.spouse, "no", raw);
+  }
+});
+
+test("spouse questions, uncertainty, conflicting statements and shortened question quotes never prefill", () => {
+  for (const raw of ["아버지의 배우자는 계세요?", "배우자가 계신가요", "배우자가 있나요", "아마 배우자가 계세요", "배우자가 계신 것 같아요", "배우자는 모르겠어요", "배우자 유무 확인 필요", "배우자 있음\n배우자 없음"]) {
+    assert.equal(createTaxInputFromChat(chatFacts({ spouse: raw })).values.spouse, undefined, raw);
+  }
+  const message = { id: "question-source", role: "user" as const, text: "아버지의 배우자는 계세요?", created_at: "2026-09-08T09:00:00Z" };
+  const state = applyChatPatches({ ...createChatState(), messages: [message] }, [{ key: "spouse", value: "아버지의 배우자는 계세요", evidence: message.text }], message.id);
+  assert.equal(createTaxInputFromChat(state).values.spouse, undefined);
+});
+
+test("a known corrected loan cannot prefill the debt total while a deposit remains unknown", () => {
+  const state = chatFacts({ realEstate: "아파트 20억", debt: "대출은 3억으로 정정할게요", unconfirmed: "보증금은 모르겠어요" });
+  const before = JSON.stringify(state);
+  const values = createTaxInputFromChat(state).values;
+  assert.equal(values.debt, undefined);
+  assert.equal(values.financialDebt, undefined);
+  assert.equal(values.estate, "20", "a deposit uncertainty does not erase known assets");
+  assert.equal(state.facts.debt?.value, "대출은 3억으로 정정할게요");
+  assert.equal(JSON.stringify(state), before, "prefill must not alter the collected facts");
+  assert.equal(createTaxInputFromChat(chatFacts({ debt: "대출 3억" })).values.debt, "3");
+  assert.equal(createTaxInputFromChat(chatFacts({ debt: "대출 3억", unconfirmed: "딸 나이 모름" })).values.debt, "3");
+  const message = { id: "short-pending", role: "user" as const, text: "대출 3억, 보증금은 모르겠어요", created_at: "2026-09-08T09:00:00Z" };
+  const short = applyChatPatches({ ...createChatState(), messages: [message] }, [
+    { key: "debt", value: "대출 3억", evidence: "대출 3억" },
+    { key: "unconfirmed", value: "모르겠어요", evidence: "보증금은 모르겠어요" },
+  ], message.id);
+  assert.equal(createTaxInputFromChat(short).values.debt, undefined);
+});
+
+test("separately pending assets block the affected prefill instead of completing a partial total", () => {
+  const financial = createTaxInputFromChat(chatFacts({ realEstate: "아파트 20억", financialAssets: "예금 3억", unconfirmed: "주식 평가액 모름" })).values;
+  assert.equal(financial.estate, undefined);
+  assert.equal(financial.financial, undefined);
+  const realEstate = createTaxInputFromChat(chatFacts({ financialAssets: "예금 3억", unconfirmed: "상가 금액 미확인" })).values;
+  assert.equal(realEstate.estate, undefined);
+  assert.equal(realEstate.financial, "3", "a known financial amount remains available independently");
+  const business = createTaxInputFromChat(chatFacts({ topic: "가업주식 증여", businessAssets: "회사 지분 3억", unconfirmed: "비상장주식 가치 미확인" })).values;
+  assert.equal(business.businessValue, undefined);
+});
+
 test("new subtype schemas accept conditional inputs and reject unknown subtype fallbacks", () => {
   for (const [track, values] of [
     ["capital_gains", { capitalAsset: "home", acquisitionDate: "2020-01-01", saleDate: "2026-09-08", houseCount: "2", singleHomeSpecial: "yes", regulatedAtSale: "yes", transitionCase: "yes", permitRequired: "yes" }],
@@ -111,6 +164,23 @@ test("explicit chat topics choose new forms without inferring price, heir alloca
     assert.equal(input.values.standardCase, undefined);
     assert.equal(input.values.resident, undefined);
   }
+});
+
+test("an explicit home in the asset facts selects the home form without inferring sale inputs", () => {
+  for (const realEstate of ["아파트 두 채 중 한 채\n취득가는 8억이고 예상 매도가는 12억이며 지금은 전세를 줬어요", "주택 1채, 금액 모름"]) {
+    const state = chatFacts({ topic: "양도", realEstate });
+    const before = JSON.stringify(state);
+    const input = createTaxInputFromChat(state);
+    assert.equal(input.track, "capital_gains");
+    assert.equal(input.values.capitalAsset, "home");
+    for (const key of ["salePrice", "acquisitionPrice", "houseCount", "singleHomeSpecial", "regulatedAtSale", "resident", "standardCase"]) assert.equal(input.values[key], undefined, key);
+    assert.equal(JSON.stringify(state), before);
+  }
+  for (const realEstate of ["아파트와 상가", "주택과 토지", "아파트와 건물", "아파트와 오피스텔", "주택과 빌딩"]) {
+    assert.equal(createTaxInputFromChat(chatFacts({ topic: "양도", realEstate })).values.capitalAsset, undefined, realEstate);
+  }
+  assert.equal(createTaxInputFromChat(chatFacts({ topic: "주택 양도", realEstate: "상가도 함께 검토" })).values.capitalAsset, undefined);
+  assert.equal(createTaxInputFromChat(chatFacts({ topic: "양도", realEstate: "부동산 1개" })).values.capitalAsset, undefined);
 });
 
 test("total children are not silently treated as adult heirs", () => {

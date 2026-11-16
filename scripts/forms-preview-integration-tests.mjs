@@ -200,7 +200,7 @@ test('latest calculator and service code survive outside the forms pages and pre
   const aiTrialFiles = [
     'lib/chat/intake.ts', 'lib/chat/intake-memory.test.ts',
     'lib/chat/local.ts', 'lib/chat/guided.ts', 'lib/chat/guided.test.ts',
-    'lib/chat/report.ts',
+    'lib/chat/report.ts', 'lib/chat/tax.ts',
     'lib/chat/server.ts', 'lib/chat/server.test.ts',
     'lib/chat/agent.ts', 'lib/chat/agent.test.ts',
     'lib/chat/prompt.ts', 'lib/chat/guide.test.ts',

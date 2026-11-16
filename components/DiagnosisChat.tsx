@@ -529,7 +529,7 @@ export function DiagnosisChat() {
             <div className={styles.summaryFields}>{factsCount === 0 ? <div className={styles.emptySummary}><div><span>01</span><p>가족과 자산의 상황</p></div><div><span>02</span><p>준비하고 싶은 일</p></div><div><span>03</span><p>추가로 확인할 내용</p></div><p>한 번에 모두 말하지 않아도 괜찮아요.</p></div> : CHAT_FIELD_KEYS.filter(key => state.facts[key]).map(renderField)}</div>
             <button className={styles.addFieldButton} onClick={() => setShowAllFields(!showAllFields)}>{showAllFields ? <X size={16} aria-hidden="true" /> : <Plus size={16} aria-hidden="true" />}{showAllFields ? "추가 항목 닫기" : "직접 항목 추가"}</button>
             {showAllFields && <div className={styles.additionalFields}>{CHAT_FIELD_KEYS.filter(key => !state.facts[key]).map(renderField)}</div>}
-            {hasMessages && missing.length > 0 && <p className={styles.missingSummary}>조금 더 알려주세요: {missing.map(key => CHAT_FIELD_LABELS[key]).join(", ")}</p>}
+            {hasMessages && !busy && missing.length > 0 && <p className={styles.missingSummary}>조금 더 알려주세요: {missing.map(key => key === "realEstate" ? "재산 내역" : CHAT_FIELD_LABELS[key]).join(", ")}</p>}
             <p className={styles.summaryFootnote}>직접 확인한 내용으로만<br />보고서를 준비합니다.</p>
           </div>
         </aside>}
