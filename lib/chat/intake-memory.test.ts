@@ -152,3 +152,37 @@ test("known family and debt context is not re-asked by the local continuation", 
   state = put(state, "debt", "보증금 모름");
   assert.equal(getLocalChatReply(state).message, "최근 10년 안에 미리 증여한 재산이 있나요?");
 });
+
+test("an explicit topic switch replaces only the active topic and keeps all collected context", () => {
+  let state = put(ready(), "topic", "가업상속");
+  state = put(state, "spouse", "아버지의 배우자는 계세요");
+  state = put(state, "children", "자녀 2명");
+  state = put(state, "debt", "대출 3억, 보증금 모름");
+  const previous = state;
+  const text = "상담 주제를 양도로 바꿀게요";
+  state = add(state, text, [{ key: "topic", value: "양도", evidence: text }]);
+  assert.equal(state.facts.topic?.value, "양도");
+  assert.equal(state.facts.topic?.evidence, text);
+  assert.equal(state.facts.topic?.sources, undefined);
+  for (const key of ["owner", "realEstate", "spouse", "children", "debt", "unconfirmed"] as const) assert.deepEqual(state.facts[key], previous.facts[key], key);
+  assert.ok(state.messages.some(message => message.text === "가업상속"));
+  assert.ok(validateChatState(JSON.parse(JSON.stringify(state))));
+});
+
+test("topic replacement recognizes explicit changes and isolates the destination quotation", () => {
+  for (const text of ["상담 주제를 양도로 변경할게요", "양도 상담으로 전환할게요", "상담 주제를 양도로 대체할게요", "상속에서 양도로 바꿔 주세요", "가업상속 대신 양도 상담을 볼게요", "상속 말고 양도만 검토할게요", "상담 주제 변경: 양도"]) {
+    const state = put(put(ready(), "topic", "가업상속"), "topic", text);
+    assert.equal(state.facts.topic?.value, "양도", text);
+    assert.equal(state.facts.topic?.evidence, text);
+    assert.ok(validateChatState(state), text);
+  }
+});
+
+test("comparison, additional topics and uncertain or negated switches preserve prior topics", () => {
+  for (const text of ["상속과 증여를 비교하고 싶어요", "양도도 함께 비교할게요", "아파트 가격은 변경했고 양도도 함께 비교해요", "상담 주제를 양도로 바꿀 수 있을까요?", "상담 주제를 양도로 바꾸지 않을게요"]) {
+    const state = put(put(ready(), "topic", "상속"), "topic", text);
+    assert.match(state.facts.topic?.value ?? "", /^상속\n/, text);
+    assert.ok(state.facts.topic?.sources?.some(source => source.value === text), text);
+    assert.ok(validateChatState(state), text);
+  }
+});

@@ -147,6 +147,19 @@ function completeReplacement(key: ChatFieldKey, text: string): boolean {
   return new RegExp(`${scope}\\s*(?:의\\s*)?(?:전체|전부|총액|합계)|(?:전체|전부)\\s*(?:${scope})`).test(text);
 }
 
+/** An explicit destination replaces the active topic; comparisons remain accumulated context. */
+function topicReplacement(source: ChatFactSource): ChatFactSource | null {
+  const topic = "(?:가업\\s*(?:상속|승계)?|회사\\s*승계|상속(?:세)?|증여(?:세)?|양도(?:세)?|매각)";
+  for (const clause of source.evidence.split(/[.!;\n]/)) {
+    if (/[?？]|모르|모름|만약|아마|생각|고민|바꿀\s*수|(?:바꾸|변경하|전환하|대체하)지|않|안\s*(?:바꾸|변경|전환|대체)/.test(clause)) continue;
+    const destination = new RegExp(`(${topic})(?:\\s*상담)?(?:으)?로\\s*(?:(?:상담\\s*)?주제(?:를|는)?\\s*)?(?:변경|전환|대체|바꾸|바꿀|바꿔)`).exec(clause)?.[1]
+      ?? new RegExp(`(?:상담\\s*주제|검토\\s*주제)(?:를|는)?\\s*(?:변경|전환|대체)\\s*[:：]\\s*(${topic})\\s*$`).exec(clause)?.[1]
+      ?? new RegExp(`${topic}\\s*(?:대신|말고|이\\s*아니라|이\\s*아니고)\\s*(${topic})(?:\\s*상담)?(?:만|으로|로|을|를)?\\s*(?:볼|보|하|진행|검토|상담|$)`).exec(clause)?.[1];
+    if (destination) return { ...source, value: destination };
+  }
+  return null;
+}
+
 function sameSource(left: ChatFactSource, right: ChatFactSource): boolean {
   return left.messageId === right.messageId && compact(left.value) === compact(right.value);
 }
@@ -175,14 +188,16 @@ export function applyChatPatches(state: ChatState, patches: unknown, messageId: 
     if (!validSource(source, [latest])) continue;
     seen.add(patch.key);
     const key = patch.key;
-    const next: ChatFactSource = { value: source.value.trim(), evidence: source.evidence.trim(), messageId };
+    const proposed: ChatFactSource = { value: source.value.trim(), evidence: source.evidence.trim(), messageId };
+    const changedTopic = key === "topic" ? topicReplacement(proposed) : null;
+    const next = changedTopic ?? proposed;
     const previous = getChatFactSources(facts[key]);
     if (key === "unconfirmed") {
       pending = completeReplacement(key, latest.text) ? [next] : appendSource(pending, next);
       continue;
     }
     const correction = CORRECTION.test(next.evidence);
-    const replaceAll = completeReplacement(key, latest.text);
+    const replaceAll = Boolean(changedTopic) || completeReplacement(key, latest.text);
     const nextSubject = subject(key, next.value) ?? subject(key, next.evidence);
     const parts = previous.flatMap(item => sourceParts(item, key));
     const candidates = nextSubject === null ? [] : parts.filter(item => subject(key, item.value) === nextSubject);

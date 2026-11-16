@@ -172,7 +172,7 @@ check('Unrelated application and tax engine code remain unchanged outside the ap
   // Approved protected-preview AI dialogue work. Exact paths keep the original
   // material and tax-engine boundaries intact; no directory-wide exemption.
   const approvedAiTrialFiles = new Set([
-    'CHAT_GUIDE.md',
+    'CHAT_GUIDE.md', 'app/api/diagnosis/route.ts',
     'components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css',
     'lib/chat/intake.ts', 'lib/chat/intake-memory.test.ts',
     'lib/chat/local.ts', 'lib/chat/guided.ts', 'lib/chat/guided.test.ts',

@@ -179,6 +179,39 @@ function pendingRequest(started: ReturnType<typeof deferred>, aborted: ReturnTyp
   };
 }
 
+const diagnosticEnvironmentKeys = ["VERCEL_ENV", "VERCEL_GIT_COMMIT_REF", "AI_DIAGNOSIS_FREE_TRIAL_ENABLED"] as const;
+function captureTrialDiagnostics(t: TestContext, overrides: Partial<Record<typeof diagnosticEnvironmentKeys[number], string | undefined>> = {}) {
+  const previous = new Map(diagnosticEnvironmentKeys.map((key) => [key, process.env[key]]));
+  const trial: Record<typeof diagnosticEnvironmentKeys[number], string | undefined> = {
+    VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_REF: "codex/ai-conversation-trial", AI_DIAGNOSIS_FREE_TRIAL_ENABLED: "true", ...overrides,
+  };
+  for (const key of diagnosticEnvironmentKeys) {
+    if (trial[key] === undefined) delete process.env[key];
+    else process.env[key] = trial[key];
+  }
+  t.after(() => {
+    for (const [key, value] of previous) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  });
+  const calls: unknown[][] = [];
+  t.mock.method(console, "warn", (...args: unknown[]) => { calls.push(args); });
+  return () => calls.map((args) => {
+    assert.equal(args.length, 2);
+    assert.equal(args[0], "[diagnosis-trial]");
+    assert.equal(typeof args[1], "string");
+    return JSON.parse(args[1] as string) as Record<string, unknown>;
+  });
+}
+
+function assertPrivateDiagnosticsHidden(diagnostics: unknown, extraPrivate: string[] = []) {
+  const encoded = JSON.stringify(diagnostics);
+  for (const privateText of [SYNTHETIC_KEY, "synthetic-private-provider-detail", messages[0].parts[0].text, ...extraPrivate]) {
+    assert.equal(encoded.includes(privateText), false);
+  }
+}
+
 test("fallback returns immediate SSE and one structured primary call with canonical UI chunks", async (t) => {
   const requests = installGoogleMock(t, [turn(PRIMARY, primaryProposals)]);
   const result = response({ headers: { "x-synthetic-header": "preserved" } });
@@ -189,6 +222,116 @@ test("fallback returns immediate SSE and one structured primary call with canoni
   const chunks = await readChunks(result);
   assert.deepEqual(requests.map((request) => request.model), [PRIMARY]);
   assertWinningReply(chunks, primaryProposals);
+});
+
+test("trial structured diagnostics expose only Zod codes and allowlisted paths", async (t) => {
+  const diagnostics = captureTrialDiagnostics(t);
+  const privateText = "synthetic-private-original-and-987654321-amount";
+  installGoogleMock(t, [raw(PRIMARY, JSON.stringify({
+    facts: [{ key: privateText, value: privateText, evidence: privateText }],
+    message: privateText, choices: 12, selectionMode: "single", [privateText]: privateText,
+  }))]);
+  assertOnlyPublicFailure(await readChunks(response()), "AI_RESPONSE_REJECTED");
+  const records = diagnostics();
+  assert.deepEqual(records.map((entry) => entry.category), ["structured_validation", "attempt_failed", "finalerror"]);
+  const issues = records[0].issues as Array<{ code: string; path: Array<string | number> }>;
+  assert.ok(issues.some((issue) => issue.code === "invalid_type" && JSON.stringify(issue.path) === '["choices"]'));
+  assert.ok(issues.some((issue) => issue.code === "invalid_value" && JSON.stringify(issue.path) === '["facts",0,"key"]'));
+  assert.ok(issues.some((issue) => issue.code === "unrecognized_keys" && issue.path.length === 0));
+  for (const issue of issues) assert.deepEqual(Object.keys(issue), ["code", "path"]);
+  assert.equal(records[0].finishReason, "stop");
+  assert.deepEqual(records[1], { category: "attempt_failed", code: "AI_RESPONSE_REJECTED", timedOut: false, model: PRIMARY });
+  assert.deepEqual(records[2], { category: "finalerror", code: "AI_RESPONSE_REJECTED" });
+  assertPrivateDiagnosticsHidden(records, [privateText]);
+});
+
+test("truncated structured output logs only allowed finish reason and token counts", async (t) => {
+  const diagnostics = captureTrialDiagnostics(t);
+  const privateText = "synthetic-private-truncated-original-987654321";
+  installGoogleMock(t, [{
+    model: PRIMARY,
+    respond: () => Response.json({
+      candidates: [{ content: { role: "model", parts: [{ text: `{"facts":[],"message":"${privateText}` }] }, finishReason: "MAX_TOKENS" }],
+      usageMetadata: { promptTokenCount: 20, candidatesTokenCount: 12, thoughtsTokenCount: 34, totalTokenCount: 66 },
+    }),
+  }]);
+  assertOnlyPublicFailure(await readChunks(response()), "AI_RESPONSE_REJECTED");
+  assert.deepEqual(diagnostics(), [
+    { category: "structured_validation", issues: [], finishReason: "length", outputTokens: 46, reasoningTokens: 34 },
+    { category: "attempt_failed", code: "AI_RESPONSE_REJECTED", timedOut: false, model: PRIMARY },
+    { category: "finalerror", code: "AI_RESPONSE_REJECTED" },
+  ]);
+  assertPrivateDiagnosticsHidden(diagnostics(), [privateText]);
+});
+
+test("trial grounding diagnostics contain proposed and accepted keys without facts", async (t) => {
+  const diagnostics = captureTrialDiagnostics(t);
+  const privateText = "synthetic-private-fact-and-987654321-amount";
+  installGoogleMock(t, [turn(PRIMARY, [...primaryProposals, { key: "debt", value: privateText, evidence: privateText }])]);
+  assertOnlyPublicFailure(await readChunks(response()), "AI_RESPONSE_REJECTED");
+  assert.deepEqual(diagnostics(), [
+    { category: "fact_grounding", proposedKeys: ["topic", "debt"], acceptedKeys: ["topic"] },
+    { category: "attempt_failed", code: "AI_RESPONSE_REJECTED", timedOut: false, model: PRIMARY },
+    { category: "finalerror", code: "AI_RESPONSE_REJECTED" },
+  ]);
+  assertPrivateDiagnosticsHidden(diagnostics(), [privateText]);
+});
+
+test("trial unsafe and provider diagnostics contain check kinds and public codes only", async (t) => {
+  await t.test("unsafe claim", async (subtest) => {
+    const diagnostics = captureTrialDiagnostics(subtest);
+    const privateText = "공제 한도는 9,876,543원입니다.";
+    installGoogleMock(subtest, [turn(PRIMARY, primaryProposals, { message: privateText, choices: [], selectionMode: "single" })]);
+    assertOnlyPublicFailure(await readChunks(response()), "AI_RESPONSE_REJECTED");
+    assert.deepEqual(diagnostics(), [
+      { category: "unsafe_claim", checks: ["numeric_tax"] },
+      { category: "attempt_failed", code: "AI_RESPONSE_REJECTED", timedOut: false, model: PRIMARY },
+      { category: "finalerror", code: "AI_RESPONSE_REJECTED" },
+    ]);
+    assertPrivateDiagnosticsHidden(diagnostics(), [privateText, "9,876,543"]);
+  });
+  await t.test("provider failure", async (subtest) => {
+    const diagnostics = captureTrialDiagnostics(subtest);
+    installGoogleMock(subtest, [failure(PRIMARY, 429)]);
+    assertOnlyPublicFailure(await readChunks(response()), "AI_RATE_LIMITED");
+    assert.deepEqual(diagnostics(), [
+      { category: "attempt_failed", code: "AI_RATE_LIMITED", timedOut: false, model: PRIMARY },
+      { category: "finalerror", code: "AI_RATE_LIMITED" },
+    ]);
+    assertPrivateDiagnosticsHidden(diagnostics());
+  });
+});
+
+test("trial attempt diagnostics distinguish primary timeout from a backup request rejection", { timeout: 3_000 }, async (t) => {
+  const diagnostics = captureTrialDiagnostics(t);
+  const started = deferred();
+  const aborted = deferred();
+  const requests = installGoogleMock(t, [pendingRequest(started, aborted), failure(BACKUP, 400)]);
+  assertOnlyPublicFailure(await readChunks(response({ attemptTimeoutMs: 40 })), "AI_INVALID_REQUEST");
+  await aborted.promise;
+  assert.deepEqual(requests.map((request) => request.model), [PRIMARY, BACKUP]);
+  assert.deepEqual(diagnostics(), [
+    { category: "attempt_failed", code: "AI_UNAVAILABLE", timedOut: true, model: PRIMARY },
+    { category: "attempt_failed", code: "AI_INVALID_REQUEST", timedOut: false, model: BACKUP },
+    { category: "finalerror", code: "AI_INVALID_REQUEST" },
+  ]);
+  assertPrivateDiagnosticsHidden(diagnostics());
+});
+
+test("failure diagnostics are silent outside the explicitly enabled trial Preview", async (t) => {
+  const environments: Array<Partial<Record<typeof diagnosticEnvironmentKeys[number], string | undefined>>> = [
+    { VERCEL_ENV: undefined }, { VERCEL_ENV: "development" }, { VERCEL_ENV: "production" },
+    { VERCEL_GIT_COMMIT_REF: undefined }, { VERCEL_GIT_COMMIT_REF: "codex/unrelated" }, { VERCEL_GIT_COMMIT_REF: "codex/chat-opening-topics" },
+    { AI_DIAGNOSIS_FREE_TRIAL_ENABLED: undefined }, { AI_DIAGNOSIS_FREE_TRIAL_ENABLED: "false" }, { AI_DIAGNOSIS_FREE_TRIAL_ENABLED: "TRUE" },
+  ];
+  for (const [index, environment] of environments.entries()) {
+    await t.test(`disabled diagnostic scope ${index + 1}`, async (subtest) => {
+      const diagnostics = captureTrialDiagnostics(subtest, environment);
+      installGoogleMock(subtest, [raw(PRIMARY, "synthetic-private-malformed-output")]);
+      assertOnlyPublicFailure(await readChunks(response()), "AI_RESPONSE_REJECTED");
+      assert.deepEqual(diagnostics(), []);
+    });
+  }
 });
 
 test("canonical chunks become the typed fact part and visible reply consumed by the real Chat client", async (t) => {

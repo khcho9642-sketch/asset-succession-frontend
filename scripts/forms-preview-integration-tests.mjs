@@ -198,6 +198,7 @@ test('latest calculator and service code survive outside the forms pages and pre
   // User-approved free AI dialogue work is tested only on the protected preview.
   // Keep immutable material evidence and all other service/calculator code guarded.
   const aiTrialFiles = [
+    'app/api/diagnosis/route.ts',
     'lib/chat/intake.ts', 'lib/chat/intake-memory.test.ts',
     'lib/chat/local.ts', 'lib/chat/guided.ts', 'lib/chat/guided.test.ts',
     'lib/chat/report.ts', 'lib/chat/tax.ts',

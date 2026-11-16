@@ -2,7 +2,7 @@ import { createUIMessageStreamResponse, NoObjectGeneratedError, type ModelMessag
 import { acceptFactProposals, createDiagnosisAgent, diagnosisTurnSchema } from "./agent";
 import { diagnosisReplySchema, hasAppOwnedHandoffClaim } from "./choices";
 import type { ChatPatch } from "./intake";
-import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, DiagnosisResponseRejectedError, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
+import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DiagnosisResponseRejectedError, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
 
 type DiagnosisResponseOptions = DiagnosisRequest & {
   apiKey: string;
@@ -29,6 +29,54 @@ const UNVERIFIED_TAX_ELIGIBILITY = /(?:공제|특례|감면)[^.!?\n]{0,28}(?:적
 // "완료되지 않았어요" and "접수했는지는 확인이 필요해요" are not
 // completed actions. Match an affirmative predicate, not its word stem.
 const COMPLETED_EXTERNAL_ACTION = /(?:상담|신청|예약|접수|저장|공유)(?:이|가|을|를)?[^.!?\n]{0,14}(?:완료(?:됐(?:습니다|어요)|되었(?:습니다|어요)|했습니다|했어요|합니다|입니다|예요|된\s*상태(?:입니다|예요)|(?=\s*(?:[.!]|$)))|(?:접수했|저장했|보냈|전송했|해\s*드렸)(?:습니다|어요))|(?:계산|산출)(?:해\s*보니|한\s*결과|했(?:습니다|어요))/;
+
+type SafeValidationIssue = { code: string; path: Array<string | number> };
+type UnsafeClaimCheck = "app_owned_handoff" | "numeric_tax" | "tax_eligibility" | "external_action";
+type TrialFailureDiagnostic =
+  | { category: "structured_validation"; issues: SafeValidationIssue[]; finishReason?: string; outputTokens?: number; reasoningTokens?: number }
+  | { category: "fact_grounding"; proposedKeys: ChatPatch["key"][]; acceptedKeys: ChatPatch["key"][] }
+  | { category: "unsafe_claim"; checks: UnsafeClaimCheck[] }
+  | { category: "attempt_failed"; code: ReturnType<typeof getDiagnosisPublicErrorCode>; timedOut: boolean; model?: typeof DEFAULT_GOOGLE_DIAGNOSIS_MODEL | typeof BACKUP_GOOGLE_DIAGNOSIS_MODEL }
+  | { category: "finalerror"; code: ReturnType<typeof getDiagnosisPublicErrorCode> };
+
+const VALIDATION_CODES = new Set(["invalid_type", "too_big", "too_small", "invalid_format", "not_multiple_of", "unrecognized_keys", "invalid_union", "invalid_key", "invalid_element", "invalid_value", "custom"]);
+const VALIDATION_PATH_FIELDS = new Set(["facts", "key", "value", "evidence", "message", "choices", "selectionMode", "inputMode"]);
+const FINISH_REASONS = new Set(["stop", "length", "content-filter", "tool-calls", "error", "other"]);
+
+/** Values, issue messages, raw usage and SDK error objects never enter logs. */
+function safeValidationIssues(error: unknown): SafeValidationIssue[] {
+  const seen = new Set<object>();
+  let current = error;
+  try {
+    for (let depth = 0; depth < 8; depth += 1) {
+      if (!current || typeof current !== "object" || seen.has(current)) break;
+      seen.add(current);
+      const candidate = current as { issues?: unknown; cause?: unknown };
+      if (Array.isArray(candidate.issues)) {
+        return candidate.issues.slice(0, 24).map((issue: { code?: unknown; path?: unknown }) => ({
+          code: typeof issue?.code === "string" && VALIDATION_CODES.has(issue.code) ? issue.code : "unknown",
+          path: Array.isArray(issue?.path) ? issue.path.slice(0, 8).map((part: unknown) =>
+            typeof part === "string" && VALIDATION_PATH_FIELDS.has(part) ? part
+              : typeof part === "number" && Number.isInteger(part) && part >= 0 && part <= 80 ? part : "[field]") : [],
+        }));
+      }
+      current = candidate.cause;
+    }
+  } catch { /* Diagnostics must not change failure handling. */ }
+  return [];
+}
+
+function trialFailure(diagnostic: TrialFailureDiagnostic) {
+  if (process.env.VERCEL_ENV !== "preview"
+    || process.env.VERCEL_GIT_COMMIT_REF !== "codex/ai-conversation-trial"
+    || process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED?.trim() !== "true") return;
+  try { console.warn("[diagnosis-trial]", JSON.stringify(diagnostic)); }
+  catch { /* Logging is optional and cannot break a response. */ }
+}
+
+function safeTokenCount(value: unknown): number | undefined {
+  return typeof value === "number" && Number.isSafeInteger(value) && value >= 0 ? value : undefined;
+}
 
 function completedTurnChunks(proposals: ChatPatch[], reply: { message: string; choices: string[]; selectionMode?: "single" | "multiple"; inputMode?: "assetAmounts" }): UIMessageChunk[] {
   const id = globalThis.crypto.randomUUID();
@@ -108,16 +156,26 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
         throw new DiagnosisResponseRejectedError("AI response filtered");
       }
       const parsedTurn = diagnosisTurnSchema.safeParse(result.output);
-      if (!parsedTurn.success) throw new DiagnosisResponseRejectedError("AI response failed turn validation");
+      if (!parsedTurn.success) {
+        trialFailure({ category: "structured_validation", issues: safeValidationIssues(parsedTurn.error) });
+        throw new DiagnosisResponseRejectedError("AI response failed turn validation");
+      }
       const turn = parsedTurn.data;
       const latest = options.messages[options.messages.length - 1];
       const proposals = acceptFactProposals(turn.facts, { id: latest.id, text: latest.parts[0].text });
       if (proposals.length !== turn.facts.length) {
+        trialFailure({ category: "fact_grounding", proposedKeys: turn.facts.map(({ key }) => key), acceptedKeys: proposals.map(({ key }) => key) });
         throw new DiagnosisResponseRejectedError("AI fact grounding failed");
       }
       const modelReply = diagnosisReplySchema.parse({ message: turn.message, choices: turn.choices, selectionMode: turn.selectionMode, inputMode: turn.inputMode });
       const visibleTexts = [modelReply.message, ...modelReply.choices];
-      if (visibleTexts.some((text) => hasAppOwnedHandoffClaim(text) || NUMERIC_TAX_CLAIM.test(text) || UNVERIFIED_TAX_ELIGIBILITY.test(text) || COMPLETED_EXTERNAL_ACTION.test(text))) {
+      const checks: UnsafeClaimCheck[] = [];
+      if (visibleTexts.some(hasAppOwnedHandoffClaim)) checks.push("app_owned_handoff");
+      if (visibleTexts.some((text) => NUMERIC_TAX_CLAIM.test(text))) checks.push("numeric_tax");
+      if (visibleTexts.some((text) => UNVERIFIED_TAX_ELIGIBILITY.test(text))) checks.push("tax_eligibility");
+      if (visibleTexts.some((text) => COMPLETED_EXTERNAL_ACTION.test(text))) checks.push("external_action");
+      if (checks.length) {
+        trialFailure({ category: "unsafe_claim", checks });
         throw new DiagnosisResponseRejectedError("AI response claimed an unverified result or action");
       }
       const chunks = completedTurnChunks(proposals, modelReply);
@@ -128,6 +186,13 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
       return chunks;
     } catch (error) {
       if (NoObjectGeneratedError.isInstance(error)) {
+        trialFailure({
+          category: "structured_validation",
+          issues: safeValidationIssues(error),
+          finishReason: error.finishReason && FINISH_REASONS.has(error.finishReason) ? error.finishReason : undefined,
+          outputTokens: safeTokenCount(error.usage?.outputTokens),
+          reasoningTokens: safeTokenCount(error.usage?.outputTokenDetails?.reasoningTokens),
+        });
         throw new DiagnosisResponseRejectedError("AI response failed structured validation");
       }
       throw error;
@@ -137,6 +202,14 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
   try {
     // The deadline also bounds setup/read failures that ignore an abort signal.
     return await Promise.race([collect(), aborted]);
+  } catch (error) {
+    if (!cancelled.aborted) {
+      trialFailure({
+        category: "attempt_failed", code: getDiagnosisPublicErrorCode(error), timedOut: deadline.signal.aborted,
+        model: model === DEFAULT_GOOGLE_DIAGNOSIS_MODEL || model === BACKUP_GOOGLE_DIAGNOSIS_MODEL ? model : undefined,
+      });
+    }
+    throw error;
   } finally {
     clearTimeout(timer);
     stopWaiting();
@@ -170,6 +243,7 @@ export function createDiagnosisResponse(options: DiagnosisResponseOptions): Resp
         } catch (error) {
           if (!cancelled.aborted) {
             const code = getDiagnosisPublicErrorCode(error);
+            trialFailure({ category: "finalerror", code });
             const message = code === "AI_RATE_LIMITED"
               ? "AI 요청 한도에 도달해 응답을 받지 못했습니다. 직접 입력으로 계속할 수 있습니다."
               : code === "AI_AUTHENTICATION_FAILED"

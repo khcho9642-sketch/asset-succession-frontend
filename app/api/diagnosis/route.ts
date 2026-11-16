@@ -29,6 +29,12 @@ export async function POST(request: Request) {
     assertSameOrigin(request);
     const parsed = diagnosisRequestSchema.safeParse(await readDiagnosisBody(request));
     if (!parsed.success) {
+      // Trial diagnostics contain schema categories only, never customer text,
+      // field values, quotations, credentials or raw provider errors.
+      if (getDiagnosisConfiguration()) console.warn("diagnosis_trial_request_rejected", {
+        areas: [...new Set(parsed.error.issues.map(issue => issue.path[0] === "messages" ? "messages" : issue.path[0] === "facts" ? "facts" : "request"))],
+        codes: [...new Set(parsed.error.issues.map(issue => issue.code))],
+      });
       return failure(400, "INVALID_REQUEST", "대화 형식이 올바르지 않거나 너무 깁니다. 내용을 확인해 주세요.");
     }
     const configuration = getDiagnosisConfiguration();
@@ -47,6 +53,7 @@ export async function POST(request: Request) {
       headers,
     });
   } catch (error) {
+    if (getDiagnosisConfiguration()) console.warn("diagnosis_trial_request_failed", { code: getDiagnosisPublicErrorCode(error) });
     if (error instanceof DiagnosisRequestError) return failure(error.status, error.code, error.message);
     return failure(502, getDiagnosisPublicErrorCode(error), "AI 연결에 문제가 생겼습니다. 잠시 후 다시 시도하거나 직접 입력으로 계속해 주세요.");
   }
