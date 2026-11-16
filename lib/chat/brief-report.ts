@@ -42,7 +42,7 @@ export function getBriefReportJudgmentFeedback(text: string): string | null {
 /** An AI question/example is not evidence of the customer's purpose or family. */
 export function getBriefReportContextFeedback(text: string, customerText: string): string | null {
   const judgment = sectionsFromReply(text).find(section => section.title === "현재 판단")?.body ?? text;
-  const hasPurpose = /상속|증여|양도|가업|고인|사망|유언|유산|매도|매매|팔|넘기|물려|주려고|주고\s*싶/.test(customerText);
+  const hasPurpose = /상속|증여|양도|가업|고인|사망|유언|유산|매도|매매|팔(?:려고|고|아|았|기|면|\s*예정|\s*때)|넘기|물려|주려고|주고\s*싶/.test(customerText);
   const acknowledgesMissingPurpose = /(?:목적|방향|(?:상속|증여|양도)[^.!?\n]{0,35}(?:인지|중|어떤))[^.!?\n]{0,90}(?:확인|알|정|필요|미정|먼저)/.test(judgment);
   const childAbsent = /자녀(?:는|가|이)?\s*(?:없|없는)|무자녀/.test(customerText);
   const inventedChildRecipient = (!/자녀|아들|딸/.test(customerText) || childAbsent)

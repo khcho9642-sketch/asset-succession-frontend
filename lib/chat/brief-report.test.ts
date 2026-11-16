@@ -8,6 +8,7 @@ const now = "2026-11-16T12:00:00.000Z";
 test("a missing purpose and an invented child recipient cannot become the customer's report", () => {
   const invented = "현재 판단\n보유하신 주식 증여는 자녀 성년 여부를 확인해야 합니다.\n우선할 일\n증여 대상인 자녀의 성년 여부를 확인하세요.\n확인할 사항\n증여 시점을 확인합니다.";
   assert(getBriefReportContextFeedback(invented, "주식 10억"));
+  assert(getBriefReportContextFeedback("현재 판단\n주식 증여 신고 준비가 우선입니다.", "주식 팔억"), "A Korean amount cannot establish a sale or gift purpose");
   assert(getBriefReportContextFeedback(invented, "증여하려고 합니다. 자녀가 없습니다."));
   assert.equal(getBriefReportContextFeedback(invented, "아들에게 주식을 증여하려고 합니다."), null);
   const conservative = "현재 판단\n주식 금액만 확인되어 검토 목적과 재산 소유자 확인이 우선입니다.\n우선할 일\n상속·증여·양도 중 검토하려는 목적을 정리합니다.\n확인할 사항\n재산 소유자와 받는 분은 확인 전입니다.";
