@@ -1,8 +1,9 @@
 import { createUIMessageStreamResponse, NoObjectGeneratedError, type ModelMessage, type UIMessageChunk } from "ai";
-import { acceptFactProposals, createDiagnosisAgent, diagnosisTurnSchema } from "./agent";
+import { acceptFactProposals, createDiagnosisAgent, createDiagnosisModelTurnSchema, diagnosisTurnSchema, resolveDiagnosisFactSelections } from "./agent";
 import { diagnosisReplySchema, hasAppOwnedHandoffClaim } from "./choices";
 import type { ChatPatch } from "./intake";
 import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DiagnosisResponseRejectedError, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
+import { buildDiagnosisSources } from "./sources";
 
 type DiagnosisResponseOptions = DiagnosisRequest & {
   apiKey: string;
@@ -40,7 +41,7 @@ type TrialFailureDiagnostic =
   | { category: "finalerror"; code: ReturnType<typeof getDiagnosisPublicErrorCode> };
 
 const VALIDATION_CODES = new Set(["invalid_type", "too_big", "too_small", "invalid_format", "not_multiple_of", "unrecognized_keys", "invalid_union", "invalid_key", "invalid_element", "invalid_value", "custom"]);
-const VALIDATION_PATH_FIELDS = new Set(["facts", "key", "value", "evidence", "message", "choices", "selectionMode", "inputMode"]);
+const VALIDATION_PATH_FIELDS = new Set(["facts", "key", "sourceId", "value", "evidence", "message", "choices", "selectionMode", "inputMode"]);
 const FINISH_REASONS = new Set(["stop", "length", "content-filter", "tool-calls", "error", "other"]);
 
 /** Values, issue messages, raw usage and SDK error objects never enter logs. */
@@ -145,27 +146,36 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
         : { role: "assistant", content: text });
     }
     try {
+      const latest = options.messages[options.messages.length - 1];
+      const latestMessage = { id: latest.id, text: latest.parts[0].text };
+      const sources = buildDiagnosisSources(latestMessage.text);
       const result = await createDiagnosisAgent({
         apiKey: options.apiKey,
         model,
         messages: options.messages,
         facts: options.facts,
+        sources,
       }).generate({ messages: modelMessages, abortSignal: signal });
       signal.throwIfAborted();
       if (result.finalStep.finishReason === "content-filter") {
         throw new DiagnosisResponseRejectedError("AI response filtered");
       }
-      const parsedTurn = diagnosisTurnSchema.safeParse(result.output);
+      const parsedTurn = createDiagnosisModelTurnSchema(sources).safeParse(result.output);
       if (!parsedTurn.success) {
         trialFailure({ category: "structured_validation", issues: safeValidationIssues(parsedTurn.error) });
         throw new DiagnosisResponseRejectedError("AI response failed turn validation");
       }
       const turn = parsedTurn.data;
-      const latest = options.messages[options.messages.length - 1];
-      const proposals = acceptFactProposals(turn.facts, { id: latest.id, text: latest.parts[0].text });
+      const restored = resolveDiagnosisFactSelections(turn.facts, sources);
+      const proposals = acceptFactProposals(restored, latestMessage);
       if (proposals.length !== turn.facts.length) {
         trialFailure({ category: "fact_grounding", proposedKeys: turn.facts.map(({ key }) => key), acceptedKeys: proposals.map(({ key }) => key) });
         throw new DiagnosisResponseRejectedError("AI fact grounding failed");
+      }
+      const quotedTurn = diagnosisTurnSchema.safeParse({ ...turn, facts: proposals });
+      if (!quotedTurn.success) {
+        trialFailure({ category: "structured_validation", issues: safeValidationIssues(quotedTurn.error) });
+        throw new DiagnosisResponseRejectedError("AI restored quote validation failed");
       }
       const modelReply = diagnosisReplySchema.parse({ message: turn.message, choices: turn.choices, selectionMode: turn.selectionMode, inputMode: turn.inputMode });
       const visibleTexts = [modelReply.message, ...modelReply.choices];

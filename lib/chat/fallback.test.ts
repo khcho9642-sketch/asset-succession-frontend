@@ -5,6 +5,7 @@ import type { UIMessage, UIMessageChunk } from "ai";
 import { getAssistantReply, type DiagnosisReply } from "./choices";
 import { createDiagnosisResponse } from "./fallback";
 import type { ChatPatch } from "./intake";
+import { buildDiagnosisSources } from "./sources";
 import {
   BACKUP_GOOGLE_DIAGNOSIS_MODEL,
   DEFAULT_GOOGLE_DIAGNOSIS_MODEL,
@@ -44,7 +45,7 @@ type GoogleRequestBody = {
 type RequestLog = { model: string; body: GoogleRequestBody; signal: AbortSignal };
 type Step = {
   model: string;
-  respond: (request: Request) => Response | Promise<Response>;
+  respond: (request: Request, body: GoogleRequestBody) => Response | Promise<Response>;
 };
 type ResponseOptions = Partial<Pick<Parameters<typeof createDiagnosisResponse>[0], "abortSignal" | "attemptTimeoutMs" | "headers" | "messages" | "facts">>;
 
@@ -58,8 +59,27 @@ function googleResponse(text: string, finishReason = "STOP"): Response {
 function turn(model: string, proposals = backupProposals, expected = reply): Step {
   return {
     model,
-    respond: () => googleResponse(JSON.stringify({ facts: proposals, ...expected })),
+    respond: (_request, body) => {
+      const text = body.contents.filter((entry) => entry.role === "user").at(-1)?.parts.map((part) => part.text ?? "").join("") ?? "";
+      const facts = proposals.map((proposal) => ({ key: proposal.key, sourceId: sourceForProposal(proposal, text)?.id ?? "missing-source" }));
+      return googleResponse(JSON.stringify({ facts, ...expected }));
+    },
   };
+}
+
+function sourceForProposal(proposal: ChatPatch, text: string) {
+  if (!text.includes(proposal.evidence) || !proposal.evidence.includes(proposal.value)) return undefined;
+  const sources = buildDiagnosisSources(text);
+  return sources.find((source) => source.value === proposal.value)
+    ?? sources.filter((source) => source.value.includes(proposal.value)).sort((left, right) => left.value.length - right.value.length)[0];
+}
+
+function quotedProposals(proposals: ChatPatch[], text = messages[0].parts[0].text): ChatPatch[] {
+  return proposals.map((proposal) => {
+    const source = sourceForProposal(proposal, text);
+    assert.ok(source, `Valid synthetic fixture must select an actual quote: ${proposal.key}`);
+    return { key: proposal.key, value: source.value, evidence: source.evidence };
+  });
 }
 
 function raw(model: string, text: string, finishReason = "STOP"): Step {
@@ -99,10 +119,16 @@ function installGoogleMock(t: TestContext, steps: Step[]): RequestLog[] {
     assert.ok(body.generationConfig.responseSchema?.properties.choices);
     assert.ok(body.generationConfig.responseSchema?.properties.selectionMode);
     assert.ok(body.generationConfig.responseSchema?.properties.inputMode);
+    const factSchema = body.generationConfig.responseSchema?.properties.facts as { items: { required: string[]; properties: Record<string, { enum?: string[] }> } };
+    const latestText = body.contents.filter((entry) => entry.role === "user").at(-1)?.parts.map((part) => part.text ?? "").join("") ?? "";
+    assert.deepEqual(factSchema.items.required, ["key", "sourceId"]);
+    assert.deepEqual(factSchema.items.properties.sourceId.enum, buildDiagnosisSources(latestText).map(({ id }) => id));
+    assert.equal(factSchema.items.properties.value, undefined);
+    assert.equal(factSchema.items.properties.evidence, undefined);
     assert.equal(body.generationConfig.responseJsonSchema, undefined);
     assert.ok(!body.tools?.length, "Unified structured request must not expose tools to the model");
     assert.equal(body.toolConfig, undefined);
-    return step.respond(request);
+    return step.respond(request, body);
   });
   return requests;
 }
@@ -120,7 +146,8 @@ async function readChunks(result: Response): Promise<UIMessageChunk[]> {
   });
 }
 
-function assertWinningReply(chunks: UIMessageChunk[], proposals: ChatPatch[], expected = reply) {
+function assertWinningReply(chunks: UIMessageChunk[], proposals: ChatPatch[], expected = reply, latestText = messages[0].parts[0].text) {
+  const quoted = quotedProposals(proposals, latestText);
   assert.deepEqual(chunks.map((chunk) => chunk.type), [
     "start", "start-step", "tool-input-available", "tool-output-available",
     "text-start", "text-delta", "text-end", "finish-step", "finish",
@@ -135,10 +162,10 @@ function assertWinningReply(chunks: UIMessageChunk[], proposals: ChatPatch[], ex
   assert.ok(start.type === "start" && start.messageId?.startsWith("diagnosis-"));
   assert.ok(input.type === "tool-input-available");
   assert.equal(input.toolName, "proposeFacts");
-  assert.deepEqual(input.input, { facts: proposals });
+  assert.deepEqual(input.input, { facts: quoted });
   assert.ok(output.type === "tool-output-available");
   assert.equal(output.toolCallId, input.toolCallId);
-  assert.deepEqual(output.output, { proposals });
+  assert.deepEqual(output.output, { proposals: quoted });
   assert.ok(textStart.type === "text-start");
   assert.ok(textDelta.type === "text-delta");
   assert.ok(textEnd.type === "text-end");
@@ -264,17 +291,16 @@ test("truncated structured output logs only allowed finish reason and token coun
   assertPrivateDiagnosticsHidden(diagnostics(), [privateText]);
 });
 
-test("trial grounding diagnostics contain proposed and accepted keys without facts", async (t) => {
+test("trial duplicate-key grounding diagnostics contain key names without facts", async (t) => {
   const diagnostics = captureTrialDiagnostics(t);
-  const privateText = "synthetic-private-fact-and-987654321-amount";
-  installGoogleMock(t, [turn(PRIMARY, [...primaryProposals, { key: "debt", value: privateText, evidence: privateText }])]);
+  installGoogleMock(t, [turn(PRIMARY, [...primaryProposals, { key: "topic", value: "아파트", evidence: "아파트" }])]);
   assertOnlyPublicFailure(await readChunks(response()), "AI_RESPONSE_REJECTED");
   assert.deepEqual(diagnostics(), [
-    { category: "fact_grounding", proposedKeys: ["topic", "debt"], acceptedKeys: ["topic"] },
+    { category: "fact_grounding", proposedKeys: ["topic", "topic"], acceptedKeys: ["topic"] },
     { category: "attempt_failed", code: "AI_RESPONSE_REJECTED", timedOut: false, model: PRIMARY },
     { category: "finalerror", code: "AI_RESPONSE_REJECTED" },
   ]);
-  assertPrivateDiagnosticsHidden(diagnostics(), [privateText]);
+  assertPrivateDiagnosticsHidden(diagnostics(), ["증여", "아파트"]);
 });
 
 test("trial unsafe and provider diagnostics contain check kinds and public codes only", async (t) => {
@@ -353,8 +379,8 @@ test("canonical chunks become the typed fact part and visible reply consumed by 
   assert.equal(assistant?.role, "assistant");
   const toolPart = assistant?.parts.find((part) => part.type === "tool-proposeFacts");
   assert.ok(toolPart?.type === "tool-proposeFacts" && toolPart.state === "output-available");
-  assert.deepEqual(toolPart.input, { facts: primaryProposals });
-  assert.deepEqual(toolPart.output, { proposals: primaryProposals });
+  assert.deepEqual(toolPart.input, { facts: quotedProposals(primaryProposals) });
+  assert.deepEqual(toolPart.output, { proposals: quotedProposals(primaryProposals) });
   const visible = assistant?.parts.filter((part) => part.type === "text").map((part) => part.text).join("") ?? "";
   assert.deepEqual(getAssistantReply(visible), reply);
   assert.equal(chat.status, "ready");
@@ -374,11 +400,41 @@ test("one invalid fact withholds the whole answer without a second model call", 
   assert.equal(JSON.stringify(chunks).includes("대출 2억"), false);
 });
 
+test("unknown source IDs and model-authored quote overrides are rejected without retry", async (t) => {
+  const source = buildDiagnosisSources(messages[0].parts[0].text)[0];
+  for (const facts of [
+    [{ key: "topic", sourceId: "q999-from-another-message" }],
+    [{ key: "topic", sourceId: source.id, value: "발명한 날짜 2030년", evidence: "이전 메시지 원문" }],
+    [{ key: "financialAssets", value: "예금 99억", evidence: "위조 원문" }],
+  ]) {
+    await t.test(JSON.stringify(Object.keys(facts[0])), async (subtest) => {
+      const requests = installGoogleMock(subtest, [raw(PRIMARY, JSON.stringify({ facts, ...reply }))]);
+      assertOnlyPublicFailure(await readChunks(response()), "AI_RESPONSE_REJECTED");
+      assert.equal(requests.length, 1);
+    });
+  }
+});
+
+test("a selected ID resolves only the latest message even when historical IDs are reused", async (t) => {
+  const previousText = "이전 문의의 예금 99억은 다른 사람 사례예요.";
+  const currentText = "진행 시기는 아직 정하지 않았어요.";
+  const source = buildDiagnosisSources(currentText)[0];
+  const history: DiagnosisRequest["messages"] = [
+    { id: "previous-source", role: "user", parts: [{ type: "text", text: previousText }] },
+    { id: "current-source", role: "user", parts: [{ type: "text", text: currentText }] },
+  ];
+  const expected: DiagnosisReply = { message: "진행 시기는 미정인 상태로 남겨둘게요.", choices: [], selectionMode: "single" };
+  installGoogleMock(t, [raw(PRIMARY, JSON.stringify({ facts: [{ key: "timing", sourceId: source.id }], ...expected }))]);
+  const chunks = await readChunks(response({ messages: history }));
+  assertWinningReply(chunks, [{ key: "timing", value: source.value, evidence: source.evidence }], expected, currentText);
+  assert.equal(JSON.stringify(chunks).includes("99억"), false);
+});
+
 test("Lite keeps an explicitly undecided timing as the original quote in a complete summary turn", async (t) => {
   const text = "시기는 아직 정하지 않았고 과거 증여는 기억이 안 나요. 제 주식 1억도 함께 검토하고 싶어요. 이제 질문 없이 정리만 해주세요.";
   const evidence = "시기는 아직 정하지 않았고";
   const facts: ChatPatch[] = [
-    { key: "timing", value: "미정", evidence },
+    { key: "timing", value: evidence, evidence },
     { key: "pastGifts", value: "과거 증여는 기억이 안 나요", evidence: "과거 증여는 기억이 안 나요" },
     { key: "financialAssets", value: "제 주식 1억", evidence: "제 주식 1억" },
     { key: "unconfirmed", value: "과거 증여는 기억이 안 나요", evidence: "과거 증여는 기억이 안 나요" },
@@ -386,7 +442,7 @@ test("Lite keeps an explicitly undecided timing as the original quote in a compl
   const expected: DiagnosisReply = { message: "시기는 아직 정하지 않으셨고 과거 증여는 확인이 필요해요. 주식 1억도 함께 검토할 내용으로 남겨둘게요.", choices: [], selectionMode: "single" };
   const requests = installGoogleMock(t, [turn(PRIMARY, facts, expected)]);
   const history: DiagnosisRequest["messages"] = [{ id: "gift-summary-unknown", role: "user", parts: [{ type: "text", text }] }];
-  assertWinningReply(await readChunks(response({ messages: history })), facts.map((fact) => fact.key === "timing" ? { ...fact, value: evidence } : fact), expected);
+  assertWinningReply(await readChunks(response({ messages: history })), facts, expected, text);
   assert.equal(requests.length, 1);
 });
 
@@ -398,7 +454,7 @@ test("a summary still rejects invented dates and amounts even with valid undecid
     { key: "financialAssets", value: "제 주식 2억", evidence: "제 주식 1억" },
   ] satisfies ChatPatch[]) {
     await t.test(invalid.key, async (subtest) => {
-      const proposals: ChatPatch[] = invalid.key === "timing" ? [invalid] : [{ key: "timing", value: "미정", evidence }, invalid];
+      const proposals: ChatPatch[] = invalid.key === "timing" ? [invalid] : [{ key: "timing", value: evidence, evidence }, invalid];
       const requests = installGoogleMock(subtest, [turn(PRIMARY, proposals, { message: "알려주신 내용을 정리할게요.", choices: [], selectionMode: "single" })]);
       const history: DiagnosisRequest["messages"] = [{ id: `strict-summary-${invalid.key}`, role: "user", parts: [{ type: "text", text }] }];
       assertOnlyPublicFailure(await readChunks(response({ messages: history })), "AI_RESPONSE_REJECTED");
@@ -467,7 +523,7 @@ test("backup preserves prior questions, short user answers and existing facts ac
   const instructions = requests[1].body.systemInstruction?.parts.map((part) => part.text).join("") ?? "";
   assert.ok(instructions.includes('"key":"topic"'));
   assert.ok(instructions.includes('"value":"제 부산 아파트"'));
-  assertWinningReply(chunks, proposals, expected);
+  assertWinningReply(chunks, proposals, expected, history.at(-1)!.parts[0].text);
 });
 
 test("malformed and strict-schema-invalid output fails without a backup or leaked facts", async (t) => {
@@ -617,7 +673,7 @@ test("four virtual topics preserve the one-call fact and natural-answer contract
     await t.test(`virtual topic ${index + 1}`, async (subtest) => {
       const requests = installGoogleMock(subtest, [turn(PRIMARY, scenario.proposals, scenario.expected)]);
       const history: DiagnosisRequest["messages"] = [{ id: `virtual-topic-${index}`, role: "user", parts: [{ type: "text", text: scenario.text }] }];
-      assertWinningReply(await readChunks(response({ messages: history })), scenario.proposals, scenario.expected);
+      assertWinningReply(await readChunks(response({ messages: history })), scenario.proposals, scenario.expected, scenario.text);
       assert.equal(requests.length, 1);
       assert.equal(requests[0].body.contents.at(-1)?.parts[0].text, scenario.text);
       const policy = requests[0].body.systemInstruction?.parts.map((part) => part.text).join("") ?? "";
@@ -639,7 +695,7 @@ test("why, unknown, correction, summary and forged instructions retain their dis
     await t.test(`intent ${index + 1}`, async (subtest) => {
       const requests = installGoogleMock(subtest, [turn(PRIMARY, scenario.proposals, scenario.expected)]);
       const history: DiagnosisRequest["messages"] = [{ id: `intent-${index}`, role: "user", parts: [{ type: "text", text: scenario.text }] }];
-      assertWinningReply(await readChunks(response({ messages: history })), scenario.proposals, scenario.expected);
+      assertWinningReply(await readChunks(response({ messages: history })), scenario.proposals, scenario.expected, scenario.text);
       assert.equal(requests.length, 1);
       const policy = requests[0].body.systemInstruction?.parts.map((part) => part.text).join("") ?? "";
       assert.match(policy, /모름·보류/);

@@ -256,7 +256,15 @@ export function DiagnosisChat() {
   const factsCount = CHAT_FIELD_KEYS.filter(key => state.facts[key]).length;
   const firstUserMessage = state.messages.find(message => message.role === "user");
   const hasMessages = Boolean(firstUserMessage);
-  const displayTopic = TOPICS[firstUserMessage?.text ?? ""] ?? topic;
+  const activeTopic = state.facts.topic?.value ?? "";
+  const generalTopic = activeTopic.replace(/가업\s*(?:상속|승계)?|회사\s*승계/g, "");
+  const activeTopicLabels = [
+    /가업|회사\s*승계/.test(activeTopic) ? "가업승계" : "",
+    /상속/.test(generalTopic) ? "상속" : "",
+    /증여/.test(generalTopic) ? "증여" : "",
+    /양도|매각/.test(generalTopic) ? "양도" : "",
+  ].filter(Boolean);
+  const displayTopic = activeTopicLabels.join("·") || TOPICS[firstUserMessage?.text ?? ""] || topic;
   const readyForReview = missing.length === 0;
   const taxPreview = useMemo(() => calculateTaxComparison(taxInput), [taxInput]);
   const readyForEstimate = taxPreview.status === "ready" && taxSignature === taxFactsSignature(state);
@@ -419,7 +427,7 @@ export function DiagnosisChat() {
 
   return (
     <section ref={workspaceRef} className={styles.workspace} aria-label="자산승계 사전진단 대화"
-      data-chat-layout="mobile-fit-v1" data-chat-stage={stage} data-chat-opening={!hasMessages} data-summary-open={summaryOpen} data-chat-mode={aiMode ? "ai" : directMode ? "direct" : "local"}>
+      data-chat-layout="mobile-fit-v1" data-chat-stage={stage} data-chat-topic={displayTopic} data-chat-opening={!hasMessages} data-summary-open={summaryOpen} data-chat-mode={aiMode ? "ai" : directMode ? "direct" : "local"}>
       <div className={styles.topline}>
         <Link href="/" className={styles.backLink}><ArrowLeft size={15} aria-hidden="true" /> 처음으로</Link>
         <div className={styles.progress} aria-label="진행 단계"><span className={stage === "chat" ? styles.activeStep : ""}>01 대화</span><span aria-hidden="true">/</span><span className={stage === "review" ? styles.activeStep : ""}>02 내용 확인</span><span aria-hidden="true">/</span><span>03 보고서</span></div>

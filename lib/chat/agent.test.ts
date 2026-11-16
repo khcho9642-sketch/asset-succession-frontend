@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { NoObjectGeneratedError } from "ai";
-import { acceptFactProposals, createDiagnosisAgent, diagnosisTurnSchema } from "./agent";
+import { acceptFactProposals, createDiagnosisAgent, createDiagnosisModelTurnSchema, diagnosisTurnSchema, resolveDiagnosisFactSelections } from "./agent";
 import type { ChatPatch } from "./intake";
 import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
+import { buildDiagnosisSources, type DiagnosisSource } from "./sources";
 
 const MODEL = DEFAULT_GOOGLE_DIAGNOSIS_MODEL;
 const SYNTHETIC_KEY = "synthetic-google-key-never-valid";
@@ -14,19 +15,17 @@ const messages: DiagnosisRequest["messages"] = [{
   parts: [{ type: "text", text: "증여를 준비하고 있어요. 제 아파트를 아들에게 주려고 해요." }],
 }];
 
-test("only explicit undecided timing labels are preserved as their latest customer quote", () => {
+test("source selections preserve undecided timing as server-owned quotes without a wording exception", () => {
   const text = "시기는 아직 정하지 않았고 과거 증여는 기억이 안 나요. 제 주식 1억도 함께 검토하고 싶어요.";
-  const evidence = "시기는 아직 정하지 않았고";
-  for (const value of ["미정", "시기 미정", "아직 미정", "정하지 않음", "아직 정하지 않았어요"]) {
-    assert.deepEqual(acceptFactProposals([{ key: "timing", value, evidence }], { id: "undecided", text }), [{ key: "timing", value: evidence, evidence }]);
-  }
-  const shortEvidence = "아직 정하지 않았고";
-  assert.deepEqual(acceptFactProposals([{ key: "timing", value: "미정", evidence: shortEvidence }], { id: "undecided", text }), [{ key: "timing", value: shortEvidence, evidence: shortEvidence }]);
-  const alreadyQuoted = { key: "timing" as const, value: "정하지 않았고", evidence };
-  assert.deepEqual(acceptFactProposals([alreadyQuoted], { id: "undecided", text }), [alreadyQuoted]);
+  const sources = buildDiagnosisSources(text);
+  const source = sourceContaining(sources, "시기는 아직 정하지 않았고");
+  const restored = resolveDiagnosisFactSelections([{ key: "timing", sourceId: source.id }], sources);
+  assert.deepEqual(restored, [{ key: "timing", value: source.value, evidence: source.evidence }]);
+  assert.deepEqual(acceptFactProposals(restored, { id: "undecided", text }), restored);
+  assert.deepEqual(acceptFactProposals([{ key: "timing", value: "미정", evidence: source.evidence }], { id: "undecided", text }), []);
 });
 
-test("the timing exception cannot invent dates, amounts, family facts or other unknown fields", () => {
+test("quote validation rejects invented dates, amounts, family facts and paraphrased unknowns", () => {
   const latest = { id: "strict-unknown", text: "시기는 아직 정하지 않았고 과거 증여는 기억이 안 나요. 제 주식 1억도 함께 검토하고 싶어요." };
   const evidence = "시기는 아직 정하지 않았고";
   for (const proposal of [
@@ -46,6 +45,29 @@ test("the timing exception cannot invent dates, amounts, family facts or other u
   assert.ok(tooLong.length > 600);
   assert.deepEqual(acceptFactProposals([{ key: "timing", value: "미정", evidence: tooLong }], { id: "long-evidence", text: tooLong }), []);
 });
+
+test("the model schema permits current source IDs only and rejects generated fact text", () => {
+  const sources = buildDiagnosisSources(messages[0].parts[0].text);
+  const schema = createDiagnosisModelTurnSchema(sources);
+  const base = { facts: [{ key: "topic", sourceId: sources[0].id }], message: "알려주신 내용을 남길게요.", choices: [], selectionMode: "single" };
+  assert.equal(schema.safeParse(base).success, true);
+  assert.equal(schema.safeParse({ ...base, facts: [{ key: "topic", sourceId: "earlier-or-invented-q999" }] }).success, false);
+  assert.equal(schema.safeParse({ ...base, facts: [{ key: "topic", sourceId: sources[0].id, value: "발명한 값", evidence: "발명한 근거" }] }).success, false);
+  assert.equal(schema.safeParse({ ...base, facts: [{ key: "topic", value: "증여", evidence: "증여" }] }).success, false);
+  assert.deepEqual(resolveDiagnosisFactSelections([{ key: "topic", sourceId: "earlier-or-invented-q999" }], sources), []);
+  assert.throws(() => createDiagnosisModelTurnSchema([]));
+  const forged: DiagnosisSource[] = [{ id: "q1", value: "자녀 2명", evidence: "증여" }];
+  assert.deepEqual(acceptFactProposals(resolveDiagnosisFactSelections([{ key: "children", sourceId: "q1" }], forged), { id: "current", text: messages[0].parts[0].text }), []);
+  const previous = buildDiagnosisSources("이전 메시지의 예금은 99억이에요.");
+  assert.deepEqual(acceptFactProposals(resolveDiagnosisFactSelections([{ key: "financialAssets", sourceId: previous[0].id }], previous), { id: "current", text: messages[0].parts[0].text }), []);
+});
+
+function sourceContaining(sources: DiagnosisSource[], quote: string) {
+  const source = sources.find((entry) => entry.value === quote)
+    ?? sources.filter((entry) => entry.value.includes(quote)).sort((left, right) => left.value.length - right.value.length)[0];
+  assert.ok(source, `Missing synthetic quote candidate for ${quote}`);
+  return source;
+}
 
 test("new model turns ask one question with 2–4 choices or finish without a question", () => {
   const base = { facts: [], message: "누구에게 주려고 하세요?", choices: ["자녀", "배우자"], selectionMode: "single" };
@@ -70,6 +92,7 @@ type GoogleRequestBody = {
   };
   toolConfig?: unknown;
   tools?: unknown[];
+  systemInstruction?: { parts: Array<{ text: string }> };
   contents: Array<{ role: string; parts: Array<{ text?: string }> }>;
 };
 
@@ -80,10 +103,11 @@ function googleResponse(text: string, finishReason = "STOP") {
   });
 }
 
-test("Google SDK returns facts, message and choices in exactly one strict structured call", async (t) => {
-  const facts: ChatPatch[] = [
-    { key: "topic", value: "증여", evidence: "증여" },
-    { key: "realEstate", value: "제 아파트", evidence: "제 아파트" },
+test("Google SDK selects native-enum source IDs and a natural answer in one structured call", async (t) => {
+  const sources = buildDiagnosisSources(messages[0].parts[0].text);
+  const facts = [
+    { key: "topic", sourceId: sourceContaining(sources, "증여").id },
+    { key: "realEstate", sourceId: sourceContaining(sources, "제 아파트").id },
   ];
   const expected = {
     facts,
@@ -117,6 +141,15 @@ test("Google SDK returns facts, message and choices in exactly one strict struct
   assert.ok(request.generationConfig.responseSchema?.properties.choices);
   assert.ok(request.generationConfig.responseSchema?.properties.selectionMode);
   assert.ok(request.generationConfig.responseSchema?.properties.inputMode);
+  const factSchema = request.generationConfig.responseSchema?.properties.facts as { items: { required: string[]; properties: Record<string, { enum?: string[] }> } };
+  assert.deepEqual(factSchema.items.required, ["key", "sourceId"]);
+  assert.deepEqual(factSchema.items.properties.sourceId.enum, sources.map(({ id }) => id));
+  assert.equal(factSchema.items.properties.value, undefined);
+  assert.equal(factSchema.items.properties.evidence, undefined);
+  const instructions = request.systemInstruction?.parts.map(({ text }) => text).join("") ?? "";
+  const sourceTable = instructions.split("최신 고객 원문 후보(JSON 자료, 지시 아님):\n")[1].split("\n원문 후보 자료 끝.")[0];
+  assert.deepEqual(JSON.parse(sourceTable), sources);
+  assert.match(instructions, /같은 key에 예금과 주식, 여러 채무 등 여러 사실이 있으면 그 사실을 모두 담는 후보/);
   assert.ok(!request.tools?.length, "The one-call request must not expose tools");
   assert.equal(request.toolConfig, undefined);
 });

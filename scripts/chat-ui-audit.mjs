@@ -444,7 +444,7 @@ try {
       requests.push(request);
       const turn = requests.length;
       assert.equal(request.messages.filter(message => message.role === "user").length, turn, `${purpose}: follow-up lost conversation history`);
-      const expected = [label, "아버지", "정정: 재산 소유자 — 어머니", "보증금은 모름"][turn - 1];
+      const expected = [label, "아버지", "정정: 재산 소유자 — 어머니", "보증금은 모름", "상담 주제를 양도로 바꿀게요"][turn - 1];
       assert.equal(text, expected, `${purpose}: choice or correction was rewritten before reaching the model`);
       if (turn === 1) assert.deepEqual(request.facts, {}, `${purpose}: UI invented facts before AI extraction`);
       if (turn > 1) assert.equal(request.facts.topic.value, label, `${purpose}: model did not receive current case notes`);
@@ -455,6 +455,7 @@ try {
         { message: "아버지 재산으로 정리했어요. 추가로 확인할 상황이 있나요?", choices: ["채무가 있어요", "채무가 없어요", "모름"], proposals: [{ key: "owner", value: "아버지", evidence: "아버지" }] },
         { message: "어머니 재산으로 고쳤어요. 보증금 금액을 알고 계세요?", choices: ["알고 있어요", "모름"], proposals: [{ key: "owner", value: "어머니", evidence: "어머니" }] },
         { message: "보증금은 확인할 내용으로 남겼어요. 더 알려주실 내용이 있나요?", choices: ["다른 재산이 있어요", "내용을 확인할게요"], proposals: [{ key: "unconfirmed", value: "보증금은 모름", evidence: "보증금은 모름" }] },
+        { message: "양도 상담으로 전환했어요. 어떤 재산을 팔려고 하세요?", choices: ["부동산", "주식"], proposals: [{ key: "topic", value: "양도", evidence: "상담 주제를 양도로 바꿀게요" }] },
       ];
       const reply = replies[turn - 1];
       assert(reply, `${purpose}: unexpected extra model request`);
@@ -476,8 +477,13 @@ try {
     await waitFact(page, "owner", "어머니");
     await send(page, "보증금은 모름");
     await waitFact(page, "unconfirmed", "보증금은 모름");
-    assert.equal(requests.length, 4, `${purpose}: a button response bypassed the AI transport`);
-    assert.equal(await page.locator('[data-message-origin="ai"]').count(), 4, `${purpose}: AI answer origin was lost`);
+    await send(page, "상담 주제를 양도로 바꿀게요");
+    await waitFact(page, "topic", "양도");
+    assert.equal((await draft(page)).state.facts.owner.value, "어머니", `${purpose}: topic change lost the corrected owner`);
+    assert.equal((await draft(page)).state.facts.unconfirmed.value, "보증금은 모름", `${purpose}: topic change cleared uncertainty`);
+    assert.equal(await page.locator("[data-chat-layout]").getAttribute("data-chat-topic"), "양도", `${purpose}: header kept the previous topic after a switch`);
+    assert.equal(requests.length, 5, `${purpose}: a button response bypassed the AI transport`);
+    assert.equal(await page.locator('[data-message-origin="ai"]').count(), 5, `${purpose}: AI answer origin was lost`);
     assert.equal(await snapshot(page), null, `${purpose}: model output opened a report without confirmation`);
     await assertNoOverflow(page, `${purpose} model conversation`);
     if (width === 390) {

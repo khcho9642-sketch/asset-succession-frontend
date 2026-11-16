@@ -1,18 +1,22 @@
 import { isStepCount, Output, ToolLoopAgent, tool, type InferAgentUIMessage } from "ai";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { z } from "zod";
 import { diagnosisReplySchema, diagnosisSelectionModeSchema } from "./choices";
-import { applyChatPatches, createChatState, type ChatPatch, type ChatState } from "./intake";
+import { applyChatPatches, CHAT_FIELD_KEYS, createChatState, type ChatPatch, type ChatState } from "./intake";
 import { buildDiagnosisPrompt } from "./prompt";
-import { DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DIAGNOSIS_LIMITS, proposeFactsInputSchema, type DiagnosisRequest } from "./server";
+import { DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DIAGNOSIS_LIMITS, DiagnosisResponseRejectedError, proposeFactsInputSchema, type DiagnosisRequest } from "./server";
+import { buildDiagnosisSources, type DiagnosisSource } from "./sources";
 
-export const diagnosisTurnSchema = proposeFactsInputSchema.extend({
+const turnReplyShape = {
   ...diagnosisReplySchema.shape,
   // New turns have 2–4 useful options; older saved replies remain compatible.
   choices: diagnosisReplySchema.shape.choices.max(4),
   // New model responses must state the interaction mode. The standalone
   // reply parser still accepts older saved conversations without this field.
   selectionMode: diagnosisSelectionModeSchema,
-}).strict().superRefine((value, context) => {
+};
+
+function validateTurnInteraction(value: z.infer<typeof diagnosisReplySchema>, context: z.RefinementCtx) {
   if (value.choices.length === 1 || new Set(value.choices).size !== value.choices.length) {
     context.addIssue({ code: "custom", path: ["choices"], message: "Use 2–4 distinct choices, or none when no question is needed" });
   }
@@ -23,28 +27,42 @@ export const diagnosisTurnSchema = proposeFactsInputSchema.extend({
   if (value.inputMode === "assetAmounts" && (value.selectionMode !== "multiple" || value.choices.length === 0)) {
     context.addIssue({ code: "custom", path: ["inputMode"], message: "assetAmounts requires multiple non-empty choices" });
   }
-});
+}
 
-/** Only an explicitly undecided timing label may be replaced by its own quote. */
-function preserveUndecidedTiming(proposal: ChatPatch, latestText: string): ChatPatch {
-  if (proposal.key !== "timing" || proposal.evidence.includes(proposal.value)
-    || proposal.evidence.length > DIAGNOSIS_LIMITS.proposalValueLength || !latestText.includes(proposal.evidence)) return proposal;
-  const label = proposal.value.replace(/\s+/g, "");
-  const undecidedLabel = /^(?:(?:진행|증여|상속|매각|양도)?(?:시기|시점|일정|날짜)(?:는|은)?[:：]?)?(?:아직)?(?:미정(?:임|입니다|이에요)?|(?:정하|결정하)지않(?:음|았(?:어요|습니다))|(?:정해|결정되)지않(?:음|았(?:어요|습니다))|안정했(?:음|어요|습니다))$/;
-  const undecidedQuote = /미정|(?:정하|결정하)지\s*않(?:았|음)|(?:정해|결정되)지\s*않(?:았|음)|안\s*정했/;
-  if (!undecidedLabel.test(label) || !undecidedQuote.test(proposal.evidence)) return proposal;
-  const temporalQuote = /(?:시기|시점|일정|날짜|일자|언제)(?:는|은|가|이|도|를|을)?\s*(?:아직\s*)?(?:미정|(?:정하|결정하)지\s*않(?:았|음)|(?:정해|결정되)지\s*않(?:았|음)|안\s*정했)/;
-  const prefix = latestText.slice(Math.max(0, latestText.indexOf(proposal.evidence) - 24), latestText.indexOf(proposal.evidence));
-  const temporalPrefix = /(?:시기|시점|일정|날짜|일자|언제)(?:는|은|가|이|도|를|을)?\s*(?:아직\s*)?$/;
-  if (!temporalQuote.test(proposal.evidence) && !temporalPrefix.test(prefix)) return proposal;
-  return { ...proposal, value: proposal.evidence };
+/** The client-facing quote contract remains separate from the model protocol. */
+export const diagnosisTurnSchema = proposeFactsInputSchema.extend(turnReplyShape).strict().superRefine(validateTurnInteraction);
+
+export type DiagnosisFactSelection = { key: ChatPatch["key"]; sourceId: string };
+
+export function createDiagnosisModelTurnSchema(sources: DiagnosisSource[]) {
+  const sourceIds = sources.map(({ id }) => id);
+  if (!sourceIds.length || new Set(sourceIds).size !== sourceIds.length) {
+    throw new DiagnosisResponseRejectedError("Invalid customer quote candidates");
+  }
+  return z.object({
+    facts: z.array(z.object({
+      key: z.enum(CHAT_FIELD_KEYS),
+      // A native enum constrains the provider to this latest message's quotes.
+      sourceId: z.enum(sourceIds),
+    }).strict()).max(DIAGNOSIS_LIMITS.proposals),
+    ...turnReplyShape,
+  }).strict().superRefine(validateTurnInteraction);
+}
+
+/** Resolve only server-owned candidates; the model cannot supply fact text. */
+export function resolveDiagnosisFactSelections(selections: DiagnosisFactSelection[], sources: DiagnosisSource[]): ChatPatch[] {
+  const byId = new Map(sources.map((source) => [source.id, source]));
+  return selections.flatMap(({ key, sourceId }) => {
+    const source = byId.get(sourceId);
+    return source ? [{ key, value: source.value, evidence: source.evidence }] : [];
+  });
 }
 
 export function acceptFactProposals(facts: ChatPatch[], latestMessage: { id: string; text: string }): ChatPatch[] {
   const state = createChatState();
   state.messages = [{ ...latestMessage, role: "user", created_at: new Date().toISOString() }];
   const seen = new Set<ChatPatch["key"]>();
-  return facts.map((proposal) => preserveUndecidedTiming(proposal, latestMessage.text)).filter((proposal) => {
+  return facts.filter((proposal) => {
     if (seen.has(proposal.key) || !latestMessage.text.includes(proposal.evidence)) return false;
     const result = applyChatPatches(state, [proposal], latestMessage.id);
     if (!result.facts[proposal.key]) return false;
@@ -58,16 +76,18 @@ export function createDiagnosisAgent({
   model,
   messages,
   facts,
-}: { apiKey: string; model: string; messages: DiagnosisRequest["messages"]; facts: ChatState["facts"] }) {
+  sources,
+}: { apiKey: string; model: string; messages: DiagnosisRequest["messages"]; facts: ChatState["facts"]; sources?: DiagnosisSource[] }) {
   const latest = messages[messages.length - 1];
   const latestMessage = { id: latest.id, text: latest.parts[0].text };
-  const instructions = `${buildDiagnosisPrompt(facts)}
+  const sourceTable = sources ?? buildDiagnosisSources(latestMessage.text);
+  const instructions = `${buildDiagnosisPrompt(facts, sourceTable)}
 
 고객용 응답의 전달 형식:
 최종 응답은 제공된 JSON 스키마에 맞춰 facts, message, choices, selectionMode와 필요한 경우 inputMode를 한 번에 작성합니다.
-facts에는 최신 사용자 메시지에 명시된 관련 사실을 모두 담습니다.
-여러 키의 사실은 facts 배열 하나에 담고, 같은 키를 중복하거나 메시지에 없는 사실을 만들지 않습니다.
-value와 evidence는 최신 사용자 메시지의 연속된 원문이어야 합니다. 관련 사실이 전혀 없을 때만 빈 배열을 사용합니다.
+facts의 각 항목에는 key와 sourceId만 작성합니다. 최신 고객 원문 후보 표에서 해당 key에 속하는 사실을 모두 포함하는 후보 중 가장 구체적인 후보 ID를 선택하며, 필요하면 전체 문장이나 넓은 후보를 사용합니다.
+여러 키의 사실은 facts 배열 하나에 담되 같은 key는 한 번만 사용합니다. 후보에 없는 사실을 추정하거나 value와 evidence를 새로 작성하지 않습니다.
+서버가 선택한 후보의 원문을 복원하고 검증합니다. 관련 사실이 전혀 없을 때만 facts를 빈 배열로 둡니다.
 message는 고객에게 보여 줄 답변과 다음 질문, choices는 그 질문 아래 표시할 짧은 답변 버튼입니다.
 고객의 고민이나 설명·비교 요청에 먼저 직접 답한 뒤, 필요한 경우에만 질문 하나와 선택지 2~4개를 줍니다. 정정·모름은 이미 말한 내용을 보존하며 처리하고, 종료·정리 요청에는 추가 질문 없이 choices를 빈 배열로 둡니다.
 selectionMode는 하나만 답할 수 있으면 single, 재산·채무·목표처럼 여러 답이 동시에 맞을 수 있으면 multiple입니다.
@@ -80,7 +100,7 @@ selectionMode는 하나만 답할 수 있으면 single, 재산·채무·목표�
   return new ToolLoopAgent({
     model: replyModel,
     instructions,
-    output: Output.object({ schema: diagnosisTurnSchema }),
+    output: Output.object({ schema: createDiagnosisModelTurnSchema(sourceTable) }),
     maxOutputTokens: 3_000,
     // Keep the trial's reasoning and response work within its existing budget.
     providerOptions: { google: { thinkingConfig: { thinkingLevel: model === DEFAULT_GOOGLE_DIAGNOSIS_MODEL ? "minimal" : "low" } } },
