@@ -56,8 +56,10 @@ export function getBriefReportContextFeedback(text: string, customerText: string
   const childAbsent = /자녀(?:는|가|이)?\s*(?:없|없는)|무자녀/.test(customerText);
   const inventedChildRecipient = (!/자녀|아들|딸/.test(customerText) || childAbsent)
     && /(?:증여|상속|이전)(?:를)?\s*(?:대상(?:인|자인)|고려하는|받는)\s*(?:자녀|아들|딸)/.test(text);
-  if ((hasPurpose || acknowledgesMissingPurpose) && !inventedChildRecipient) return null;
-  return "고객 원문에 없는 검토 목적이나 수증자·자녀를 전제했습니다. AI의 이전 질문·선택지·가이드는 고객의 답변이 아닙니다. 고객이 검토 목적을 말하지 않았다면 현재 판단에서 목적 확인이 우선임을 명시하고, 상속·증여·양도 중 하나를 임의로 정하지 마세요. 고객이 말하지 않은 자녀를 증여 대상으로 정하지 마세요. 확인된 사실과 아직 확인할 내용을 구분해 현재 판단·우선할 일·확인할 사항을 작성하고 facts=[]·choices=[]를 유지하세요.";
+  const inventedParent = (!/아버지|아버님|아빠|부친/.test(customerText) && /아버(?:지|님)\s*(?:의|께|에게|이|은|을|를|명의|노후)/.test(text))
+    || (!/어머니|어머님|엄마|모친/.test(customerText) && /어머(?:니|님)\s*(?:의|께|에게|이|은|을|를|명의|노후)/.test(text));
+  if ((hasPurpose || acknowledgesMissingPurpose) && !inventedChildRecipient && !inventedParent) return null;
+  return "고객 원문에 없는 검토 목적이나 수증자·가족관계를 전제했습니다. AI의 이전 질문·선택지·가이드는 고객의 답변이 아닙니다. 고객이 검토 목적을 말하지 않았다면 현재 판단에서 목적 확인이 우선임을 명시하고, 상속·증여·양도 중 하나를 임의로 정하지 마세요. 고객이 말하지 않은 자녀를 증여 대상으로 정하거나 아버님·어머님을 재산 소유자로 추정하지 마세요. 확인된 사실과 아직 확인할 내용을 구분해 현재 판단·우선할 일·확인할 사항을 작성하고 facts=[]·choices=[]를 유지하세요.";
 }
 
 /** Only the current, complete AI conclusion can become a draft brief report. */

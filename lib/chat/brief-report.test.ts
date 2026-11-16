@@ -40,6 +40,9 @@ test("inline and combined Markdown report headings split without losing numbered
   }
   const misleading = "현재 판단: 주식 증여 계획을 세워야 합니다. 우선할 일: 증여를 고려하는 자녀의 나이를 확인하세요. 확인할 사항: 과거 증여 내역과 보유 중인 다른 자산이 어느 정도인지 확인합니다.";
   assert(getBriefReportContextFeedback(misleading, "주식 10억"), "A later '보유 중인' phrase cannot establish the missing purpose");
+  const inventedParent = "현재 판단\n증여 실행 전 아버님의 노후 자금 확인이 필요합니다.";
+  assert(getBriefReportContextFeedback(inventedParent, "주식 10억을 증여하려고 합니다."));
+  assert.equal(getBriefReportContextFeedback(inventedParent, "아빠의 주식 10억을 증여하려고 합니다."), null);
 });
 
 function fixture(): ChatState {
