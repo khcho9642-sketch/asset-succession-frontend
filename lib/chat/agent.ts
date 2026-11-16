@@ -3,7 +3,7 @@ import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { diagnosisReplySchema, diagnosisSelectionModeSchema } from "./choices";
 import { applyChatPatches, createChatState, type ChatPatch, type ChatState } from "./intake";
 import { buildDiagnosisPrompt } from "./prompt";
-import { proposeFactsInputSchema, type DiagnosisRequest } from "./server";
+import { DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DIAGNOSIS_LIMITS, proposeFactsInputSchema, type DiagnosisRequest } from "./server";
 
 export const diagnosisTurnSchema = proposeFactsInputSchema.extend({
   ...diagnosisReplySchema.shape,
@@ -25,11 +25,26 @@ export const diagnosisTurnSchema = proposeFactsInputSchema.extend({
   }
 });
 
+/** Only an explicitly undecided timing label may be replaced by its own quote. */
+function preserveUndecidedTiming(proposal: ChatPatch, latestText: string): ChatPatch {
+  if (proposal.key !== "timing" || proposal.evidence.includes(proposal.value)
+    || proposal.evidence.length > DIAGNOSIS_LIMITS.proposalValueLength || !latestText.includes(proposal.evidence)) return proposal;
+  const label = proposal.value.replace(/\s+/g, "");
+  const undecidedLabel = /^(?:(?:진행|증여|상속|매각|양도)?(?:시기|시점|일정|날짜)(?:는|은)?[:：]?)?(?:아직)?(?:미정(?:임|입니다|이에요)?|(?:정하|결정하)지않(?:음|았(?:어요|습니다))|(?:정해|결정되)지않(?:음|았(?:어요|습니다))|안정했(?:음|어요|습니다))$/;
+  const undecidedQuote = /미정|(?:정하|결정하)지\s*않(?:았|음)|(?:정해|결정되)지\s*않(?:았|음)|안\s*정했/;
+  if (!undecidedLabel.test(label) || !undecidedQuote.test(proposal.evidence)) return proposal;
+  const temporalQuote = /(?:시기|시점|일정|날짜|일자|언제)(?:는|은|가|이|도|를|을)?\s*(?:아직\s*)?(?:미정|(?:정하|결정하)지\s*않(?:았|음)|(?:정해|결정되)지\s*않(?:았|음)|안\s*정했)/;
+  const prefix = latestText.slice(Math.max(0, latestText.indexOf(proposal.evidence) - 24), latestText.indexOf(proposal.evidence));
+  const temporalPrefix = /(?:시기|시점|일정|날짜|일자|언제)(?:는|은|가|이|도|를|을)?\s*(?:아직\s*)?$/;
+  if (!temporalQuote.test(proposal.evidence) && !temporalPrefix.test(prefix)) return proposal;
+  return { ...proposal, value: proposal.evidence };
+}
+
 export function acceptFactProposals(facts: ChatPatch[], latestMessage: { id: string; text: string }): ChatPatch[] {
   const state = createChatState();
   state.messages = [{ ...latestMessage, role: "user", created_at: new Date().toISOString() }];
   const seen = new Set<ChatPatch["key"]>();
-  return facts.filter((proposal) => {
+  return facts.map((proposal) => preserveUndecidedTiming(proposal, latestMessage.text)).filter((proposal) => {
     if (seen.has(proposal.key) || !latestMessage.text.includes(proposal.evidence)) return false;
     const result = applyChatPatches(state, [proposal], latestMessage.id);
     if (!result.facts[proposal.key]) return false;
@@ -68,7 +83,7 @@ selectionMode는 하나만 답할 수 있으면 single, 재산·채무·목표�
     output: Output.object({ schema: diagnosisTurnSchema }),
     maxOutputTokens: 3_000,
     // Keep the trial's reasoning and response work within its existing budget.
-    providerOptions: { google: { thinkingConfig: { thinkingLevel: "low" } } },
+    providerOptions: { google: { thinkingConfig: { thinkingLevel: model === DEFAULT_GOOGLE_DIAGNOSIS_MODEL ? "minimal" : "low" } } },
     maxRetries: 0,
     stopWhen: isStepCount(1),
     telemetry: { isEnabled: false, recordInputs: false, recordOutputs: false },

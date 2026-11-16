@@ -93,8 +93,8 @@ type DiagnosisConfigurationIssue =
 
 // Standard input/output are free only when the key belongs to a Google
 // Free Tier project; configuration alone cannot inspect its billing tier.
-export const DEFAULT_GOOGLE_DIAGNOSIS_MODEL = "gemini-3.8-flash";
-export const BACKUP_GOOGLE_DIAGNOSIS_MODEL = "gemini-3.5-flash-lite";
+export const DEFAULT_GOOGLE_DIAGNOSIS_MODEL = "gemini-3.5-flash-lite";
+export const BACKUP_GOOGLE_DIAGNOSIS_MODEL = "gemini-3.8-flash";
 
 function evaluateDiagnosisConfiguration() {
   const issues: DiagnosisConfigurationIssue[] = [];

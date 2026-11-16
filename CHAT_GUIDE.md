@@ -386,8 +386,8 @@
 
 - 실제 AI 연결 여부는 서버 설정과 연결 상태로 확인한다.
 - 2026-09-09 사용자 요청으로 Google Gemini Developer API 무료 티어에 직접 연결하도록 바꿨다. 서버의 `GOOGLE_GENERATIVE_AI_API_KEY`를 사용하며 `GEMINI_API_KEY`도 보조 이름으로 지원한다. Vercel Gateway 키·OIDC·이전 `AI_DIAGNOSIS_MODEL`은 사용하지 않는다. 키·토큰은 문서·Git·브라우저 코드에 넣지 않는다.
-- 이번 시험은 `VERCEL_ENV=preview`, `VERCEL_GIT_COMMIT_REF=codex/ai-conversation-trial`, `AI_DIAGNOSIS_FREE_TRIAL_ENABLED=true`, `GOOGLE_DIAGNOSIS_MODEL=gemini-3.8-flash`를 모두 명시하고 Google Free Tier 프로젝트 키를 제공했을 때만 활성화한다. 로컬·Production·다른 브랜치에서는 플래그와 키가 있어도 비활성화한다. 과거 브랜치의 암묵적 기본값은 없다. 설정 점검만으로 Google 프로젝트의 결제 상태를 확인할 수는 없으므로 무료 프로젝트 키를 별도로 확인해야 한다.
-- SDK 자체 재시도는 0회다. 일시적인 5xx·전송 오류·시간초과에만 같은 무료 프로젝트의 `gemini-3.5-flash-lite`를 한 번 사용한다. 시도당 최대 24초, 전체 최대 두 번이며 429·인증·결제·잘못된 요청·출력 검증 실패에는 보조 호출을 하지 않는다. Gateway나 유료 서비스로 전환하지 않는다.
+- 이번 시험은 `VERCEL_ENV=preview`, `VERCEL_GIT_COMMIT_REF=codex/ai-conversation-trial`, `AI_DIAGNOSIS_FREE_TRIAL_ENABLED=true`, `GOOGLE_DIAGNOSIS_MODEL=gemini-3.5-flash-lite`를 모두 명시하고 Google Free Tier 프로젝트 키를 제공했을 때만 활성화한다. 로컬·Production·다른 브랜치에서는 플래그와 키가 있어도 비활성화한다. 과거 브랜치의 암묵적 기본값은 없다. 설정 점검만으로 Google 프로젝트의 결제 상태를 확인할 수는 없으므로 무료 프로젝트 키를 별도로 확인해야 한다.
+- 기본 모델의 thinkingLevel은 `minimal`이며 SDK 자체 재시도는 0회다. 일시적인 5xx·전송 오류·시간초과에만 같은 무료 프로젝트의 `gemini-3.8-flash`를 `low` 설정으로 한 번 사용한다. 시도당 최대 24초, 전체 최대 두 번이며 429·인증·결제·잘못된 요청·출력 검증 실패에는 보조 호출을 하지 않는다. Gateway나 유료 서비스로 전환하지 않는다.
 - 활성화 스위치가 꺼져 있거나 키·모델·가이드가 준비되지 않았으면 ‘AI 연결 전 · 입력 정리 모드’를 사용한다. 설정 준비는 실제 인증 성공·Google 프로젝트 무료 티어·응답 품질 검증을 뜻하지 않는다. 무료 프로젝트 키와 설정 조건은 [구글 무료 채팅 시험 안내](docs/google-free-chat-trial.md)를 따른다.
 - 입력 정리 모드는 `lib/chat/local.ts`의 제한된 규칙으로 소유자·자산 질문과 선택지를 제공한다. 이 MD를 저장한 것만으로 자연대화 예시가 구현되었다고 보고하지 않는다.
 - AI 설정이 준비되고 고객이 직접 입력 모드를 선택하지 않았으면 첫 주제 선택과 모든 후속 선택·자유 입력을 `/api/diagnosis`로 보낸다. 제공자 시도마다 `facts`, `message`, `choices`, `selectionMode`와 필요한 경우 `inputMode`를 한 번의 엄격한 구조화 생성으로 받는다. 서버가 최신 고객 원문을 기준으로 사실 제안을 검증하고, 수락된 사실과 고객용 응답 필드만 화면에 전달한다. 선택지 생성을 위한 별도 호출이나 원본 JSON 표시는 하지 않는다.

@@ -91,7 +91,7 @@ function installGoogleMock(t: TestContext, steps: Step[]): RequestLog[] {
     assert.equal(request.method, "POST");
     assert.equal(request.headers.get("x-goog-api-key"), SYNTHETIC_KEY);
     assert.equal(body.generationConfig.maxOutputTokens, 3_000);
-    assert.equal(body.generationConfig.thinkingConfig.thinkingLevel, "low");
+    assert.equal(body.generationConfig.thinkingConfig.thinkingLevel, step.model === PRIMARY ? "minimal" : "low");
     assert.equal(body.generationConfig.responseMimeType, "application/json");
     assert.deepEqual(body.generationConfig.responseSchema?.required, ["facts", "message", "choices", "selectionMode"]);
     assert.ok(body.generationConfig.responseSchema?.properties.facts);
@@ -374,6 +374,39 @@ test("one invalid fact withholds the whole answer without a second model call", 
   assert.equal(JSON.stringify(chunks).includes("대출 2억"), false);
 });
 
+test("Lite keeps an explicitly undecided timing as the original quote in a complete summary turn", async (t) => {
+  const text = "시기는 아직 정하지 않았고 과거 증여는 기억이 안 나요. 제 주식 1억도 함께 검토하고 싶어요. 이제 질문 없이 정리만 해주세요.";
+  const evidence = "시기는 아직 정하지 않았고";
+  const facts: ChatPatch[] = [
+    { key: "timing", value: "미정", evidence },
+    { key: "pastGifts", value: "과거 증여는 기억이 안 나요", evidence: "과거 증여는 기억이 안 나요" },
+    { key: "financialAssets", value: "제 주식 1억", evidence: "제 주식 1억" },
+    { key: "unconfirmed", value: "과거 증여는 기억이 안 나요", evidence: "과거 증여는 기억이 안 나요" },
+  ];
+  const expected: DiagnosisReply = { message: "시기는 아직 정하지 않으셨고 과거 증여는 확인이 필요해요. 주식 1억도 함께 검토할 내용으로 남겨둘게요.", choices: [], selectionMode: "single" };
+  const requests = installGoogleMock(t, [turn(PRIMARY, facts, expected)]);
+  const history: DiagnosisRequest["messages"] = [{ id: "gift-summary-unknown", role: "user", parts: [{ type: "text", text }] }];
+  assertWinningReply(await readChunks(response({ messages: history })), facts.map((fact) => fact.key === "timing" ? { ...fact, value: evidence } : fact), expected);
+  assert.equal(requests.length, 1);
+});
+
+test("a summary still rejects invented dates and amounts even with valid undecided timing", async (t) => {
+  const text = "시기는 아직 정하지 않았어요. 제 주식 1억도 함께 검토하고 싶어요.";
+  const evidence = "시기는 아직 정하지 않았어요";
+  for (const invalid of [
+    { key: "timing", value: "내년 5월", evidence },
+    { key: "financialAssets", value: "제 주식 2억", evidence: "제 주식 1억" },
+  ] satisfies ChatPatch[]) {
+    await t.test(invalid.key, async (subtest) => {
+      const proposals: ChatPatch[] = invalid.key === "timing" ? [invalid] : [{ key: "timing", value: "미정", evidence }, invalid];
+      const requests = installGoogleMock(subtest, [turn(PRIMARY, proposals, { message: "알려주신 내용을 정리할게요.", choices: [], selectionMode: "single" })]);
+      const history: DiagnosisRequest["messages"] = [{ id: `strict-summary-${invalid.key}`, role: "user", parts: [{ type: "text", text }] }];
+      assertOnlyPublicFailure(await readChunks(response({ messages: history })), "AI_RESPONSE_REJECTED");
+      assert.equal(requests.length, 1);
+    });
+  }
+});
+
 test("a model cannot declare calculation complete or claim a result-screen handoff", async (t) => {
   const history: DiagnosisRequest["messages"] = [{
     id: "synthetic-spouse-answer",
@@ -405,7 +438,7 @@ test("retryable primary HTTP failures switch once to the free Google backup", as
       const requests = installGoogleMock(subtest, [failure(PRIMARY, status), turn(BACKUP)]);
       const chunks = await readChunks(response());
       assert.deepEqual(requests.map((request) => request.model), [PRIMARY, BACKUP]);
-      assert.deepEqual(requests[1].body, requests[0].body);
+      assert.deepEqual(requests[1].body, { ...requests[0].body, generationConfig: { ...requests[0].body.generationConfig, thinkingConfig: { thinkingLevel: "low" } } });
       assertWinningReply(chunks, backupProposals);
     });
   }
@@ -428,7 +461,7 @@ test("backup preserves prior questions, short user answers and existing facts ac
   const requests = installGoogleMock(t, [failure(PRIMARY, 503), turn(BACKUP, proposals, expected)]);
   const chunks = await readChunks(response({ messages: history, facts: existingFacts }));
   assert.deepEqual(requests.map((request) => request.model), [PRIMARY, BACKUP]);
-  assert.deepEqual(requests[1].body, requests[0].body);
+  assert.deepEqual(requests[1].body, { ...requests[0].body, generationConfig: { ...requests[0].body.generationConfig, thinkingConfig: { thinkingLevel: "low" } } });
   assert.deepEqual(requests[1].body.contents.map((content) => ({ role: content.role, text: content.parts.map((part) => part.text).join("") })),
     history.map((message) => ({ role: message.role === "assistant" ? "model" : "user", text: message.parts[0].text })));
   const instructions = requests[1].body.systemInstruction?.parts.map((part) => part.text).join("") ?? "";

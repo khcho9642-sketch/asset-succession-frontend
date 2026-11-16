@@ -319,7 +319,7 @@ test("Google trial requires the exact Preview branch and every explicit setting"
     throw new Error("Readiness tests must never call a provider");
   });
   try {
-    assert.equal(DEFAULT_GOOGLE_DIAGNOSIS_MODEL, "gemini-3.8-flash");
+    assert.equal(DEFAULT_GOOGLE_DIAGNOSIS_MODEL, "gemini-3.5-flash-lite");
     const invalid: Array<[Record<string, string | undefined>, string[]]> = [
       [{ VERCEL_ENV: undefined }, ["PREVIEW_REQUIRED"]],
       [{ VERCEL_ENV: "development" }, ["PREVIEW_REQUIRED"]],
@@ -334,7 +334,7 @@ test("Google trial requires the exact Preview branch and every explicit setting"
       [{ GOOGLE_DIAGNOSIS_MODEL: undefined }, ["MODEL_MISSING"]],
       [{ GOOGLE_DIAGNOSIS_MODEL: "" }, ["MODEL_MISSING"]],
       [{ GOOGLE_DIAGNOSIS_MODEL: "google/gemini-3.8-flash" }, ["MODEL_INVALID"]],
-      [{ GOOGLE_DIAGNOSIS_MODEL: "gemini-3.5-flash-lite" }, ["MODEL_INVALID"]],
+      [{ GOOGLE_DIAGNOSIS_MODEL: "gemini-3.8-flash" }, ["MODEL_INVALID"]],
       [{ GOOGLE_GENERATIVE_AI_API_KEY: undefined }, ["GOOGLE_API_KEY_MISSING"]],
     ];
     for (const [overrides, issues] of invalid) {

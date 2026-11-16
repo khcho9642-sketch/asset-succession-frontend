@@ -9,12 +9,14 @@
 - `VERCEL_ENV=preview`
 - `VERCEL_GIT_COMMIT_REF=codex/ai-conversation-trial`
 - `AI_DIAGNOSIS_FREE_TRIAL_ENABLED=true`
-- `GOOGLE_DIAGNOSIS_MODEL=gemini-3.8-flash`
+- `GOOGLE_DIAGNOSIS_MODEL=gemini-3.5-flash-lite`
 - 서버 전용 `GOOGLE_GENERATIVE_AI_API_KEY`가 존재
 
 세 가지 설정은 해당 Preview 브랜치에만 저장한다. 키는 기존 Google AI Studio **APCI** 프로젝트의 무료 등급 키를 사용하며 저장소·브라우저 번들·로그에 기록하지 않는다. 결제 연결이나 등급 변경은 하지 않는다. 무료 서비스에 실제 고객의 개인정보·민감정보·비밀정보를 입력하지 않는다. 시험 배너가 표시되는 화면에서 가상 정보만 사용한다. Vercel 배포 보호는 유지한다.
 
-실패 시 다른 서비스로 전환하지 않는다. 동일 프로젝트의 `gemini-3.5-flash-lite`는 일시적인 5xx·연결 실패·시간 초과에만 한 번 사용한다. 인증·할당량·결제·잘못된 입력·검증 실패는 즉시 사용자에게 알린다.
+기본 모델은 `gemini-3.5-flash-lite`의 `minimal` 설정이다. 초기 `gemini-3.8-flash` 시험에서 복합 입력의 시간 초과와 5xx가 관측되어 짧은 상담 응답에 맞는 모델로 조정했다. 실패 시 다른 서비스로 전환하지 않는다. 동일 프로젝트의 `gemini-3.8-flash`는 일시적인 5xx·연결 실패·시간 초과에만 한 번 사용한다. 인증·할당량·결제·잘못된 입력·검증 실패는 즉시 사용자에게 알린다. 두 모델 모두 해당 무료 등급 프로젝트의 표준 텍스트 API만 사용한다.
+
+2026-11-16 기준 [Google 공식 가격표의 Flash-Lite 표준 입력·출력 무료 항목](https://aistudio.google.com/docs/pricing#gemini-3.5-flash-lite)과 AI Studio의 APCI 무료 등급을 확인했다. Google 검색·지도 그라운딩, 캐시 생성, 유료 모델은 이 시험에서 호출하지 않는다.
 
 ## 답변과 기억
 

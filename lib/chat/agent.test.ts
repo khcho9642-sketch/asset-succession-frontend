@@ -1,11 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { NoObjectGeneratedError } from "ai";
-import { createDiagnosisAgent, diagnosisTurnSchema } from "./agent";
+import { acceptFactProposals, createDiagnosisAgent, diagnosisTurnSchema } from "./agent";
 import type { ChatPatch } from "./intake";
-import { getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
+import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
 
-const MODEL = "gemini-3.8-flash";
+const MODEL = DEFAULT_GOOGLE_DIAGNOSIS_MODEL;
 const SYNTHETIC_KEY = "synthetic-google-key-never-valid";
 const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
 const messages: DiagnosisRequest["messages"] = [{
@@ -13,6 +13,39 @@ const messages: DiagnosisRequest["messages"] = [{
   role: "user",
   parts: [{ type: "text", text: "증여를 준비하고 있어요. 제 아파트를 아들에게 주려고 해요." }],
 }];
+
+test("only explicit undecided timing labels are preserved as their latest customer quote", () => {
+  const text = "시기는 아직 정하지 않았고 과거 증여는 기억이 안 나요. 제 주식 1억도 함께 검토하고 싶어요.";
+  const evidence = "시기는 아직 정하지 않았고";
+  for (const value of ["미정", "시기 미정", "아직 미정", "정하지 않음", "아직 정하지 않았어요"]) {
+    assert.deepEqual(acceptFactProposals([{ key: "timing", value, evidence }], { id: "undecided", text }), [{ key: "timing", value: evidence, evidence }]);
+  }
+  const shortEvidence = "아직 정하지 않았고";
+  assert.deepEqual(acceptFactProposals([{ key: "timing", value: "미정", evidence: shortEvidence }], { id: "undecided", text }), [{ key: "timing", value: shortEvidence, evidence: shortEvidence }]);
+  const alreadyQuoted = { key: "timing" as const, value: "정하지 않았고", evidence };
+  assert.deepEqual(acceptFactProposals([alreadyQuoted], { id: "undecided", text }), [alreadyQuoted]);
+});
+
+test("the timing exception cannot invent dates, amounts, family facts or other unknown fields", () => {
+  const latest = { id: "strict-unknown", text: "시기는 아직 정하지 않았고 과거 증여는 기억이 안 나요. 제 주식 1억도 함께 검토하고 싶어요." };
+  const evidence = "시기는 아직 정하지 않았고";
+  for (const proposal of [
+    { key: "timing", value: "내년 5월", evidence },
+    { key: "timing", value: "미정 2030년", evidence },
+    { key: "timing", value: "1억", evidence },
+    { key: "financialAssets", value: "미정", evidence },
+    { key: "financialAssets", value: "제 주식 2억", evidence: "제 주식 1억" },
+    { key: "children", value: "자녀 2명", evidence },
+    { key: "pastGifts", value: "미정", evidence: "과거 증여는 기억이 안 나요" },
+    { key: "timing", value: "미정", evidence: "시기는 아직 정하지 않았어요" },
+  ] satisfies ChatPatch[]) assert.deepEqual(acceptFactProposals([proposal], latest), []);
+  for (const text of ["시기는 내년이에요", "금액은 아직 정하지 않았고 시기는 내년이에요"]) {
+    assert.deepEqual(acceptFactProposals([{ key: "timing", value: "미정", evidence: text }], { id: "not-undecided-timing", text }), []);
+  }
+  const tooLong = `시기는 아직 정하지 않았고 ${"확인할 내용 ".repeat(100)}`;
+  assert.ok(tooLong.length > 600);
+  assert.deepEqual(acceptFactProposals([{ key: "timing", value: "미정", evidence: tooLong }], { id: "long-evidence", text: tooLong }), []);
+});
 
 test("new model turns ask one question with 2–4 choices or finish without a question", () => {
   const base = { facts: [], message: "누구에게 주려고 하세요?", choices: ["자녀", "배우자"], selectionMode: "single" };
@@ -77,7 +110,7 @@ test("Google SDK returns facts, message and choices in exactly one strict struct
   assert.equal(result.steps.length, 1);
   const request = requests[0];
   assert.equal(request.generationConfig.maxOutputTokens, 3_000);
-  assert.equal(request.generationConfig.thinkingConfig.thinkingLevel, "low");
+  assert.equal(request.generationConfig.thinkingConfig.thinkingLevel, "minimal");
   assert.equal(request.generationConfig.responseMimeType, "application/json");
   assert.ok(request.generationConfig.responseSchema?.properties.facts);
   assert.ok(request.generationConfig.responseSchema?.properties.message);
@@ -99,6 +132,25 @@ test("the strict combined schema rejects malformed output without an SDK retry",
       .generate({ messages: [{ role: "user", content: messages[0].parts[0].text }] }),
     (error: unknown) => NoObjectGeneratedError.isInstance(error),
   );
+  assert.equal(calls, 1);
+});
+
+test("the free Flash backup retains low reasoning while Lite uses minimal", async (t) => {
+  assert.equal(MODEL, "gemini-3.5-flash-lite");
+  assert.equal(BACKUP_GOOGLE_DIAGNOSIS_MODEL, "gemini-3.8-flash");
+  let calls = 0;
+  const expected = { facts: [], message: "현재 알려주신 내용으로 검토할 부분을 정리할게요.", choices: [], selectionMode: "single" };
+  t.mock.method(globalThis, "fetch", async (input: RequestInfo | URL, init?: RequestInit) => {
+    calls += 1;
+    const request = new Request(input, init);
+    assert.equal(request.url, `https://generativelanguage.googleapis.com/v1beta/models/${BACKUP_GOOGLE_DIAGNOSIS_MODEL}:generateContent`);
+    const body = JSON.parse(await request.text()) as GoogleRequestBody;
+    assert.equal(body.generationConfig.thinkingConfig.thinkingLevel, "low");
+    return googleResponse(JSON.stringify(expected));
+  });
+  const result = await createDiagnosisAgent({ apiKey: SYNTHETIC_KEY, model: BACKUP_GOOGLE_DIAGNOSIS_MODEL, messages, facts: {} })
+    .generate({ messages: [{ role: "user", content: messages[0].parts[0].text }] });
+  assert.deepEqual(result.output, expected);
   assert.equal(calls, 1);
 });
 
