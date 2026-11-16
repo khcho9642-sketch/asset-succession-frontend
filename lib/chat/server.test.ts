@@ -5,7 +5,7 @@ import path from "node:path";
 import test from "node:test";
 import { GET, POST } from "../../app/api/diagnosis/route";
 import { acceptFactProposals } from "./agent";
-import { assertSameOrigin, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DIAGNOSIS_LIMITS, diagnosisRequestSchema, getDiagnosisConfiguration, getDiagnosisPublicErrorCode, proposeFactsInputSchema } from "./server";
+import { ALTERNATE_GOOGLE_DIAGNOSIS_MODEL, assertSameOrigin, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DIAGNOSIS_LIMITS, diagnosisRequestSchema, getDiagnosisConfiguration, getDiagnosisPublicErrorCode, proposeFactsInputSchema } from "./server";
 
 function request(body: unknown, extraHeaders: Record<string, string> = {}) {
   return new Request("https://example.test/api/diagnosis", {
@@ -312,6 +312,9 @@ test("public free Google AI requires production main and its own explicit switch
     GOOGLE_GENERATIVE_AI_API_KEY: "unit-test-free-tier-key" };
   try {
     setDiagnosisEnvironment(approved);
+    assert.deepEqual(await GET().json(), { configured: true, issues: [], mode: "production" });
+    setDiagnosisEnvironment({ ...approved, GOOGLE_DIAGNOSIS_MODEL: ALTERNATE_GOOGLE_DIAGNOSIS_MODEL });
+    assert.deepEqual(getDiagnosisConfiguration(), { apiKey: approved.GOOGLE_GENERATIVE_AI_API_KEY, model: "gemini-3.1-flash-lite" });
     assert.deepEqual(await GET().json(), { configured: true, issues: [], mode: "production" });
     for (const flag of [undefined, "false", "TRUE", "1"]) {
       setDiagnosisEnvironment({ ...approved, AI_DIAGNOSIS_FREE_TRIAL_ENABLED: "true" });

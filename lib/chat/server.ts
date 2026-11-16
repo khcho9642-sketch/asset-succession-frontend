@@ -96,6 +96,7 @@ type DiagnosisConfigurationIssue =
 // Standard input/output are free only when the key belongs to a Google
 // Free Tier project; configuration alone cannot inspect its billing tier.
 export const DEFAULT_GOOGLE_DIAGNOSIS_MODEL = "gemini-3.5-flash-lite";
+export const ALTERNATE_GOOGLE_DIAGNOSIS_MODEL = "gemini-3.1-flash-lite";
 export const BACKUP_GOOGLE_DIAGNOSIS_MODEL = "gemini-3.8-flash";
 
 function evaluateDiagnosisConfiguration() {
@@ -115,7 +116,7 @@ function evaluateDiagnosisConfiguration() {
   // selecting a different service or its billing path after the migration.
   const model = process.env.GOOGLE_DIAGNOSIS_MODEL?.trim();
   if (!model) issues.push("MODEL_MISSING");
-  else if (model !== DEFAULT_GOOGLE_DIAGNOSIS_MODEL) issues.push("MODEL_INVALID");
+  else if (model !== DEFAULT_GOOGLE_DIAGNOSIS_MODEL && model !== ALTERNATE_GOOGLE_DIAGNOSIS_MODEL) issues.push("MODEL_INVALID");
   if (!apiKey) issues.push("GOOGLE_API_KEY_MISSING");
   return { configuration: issues.length === 0 && model && apiKey ? { apiKey, model } : null, issues };
 }
