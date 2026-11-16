@@ -100,6 +100,34 @@ test("company shares in a succession context recommend business quotes without a
   assert.ok(getDiagnosisSourceHints(mixedText, checked(mixedText)).financialAssets?.length);
 });
 
+test("debt recommendations omit a comparison tail when a shorter quote covers the same facts", () => {
+  const text = "대출은 5억이고 보증금은 모르겠어요. 증여랑 상속 중 뭐가 나을까요?";
+  const sources = checked(text), before = JSON.stringify(sources), hints = getDiagnosisSourceHints(text, sources);
+  const values = (key: "debt" | "unconfirmed") => (hints[key] ?? []).map(id => sources.find(source => source.id === id)!.value);
+  assert.ok(sources.some(source => source.value.includes("대출은 5억") && source.value.includes("뭐가 나을까요")), "broad sources remain available");
+  assert.ok(values("debt").some(value => value.includes("대출은 5억") && value.includes("보증금은 모르겠어요")));
+  assert.ok(values("debt").every(value => !value.includes("뭐가 나을까요")));
+  assert.ok(values("unconfirmed").every(value => !value.includes("뭐가 나을까요")));
+  assert.equal(JSON.stringify(sources), before);
+});
+
+test("pruning preserves repeated loan amounts and multiple unknown targets", () => {
+  for (const pair of [["3억", "2억"], ["3억", "3억"]]) {
+    const text = `대출 ${pair[0]}, 대출 ${pair[1]}. 증여랑 상속 중 뭐가 나을까요?`;
+    const sources = checked(text), hints = getDiagnosisSourceHints(text, sources);
+    const value = sources.find(source => source.id === hints.debt?.[0])!.value;
+    assert.equal((value.match(/대출/g) ?? []).length, 2);
+    assert.ok(value.includes(pair[0]) && value.includes(pair[1]));
+    assert.equal(value.includes("뭐가 나을까요"), false);
+  }
+  const text = "대출 모름, 보증금 모름. 증여랑 상속 중 뭐가 나을까요?";
+  const sources = checked(text), hints = getDiagnosisSourceHints(text, sources);
+  assert.ok(hints.unconfirmed?.some(id => {
+    const value = sources.find(source => source.id === id)!.value;
+    return value.includes("대출 모름") && value.includes("보증금 모름");
+  }));
+});
+
 test("long clauses are bounded and chunks preserve ordinary number-unit tokens", () => {
   const text = `${"확인할 설명 ".repeat(82)}예금 1.5억 원, 대출 5,000만원. ${"추가 원문 ".repeat(210)}마지막에는 보증금 모름`;
   const sources = checked(text);

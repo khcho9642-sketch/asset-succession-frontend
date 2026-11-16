@@ -122,6 +122,30 @@ function subjectQuotes(text: string): SuggestedQuote[] {
   return result;
 }
 
+function hintCoverage(key: "debt" | "unconfirmed", value: string): string | null {
+  const fields = key === "debt" ? FIELD_SUBJECTS.filter(([field]) => field === "debt") : FIELD_SUBJECTS;
+  const subjects = fields.flatMap(([field, expression]) => [...value.matchAll(expression)].map(match => `${field}:${match[0].replace(/\s/g, "")}`));
+  subjects.push(...(value.match(/[가-힣A-Za-z0-9]+은행|아버지|어머니|본인|아들|딸|손자녀|손자|손녀|나이|연령|만기|금리|이자|계약|이름/g) ?? []));
+  if (!subjects.length) return null;
+  return JSON.stringify({
+    subjects: subjects.sort(),
+    numbers: value.match(/\d+(?:,\d+)*(?:\.\d+)?/g) ?? [],
+    unknowns: [...value.matchAll(new RegExp(UNKNOWN_QUOTE.source, "gi"))].length,
+  });
+}
+
+/** Drop only redundant recommendations; the complete source table remains selectable. */
+function pruneBroadHints(hints: Partial<Record<ChatFieldKey, string[]>>, sources: DiagnosisSource[]): void {
+  for (const key of ["debt", "unconfirmed"] as const) {
+    const candidates = (hints[key] ?? []).flatMap(id => sources.filter(source => source.id === id));
+    hints[key] = candidates.filter(broad => {
+      const coverage = hintCoverage(key, broad.value);
+      return coverage === null || !candidates.some(short => short.value.length < broad.value.length && broad.value.includes(short.value) && hintCoverage(key, short.value) === coverage);
+    }).map(source => source.id);
+    if (!hints[key]?.length) delete hints[key];
+  }
+}
+
 /** Give the model IDs for literal customer quotes, without inventing a role or a value. */
 export function buildDiagnosisSources(text: string): DiagnosisSource[] {
   const result: DiagnosisSource[] = [];
@@ -184,5 +208,6 @@ export function getDiagnosisSourceHints(text: string, sources: DiagnosisSource[]
     if (/생활비|노후|걱정|고민|비교|뭐가[\s\S]{0,12}나|어떤[\s\S]{0,12}나/.test(sentence)) recommend("goal", sentence);
     if (UNKNOWN_QUOTE.test(sentence)) recommend("unconfirmed", sentence);
   }
+  pruneBroadHints(hints, sources);
   return hints;
 }
