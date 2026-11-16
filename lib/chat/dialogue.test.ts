@@ -58,6 +58,8 @@ test("a confirmation choice inherits the natural past-gift target instead of a c
   const previous = "상속과 증여를 비교하실 때 대출과 함께 아버지가 가족에게 이미 주신 재산이 있는지도 확인이 필요해요.";
   const repeated = reply("과거에 가족에게 이미 주신 재산이 따로 있으신가요?", ["있어요", "없어요", "확인이 필요해요"]);
   assert.deepEqual(getDialogueQualityIssue("확인이 필요해요", {}, repeated, previous)?.subjects, ["past_gifts"]);
+  assert.deepEqual(getDialogueQualityIssue("확인이 필요해요", {}, repeated, "상속과 증여를 비교하실 수 있도록 아버지의 과거 증여 내역이 있는지 확인해 주세요.")?.subjects, ["past_gifts"]);
+  assert.deepEqual(getDialogueQualityIssue("확인이 필요해요", {}, reply("과거 증여 내역은 확인이 필요하군요. 아버지가 가족에게 이미 주신 재산이 또 있으신가요?", ["있어요", "없어요", "확인이 필요해요"]), "상속과 증여를 비교하실 수 있도록 아버지의 과거 증여 내역이 있는지 확인해 주세요.")?.subjects, ["past_gifts"]);
   assert.equal(getDialogueQualityIssue("확인이 필요해요", {}, reply("대출은 얼마인가요?"), previous), null);
   assert.equal(getDialogueQualityIssue("확인이 필요해요", {}, repeated, "대출과 보증금 내역 확인이 필요해요."), null);
   const stored: ChatState["facts"] = { pastGifts: { value: "확인이 필요해요", evidence: "확인이 필요해요", messageId: "past" } };
