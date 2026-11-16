@@ -121,6 +121,7 @@
 .sendButton:hover { background: #972f22; }
 .composerMeta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 15px; margin-top: 9px; color: var(--soft); font-size: 13px; }
 .composerMeta > span { flex-shrink: 0; }
+.composerMeta .privacyNotice { display: block; flex: 1 1 100%; min-width: 0; overflow-wrap: anywhere; }
 .jumpButton { display: flex; position: absolute; bottom: 195px; left: 50%; align-items: center; gap: 7px; transform: translateX(-50%); color: var(--ink); border: 1px solid var(--line); border-radius: 30px; padding: 8px 14px; background: var(--sheet); box-shadow: 0 3px 14px #45351c15; white-space: nowrap; font-size: 14px; }
 .summary { min-width: 0; margin-top: 100px; background: #e8e1d3; border-top: 2px solid var(--brass); }
 .summaryToggle { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 24px 22px 18px; text-align: left; cursor: default !important; }

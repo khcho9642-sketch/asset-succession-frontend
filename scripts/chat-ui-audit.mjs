@@ -23,7 +23,7 @@ const runFile = promisify(execFile);
 let postCount = 0;
 await mkdir(outputDir, { recursive: true });
 
-async function newContext(browser, { width = 1440, configured = false, post, storage } = {}) {
+async function newContext(browser, { width = 1440, configured = false, mode, post, storage } = {}) {
   const context = await browser.newContext({ viewport: { width, height: width === 390 ? 844 : 1000 }, reducedMotion: "reduce" });
   // addInitScript also runs for the initial opaque about:blank document.
   // Seed storage only after navigation reaches the application origin.
@@ -39,7 +39,7 @@ async function newContext(browser, { width = 1440, configured = false, post, sto
     }
   }, { key: draftKey, origin: applicationOrigin });
   await context.route("**/api/diagnosis", async route => {
-    if (route.request().method() === "GET") return route.fulfill({ json: { configured }, headers: { "cache-control": "no-store" } });
+    if (route.request().method() === "GET") return route.fulfill({ json: { configured, ...(mode ? { mode } : {}) }, headers: { "cache-control": "no-store" } });
     postCount += 1;
     if (post) {
       try { return await post(route); }
@@ -238,7 +238,7 @@ try {
     let requests = 0;
     const factsText = "고인 명의 주식 10억, 유언 모름";
     const reviewText = "현재 판단\n자녀 배제 가능성을 확정하기 전에 유언과 상속인 관계 확인이 우선입니다.\n\n우선할 일\n주식 잔고 내역과 유언 관련 자료를 준비합니다.\n\n확인할 사항\n주식 평가액과 유언은 확인 전이며 세액은 아직 계산하지 않았습니다.";
-    const context = await newContext(browser, { width, configured: true, post: async route => {
+    const context = await newContext(browser, { width, configured: true, mode: "production", post: async route => {
       requests++;
       const request = route.request().postDataJSON();
       if (requests === 1) return route.fulfill(sseReply({ messageId: "brief-intake", text: JSON.stringify({ message: "어느 분의 재산인지 확인해 주세요.", choices: ["고인", "본인"], selectionMode: "single" }), proposals: [
@@ -253,6 +253,8 @@ try {
     } });
     const page = await context.newPage();
     await openChat(page, { configured: true });
+    assert.equal(await page.getByText("가상 상담 시험 · 실제 개인정보를 입력하지 마세요.", { exact: true }).count(), 0, "Public production AI must not show the preview trial banner");
+    await page.getByText("대화는 Google Gemini로 전송됩니다. 주민번호·계좌번호는 입력하지 마세요.", { exact: true }).waitFor();
     await send(page, factsText);
     await waitFact(page, "financialAssets", "주식 10억");
     await page.getByRole("button", { name: "간략 검토보고서 만들기", exact: true }).click();

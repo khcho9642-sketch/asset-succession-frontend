@@ -87,6 +87,8 @@ type DiagnosisConfigurationIssue =
   | "PREVIEW_REQUIRED"
   | "TRIAL_BRANCH_REQUIRED"
   | "FREE_TRIAL_NOT_ENABLED"
+  | "PRODUCTION_BRANCH_REQUIRED"
+  | "PRODUCTION_NOT_ENABLED"
   | "MODEL_MISSING"
   | "MODEL_INVALID"
   | "GOOGLE_API_KEY_MISSING";
@@ -98,14 +100,16 @@ export const BACKUP_GOOGLE_DIAGNOSIS_MODEL = "gemini-3.8-flash";
 
 function evaluateDiagnosisConfiguration() {
   const issues: DiagnosisConfigurationIssue[] = [];
-  // All conditions are explicit. A saved key, an old branch, local development
-  // or even an enabled Production flag must never activate this Preview trial.
-  if (process.env.VERCEL_ENV !== "preview") issues.push("PREVIEW_REQUIRED");
-  if (process.env.VERCEL_GIT_COMMIT_REF !== "codex/ai-conversation-trial") issues.push("TRIAL_BRANCH_REQUIRED");
-  const trialEnabled = process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED;
-  // This switch cannot inspect the Google project's billing tier. Use a key
-  // from a Free Tier project; never enable Cloud Billing for this trial.
-  if (trialEnabled?.trim() !== "true") issues.push("FREE_TRIAL_NOT_ENABLED");
+  // Each environment needs an explicit switch. Production uses the existing
+  // Free Tier project key; no billing upgrade or paid-provider fallback.
+  if (process.env.VERCEL_ENV === "production") {
+    if (process.env.VERCEL_GIT_COMMIT_REF !== "main") issues.push("PRODUCTION_BRANCH_REQUIRED");
+    if (process.env.AI_DIAGNOSIS_PRODUCTION_ENABLED?.trim() !== "true") issues.push("PRODUCTION_NOT_ENABLED");
+  } else {
+    if (process.env.VERCEL_ENV !== "preview") issues.push("PREVIEW_REQUIRED");
+    if (process.env.VERCEL_GIT_COMMIT_REF !== "codex/ai-conversation-trial") issues.push("TRIAL_BRANCH_REQUIRED");
+    if (process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED?.trim() !== "true") issues.push("FREE_TRIAL_NOT_ENABLED");
+  }
   const apiKey = (process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? process.env.GEMINI_API_KEY)?.trim();
   // Provider-specific settings keep old Gateway keys/models from silently
   // selecting a different service or its billing path after the migration.
@@ -119,7 +123,9 @@ function evaluateDiagnosisConfiguration() {
 /** Public readiness details contain codes only, never environment values. */
 export function getDiagnosisConfigurationStatus() {
   const { configuration, issues } = evaluateDiagnosisConfiguration();
-  return { configured: Boolean(configuration), issues };
+  return { configured: Boolean(configuration), issues,
+    ...(configuration && process.env.VERCEL_ENV === "production" ? { mode: "production" as const } : {}),
+  };
 }
 
 export function getDiagnosisConfiguration() {

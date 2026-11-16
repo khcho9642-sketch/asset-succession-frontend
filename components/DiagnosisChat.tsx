@@ -52,6 +52,7 @@ export function DiagnosisChat() {
   const [input, setInput] = useState("");
   const [hydrated, setHydrated] = useState(false);
   const [configured, setConfigured] = useState<boolean | null>(null);
+  const [productionAI, setProductionAI] = useState(false);
   const [directMode, setDirectMode] = useState(false);
   const [messageOrigins, setMessageOrigins] = useState<Record<string, MessageOrigin>>({});
   const [connectionError, setConnectionError] = useState(false);
@@ -191,6 +192,7 @@ export function DiagnosisChat() {
         const data = await response.json();
         if (typeof data.configured !== "boolean") throw new Error("connection");
         setConfigured(data.configured);
+        setProductionAI(data.mode === "production");
       })
       .catch(() => { setConfigured(false); setConnectionError(true); })
       .finally(() => window.clearTimeout(timer));
@@ -478,7 +480,7 @@ export function DiagnosisChat() {
               else selectDirectMode();
             }}>{directMode ? "AI 대화로 전환" : "직접 정리 모드"}</button>}
           </div>
-          {aiMode && <p className={styles.trialNotice}>가상 상담 시험 · 실제 개인정보를 입력하지 마세요.</p>}
+          {aiMode && !productionAI && <p className={styles.trialNotice}>가상 상담 시험 · 실제 개인정보를 입력하지 마세요.</p>}
 
           <div className={styles.chatSurface}>
             {stage === "chat" ? <div ref={transcriptRef} className={`${styles.transcript} ${!hasMessages ? styles.openingTranscript : ""}`} role="log" aria-label="대화 내용" aria-live="polite" aria-relevant="additions text" onScroll={event => { const node = event.currentTarget; shouldFollow.current = node.scrollHeight - node.scrollTop - node.clientHeight < 100; if (shouldFollow.current) setHasNewText(false); }}>
@@ -554,7 +556,7 @@ export function DiagnosisChat() {
                 <textarea id="diagnosis-message" ref={inputRef} value={input} rows={2} maxLength={6000} disabled={!hydrated || reportOpening} placeholder={hasMessages ? "답변을 적어주세요…" : "궁금한 점을 적어주세요…"} onChange={event => { invalidateReport(); setInput(event.target.value); }} onCompositionStart={() => { composing.current = true; }} onCompositionEnd={() => { composing.current = false; }} onKeyDown={event => { if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && !composing.current && event.keyCode !== 229) { event.preventDefault(); void submitMessage(); } }} />
                 {busy ? <button className={styles.sendButton} type="button" aria-label="응답 중지" onClick={() => { void stop(); setCancelled(true); setBriefRequested(false); }}><Square size={20} aria-hidden="true" /></button> : <button className={styles.sendButton} type="submit" disabled={!input.trim() || !hydrated || (!directMode && configured === null) || reportOpening} aria-label="메시지 보내기"><Send size={21} aria-hidden="true" /></button>}
               </div>
-              <div className={styles.composerMeta}><span>Enter 전송 · Shift+Enter 줄바꿈</span></div>
+              <div className={styles.composerMeta}><span>Enter 전송 · Shift+Enter 줄바꿈</span>{aiMode && productionAI && <span className={styles.privacyNotice}>대화는 Google Gemini로 전송됩니다. 주민번호·계좌번호는 입력하지 마세요.</span>}</div>
             </form>}
           </div>
         </div>
