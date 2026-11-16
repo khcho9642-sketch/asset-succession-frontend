@@ -50,15 +50,23 @@ export function createDiagnosisModelTurnSchema(sources: DiagnosisSource[], lates
     throw new DiagnosisResponseRejectedError("Invalid customer quote candidates");
   }
   const constraints = getDiagnosisTurnConstraints(latestText);
+  const noFacts = constraints.pureQuestion || latestText === BRIEF_REPORT_REQUEST;
+  const noChoices = constraints.explanationOnly || latestText === BRIEF_REPORT_REQUEST;
   return z.object({
     facts: z.array(z.object({
       key: z.enum(CHAT_FIELD_KEYS),
       // A native enum constrains the provider to this latest message's quotes.
       sourceId: z.enum(sourceIds),
-    }).strict()).max(constraints.pureQuestion || latestText === BRIEF_REPORT_REQUEST ? 0 : DIAGNOSIS_LIMITS.proposals),
+    }).strict()).max(DIAGNOSIS_LIMITS.proposals),
     ...turnReplyShape,
-    choices: turnReplyShape.choices.max(constraints.explanationOnly || latestText === BRIEF_REPORT_REQUEST ? 0 : 4),
-  }).strict().superRefine(validateTurnInteraction);
+    choices: turnReplyShape.choices.max(4),
+  }).strict().superRefine((value, context) => {
+    // Gemini's native decoder can fail on maxItems: 0. Keep a representable
+    // provider schema and enforce the same empty-array policy on the server.
+    if (noFacts && value.facts.length) context.addIssue({ code: "custom", path: ["facts"], message: "This control turn cannot add customer facts" });
+    if (noChoices && value.choices.length) context.addIssue({ code: "custom", path: ["choices"], message: "This turn cannot ask another question" });
+    validateTurnInteraction(value, context);
+  });
 }
 
 /** Resolve only server-owned candidates; the model cannot supply fact text. */

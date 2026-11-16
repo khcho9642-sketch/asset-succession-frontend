@@ -19,7 +19,9 @@ requests = []
 
 def fake_api(route):
     if route.request.method == 'GET':
-        route.fulfill(status=200, content_type='application/json', body='{"configured":true,"issues":[]}')
+        # These cases exercise local guided choices without any model POST.
+        # Production-mode AI/brief-report flows are covered by chat-ui-audit.mjs.
+        route.fulfill(status=200, content_type='application/json', body='{"configured":false,"issues":[]}')
     else:
         requests.append({'method': route.request.method, 'mocked': True})
         route.fulfill(status=503, content_type='application/json', body='{"error":"synthetic-offline"}')

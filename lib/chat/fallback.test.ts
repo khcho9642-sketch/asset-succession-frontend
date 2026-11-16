@@ -263,8 +263,8 @@ test("explanation-only turns emit no choices while mixed customer corrections re
       const history: DiagnosisRequest["messages"] = [{ id: "explanation-only", role: "user", parts: [{ type: "text", text }] }];
       assertWinningReply(await readChunks(response({ messages: history })), proposals, expected, text);
       const properties = requests[0].body.generationConfig.responseSchema!.properties as Record<string, { maxItems?: number }>;
-      assert.equal(properties.choices.maxItems, 0);
-      assert.equal(properties.facts.maxItems, proposals.length ? 17 : 0);
+      assert.equal(properties.choices.maxItems, 4);
+      assert.equal(properties.facts.maxItems, 17);
       assert.equal(requests.length, 1);
     });
   }
