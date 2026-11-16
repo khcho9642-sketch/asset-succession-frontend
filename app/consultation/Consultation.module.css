@@ -24,14 +24,17 @@
 .contacts a:hover span, .assessmentNote a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .contactHint { margin: 14px 0 0; max-width: 30ch; font-size: 13px; line-height: 1.7; color: var(--contact-muted); }
 .formPanel { padding: 34px 30px; background: #fffdf8; }
-.previewNote { margin: 0 0 20px; color: var(--contact-muted); font-size: 13px; line-height: 1.6; }
+.formNote { margin: 0 0 20px; color: var(--contact-muted); font-size: 13px; line-height: 1.6; }
 .phoneLabel { display: block; margin-bottom: 9px; font-size: 15px; font-weight: 600; }
 .formPanel input[type="tel"] { width: 100%; min-height: 52px; padding: 12px 14px; border: 1px solid #b4a894; border-radius: 2px; background: #fff; color: var(--contact-ink); font-size: 16px; }
 .formPanel input::placeholder { color: var(--contact-muted); }
 .consent { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 10px 0; margin: 7px 0 12px; cursor: pointer; font-size: 13px; line-height: 1.65; color: var(--contact-muted); }
 .consent input { width: 17px; height: 17px; flex-shrink: 0; accent-color: var(--contact-accent); }
 .submit { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; min-height: 52px; padding: 12px 18px; border: 1px solid var(--contact-accent); border-radius: 2px; background: var(--contact-accent); color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; }
-.submit:hover { background: #963023; border-color: #963023; }
+.submit:hover:not(:disabled) { background: #963023; border-color: #963023; }
+.submit:disabled { opacity: .65; cursor: wait; }
+.formPanel input:disabled { opacity: .7; cursor: wait; }
+.honeypot { display: none; }
 .page :is(a, button, input):focus-visible { outline: 2px solid var(--contact-accent); outline-offset: 4px; }
 .errors { margin: 0 0 16px; color: #9c3023; font-size: 14px; line-height: 1.6; }
 .errors p { margin: 0; }
@@ -40,6 +43,9 @@
 .confirmation > svg { color: #28745a; }
 .confirmation h2 { margin: 16px 0 10px; font-size: 22px; line-height: 1.4; }
 .confirmation p { margin: 0; font-size: 14px; line-height: 1.8; color: var(--contact-muted); }
+.receipt { margin: 20px 0; padding: 14px; border: 1px solid var(--contact-line); background: #f8f4ea; }
+.receipt dt { margin-bottom: 6px; color: var(--contact-muted); font-size: 12px; }
+.receipt dd { margin: 0; font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
 .secondaryButton { margin-top: 20px; padding: 10px 16px; min-height: 44px; background: transparent; border: 1px solid #b4a894; border-radius: 2px; color: var(--contact-ink); cursor: pointer; }
 @media (max-width: 700px) {
   .content { padding: 30px 20px 36px; }
@@ -51,8 +57,8 @@
   .professional h2 { font-size: 25px; }
   .contacts { margin-top: 14px; }
   .contactHint { margin-top: 8px; }
-  .formPanel { padding: 22px 24px; }
-  .previewNote { margin-bottom: 16px; }
+  .formPanel { padding: 16px 24px; }
+  .formNote { margin-bottom: 12px; }
 }
 @media print {
   .page { min-height: auto; background: #fff; }
