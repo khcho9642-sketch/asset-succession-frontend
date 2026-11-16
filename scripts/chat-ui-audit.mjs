@@ -478,6 +478,7 @@ try {
     await send(page, "보증금은 모름");
     await waitFact(page, "unconfirmed", "보증금은 모름");
     await send(page, "상담 주제를 양도로 바꿀게요");
+    await page.getByText("양도 상담으로 전환했어요. 어떤 재산을 팔려고 하세요?", { exact: true }).waitFor();
     await waitFact(page, "topic", "양도");
     assert.equal((await draft(page)).state.facts.owner.value, "어머니", `${purpose}: topic change lost the corrected owner`);
     assert.equal((await draft(page)).state.facts.unconfirmed.value, "보증금은 모름", `${purpose}: topic change cleared uncertainty`);

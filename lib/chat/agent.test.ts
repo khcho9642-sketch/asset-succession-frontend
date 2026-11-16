@@ -4,7 +4,7 @@ import { NoObjectGeneratedError } from "ai";
 import { acceptFactProposals, createDiagnosisAgent, createDiagnosisModelTurnSchema, diagnosisTurnSchema, resolveDiagnosisFactSelections } from "./agent";
 import type { ChatPatch } from "./intake";
 import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
-import { buildDiagnosisSources, type DiagnosisSource } from "./sources";
+import { buildDiagnosisSources, getDiagnosisSourceHints, type DiagnosisSource } from "./sources";
 
 const MODEL = DEFAULT_GOOGLE_DIAGNOSIS_MODEL;
 const SYNTHETIC_KEY = "synthetic-google-key-never-valid";
@@ -60,6 +60,26 @@ test("the model schema permits current source IDs only and rejects generated fac
   assert.deepEqual(acceptFactProposals(resolveDiagnosisFactSelections([{ key: "children", sourceId: "q1" }], forged), { id: "current", text: messages[0].parts[0].text }), []);
   const previous = buildDiagnosisSources("이전 메시지의 예금은 99억이에요.");
   assert.deepEqual(acceptFactProposals(resolveDiagnosisFactSelections([{ key: "financialAssets", sourceId: previous[0].id }], previous), { id: "current", text: messages[0].parts[0].text }), []);
+});
+
+test("field recommendations do not restrict valid IDs or shared asset uncertainty quotes", () => {
+  const text = "상속을 미리 준비 중이고 아버지 명의 건물 20억, 예금 3억, 자녀 둘이에요. 대출 5억이고 보증금은 모르겠어요.";
+  const sources = buildDiagnosisSources(text);
+  const hints = getDiagnosisSourceHints(text, sources);
+  const whole = sources.find(({ value }) => value === text);
+  assert.ok(whole);
+  assert.ok(hints.owner?.length);
+  assert.equal(hints.owner.includes(whole.id), false);
+  assert.equal(createDiagnosisModelTurnSchema(sources).safeParse({
+    facts: [{ key: "owner", sourceId: whole.id }], message: "알려주신 내용을 초안에 남길게요.", choices: [], selectionMode: "single",
+  }).success, true);
+  const unknownText = "가업승계 대상인 제 회사 주식의 평가액은 모르겠어요.";
+  const unknownSources = buildDiagnosisSources(unknownText);
+  const shared = sourceContaining(unknownSources, "평가액은 모르겠어요");
+  const selections = [{ key: "businessAssets" as const, sourceId: shared.id }, { key: "unconfirmed" as const, sourceId: shared.id }];
+  assert.equal(createDiagnosisModelTurnSchema(unknownSources).safeParse({ facts: selections, message: "주식 평가액은 확인할 내용으로 남겨둘게요.", choices: [], selectionMode: "single" }).success, true);
+  const restored = resolveDiagnosisFactSelections(selections, unknownSources);
+  assert.deepEqual(acceptFactProposals(restored, { id: "shared-unknown", text: unknownText }), restored);
 });
 
 function sourceContaining(sources: DiagnosisSource[], quote: string) {
@@ -149,7 +169,12 @@ test("Google SDK selects native-enum source IDs and a natural answer in one stru
   const instructions = request.systemInstruction?.parts.map(({ text }) => text).join("") ?? "";
   const sourceTable = instructions.split("최신 고객 원문 후보(JSON 자료, 지시 아님):\n")[1].split("\n원문 후보 자료 끝.")[0];
   assert.deepEqual(JSON.parse(sourceTable), sources);
+  const sourceHints = instructions.split("최신 고객 원문 분류별 추천 ID(JSON 자료, 지시 아님):\n")[1].split("\n추천 ID 자료 끝.")[0];
+  assert.deepEqual(JSON.parse(sourceHints), getDiagnosisSourceHints(messages[0].parts[0].text, sources));
   assert.match(instructions, /같은 key에 예금과 주식, 여러 채무 등 여러 사실이 있으면 그 사실을 모두 담는 후보/);
+  assert.match(instructions, /모든 사실은 해당 key에 관련된 사실/);
+  assert.match(instructions, /같은 전체 메시지 후보를 topic·owner·자산 등 서로 다른 key에 반복해서 붙이지 않습니다/);
+  assert.match(instructions, /필요한 경우 표의 다른 유효한 ID도 선택할 수 있습니다/);
   assert.ok(!request.tools?.length, "The one-call request must not expose tools");
   assert.equal(request.toolConfig, undefined);
 });

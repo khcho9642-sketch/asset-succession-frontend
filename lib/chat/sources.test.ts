@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildDiagnosisSources } from "./sources";
+import { buildDiagnosisSources, getDiagnosisSourceHints } from "./sources";
 import { createChatState } from "./intake";
 import { extractLocalChatPatches } from "./local";
 
@@ -54,6 +54,50 @@ test("explicit topic prefixes and owner phrases offer their short literal spans"
   const sources = checked("검토 주제: 증여\n제 예금 3억, 아버지 명의 아파트 10억");
   for (const [value, evidence] of [["증여", "검토 주제: 증여"], ["제", "제 예금"], ["아버지", "아버지 명의"]]) assert.ok(sources.some(source => source.value === value && source.evidence === evidence), value);
   assert.equal(sources.some(source => source.value === "본인"), false);
+  assert.deepEqual(sources.slice(0, 3).map(source => source.value), ["증여", "제", "아버지"]);
+});
+
+test("explicit subjects split an unpunctuated sentence into selectable original clauses", () => {
+  const text = "대출은 5억이고 보증금은 모르겠어요. 시기는 아직 정하지 않았고 과거 증여는 기억이 안 나요. 취득일은 2020년 5월 1일이고 평가액은 1.5억이에요.";
+  const sources = checked(text);
+  for (const value of ["대출은 5억이고", "보증금은 모르겠어요.", "시기는 아직 정하지 않았고", "과거 증여는 기억이 안 나요.", "취득일은 2020년 5월 1일이고", "평가액은 1.5억이에요."]) assert.ok(sources.some(source => source.value === value), value);
+  assert.ok(sources.some(source => source.value === text), "the full quote remains selectable");
+  const hints = getDiagnosisSourceHints(text, sources);
+  const values = (key: keyof typeof hints) => (hints[key] ?? []).map(id => sources.find(source => source.id === id)?.value);
+  assert.equal(values("debt")[0], "대출은 5억이고 보증금은 모르겠어요.");
+  assert.equal(values("unconfirmed")[0], "보증금은 모르겠어요.");
+  assert.ok(values("timing").includes("시기는 아직 정하지 않았고"));
+  assert.ok(values("pastGifts").includes("과거 증여는 기억이 안 나요."));
+  for (const value of ["보증금은 모르겠어요.", "시기는 아직 정하지 않았고", "과거 증여는 기억이 안 나요."]) assert.ok(values("unconfirmed").includes(value), value);
+});
+
+test("recommendations use specific owner quotes, complete asset quotes and comparison context", () => {
+  const text = "검토 주제: 상속\n제 예금 3억이고 주식 2억도 있어요. 생활비가 걱정돼요. 증여랑 상속 중 뭐가 나을지 비교하고 싶어요.";
+  const sources = checked(text), before = JSON.stringify(sources);
+  const hints = getDiagnosisSourceHints(text, sources);
+  const values = (key: keyof typeof hints) => (hints[key] ?? []).map(id => sources.find(source => source.id === id)?.value);
+  assert.equal(values("owner")[0], "제");
+  assert.equal(values("owner").includes(text), false);
+  assert.equal(values("financialAssets")[0], "예금 3억이고 주식 2억도 있어요.");
+  assert.equal(values("topic")[0], "증여랑 상속 중 뭐가 나을지 비교하고 싶어요.");
+  assert.ok(values("goal").includes("생활비가 걱정돼요."));
+  assert.equal(JSON.stringify(sources), before);
+  for (const ids of Object.values(hints)) assert.ok(ids?.every(id => sources.some(source => source.id === id)));
+  assert.deepEqual(getDiagnosisSourceHints(text, [{ id: "forged", value: "제", evidence: "원문에 없는 제" }]), {});
+  const commaText = "예금 2억, 주식 1억, 생활비가 걱정돼요.";
+  const commaSources = checked(commaText), commaHints = getDiagnosisSourceHints(commaText, commaSources);
+  assert.equal(commaSources.find(source => source.id === commaHints.financialAssets?.[0])?.value, "예금 2억, 주식 1억");
+});
+
+test("company shares in a succession context recommend business quotes without a financial reclassification", () => {
+  const text = "가업승계를 준비해요. 회사 주식 60%를 보유 중이고 평가액은 아직 몰라요.";
+  const sources = checked(text), hints = getDiagnosisSourceHints(text, sources);
+  assert.ok(hints.businessAssets?.some(id => sources.find(source => source.id === id)?.value.includes("회사 주식")));
+  assert.equal(hints.financialAssets, undefined);
+  assert.ok(hints.unconfirmed?.some(id => sources.find(source => source.id === id)?.value === "평가액은 아직 몰라요."));
+  assert.ok(sources.some(source => source.value.startsWith("주식 60%")), "the original local quote is still available");
+  const mixedText = `${text} 예금 3억도 있어요.`;
+  assert.ok(getDiagnosisSourceHints(mixedText, checked(mixedText)).financialAssets?.length);
 });
 
 test("long clauses are bounded and chunks preserve ordinary number-unit tokens", () => {

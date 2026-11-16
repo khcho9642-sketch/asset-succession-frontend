@@ -5,7 +5,7 @@ import { diagnosisReplySchema, diagnosisSelectionModeSchema } from "./choices";
 import { applyChatPatches, CHAT_FIELD_KEYS, createChatState, type ChatPatch, type ChatState } from "./intake";
 import { buildDiagnosisPrompt } from "./prompt";
 import { DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DIAGNOSIS_LIMITS, DiagnosisResponseRejectedError, proposeFactsInputSchema, type DiagnosisRequest } from "./server";
-import { buildDiagnosisSources, type DiagnosisSource } from "./sources";
+import { buildDiagnosisSources, getDiagnosisSourceHints, type DiagnosisSource } from "./sources";
 
 const turnReplyShape = {
   ...diagnosisReplySchema.shape,
@@ -81,11 +81,11 @@ export function createDiagnosisAgent({
   const latest = messages[messages.length - 1];
   const latestMessage = { id: latest.id, text: latest.parts[0].text };
   const sourceTable = sources ?? buildDiagnosisSources(latestMessage.text);
-  const instructions = `${buildDiagnosisPrompt(facts, sourceTable)}
+  const instructions = `${buildDiagnosisPrompt(facts, sourceTable, getDiagnosisSourceHints(latestMessage.text, sourceTable))}
 
 고객용 응답의 전달 형식:
 최종 응답은 제공된 JSON 스키마에 맞춰 facts, message, choices, selectionMode와 필요한 경우 inputMode를 한 번에 작성합니다.
-facts의 각 항목에는 key와 sourceId만 작성합니다. 최신 고객 원문 후보 표에서 해당 key에 속하는 사실을 모두 포함하는 후보 중 가장 구체적인 후보 ID를 선택하며, 필요하면 전체 문장이나 넓은 후보를 사용합니다.
+facts의 각 항목에는 key와 sourceId만 작성합니다. 해당 분류의 정보가 있으면 분류별 추천 ID의 구체적인 후보를 우선 살피고, 그 key에 관련된 사실을 모두 포함하는 가장 구체적인 후보를 선택합니다.
 여러 키의 사실은 facts 배열 하나에 담되 같은 key는 한 번만 사용합니다. 후보에 없는 사실을 추정하거나 value와 evidence를 새로 작성하지 않습니다.
 서버가 선택한 후보의 원문을 복원하고 검증합니다. 관련 사실이 전혀 없을 때만 facts를 빈 배열로 둡니다.
 message는 고객에게 보여 줄 답변과 다음 질문, choices는 그 질문 아래 표시할 짧은 답변 버튼입니다.
