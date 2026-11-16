@@ -25,6 +25,23 @@ test("a missing purpose and an invented child recipient cannot become the custom
 });
 const review = "현재 판단\n유언과 상속인 관계를 먼저 확인해야 합니다.\n\n우선할 일\n주식 잔고 내역과 유언 관련 자료를 준비합니다.\n\n확인할 사항\n유언 여부와 주식 평가액은 확인 전입니다.";
 
+test("inline and combined Markdown report headings split without losing numbered body text", () => {
+  for (const message of [
+    "현재 판단: 유언 확인이 우선입니다. 우선할 일: 자료를 준비합니다. 확인할 사항: 유언은 미확인입니다.",
+    "### 1. **현재판단**\n유언 확인이 우선입니다.\n### 2. **우선할일**\n1. 자료를 준비합니다.\n### 3. **확인할사항**\n유언은 미확인입니다.",
+    "**현재 판단:** 유언 확인이 우선입니다. **우선할 일:** 자료를 준비합니다. **확인할 사항:** 유언은 미확인입니다.",
+  ]) {
+    const state = fixture();
+    state.messages.at(-1)!.text = JSON.stringify({ message, choices: [], selectionMode: "single" });
+    const report = buildChatBriefReport(state, { answer: "ai" }, now)!;
+    assert(report);
+    assert.deepEqual(report.sections.map(section => section.title), ["현재 판단", "우선할 일", "확인할 사항"]);
+    if (message.includes("1. 자료")) assert.equal(report.sections[1].body, "1. 자료를 준비합니다.");
+  }
+  const misleading = "현재 판단: 주식 증여 계획을 세워야 합니다. 우선할 일: 증여를 고려하는 자녀의 나이를 확인하세요. 확인할 사항: 과거 증여 내역과 보유 중인 다른 자산이 어느 정도인지 확인합니다.";
+  assert(getBriefReportContextFeedback(misleading, "주식 10억"), "A later '보유 중인' phrase cannot establish the missing purpose");
+});
+
 function fixture(): ChatState {
   const text = "고인 명의 주식 10억이고 유언 여부는 모름";
   let state: ChatState = { ...createChatState(), messages: [{ id: "facts", role: "user", text, created_at: now }] };
