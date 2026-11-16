@@ -87,4 +87,4 @@ node scripts/forms-preservation-check.mjs --baseline=/path/to/materials-register
 
 `asset360.intellic.co.kr`에도 무료 Gemini API를 연결한다. Production의 `main`에서 `AI_DIAGNOSIS_PRODUCTION_ENABLED=true`, `GOOGLE_DIAGNOSIS_MODEL=gemini-3.5-flash-lite`, 기존 APCI 무료 등급 프로젝트의 서버 전용 키를 모두 설정해야 활성화된다. 유료 프로젝트 키·결제 연결·유료 전환은 사용하지 않는다. 무료 할당량이 소진되면 오류와 재시도를 안내하며 유료 서비스로 우회하지 않는다.
 
-운영 화면에는 가상정보 시험 배너를 표시하지 않는다. 입력창 아래에는 Google Gemini 전송과 식별정보 입력 주의를 간단히 안내한다. 무료 API의 데이터 처리 조건은 [Google 약관](https://aistudio.google.com/docs/terms#data-use-unpaid)을 따른다. 보고서는 고객 확인 전·세액 미산정 초안이며, 계산과 상담 접수는 기존 확인 절차를 유지한다. 운영 API를 중지할 때는 Production 플래그를 false로 바꾸고 재배포한다. 보호 Preview의 별도 시험 설정과 상담 접수 설정은 유지한다.
+운영 화면에는 가상정보 시험 배너를 표시하지 않는다. 입력창 옆의 ‘AI 데이터 안내’를 열면 Google Gemini 전송과 식별정보 입력 주의를 확인할 수 있다. 무료 API의 데이터 처리 조건은 [Google 약관](https://aistudio.google.com/docs/terms#data-use-unpaid)을 따른다. 보고서는 고객 확인 전·세액 미산정 초안이며, 계산과 상담 접수는 기존 확인 절차를 유지한다. 운영 API를 중지할 때는 Production 플래그를 false로 바꾸고 재배포한다. 보호 Preview의 별도 시험 설정과 상담 접수 설정은 유지한다.

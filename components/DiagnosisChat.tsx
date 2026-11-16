@@ -551,12 +551,15 @@ export function DiagnosisChat() {
 
             {hasNewText && stage === "chat" && <button className={styles.jumpButton} onClick={() => { if (transcriptRef.current) transcriptRef.current.scrollTop = transcriptRef.current.scrollHeight; shouldFollow.current = true; setHasNewText(false); }}><ArrowDown size={16} aria-hidden="true" /> 새 내용 보기</button>}
             {stage !== "brief" && <form className={styles.composerArea} onSubmit={event => { event.preventDefault(); void submitMessage(); }}>
-              <label htmlFor="diagnosis-message" className={styles.composerLabel}>{stage === "review" ? "더할 이야기가 있으면 이어서 말씀해주세요" : hasMessages ? "선택하거나 편하게 적어주세요" : "또는 채팅으로 말씀해 주세요"}</label>
+              <div className={styles.composerHeading}>
+                <label htmlFor="diagnosis-message" className={styles.composerLabel}>{stage === "review" ? "더할 이야기가 있으면 이어서 말씀해주세요" : hasMessages ? "선택하거나 편하게 적어주세요" : "또는 채팅으로 말씀해 주세요"}</label>
+                {aiMode && productionAI && <details className={styles.privacyInfo}><summary>AI 안내</summary><p>대화는 Google Gemini로 전송됩니다. 주민번호·계좌번호는 입력하지 마세요.</p></details>}
+              </div>
               <div className={styles.composer}>
                 <textarea id="diagnosis-message" ref={inputRef} value={input} rows={2} maxLength={6000} disabled={!hydrated || reportOpening} placeholder={hasMessages ? "답변을 적어주세요…" : "궁금한 점을 적어주세요…"} onChange={event => { invalidateReport(); setInput(event.target.value); }} onCompositionStart={() => { composing.current = true; }} onCompositionEnd={() => { composing.current = false; }} onKeyDown={event => { if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && !composing.current && event.keyCode !== 229) { event.preventDefault(); void submitMessage(); } }} />
                 {busy ? <button className={styles.sendButton} type="button" aria-label="응답 중지" onClick={() => { void stop(); setCancelled(true); setBriefRequested(false); }}><Square size={20} aria-hidden="true" /></button> : <button className={styles.sendButton} type="submit" disabled={!input.trim() || !hydrated || (!directMode && configured === null) || reportOpening} aria-label="메시지 보내기"><Send size={21} aria-hidden="true" /></button>}
               </div>
-              <div className={styles.composerMeta}><span>Enter 전송 · Shift+Enter 줄바꿈</span>{aiMode && productionAI && <span className={styles.privacyNotice}>대화는 Google Gemini로 전송됩니다. 주민번호·계좌번호는 입력하지 마세요.</span>}</div>
+              <div className={styles.composerMeta}><span>Enter 전송 · Shift+Enter 줄바꿈</span></div>
             </form>}
           </div>
         </div>
