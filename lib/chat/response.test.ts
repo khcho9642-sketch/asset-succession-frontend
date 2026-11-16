@@ -125,7 +125,7 @@ test("SSE rate-limit errors show a fixed notice without provider text", async ()
   await chat.sendMessage({ text: "아들" });
   assert.equal(chat.status, "error");
   assert.equal(isIncompleteChatResponse(completions[0]), true);
-  assert.equal(getChatErrorNotice(chat.error), "AI 요청 한도에 도달했어요. 잠시 후 다시 시도해 주세요. 입력한 내용은 그대로 남아 있어요.");
+  assert.equal(getChatErrorNotice(chat.error), "AI 시험 요청 한도에 도달했어요. 잠시 후 다시 시도하거나 직접 입력으로 계속해 주세요. 입력한 내용은 남아 있어요.");
 });
 
 test("HTTP JSON error codes are recognized through the real transport with a local response", async () => {
@@ -142,7 +142,25 @@ test("HTTP JSON error codes are recognized through the real transport with a loc
   await chat.sendMessage({ text: "아들" });
   assert.equal(localResponses, 1);
   assert.equal(chat.status, "error");
-  assert.equal(getChatErrorNotice(chat.error), "AI 요청 한도에 도달했어요. 잠시 후 다시 시도해 주세요. 입력한 내용은 그대로 남아 있어요.");
+  assert.equal(getChatErrorNotice(chat.error), "AI 시험 요청 한도에 도달했어요. 잠시 후 다시 시도하거나 직접 입력으로 계속해 주세요. 입력한 내용은 남아 있어요.");
+});
+
+test("allowlisted setup and rejected-answer codes give fixed actionable notices", () => {
+  const privateText = "private-provider-token-input-model-path";
+  for (const [code, expected] of [
+    ["AI_AUTHENTICATION_FAILED", "AI 시험 연결 설정을 확인해야 해요. 입력한 내용은 남아 있으니 직접 입력으로 계속해 주세요."],
+    ["AI_CREDIT_REQUIRED", "AI 시험 연결 설정을 확인해야 해요. 입력한 내용은 남아 있으니 직접 입력으로 계속해 주세요."],
+    ["AI_MODEL_UNAVAILABLE", "AI 시험 연결 설정을 확인해야 해요. 입력한 내용은 남아 있으니 직접 입력으로 계속해 주세요."],
+    ["AI_NOT_CONFIGURED", "AI 시험 연결 설정을 확인해야 해요. 입력한 내용은 남아 있으니 직접 입력으로 계속해 주세요."],
+    ["AI_RESPONSE_REJECTED", "AI 답변을 검증하지 못했어요. 다시 시도하거나 직접 입력으로 계속해 주세요."],
+  ]) {
+    for (const raw of [`[${code}] ${privateText}`, JSON.stringify({ error: { code, message: privateText, model: privateText, key: privateText } })]) {
+      const notice = getChatErrorNotice(new Error(raw));
+      assert.equal(notice, expected);
+      assert.equal(notice.includes(privateText), false);
+      assert.equal(notice.includes(code), false);
+    }
+  }
 });
 
 test("unknown or embedded codes and raw provider content never become notices", () => {
@@ -152,7 +170,8 @@ test("unknown or embedded codes and raw provider content never become notices", 
     "private-provider-token-and-input [AI_RATE_LIMITED]",
     "[AI_RATE_LIMITED_EXTRA] private-provider-token-and-input",
     "[AI_RATE_LIMITED]suffix-without-boundary",
-    "[AI_CREDIT_REQUIRED] private-provider-token-and-input",
+    "[AI_RESPONSE_REJECTED_EXTRA] private-provider-token-and-input",
+    "[AI_AUTHENTICATION_FAILED]suffix-without-boundary",
     JSON.stringify({ error: { message: "[AI_RATE_LIMITED] private-provider-token-and-input" } }),
     JSON.stringify({ code: "AI_RATE_LIMITED", message: "private-provider-token-and-input" }),
     JSON.stringify({ error: { code: "UNRECOGNIZED", message: "private-provider-token-and-input" } }),

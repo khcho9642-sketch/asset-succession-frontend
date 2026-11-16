@@ -1,0 +1,40 @@
+.report { color: #302a21; background: #fffdf8; padding: clamp(20px, 4vw, 44px); overflow-wrap: anywhere; }
+.actions { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-bottom: 26px; }
+.actions button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 0; font-size: 14px; }
+.heading { border-bottom: 2px solid #927448; padding-bottom: 24px; margin-bottom: 28px; }
+.brand { color: #80643d; font-weight: 700; letter-spacing: .04em; }
+.heading h2 { margin: 10px 0; font-size: clamp(26px, 4vw, 36px); letter-spacing: -.04em; }
+.heading > p:not(.brand), .heading small, .note { color: #736958; font-size: 14px; line-height: 1.8; }
+.conclusion { border: 1px solid #d8ccb6; background: #f3eddf; padding: 22px; margin-bottom: 30px; }
+.conclusion section + section { border-top: 1px solid #d8ccb6; padding-top: 18px; margin-top: 18px; }
+.report h3 { font-size: 17px; margin-bottom: 10px; font-weight: 700; }
+.conclusion p, .pending li { white-space: pre-wrap; font-size: 16px; line-height: 1.85; }
+.facts dl { margin: 16px 0 28px; }
+.facts dl > div { display: grid; grid-template-columns: 145px minmax(0, 1fr); gap: 16px; border-bottom: 1px solid #e3dacb; padding: 14px 0; }
+.facts dt { font-size: 14px; color: #746448; font-weight: 600; }
+.facts dd { white-space: pre-wrap; font-size: 15px; line-height: 1.8; }
+.facts details { color: #786b59; margin-top: 6px; font-size: 12px; }
+.facts summary { cursor: pointer; }
+.facts details p { border-left: 2px solid #d3c7b0; margin-top: 8px; padding-left: 10px; }
+.pending { margin-bottom: 24px; }
+.pending ul { padding-left: 20px; list-style: disc; }
+.pending p, .limits p, .next p { font-size: 13px; line-height: 1.85; color: #736958; }
+.limits { border-top: 1px solid #d8ccb6; padding-top: 18px; }
+.limits strong { font-size: 14px; }
+.next { margin-top: 26px; }
+.next button { display: inline-flex; justify-content: space-between; align-items: center; gap: 18px; min-height: 48px; padding: 12px 18px; background: #746044; color: white; font-size: 15px; }
+.next p { margin-top: 10px; }
+@media (max-width: 600px) { .facts dl > div { grid-template-columns: 1fr; gap: 4px; } .conclusion { padding: 16px; } .next button { width: 100%; } }
+@media print {
+  .report { page: chat-brief; padding: 0; background: white; color: black; }
+  .actions, .next, .facts details { display: none !important; }
+  .heading { margin-bottom: 6mm; padding-bottom: 5mm; }
+  .heading h2 { font-size: 22pt; }
+  .conclusion { padding: 5mm; margin-bottom: 6mm; }
+  .conclusion section, .facts dl > div, .limits, .pending { break-inside: avoid; }
+  .conclusion p, .pending li, .facts dd { font-size: 10pt; line-height: 1.6; }
+  .facts dl > div { padding: 2.5mm 0; }
+  .report h3 { font-size: 12pt; break-after: avoid; }
+  .note, .limits p, .pending p { font-size: 9pt; }
+}
+@page chat-brief { size: A4; margin: 14mm; }

@@ -1,9 +1,10 @@
 import { createUIMessageStreamResponse, NoObjectGeneratedError, type ModelMessage, type UIMessageChunk } from "ai";
-import { acceptFactProposals, createDiagnosisAgent, diagnosisTurnSchema } from "./agent";
+import { acceptFactProposals, createDiagnosisAgent, createDiagnosisModelTurnSchema, diagnosisTurnSchema, resolveDiagnosisFactSelections } from "./agent";
 import { diagnosisReplySchema, hasAppOwnedHandoffClaim } from "./choices";
-import { applyChatPatches, type ChatPatch, type ChatState } from "./intake";
-import { getLocalChatReply } from "./local";
-import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
+import type { ChatPatch } from "./intake";
+import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DiagnosisResponseRejectedError, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
+import { buildDiagnosisSources } from "./sources";
+import { buildDialogueUnknownContext, getDialogueQualityIssue, type DialogueQualityIssue } from "./dialogue";
 
 type DiagnosisResponseOptions = DiagnosisRequest & {
   apiKey: string;
@@ -12,24 +13,85 @@ type DiagnosisResponseOptions = DiagnosisRequest & {
   headers?: HeadersInit;
   /** Shorter deadlines can be supplied by server-side tests only. */
   attemptTimeoutMs?: number;
+  /** The complete request still cannot exceed 48 seconds. Tests may shorten it. */
+  turnTimeoutMs?: number;
 };
 
 const ATTEMPT_TIMEOUT_MS = 24_000;
+const TURN_TIMEOUT_MS = 48_000;
 const MAX_BUFFER_BYTES = 256 * 1024;
 const MAX_BUFFER_CHUNKS = 4_096;
 
-class RejectedAttemptError extends Error {}
+// This chat has no verified tax-law or calculation result input. Do not let
+// numeric tax advice or completed external actions become an apparent result.
+const TAX_AMOUNT = String.raw`\d[\d,]*(?:\.\d+)?\s*(?:%|퍼센트|(?:조|억|천\s*만|백\s*만|만|천)(?:\s*원)?|원)`;
+const TAX_AMOUNT_SUBJECT = String.raw`(?:세율|공제(?:\s*(?:액|한도|금액))?|세액|절세(?:\s*(?:액|효과))|상속세|증여세|양도(?:소득)?세|세금)`;
+const TAX_AMOUNT_LINK = String.raw`(?:\s|[은는이가을를로:：]|약|대략|예상(?:액)?|최대|최소|기본|일괄|총|정도|계산상|납부액|가능한\s*금액|받을\s*수\s*있는\s*금액)*`;
+// A customer asset amount near "납부 재원" is context, not a tax result.
+// Require a direct amount/claim relationship rather than nearby keywords.
+const NUMERIC_TAX_CLAIM = new RegExp(String.raw`${TAX_AMOUNT_SUBJECT}${TAX_AMOUNT_LINK}${TAX_AMOUNT}|${TAX_AMOUNT}\s*(?:(?:을|를|이|가|의)\s*)?(?:공제|세액|절세|세금|상속세|증여세|양도(?:소득)?세|납부(?:하(?:세요|셔야|시면)|해야|합니다|해요|할\s*(?:세금|금액)|하면\s*(?:됩니다|돼요)))`);
+const UNVERIFIED_TAX_ELIGIBILITY = /(?:공제|특례|감면)[^.!?\n]{0,28}(?:적용(?:됩니다|돼요|가능합니다|가능해요)|받을\s*수\s*있(?:습니다|어요)|대상(?:입니다|이에요)|요건을\s*충족(?:합니다|해요|했(?:습니다|어요)|하셨(?:습니다|어요)|한\s*상태(?:입니다|예요)|하므로|했으므로|하고\s*있(?:습니다|어요)))|(?:상속세|증여세|양도(?:소득)?세|세금)(?:은|는|이|가|부담은)?\s*(?:없(?:습니다|어요)|나오지\s*않|발생하지\s*않|면제|비과세)/;
+// "완료되지 않았어요" and "접수했는지는 확인이 필요해요" are not
+// completed actions. Match an affirmative predicate, not its word stem.
+const COMPLETED_EXTERNAL_ACTION = /(?:상담|신청|예약|접수|저장|공유)(?:이|가|을|를)?[^.!?\n]{0,14}(?:완료(?:됐(?:습니다|어요)|되었(?:습니다|어요)|했습니다|했어요|합니다|입니다|예요|된\s*상태(?:입니다|예요)|(?=\s*(?:[.!]|$)))|(?:접수했|저장했|보냈|전송했|해\s*드렸)(?:습니다|어요))|(?:계산|산출)(?:해\s*보니|한\s*결과|했(?:습니다|어요))/;
 
-function stateAfterProposals(options: DiagnosisResponseOptions, proposals: ChatPatch[]): ChatState {
-  const messages = options.messages.map((message, index) => ({
-    id: message.id,
-    role: message.role,
-    text: message.parts[0].text,
-    created_at: new Date(index * 1_000).toISOString(),
-  }));
-  const state: ChatState = { version: 1, messages, facts: { ...options.facts } };
-  const latest = messages.at(-1);
-  return latest ? applyChatPatches(state, proposals, latest.id) : state;
+type SafeValidationIssue = { code: string; path: Array<string | number> };
+type UnsafeClaimCheck = "app_owned_handoff" | "numeric_tax" | "tax_eligibility" | "external_action";
+type TrialFailureDiagnostic =
+  | { category: "structured_validation"; issues: SafeValidationIssue[]; finishReason?: string; outputTokens?: number; reasoningTokens?: number }
+  | { category: "fact_grounding"; proposedKeys: ChatPatch["key"][]; acceptedKeys: ChatPatch["key"][] }
+  | { category: "unsafe_claim"; checks: UnsafeClaimCheck[] }
+  | { category: "dialogue_quality"; kind: DialogueQualityIssue["kind"]; fields: ChatPatch["key"][] }
+  | { category: "attempt_failed"; code: ReturnType<typeof getDiagnosisPublicErrorCode>; timedOut: boolean; model?: typeof DEFAULT_GOOGLE_DIAGNOSIS_MODEL | typeof BACKUP_GOOGLE_DIAGNOSIS_MODEL }
+  | { category: "finalerror"; code: ReturnType<typeof getDiagnosisPublicErrorCode> };
+
+const VALIDATION_CODES = new Set(["invalid_type", "too_big", "too_small", "invalid_format", "not_multiple_of", "unrecognized_keys", "invalid_union", "invalid_key", "invalid_element", "invalid_value", "custom"]);
+const VALIDATION_PATH_FIELDS = new Set(["facts", "key", "sourceId", "value", "evidence", "message", "choices", "selectionMode", "inputMode"]);
+const FINISH_REASONS = new Set(["stop", "length", "content-filter", "tool-calls", "error", "other"]);
+const UNKNOWN_SUBJECT_FIELDS: Record<DialogueQualityIssue["subjects"][number], ChatPatch["key"]> = {
+  deposit: "debt", loan: "debt", acquisition_date: "unconfirmed", stock_value: "unconfirmed",
+  timing: "timing", child_age: "children", past_gifts: "pastGifts",
+};
+
+class DialogueQualityRejectedError extends DiagnosisResponseRejectedError {
+  constructor(readonly issue: DialogueQualityIssue) {
+    super("AI response repeated an explicitly unknown item");
+  }
+}
+
+/** Values, issue messages, raw usage and SDK error objects never enter logs. */
+function safeValidationIssues(error: unknown): SafeValidationIssue[] {
+  const seen = new Set<object>();
+  let current = error;
+  try {
+    for (let depth = 0; depth < 8; depth += 1) {
+      if (!current || typeof current !== "object" || seen.has(current)) break;
+      seen.add(current);
+      const candidate = current as { issues?: unknown; cause?: unknown };
+      if (Array.isArray(candidate.issues)) {
+        return candidate.issues.slice(0, 24).map((issue: { code?: unknown; path?: unknown }) => ({
+          code: typeof issue?.code === "string" && VALIDATION_CODES.has(issue.code) ? issue.code : "unknown",
+          path: Array.isArray(issue?.path) ? issue.path.slice(0, 8).map((part: unknown) =>
+            typeof part === "string" && VALIDATION_PATH_FIELDS.has(part) ? part
+              : typeof part === "number" && Number.isInteger(part) && part >= 0 && part <= 80 ? part : "[field]") : [],
+        }));
+      }
+      current = candidate.cause;
+    }
+  } catch { /* Diagnostics must not change failure handling. */ }
+  return [];
+}
+
+function trialFailure(diagnostic: TrialFailureDiagnostic) {
+  if (process.env.VERCEL_ENV !== "preview"
+    || process.env.VERCEL_GIT_COMMIT_REF !== "codex/ai-conversation-trial"
+    || process.env.AI_DIAGNOSIS_FREE_TRIAL_ENABLED?.trim() !== "true") return;
+  try { console.warn("[diagnosis-trial]", JSON.stringify(diagnostic)); }
+  catch { /* Logging is optional and cannot break a response. */ }
+}
+
+function safeTokenCount(value: unknown): number | undefined {
+  return typeof value === "number" && Number.isSafeInteger(value) && value >= 0 ? value : undefined;
 }
 
 function completedTurnChunks(proposals: ChatPatch[], reply: { message: string; choices: string[]; selectionMode?: "single" | "multiple"; inputMode?: "assetAmounts" }): UIMessageChunk[] {
@@ -50,7 +112,7 @@ function completedTurnChunks(proposals: ChatPatch[], reply: { message: string; c
 }
 
 function canUseBackup(error: unknown) {
-  if (error instanceof RejectedAttemptError) return false;
+  if (error instanceof DiagnosisResponseRejectedError || NoObjectGeneratedError.isInstance(error)) return false;
   const seen = new Set<object>();
   let current = error;
   for (let depth = 0; depth < 8; depth += 1) {
@@ -58,7 +120,7 @@ function canUseBackup(error: unknown) {
     seen.add(current);
     try {
       const { statusCode, cause } = current as { statusCode?: unknown; cause?: unknown };
-      if (typeof statusCode === "number" && statusCode >= 400 && statusCode < 500 && statusCode !== 429) return false;
+      if (typeof statusCode === "number" && statusCode >= 400 && statusCode < 500) return false;
       current = cause;
     } catch {
       return false;
@@ -66,13 +128,18 @@ function canUseBackup(error: unknown) {
   }
   const code = getDiagnosisPublicErrorCode(error);
   // A different model cannot repair credentials, billing or bad API requests.
-  // Unknown transport/stream errors and invalid completed output get one try.
-  return code === "AI_PROVIDER_UNAVAILABLE" || code === "AI_RATE_LIMITED" || code === "AI_UNAVAILABLE";
+  // Only a transient server failure or recognizable transport timeout gets one
+  // same-project backup. Invalid output, quota, billing and auth are terminal.
+  if (code === "AI_PROVIDER_UNAVAILABLE") return true;
+  if (code !== "AI_UNAVAILABLE" || !(error instanceof Error)) return false;
+  return error.name === "TimeoutError"
+    || (error instanceof TypeError && /fetch|network|failed to fetch/i.test(error.message))
+    || (error as Error & { isRetryable?: boolean }).isRetryable === true;
 }
 
-async function collectAttempt(options: DiagnosisResponseOptions, model: string, cancelled: AbortSignal) {
+async function collectAttempt(options: DiagnosisResponseOptions, model: string, cancelled: AbortSignal, turnDeadline: AbortSignal, policyCorrection?: string) {
   const deadline = new AbortController();
-  const signal = AbortSignal.any([cancelled, deadline.signal]);
+  const signal = AbortSignal.any([cancelled, deadline.signal, turnDeadline]);
   const timeoutMs = Math.max(1, Math.min(options.attemptTimeoutMs ?? ATTEMPT_TIMEOUT_MS, ATTEMPT_TIMEOUT_MS));
   const timer = setTimeout(() => deadline.abort(new DOMException("AI attempt timed out", "TimeoutError")), timeoutMs);
   let stopWaiting: () => void = () => undefined;
@@ -94,32 +161,73 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
         : { role: "assistant", content: text });
     }
     try {
+      const latest = options.messages[options.messages.length - 1];
+      const latestMessage = { id: latest.id, text: latest.parts[0].text };
+      const sources = buildDiagnosisSources(latestMessage.text);
+      const unknownContext = buildDialogueUnknownContext(options.messages.map(({ role, parts }) => ({ role, text: parts[0].text })));
       const result = await createDiagnosisAgent({
         apiKey: options.apiKey,
         model,
         messages: options.messages,
         facts: options.facts,
+        sources,
+        policyCorrection,
       }).generate({ messages: modelMessages, abortSignal: signal });
       signal.throwIfAborted();
       if (result.finalStep.finishReason === "content-filter") {
-        throw new RejectedAttemptError("AI response filtered");
+        throw new DiagnosisResponseRejectedError("AI response filtered");
       }
-      const turn = diagnosisTurnSchema.parse(result.output);
-      const latest = options.messages[options.messages.length - 1];
-      const proposals = acceptFactProposals(turn.facts, { id: latest.id, text: latest.parts[0].text });
+      const parsedTurn = createDiagnosisModelTurnSchema(sources, latestMessage.text).safeParse(result.output);
+      if (!parsedTurn.success) {
+        trialFailure({ category: "structured_validation", issues: safeValidationIssues(parsedTurn.error) });
+        throw new DiagnosisResponseRejectedError("AI response failed turn validation");
+      }
+      const turn = parsedTurn.data;
+      const restored = resolveDiagnosisFactSelections(turn.facts, sources);
+      const proposals = acceptFactProposals(restored, latestMessage);
+      if (proposals.length !== turn.facts.length) {
+        trialFailure({ category: "fact_grounding", proposedKeys: turn.facts.map(({ key }) => key), acceptedKeys: proposals.map(({ key }) => key) });
+        throw new DiagnosisResponseRejectedError("AI fact grounding failed");
+      }
+      const quotedTurn = diagnosisTurnSchema.safeParse({ ...turn, facts: proposals });
+      if (!quotedTurn.success) {
+        trialFailure({ category: "structured_validation", issues: safeValidationIssues(quotedTurn.error) });
+        throw new DiagnosisResponseRejectedError("AI restored quote validation failed");
+      }
       const modelReply = diagnosisReplySchema.parse({ message: turn.message, choices: turn.choices, selectionMode: turn.selectionMode, inputMode: turn.inputMode });
-      const reply = hasAppOwnedHandoffClaim(modelReply.message)
-        ? getLocalChatReply(stateAfterProposals(options, proposals))
-        : modelReply;
-      const chunks = completedTurnChunks(proposals, reply);
+      const visibleTexts = [modelReply.message, ...modelReply.choices];
+      const checks: UnsafeClaimCheck[] = [];
+      if (visibleTexts.some(hasAppOwnedHandoffClaim)) checks.push("app_owned_handoff");
+      if (visibleTexts.some((text) => NUMERIC_TAX_CLAIM.test(text))) checks.push("numeric_tax");
+      if (visibleTexts.some((text) => UNVERIFIED_TAX_ELIGIBILITY.test(text))) checks.push("tax_eligibility");
+      if (visibleTexts.some((text) => COMPLETED_EXTERNAL_ACTION.test(text))) checks.push("external_action");
+      if (checks.length) {
+        trialFailure({ category: "unsafe_claim", checks });
+        throw new DiagnosisResponseRejectedError("AI response claimed an unverified result or action");
+      }
+      const preceding = options.messages[options.messages.length - 2];
+      const previousQuestion = preceding?.role === "assistant" ? preceding.parts[0].text : undefined;
+      const qualityIssue = getDialogueQualityIssue(latestMessage.text, options.facts, modelReply, previousQuestion, unknownContext);
+      if (qualityIssue) {
+        trialFailure({ category: "dialogue_quality", kind: qualityIssue.kind, fields: [...new Set(qualityIssue.subjects.map((subject) => UNKNOWN_SUBJECT_FIELDS[subject]))] });
+        throw new DialogueQualityRejectedError(qualityIssue);
+      }
+      const chunks = completedTurnChunks(proposals, modelReply);
       const bytes = chunks.reduce((total, chunk) => total + Buffer.byteLength(JSON.stringify(chunk), "utf8"), 0);
       if (bytes > MAX_BUFFER_BYTES || chunks.length > MAX_BUFFER_CHUNKS) {
-        throw new RejectedAttemptError("AI response exceeded buffer limit");
+        throw new DiagnosisResponseRejectedError("AI response exceeded buffer limit");
       }
       return chunks;
     } catch (error) {
-      if (NoObjectGeneratedError.isInstance(error) && error.finishReason === "content-filter") {
-        throw new RejectedAttemptError("AI response filtered");
+      if (NoObjectGeneratedError.isInstance(error)) {
+        trialFailure({
+          category: "structured_validation",
+          issues: safeValidationIssues(error),
+          finishReason: error.finishReason && FINISH_REASONS.has(error.finishReason) ? error.finishReason : undefined,
+          outputTokens: safeTokenCount(error.usage?.outputTokens),
+          reasoningTokens: safeTokenCount(error.usage?.outputTokenDetails?.reasoningTokens),
+        });
+        throw new DiagnosisResponseRejectedError("AI response failed structured validation");
       }
       throw error;
     }
@@ -128,6 +236,14 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
   try {
     // The deadline also bounds setup/read failures that ignore an abort signal.
     return await Promise.race([collect(), aborted]);
+  } catch (error) {
+    if (!cancelled.aborted) {
+      trialFailure({
+        category: "attempt_failed", code: getDiagnosisPublicErrorCode(error), timedOut: deadline.signal.aborted || turnDeadline.aborted,
+        model: model === DEFAULT_GOOGLE_DIAGNOSIS_MODEL || model === BACKUP_GOOGLE_DIAGNOSIS_MODEL ? model : undefined,
+      });
+    }
+    throw error;
   } finally {
     clearTimeout(timer);
     stopWaiting();
@@ -135,7 +251,7 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
   }
 }
 
-/** One bounded backup; emit facts and text only from the winning whole turn. */
+/** At most two model calls: one quality correction OR one transient backup. */
 export function createDiagnosisResponse(options: DiagnosisResponseOptions): Response {
   const disconnected = new AbortController();
   const cancelled = options.abortSignal
@@ -143,29 +259,60 @@ export function createDiagnosisResponse(options: DiagnosisResponseOptions): Resp
     : disconnected.signal;
   const stream = new ReadableStream<UIMessageChunk>({
     start(controller) {
+      const turnDeadline = new AbortController();
+      const turnTimeoutMs = Math.max(1, Math.min(options.turnTimeoutMs ?? TURN_TIMEOUT_MS, TURN_TIMEOUT_MS));
+      const turnTimer = setTimeout(() => turnDeadline.abort(new DOMException("AI turn timed out", "TimeoutError")), turnTimeoutMs);
       // Do not return this promise: response cancellation must reach cancel()
       // immediately, even while the provider is waiting for its first token.
       void (async () => {
         try {
           cancelled.throwIfAborted();
-          let chunks: UIMessageChunk[];
-          try {
-            chunks = await collectAttempt(options, options.model, cancelled);
-          } catch (error) {
-            cancelled.throwIfAborted();
-            if (options.model === BACKUP_GOOGLE_DIAGNOSIS_MODEL || !canUseBackup(error)) throw error;
-            chunks = await collectAttempt(options, BACKUP_GOOGLE_DIAGNOSIS_MODEL, cancelled);
+          let chunks: UIMessageChunk[] | undefined;
+          let model = options.model;
+          let policyCorrection: string | undefined;
+          for (let attempt = 0; attempt < 2; attempt += 1) {
+            try {
+              chunks = await collectAttempt(options, model, cancelled, turnDeadline.signal, policyCorrection);
+              break;
+            } catch (error) {
+              cancelled.throwIfAborted();
+              turnDeadline.signal.throwIfAborted();
+              if (attempt === 1) throw error;
+              if (error instanceof DialogueQualityRejectedError) {
+                // The feedback contains closed subject labels, never failed
+                // output or customer excerpts. Regenerate with the same model.
+                policyCorrection = error.issue.feedback;
+              } else {
+                if (model === BACKUP_GOOGLE_DIAGNOSIS_MODEL || !canUseBackup(error)) throw error;
+                model = BACKUP_GOOGLE_DIAGNOSIS_MODEL;
+                policyCorrection = undefined;
+              }
+            }
           }
           cancelled.throwIfAborted();
+          turnDeadline.signal.throwIfAborted();
+          if (!chunks) throw new DiagnosisResponseRejectedError("AI response was not completed");
           for (const chunk of chunks) controller.enqueue(chunk);
         } catch (error) {
           if (!cancelled.aborted) {
+            const code = getDiagnosisPublicErrorCode(error);
+            trialFailure({ category: "finalerror", code });
+            const message = code === "AI_RATE_LIMITED"
+              ? "AI 요청 한도에 도달해 응답을 받지 못했습니다. 직접 입력으로 계속할 수 있습니다."
+              : code === "AI_AUTHENTICATION_FAILED"
+                ? "AI 인증에 실패해 응답을 받지 못했습니다. 직접 입력으로 계속할 수 있습니다."
+                : code === "AI_CREDIT_REQUIRED"
+                  ? "AI 프로젝트의 결제 또는 사용 설정으로 응답을 받지 못했습니다. 직접 입력으로 계속할 수 있습니다."
+                  : code === "AI_RESPONSE_REJECTED"
+                    ? "AI 응답을 검증하지 못해 이번 답변과 사실을 반영하지 않았습니다. 다시 시도하거나 직접 입력으로 계속해 주세요."
+                    : "AI 응답을 완료하지 못했습니다. 잠시 후 다시 시도하거나 직접 입력으로 계속해 주세요.";
             controller.enqueue({
               type: "error",
-              errorText: `[${getDiagnosisPublicErrorCode(error)}] AI 응답을 완료하지 못했습니다. 잠시 후 다시 시도하거나 직접 입력으로 계속해 주세요.`,
+              errorText: `[${code}] ${message}`,
             });
           }
         } finally {
+          clearTimeout(turnTimer);
           if (!disconnected.signal.aborted) controller.close();
         }
       })();

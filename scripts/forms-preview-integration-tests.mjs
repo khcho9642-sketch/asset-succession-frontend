@@ -199,10 +199,28 @@ test('latest calculator and service code survive outside the forms pages and pre
   // Approved deployment-management endpoint: exposes only public build identity.
   // Keep every other API and service-domain file under the existing byte guard.
   const deploymentIdentityFile = 'app/api/deployment/route.ts';
+  // User-approved AI dialogue and brief report work, with separate deployment gates.
+  // Keep immutable material evidence and all other service/calculator code guarded.
+  const aiTrialFiles = [
+    'app/api/diagnosis/route.ts',
+    'lib/chat/intake.ts', 'lib/chat/intake-memory.test.ts',
+    'lib/chat/sources.ts', 'lib/chat/sources.test.ts',
+    'lib/chat/dialogue.ts', 'lib/chat/dialogue.test.ts',
+    'lib/chat/brief-report.ts', 'lib/chat/brief-report.test.ts',
+    'components/ChatBriefReport.tsx', 'components/ChatBriefReport.module.css',
+    'lib/chat/local.ts', 'lib/chat/guided.ts', 'lib/chat/guided.test.ts',
+    'lib/chat/report.ts', 'lib/chat/tax.ts',
+    'lib/chat/server.ts', 'lib/chat/server.test.ts',
+    'lib/chat/agent.ts', 'lib/chat/agent.test.ts',
+    'lib/chat/prompt.ts', 'lib/chat/guide.test.ts',
+    'lib/chat/fallback.ts', 'lib/chat/fallback.test.ts',
+    'lib/chat/choices.ts', 'lib/chat/choices.test.ts',
+    'lib/chat/response.ts', 'lib/chat/response.test.ts',
+  ];
   for (const path of sharingFiles) assert.equal(withoutShareMetadata(readFileSync(path)), withoutShareMetadata(git('show', `${activeProduction}:${path}`)), path);
   const changes = git('diff', '--name-only', '-z', activeProduction, '--', 'app', 'components', 'lib', 'package-lock.json', 'next.config.ts', 'vercel.json').toString('utf8').split('\0').filter(Boolean);
   const allowed = path => path.startsWith('app/forms/') || path.startsWith('lib/forms/')
-    || ['components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css', 'lib/share-metadata.ts', deploymentIdentityFile, ...contactReceptionFiles, ...datePolicyFiles, ...commonHeaderFiles, ...sharingFiles].includes(path);
+    || ['components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css', 'lib/share-metadata.ts', deploymentIdentityFile, ...aiTrialFiles, ...contactReceptionFiles, ...datePolicyFiles, ...commonHeaderFiles, ...sharingFiles].includes(path);
   assert.deepEqual(changes.filter(path => !allowed(path)), []);
   const calculators = git('ls-tree', '-r', '--name-only', '-z', activeProduction, 'app/calculator', 'lib/simple-calculator').toString('utf8').split('\0').filter(Boolean);
   for (const path of calculators) assert.equal(hash(projectDatePolicy(path, readFileSync(path))), hash(projectDatePolicy(path, git('show', `${activeProduction}:${path}`))), path);

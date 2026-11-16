@@ -76,7 +76,7 @@ export function getLocalChatReply(state: ChatState): DiagnosisReply {
     };
   } else if (/상속/.test(topic)) {
     if (!state.facts.spouse) return inheritanceSpouseQuestion;
-    if (!state.facts.adultChildren) return inheritanceAdultChildrenQuestion;
+    if (!state.facts.adultChildren && !state.facts.children && !state.facts.minorChildren) return inheritanceAdultChildrenQuestion;
     if (!state.facts.debt) return inheritanceDebtQuestion;
     if (!state.facts.pastGifts) return inheritancePastGiftsQuestion;
     if (!state.facts.goal) return inheritanceGoalQuestion;
@@ -118,6 +118,8 @@ export function extractLocalChatPatches(text: string, state: ChatState): ChatPat
   capture("timing", /미리\s*준비(?:해요|요|하고\s*있어요)?|사전\s*준비|이미\s*상속(?:이)?\s*발생|돌아가셨[^,;\n]*|사망[^,;\n]*/);
   capture("owner", /(?:아버지|어머니|부모님|배우자|본인|제)(?:의)?\s*(?:명의|재산|자산|건물|아파트|상가|주택|예금)/);
   if (!found.has("owner") && !state.facts.owner) capture("owner", /^(?:아버지|어머니|부모님|배우자|본인)(?:요|입니다|예요|이에요)?[.!]?$/);
+  capture("recipient", /(?:큰아들|작은아들|첫째\s*아들|둘째\s*아들|아들|딸|배우자|손자녀|손자|손녀|다른\s*가족)(?:에게|한테)/);
+  if (!found.has("recipient") && /증여/.test(state.facts.topic?.value ?? "")) capture("recipient", /^(?:아들|딸|배우자|손자녀|다른 가족)$/);
   capture("spouse", /배우자(?:가|는|도)?\s*(?:있(?:어요|습니다|음)?|없(?:어요|습니다|음)?|모르[^,;\n]*)/);
   for (const match of text.matchAll(/자녀(?:가|는)?\s*(?:\d+|한|하나|둘|두|셋|세|넷|네|다섯|여섯)\s*명?/g)) {
     if (!/(?:성인|성년|미성년)\s*$/.test(text.slice(0,match.index))) { found.set("children",match[0]); break; }
@@ -130,7 +132,7 @@ export function extractLocalChatPatches(text: string, state: ChatState): ChatPat
     금융자산:"financialAssets", 예금:"financialAssets", 현금:"financialAssets", 펀드:"financialAssets", 주식:"financialAssets",
     법인지분:"businessAssets", 비상장주식:"businessAssets", 회사지분:"businessAssets", 기타자산:"otherAssets"
   };
-  const markers = Array.from(text.matchAll(/부동산|건물|아파트|상가|주택|토지|금융\s*자산|예금|현금|법인\s*지분|비상장\s*주식|회사\s*지분|펀드|주식|기타\s*자산|대출|보증금|채무|빚|과거\s*증여|자녀|배우자|목표/g));
+  const markers = Array.from(text.matchAll(/부동산|건물|아파트|상가|주택|토지|금융\s*자산|예금|현금|법인\s*지분|비상장\s*주식|회사\s*지분|펀드|주식|기타\s*자산|담보\s*대출|신용\s*대출|대출|임대\s*보증금|전세\s*보증금|보증금|채무|빚|과거\s*증여|자녀|배우자|목표/g));
   const assetSpans = new Map<ChatFieldKey, Array<{start:number;end:number}>>();
   for (let i=0;i<markers.length;i++) {
     const marker=markers[i]; const key=assetKeys[marker[0].replace(/\s/g,"")];
@@ -150,7 +152,13 @@ export function extractLocalChatPatches(text: string, state: ChatState): ChatPat
     if (!otherKind) found.set(key,run);
     else found.set("notes",text);
   }
-  capture("debt", /(?:대출|채무|빚|담보대출|임대보증금)(?:이|은|는|도)?\s*[^,;\n]*/);
+  const debtMarkers = markers.filter(marker => /대출|보증금|채무|빚/.test(marker[0]));
+  if (debtMarkers.length) {
+    const first = debtMarkers[0], last = debtMarkers[debtMarkers.length - 1];
+    const next = markers.find(marker => marker.index! > last.index!);
+    const finalSpan = text.slice(last.index!, next?.index ?? text.length).replace(/[,;\n][\s\S]*$/, "").trim();
+    found.set("debt", text.slice(first.index!, last.index! + finalSpan.length));
+  }
   capture("pastGifts", /(?:과거\s*증여|최근\s*\d+년\s*증여|이전\s*증여)(?:는|가)?\s*[^,;\n]*/);
   capture("goal", /(?:목표(?:는|:)?\s*|세금|상속세|절세|노후|생활비|공평|균등)[^,;\n]*(?:걱정|줄이|절감|준비|유지|확보|나누|배분)[^,;\n]*/);
   if (!found.size) found.set("notes",text);

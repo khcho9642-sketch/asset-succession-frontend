@@ -1,7 +1,7 @@
 /** AI extraction is a draft. Only the report adapter records customer confirmation. */
 export const CHAT_FIELD_KEYS = [
-  "topic", "timing", "owner", "spouse", "children", "adultChildren", "minorChildren",
-  "realEstate", "financialAssets", "businessAssets", "otherAssets", "debt", "pastGifts", "goal", "notes"
+  "topic", "timing", "owner", "recipient", "spouse", "children", "adultChildren", "minorChildren",
+  "realEstate", "financialAssets", "businessAssets", "otherAssets", "debt", "pastGifts", "goal", "notes", "unconfirmed"
 ] as const;
 
 export type ChatFieldKey = typeof CHAT_FIELD_KEYS[number];
@@ -12,10 +12,10 @@ export type ChatPatch = { key: ChatFieldKey; value: string; evidence: string };
 export type ChatState = { version: 1; messages: ChatMessage[]; facts: Partial<Record<ChatFieldKey, ChatFact>> };
 
 export const CHAT_FIELD_LABELS: Record<ChatFieldKey, string> = {
-  topic: "상담 주제", timing: "준비 시기", owner: "재산 소유자", spouse: "소유자의 배우자",
+  topic: "상담 주제", timing: "준비 시기", owner: "재산 소유자", recipient: "증여받는 사람", spouse: "소유자의 배우자",
   children: "소유자의 자녀 수", adultChildren: "성년 자녀 수", minorChildren: "미성년 자녀 수",
   realEstate: "부동산", financialAssets: "금융자산", businessAssets: "법인지분·사업자산",
-  otherAssets: "기타 자산", debt: "채무", pastGifts: "과거 증여", goal: "희망하는 결과", notes: "추가 상황"
+  otherAssets: "기타 자산", debt: "채무", pastGifts: "과거 증여", goal: "희망하는 결과", notes: "추가 상황", unconfirmed: "확인할 내용"
 };
 
 export const CHAT_ASSET_KEYS = ["realEstate", "financialAssets", "businessAssets", "otherAssets"] as const;
@@ -79,37 +79,155 @@ export function validateChatState(value: unknown): ChatState | null {
   return { version: 1, messages, facts };
 }
 
+const UNKNOWN = /모르|모름|미정|미입력|미확인|불명|확인\s*(?:필요|중)|미상|unknown/i;
+const CORRECTION = /정정|수정|정확히는|아니라|아니고|잘못|변경|고칠|바꿀|대신|다시\s*입력/;
+const SUBJECTS: Partial<Record<ChatFieldKey, RegExp>> = {
+  topic: /가업(?:상속|승계)?|상속(?:세)?|증여(?:세)?|양도(?:세)?/g,
+  owner: /아버지|어머니|부모님|배우자|본인|소유자/g,
+  spouse: /배우자/g,
+  children: /(?:큰|작은|첫째|둘째|셋째|막내)?\s*(?:아들|딸)|자녀/g,
+  adultChildren: /(?:성년|성인)\s*자녀/g,
+  minorChildren: /미성년\s*자녀/g,
+  realEstate: /아파트|상가|토지|주택|빌딩|오피스텔|건물|부동산/g,
+  financialAssets: /예금|적금|주식|펀드|채권|현금|금융\s*자산/g,
+  businessAssets: /법인\s*지분|비상장\s*주식|회사\s*지분|사업\s*자산/g,
+  otherAssets: /기타\s*자산/g,
+  debt: /주택\s*담보\s*대출|담보\s*대출|신용\s*대출|학자금\s*대출|전세\s*대출|금융\s*대출|임대\s*보증금|전세\s*보증금|보증금|대출|공과금|채무|빚/g,
+  recipient: /(?:큰|작은|첫째|둘째|셋째|막내)?\s*(?:아들|딸|손자녀|손자|손녀)|배우자|다른\s*가족/g,
+  pastGifts: /(?:큰|작은|첫째|둘째|셋째|막내)?\s*(?:아들|딸|손자녀|손자|손녀)|배우자|아버지|어머니/g,
+};
+
+export function getChatFactSources(fact: ChatFact | undefined): ChatFactSource[] {
+  return fact ? (fact.sources ?? [{ value: fact.value, evidence: fact.evidence, messageId: fact.messageId }]).map(source => ({ ...source })) : [];
+}
+
+function factFromSources(sources: ChatFactSource[]): ChatFact | undefined {
+  if (!sources.length) return undefined;
+  const last = sources[sources.length - 1];
+  if (sources.length === 1) return { ...last };
+  return { ...last, value: sources.map(source => source.value).join("\n"), sources };
+}
+
+function appendSource(sources: ChatFactSource[], next: ChatFactSource): ChatFactSource[] {
+  if (sources.some(source => compact(source.value) === compact(next.value))) return sources;
+  const merged = [...sources, next];
+  return merged.length <= 24 && merged.map(source => source.value).join("\n").length <= MAX_FACT_LENGTH ? merged : sources;
+}
+
+/** Split only into quotations. No replacement text is synthesized from old and new words. */
+function sourceParts(source: ChatFactSource, key: ChatFieldKey): ChatFactSource[] {
+  const parts = source.value.split(/,(?!\d)|(?<!\d),|[;\n]|\/(?=\s*[^\d\s])/).map(value => value.trim()).filter(Boolean);
+  if (key !== "debt") return parts.map(value => ({ ...source, value }));
+  return parts.flatMap(part => {
+    const markers = [...part.matchAll(SUBJECTS.debt!)];
+    // This also handles an unpunctuated "대출 5억 보증금 모름".
+    if (markers.length < 2) return [{ ...source, value: part }];
+    return markers.map((marker, index) => ({ ...source, value: part.slice(index === 0 ? 0 : marker.index!, markers[index + 1]?.index ?? part.length).trim() }));
+  });
+}
+
+/** A unique, explicit subject can be corrected; a generic amount cannot identify an item. */
+function subject(key: ChatFieldKey, raw: string): string | null {
+  raw = raw.replace(/^정정:\s*[^—\n]+—\s*/, "");
+  const expression = SUBJECTS[key];
+  if (!expression) return null;
+  const markers = [...raw.matchAll(expression)];
+  if (markers.length !== 1) return null;
+  let name = compact(markers[0][0]);
+  if (key === "debt") name = name.replace(/^(?:임대|전세)보증금$/, "보증금").replace(/^금융대출$/, "대출");
+  const identifier = raw.match(/([가-힣A-Za-z0-9]+은행|[A-Za-z]동|[가-힣]+동|\d+번|첫째|둘째|셋째|큰아들|작은아들|큰딸|작은딸)/)?.[0];
+  return identifier && !name.includes(compact(identifier)) ? `${compact(identifier)}:${name}` : name;
+}
+
+function completeReplacement(key: ChatFieldKey, text: string): boolean {
+  if (text.startsWith(`정정: ${CHAT_FIELD_LABELS[key]} — `)) return true;
+  if (CHAT_ASSET_KEYS.some(asset => asset === key) && /^재산\s*전체\s*:/m.test(text)) return true;
+  if (!CORRECTION.test(text) || !/(?:전체|전부|총액|합계)/.test(text)) return false;
+  const scope = key === "debt" ? "(?:채무|빚)" : CHAT_FIELD_LABELS[key];
+  return new RegExp(`${scope}\\s*(?:의\\s*)?(?:전체|전부|총액|합계)|(?:전체|전부)\\s*(?:${scope})`).test(text);
+}
+
+/** An explicit destination replaces the active topic; comparisons remain accumulated context. */
+function topicReplacement(source: ChatFactSource): ChatFactSource | null {
+  const topic = "(?:가업\\s*(?:상속|승계)?|회사\\s*승계|상속(?:세)?|증여(?:세)?|양도(?:세)?|매각)";
+  for (const clause of source.evidence.split(/[.!;\n]/)) {
+    if (/[?？]|모르|모름|만약|아마|생각|고민|바꿀\s*수|(?:바꾸|변경하|전환하|대체하)지|않|안\s*(?:바꾸|변경|전환|대체)/.test(clause)) continue;
+    const destination = new RegExp(`(${topic})(?:\\s*상담)?(?:으)?로\\s*(?:(?:상담\\s*)?주제(?:를|는)?\\s*)?(?:변경|전환|대체|바꾸|바꿀|바꿔)`).exec(clause)?.[1]
+      ?? new RegExp(`(?:상담\\s*주제|검토\\s*주제)(?:를|는)?\\s*(?:변경|전환|대체)\\s*[:：]\\s*(${topic})\\s*$`).exec(clause)?.[1]
+      ?? new RegExp(`${topic}\\s*(?:대신|말고|이\\s*아니라|이\\s*아니고)\\s*(${topic})(?:\\s*상담)?(?:만|으로|로|을|를)?\\s*(?:볼|보|하|진행|검토|상담|$)`).exec(clause)?.[1];
+    if (destination) return { ...source, value: destination };
+  }
+  return null;
+}
+
+function sameSource(left: ChatFactSource, right: ChatFactSource): boolean {
+  return left.messageId === right.messageId && compact(left.value) === compact(right.value);
+}
+
+function resolvesUnknown(key: ChatFieldKey, old: ChatFactSource, next: ChatFactSource): boolean {
+  if (!UNKNOWN.test(old.value) || UNKNOWN.test(next.value)) return false;
+  if (/나이|연령|성년\s*여부|성인\s*여부/.test(old.value)) return /\d+\s*세|성년|성인|미성년/.test(next.value);
+  if (/만기|기한|날짜|상환\s*(?:기일|시기)/.test(old.value)) return /만기|기한|날짜|상환/.test(next.value) && /\d{2,4}년|\d{1,2}월|\d{1,2}일|내년|올해/.test(next.value);
+  if (/이자|금리/.test(old.value)) return /이자|금리/.test(next.value) && /\d+(?:\.\d+)?\s*(?:%|퍼센트)/.test(next.value);
+  // Knowing an amount does not resolve the identity, contract or ownership of that item.
+  if (/종류|유형|채권자|채무자|명의|소유자|주소|계약/.test(old.value)) return false;
+  if (key === "debt" || CHAT_ASSET_KEYS.some(asset => asset === key)) return /\d[\s\S]*(?:억|만|원)|없음|없어요|없습니다/.test(next.value);
+  return true;
+}
+
 /** Only the latest user turn can update draft facts. Invalid patches have no effect. */
 export function applyChatPatches(state: ChatState, patches: unknown, messageId: string): ChatState {
-  const latest = [...state.messages].reverse().find((message) => message.role === "user");
+  const latest = [...state.messages].reverse().find(message => message.role === "user");
   if (!latest || latest.id !== messageId || !Array.isArray(patches)) return state;
   const facts = { ...state.facts };
+  let pending = getChatFactSources(facts.unconfirmed);
   const seen = new Set<ChatFieldKey>();
   for (const patch of patches.slice(0, CHAT_FIELD_KEYS.length)) {
     if (!isRecord(patch) || !isFieldKey(patch.key) || seen.has(patch.key)) continue;
     const source = { value: patch.value, evidence: patch.evidence, messageId };
     if (!validSource(source, [latest])) continue;
     seen.add(patch.key);
-    const next: ChatFactSource = { value: source.value.trim(), evidence: source.evidence.trim(), messageId };
-    const previous = facts[patch.key];
-    const isAsset = CHAT_ASSET_KEYS.some((key) => key === patch.key);
-    const structuredAssetReplacement = /^재산\s*전체\s*:/m.test(latest.text);
-    const correction = structuredAssetReplacement || /정정|수정|정확히는|아니라|아니고|잘못|변경|고칠|바꿀|대신|다시\s*입력/i.test(latest.text);
-    const completeReplacement = structuredAssetReplacement || latest.text.startsWith(`정정: ${CHAT_FIELD_LABELS[patch.key]} — `) || /(?:전체|전부|합계|총액)(?:를|는|은|가|이)?\s*(?:정정|수정|변경|다시|[:：]|\d)|(?:정정|수정|변경)[^\n]*(?:전체|전부|합계|총액)/.test(latest.text);
-    const previousMoneyCount = previous ? [...previous.value.matchAll(/\d+(?:\.\d+)?\s*억(?:원)?(?:\s*\d+(?:\.\d+)?\s*(?:천\s*만|만)(?:원)?)?|\d+(?:\.\d+)?\s*(?:천\s*만|만)(?:원)?/g)].length : 0;
-    const previousItemCount = previous ? [...previous.value.matchAll(/아파트|상가|토지|주택|빌딩|오피스텔|건물|예금|적금|주식|펀드|채권|현금/g)].length : 0;
-    const partialCorrection = correction && !completeReplacement && (previousMoneyCount > 1 || previousItemCount > 1 || (previous?.sources?.length ?? 0) > 1 || /[2-9]\d*\s*(?:채|개|건)/.test(previous?.value ?? ""));
-    if (isAsset && previous && (!correction || partialCorrection) && compact(previous.value) !== compact(next.value)) {
-      const sources = previous.sources ?? [{ value: previous.value, evidence: previous.evidence, messageId: previous.messageId }];
-      if (sources.some((item) => compact(item.value) === compact(next.value))) continue;
-      const merged = [...sources, next];
-      const combined = merged.map((item) => item.value).join("\n");
-      // Keep old and new excerpts visible; ambiguity is resolved in review, never by dropping an item.
-      if (combined.length <= MAX_FACT_LENGTH && merged.length <= 24) facts[patch.key] = { ...next, value: combined, sources: merged };
-    } else {
-      facts[patch.key] = next;
+    const key = patch.key;
+    const proposed: ChatFactSource = { value: source.value.trim(), evidence: source.evidence.trim(), messageId };
+    const changedTopic = key === "topic" ? topicReplacement(proposed) : null;
+    const next = changedTopic ?? proposed;
+    const previous = getChatFactSources(facts[key]);
+    if (key === "unconfirmed") {
+      pending = completeReplacement(key, latest.text) ? [next] : appendSource(pending, next);
+      continue;
     }
+    const correction = CORRECTION.test(next.evidence);
+    const replaceAll = Boolean(changedTopic) || completeReplacement(key, latest.text);
+    const nextSubject = subject(key, next.value) ?? subject(key, next.evidence);
+    const parts = previous.flatMap(item => sourceParts(item, key));
+    const candidates = nextSubject === null ? [] : parts.filter(item => subject(key, item.value) === nextSubject);
+    const known = !UNKNOWN.test(next.value);
+    const matched = candidates.length === 1 && known && parts.length <= 24 &&
+      parts.map(item => item === candidates[0] ? next.value : item.value).join("\n").length <= MAX_FACT_LENGTH &&
+      ((correction && !UNKNOWN.test(candidates[0].value)) || resolvesUnknown(key, candidates[0], next));
+    if (replaceAll || !previous.length) {
+      facts[key] = next;
+    } else if (matched) {
+      facts[key] = factFromSources(parts.map(item => sameSource(item, candidates[0]) ? next : item));
+    } else {
+      facts[key] = factFromSources(appendSource(previous, next));
+    }
+    // Resolve only this item's uncertainty. Other unknowns survive a correction.
+    if (known && (matched || replaceAll || nextSubject !== null)) {
+      const matchingUnknowns = pending.filter(item => nextSubject !== null && subject(key, item.value) === nextSubject && resolvesUnknown(key, item, next));
+      pending = pending.filter(item => {
+        if (nextSubject !== null && subject(key, item.value) === nextSubject &&
+          (((matched || candidates.length === 0) && matchingUnknowns.length === 1 && resolvesUnknown(key, item, next)) || (matched && !UNKNOWN.test(item.value)))) return false;
+        if (!replaceAll) return true;
+        return !previous.some(old => old.messageId === item.messageId && compact(old.value).includes(compact(item.value)));
+      });
+    }
+    for (const item of sourceParts(next, key).filter(item => UNKNOWN.test(item.value))) pending = appendSource(pending, item);
+    if ((correction || candidates.length > 0) && previous.length && !replaceAll && !matched && compact(facts[key]?.value ?? "") !== compact(next.value)) pending = appendSource(pending, next);
   }
+  const pendingFact = factFromSources(pending);
+  if (pendingFact) facts.unconfirmed = pendingFact;
+  else delete facts.unconfirmed;
   return { ...state, facts };
 }
 
