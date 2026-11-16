@@ -47,7 +47,7 @@ type Step = {
   model: string;
   respond: (request: Request, body: GoogleRequestBody) => Response | Promise<Response>;
 };
-type ResponseOptions = Partial<Pick<Parameters<typeof createDiagnosisResponse>[0], "abortSignal" | "attemptTimeoutMs" | "headers" | "messages" | "facts">>;
+type ResponseOptions = Partial<Pick<Parameters<typeof createDiagnosisResponse>[0], "abortSignal" | "attemptTimeoutMs" | "turnTimeoutMs" | "headers" | "messages" | "facts">>;
 
 function googleResponse(text: string, finishReason = "STOP"): Response {
   return Response.json({
@@ -249,6 +249,127 @@ test("fallback returns immediate SSE and one structured primary call with canoni
   const chunks = await readChunks(result);
   assert.deepEqual(requests.map((request) => request.model), [PRIMARY]);
   assertWinningReply(chunks, primaryProposals);
+});
+
+const unknownDepositText = "대출은 5억이고 보증금은 모르겠어요.";
+const unknownDepositHistory: DiagnosisRequest["messages"] = [{ id: "unknown-deposit", role: "user", parts: [{ type: "text", text: unknownDepositText }] }];
+const depositReask: DiagnosisReply = {
+  message: "보증금 금액을 알고 계신가요?", choices: ["금액을 알고 있어요", "보증금 없어요", "잘 모르겠어요"], selectionMode: "single",
+};
+const spouseQuestion: DiagnosisReply = {
+  message: "재산 소유자의 배우자가 계신가요?", choices: ["배우자가 있어요", "배우자가 없어요", "잘 모르겠어요"], selectionMode: "single",
+};
+
+test("only a repeated-unknown quality failure regenerates once on the same model", async (t) => {
+  const diagnostics = captureTrialDiagnostics(t);
+  const discarded: ChatPatch[] = [{ key: "debt", value: "대출은 5억", evidence: "대출은 5억" }];
+  const winning: ChatPatch[] = [{ key: "unconfirmed", value: "보증금은 모르겠어요", evidence: "보증금은 모르겠어요" }];
+  const requests = installGoogleMock(t, [turn(PRIMARY, discarded, depositReask), turn(PRIMARY, winning, spouseQuestion)]);
+  const chunks = await readChunks(response({ messages: unknownDepositHistory }));
+  assertWinningReply(chunks, winning, spouseQuestion, unknownDepositText);
+  assert.deepEqual(requests.map(({ model }) => model), [PRIMARY, PRIMARY]);
+  assert.deepEqual(requests[1].body.contents, requests[0].body.contents);
+  const firstInstructions = requests[0].body.systemInstruction?.parts.map(({ text }) => text).join("") ?? "";
+  const secondInstructions = requests[1].body.systemInstruction?.parts.map(({ text }) => text).join("") ?? "";
+  assert.equal(firstInstructions.includes("서버 대화 품질 검사의 수정 지침:"), false);
+  assert.equal(secondInstructions.startsWith(firstInstructions), true);
+  assert.match(secondInstructions, /서버 대화 품질 검사의 수정 지침:/);
+  assert.match(secondInstructions.slice(firstInstructions.length), /보증금/);
+  assert.equal(secondInstructions.slice(firstInstructions.length).includes("5억"), false);
+  assert.equal(JSON.stringify(chunks).includes(depositReask.message), false);
+  const toolOutput = chunks.find((chunk) => chunk.type === "tool-output-available");
+  assert.ok(toolOutput?.type === "tool-output-available");
+  assert.deepEqual((toolOutput.output as { proposals: ChatPatch[] }).proposals.map(({ key }) => key), ["unconfirmed"]);
+  const quality = diagnostics().find((entry) => entry.category === "dialogue_quality");
+  assert.deepEqual(quality, { category: "dialogue_quality", kind: "repeated_unknown_question", fields: ["debt"] });
+  assertPrivateDiagnosticsHidden(diagnostics(), [unknownDepositText, depositReask.message, "5억", "보증금"]);
+});
+
+test("two repeated-unknown answers fail honestly with no backup or discarded facts", async (t) => {
+  const requests = installGoogleMock(t, [turn(PRIMARY, [], depositReask), turn(PRIMARY, [], depositReask)]);
+  assertOnlyPublicFailure(await readChunks(response({ messages: unknownDepositHistory })), "AI_RESPONSE_REJECTED");
+  assert.deepEqual(requests.map(({ model }) => model), [PRIMARY, PRIMARY]);
+});
+
+test("an unknown subject in existing unconfirmed facts receives the same bounded correction", async (t) => {
+  const currentText = "가족 이야기를 조금 더 하고 싶어요.";
+  const history: DiagnosisRequest["messages"] = [{ id: "continue-existing-unknown", role: "user", parts: [{ type: "text", text: currentText }] }];
+  const facts: DiagnosisRequest["facts"] = { unconfirmed: { value: "보증금은 모르겠어요", evidence: "보증금은 모르겠어요", messageId: "previous-unknown" } };
+  const requests = installGoogleMock(t, [turn(PRIMARY, [], depositReask), turn(PRIMARY, [], spouseQuestion)]);
+  assertWinningReply(await readChunks(response({ messages: history, facts })), [], spouseQuestion, currentText);
+  assert.deepEqual(requests.map(({ model }) => model), [PRIMARY, PRIMARY]);
+});
+
+test("a short unknown answer uses the preceding question only to identify its subject", async (t) => {
+  const history: DiagnosisRequest["messages"] = [
+    { id: "short-unknown-start", role: "user", parts: [{ type: "text", text: "상속을 준비하고 있어요." }] },
+    { id: "short-unknown-question", role: "assistant", parts: [{ type: "text", text: "보증금이 2억이라는 안내와 별도로 실제 보증금 금액을 알고 계신가요?" }] },
+    { id: "short-unknown-answer", role: "user", parts: [{ type: "text", text: "잘 모르겠어요" }] },
+  ];
+  const requests = installGoogleMock(t, [turn(PRIMARY, [], depositReask), turn(PRIMARY, [], spouseQuestion)]);
+  const chunks = await readChunks(response({ messages: history }));
+  assertWinningReply(chunks, [], spouseQuestion, "잘 모르겠어요");
+  assert.deepEqual(requests.map(({ model }) => model), [PRIMARY, PRIMARY]);
+  assert.equal(JSON.stringify(chunks).includes("2억"), false);
+});
+
+test("explicit zero, explanations, summaries and questions about another subject do not regenerate", async (t) => {
+  const cases: Array<{ text: string; expected: DiagnosisReply }> = [
+    { text: "보증금은 0원이고 대출은 없어요.", expected: depositReask },
+    { text: "보증금은 모르겠어요. 왜 필요한가요?", expected: { message: "돌려줘야 할 보증금이 있는지에 따라 함께 확인할 채무가 달라지기 때문이에요. 금액은 나중에 확인해 주셔도 돼요.", choices: [], selectionMode: "single" } },
+    { text: "보증금은 모르겠어요. 여기까지 정리만 해주세요.", expected: { message: "보증금은 확인할 항목으로 남겨둘게요. 여기까지 알려주신 내용을 정리할게요.", choices: [], selectionMode: "single" } },
+    { text: "보증금은 미상이에요.", expected: { message: "대출 금액을 알고 계신가요?", choices: ["대출 없어요", "금액을 알고 있어요", "확인이 필요해요"], selectionMode: "single" } },
+    { text: "보증금은 모르겠어요.", expected: { message: "보증금은 나중에 확인해 주셔도 돼요. 배우자가 계신가요?", choices: ["있어요", "없어요", "잘 모르겠어요"], selectionMode: "single" } },
+  ];
+  for (const [index, scenario] of cases.entries()) {
+    await t.test(`allowed unknown-context response ${index + 1}`, async (subtest) => {
+      const requests = installGoogleMock(subtest, [turn(PRIMARY, [], scenario.expected)]);
+      const history: DiagnosisRequest["messages"] = [{ id: `allowed-unknown-${index}`, role: "user", parts: [{ type: "text", text: scenario.text }] }];
+      assertWinningReply(await readChunks(response({ messages: history })), [], scenario.expected, scenario.text);
+      assert.equal(requests.length, 1);
+    });
+  }
+});
+
+test("quality correction cannot chain into a provider backup or a third request", async (t) => {
+  for (const [status, code] of [[429, "AI_RATE_LIMITED"], [403, "AI_AUTHENTICATION_FAILED"], [402, "AI_CREDIT_REQUIRED"], [503, "AI_PROVIDER_UNAVAILABLE"]] as const) {
+    await t.test(`second-call HTTP ${status}`, async (subtest) => {
+      const requests = installGoogleMock(subtest, [turn(PRIMARY, [], depositReask), failure(PRIMARY, status)]);
+      assertOnlyPublicFailure(await readChunks(response({ messages: unknownDepositHistory })), code);
+      assert.deepEqual(requests.map(({ model }) => model), [PRIMARY, PRIMARY]);
+    });
+  }
+});
+
+test("a provider backup cannot spend a third call on dialogue correction", async (t) => {
+  const requests = installGoogleMock(t, [failure(PRIMARY, 503), turn(BACKUP, [], depositReask)]);
+  assertOnlyPublicFailure(await readChunks(response({ messages: unknownDepositHistory })), "AI_RESPONSE_REJECTED");
+  assert.deepEqual(requests.map(({ model }) => model), [PRIMARY, BACKUP]);
+  assert.equal(requests[1].body.systemInstruction?.parts.map(({ text }) => text).join("").includes("서버 대화 품질 검사의 수정 지침:"), false);
+});
+
+test("the whole-turn deadline also bounds a running quality regeneration", { timeout: 3_000 }, async (t) => {
+  const started = deferred();
+  const aborted = deferred();
+  const requests = installGoogleMock(t, [turn(PRIMARY, [], depositReask), pendingRequest(started, aborted)]);
+  assertOnlyPublicFailure(await readChunks(response({ messages: unknownDepositHistory, attemptTimeoutMs: 1_000, turnTimeoutMs: 150 })), "AI_UNAVAILABLE");
+  await aborted.promise;
+  assert.deepEqual(requests.map(({ model }) => model), [PRIMARY, PRIMARY]);
+  assert.equal(requests[1].signal.aborted, true);
+});
+
+test("request cancellation stops quality regeneration without emitting either answer", { timeout: 3_000 }, async (t) => {
+  const started = deferred();
+  const aborted = deferred();
+  const controller = new AbortController();
+  const requests = installGoogleMock(t, [turn(PRIMARY, [], depositReask), pendingRequest(started, aborted)]);
+  const reading = readChunks(response({ messages: unknownDepositHistory, abortSignal: controller.signal }));
+  await started.promise;
+  controller.abort();
+  await aborted.promise;
+  const chunks = await reading;
+  assert.deepEqual(requests.map(({ model }) => model), [PRIMARY, PRIMARY]);
+  assert.equal(chunks.some((chunk) => chunk.type === "text-delta" || chunk.type === "tool-output-available" || chunk.type === "error"), false);
 });
 
 test("trial structured diagnostics expose only Zod codes and allowlisted paths", async (t) => {

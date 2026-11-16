@@ -176,6 +176,7 @@ check('Unrelated application and tax engine code remain unchanged outside the ap
     'components/DiagnosisChat.tsx', 'components/DiagnosisChat.module.css',
     'lib/chat/intake.ts', 'lib/chat/intake-memory.test.ts',
     'lib/chat/sources.ts', 'lib/chat/sources.test.ts',
+    'lib/chat/dialogue.ts', 'lib/chat/dialogue.test.ts',
     'lib/chat/local.ts', 'lib/chat/guided.ts', 'lib/chat/guided.test.ts',
     'lib/chat/report.ts', 'lib/chat/tax.ts',
     'lib/chat/server.ts', 'lib/chat/server.test.ts',

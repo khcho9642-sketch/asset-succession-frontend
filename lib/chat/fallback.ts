@@ -4,6 +4,7 @@ import { diagnosisReplySchema, hasAppOwnedHandoffClaim } from "./choices";
 import type { ChatPatch } from "./intake";
 import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DiagnosisResponseRejectedError, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
 import { buildDiagnosisSources } from "./sources";
+import { getDialogueQualityIssue, type DialogueQualityIssue } from "./dialogue";
 
 type DiagnosisResponseOptions = DiagnosisRequest & {
   apiKey: string;
@@ -12,9 +13,12 @@ type DiagnosisResponseOptions = DiagnosisRequest & {
   headers?: HeadersInit;
   /** Shorter deadlines can be supplied by server-side tests only. */
   attemptTimeoutMs?: number;
+  /** The complete request still cannot exceed 48 seconds. Tests may shorten it. */
+  turnTimeoutMs?: number;
 };
 
 const ATTEMPT_TIMEOUT_MS = 24_000;
+const TURN_TIMEOUT_MS = 48_000;
 const MAX_BUFFER_BYTES = 256 * 1024;
 const MAX_BUFFER_CHUNKS = 4_096;
 
@@ -37,12 +41,23 @@ type TrialFailureDiagnostic =
   | { category: "structured_validation"; issues: SafeValidationIssue[]; finishReason?: string; outputTokens?: number; reasoningTokens?: number }
   | { category: "fact_grounding"; proposedKeys: ChatPatch["key"][]; acceptedKeys: ChatPatch["key"][] }
   | { category: "unsafe_claim"; checks: UnsafeClaimCheck[] }
+  | { category: "dialogue_quality"; kind: DialogueQualityIssue["kind"]; fields: ChatPatch["key"][] }
   | { category: "attempt_failed"; code: ReturnType<typeof getDiagnosisPublicErrorCode>; timedOut: boolean; model?: typeof DEFAULT_GOOGLE_DIAGNOSIS_MODEL | typeof BACKUP_GOOGLE_DIAGNOSIS_MODEL }
   | { category: "finalerror"; code: ReturnType<typeof getDiagnosisPublicErrorCode> };
 
 const VALIDATION_CODES = new Set(["invalid_type", "too_big", "too_small", "invalid_format", "not_multiple_of", "unrecognized_keys", "invalid_union", "invalid_key", "invalid_element", "invalid_value", "custom"]);
 const VALIDATION_PATH_FIELDS = new Set(["facts", "key", "sourceId", "value", "evidence", "message", "choices", "selectionMode", "inputMode"]);
 const FINISH_REASONS = new Set(["stop", "length", "content-filter", "tool-calls", "error", "other"]);
+const UNKNOWN_SUBJECT_FIELDS: Record<DialogueQualityIssue["subjects"][number], ChatPatch["key"]> = {
+  deposit: "debt", loan: "debt", acquisition_date: "unconfirmed", stock_value: "unconfirmed",
+  timing: "timing", child_age: "children", past_gifts: "pastGifts",
+};
+
+class DialogueQualityRejectedError extends DiagnosisResponseRejectedError {
+  constructor(readonly issue: DialogueQualityIssue) {
+    super("AI response repeated an explicitly unknown item");
+  }
+}
 
 /** Values, issue messages, raw usage and SDK error objects never enter logs. */
 function safeValidationIssues(error: unknown): SafeValidationIssue[] {
@@ -122,9 +137,9 @@ function canUseBackup(error: unknown) {
     || (error as Error & { isRetryable?: boolean }).isRetryable === true;
 }
 
-async function collectAttempt(options: DiagnosisResponseOptions, model: string, cancelled: AbortSignal) {
+async function collectAttempt(options: DiagnosisResponseOptions, model: string, cancelled: AbortSignal, turnDeadline: AbortSignal, policyCorrection?: string) {
   const deadline = new AbortController();
-  const signal = AbortSignal.any([cancelled, deadline.signal]);
+  const signal = AbortSignal.any([cancelled, deadline.signal, turnDeadline]);
   const timeoutMs = Math.max(1, Math.min(options.attemptTimeoutMs ?? ATTEMPT_TIMEOUT_MS, ATTEMPT_TIMEOUT_MS));
   const timer = setTimeout(() => deadline.abort(new DOMException("AI attempt timed out", "TimeoutError")), timeoutMs);
   let stopWaiting: () => void = () => undefined;
@@ -155,6 +170,7 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
         messages: options.messages,
         facts: options.facts,
         sources,
+        policyCorrection,
       }).generate({ messages: modelMessages, abortSignal: signal });
       signal.throwIfAborted();
       if (result.finalStep.finishReason === "content-filter") {
@@ -188,6 +204,13 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
         trialFailure({ category: "unsafe_claim", checks });
         throw new DiagnosisResponseRejectedError("AI response claimed an unverified result or action");
       }
+      const preceding = options.messages[options.messages.length - 2];
+      const previousQuestion = preceding?.role === "assistant" ? preceding.parts[0].text : undefined;
+      const qualityIssue = getDialogueQualityIssue(latestMessage.text, options.facts, modelReply, previousQuestion);
+      if (qualityIssue) {
+        trialFailure({ category: "dialogue_quality", kind: qualityIssue.kind, fields: [...new Set(qualityIssue.subjects.map((subject) => UNKNOWN_SUBJECT_FIELDS[subject]))] });
+        throw new DialogueQualityRejectedError(qualityIssue);
+      }
       const chunks = completedTurnChunks(proposals, modelReply);
       const bytes = chunks.reduce((total, chunk) => total + Buffer.byteLength(JSON.stringify(chunk), "utf8"), 0);
       if (bytes > MAX_BUFFER_BYTES || chunks.length > MAX_BUFFER_CHUNKS) {
@@ -215,7 +238,7 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
   } catch (error) {
     if (!cancelled.aborted) {
       trialFailure({
-        category: "attempt_failed", code: getDiagnosisPublicErrorCode(error), timedOut: deadline.signal.aborted,
+        category: "attempt_failed", code: getDiagnosisPublicErrorCode(error), timedOut: deadline.signal.aborted || turnDeadline.aborted,
         model: model === DEFAULT_GOOGLE_DIAGNOSIS_MODEL || model === BACKUP_GOOGLE_DIAGNOSIS_MODEL ? model : undefined,
       });
     }
@@ -227,7 +250,7 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
   }
 }
 
-/** One bounded backup; emit facts and text only from the winning whole turn. */
+/** At most two model calls: one quality correction OR one transient backup. */
 export function createDiagnosisResponse(options: DiagnosisResponseOptions): Response {
   const disconnected = new AbortController();
   const cancelled = options.abortSignal
@@ -235,20 +258,39 @@ export function createDiagnosisResponse(options: DiagnosisResponseOptions): Resp
     : disconnected.signal;
   const stream = new ReadableStream<UIMessageChunk>({
     start(controller) {
+      const turnDeadline = new AbortController();
+      const turnTimeoutMs = Math.max(1, Math.min(options.turnTimeoutMs ?? TURN_TIMEOUT_MS, TURN_TIMEOUT_MS));
+      const turnTimer = setTimeout(() => turnDeadline.abort(new DOMException("AI turn timed out", "TimeoutError")), turnTimeoutMs);
       // Do not return this promise: response cancellation must reach cancel()
       // immediately, even while the provider is waiting for its first token.
       void (async () => {
         try {
           cancelled.throwIfAborted();
-          let chunks: UIMessageChunk[];
-          try {
-            chunks = await collectAttempt(options, options.model, cancelled);
-          } catch (error) {
-            cancelled.throwIfAborted();
-            if (options.model === BACKUP_GOOGLE_DIAGNOSIS_MODEL || !canUseBackup(error)) throw error;
-            chunks = await collectAttempt(options, BACKUP_GOOGLE_DIAGNOSIS_MODEL, cancelled);
+          let chunks: UIMessageChunk[] | undefined;
+          let model = options.model;
+          let policyCorrection: string | undefined;
+          for (let attempt = 0; attempt < 2; attempt += 1) {
+            try {
+              chunks = await collectAttempt(options, model, cancelled, turnDeadline.signal, policyCorrection);
+              break;
+            } catch (error) {
+              cancelled.throwIfAborted();
+              turnDeadline.signal.throwIfAborted();
+              if (attempt === 1) throw error;
+              if (error instanceof DialogueQualityRejectedError) {
+                // The feedback contains closed subject labels, never failed
+                // output or customer excerpts. Regenerate with the same model.
+                policyCorrection = error.issue.feedback;
+              } else {
+                if (model === BACKUP_GOOGLE_DIAGNOSIS_MODEL || !canUseBackup(error)) throw error;
+                model = BACKUP_GOOGLE_DIAGNOSIS_MODEL;
+                policyCorrection = undefined;
+              }
+            }
           }
           cancelled.throwIfAborted();
+          turnDeadline.signal.throwIfAborted();
+          if (!chunks) throw new DiagnosisResponseRejectedError("AI response was not completed");
           for (const chunk of chunks) controller.enqueue(chunk);
         } catch (error) {
           if (!cancelled.aborted) {
@@ -269,6 +311,7 @@ export function createDiagnosisResponse(options: DiagnosisResponseOptions): Resp
             });
           }
         } finally {
+          clearTimeout(turnTimer);
           if (!disconnected.signal.aborted) controller.close();
         }
       })();

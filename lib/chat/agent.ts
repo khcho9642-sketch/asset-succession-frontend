@@ -77,7 +77,8 @@ export function createDiagnosisAgent({
   messages,
   facts,
   sources,
-}: { apiKey: string; model: string; messages: DiagnosisRequest["messages"]; facts: ChatState["facts"]; sources?: DiagnosisSource[] }) {
+  policyCorrection,
+}: { apiKey: string; model: string; messages: DiagnosisRequest["messages"]; facts: ChatState["facts"]; sources?: DiagnosisSource[]; policyCorrection?: string }) {
   const latest = messages[messages.length - 1];
   const latestMessage = { id: latest.id, text: latest.parts[0].text };
   const sourceTable = sources ?? buildDiagnosisSources(latestMessage.text);
@@ -95,7 +96,7 @@ selectionMode는 하나만 답할 수 있으면 single, 재산·채무·목표�
 선택지 문구는 클릭하면 그대로 고객 메시지로 전송됩니다. 질문에 대한 선택지는 CHAT_GUIDE의 기준으로 매번 구성합니다.
 직접 입력하기는 화면에서 항상 제공하므로 choices에 중복해서 넣지 않습니다.
 이전 대화·현재 초안·최신 입력에서 이미 모른다고 답한 항목은 이번 질문을 마친 것으로 취급하며, message와 choices 모두에서 해당 항목의 재확인을 요구하지 않습니다.
-choices를 제공할 때는 그 선택지들이 답하는 명확한 질문 문장 하나를 message에 작성합니다.`;
+choices를 제공할 때는 그 선택지들이 답하는 명확한 질문 문장 하나를 message에 작성합니다.${policyCorrection ? `\n\n서버 대화 품질 검사의 수정 지침:\n${policyCorrection}\n이번 재생성에서는 위 수정 지침을 우선 적용하며, 고객의 설명·정리·종료 요청과 기존 원문 ID·응답 형식을 지킵니다.` : ""}`;
   // Each attempt uses Google Developer API directly; fallback is orchestrated separately.
   const google = createGoogleGenerativeAI({ apiKey });
   const replyModel = google(model);
