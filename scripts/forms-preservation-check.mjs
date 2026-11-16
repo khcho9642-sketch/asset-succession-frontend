@@ -152,9 +152,17 @@ check('Recorded catalog data source hashes remain unchanged', () => {
 const changedPaths = splitNames(git(['diff', '--name-only', '-z', BASELINE_COMMIT, '--']));
 const untrackedPaths = splitNames(git(['ls-files', '--others', '--exclude-standard', '-z']));
 const changedOrAdded = [...new Set([...changedPaths, ...untrackedPaths])];
+// Already released Kakao metadata/card (PR #18). Pin exact bytes rather than
+// exempting public/media or page bodies from the original preservation guard.
+const sharingCommit = '272cb477aa726269b9a197f88883e93e070016b1';
+const sharingPaths = new Set(['public/media/asset360-share-20261116.png',
+  'app/layout.tsx', 'app/page.tsx', 'app/sample-report/page.tsx', 'lib/share-metadata.ts']);
+check('Released sharing metadata and card remain unchanged', () => {
+  for (const filename of sharingPaths) assert.equal(hash(readFileSync(path.join(repoRoot, filename))), hash(execFileSync('git', ['show', `${sharingCommit}:${filename}`], { cwd: repoRoot, maxBuffer: 16 * 1024 * 1024 })), filename);
+});
 check('Git diff preserves public files and source data', () => {
   const sourcePaths = new Set(baseline.sourceFiles.map(source => source.path));
-  const forbidden = changedOrAdded.filter(filename => filename.startsWith('public/')
+  const forbidden = changedOrAdded.filter(filename => (filename.startsWith('public/') && !sharingPaths.has(filename))
     || /^lib\/forms\/.*\.json$/.test(filename) || sourcePaths.has(filename));
   assert.deepEqual(forbidden, [], `Data changes relative to ${BASELINE_COMMIT}`);
 });
@@ -169,7 +177,7 @@ check('Unrelated application and tax engine code remain unchanged outside the ap
     'app/api/consultation/route.ts',
     'lib/consultation.ts',
   ]);
-  // Approved protected-preview AI dialogue work. Exact paths keep the original
+  // Approved AI dialogue and report work. Exact paths keep the original
   // material and tax-engine boundaries intact; no directory-wide exemption.
   const approvedAiTrialFiles = new Set([
     'CHAT_GUIDE.md', 'app/api/diagnosis/route.ts',
@@ -194,7 +202,7 @@ check('Unrelated application and tax engine code remain unchanged outside the ap
     || /^lib\/(assessment|contact-links)\./.test(filename)
     || /^components\/(DiagnosisChat|StructuredChat|TaxComparison|Report|PersonalReport|PaperReport|PrintButton)/.test(filename)
     || filename === 'CHAT_GUIDE.md';
-  const forbidden = changedOrAdded.filter(filename => protectedFile(filename) && !approvedAiTrialFiles.has(filename));
+  const forbidden = changedOrAdded.filter(filename => protectedFile(filename) && !approvedAiTrialFiles.has(filename) && !sharingPaths.has(filename));
   assert.deepEqual(forbidden, [], `Out-of-scope application changes relative to ${BASELINE_COMMIT}`);
 });
 
