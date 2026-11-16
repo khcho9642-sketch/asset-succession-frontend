@@ -102,7 +102,7 @@ async function send(page, text) {
 }
 
 async function openReview(page) {
-  const review = page.getByRole("button", { name: "내 상황에 맞춘 보고서 준비하기", exact: true });
+  const review = page.getByRole("button", { name: "세액 계산·상세 보고서 준비", exact: true });
   await review.click();
   await page.getByRole("heading", { name: "제가 전한 상황과 맞나요?" }).waitFor();
   await page.locator("[data-tax-editor]").waitFor();
@@ -234,6 +234,59 @@ function sseReply({ messageId = "audit-ai-answer", text, proposals = [], finishR
 
 const browser = await chromium.launch({ headless: true });
 try {
+  for (const width of [390, 1440]) {
+    let requests = 0;
+    const factsText = "고인 명의 주식 10억, 유언 모름";
+    const reviewText = "현재 판단\n자녀 배제 가능성을 확정하기 전에 유언과 상속인 관계 확인이 우선입니다.\n\n우선할 일\n주식 잔고 내역과 유언 관련 자료를 준비합니다.\n\n확인할 사항\n주식 평가액과 유언은 확인 전이며 세액은 아직 계산하지 않았습니다.";
+    const context = await newContext(browser, { width, configured: true, post: async route => {
+      requests++;
+      const request = route.request().postDataJSON();
+      if (requests === 1) return route.fulfill(sseReply({ messageId: "brief-intake", text: JSON.stringify({ message: "어느 분의 재산인지 확인해 주세요.", choices: ["고인", "본인"], selectionMode: "single" }), proposals: [
+        { key: "financialAssets", value: "주식 10억", evidence: factsText },
+        { key: "unconfirmed", value: "유언 모름", evidence: factsText },
+      ] }));
+      assert.equal(requests, 2, "Opening the saved brief report caused another AI request");
+      assert(request.messages.at(-1).parts[0].text.includes("간략 검토보고서"));
+      assert.equal(request.facts.financialAssets.value, "주식 10억");
+      assert.equal(request.facts.owner, undefined, "Missing owner was fabricated to unlock a brief report");
+      return route.fulfill(sseReply({ messageId: "brief-conclusion", text: JSON.stringify({ message: reviewText, choices: [], selectionMode: "single" }) }));
+    } });
+    const page = await context.newPage();
+    await openChat(page, { configured: true });
+    await send(page, factsText);
+    await waitFact(page, "financialAssets", "주식 10억");
+    await page.getByRole("button", { name: "간략 검토보고서 만들기", exact: true }).click();
+    await page.getByRole("heading", { name: "간략 검토보고서", exact: true }).waitFor();
+    const report = page.locator("[data-chat-brief-report]");
+    assert((await report.innerText()).includes("자녀 배제 가능성을 확정하기 전에"));
+    assert((await report.innerText()).includes("재산 소유자 확인 필요"));
+    assert((await report.innerText()).includes("세액 미산정"));
+    assert.equal(await snapshot(page), null, "Brief report bypassed the tax report confirmation gate");
+    await assertNoOverflow(page, `${width}px brief report`);
+    await page.screenshot({ path: path.join(outputDir, `chat-brief-${width}.png`), fullPage: true });
+    if (width === 1440) {
+      await page.emulateMedia({ media: "print" });
+      const pdfPath = path.join(outputDir, "chat-brief-report.pdf");
+      await page.pdf({ path: pdfPath, format: "A4", printBackground: true, preferCSSPageSize: true });
+      const { stdout } = await runFile("python", ["-c", "import json,sys; from pypdf import PdfReader; r=PdfReader(sys.argv[1]); print(json.dumps({'pages':len(r.pages),'text':''.join(p.extract_text() or '' for p in r.pages)}))", pdfPath], { timeout: 15_000 });
+      const pdf = JSON.parse(stdout);
+      assert(pdf.pages >= 1 && pdf.pages <= 2, `Brief report produced ${pdf.pages} PDF pages`);
+      assert(pdf.text.replace(/\s+/g, "").includes("간략검토보고서"), "PDF lost the brief report heading");
+      assert(!pdf.text.includes("브라우저에서 인쇄"), "PDF leaked print controls");
+      await page.emulateMedia({ media: "screen" });
+    }
+    await page.getByRole("button", { name: "세액 계산·상세 보고서 준비", exact: true }).click();
+    assert(await page.getByRole("button", { name: finalButton, exact: true }).isDisabled(), "Brief report completed missing calculation conditions");
+    await page.getByRole("button", { name: "간략 검토보고서 보기", exact: true }).click();
+    await page.getByRole("heading", { name: "간략 검토보고서", exact: true }).waitFor();
+    await page.getByRole("button", { name: "대화로 돌아가기", exact: true }).click();
+    await openChat(page, { configured: true });
+    await page.getByRole("button", { name: "간략 검토보고서 보기", exact: true }).click();
+    await page.getByRole("heading", { name: "간략 검토보고서", exact: true }).waitFor();
+    assert.equal(requests, 2, "Restoring a brief report repeated the provider call");
+    observations.push({ name: `${width}px brief report before tax setup, PDF, return and restore`, requests });
+    await context.close();
+  }
   for (const width of [390, 1440]) {
     const context = await newContext(browser, { width });
     const page = await context.newPage();

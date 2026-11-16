@@ -5,6 +5,16 @@ import { acceptFactProposals, createDiagnosisAgent, createDiagnosisModelTurnSche
 import type { ChatPatch } from "./intake";
 import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
 import { buildDiagnosisSources, getDiagnosisSourceHints, type DiagnosisSource } from "./sources";
+import { BRIEF_REPORT_REQUEST } from "./brief-report";
+
+test("a brief-report action cannot be stored as new customer facts or ask another intake question", () => {
+  const sources = buildDiagnosisSources(BRIEF_REPORT_REQUEST);
+  const schema = createDiagnosisModelTurnSchema(sources, BRIEF_REPORT_REQUEST);
+  const reply = { facts: [], message: "현재 판단\n상속 관계 확인이 우선입니다.\n우선할 일\n자료를 준비합니다.\n확인할 사항\n유언은 미확인입니다.", choices: [], selectionMode: "single" };
+  assert.equal(schema.safeParse(reply).success, true);
+  assert.equal(schema.safeParse({ ...reply, facts: [{ key: "notes", sourceId: sources[0].id }] }).success, false);
+  assert.equal(schema.safeParse({ ...reply, choices: ["있어요", "없어요"] }).success, false);
+});
 
 const MODEL = DEFAULT_GOOGLE_DIAGNOSIS_MODEL;
 const SYNTHETIC_KEY = "synthetic-google-key-never-valid";

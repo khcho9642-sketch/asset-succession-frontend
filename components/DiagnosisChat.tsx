@@ -15,10 +15,12 @@ import { getAssistantReply, SAFE_REVIEW_MESSAGE } from "@/lib/chat/choices";
 import type { DiagnosisReply } from "@/lib/chat/choices";
 import { getGuidedChatTurn } from "@/lib/chat/guided";
 import { getChatErrorNotice, isIncompleteChatResponse } from "@/lib/chat/response";
+import { BRIEF_REPORT_REQUEST, buildChatBriefReport } from "@/lib/chat/brief-report";
 import { buildConfirmedTaxAssessmentSnapshot, createTaxInputFromChat, taxFactsSignature } from "@/lib/chat/tax";
 import { calculateTaxComparison, validateTaxComparisonInput } from "@/lib/tax-comparison";
 import type { TaxComparisonInput } from "@/lib/tax-comparison";
 import { TaxComparisonEditor } from "./TaxComparisonEditor";
+import { ChatBriefReport } from "./ChatBriefReport";
 import styles from "./DiagnosisChat.module.css";
 import { useDiagnosisViewport } from "./useDiagnosisViewport";
 
@@ -54,7 +56,8 @@ export function DiagnosisChat() {
   const [messageOrigins, setMessageOrigins] = useState<Record<string, MessageOrigin>>({});
   const [connectionError, setConnectionError] = useState(false);
   const [storageNotice, setStorageNotice] = useState("");
-  const [stage, setStage] = useState<"chat" | "review">("chat");
+  const [stage, setStage] = useState<"chat" | "review" | "brief">("chat");
+  const [briefRequested, setBriefRequested] = useState(false);
   const [summaryOpen, setSummaryOpen] = useState(false);
   const [showAllFields, setShowAllFields] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
@@ -77,7 +80,7 @@ export function DiagnosisChat() {
   const pendingSubmission = useRef<PendingSubmission | null>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const transcriptRef = useRef<HTMLDivElement>(null);
-  const workspaceRef = useDiagnosisViewport(stage, input, inputRef, transcriptRef);
+  const workspaceRef = useDiagnosisViewport(stage === "chat" ? "chat" : "review", input, inputRef, transcriptRef);
   const reviewRef = useRef<HTMLHeadingElement>(null);
   const shouldFollow = useRef(true);
   const [hasNewText, setHasNewText] = useState(false);
@@ -85,6 +88,7 @@ export function DiagnosisChat() {
   const { messages, setMessages, sendMessage, regenerate, status, error, clearError, stop } = useChat<DiagnosisUIMessage>({
     transport: transport.current,
     onError: () => {
+      setBriefRequested(false);
       const pending = pendingSubmission.current;
       if (pending) setInput(current => current || pending.inputText);
     },
@@ -94,6 +98,7 @@ export function DiagnosisChat() {
       setMessageOrigins(previous => ({ ...previous, [completion.message.id]: "ai" }));
       const pending = pendingSubmission.current;
       if (incomplete || completion.isAbort) {
+        setBriefRequested(false);
         acceptedResponses.current.delete(completion.message.id);
         setMessages(completion.messages.filter(message => message.id !== completion.message.id));
         if (pending) setInput(current => current || pending.inputText);
@@ -275,6 +280,27 @@ export function DiagnosisChat() {
     return getAssistantReply(text);
   }, [messages]);
   const showSampleReport = latestAssistantReply?.message === SAFE_REVIEW_MESSAGE;
+  const briefReport = useMemo(() => buildChatBriefReport(state, messageOrigins, new Date().toISOString()), [state, messageOrigins]);
+
+  useEffect(() => {
+    if (briefRequested && briefReport && !busy && !error && !incompleteResponse && !cancelled) {
+      setBriefRequested(false);
+      setStage("brief");
+      window.scrollTo({ top: 0 });
+    }
+  }, [briefRequested, briefReport, busy, error, incompleteResponse, cancelled]);
+
+  async function openBriefReport() {
+    if (!aiMode || busy || sending.current || !hydrated || input.trim() || editingIds.size || error || incompleteResponse || cancelled) return;
+    if (briefReport) {
+      setStage("brief");
+      window.scrollTo({ top: 0 });
+      return;
+    }
+    setStage("chat");
+    setBriefRequested(true);
+    await submitMessage(BRIEF_REPORT_REQUEST);
+  }
 
   async function submitMessage(quickReply?: string) {
     const text = quickReply ?? input.trim();
@@ -412,6 +438,7 @@ export function DiagnosisChat() {
     setLocalNotice("");
     setCancelled(false);
     setIncompleteResponse(false);
+    setBriefRequested(false);
     setResetRequested(false);
     setSummaryOpen(false);
     setShowAllFields(false);
@@ -430,17 +457,17 @@ export function DiagnosisChat() {
       data-chat-layout="mobile-fit-v1" data-chat-stage={stage} data-chat-topic={displayTopic} data-chat-opening={!hasMessages} data-summary-open={summaryOpen} data-chat-mode={aiMode ? "ai" : directMode ? "direct" : "local"}>
       <div className={styles.topline}>
         <Link href="/" className={styles.backLink}><ArrowLeft size={15} aria-hidden="true" /> 처음으로</Link>
-        <div className={styles.progress} aria-label="진행 단계"><span className={stage === "chat" ? styles.activeStep : ""}>01 대화</span><span aria-hidden="true">/</span><span className={stage === "review" ? styles.activeStep : ""}>02 내용 확인</span><span aria-hidden="true">/</span><span>03 보고서</span></div>
+        <div className={styles.progress} aria-label="진행 단계"><span className={stage === "chat" ? styles.activeStep : ""}>01 대화</span><span aria-hidden="true">/</span><span className={stage === "review" ? styles.activeStep : ""}>02 내용 확인</span><span aria-hidden="true">/</span><span className={stage === "brief" ? styles.activeStep : ""}>03 보고서</span></div>
         <button className={styles.resetButton} onClick={() => setResetRequested(true)} disabled={!hasMessages && !input}><Plus size={16} aria-hidden="true" /> 새 진단</button>
       </div>
 
       {resetRequested && <div className={styles.resetNotice} role="alert"><p>현재 대화를 비우고 새 진단을 시작할까요?</p><div><button onClick={() => setResetRequested(false)}>계속 작성</button><button className={styles.dangerButton} onClick={() => void resetChat()}>새 진단 시작</button></div></div>}
       {storageNotice && <p className={styles.notice} role="status">{storageNotice}</p>}
 
-      <div className={`${styles.columns} ${stage === "review" ? styles.reviewColumns : ""}`}>
+      <div className={`${styles.columns} ${stage !== "chat" ? styles.reviewColumns : ""}`}>
         <div className={styles.chatColumn}>
           <div className={styles.chatHeading}>
-            <div><span className={styles.eyebrow}>무료 사전진단{displayTopic ? ` · ${displayTopic}` : ""}</span><h1>먼저, 이야기를 들려주세요.</h1></div>
+            <div><span className={styles.eyebrow}>무료 사전진단{displayTopic ? ` · ${displayTopic}` : ""}</span><h1>{stage === "brief" ? "대화에서 검토보고서까지." : "먼저, 이야기를 들려주세요."}</h1></div>
             <span className={styles.privateBadge}><ShieldCheck size={15} aria-hidden="true" /> 이름·연락처 없이</span>
           </div>
           <div className={`${styles.connection} ${aiMode ? styles.connected : ""}`}>
@@ -491,23 +518,25 @@ export function DiagnosisChat() {
               })}
               {(!configured || directMode) && configured !== null && !hasMessages && <p className={styles.localExplanation}>{connectionError ? "AI 연결을 확인하지 못했어요. " : ""}지금은 입력 내용을 기본 규칙으로 정리해요. 요약을 직접 고쳐 보고서를 볼 수 있어요.</p>}
               {localNotice && <div className={styles.localGuidance} role="status"><span>입력 안내</span><p>{localNotice}</p></div>}
-              {busy && <div className={styles.thinking} role="status"><span aria-hidden="true" />{status === "submitted" ? "이야기를 읽고 있어요…" : "답변을 작성하고 있어요…"}<button onClick={() => { void stop(); setCancelled(true); }}>응답 중지</button></div>}
+              {busy && <div className={styles.thinking} role="status"><span aria-hidden="true" />{briefRequested ? "간략 검토보고서를 작성하고 있어요…" : status === "submitted" ? "이야기를 읽고 있어요…" : "답변을 작성하고 있어요…"}<button onClick={() => { void stop(); setCancelled(true); setBriefRequested(false); }}>응답 중지</button></div>}
               {(error || incompleteResponse || cancelled) && <div className={styles.errorNotice} role="alert"><p>{cancelled ? "응답을 중지했어요. 입력 내용은 그대로 남아 있어요." : getChatErrorNotice(error)}</p><div>{aiMode && <><button disabled={busy} onClick={() => void retryResponse()}><RotateCcw size={15} aria-hidden="true" /> 다시 시도</button><button disabled={busy} onClick={selectDirectMode}>직접 정리 모드로 전환</button></>}<button onClick={openReview}>요약 직접 확인</button></div></div>}
               {showSampleReport && !busy && <Link href="/sample-report" className={styles.sampleReportLink}><FileText size={19} aria-hidden="true" /><span><strong>7장 샘플 보고서 보기</strong><small>가상 사례 보고서 · 바로 열기</small></span><ArrowRight size={19} aria-hidden="true" /></Link>}
-              {readyForReview && hasMessages && !busy && <button className={styles.inlineReview} onClick={openReview}><FileText size={18} aria-hidden="true" /><span>내 상황에 맞춘 보고서 준비하기</span><ArrowRight size={18} aria-hidden="true" /></button>}
-            </div> : <div className={styles.reviewPanel}>
+              {aiMode && factsCount > 0 && !busy && <div className={styles.briefEntry}><button className={styles.inlineReview} disabled={Boolean(input.trim()) || editingIds.size > 0 || Boolean(error) || incompleteResponse || cancelled} onClick={() => void openBriefReport()}><FileText size={18} aria-hidden="true" /><span>{briefReport ? "간략 검토보고서 보기" : "간략 검토보고서 만들기"}</span><ArrowRight size={18} aria-hidden="true" /></button><p>현재 판단·우선할 일·확인할 내용까지 정리합니다. 세액 계산 조건을 모두 입력하지 않아도 볼 수 있어요.</p></div>}
+              {readyForReview && hasMessages && !busy && <button className={styles.inlineReview} onClick={openReview}><FileText size={18} aria-hidden="true" /><span>세액 계산·상세 보고서 준비</span><ArrowRight size={18} aria-hidden="true" /></button>}
+            </div> : stage === "brief" && briefReport ? <ChatBriefReport report={briefReport} onBack={() => setStage("chat")} onCalculate={openReview} /> : <div className={styles.reviewPanel}>
               <button className={styles.backToChat} onClick={() => setStage("chat")}><ArrowLeft size={16} aria-hidden="true" /> 대화로 돌아가기</button>
               <p className={styles.eyebrow}>보고서 작성 전 · 마지막 확인</p>
               <h2 ref={reviewRef} tabIndex={-1}>제가 전한 상황과 맞나요?</h2>
               <p className={styles.reviewIntro}>아래 내용은 아직 확인 전이에요. 다른 부분은 수정하거나 지워주세요. 모르는 내용은 ‘모름’으로 적어도 괜찮아요.</p>
               <div className={styles.reviewFields}>{CHAT_FIELD_KEYS.filter(key => state.facts[key] || missing.includes(key) || ["topic", "spouse", "children", "debt", "pastGifts", "goal"].includes(key)).map(renderField)}</div>
               <details className={styles.moreFields}><summary>그 밖의 항목 추가</summary><div>{CHAT_FIELD_KEYS.filter(key => !state.facts[key] && !missing.includes(key) && !["topic", "spouse", "children", "debt", "pastGifts", "goal"].includes(key)).map(renderField)}</div></details>
-              <p className={styles.reportFootnote}>보고서에는 선택한 유형의 추정 세액과 대안별 차이가 포함됩니다. 아래 계산 조건을 확인해 주세요.</p>
+              {aiMode && factsCount > 0 && <button className={styles.inlineReview} disabled={Boolean(input.trim()) || busy || editingIds.size > 0 || Boolean(error) || incompleteResponse || cancelled} onClick={() => void openBriefReport()}><FileText size={18} aria-hidden="true" /><span>{briefReport ? "간략 검토보고서 보기" : "간략 검토보고서 만들기"}</span><ArrowRight size={18} aria-hidden="true" /></button>}
+              <p className={styles.reportFootnote}>세액을 포함한 상세 보고서는 아래 계산 조건을 확인해 주세요. 간략 검토보고서는 계산 조건을 모두 입력하지 않아도 볼 수 있습니다.</p>
               <TaxComparisonEditor value={taxInput} onChange={next => {
                 invalidateReport();
                 setTaxInput(next.track !== taxInput.track ? createTaxInputFromChat(stateRef.current, next.track) : { ...next, confirmed: false });
               }} />
-              {!readyForEstimate && <p className={styles.requiredNotice} data-estimate-required>추정 세액을 계산할 조건이 아직 남아 있어요. 위에서 필요한 항목을 확인하면 보고서를 열 수 있습니다.</p>}
+              {!readyForEstimate && <p className={styles.requiredNotice} data-estimate-required>추정 세액을 계산할 조건이 아직 남아 있어요. 위에서 필요한 항목을 확인하면 상세 보고서를 열 수 있습니다.</p>}
               {missing.length > 0 && <p className={styles.requiredNotice}>보고서를 준비하려면 {missing.map(key => CHAT_FIELD_LABELS[key]).join(", ")}을 먼저 알려주세요. 자산 금액을 모르면 자산 종류와 ‘금액 모름’을 함께 적어주세요.</p>}
               {editingIds.size > 0 && <p className={styles.requiredNotice} role="status">수정 중인 항목을 저장하거나 취소한 뒤 확인해 주세요.</p>}
               {input.trim() && <p className={styles.requiredNotice} role="status">아직 보내지 않은 이야기가 있어요. 입력창의 내용을 보내거나 지운 뒤 확인해 주세요.</p>}
@@ -519,14 +548,14 @@ export function DiagnosisChat() {
             </div>}
 
             {hasNewText && stage === "chat" && <button className={styles.jumpButton} onClick={() => { if (transcriptRef.current) transcriptRef.current.scrollTop = transcriptRef.current.scrollHeight; shouldFollow.current = true; setHasNewText(false); }}><ArrowDown size={16} aria-hidden="true" /> 새 내용 보기</button>}
-            <form className={styles.composerArea} onSubmit={event => { event.preventDefault(); void submitMessage(); }}>
+            {stage !== "brief" && <form className={styles.composerArea} onSubmit={event => { event.preventDefault(); void submitMessage(); }}>
               <label htmlFor="diagnosis-message" className={styles.composerLabel}>{stage === "review" ? "더할 이야기가 있으면 이어서 말씀해주세요" : hasMessages ? "선택하거나 편하게 적어주세요" : "또는 채팅으로 말씀해 주세요"}</label>
               <div className={styles.composer}>
                 <textarea id="diagnosis-message" ref={inputRef} value={input} rows={2} maxLength={6000} disabled={!hydrated || reportOpening} placeholder={hasMessages ? "답변을 적어주세요…" : "궁금한 점을 적어주세요…"} onChange={event => { invalidateReport(); setInput(event.target.value); }} onCompositionStart={() => { composing.current = true; }} onCompositionEnd={() => { composing.current = false; }} onKeyDown={event => { if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && !composing.current && event.keyCode !== 229) { event.preventDefault(); void submitMessage(); } }} />
-                {busy ? <button className={styles.sendButton} type="button" aria-label="응답 중지" onClick={() => { void stop(); setCancelled(true); }}><Square size={20} aria-hidden="true" /></button> : <button className={styles.sendButton} type="submit" disabled={!input.trim() || !hydrated || (!directMode && configured === null) || reportOpening} aria-label="메시지 보내기"><Send size={21} aria-hidden="true" /></button>}
+                {busy ? <button className={styles.sendButton} type="button" aria-label="응답 중지" onClick={() => { void stop(); setCancelled(true); setBriefRequested(false); }}><Square size={20} aria-hidden="true" /></button> : <button className={styles.sendButton} type="submit" disabled={!input.trim() || !hydrated || (!directMode && configured === null) || reportOpening} aria-label="메시지 보내기"><Send size={21} aria-hidden="true" /></button>}
               </div>
               <div className={styles.composerMeta}><span>Enter 전송 · Shift+Enter 줄바꿈</span></div>
-            </form>
+            </form>}
           </div>
         </div>
 

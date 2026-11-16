@@ -386,3 +386,23 @@
   .workspace[data-chat-stage="chat"] .progress { gap: 4px; font-size: 11px; }
   .workspace[data-chat-stage="chat"] .chatHeading h1 { font-size: 20px; }
 }
+
+.briefEntry { margin-top: 22px; }
+.briefEntry .inlineReview { margin-top: 0; background: #e8ddc7; border-color: #bba57e; }
+.briefEntry > p { margin: 9px 0 18px; color: #776a58; font-size: 13px; line-height: 1.7; }
+.briefEntry button:disabled { opacity: .5; cursor: not-allowed; }
+.workspace[data-chat-stage="brief"] .chatSurface { overflow: visible; }
+@media print {
+  :global(body):has(.workspace[data-chat-stage="brief"]) :global([data-public-header]) { display: none !important; }
+  :global(body):has(.workspace[data-chat-stage="brief"]) :global(main) { min-height: 0 !important; background: white !important; }
+  .workspace[data-chat-stage="brief"] { padding: 0 !important; margin: 0 !important; max-width: none; background: white; }
+  .workspace[data-chat-stage="brief"] .topline,
+  .workspace[data-chat-stage="brief"] .chatHeading,
+  .workspace[data-chat-stage="brief"] .connection,
+  .workspace[data-chat-stage="brief"] .trialNotice,
+  .workspace[data-chat-stage="brief"] .notice,
+  .workspace[data-chat-stage="brief"] .resetNotice { display: none !important; }
+  .workspace[data-chat-stage="brief"] .columns,
+  .workspace[data-chat-stage="brief"] .chatColumn,
+  .workspace[data-chat-stage="brief"] .chatSurface { display: block; width: 100%; max-width: none; margin: 0; padding: 0; border: 0; box-shadow: none; height: auto; overflow: visible; background: white; }
+}

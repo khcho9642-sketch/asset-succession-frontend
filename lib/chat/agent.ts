@@ -6,6 +6,7 @@ import { applyChatPatches, CHAT_FIELD_KEYS, createChatState, type ChatPatch, typ
 import { buildDiagnosisPrompt } from "./prompt";
 import { DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DIAGNOSIS_LIMITS, DiagnosisResponseRejectedError, proposeFactsInputSchema, type DiagnosisRequest } from "./server";
 import { buildDiagnosisSources, getDiagnosisSourceHints, type DiagnosisSource } from "./sources";
+import { BRIEF_REPORT_REQUEST } from "./brief-report";
 
 const turnReplyShape = {
   ...diagnosisReplySchema.shape,
@@ -54,9 +55,9 @@ export function createDiagnosisModelTurnSchema(sources: DiagnosisSource[], lates
       key: z.enum(CHAT_FIELD_KEYS),
       // A native enum constrains the provider to this latest message's quotes.
       sourceId: z.enum(sourceIds),
-    }).strict()).max(constraints.pureQuestion ? 0 : DIAGNOSIS_LIMITS.proposals),
+    }).strict()).max(constraints.pureQuestion || latestText === BRIEF_REPORT_REQUEST ? 0 : DIAGNOSIS_LIMITS.proposals),
     ...turnReplyShape,
-    choices: turnReplyShape.choices.max(constraints.explanationOnly ? 0 : 4),
+    choices: turnReplyShape.choices.max(constraints.explanationOnly || latestText === BRIEF_REPORT_REQUEST ? 0 : 4),
   }).strict().superRefine(validateTurnInteraction);
 }
 
@@ -114,7 +115,7 @@ choices를 제공할 때는 그 선택지들이 답하는 명확한 질문 문�
   const replyModel = google(model);
   return new ToolLoopAgent({
     model: replyModel,
-    instructions,
+    instructions: instructions + (latestMessage.text === BRIEF_REPORT_REQUEST ? "\n고객이 간략 검토보고서 만들기를 선택했습니다. 새 고객 사실이 없는 정리 요청이므로 facts는 반드시 빈 배열 []이며 choices도 빈 배열 []입니다. 기존 대화와 현재 초안으로 고객 고민에 대한 현재 판단, 구체적인 우선할 일, 확인할 사항을 제목이 있는 세 단락으로 작성합니다. 사실만 되읽거나 질문으로 끝내지 않습니다." : ""),
     output: Output.object({ schema: createDiagnosisModelTurnSchema(sourceTable, latestMessage.text) }),
     maxOutputTokens: 3_000,
     // Keep the trial's reasoning and response work within its existing budget.
