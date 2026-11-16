@@ -193,6 +193,38 @@ test("the strict combined schema rejects malformed output without an SDK retry",
   assert.equal(calls, 1);
 });
 
+test("a contextual short unknown selects only its latest quote for the fact and unconfirmed fields", async (t) => {
+  const latestText = "확인이 필요해요";
+  const history: DiagnosisRequest["messages"] = [
+    { id: "context-start", role: "user", parts: [{ type: "text", text: "증여를 준비하고 있어요." }] },
+    { id: "context-question", role: "assistant", parts: [{ type: "text", text: "과거 증여액 2억은 예시예요. 실제 과거 증여 여부는 알고 계신가요?" }] },
+    { id: "context-short-answer", role: "user", parts: [{ type: "text", text: latestText }] },
+  ];
+  const sources = buildDiagnosisSources(latestText);
+  const source = sourceContaining(sources, latestText);
+  const expected = {
+    facts: [{ key: "pastGifts", sourceId: source.id }, { key: "unconfirmed", sourceId: source.id }],
+    message: "과거 증여는 확인할 내용으로 남겨둘게요.", choices: [], selectionMode: "single",
+  };
+  t.mock.method(globalThis, "fetch", async (input: RequestInfo | URL, init?: RequestInit) => {
+    const request = new Request(input, init);
+    const body = JSON.parse(await request.text()) as GoogleRequestBody;
+    const instructions = body.systemInstruction?.parts.map(({ text }) => text).join("") ?? "";
+    assert.match(instructions, /짧은 모름도 해당 분류와 unconfirmed의 사실 제안 대상/);
+    assert.match(instructions, /이전 assistant의 문장이나 금액을 고객 사실로 인용하지 않습니다/);
+    return googleResponse(JSON.stringify(expected));
+  });
+  const result = await createDiagnosisAgent({ apiKey: SYNTHETIC_KEY, model: MODEL, messages: history, facts: {} })
+    .generate({ messages: history.map(({ role, parts }) => ({ role, content: parts[0].text })) });
+  assert.deepEqual(result.output, expected);
+  const restored = resolveDiagnosisFactSelections(result.output.facts, sources);
+  assert.deepEqual(restored, [
+    { key: "pastGifts", value: latestText, evidence: latestText },
+    { key: "unconfirmed", value: latestText, evidence: latestText },
+  ]);
+  assert.equal(JSON.stringify(restored).includes("2억"), false);
+});
+
 test("the free Flash backup retains low reasoning while Lite uses minimal", async (t) => {
   assert.equal(MODEL, "gemini-3.5-flash-lite");
   assert.equal(BACKUP_GOOGLE_DIAGNOSIS_MODEL, "gemini-3.8-flash");

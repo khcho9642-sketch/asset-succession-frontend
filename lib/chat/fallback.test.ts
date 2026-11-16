@@ -313,6 +313,43 @@ test("a short unknown answer uses the preceding question only to identify its su
   assert.equal(JSON.stringify(chunks).includes("2억"), false);
 });
 
+test("a prior short unknown remains guarded after another turn even when the model saved no facts", async (t) => {
+  const priorQuestion = "과거 증여액이 2억이라는 예시와 별도로 실제로 과거 증여한 적이 있나요?";
+  const pastGiftsReask: DiagnosisReply = { message: "과거 증여가 있나요?", choices: ["있어요", "없어요", "확인이 필요해요"], selectionMode: "single" };
+  for (const latestText of ["생활비는 계속 확보하고 싶어요.", "대출 금액은 3억이에요."]) {
+    await t.test(latestText, async (subtest) => {
+      const history: DiagnosisRequest["messages"] = [
+        { id: "history-start", role: "user", parts: [{ type: "text", text: "증여를 준비하고 있어요." }] },
+        { id: "history-past-gifts-question", role: "assistant", parts: [{ type: "text", text: priorQuestion }] },
+        { id: "history-short-unknown", role: "user", parts: [{ type: "text", text: "확인이 필요해요" }] },
+        { id: "history-other-question", role: "assistant", parts: [{ type: "text", text: "함께 검토할 다른 내용도 있나요?" }] },
+        { id: "history-current", role: "user", parts: [{ type: "text", text: latestText }] },
+      ];
+      const requests = installGoogleMock(subtest, [turn(PRIMARY, [], pastGiftsReask), turn(PRIMARY, [], spouseQuestion)]);
+      const chunks = await readChunks(response({ messages: history, facts: {} }));
+      assertWinningReply(chunks, [], spouseQuestion, latestText);
+      assert.deepEqual(requests.map(({ model }) => model), [PRIMARY, PRIMARY]);
+      assert.equal(JSON.stringify(chunks).includes("2억"), false);
+    });
+  }
+});
+
+test("a later explicit customer correction resolves historical unknown metadata and stale draft facts", async (t) => {
+  const latestText = "과거 증여는 없다고 확인했어요.";
+  const history: DiagnosisRequest["messages"] = [
+    { id: "resolved-history-start", role: "user", parts: [{ type: "text", text: "증여를 준비하고 있고 과거 증여는 모르겠어요." }] },
+    { id: "resolved-history-question", role: "assistant", parts: [{ type: "text", text: "과거 증여가 있나요?" }] },
+    { id: "resolved-history-short", role: "user", parts: [{ type: "text", text: "확인이 필요해요" }] },
+    { id: "resolved-history-other-question", role: "assistant", parts: [{ type: "text", text: "추가하거나 정정할 내용이 있나요?" }] },
+    { id: "resolved-history-current", role: "user", parts: [{ type: "text", text: latestText }] },
+  ];
+  const facts: DiagnosisRequest["facts"] = { unconfirmed: { value: "과거 증여는 모르겠어요", evidence: "과거 증여는 모르겠어요", messageId: "resolved-history-start" } };
+  const expected: DiagnosisReply = { message: "과거 증여 금액을 알고 계신가요?", choices: ["알고 있어요", "확인이 필요해요"], selectionMode: "single" };
+  const requests = installGoogleMock(t, [turn(PRIMARY, [], expected)]);
+  assertWinningReply(await readChunks(response({ messages: history, facts })), [], expected, latestText);
+  assert.equal(requests.length, 1, "Resolved unknowns must not be recreated from stale draft data");
+});
+
 test("explicit zero, explanations, summaries and questions about another subject do not regenerate", async (t) => {
   const cases: Array<{ text: string; expected: DiagnosisReply }> = [
     { text: "보증금은 0원이고 대출은 없어요.", expected: depositReask },

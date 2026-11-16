@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import type { DiagnosisReply } from "./choices";
-import { getDialogueQualityIssue, type DialogueQualitySubject } from "./dialogue";
+import { buildDialogueUnknownContext, getDialogueQualityIssue, type DialogueQualitySubject } from "./dialogue";
 import { applyChatPatches, createChatState, type ChatState } from "./intake";
 
 const reply = (message: string, choices: string[] = []): DiagnosisReply => ({ message, choices });
@@ -54,12 +54,44 @@ test("a short unknown answer uses only an unambiguous previous question's subjec
   assert.equal(JSON.stringify(metadata).includes("999"), false);
 });
 
+test("a confirmation choice inherits the natural past-gift target instead of a contextual loan", () => {
+  const previous = "상속과 증여를 비교하실 때 대출과 함께 아버지가 가족에게 이미 주신 재산이 있는지도 확인이 필요해요.";
+  const repeated = reply("과거에 가족에게 이미 주신 재산이 따로 있으신가요?", ["있어요", "없어요", "확인이 필요해요"]);
+  assert.deepEqual(getDialogueQualityIssue("확인이 필요해요", {}, repeated, previous)?.subjects, ["past_gifts"]);
+  assert.equal(getDialogueQualityIssue("확인이 필요해요", {}, reply("대출은 얼마인가요?"), previous), null);
+  assert.equal(getDialogueQualityIssue("확인이 필요해요", {}, repeated, "대출과 보증금 내역 확인이 필요해요."), null);
+  const stored: ChatState["facts"] = { pastGifts: { value: "확인이 필요해요", evidence: "확인이 필요해요", messageId: "past" } };
+  assert.deepEqual(getDialogueQualityIssue("생활비가 걱정돼요", stored, repeated)?.subjects, ["past_gifts"]);
+  assert.equal(getDialogueQualityIssue("생활비가 걱정돼요", unknownFacts("확인이 필요해요"), repeated), null, "an unlabelled short quote has no invented target");
+});
+
+test("history preserves only canonical unknown context and explicit customer corrections resolve it", () => {
+  const previous = "가족에게 이미 주신 재산이 있는지도 확인이 필요해요. 예시 금액은 2억이에요.";
+  const messages: Array<{ role: "user" | "assistant"; text: string }> = [
+    { role: "assistant", text: previous }, { role: "user", text: "확인이 필요해요" },
+    { role: "assistant", text: "알고 계신 다른 내용을 말씀해 주세요." }, { role: "user", text: "생활비가 걱정되고 대출은 3억이에요" },
+  ];
+  const context = buildDialogueUnknownContext(messages);
+  assert.ok(context.unknowns.past_gifts?.length);
+  assert.equal(JSON.stringify(context).includes("2억"), false);
+  assert.equal(JSON.stringify(context).includes("3억"), false);
+  const repeated = reply("과거에 가족에게 이미 주신 재산이 따로 있으신가요?", ["있어요", "없어요"]);
+  assert.deepEqual(getDialogueQualityIssue("생활비가 걱정돼요", {}, repeated, undefined, context)?.subjects, ["past_gifts"]);
+  messages.push({ role: "user", text: "과거 증여는 없다고 확인했어요." });
+  const resolved = buildDialogueUnknownContext(messages);
+  assert.equal(resolved.unknowns.past_gifts, undefined);
+  assert.ok(resolved.resolved.includes("past_gifts"));
+  assert.equal(getDialogueQualityIssue("추가 내용은 없어요", unknownFacts("과거 증여 모름"), repeated, undefined, resolved), null);
+  assert.deepEqual(buildDialogueUnknownContext([{ role: "assistant", text: "과거 증여는 2억입니다." }]), { unknowns: {}, resolved: [] });
+});
+
 test("acquisition date, timing, child age and earlier gifts have separate closed subjects", () => {
   const cases: Array<[string, string, DialogueQualitySubject]> = [
     ["취득 날짜는 기억이 안 나요", "취득일은 언제인가요?", "acquisition_date"],
     ["진행 시기는 아직 정하지 않았어요", "진행 시기는 언제인가요?", "timing"],
     ["자녀들이 성년인지 잘 모르겠어요", "자녀가 성인인가요?", "child_age"],
     ["과거 증여는 기억이 안 나요", "과거 증여한 금액은 얼마인가요?", "past_gifts"],
+    ["과거 증여는 기억나지 않아요. 왜 과거 증여를 확인해야 하나요?", "과거 증여한 금액은 얼마인가요?", "past_gifts"],
     ["최근 10년 내에 증여는 모르겠어요", "과거 증여한 적이 있나요?", "past_gifts"],
   ];
   for (const [text, message, subject] of cases) assert.deepEqual(getDialogueQualityIssue(text, {}, reply(message, ["알아요", "모르겠어요"]))?.subjects, [subject], text);
@@ -85,7 +117,7 @@ test("an acknowledgement followed by a different question remains allowed", () =
 
 test("explanation, later confirmation guidance and closing summaries remain allowed", () => {
   const latest = "보증금은 모르겠어요";
-  for (const message of ["보증금은 왜 필요한가요?", "보증금 확인서 발급 방법을 설명할게요.", "보증금은 나중에 확인하셔도 괜찮아요.", "보증금 금액은 확인하신 후 알려주세요.", "모르는 보증금은 확인할 내용으로 남기고 여기서 정리할게요."]) assert.equal(getDialogueQualityIssue(latest, {}, reply(message)), null, message);
+  for (const message of ["보증금은 왜 필요한가요?", "왜 보증금을 확인해야 하나요?", "보증금 확인서 발급 방법을 설명할게요.", "보증금은 나중에 확인하셔도 괜찮아요.", "보증금 금액은 확인하신 후 알려주세요.", "모르는 보증금은 확인할 내용으로 남기고 여기서 정리할게요."]) assert.equal(getDialogueQualityIssue(latest, {}, reply(message)), null, message);
   assert.equal(getDialogueQualityIssue(latest, {}, reply("무엇부터 보고 싶으세요?", ["보증금 설명", "증여와 상속 비교", "전체 정리"])), null);
 });
 

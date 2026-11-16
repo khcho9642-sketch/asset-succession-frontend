@@ -4,7 +4,7 @@ import { diagnosisReplySchema, hasAppOwnedHandoffClaim } from "./choices";
 import type { ChatPatch } from "./intake";
 import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DiagnosisResponseRejectedError, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
 import { buildDiagnosisSources } from "./sources";
-import { getDialogueQualityIssue, type DialogueQualityIssue } from "./dialogue";
+import { buildDialogueUnknownContext, getDialogueQualityIssue, type DialogueQualityIssue } from "./dialogue";
 
 type DiagnosisResponseOptions = DiagnosisRequest & {
   apiKey: string;
@@ -164,6 +164,7 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
       const latest = options.messages[options.messages.length - 1];
       const latestMessage = { id: latest.id, text: latest.parts[0].text };
       const sources = buildDiagnosisSources(latestMessage.text);
+      const unknownContext = buildDialogueUnknownContext(options.messages.map(({ role, parts }) => ({ role, text: parts[0].text })));
       const result = await createDiagnosisAgent({
         apiKey: options.apiKey,
         model,
@@ -206,7 +207,7 @@ async function collectAttempt(options: DiagnosisResponseOptions, model: string, 
       }
       const preceding = options.messages[options.messages.length - 2];
       const previousQuestion = preceding?.role === "assistant" ? preceding.parts[0].text : undefined;
-      const qualityIssue = getDialogueQualityIssue(latestMessage.text, options.facts, modelReply, previousQuestion);
+      const qualityIssue = getDialogueQualityIssue(latestMessage.text, options.facts, modelReply, previousQuestion, unknownContext);
       if (qualityIssue) {
         trialFailure({ category: "dialogue_quality", kind: qualityIssue.kind, fields: [...new Set(qualityIssue.subjects.map((subject) => UNKNOWN_SUBJECT_FIELDS[subject]))] });
         throw new DialogueQualityRejectedError(qualityIssue);
