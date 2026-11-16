@@ -3,6 +3,9 @@ import { ArrowRight, Building2, Clock3, FileCheck2, Gift, House, Landmark, Shiel
 import { HeroPaperCarousel } from "@/components/HeroPaperCarousel";
 import { PublicNav } from "@/components/PublicNav";
 import styles from "@/components/HomePage.module.css";
+import { createShareMetadata } from "@/lib/share-metadata";
+
+export const metadata = createShareMetadata({ path: "/" });
 
 const services = [
   { title: "상속세", body: "가족의 재산 배분과 상속세 납부재원을 함께 살핍니다.", href: "/precheck?purpose=inheritance", icon: Landmark },
