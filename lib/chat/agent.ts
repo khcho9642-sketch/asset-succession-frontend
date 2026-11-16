@@ -4,7 +4,7 @@ import { z } from "zod";
 import { diagnosisReplySchema, diagnosisSelectionModeSchema } from "./choices";
 import { applyChatPatches, CHAT_FIELD_KEYS, createChatState, type ChatPatch, type ChatState } from "./intake";
 import { buildDiagnosisPrompt } from "./prompt";
-import { DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DIAGNOSIS_LIMITS, DiagnosisResponseRejectedError, proposeFactsInputSchema, type DiagnosisRequest } from "./server";
+import { ALTERNATE_GOOGLE_DIAGNOSIS_MODEL, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, DIAGNOSIS_LIMITS, DiagnosisResponseRejectedError, proposeFactsInputSchema, type DiagnosisRequest } from "./server";
 import { buildDiagnosisSources, getDiagnosisSourceHints, type DiagnosisSource } from "./sources";
 import { BRIEF_REPORT_REQUEST } from "./brief-report";
 
@@ -127,7 +127,7 @@ choices를 제공할 때는 그 선택지들이 답하는 명확한 질문 문�
     output: Output.object({ schema: createDiagnosisModelTurnSchema(sourceTable, latestMessage.text) }),
     maxOutputTokens: 3_000,
     // Keep the trial's reasoning and response work within its existing budget.
-    providerOptions: { google: { thinkingConfig: { thinkingLevel: model === DEFAULT_GOOGLE_DIAGNOSIS_MODEL ? "minimal" : "low" } } },
+    providerOptions: { google: { thinkingConfig: { thinkingLevel: model === DEFAULT_GOOGLE_DIAGNOSIS_MODEL || model === ALTERNATE_GOOGLE_DIAGNOSIS_MODEL ? "minimal" : "low" } } },
     maxRetries: 0,
     stopWhen: isStepCount(1),
     telemetry: { isEnabled: false, recordInputs: false, recordOutputs: false },

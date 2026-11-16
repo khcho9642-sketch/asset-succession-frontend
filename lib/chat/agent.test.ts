@@ -4,7 +4,7 @@ import { z } from "zod";
 import { NoObjectGeneratedError } from "ai";
 import { acceptFactProposals, createDiagnosisAgent, createDiagnosisModelTurnSchema, diagnosisTurnSchema, getDiagnosisTurnConstraints, resolveDiagnosisFactSelections } from "./agent";
 import type { ChatPatch } from "./intake";
-import { BACKUP_GOOGLE_DIAGNOSIS_MODEL, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
+import { ALTERNATE_GOOGLE_DIAGNOSIS_MODEL, BACKUP_GOOGLE_DIAGNOSIS_MODEL, DEFAULT_GOOGLE_DIAGNOSIS_MODEL, getDiagnosisPublicErrorCode, type DiagnosisRequest } from "./server";
 import { buildDiagnosisSources, getDiagnosisSourceHints, type DiagnosisSource } from "./sources";
 import { BRIEF_REPORT_REQUEST } from "./brief-report";
 
@@ -286,6 +286,23 @@ test("the free Flash backup retains low reasoning while Lite uses minimal", asyn
     return googleResponse(JSON.stringify(expected));
   });
   const result = await createDiagnosisAgent({ apiKey: SYNTHETIC_KEY, model: BACKUP_GOOGLE_DIAGNOSIS_MODEL, messages, facts: {} })
+    .generate({ messages: [{ role: "user", content: messages[0].parts[0].text }] });
+  assert.deepEqual(result.output, expected);
+  assert.equal(calls, 1);
+});
+
+test("the alternative free Flash-Lite uses minimal reasoning and the same strict output contract", async (t) => {
+  const expected = { facts: [], message: "먼저 알려주신 상황에서 필요한 일을 정리하겠습니다.", choices: [], selectionMode: "single" };
+  let calls = 0;
+  t.mock.method(globalThis, "fetch", async (input: RequestInfo | URL, init?: RequestInit) => {
+    calls += 1;
+    const request = new Request(input, init);
+    assert.equal(request.url, `https://generativelanguage.googleapis.com/v1beta/models/${ALTERNATE_GOOGLE_DIAGNOSIS_MODEL}:generateContent`);
+    const body = JSON.parse(await request.text()) as GoogleRequestBody;
+    assert.equal(body.generationConfig.thinkingConfig.thinkingLevel, "minimal");
+    return googleResponse(JSON.stringify(expected));
+  });
+  const result = await createDiagnosisAgent({ apiKey: SYNTHETIC_KEY, model: ALTERNATE_GOOGLE_DIAGNOSIS_MODEL, messages, facts: {} })
     .generate({ messages: [{ role: "user", content: messages[0].parts[0].text }] });
   assert.deepEqual(result.output, expected);
   assert.equal(calls, 1);
